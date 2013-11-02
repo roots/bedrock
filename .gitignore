@@ -1,0 +1,25 @@
+# WordPress
+wp
+.htaccess
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Application
+app/upgrade
+app/plugins/*
+app/mu-plugins/*
+app/themes/.gitignore  # create to ignore local themes
+app/plugins/.gitignore # create to ignore local plugins
+
+# Vendor (e.g. Composer)
+vendor/*
+!vendor/.gitkeep
+
+# Node Package Manager
+node_modules
+
+# Vagrant
+bin
+.vagrant
