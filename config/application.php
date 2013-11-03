@@ -3,7 +3,6 @@
  * Set up our global environment constant and load its config first
  * Default: development
  */
-
 define('WP_ENV', isset($_SERVER['WP_ENV']) ? $_SERVER['WP_ENV'] : 'development');
 
 $env_config = dirname(__FILE__) . '/environments/' . WP_ENV . '.php';
