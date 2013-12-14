@@ -1,4 +1,4 @@
-# [Bedrock](http://roots.io/bedrock/)
+# [Bedrock](http://roots.io/wordpress-stack/)
 
 ## Requirements
 
