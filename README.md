@@ -22,7 +22,14 @@ Note: While this is a project from the guys behind the [Roots starter theme](htt
 * [VirtualBox](http://www.virtualbox.org/) >= 4.3.4
 * Vagrant >= 1.4.0
 
-## Installation
+If you aren't interested in using a part, then you don't need it's requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
+
+## Installation/Usage
+
+1. Clone/Fork repo
+2. Edit configs
+3. Add theme(s)
+4. Access WP Admin at `http://<host>/wp`
 
 ## Documentation
 
