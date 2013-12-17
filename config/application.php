@@ -3,7 +3,16 @@
  * Set up our global environment constant and load its config first
  * Default: development
  */
-define('WP_ENV', isset($_SERVER['WP_ENV']) ? $_SERVER['WP_ENV'] : 'development');
+define('WP_ENV', getenv('WP_ENV') || 'development');
+
+$root_dir = dirname(dirname(__FILE__));
+
+
+/**
+ * Use Dotenv to set required environment variables and load .env file in root
+ */
+Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASS', 'WP_HOME', 'WP_SITEURL'));
+Dotenv::load($root_dir);
 
 $env_config = dirname(__FILE__) . '/environments/' . WP_ENV . '.php';
 
@@ -15,7 +24,7 @@ if (file_exists($env_config)) {
  * Custom Content Directory
  */
 define('CONTENT_DIR', '/app');
-define('WP_CONTENT_DIR', dirname(dirname(__FILE__)) . CONTENT_DIR);
+define('WP_CONTENT_DIR', $root_dir . CONTENT_DIR);
 define('WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . CONTENT_DIR);
 
 /**
@@ -23,7 +32,7 @@ define('WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . CONTENT_DIR);
  */
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
-$table_prefix = 'wp_';
+$table_prefix = '';
 
 /**
  * Authentication Unique Keys and Salts
@@ -49,5 +58,5 @@ define('DISALLOW_FILE_EDIT', true);
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-  define('ABSPATH', dirname(dirname(__FILE__)) . '/wp/');
+  define('ABSPATH', $root_dir . '/wp/');
 }
