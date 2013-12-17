@@ -31,7 +31,7 @@ define('WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . CONTENT_DIR);
  */
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
-$table_prefix = '';
+$table_prefix = 'wp_';
 
 /**
  * Authentication Unique Keys and Salts
