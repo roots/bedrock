@@ -7,12 +7,14 @@ db-sync
 sql-dump-*.sql
 
 # Application
+app/uploads
 app/upgrade
 app/plugins/*
 app/mu-plugins/*
+!app/mu-plugins/wp-setup.php
+!app/mu-plugins/register-theme-directory.php
 app/themes/.gitignore  # create to ignore local themes
 app/plugins/.gitignore # create to ignore local plugins
-!app/mu-plugins/register-theme-directory.php
 
 # Vendor (e.g. Composer)
 vendor/*
