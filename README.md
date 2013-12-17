@@ -28,7 +28,14 @@ If you aren't interested in using a part, then you don't need it's requirements 
 
 1. Clone/Fork repo
 2. Run `composer install`
-3. Set environments variables (`WP_ENV`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `WP_SITEURL (example.com/dev)`, `WP_HOME (example.com)`)
+3. Set environment variables:
+  * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
+  * `DB_NAME` - Database name
+  * `DB_USER` - Database user
+  * `DB_PASSWORD` - Database password
+  * `DB_HOST` - Database host (defaults to `localhost`)
+  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
+  * `WP_HOME` - Full URL to WordPress home (http://example.com)
 4. Add theme(s)
 5. Access WP Admin at `http://<host>/wp/wp-admin`
 
