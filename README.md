@@ -147,12 +147,6 @@ Screencast ($): [Using Composer With WordPress](http://roots.io/screencasts/usin
 
 Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
 
-* Remove `composer.json` and `composer.lock`
-* Remove `vendor` directory
-* Pick a method to keep `wp` included (either by Git submodule or committing the folder itself)
-* Manually download all plugins
-* Modify `.gitignore` as necessary
-
 ### Capistrano
 
 [Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
@@ -160,7 +154,7 @@ Composer integration is the biggest part of Bedrock, so if you were going to rem
 * Deploy: `cap production deploy`
 * Rollback: `cap production deploy:rollback`
 
-Composer support in built-in so when you run a deploy, `composer install` is automatically run. Capistrano has a great [deploy flow](http://www.capistranorb.com/documentation/getting-started/flow/) that you can hook into and extend it.
+Composer support is built-in so when you run a deploy, `composer install` is automatically run. Capistrano has a great [deploy flow](http://www.capistranorb.com/documentation/getting-started/flow/) that you can hook into and extend it.
 
 It's written in Ruby so it's needed *locally* if you want to use it. Capistrano was recently rewritten to be completely language agnostic, so if you previously wrote it off for being too Rails-centric, take another look at it.
 
