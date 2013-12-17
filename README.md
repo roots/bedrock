@@ -27,11 +27,26 @@ If you aren't interested in using a part, then you don't need it's requirements 
 ## Installation/Usage
 
 1. Clone/Fork repo
-2. Edit configs
-3. Add theme(s)
-4. Access WP Admin at `http://<host>/wp`
+2. Run `composer install`
+3. Set environments variables (`WP_ENV`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `WP_SITEURL (example.com/dev)`, `WP_HOME (example.com)`)
+4. Add theme(s)
+5. Access WP Admin at `http://<host>/wp/wp-admin`
+
+## Todo
+
+* Add Vagrant
 
 ## Documentation
+
+### Folder Structure
+
+### Configuration Files
+
+### Environment Variables
+
+### Composer
+
+### Capistrano
 
 ## Contributing
 
