@@ -39,6 +39,10 @@ If you aren't interested in using a part, then you don't need it's requirements 
 4. Add theme(s)
 5. Access WP Admin at `http://<host>/wp/wp-admin`
 
+### Deploying with Capistrano
+
+Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
+
 ## Todo
 
 * Add Vagrant
@@ -47,7 +51,50 @@ If you aren't interested in using a part, then you don't need it's requirements 
 
 ### Folder Structure
 
+```
+├── app
+│   ├── mu-plugins
+│   ├── plugins
+│   └── themes
+├── composer.json
+├── config
+│   │── deploy
+│   │   ├── staging.rb
+│   │   └── production.php
+│   │── deploy.rb
+│   │── environments
+│   │   ├── development.rb
+│   │   ├── staging.rb
+│   │   └── production.php
+│   └── application.php
+├── index.php
+├── vendor
+├── wp-config.php
+└── wp
+```
+
+The organization of Bedrock is similar to putting WordPress in its own subdirectory but with some improvements.
+
+* `wp-content` (or maybe just `content`) has been named `app` to better reflect its contents. It contains application code and not just "static content". It also matches up with other frameworks such as Symfony and Rails.
+* `wp-config.php` remains in the root because it's required by WP, but it only acts as a loader. The actual configuration files have been moved to `config/` for better separation.
+* Capistrano configs are also located in `config/` to make it consistent.
+* `vendor/` is where the Composer managed dependencies are installed to.
+* `wp/` is where the WordPress core lives. It's also managed by Composer but can't be put under `vendor` due to WP limitations.
+
 ### Configuration Files
+
+The root `wp-config.php` is required by WordPress and is only used to load the other main configs. Nothing else should be added to it.
+
+`config/application.php` is the main config file that contains what `wp-config.php` usually would. Base options should be set in there.
+
+For environment specific configuration, use the files under `config/environments`. By default there's is `development`, `staging`, and `production` but these can be whatever you require.
+
+The environment configs are required **before** the main `application` config so anything in an environment config takes precedence over `application`.
+
+Note: You can't re-define constants in PHP. So if you have a base setting in `application.php` and want to override it in `production.php` for example, you have a few options:
+
+* Remove the base option and be sure to define it in every environment it's needed
+* Only define the constant in `application.php` if it isn't already defined.
 
 ### Environment Variables
 
