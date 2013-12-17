@@ -28,7 +28,7 @@ If you aren't interested in using a part, then you don't need it's requirements 
 
 1. Clone/Fork repo
 2. Run `composer install`
-3. Set environment variables:
+3. Copy `.env.example` to `.env` and update environment variables:
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
