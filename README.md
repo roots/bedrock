@@ -22,8 +22,6 @@ Note: While this is a project from the guys behind the [Roots starter theme](htt
 * Git
 * PHP >= 5.3.2 (for Composer)
 * Ruby >= 1.9 (for Capistrano)
-* [VirtualBox](http://www.virtualbox.org/) >= 4.3.4
-* Vagrant >= 1.4.0
 
 If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
 
