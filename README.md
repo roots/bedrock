@@ -221,6 +221,7 @@ Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If
 ## Todo
 
 * Add Vagrant
+* Solution for basic database syncing/copying
 
 ## Contributing
 
