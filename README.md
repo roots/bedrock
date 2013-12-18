@@ -6,10 +6,10 @@ Bedrock's main features:
 
 * Dependency management with [Composer](http://getcomposer.org)
 * Automated deployments with [Capistrano](http://www.capistranorb.com/)
-* Easy development environments with [Vagrant](http://www.vagrantup.com/) - coming soon!
 * Better folder structure
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
+* Easy development environments with [Vagrant](http://www.vagrantup.com/) - coming soon!
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
