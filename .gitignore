@@ -1,0 +1,30 @@
+# WordPress
+wp
+.htaccess
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Application
+app/uploads
+app/upgrade
+app/plugins/*
+app/mu-plugins/*
+!app/mu-plugins/register-theme-directory.php
+
+# Vendor (e.g. Composer)
+vendor/*
+!vendor/.gitkeep
+
+# Node Package Manager
+node_modules
+
+# Vagrant
+bin
+.vagrant
