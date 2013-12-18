@@ -181,6 +181,12 @@ Whenever you add a new plugin or update the WP version, run `composer update` to
 
 `!app/plugins/plugin-name`
 
+#### Updating WP and plugin versions
+
+Updating your WordPress version (or any plugin) is just a matter of changing the version number in the `composer.json` file.
+
+Then running `composer update` will pull down the new version.
+
 #### Don't want it?
 
 Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
