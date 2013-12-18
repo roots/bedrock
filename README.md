@@ -15,7 +15,7 @@ Bedrock is meant as a base for you to fork and modify to fit your needs. It is d
 
 Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](http://roots.io/twelve-factor-wordpress/).
 
-Note: While this is a project from the guys behind the [Roots starter theme](http://roots.io/starter-theme), Bedrock isn't tied to Roots in any way and works with any theme.
+Note: While this is a project from the guys behind the [Roots starter theme](http://roots.io/starter-theme/), Bedrock isn't tied to Roots in any way and works with any theme.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ See [Documentation](#documentation) for more details on the steps below.
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 4. Add theme(s)
-5. Access WP Admin at `http://<host>/wp/wp-admin`
+5. Access WP Admin at `http://example.com/wp/wp-admin`
 
 Using Capistrano for deploys?
 
