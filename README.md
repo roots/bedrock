@@ -97,6 +97,36 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
 
+**Security warning**: You'll want to block configuration files from being publicly accessible (we'll do this automatically once we have Vagrant/server configs)
+
+Nginx:
+
+```nginx
+location ~ /(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)) {
+  deny all;
+}
+```
+
+Apache (in `.htaccess`):
+
+```apache
+<FilesMatch "/(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json))">
+
+    # Apache < 2.3
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+        Satisfy All
+    </IfModule>
+
+    # Apache ≥ 2.3
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+
+</FilesMatch>
+```
+
 #### Don't want it?
 
 You will lose the ability to define environment specific settings.
