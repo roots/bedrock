@@ -63,8 +63,8 @@ Using Capistrano for deploys?
 │   │   └── production.php
 │   │── deploy.rb
 │   │── environments
-│   │   ├── development.rb
-│   │   ├── staging.rb
+│   │   ├── development.php
+│   │   ├── staging.php
 │   │   └── production.php
 │   └── application.php
 ├── Gemfile
