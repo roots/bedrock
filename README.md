@@ -60,7 +60,7 @@ Using Capistrano for deploys?
 ├── config
 │   │── deploy
 │   │   ├── staging.rb
-│   │   └── production.php
+│   │   └── production.rb
 │   │── deploy.rb
 │   │── environments
 │   │   ├── development.php
