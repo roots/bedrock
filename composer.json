@@ -64,11 +64,11 @@
   },
   "extra": {
     "installer-paths": {
-      "app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
-    "webroot-dir": "wp",
+    "webroot-dir": "web/wp",
     "webroot-package": "wordpress"
   }
 }
