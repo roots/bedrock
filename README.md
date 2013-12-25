@@ -97,7 +97,13 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
 
-**Security warning**: You'll want to block configuration files from being publicly accessible (we'll do this automatically once we have Vagrant/server configs)
+**Security warning**: You'll want to block configuration files from being publicly accessible (we'll do this automatically once we have Vagrant/server configs).
+
+Add all the files within `config/environments` to `.gitignore` if you're using a public Git repo:
+
+```
+config/environments/*
+```
 
 Nginx:
 
