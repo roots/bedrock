@@ -236,3 +236,5 @@ Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this proje
 ## Support
 
 Use the [Roots Discourse](http://discourse.roots.io/) forum to ask questions and get support.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-71591-43/bedrock/readme?pixel)](https://github.com/igrigorik/ga-beacon)
