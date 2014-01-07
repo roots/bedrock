@@ -33,6 +33,28 @@ If you aren't interested in using a part, then you don't need its requirements e
 
 See [Documentation](#documentation) for more details on the steps below.
 
+### Using `create-project`
+
+Composer's `create-project` command will automatically install the Bedrock project to a directory and run `composer install`.
+
+The post-install script will automatically copy `.env.example` to `.env` and you'll be prompted about generating salt keys and appending them to your `.env` file.
+
+Note: To generate salts without a prompt, run `create-project` with `-n` (non-interactive). You can also change the `generate-salts` setting in `composer.json` under `config` in your own fork. The default is `true`.
+
+1. Run `composer create-project roots/bedrock <path>` (`path` being the folder to install to)
+2. Edit `.env` and update environment variables:
+  * `DB_NAME` - Database name
+  * `DB_USER` - Database user
+  * `DB_PASSWORD` - Database password
+  * `DB_HOST` - Database host (defaults to `localhost`)
+  * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
+  * `WP_HOME` - Full URL to WordPress home (http://example.com)
+  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
+3. Add theme(s)
+4. Access WP Admin at `http://example.com/wp/wp-admin`
+
+### Manually
+
 1. Clone/Fork repo
 2. Run `composer install`
 3. Copy `.env.example` to `.env` and update environment variables:
