@@ -2,7 +2,11 @@
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
-Bedrock's main features:
+## Quick Start
+
+Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details)
+
+## Features
 
 * Dependency management with [Composer](http://getcomposer.org)
 * Automated deployments with [Capistrano](http://www.capistranorb.com/)
