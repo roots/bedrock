@@ -41,6 +41,8 @@ The post-install script will automatically copy `.env.example` to `.env` and you
 
 Note: To generate salts without a prompt, run `create-project` with `-n` (non-interactive). You can also change the `generate-salts` setting in `composer.json` under `config` in your own fork. The default is `true`.
 
+To skip the scripts completely, `create-project` can be run with `--no-scripts` to disable it.
+
 1. Run `composer create-project roots/bedrock <path>` (`path` being the folder to install to)
 2. Edit `.env` and update environment variables:
   * `DB_NAME` - Database name
