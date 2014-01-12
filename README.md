@@ -128,7 +128,7 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 Nginx:
 
 ```nginx
-location ~ /(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)) {
+location ~ /(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)|\.env) {
   deny all;
 }
 ```
@@ -136,7 +136,7 @@ location ~ /(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)) {
 Apache (in `.htaccess`):
 
 ```apache
-<FilesMatch "/(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json))">
+<FilesMatch "/(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)|\.env)">
 
     # Apache < 2.3
     <IfModule !mod_authz_core.c>
