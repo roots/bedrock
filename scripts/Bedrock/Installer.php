@@ -32,7 +32,7 @@ class Installer {
     }
 
     $salts = array_map(function ($key) {
-      return "$key=" . self::generate_salt();
+      return sprintf("%s='%s'", $key, self::generate_salt());
     }, self::$KEYS);
 
     $env_file = "{$root}/.env";
