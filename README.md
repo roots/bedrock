@@ -50,10 +50,9 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `DB_PASSWORD` - Database password
   * `DB_HOST` - Database host (defaults to `localhost`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-3. Add theme(s)
-4. Access WP Admin at `http://example.com/wp/wp-admin`
+3. Customize environment configs in `config/environments/` as needed (at least `WP_HOME` and `WP_SITEURL`)
+4. Add theme(s)
+5. Access WP Admin at `http://example.com/wp/wp-admin`
 
 ### Manually
 
@@ -65,14 +64,13 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `DB_PASSWORD` - Database password
   * `DB_HOST` - Database host (defaults to `localhost`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s)
-5. Access WP Admin at `http://example.com/wp/wp-admin`
+4. Customize environment configs in `config/environments/` as needed (at least `WP_HOME` and `WP_SITEURL`)
+5. Add theme(s)
+6. Access WP Admin at `http://example.com/wp/wp-admin`
 
 Using Capistrano for deploys?
 
-6. Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
+* Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
 
 ## Documentation
 
@@ -174,8 +172,6 @@ Currently, the following env vars are required:
 * `DB_USER`
 * `DB_NAME`
 * `DB_PASSWORD`
-* `WP_HOME`
-* `WP_SITEURL`
 
 #### Don't want it?
 

@@ -5,8 +5,8 @@ define('DB_USER', getenv('DB_USER'));
 define('DB_PASSWORD', getenv('DB_PASSWORD'));
 define('DB_HOST', getenv('DB_HOST') ? getenv('DB_HOST') : 'localhost');
 
-define('WP_HOME', getenv('WP_HOME'));
-define('WP_SITEURL', getenv('WP_SITEURL'));
+define('WP_HOME', 'http://example.dev');
+define('WP_SITEURL', 'http://example.dev/wp');
 
 define('SAVEQUERIES', true);
 define('WP_DEBUG', true);
