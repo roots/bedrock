@@ -93,45 +93,50 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 4. Run the normal deploy command: `bundle exec cap <stage> deploy`
 5. Enjoy one-command deploys!
 
+* Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
+
 ## Documentation
 
 ### Folder Structure
 
 ```
-├── app
-│   ├── mu-plugins
-│   ├── plugins
-│   └── themes
 ├── Capfile
 ├── composer.json
 ├── config
+│   │── application.php
+│   │── deploy.rb
 │   │── deploy
 │   │   ├── staging.rb
 │   │   └── production.rb
-│   │── deploy.rb
-│   │── environments
-│   │   ├── development.php
-│   │   ├── staging.php
-│   │   └── production.php
-│   └── application.php
+│   └── environments
+│       ├── development.php
+│       ├── staging.php
+│       └── production.php
 ├── Gemfile
-├── index.php
 ├── vendor
-├── wp-config.php
-└── wp
+└── web
+    │── app
+    │   ├── mu-plugins
+    │   ├── plugins
+    │   └── themes
+    ├── wp-config.php
+    ├── index.php
+    └── wp
 ```
 
 The organization of Bedrock is similar to putting WordPress in its own subdirectory but with some improvements.
 
+* In order not to expose sensetive files in the webroot, Bedrock moves what's required into a `web/` directory including the vendor'd `wp/` source, and the `wp-content` source.
 * `wp-content` (or maybe just `content`) has been named `app` to better reflect its contents. It contains application code and not just "static content". It also matches up with other frameworks such as Symfony and Rails.
-* `wp-config.php` remains in the root because it's required by WP, but it only acts as a loader. The actual configuration files have been moved to `config/` for better separation.
+* `wp-config.php` remains in the `web/` because it's required by WP, but it only acts as a loader. The actual configuration files have been moved to `config/` for better separation.
 * Capistrano configs are also located in `config/` to make it consistent.
 * `vendor/` is where the Composer managed dependencies are installed to.
 * `wp/` is where the WordPress core lives. It's also managed by Composer but can't be put under `vendor` due to WP limitations.
 
+
 ### Configuration Files
 
-The root `wp-config.php` is required by WordPress and is only used to load the other main configs. Nothing else should be added to it.
+The root `web/wp-config.php` is required by WordPress and is only used to load the other main configs. Nothing else should be added to it.
 
 `config/application.php` is the main config file that contains what `wp-config.php` usually would. Base options should be set in there.
 
@@ -143,6 +148,8 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
+* Apache/Nginx site should be pointed to /path/to/site/web/ instead of just /path/to/site/
+
 
 **Security warning**: You'll want to block configuration files from being publicly accessible (we'll do this automatically once we have Vagrant/server configs)
 
