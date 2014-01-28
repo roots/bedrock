@@ -65,5 +65,5 @@ define('DISALLOW_FILE_EDIT', true);
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-define('ABSPATH', APP_ROOT . '/wp/');
+  define('ABSPATH', APP_ROOT . '/wp/');
 }
