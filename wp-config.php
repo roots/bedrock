@@ -6,4 +6,5 @@
  */
 require_once('vendor/autoload.php');
 require_once('config/application.php');
-require_once(ABSPATH . 'wp-settings.php');
+if (!class_exists('WP_CLI\Runner'))
+  require_once(ABSPATH . 'wp-settings.php');
