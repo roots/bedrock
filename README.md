@@ -228,6 +228,8 @@ Whenever you add a new plugin or update the WP version, run `composer update` to
 
 `!app/plugins/plugin-name`
 
+Note: Some plugins may create files or folders outside of their given scope, or even make modifications to `wp-config.php` and other files in the `wp` directory. These files should be added to the `.gitignore` as they are managed by the plugin itself, which is managed via by Composer. Any modifications to `wp-config.php` should be moved into `config/application.php`. 
+
 #### Updating WP and plugin versions
 
 Updating your WordPress version (or any plugin) is just a matter of changing the version number in the `composer.json` file.
