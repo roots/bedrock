@@ -105,11 +105,11 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 ├── Capfile
 ├── composer.json
 ├── config
-│   │── deploy
+│   ├── deploy
 │   │   ├── staging.rb
 │   │   └── production.rb
-│   │── deploy.rb
-│   │── environments
+│   ├── deploy.rb
+│   ├── environments
 │   │   ├── development.php
 │   │   ├── staging.php
 │   │   └── production.php
