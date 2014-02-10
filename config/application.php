@@ -1,5 +1,6 @@
 <?php
 $root_dir = dirname(__DIR__);
+$webroot_dir = $root_dir . '/web';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
@@ -22,9 +23,8 @@ if (file_exists($env_config)) {
 /**
  * Custom Content Directory
  */
-define('APP_ROOT', $root_dir . '/web');
 define('CONTENT_DIR', '/app');
-define('WP_CONTENT_DIR', APP_ROOT . CONTENT_DIR);
+define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
 define('WP_CONTENT_URL', WP_HOME . CONTENT_DIR);
 
 /**
@@ -65,5 +65,5 @@ define('DISALLOW_FILE_EDIT', true);
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-  define('ABSPATH', APP_ROOT . '/wp/');
+  define('ABSPATH', $webroot_dir . '/wp/');
 }
