@@ -103,6 +103,7 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 ├── Capfile
 ├── composer.json
 ├── config
+│   ├── application.php
 │   ├── deploy
 │   │   ├── staging.rb
 │   │   └── production.rb
@@ -115,7 +116,7 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 ├── Gemfile
 ├── vendor
 └── web
-    │── app
+    ├── app
     │   ├── mu-plugins
     │   ├── plugins
     │   └── themes
