@@ -78,7 +78,7 @@ Using Capistrano for deploys?
 
 Required Gems:
 
-* capistrano (> 3.0.1)
+* capistrano (> 3.1.0)
 * capistrano-composer
 
 These can be installed manually with `gem install <gem name>` but it's highly suggested you use [Bundler](http://bundler.io/) to manage them. Bundler is basically the Ruby equivalent to PHP's Composer. Just as Composer manages your PHP packages/dependencies, Bundler manages your Ruby gems/dependencies. Bundler itself is a Gem and can be installed via `gem install bundler` (sudo may be required).
