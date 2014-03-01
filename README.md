@@ -54,6 +54,7 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 3. Add theme(s)
 4. Access WP Admin at `http://example.com/wp/wp-admin`
+5. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 
 ### Manually
 
@@ -69,6 +70,7 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 4. Add theme(s)
 5. Access WP Admin at `http://example.com/wp/wp-admin`
+6. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 
 Using Capistrano for deploys?
 
@@ -149,38 +151,6 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
-* Apache/Nginx site should be pointed to /path/to/site/web/ instead of just /path/to/site/
-
-
-**Security warning**: You'll want to block configuration files from being publicly accessible (we'll do this automatically once we have Vagrant/server configs)
-
-Nginx:
-
-```nginx
-location ~ /(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)|\.env) {
-  deny all;
-}
-```
-
-Apache (in `.htaccess`):
-
-```apache
-<FilesMatch "/(config|Capfile|Gemfile(\.lock)?|composer(\.lock|\.json)|\.env)">
-
-    # Apache < 2.3
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-        Satisfy All
-    </IfModule>
-
-    # Apache ≥ 2.3
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-
-</FilesMatch>
-```
 
 #### Don't want it?
 
