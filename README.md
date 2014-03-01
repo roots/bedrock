@@ -4,7 +4,7 @@ Bedrock is a modern WordPress stack that helps you get started with the best dev
 
 ## Quick Start
 
-Run `composer create-project roots/bedrock <path> dev-master` (see [Installation/Usage](#installationusage) for more details)
+Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details)
 
 ## Features
 
@@ -43,7 +43,7 @@ Note: To generate salts without a prompt, run `create-project` with `-n` (non-in
 
 To skip the scripts completely, `create-project` can be run with `--no-scripts` to disable it.
 
-1. Run `composer create-project roots/bedrock <path> dev-master` (`path` being the folder to install to)
+1. Run `composer create-project roots/bedrock <path>` (`path` being the folder to install to)
 2. Edit `.env` and update environment variables:
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
