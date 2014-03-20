@@ -1,10 +1,8 @@
-# [Bedrock](http://roots.io/wordpress-stack/)
-
-Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
+# WordPress multi-site development stack
 
 ## Quick Start
 
-Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details)
+Run `composer create-project goatherd/wp-vm <path>` (see [Installation/Usage](#installationusage) for more details)
 
 ## Features
 
@@ -13,21 +11,23 @@ Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#in
 * Better folder structure
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-* Easy development environments with [Vagrant](http://www.vagrantup.com/) - coming soon!
+* Easy development environments with [Vagrant](http://www.vagrantup.com/)
+* Provisioning with [knife solo](https://github.com/matschaffer/knife-solo/)
+* Multi-site enabled setup
+* Modern server stack (nginx, FastCGI Process Manager [php-fpm], mysqlnd, PHP 5.5, APCu, zend optimizer+, memcached)
+* **TODO** Vanilla database for development
+
+Extending Bedrock:
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
 Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](http://roots.io/twelve-factor-wordpress/).
 
-Note: While this is a project from the guys behind the [Roots starter theme](http://roots.io/starter-theme/), Bedrock isn't tied to Roots in any way and works with any theme.
-
 ## Requirements
 
 * Git
-* PHP >= 5.3.2 (for Composer)
-* Ruby >= 1.9 (for Capistrano)
-
-If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
+* Ruby >= 1.9
+* Vagrant and Virtualbox
 
 ## Installation/Usage
 
@@ -50,27 +50,9 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `DB_PASSWORD` - Database password
   * `DB_HOST` - Database host (defaults to `localhost`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 3. Add theme(s)
 4. Access WP Admin at `http://example.com/wp/wp-admin`
 5. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
-
-### Manually
-
-1. Clone/Fork repo
-2. Run `composer install`
-3. Copy `.env.example` to `.env` and update environment variables:
-  * `DB_NAME` - Database name
-  * `DB_USER` - Database user
-  * `DB_PASSWORD` - Database password
-  * `DB_HOST` - Database host (defaults to `localhost`)
-  * `WP_ENV` - Set to environment (`development`, `staging`, `production`, etc)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s)
-5. Access WP Admin at `http://example.com/wp/wp-admin`
-6. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 
 Using Capistrano for deploys?
 
@@ -102,6 +84,7 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 ### Folder Structure
 
 ```
+├── Berksfile
 ├── Capfile
 ├── composer.json
 ├── config
@@ -115,7 +98,15 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 │   │   ├── staging.php
 │   │   └── production.php
 │   └── application.php
+├── cookbooks
+├── data_bags
+├── environments
 ├── Gemfile
+├── nodes
+├── roles
+├── scripts
+├── site-cookbooks
+├── Vagrantfile
 ├── vendor
 └── web
     ├── app
@@ -135,7 +126,7 @@ The organization of Bedrock is similar to putting WordPress in its own subdirect
 * Capistrano configs are also located in `config/` to make it consistent.
 * `vendor/` is where the Composer managed dependencies are installed to.
 * `wp/` is where the WordPress core lives. It's also managed by Composer but can't be put under `vendor` due to WP limitations.
-
+* **todo** add remaining
 
 ### Configuration Files
 
@@ -152,14 +143,6 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
 
-#### Don't want it?
-
-You will lose the ability to define environment specific settings.
-
-* Move all configuration into `wp-config.php`
-* Manually deal with environment specific options
-* Remove `config` directory
-
 ### Environment Variables
 
 Bedrock tries to separate config from code as much as possible and environment variables are used to achieve this. The benefit is there's a single place (`.env`) to keep settings like database or other 3rd party credentials that isn't committed to your repository.
@@ -173,15 +156,6 @@ Currently, the following env vars are required:
 * `DB_PASSWORD`
 * `WP_HOME`
 * `WP_SITEURL`
-
-#### Don't want it?
-
-You will lose the separation between config and code and potentially put secure credentials at risk.
-
-* Remove `dotenv` from `composer.json` requires
-* Remove `.env.example` file from root
-* Remove `require_once('vendor/autoload.php');` from `wp-config.php`
-* Replace all `getenv` calls with whatever method you want to set those values
 
 ### Composer
 
@@ -227,10 +201,6 @@ Under most circumstances we recommend NOT doing #2 and instead keeping your main
 
 Just like plugins, WPackagist maintains a Composer mirror of the WP theme directory. To require a theme, just use the `wpackagist-theme` namespace.
 
-#### Don't want it?
-
-Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
-
 ### Capistrano
 
 [Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
@@ -258,21 +228,10 @@ Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If
 
 `*/5 * * * * curl http://example.com/wp/wp-cron.php`
 
-## Todo
+### Todo
 
-* Add Vagrant
-* Solution for basic database syncing/copying
+[TODO](TODO.md)
 
-## Contributing
+### Virtual machine
 
-Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this project. There are several ways you can contribute:
-
-* Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
-* Suggesting new features
-* Writing or refactoring code
-* Fixing [issues](https://github.com/roots/bedrock/issues)
-* Replying to questions on the [forum](http://discourse.roots.io/)
-
-## Support
-
-Use the [Roots Discourse](http://discourse.roots.io/) forum to ask questions and get support.
+[Vagrant](Vagrant.md)

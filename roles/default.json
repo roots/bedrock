@@ -1,0 +1,95 @@
+{
+    "name": "default",
+    "default_attributes": {
+        "php": {
+            "directives": {
+                "date.timezone": "UTC",
+                "iconv.input_encoding": "UTF-8",
+                "iconv.internal_encoding": "UTF-8",
+                "iconv.output_encoding": "UTF-8",
+                "mbstring.internal_encoding": "UTF-8",
+                "mbstring.regex_encoding": "UTF-8",
+                "short_open_tags": "On",
+                "cgi.fix_pathinfo": "0"
+            },
+            "install_method": "package",
+            "packages": [
+                "php5-fpm",
+                "php5",
+                "php5-dev",
+                "php5-cli",
+                "php-pear",
+                "php5-mysqlnd",
+                "php5-curl",
+                "php5-tidy"
+            ],
+            "ini": {
+                "template": "php.ini.erb",
+                "cookbook": "php"
+            }
+        },
+        "nginx": {
+            "gzip_http_version": "1.1",
+            "gzip_vary": "on",
+            "gzip_comp_level": "6",
+            "gzip_buffers": "16 8k",
+            "upstream_repository": "http://nginx.org/packages/ubuntu",
+            "worker_connections": 256,
+            "multi_accept": "on",
+            "event": "epoll",
+            "sendfile": "off"
+        },
+        "mysql": {
+            "bind_address" : "127.0.0.1",
+            "allow_remote_root" : false,
+            "mysql_bin": "mysql"
+        },
+        "phpmyadmin": {
+            "webserver": "nginx",
+            "cfg": {
+              "allow_root": false,
+              "allow_no_password": false,
+              "control_user_password": "pma",
+              "path": "/var/lib/phpmyadmin"
+            },
+            "nginx": {
+                "server_name": "pma.wortsuchen-vm",
+                "fastcgi_server": "unix:/var/run/php5-fpm.sock"
+            }
+        },
+        "unattended_upgrades": {
+            "allowed_origins": [
+                "${distro_id} ${distro_codename}-security",
+                "${distro_id} ${distro_codename}-updates"
+            ],
+            "unattended_upgrade_interval": 1,
+            "install_on_shutdown": true,
+            "mail_only_on_error": true
+        }
+    },
+    "run_list": [
+        "recipe[apt]",
+        "recipe[unattended_upgrades]",
+        "recipe[build-essential]",
+        "recipe[git]",
+        "recipe[default]",
+        "recipe[nginx::repo]",
+        "recipe[nginx]",
+        "recipe[mysql]",
+        "recipe[default::package_php55]",
+        "recipe[php]",
+        "recipe[php::module_curl]",
+        "recipe[default::php_modules]",
+        "recipe[mysql::server]",
+        "recipe[phpmyadmin]",
+        "recipe[composer]",
+        "recipe[default::composer]",
+        "recipe[default::ssl_cert]",
+        "recipe[default::nginx]",
+        "recipe[database]",
+        "recipe[database::mysql]",
+        "recipe[default::database]"
+    ],
+    "json_class": "Chef::Role",
+    "chef_type": "role"
+}

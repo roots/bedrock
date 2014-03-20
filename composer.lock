@@ -3,92 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d4de1eae4ca019bf73e8f85cab8a1177",
+    "hash": "c9905309f41bc812ca405733527fa0b4",
     "packages": [
-        {
-            "name": "composer/installers",
-            "version": "v1.0.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/4127333b03e8b4c08d081958548aae5419d1a2fa",
-                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa",
-                "shasum": ""
-            },
-            "replace": {
-                "shama/baton": "*"
-            },
-            "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "composer-installer",
-            "extra": {
-                "class": "Composer\\Installers\\Installer",
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Composer\\Installers\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "http://composer.github.com/installers/",
-            "keywords": [
-                "Craft",
-                "Hurad",
-                "MODX Evo",
-                "OXID",
-                "WolfCMS",
-                "agl",
-                "annotatecms",
-                "cakephp",
-                "codeigniter",
-                "concrete5",
-                "croogo",
-                "drupal",
-                "elgg",
-                "fuelphp",
-                "installer",
-                "joomla",
-                "kohana",
-                "laravel",
-                "lithium",
-                "magento",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "shopware",
-                "silverstripe",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "zend",
-                "zikula"
-            ],
-            "time": "2014-02-24 04:21:34"
-        },
         {
             "name": "fancyguy/webroot-installer",
             "version": "1.1.0",
@@ -130,6 +46,88 @@
             "description": "A composer installer for libraries that live in an application webroot.",
             "homepage": "http://fancyguy.github.com/webroot-installer/",
             "time": "2013-03-15 17:51:14"
+        },
+        {
+            "name": "johnpbloch/wordpress",
+            "version": "3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress.git",
+                "reference": "45239abfc638d51e84a0920976cfa1de4477a53f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/45239abfc638d51e84a0920976cfa1de4477a53f",
+                "reference": "45239abfc638d51e84a0920976cfa1de4477a53f",
+                "shasum": ""
+            },
+            "require": {
+                "johnpbloch/wordpress-core-installer": "~0.2",
+                "php": ">=5.3.2"
+            },
+            "type": "wordpress-core",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms"
+            ],
+            "time": "2014-01-23 20:31:48"
+        },
+        {
+            "name": "johnpbloch/wordpress-core-installer",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
+                "reference": "a4c08e91be99e858c7778c2f52a4d73820147c2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/a4c08e91be99e858c7778c2f52a4d73820147c2e",
+                "reference": "a4c08e91be99e858c7778c2f52a4d73820147c2e",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "1.0.0"
+            },
+            "conflict": {
+                "composer/installers": "<1.0.6"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "johnpbloch\\Composer\\WordPressCorePlugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "johnpbloch\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "John P. Bloch",
+                    "email": "me@johnpbloch.com"
+                }
+            ],
+            "description": "A custom installer to handle deploying WordPress with composer",
+            "time": "2013-09-09 15:04:54"
         },
         {
             "name": "mustache/mustache",
@@ -400,20 +398,6 @@
                 "environment"
             ],
             "time": "2014-01-31 16:18:39"
-        },
-        {
-            "name": "wordpress",
-            "version": "3.8.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/3.8.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "fancyguy/webroot-installer": "1.1.0"
-            },
-            "type": "webroot"
         },
         {
             "name": "wp-cli/php-cli-tools",

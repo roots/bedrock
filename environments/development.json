@@ -1,0 +1,32 @@
+{
+  "name": "staging",
+  "description": "Default master development branch",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "php": {
+          "directives": {
+              "error_reporting": "E_ALL",
+              "display_errors": "On",
+              "display_startup_errors": "On"
+          }
+      },
+      "mysql": {
+          "server_debian_password": "",
+          "server_root_password": "",
+          "server_repl_password": "",
+          "bind_address": "0.0.0.0",
+          "allow_remote_root": true
+      },
+      "phpmyadmin": {
+          "cfg": {
+              "allow_root": true,
+              "allow_no_password": true
+          }
+      }
+  }
+}

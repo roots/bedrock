@@ -1,27 +1,21 @@
 {
-  "name": "roots/bedrock",
+  "name": "goatherd/wp-vm",
   "type": "project",
   "license": "MIT",
-  "description": "A modern WordPress stack",
-  "homepage": "http://roots.io/wordpress-stack/",
+  "description": "WordPress multi-site development stack",
+  "homepage": "https://github.com/goatherd/wp-vm",
   "authors": [
     {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
+      "name": "Maik Penz",
+      "email": "maik@phpkuh.de",
+      "homepage": "https://github.com/goatherd"
     }
   ],
   "keywords": [
-    "wordpress", "stack", "capistrano", "composer", "vagrant", "wp"
+    "wordpress", "stack", "composer", "vagrant", "development"
   ],
   "support": {
-    "issues": "https://github.com/roots/bedrock/issues",
-    "forum": "http://discourse.roots.io/category/bedrock"
+    "issues": "https://github.com/goatherd/wp-vm/issues"
   },
   "config": {
     "preferred-install": "dist",
@@ -37,29 +31,13 @@
     {
       "type": "composer",
       "url": "http://wpackagist.org"
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "wordpress",
-        "version": "3.8.1",
-        "type": "webroot",
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/WordPress/WordPress/archive/3.8.1.zip"
-        },
-        "require" : {
-          "fancyguy/webroot-installer": "1.1.0"
-        }
-      }
     }
   ],
   "require": {
     "php": ">=5.3.2",
-    "wordpress": "3.8.1",
+    "johnpbloch/wordpress": "~3.8",
     "fancyguy/webroot-installer": "1.1.0",
-    "composer/installers": "v1.0.12",
-    "wp-cli/wp-cli": "v0.14.1",
+    "wp-cli/wp-cli": "~0.14",
     "vlucas/phpdotenv": "~1.0.6"
   },
   "extra": {
@@ -69,6 +47,6 @@
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "webroot-dir": "web/wp",
-    "webroot-package": "wordpress"
+    "wordpress-install-dir": "web/wp"
   }
 }

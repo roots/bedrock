@@ -1,3 +1,12 @@
+### gh-1.1: 2014-03-20
+
+* add virtual machine support (vagrant)
+* add WordPress multi-site support
+* adjust documentation and usage recommendations to fit expected use case
+* add provisioning (knife solo setup)
+* add initial hostname abstraction
+* use packagist for WordPress
+
 ### 1.1.1: 2014-03-11
 
 * Update phpdotenv to 1.0.6
