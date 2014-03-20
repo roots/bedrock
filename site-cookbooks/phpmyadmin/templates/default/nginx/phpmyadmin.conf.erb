@@ -1,0 +1,33 @@
+server {
+  listen <%= node[:phpmyadmin][:nginx][:port] || 80 %>;
+  server_name <%= node[:phpmyadmin][:nginx][:server_name] %>;
+  root <%= node[:phpmyadmin][:nginx][:docroot] %>;
+  
+  access_log  <%= node[:nginx][:log_dir] %>/phpmyadmin-<%= node[:phpmyadmin][:nginx][:server_name] %>.access.log;
+  
+  index index.php;
+
+  location / {
+  	try_files $uri $uri/ @phpmyadmin;
+  }
+
+  location @phpmyadmin {
+    fastcgi_buffers 8 256k;
+    fastcgi_buffer_size 128k;
+    fastcgi_intercept_errors on;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME <%= node[:phpmyadmin][:nginx][:docroot] %>/index.php;
+    fastcgi_param SCRIPT_NAME /index.php;
+    fastcgi_pass <%= node[:phpmyadmin][:nginx][:fastcgi_server] %>;
+  }
+  
+  location ~ \.php$ {
+  	fastcgi_buffers 8 256k;
+    fastcgi_buffer_size 128k;
+    fastcgi_intercept_errors on;
+    include fastcgi_params;
+    fastcgi_index  index.php;
+    fastcgi_param SCRIPT_FILENAME <%= node[:phpmyadmin][:nginx][:docroot] %>$fastcgi_script_name;
+    fastcgi_pass <%= node[:phpmyadmin][:nginx][:fastcgi_server] %>;
+	}
+}

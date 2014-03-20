@@ -14,7 +14,7 @@ Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEU
  */
 define('WP_ENV', getenv('WP_ENV') ? getenv('WP_ENV') : 'development');
 
-$env_config = dirname(__FILE__) . '/environments/' . WP_ENV . '.php';
+$env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
 if (file_exists($env_config)) {
   require_once $env_config;
@@ -57,7 +57,17 @@ define('NONCE_SALT',       getenv('NONCE_SALT'));
 /**
  * Custom Settings
  */
+// multi-site feature
+define('MULTISITE', true);
+define('SUBDOMAIN_INSTALL', true);
+$base = '/';
+
+// domain mapping
+define('SUNRISE', 'on');
+
+# performance and maintenance
 define('AUTOMATIC_UPDATER_DISABLED', true);
+define('WP_CRON', false);
 define('DISABLE_WP_CRON', true);
 define('DISALLOW_FILE_EDIT', true);
 

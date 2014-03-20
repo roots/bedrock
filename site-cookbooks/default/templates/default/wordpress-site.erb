@@ -1,0 +1,113 @@
+map $http_host $blogid {
+    default               0;
+
+    network.wordpress-vm.local 1;
+    site.wordpress-vm.local    2;
+}
+
+server {
+  listen 80;
+
+  server_name <%= node['default']['nginx']['wordpress']['server_names'].join(' ') %>;
+  root <%= node['default']['nginx']['wordpress']['root'] %>;
+
+  <% if node['default']['nginx']['protect']==true -%>
+  auth_basic            "Restricted";
+  auth_basic_user_file  /etc/nginx/htpasswd;
+  <% end -%>
+
+  error_log /var/log/nginx/wordpress.error.log;
+  access_log /var/log/nginx/wordpress.access.log;
+
+  # DEFAULT INDEX
+  index index.php;
+
+  ## SECURITY
+  if ( $request_method !~ ^(GET|HEAD|POST)$ ) {
+    return 444;
+  }
+  location ~ /(\.|wp-config.php|liesmich.html|readme.html) {
+    return 444;
+  }
+
+  ## REWRITES
+  location ~ ^/(\d+)/$ {
+    return 301 /?p=$1;
+  }
+
+  # Global restrictions configuration file.
+  # Designed to be included in any server {} block.</p>
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  # Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+  # Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+  location ~ /\. {
+    deny all;
+  }
+
+  # Deny access to any files with a .php extension in the uploads directory
+  # Works in sub-directory installs and also in multisite network
+  # Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+  location ~* /(?:uploads|files)/.*\.php$ {
+    deny all;
+  }
+
+  ## RESSOURCES
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires 31d;
+    add_header Pragma "public";
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+    log_not_found off;
+    access_log off;
+  }
+
+  ## REDIRECT INDEX
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  location ~ ^/[_0-9a-zA-Z-]+/files/(.*)$ {
+    try_files /wp-content/blogs.dir/$blogid/files/$2 /wp-includes/ms-files.php?file=$2 ;
+    access_log off; log_not_found off;
+    expires max;
+  }
+
+  #avoid php readfile()
+  location ^~ /blogs.dir {
+    internal;
+    alias <%= node['default']['nginx']['wordpress']['root'] %>/wp-content/blogs.dir ;
+    access_log off; log_not_found off;
+    expires max;
+  }
+
+  # Rewrite multisite '.../wp-.*' and '.../*.php'.
+  if (!-e $request_filename) {
+    rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+    rewrite ^/[_0-9a-zA-Z-]+(/wp-.*) $1 last;
+    rewrite ^/[_0-9a-zA-Z-]+(/.*\.php)$ $1 last;
+  }
+
+  ## PHP FILES
+  location ~ \.php$ {
+    # Zero-day exploit defense.
+    # http://forum.nginx.org/read.php?2,88845,page=3
+    # Won't work properly (404 error) if the file is not stored on this server, which is entirely possible with php-fpm/php-fcgi.
+    # Comment the 'try_files' line out if you set up php-fpm/php-fcgi on another machine.  And then cross your fingers that you won't get hacked.
+    try_files $uri =404;
+
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_index index.php;
+  }
+}
