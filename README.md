@@ -258,6 +258,12 @@ Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If
 
 `*/5 * * * * curl http://example.com/wp/wp-cron.php`
 
+## WP-CLI
+
+Bedrock works with [WP-CLI](http://wp-cli.org/) just like any other WordPress project would. Previously we required WP-CLI in our `composer.json` file as a dependency. This has been removed since WP-CLI now recommends installing it globally with a `phar` file. It also caused conflicts if you tried using a global install.
+
+The `wp` command will automatically pick up Bedrock's subdirectory install as long as you run commands in the `web/` dir or any path deeper. If you want to run `wp` commands from the project root (above `web/`), you'll need to manually pass the `--path=web/wp` option.
+
 ## Todo
 
 * Add Vagrant
