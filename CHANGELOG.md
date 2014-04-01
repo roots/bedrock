@@ -1,3 +1,7 @@
+### HEAD
+
+* Remove wp-cli
+
 ### 1.1.1: 2014-03-11
 
 * Update phpdotenv to 1.0.6
