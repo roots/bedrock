@@ -5,7 +5,10 @@ $webroot_dir = $root_dir . '/web';
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-Dotenv::load($root_dir);
+if (file_exists($root_dir . '/.env')) {
+  Dotenv::load($root_dir);
+}
+
 Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL'));
 
 /**
