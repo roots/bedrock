@@ -1,3 +1,7 @@
+### HEAD
+
+* Update to WordPress 3.8.2
+
 ### 1.2.0: 2014-04-07
 
 * WP package now has `wordpress` vendor name: `wordpress/wordpress`
