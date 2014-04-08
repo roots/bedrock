@@ -1,4 +1,4 @@
-### HEAD
+### 1.2.1: 2014-04-08
 
 * Update to WordPress 3.8.2
 
