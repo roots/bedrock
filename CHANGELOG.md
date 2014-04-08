@@ -1,6 +1,7 @@
-### HEAD
+### 1.2.0: 2014-04-07
 
-* Remove wp-cli
+* WP package now has `wordpress` vendor name: `wordpress/wordpress`
+* Remove wp-cli and add `wp-cli.yml` config
 
 ### 1.1.1: 2014-03-11
 
