@@ -1,5 +1,6 @@
-### HEAD
+### 1.2.2: 2014-04-14
 
+* Update to WordPress 3.8.3
 * Only run `Dotenv::load` if `.env` file exists
 
 ### 1.2.1: 2014-04-08
