@@ -1,3 +1,7 @@
+### 1.2.4: 2014-04-17
+
+* Fixes issue with 3.9 update (`composer.lock` wasn't updated)
+
 ### 1.2.3: 2014-04-16
 
 * Update to WordPress 3.9
