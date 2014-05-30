@@ -27,3 +27,8 @@ host {
 }
 
 include mysql
+
+class {
+  'nginx':
+  webRoot => $webRoot,
+}

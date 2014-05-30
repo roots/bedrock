@@ -1,0 +1,21 @@
+server {
+	listen   80;
+
+	root /vagrant/web;
+	index index.php index.html index.htm;
+
+	server_name puppet.dev;
+
+	location / {
+		try_files $uri $uri/ /index.html;
+	}
+
+	location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+
+    }
+}
