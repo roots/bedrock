@@ -1,28 +1,19 @@
 {
-  "name": "roots/bedrock",
+  "name": "theantichris/theantichris.com",
   "type": "project",
-  "license": "MIT",
-  "description": "A modern WordPress stack",
-  "homepage": "http://roots.io/wordpress-stack/",
+  "license": "GPL",
+  "description": "WordPress install for theantichris.com.",
+  "homepage": "http://theantichris.com",
   "authors": [
     {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
+      "name": "Christopher Lamm",
+      "email": "chris@theantichris.com",
+      "homepage": "http://theantichris.com"
     }
   ],
   "keywords": [
-    "wordpress", "stack", "capistrano", "composer", "vagrant", "wp"
+    "wordpress", "composer", "vagrant", "wp", "puppet"
   ],
-  "support": {
-    "issues": "https://github.com/roots/bedrock/issues",
-    "forum": "http://discourse.roots.io/category/bedrock"
-  },
   "config": {
     "preferred-install": "dist",
     "generate-salts": true
@@ -55,7 +46,7 @@
     }
   ],
   "require": {
-    "php": ">=5.3.2",
+    "php": ">=5.5.12",
     "wordpress/wordpress": "3.9.1",
     "fancyguy/webroot-installer": "1.1.0",
     "composer/installers": "v1.0.12",
