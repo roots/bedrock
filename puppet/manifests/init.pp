@@ -31,8 +31,8 @@ include composer, ruby
 class {
   'mysql':
   databaseName => 'theantichris_dev',
-  root => 'root',
-  rootPw => '123',
+  rootUsername => 'root',
+  rootPassword => '123',
 }
 
 class {
