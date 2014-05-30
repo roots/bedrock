@@ -1,6 +1,8 @@
 # theantichris.com
 
-WordPress installation for theantichris.com. Uses Bedrock and Roots.
+WordPress installation for theantichris.com.
+
+Uses Vagrant, Puppet, Composer, and Bedrock.
 
 # Setup
 1. Run `vagrant up`
