@@ -7,7 +7,7 @@ server {
 	server_name theantichris.dev;
 
 	location / {
-		try_files $uri $uri/ /index.html;
+		try_files $uri $uri/ /index.php;
 	}
 
 	location ~ \.php$ {
