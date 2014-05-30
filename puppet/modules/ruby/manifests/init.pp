@@ -1,6 +1,6 @@
 class ruby {
   package {
-    'ruby':
+    'ruby1.9.3':
     ensure => present,
     require => Exec['update-package-list'],
   }
@@ -9,6 +9,6 @@ class ruby {
     'bundler':
     ensure   => installed,
     provider => gem,
-    require => Package['ruby'],
+    require => Package['ruby1.9.3'],
   }
 }
