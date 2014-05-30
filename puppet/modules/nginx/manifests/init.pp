@@ -19,13 +19,6 @@ class nginx($webRoot) {
     require => Package['nginx'],
   }
 
-  file {
-    "${webRoot}/test.html":
-    ensure => present,
-    source => 'puppet:///modules/nginx/test.html',
-    require=> Service['nginx'],
-  }
-
   # Create the default virtual host file from the module.
   file {
     '/etc/nginx/sites-available/default':

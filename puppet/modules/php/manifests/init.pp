@@ -26,11 +26,4 @@ class php($webRoot) {
     notify => Service['php5-fpm'],
     require => Package['php5-fpm'],
   }
-
-  file {
-    "${webRoot}/phpinfo.php":
-    ensure => present,
-    source => 'puppet:///modules/php/phpinfo.php',
-    require => Service['php5-fpm'],
-  }
 }
