@@ -32,3 +32,8 @@ class {
   'nginx':
   webRoot => $webRoot,
 }
+
+class {
+  'php':
+  webRoot => $webRoot,
+}
