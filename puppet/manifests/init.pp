@@ -26,7 +26,7 @@ host {
   ip => '127.0.1.1'
 }
 
-include mysql
+include mysql, composer
 
 class {
   'nginx':
