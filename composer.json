@@ -1,64 +1,67 @@
 {
-  "name": "theantichris/theantichris.com",
-  "type": "project",
-  "license": "GPL",
-  "description": "WordPress install for theantichris.com.",
-  "homepage": "http://theantichris.com",
-  "authors": [
-    {
-      "name": "Christopher Lamm",
-      "email": "chris@theantichris.com",
-      "homepage": "http://theantichris.com"
-    }
-  ],
-  "keywords": [
-    "wordpress", "composer", "vagrant", "wp", "puppet"
-  ],
-  "config": {
-    "preferred-install": "dist",
-    "generate-salts": true
-  },
-  "autoload": {
-    "psr-0": {"Bedrock\\Installer": "scripts"}
-  },
-  "scripts": {
-    "post-root-package-install": ["Bedrock\\Installer::addSalts"]
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "http://wpackagist.org"
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "wordpress/wordpress",
-        "version": "3.9.1",
-        "type": "webroot",
-        "dist": {
-          "type": "zip",
-          "url": "https://wordpress.org/wordpress-3.9.1.zip"
-        },
-        "require" : {
-          "fancyguy/webroot-installer": "1.1.0"
+    "name": "theantichris/theantichris.com",
+    "type": "project",
+    "license": "GPL",
+    "description": "WordPress install for theantichris.com.",
+    "homepage": "http://theantichris.com",
+    "authors": [
+        {
+            "name": "Christopher Lamm",
+            "email": "chris@theantichris.com",
+            "homepage": "http://theantichris.com"
         }
-      }
-    }
-  ],
-  "require": {
-    "php": ">=5.5.12",
-    "wordpress/wordpress": "3.9.1",
-    "fancyguy/webroot-installer": "1.1.0",
-    "composer/installers": "v1.0.12",
-    "vlucas/phpdotenv": "~1.0.6"
-  },
-  "extra": {
-    "installer-paths": {
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    ],
+    "keywords": [
+        "wordpress", "composer", "vagrant", "wp", "puppet"
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "generate-salts": true
     },
-    "webroot-dir": "web/wp",
-    "webroot-package": "wordpress/wordpress"
-  }
+    "autoload": {
+        "psr-0": {
+            "Bedrock\\Installer": "scripts"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": ["Bedrock\\Installer::addSalts"]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://wpackagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "wordpress/wordpress",
+                "version": "3.9.1",
+                "type": "webroot",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://wordpress.org/wordpress-3.9.1.zip"
+                },
+                "require": {
+                    "fancyguy/webroot-installer": "1.1.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.5.12",
+        "wordpress/wordpress": "3.9.1",
+        "fancyguy/webroot-installer": "1.1.0",
+        "composer/installers": "v1.0.12",
+        "vlucas/phpdotenv": "~1.0.6",
+        "wpackagist/akismet": "*"
+    },
+    "extra": {
+        "installer-paths": {
+            "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "web/app/themes/{$name}/": ["type:wordpress-theme"]
+        },
+        "webroot-dir": "web/wp",
+        "webroot-package": "wordpress/wordpress"
+    }
 }
