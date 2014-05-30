@@ -26,7 +26,14 @@ host {
   ip => '127.0.1.1'
 }
 
-include mysql, composer, ruby
+include composer, ruby
+
+class {
+  'mysql':
+  databaseName => 'theantichris_dev',
+  root => 'root',
+  rootPw => '123',
+}
 
 class {
   'nginx':
