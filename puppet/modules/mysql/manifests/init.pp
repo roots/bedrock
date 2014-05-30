@@ -25,4 +25,11 @@ class mysql {
     command => 'mysql -uroot -p123 -e "create database theantichris_dev;"',
     require => Exec['set-mysql-root-password']
   }
+
+  exec {
+    'restore-mysql-database':
+    unless => 'mysql -uroot -p123 -e "select * from theantichris_dev.wp_posts;"',
+    command => "mysql -uroot -p123 theantichris_dev < /vagrant/puppet/modules/mysql/files/theantichris_dev.sql",
+    require => Exec['create-database']
+  }
 }
