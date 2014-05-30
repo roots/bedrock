@@ -6,3 +6,4 @@ WordPress installation for theantichris.com. Uses Bedrock and Roots.
 1. Run `vagrant up`
 1. Run `composer install` in /vagrant
 1. Setup .env file
+1. Run `bundle install` in /vagrant for Capistrano
