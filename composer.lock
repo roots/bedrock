@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "32f4f091f709cbbf73edbbe6dd6b6a18",
+    "hash": "d2fb806fff52a4226dacfe475e4fe645",
     "packages": [
         {
             "name": "composer/installers",
@@ -379,7 +379,29 @@
         }
     ],
     "packages-dev": [
-
+        {
+            "name": "wpackagist-plugin/developer",
+            "version": "1.2.5",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/developer/",
+                "reference": "tags/1.2.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/developer.1.2.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/developer": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/developer/"
+        }
     ],
     "aliases": [
 
