@@ -26,7 +26,7 @@ host {
   ip => '127.0.1.1'
 }
 
-include mysql, composer
+include mysql, composer, ruby
 
 class {
   'nginx':
