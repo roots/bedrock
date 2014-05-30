@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "278a9bc877988b1410ba5a436ae027d0",
+    "hash": "32f4f091f709cbbf73edbbe6dd6b6a18",
     "packages": [
         {
             "name": "composer/installers",
@@ -194,7 +194,7 @@
             "type": "webroot"
         },
         {
-            "name": "wpackagist/akismet",
+            "name": "wpackagist-plugin/akismet",
             "version": "3.0.0",
             "source": {
                 "type": "svn",
@@ -210,8 +210,172 @@
             "require": {
                 "composer/installers": "~1.0"
             },
+            "replace": {
+                "wpackagist/akismet": "self.version"
+            },
             "type": "wordpress-plugin",
             "homepage": "http://wordpress.org/plugins/akismet/"
+        },
+        {
+            "name": "wpackagist-plugin/bwp-google-xml-sitemaps",
+            "version": "1.2.3",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/bwp-google-xml-sitemaps/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/bwp-google-xml-sitemaps.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/bwp-google-xml-sitemaps": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/bwp-google-xml-sitemaps/"
+        },
+        {
+            "name": "wpackagist-plugin/google-analyticator",
+            "version": "6.4.7.3",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/google-analyticator/",
+                "reference": "tags/6.4.7.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/google-analyticator.6.4.7.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/google-analyticator": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/google-analyticator/"
+        },
+        {
+            "name": "wpackagist-plugin/jetpack",
+            "version": "3.0.1",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/jetpack/",
+                "reference": "tags/3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/jetpack.3.0.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/jetpack": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/jetpack/"
+        },
+        {
+            "name": "wpackagist-plugin/oembed-gist",
+            "version": "1.6.0",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/oembed-gist/",
+                "reference": "tags/1.6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/oembed-gist.1.6.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/oembed-gist": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/oembed-gist/"
+        },
+        {
+            "name": "wpackagist-plugin/redirection",
+            "version": "2.3.4",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/redirection/",
+                "reference": "tags/2.3.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/redirection.2.3.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/redirection": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/redirection/"
+        },
+        {
+            "name": "wpackagist-plugin/wordpress-importer",
+            "version": "0.6.1",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/wordpress-importer/",
+                "reference": "tags/0.6.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/wordpress-importer.0.6.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/wordpress-importer": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/wordpress-importer/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-portfolio",
+            "version": "1.35",
+            "source": {
+                "type": "svn",
+                "url": "http://plugins.svn.wordpress.org/wp-portfolio/",
+                "reference": "tags/1.35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://downloads.wordpress.org/plugin/wp-portfolio.1.35.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "replace": {
+                "wpackagist/wp-portfolio": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "http://wordpress.org/plugins/wp-portfolio/"
         }
     ],
     "packages-dev": [
