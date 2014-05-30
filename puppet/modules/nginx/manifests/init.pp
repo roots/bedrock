@@ -20,9 +20,9 @@ class nginx($webRoot) {
   }
 
   file {
-    "${webRoot}/index.html":
+    "${webRoot}/test.html":
     ensure => present,
-    source => 'puppet:///modules/nginx/index.html',
+    source => 'puppet:///modules/nginx/test.html',
     require=> Service['nginx'],
   }
 
