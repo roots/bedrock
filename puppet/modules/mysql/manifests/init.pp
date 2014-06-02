@@ -28,8 +28,8 @@ class mysql($databaseName, $rootUsername, $rootPassword) {
 
   exec {
     'restore-mysql-database':
-    unless => "mysql -u${rootUsername} -p123 -e \"select * from ${databaseName}.wp_posts;\"",
-    command => "mysql -u${rootUsername} -p123 ${databaseName} < /vagrant/puppet/modules/mysql/files/${databaseName}.sql",
+    unless => "mysql -u${rootUsername} -p${rootPassword} -e \"select * from ${databaseName}.wp_posts;\"",
+    command => "mysql -u${rootUsername} -p${rootPassword} ${databaseName} < /vagrant/puppet/modules/mysql/files/${databaseName}.sql",
     require => Exec['create-database']
   }
 }
