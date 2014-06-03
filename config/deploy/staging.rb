@@ -5,7 +5,7 @@ set :stage, :staging
 server '192.168.56.108', user: 'vagrant', password: 'vagrant', roles: %w{web app db}
 
 set :ssh_options, {
-  forward_agent: false,
+  forward_agent: true,
   auth_methods: %w(password)
 }
 
