@@ -1,11 +1,5 @@
 set :stage, :staging
 
-# Simple Role Syntax
-# ==================
-#role :app, %w{deploy@example.com}
-#role :web, %w{deploy@example.com}
-#role :db,  %w{deploy@example.com}
-
 # Extended Server Syntax
 # ======================
 server '192.168.56.108', user: 'vagrant', password: 'vagrant', roles: %w{web app db}
@@ -16,4 +10,3 @@ set :ssh_options, {
 }
 
 fetch(:default_env).merge!(wp_env: :staging)
-
