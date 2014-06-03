@@ -3,7 +3,7 @@ set :repo_url, 'git@github.com:theantichris/theantichris.com.git'
 
 set :branch, :master
 
-set :deploy_to, "/var/www/#{fetch(:application)}"
+set :deploy_to, "/srv/www/#{fetch(:application)}"
 
 set :log_level, :info
 
