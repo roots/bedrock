@@ -2,7 +2,7 @@
 
 WordPress installation for theantichris.com.
 
-Uses Vagrant, Puppet, Composer, and Bedrock.
+Uses Vagrant, Puppet, Composer, Bedrock, and Capistrano.
 
 # Setup
 1. Run `vagrant up`
