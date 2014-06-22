@@ -8,7 +8,7 @@ class php($webRoot) {
   }
 
   package {
-    ['php5-fpm', 'php5-cli', 'php5-mysql']:
+    ['php5-fpm', 'php5-cli', 'php5-mysql', 'php5-curl']:
     ensure => present,
     require => Exec['add-php5-repo', 'update-for-repo'],
   }
