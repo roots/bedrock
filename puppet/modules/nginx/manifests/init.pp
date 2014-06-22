@@ -3,14 +3,14 @@ class nginx($webRoot) {
     'add-nginx-repo':
     command => 'sudo add-apt-repository ppa:nginx/stable',
     unless => 'ls /etc/apt/sources.list.d/nginx-stable-precise.list',
-    notify => Exec['sudo apt-get update'],
+    notify => Exec['update-for-repo'],
     require => Package['python-software-properties'],
   }
 
   package {
     'nginx':
     ensure => present,
-    require => Exec['add-nginx-repo', 'sudo apt-get update'],
+    require => Exec['add-nginx-repo', 'update-for-repo'],
   }
 
   service {
