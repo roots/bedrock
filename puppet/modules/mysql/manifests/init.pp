@@ -1,6 +1,6 @@
 class mysql($databaseName, $rootUsername, $rootPassword) {
   file{
-    'etc/mysql':
+    '/etc/mysql':
     ensure => directory,
   }
 
