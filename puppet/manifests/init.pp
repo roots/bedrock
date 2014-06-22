@@ -10,7 +10,8 @@ exec {
 
 # This update gets notified when a new repo is added to sources.list.d.
 exec {
-  'sudo apt-get update':
+  'update-for-repo':
+  command => 'sudo apt-get update',
   refreshonly => true,
 }
 
