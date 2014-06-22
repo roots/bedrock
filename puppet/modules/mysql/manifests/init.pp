@@ -1,14 +1,32 @@
 class mysql($databaseName, $rootUsername, $rootPassword) {
-  package {
-    ['mysql-server']:
+  file{
+    'etc/mysql':
+    ensure => directory,
+  }
+
+  file {
+    '/etc/mysql/my.cnf':
     ensure => present,
-    require => Exec['update-package-list'],
+    source => 'puppet:///modules/mysql/my.cnf',
+    require => File['/etc/mysql'],
+  }
+
+  exec{
+    'set-myconf-permissions':
+    command => 'chmod 644 /etc/mysql/my.cnf',
+    require => File['/etc/mysql/my.cnf'],
+  }
+
+  package {
+    ['mysql-server-5.6']:
+    ensure => present,
+    require => Exec['update-package-list', 'set-myconf-permissions'],
   }
 
   service {
     'mysql':
     ensure => running,
-    require => Package['mysql-server']
+    require => Package['mysql-server-5.6']
   }
 
   exec {
