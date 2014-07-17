@@ -3,6 +3,12 @@ $root_dir = dirname(__DIR__);
 $webroot_dir = $root_dir . '/web';
 
 /**
+ * Define a constant that can be checked by plugin/theme developers
+ * To implement Bedrock specific code 
+ */
+define('BEDROCK', true);
+
+/**
  * Use Dotenv to set required environment variables and load .env file in root
  */
 if (file_exists($root_dir . '/.env')) {
