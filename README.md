@@ -2,9 +2,32 @@
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
+# ToC
+
+* [Quick Start](#quick-start)
+* [Features](#features)
+* [Required](#requirements)
+* [Installation/Usage](#installationusage)
+  * [via Composer](#using-create-project)
+  * [Manually](#manually)
+* [Deploying with Capistrano](#deploying-with-capistrano)
+  * [Steps](#deployment-steps)
+* [Documentation](#deploying-with-capistrano)
+  * [Folder Structure](#folder-structure)
+  * [Configuration Files](#configuration-files)
+  * [Environment Variables](#environment-variables)
+  * [Composer](#composer)
+  * [Capistrano](#capistrano)
+  * [WP-CLI](#wp-cli)
+  * [Vagrant/Ansible](#vagrantansible)
+* [Contributing](#contributing)
+* [Support](#support)
+
 ## Quick Start
 
-Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details)
+Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) to get started with a development VM customized for Bedrock.
+
+Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details) to just get a new copy of Bedrock locally.
 
 ## Features
 
