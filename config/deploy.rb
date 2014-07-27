@@ -14,8 +14,7 @@ set :deploy_to, -> { "/srv/www/#{fetch(:application)}" }
 set :log_level, :info
 
 # Apache users with .htaccess files:
-# it needs to be added to linked_files so it persists
-# across deploys:
+# it needs to be added to linked_files so it persists across deploys:
 # set :linked_files, %w{.env web/.htaccess}
 set :linked_files, %w{.env}
 set :linked_dirs, %w{web/app/uploads}
