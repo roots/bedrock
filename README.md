@@ -208,7 +208,7 @@ Whenever you add a new plugin or update the WP version, run `composer update` to
 
 `!web/app/plugins/plugin-name`
 
-Note: Some plugins may create files or folders outside of their given scope, or even make modifications to `wp-config.php` and other files in the `app` directory. These files should be added to your `.gitignore` file as they are managed by the plugins themselves, which are managed via Composer. Any modifications to `wp-config.php` that are needed should be moved into `config/application.php`. 
+Note: Some plugins may create files or folders outside of their given scope, or even make modifications to `wp-config.php` and other files in the `app` directory. These files should be added to your `.gitignore` file as they are managed by the plugins themselves, which are managed via Composer. Any modifications to `wp-config.php` that are needed should be moved into `config/application.php`.
 
 #### Updating WP and plugin versions
 
@@ -237,8 +237,12 @@ Composer integration is the biggest part of Bedrock, so if you were going to rem
 
 * Deploy: `cap production deploy`
 * Rollback: `cap production deploy:rollback`
+* Sync DB: `cap production wpcli:db:push` `cap production wpcli:db:pull`
+* Sync uploads: `cap production wpcli:uploads:rsync:push` `cap production wpcli:uploads:rsync:pull`
 
 Composer support is built-in so when you run a deploy, `composer install` is automatically run. Capistrano has a great [deploy flow](http://www.capistranorb.com/documentation/getting-started/flow/) that you can hook into and extend it.
+
+Check the syncing features [documentation](https://github.com/lavmeiker/capistrano-wpcli) to adecuate your deploy configuration for using them.
 
 It's written in Ruby so it's needed *locally* if you want to use it. Capistrano was recently rewritten to be completely language agnostic, so if you previously wrote it off for being too Rails-centric, take another look at it.
 
