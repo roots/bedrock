@@ -61,4 +61,58 @@ class Installer {
 
     return $salt;
   }
+
+  public static function setupFolderStructure(Event $event) {
+    $io = $event->getIO();
+    $extra = $event->getComposer()->getPackage()->getExtra();
+    $root = dirname(dirname(__DIR__));
+    $wp_root = "{$root}/{$extra['webroot-dir']}";
+    $wp_languages_folder = "{$root}/{$extra['wordpress-languages-dir']}";
+
+
+    // Bedrock: Create a symlink for languages for support with plugins that uses
+    // wp-content/languages instead of app/languages (WPML uses wp-content hard-coded).
+    $target = $wp_languages_folder;
+    $link = "{$wp_root}/wp-content/languages";
+    if (!is_link($link) || !@readlink($link)) {
+      if (!symlink($target, $link)) {
+        $io->write("Could not create symlink from $target to $link.");
+        exit(1);
+      } else {
+        $io->write("Created symlink $link => $target.");
+      }
+    }
+
+
+    // Bedrock: Deal with plugins and themes, to allow installing languages when WPLANG is set.
+    $mvs = array(
+      "{$wp_root}/wp-content/plugins/*" => "{$root}/web/app/plugins/",
+      "{$wp_root}/wp-content/themes/*" => "{$root}/web/app/themes/"
+    );
+    foreach ($mvs as $from => $targetDir) {
+      $files = glob($from);
+      if (count($files) !== 0) {
+        foreach ($files as $file) {
+          $from = $file;
+          $filename = basename($file);
+          $bits = explode(DIRECTORY_SEPARATOR, $file);
+          $to = $targetDir . end($bits);
+
+          if (file_exists($to) && !is_link($to)) {
+            $io->write("Skip linking $from , already a folder / file.");
+          } else {
+            if (is_link($to)) {
+              $io->write("Removing symlink from $to");
+              exec("rm $to");
+            }
+            $cmd = "ln -s $from $to";
+            $io->write("Creating symlink from $from => $to");
+            exec($cmd);
+          }
+
+        }
+      }
+    }
+
+  }
 }
