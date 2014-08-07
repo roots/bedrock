@@ -31,7 +31,9 @@
     "psr-0": {"Bedrock\\Installer": "scripts"}
   },
   "scripts": {
-    "post-root-package-install": ["Bedrock\\Installer::addSalts"]
+    "post-root-package-install": ["Bedrock\\Installer::addSalts"],
+    "post-install-cmd": ["Bedrock\\Installer::setupFolderStructure"],
+    "pre-install-cmd": ["Bedrock\\Installer::setupFolderStructure"]
   },
   "repositories": [
     {
@@ -68,6 +70,7 @@
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "webroot-dir": "web/wp",
-    "webroot-package": "wordpress/wordpress"
+    "webroot-package": "wordpress/wordpress",
+    "wordpress-languages-dir":"web/app/languages"
   }
 }
