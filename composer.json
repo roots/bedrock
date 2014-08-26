@@ -41,12 +41,12 @@
     {
       "type": "package",
       "package": {
-        "name": "wordpress",
-        "version": "3.8.1",
+        "name": "wordpress/wordpress",
+        "version": "3.9.2",
         "type": "webroot",
         "dist": {
           "type": "zip",
-          "url": "https://github.com/WordPress/WordPress/archive/3.8.1.zip"
+          "url": "https://wordpress.org/wordpress-3.9.2.zip"
         },
         "require" : {
           "fancyguy/webroot-installer": "1.1.0"
@@ -56,11 +56,10 @@
   ],
   "require": {
     "php": ">=5.3.2",
-    "wordpress": "3.8.1",
+    "wordpress/wordpress": "3.9.2",
     "fancyguy/webroot-installer": "1.1.0",
-    "composer/installers": "v1.0.6",
-    "wp-cli/wp-cli": "v0.13.0",
-    "vlucas/phpdotenv": "~1.0.5"
+    "composer/installers": "v1.0.12",
+    "vlucas/phpdotenv": "~1.0.6"
   },
   "extra": {
     "installer-paths": {
@@ -69,6 +68,6 @@
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "webroot-dir": "web/wp",
-    "webroot-package": "wordpress"
+    "webroot-package": "wordpress/wordpress"
   }
 }

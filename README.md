@@ -2,9 +2,32 @@
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
+# ToC
+
+* [Quick Start](#quick-start)
+* [Features](#features)
+* [Required](#requirements)
+* [Installation/Usage](#installationusage)
+  * [via Composer](#using-create-project)
+  * [Manually](#manually)
+* [Deploying with Capistrano](#deploying-with-capistrano)
+  * [Steps](#deployment-steps)
+* [Documentation](#deploying-with-capistrano)
+  * [Folder Structure](#folder-structure)
+  * [Configuration Files](#configuration-files)
+  * [Environment Variables](#environment-variables)
+  * [Composer](#composer)
+  * [Capistrano](#capistrano)
+  * [WP-CLI](#wp-cli)
+  * [Vagrant/Ansible](#vagrantansible)
+* [Contributing](#contributing)
+* [Support](#support)
+
 ## Quick Start
 
-Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details)
+Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) to get started with a development VM customized for Bedrock.
+
+Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details) to just get a new copy of Bedrock locally.
 
 ## Features
 
@@ -13,7 +36,7 @@ Run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#in
 * Better folder structure
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-* Easy development environments with [Vagrant](http://www.vagrantup.com/) - coming soon!
+* Easy server environments with [Vagrant](http://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) - [bedrock-ansible](https://github.com/roots/bedrock-ansible) on GitHub
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
@@ -53,8 +76,9 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 3. Add theme(s)
-4. Access WP Admin at `http://example.com/wp/wp-admin`
-5. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
+4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
+5. Access WP Admin at `http://example.com/wp/wp-admin`
+
 
 ### Manually
 
@@ -69,8 +93,8 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
 4. Add theme(s)
+4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 5. Access WP Admin at `http://example.com/wp/wp-admin`
-6. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 
 Using Capistrano for deploys?
 
@@ -129,7 +153,7 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 
 The organization of Bedrock is similar to putting WordPress in its own subdirectory but with some improvements.
 
-* In order not to expose sensetive files in the webroot, Bedrock moves what's required into a `web/` directory including the vendor'd `wp/` source, and the `wp-content` source.
+* In order not to expose sensitive files in the webroot, Bedrock moves what's required into a `web/` directory including the vendor'd `wp/` source, and the `wp-content` source.
 * `wp-content` (or maybe just `content`) has been named `app` to better reflect its contents. It contains application code and not just "static content". It also matches up with other frameworks such as Symfony and Rails.
 * `wp-config.php` remains in the `web/` because it's required by WP, but it only acts as a loader. The actual configuration files have been moved to `config/` for better separation.
 * Capistrano configs are also located in `config/` to make it consistent.
@@ -258,9 +282,20 @@ Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If
 
 `*/5 * * * * curl http://example.com/wp/wp-cron.php`
 
+## WP-CLI
+
+Bedrock works with [WP-CLI](http://wp-cli.org/) just like any other WordPress project would. Previously we required WP-CLI in our `composer.json` file as a dependency. This has been removed since WP-CLI now recommends installing it globally with a `phar` file. It also caused conflicts if you tried using a global install.
+
+The `wp` command will automatically pick up Bedrock's subdirectory install as long as you run commands from within the project's directory (or deeper). Bedrock includes a `wp-cli.yml` file that sets the `path` option to `web/wp`. Use this config file for any further [configuration](http://wp-cli.org/config/).
+
+## Vagrant/Ansible
+
+Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's README, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
+
+Note that using Ansible you no longer need to manually create/edit a `.env` file (or use `composer create-project` to generate one). Ansible will generate a `.env` based on its config and automatically generate salts/keys.
+
 ## Todo
 
-* Add Vagrant
 * Solution for basic database syncing/copying
 
 ## Contributing
