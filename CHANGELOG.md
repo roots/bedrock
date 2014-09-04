@@ -1,3 +1,21 @@
+### 1.2.7: 2014-09-04
+
+* Update to WordPress 4.0
+
+### 1.2.6: 2014-08-06
+
+* Update to WordPress 3.9.2
+* Minor deploy fix
+* Doc updates
+
+### 1.2.5: 2014-07-16
+
+* Update to WordPress 3.9.1
+* Doc updates
+* Add `DB_PREFIX` constant
+* Update Gem versions
+* Disallow indexing in non-production environments
+
 ### 1.2.4: 2014-04-17
 
 * Fixes issue with 3.9 update (`composer.lock` wasn't updated)
