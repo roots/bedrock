@@ -1,6 +1,6 @@
 <?php
 
-namespace Bedrock;
+namespace Roots\Bedrock;
 
 use Composer\Script\Event;
 
@@ -17,7 +17,7 @@ class Installer {
   );
 
   public static function addSalts(Event $event) {
-    $root = dirname(dirname(__DIR__));
+    $root = dirname(dirname(dirname(__DIR__)));
     $composer = $event->getComposer();
     $io = $event->getIO();
 

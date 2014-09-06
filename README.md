@@ -37,6 +37,7 @@ Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Easy server environments with [Vagrant](http://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) - [bedrock-ansible](https://github.com/roots/bedrock-ansible) on GitHub
+* Autoloader for mu-plugins (let's you use regular plugins as mu-plugins)
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
@@ -293,6 +294,13 @@ The `wp` command will automatically pick up Bedrock's subdirectory install as lo
 Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's README, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
 
 Note that using Ansible you no longer need to manually create/edit a `.env` file (or use `composer create-project` to generate one). Ansible will generate a `.env` based on its config and automatically generate salts/keys.
+
+## mu-plugins autoloader
+
+Bedrock includes an autoloader that enables standard plugins to be required just like must-use plugins.
+The autoloaded plugins are included after all mu-plugins and standard plugins have been loaded.
+An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
+To remove this functionality, just delete `web/app/mu-plugins/bedrock-autoloader.php`.
 
 ## Todo
 
