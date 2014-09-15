@@ -20,6 +20,7 @@ Bedrock is a modern WordPress stack that helps you get started with the best dev
   * [Capistrano](#capistrano)
   * [WP-CLI](#wp-cli)
   * [Vagrant/Ansible](#vagrantansible)
+  * [mu-plugins Autoloader](#mu-plugins-autoloader)
 * [Contributing](#contributing)
 * [Support](#support)
 
@@ -301,6 +302,18 @@ Bedrock includes an autoloader that enables standard plugins to be required just
 The autoloaded plugins are included after all mu-plugins and standard plugins have been loaded.
 An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
 To remove this functionality, just delete `web/app/mu-plugins/bedrock-autoloader.php`.
+
+This enables the use of mu-plugins through Composer if their package type is `wordpress-muplugin`. You can also override a plugin's type like the following example:
+
+```json
+"installer-paths": {
+  "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil"],
+  "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+  "web/app/themes/{$name}/": ["type:wordpress-theme"]
+},
+```
+
+[Soil](https://github.com/roots/soil) is a package with its type set to `wordpress-plugin`. Since it implements `composer/installers` we can override its type.
 
 ## Todo
 
