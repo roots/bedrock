@@ -270,6 +270,15 @@ It's written in Ruby so it's needed *locally* if you want to use it. Capistrano 
 
 Screencast ($): [Deploying WordPress with Capistrano](http://roots.io/screencasts/deploying-wordpress-with-capistrano/)
 
+#### DB Syncing
+
+Bedrock doesn't come with anything by default to do DB syncing yet. The best option is to use WP-CLI.
+
+[@lavmeiker](https://github.com/lavmeiker) has a nice Capistrano WP-CLI wrapper plugin to make this even easier. [capistrano-wpcli](https://github.com/lavmeiker/capistrano-wpcli) offers the following commands (and more):
+
+* Sync DB: `cap production wpcli:db:push` and `cap production wpcli:db:pull`
+* Sync uploads: `cap production wpcli:uploads:rsync:push` and `cap production wpcli:uploads:rsync:pull`
+
 #### Don't want it?
 
 You will lose the one-command deploys and built-in integration with Composer. Another deploy method will be needed as well.
