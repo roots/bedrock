@@ -42,11 +42,11 @@
       "type": "package",
       "package": {
         "name": "wordpress/wordpress",
-        "version": "3.9.2",
+        "version": "4.0",
         "type": "webroot",
         "dist": {
           "type": "zip",
-          "url": "https://wordpress.org/wordpress-3.9.2.zip"
+          "url": "https://wordpress.org/wordpress-4.0.zip"
         },
         "require" : {
           "fancyguy/webroot-installer": "1.1.0"
@@ -56,14 +56,15 @@
   ],
   "require": {
     "php": ">=5.3.2",
-    "wordpress/wordpress": "3.9.2",
+    "wordpress/wordpress": "4.0",
     "fancyguy/webroot-installer": "1.1.0",
     "composer/installers": "v1.0.12",
     "vlucas/phpdotenv": "~1.0.6",
     "nikic/php-parser": "1.0.*@dev",
     "dnoegel/php-xdg-base-dir": "dev-master",
     "wpackagist-plugin/advanced-custom-fields": ">=4.3.5",
-    "wpackagist-plugin/custom-post-type-ui": ">=0.8.2"
+    "wpackagist-plugin/custom-post-type-ui": ">=0.8.2",
+    "wpackagist-plugin/regenerate-thumbnails": ">=2.2.4"
   },
   "extra": {
     "installer-paths": {
