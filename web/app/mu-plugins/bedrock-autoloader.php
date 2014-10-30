@@ -78,7 +78,7 @@ class Autoloader {
   private function checkCache() {
     $cache = get_site_option('bedrock_autoloader');
 
-    if ($cache == false) {
+    if ($cache === false) {
       return $this->updateCache();
     }
 
