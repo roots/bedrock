@@ -60,8 +60,6 @@ class Autoloader {
       return $bool;
     }
 
-    global $plugins;
-
     $this->updateCache(); // May as well update the transient cache whilst here.
 
     self::$auto_plugins = array_map(function ($auto_plugin) {
@@ -69,7 +67,7 @@ class Autoloader {
       return $auto_plugin;
     }, self::$auto_plugins);
 
-    $plugins['mustuse'] = array_unique(array_merge(self::$auto_plugins, self::$mu_plugins), SORT_REGULAR);
+    $GLOBALS['plugins']['mustuse'] = array_unique(array_merge(self::$auto_plugins, self::$mu_plugins), SORT_REGULAR);
 
     return false; // Prevent WordPress overriding our work.
   }
