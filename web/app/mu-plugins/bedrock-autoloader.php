@@ -28,32 +28,32 @@ class Autoloader {
     self::$_single       = $this; // Singleton set.
     self::$relative_path = '/../' . basename(__DIR__); // Rel path set.
 
-    add_action('plugins_loaded', array($this, 'load_plugins'), 0); // Always add filter to autoload.
+    add_action('plugins_loaded', array($this, 'loadPlugins'), 0); // Always add filter to autoload.
 
     if (is_admin()) {
-      add_filter('show_advanced_plugins', array($this, 'show_in_admin'), 0, 2); // Admin only filter.
+      add_filter('show_advanced_plugins', array($this, 'showInAdmin'), 0, 2); // Admin only filter.
     }
   }
 
   /**
    * Run some checks then autoload our plugins.
    */
-  public function load_plugins() {
-    $this->check_cache();
-    $this->validate_plugins();
-    $this->count_plugins();
+  public function loadPlugins() {
+    $this->checkCache();
+    $this->validatePlugins();
+    $this->countPlugins();
 
     foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
       include_once(WPMU_PLUGIN_DIR . '/' . $plugin_file);
     }
 
-    $this->plugin_hooks();
+    $this->pluginHooks();
   }
 
   /**
    * Filter show_advanced_plugins to display the autoloaded plugins.
    */
-  public function show_in_admin($bool, $type) {
+  public function showInAdmin($bool, $type) {
     $screen = get_current_screen();
 
     if ($screen->{'base'} != 'plugins' || $type != 'mustuse' || !current_user_can('activate_plugins')) {
@@ -62,7 +62,7 @@ class Autoloader {
 
     global $plugins;
 
-    $this->update_cache(); // May as well update the transient cache whilst here.
+    $this->updateCache(); // May as well update the transient cache whilst here.
 
     self::$auto_plugins = array_map(function ($auto_plugin) {
       $auto_plugin['Name'] .= ' *';
@@ -77,11 +77,11 @@ class Autoloader {
   /**
    * This sets the cache or calls for an update
    */
-  private function check_cache() {
+  private function checkCache() {
     $cache = get_site_option('bedrock_autoloader');
 
     if ($cache == false) {
-      return $this->update_cache();
+      return $this->updateCache();
     }
 
     self::$cache = $cache;
@@ -92,7 +92,7 @@ class Autoloader {
    * Check cache against current plugins for newly activated plugins.
    * After that, we can update the cache.
    */
-  private function update_cache() {
+  private function updateCache() {
     require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
     self::$auto_plugins = get_plugins(self::$relative_path);
@@ -100,7 +100,7 @@ class Autoloader {
     $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
     $rebuild            = !is_array(self::$cache['plugins']);
     self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-    self::$cache        = array('plugins' => $plugins, 'count' => $this->count_plugins());
+    self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins());
 
     update_site_option('bedrock_autoloader', self::$cache);
   }
@@ -110,7 +110,7 @@ class Autoloader {
    * loaded as usual. Plugins are removed by deletion, so there's no way
    * to deactivate or uninstall.
    */
-  private function plugin_hooks() {
+  private function pluginHooks() {
     if (!is_array(self::$activated)) { return; }
 
     foreach (self::$activated as $plugin_file => $plugin_info) {
@@ -121,10 +121,10 @@ class Autoloader {
   /**
    * Check that the plugin file exists, if it doesn't update the cache.
    */
-  private function validate_plugins() {
+  private function validatePlugins() {
     foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
       if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
-        $this->update_cache();
+        $this->updateCache();
         break;
       }
     }
@@ -134,14 +134,14 @@ class Autoloader {
    * Count our plugins (but only once) by counting the top level folders in the
    * mu-plugins dir. If it's more or less than last time, update the cache.
    */
-  private function count_plugins() {
+  private function countPlugins() {
     if (isset(self::$count)) { return self::$count; }
 
     $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
     if (!isset(self::$cache['count']) || $count != self::$cache['count']) {
       self::$count = $count;
-      $this->update_cache();
+      $this->updateCache();
     }
 
     return self::$count;
