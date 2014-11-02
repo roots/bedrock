@@ -1,6 +1,6 @@
 <?php
 
-namespace Bedrock;
+namespace Roots\Bedrock;
 
 use Composer\Script\Event;
 
@@ -17,7 +17,7 @@ class Installer {
   );
 
   public static function addSalts(Event $event) {
-    $root = dirname(dirname(__DIR__));
+    $root = dirname(dirname(dirname(__DIR__)));
     $composer = $event->getComposer();
     $io = $event->getIO();
 
@@ -32,7 +32,7 @@ class Installer {
     }
 
     $salts = array_map(function ($key) {
-      return sprintf("%s='%s'", $key, Installer::generate_salt());
+      return sprintf("%s='%s'", $key, Installer::generateSalt());
     }, self::$KEYS);
 
     $env_file = "{$root}/.env";
@@ -49,7 +49,7 @@ class Installer {
    * Slightly modified/simpler version of wp_generate_password
    * https://github.com/WordPress/WordPress/blob/cd8cedc40d768e9e1d5a5f5a08f1bd677c804cb9/wp-includes/pluggable.php#L1575
    */
-  public static function generate_salt($length = 64) {
+  public static function generateSalt($length = 64) {
     $chars  = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     $chars .= '!@#$%^&*()';
     $chars .= '-_ []{}<>~`+=,.;:/?|';
