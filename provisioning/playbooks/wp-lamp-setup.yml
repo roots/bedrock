@@ -1,0 +1,100 @@
+---
+- hosts: local    
+
+  tasks:
+  - name: Create Ansible checks folder
+    file: path=/var/www/provision-checks state=directory
+
+  - name: Setup MySQL
+    shell: sudo mysql_install_db && touch /var/www/provision-checks/setup_mysql.txt
+    args:
+      creates: /var/www/provision-checks/setup_mysql.txt
+
+  - name: Start Apache
+    service: name=apache2 state=running enabled=yes
+
+  - name: Enable mod rewrite
+    shell: sudo a2enmod rewrite && touch /var/www/provision-checks/apache_a2enmod_rewrite.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2enmod_rewrite.txt
+
+  - name: Enable mod headers
+    shell: sudo a2enmod headers && touch /var/www/provision-checks/apache_a2enmod_headers.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2enmod_headers.txt
+
+  - name: Enable mod ssl
+    shell: sudo a2enmod ssl && touch /var/www/provision-checks/apache_a2enmod_ssl.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2enmod_ssl.txt
+
+  - name: Enable mod expires
+    shell: sudo a2enmod expires && touch /var/www/provision-checks/apache_a2enmod_expires.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2enmod_expires.txt
+
+  - name: Delete default server block
+    shell: sudo a2dissite 000-default.conf && touch /var/www/provision-checks/apache_a2dissite_default.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2dissite_default.txt
+
+  - name: Remove default server block
+    file: path=/etc/apache2/sites-available/000-default.conf state=absent
+
+  - name: Add server block
+    template: src=../resources/server_block.conf.j2 dest=/etc/apache2/sites-available/default.conf force=no
+
+  - name: Enable site
+    shell: sudo a2ensite default.conf && touch /var/www/provision-checks/apache_a2ensite.txt
+    args:
+      creates: /var/www/provision-checks/apache_a2ensite.txt
+
+  - name: Add ServerName to Apache config
+    lineinfile: dest=/etc/apache2/apache2.conf regexp=^ServerName line="ServerName localhost" backup=yes
+
+  - name: Restart Apache
+    shell: sudo service apache2 restart && touch /var/www/provision-checks/restart_apache_1.txt
+    args:
+      creates: /var/www/provision-checks/restart_apache_1.txt
+
+  - name: Start Mysql Service
+    service: name=mysql state=started enabled=true
+
+  - name: Create databases
+    mysql_db: name="{{ application_name }}_dev" state=present collation=utf8_general_ci
+
+  - name: Create a database user
+    mysql_user: name="wp_db_u" password="password" priv=*.*:ALL host=localhost state=present
+
+  #- name: Add standard multisite .htaccess file
+  #  copy: src=../resources/htaccess-multisite dest=/var/www/.htaccess force=yes
+
+  - name: Add standard .htaccess file
+    copy: src=../resources/htaccess-single dest=/var/www/.htaccess force=yes
+
+  - name: Ensure PHPMyAdmin is installed (Debian).
+    apt: pkg=phpmyadmin state=installed
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure PHPMyAdmin config file is included in Apache config (Debian).
+    lineinfile: >
+      dest=/etc/apache2/apache2.conf
+      state=present
+      regexp="^Include.+phpmyadmin.+$"
+      line="Include /etc/phpmyadmin/apache.conf"
+      insertafter="EOF"
+    when: ansible_os_family == "Debian"
+
+  - name: Create default PHPMyAdmin config
+    template: src=../resources/phpmyadmin_config.j2 dest=/etc/phpmyadmin/config.inc.php force=yes
+
+  - name: Update PHP config with better max filesize
+    lineinfile: dest=/etc/php5/apache2/php.ini regexp=^upload_max_filesize line="upload_max_filesize = 250M" backup=yes
+
+  - name: Source databases
+    shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/mysqldumps/output.sql && touch /var/www/provision-checks/source_database.txt
+    args:
+      creates: /var/www/provision-checks/source_database.txt
+
+  - name: Update Vagrant hosts file
+    shell: cp /etc/hosts /etc/hosts.backup && mv /var/www/remoteetchosts /etc/hosts

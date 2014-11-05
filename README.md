@@ -1,8 +1,142 @@
-# [Bedrock](http://roots.io/wordpress-stack/)
+# Efeqdev Bedrock and Vagrant for Wordpress development
 
-Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
+====
 
-# ToC
+This is the master repo for setting up a new Wordpress site locally.
+
+## Prerequisites
+
+You must have the following installed on your Mac OS X system in order to use this repository:
+
+* Composer - [installation](https://getcomposer.org/doc/00-intro.md#globally-on-osx-via-homebrew-)
+* Vagrant - [installation](https://docs.vagrantup.com/v2/installation/)
+* Vagrant Triggers plugin - `vagrant plugin install vagrant-triggers`
+* Ansible - [installation](http://docs.ansible.com/intro_installation.html)
+* Grunt - [installation](http://gruntjs.com/getting-started)
+* Virtualbox - [docs](https://www.virtualbox.org/)
+* Git - derp of course
+
+## Quick Start Guide
+
+Before getting started, make sure you have the prerequisites listed above installed.
+
+Setting this project up for the first time: 
+
+1. Be sure the hosts record for your project has been added to the efeqdev/bedrock repository hosts file. See instructions [here](https://docs.google.com/a/efeqdev.com/document/d/162i2Yc_XLP5eFkvawyhS0_v8kBL42l50ljVzMEYZuIo/edit?usp=sharing) if you are setting up a brand new project.
+2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git`
+3. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
+4. Add the Vagrant box: `vagrant box add efeqdev/vagrant-ubuntu-14.04`
+5. Start Vagrant and provision the box: `vagrant up`
+6. Check out http://yourprojectname.dev to confirm the site is up.
+7. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
+
+See Commands section for more detailed explanation of available tasks.
+
+## Commands
+
+**Note:** All commands below assume you are cd'd into this directory.
+
+### Syncing Hosts file
+
+**Note:** If this project was previously worked on and you have an /etc/hosts file record for 127.0.0.1 yourprojectname.dev, remove that line before continuing.
+
+In your local terminal, run:
+
+`$ sudo /your/local/path/to/this/folder/hosts.sh`
+
+This will replace the lines in your /etc/hosts file and make a backup at /etc/hosts.backup.
+
+The IP address of 192.168.33.10 is in the protected range for private networking.
+
+**Note:** the hosts file contained in this directory has a comment `# Main Wordpress Cluster` that is used to ensure the process doesn't duplicate lines. So in that sense it is brittle and will break if you remove that comment from the file or put anything above it.
+
+### Pulling database dumps and unzipping / Search and Replace database dumps
+
+Database dumps on the remote server are made nightly at 11:55pm and live in /tmp/mysqldumps on the remote server. If this is a new project and there is no database on the remote server yet, skip this step.
+
+In your local terminal, run these commands:
+
+```
+# To pull dump, unzip, and search and replace domains
+$ grunt process_dumps
+
+# To pull files only
+$ grunt exec:get_dumps
+
+# To unzip only
+$ grunt exec:unzip_it # This will overwrite existing .sql files.
+
+```
+
+### Vagrant
+
+The base box has been set up with only basic libraries. We're using Ansible to provision it with other requirements on `vagrant up` which will allow for some flexibility.
+
+```
+# One-time only
+$ vagrant box add efeqdev/vagrant-ubuntu-14.04
+
+# Later if there are updates to the box
+$ vagrant box outdated # check to make sure
+$ vagrant box update # update it - this will take a long time
+
+# Each time you want to spin it up
+$ vagrant up # this will also provision
+
+# ssh into it
+$ vagrant ssh
+
+# Suspend it
+$ vagrant halt
+
+# Provision it (after it's "up"). If you make changes to the Ansible playbook, Ansible will run tasks that haven't been run before and ignore tasks that are already done.
+$ vagrant provision
+
+# Kill it
+$ vagrant destroy # doing this will cause all of the Ansible provisioning tasks to run again next time you vagrant up.
+
+```
+
+### PHPMyAdmin
+
+You should be able to login at http://192.168.33.10/phpmyadmin with the following credentials:
+
+Username: wp_db_u
+Password: password
+
+Provided you have pulled and replaced your SQL dump, vagrant's provisioning should have sourced your databases. If you want to source a database outside of the normal startup procedure, use PHPMyAdmin or use the commands below (substituting the appropriate database name and folder name, of course):
+
+```
+$ vagrant ssh
+
+$ mysql -u wp_db_u -ppassword
+
+mysql> use projectname_dev;
+
+mysql> source /var/www/mysqldumps/output.sql
+
+OR
+
+$ mysql -u wp_db_u -ppassword projectname_dev < /var/www/mysqldumps/output.sql
+```
+
+## TODO
+
+Must do:
+
+Nice to have:
+* Make hosts bash script into Grunt task instead.
+* Create loop in server_block.conf.j2 file.
+* Disable caching plugins in database.
+
+
+## Information about this projects core architecture
+
+efeqdev/bedrock is built off of [Bedrock](http://roots.io/wordpress-stack/), a modern WordPress stack that helps you get started with the best development tools and project structure.
+
+Here is Bedrock's readme...
+
+## ToC
 
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -24,13 +158,13 @@ Bedrock is a modern WordPress stack that helps you get started with the best dev
 * [Contributing](#contributing)
 * [Support](#support)
 
-## Quick Start
+### Quick Start
 
 Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) to get started with a development VM customized for Bedrock.
 
 Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](#installationusage) for more details) to just get a new copy of Bedrock locally.
 
-## Features
+### Features
 
 * Dependency management with [Composer](http://getcomposer.org)
 * Automated deployments with [Capistrano](http://www.capistranorb.com/)
@@ -46,7 +180,7 @@ Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http
 
 Note: While this is a project from the guys behind the [Roots starter theme](http://roots.io/starter-theme/), Bedrock isn't tied to Roots in any way and works with any theme.
 
-## Requirements
+### Requirements
 
 * Git
 * PHP >= 5.3.2 (for Composer)
@@ -54,11 +188,11 @@ Note: While this is a project from the guys behind the [Roots starter theme](htt
 
 If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
 
-## Installation/Usage
+### Installation/Usage
 
 See [Documentation](#documentation) for more details on the steps below.
 
-### Using `create-project`
+#### Using `create-project`
 
 Composer's `create-project` command will automatically install the Bedrock project to a directory and run `composer install`.
 
@@ -82,7 +216,7 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
 5. Access WP Admin at `http://example.com/wp/wp-admin`
 
 
-### Manually
+#### Manually
 
 1. Clone/Fork repo
 2. Run `composer install`
@@ -100,7 +234,7 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
 
 Using Capistrano for deploys?
 
-### Deploying with Capistrano
+#### Deploying with Capistrano
 
 Required Gems:
 
@@ -113,7 +247,7 @@ The `Gemfile` in the root of this repo specifies the required Gems (just like `c
 
 See http://capistranorb.com/documentation/getting-started/authentication-and-authorisation/ for the best way to set up SSH key authentication to your servers for password-less (and secure) deploys.
 
-### Deployment Steps
+#### Deployment Steps
 
 1. Edit your `config/deploy/` stage/environment configs to set the roles/servers and connection options.
 2. Before your first deploy, run `bundle exec cap <stage> deploy:check` to create the necessary folders/symlinks.
@@ -123,9 +257,9 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 
 * Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
 
-## Documentation
+### Documentation
 
-### Folder Structure
+#### Folder Structure
 
 ```
 ├── Capfile
@@ -163,7 +297,7 @@ The organization of Bedrock is similar to putting WordPress in its own subdirect
 * `wp/` is where the WordPress core lives. It's also managed by Composer but can't be put under `vendor` due to WP limitations.
 
 
-### Configuration Files
+#### Configuration Files
 
 The root `web/wp-config.php` is required by WordPress and is only used to load the other main configs. Nothing else should be added to it.
 
@@ -178,7 +312,7 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
 
-#### Don't want it?
+##### Don't want it?
 
 You will lose the ability to define environment specific settings.
 
@@ -186,7 +320,7 @@ You will lose the ability to define environment specific settings.
 * Manually deal with environment specific options
 * Remove `config` directory
 
-### Environment Variables
+#### Environment Variables
 
 Bedrock tries to separate config from code as much as possible and environment variables are used to achieve this. The benefit is there's a single place (`.env`) to keep settings like database or other 3rd party credentials that isn't committed to your repository.
 
@@ -200,7 +334,7 @@ Currently, the following env vars are required:
 * `WP_HOME`
 * `WP_SITEURL`
 
-#### Don't want it?
+##### Don't want it?
 
 You will lose the separation between config and code and potentially put secure credentials at risk.
 
@@ -209,7 +343,7 @@ You will lose the separation between config and code and potentially put secure 
 * Remove `require_once('vendor/autoload.php');` from `wp-config.php`
 * Replace all `getenv` calls with whatever method you want to set those values
 
-### Composer
+#### Composer
 
 [Composer](http://getcomposer.org) is used to manage dependencies. Bedrock considers any 3rd party library as a dependency including WordPress itself and any plugins.
 
@@ -220,7 +354,7 @@ See these two blogs for more extensive documentation:
 
 Screencast ($): [Using Composer With WordPress](http://roots.io/screencasts/using-composer-with-wordpress/)
 
-#### Plugins
+##### Plugins
 
 [WordPress Packagist](http://wpackagist.org/) is already registered in the `composer.json` file so any plugins from the [WordPress Plugin Directory](http://wordpress.org/plugins/) can easily be required.
 
@@ -236,13 +370,13 @@ Whenever you add a new plugin or update the WP version, run `composer update` to
 
 Note: Some plugins may create files or folders outside of their given scope, or even make modifications to `wp-config.php` and other files in the `app` directory. These files should be added to your `.gitignore` file as they are managed by the plugins themselves, which are managed via Composer. Any modifications to `wp-config.php` that are needed should be moved into `config/application.php`. 
 
-#### Updating WP and plugin versions
+##### Updating WP and plugin versions
 
 Updating your WordPress version (or any plugin) is just a matter of changing the version number in the `composer.json` file.
 
 Then running `composer update` will pull down the new version.
 
-#### Themes
+##### Themes
 
 Themes can also be managed by Composer but should only be done so under two conditions:
 
@@ -253,11 +387,11 @@ Under most circumstances we recommend NOT doing #2 and instead keeping your main
 
 Just like plugins, WPackagist maintains a Composer mirror of the WP theme directory. To require a theme, just use the `wpackagist-theme` namespace.
 
-#### Don't want it?
+##### Don't want it?
 
 Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
 
-### Capistrano
+#### Capistrano
 
 [Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
 
@@ -270,7 +404,7 @@ It's written in Ruby so it's needed *locally* if you want to use it. Capistrano 
 
 Screencast ($): [Deploying WordPress with Capistrano](http://roots.io/screencasts/deploying-wordpress-with-capistrano/)
 
-#### DB Syncing
+##### DB Syncing
 
 Bedrock doesn't come with anything by default to do DB syncing yet. The best option is to use WP-CLI.
 
@@ -279,7 +413,7 @@ Bedrock doesn't come with anything by default to do DB syncing yet. The best opt
 * Sync DB: `cap production wpcli:db:push` and `cap production wpcli:db:pull`
 * Sync uploads: `cap production wpcli:uploads:rsync:push` and `cap production wpcli:uploads:rsync:pull`
 
-#### Don't want it?
+##### Don't want it?
 
 You will lose the one-command deploys and built-in integration with Composer. Another deploy method will be needed as well.
 
@@ -287,25 +421,25 @@ You will lose the one-command deploys and built-in integration with Composer. An
 * Remove `config/deploy.rb`
 * Remove `config/deploy/` directory
 
-### wp-cron
+#### wp-cron
 
 Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If you keep this setting, you'll need to manually set a cron job like the following in your crontab file:
 
 `*/5 * * * * curl http://example.com/wp/wp-cron.php`
 
-## WP-CLI
+### WP-CLI
 
 Bedrock works with [WP-CLI](http://wp-cli.org/) just like any other WordPress project would. Previously we required WP-CLI in our `composer.json` file as a dependency. This has been removed since WP-CLI now recommends installing it globally with a `phar` file. It also caused conflicts if you tried using a global install.
 
 The `wp` command will automatically pick up Bedrock's subdirectory install as long as you run commands from within the project's directory (or deeper). Bedrock includes a `wp-cli.yml` file that sets the `path` option to `web/wp`. Use this config file for any further [configuration](http://wp-cli.org/config/).
 
-## Vagrant/Ansible
+### Vagrant/Ansible
 
 Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's README, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
 
 Note that using Ansible you no longer need to manually create/edit a `.env` file (or use `composer create-project` to generate one). Ansible will generate a `.env` based on its config and automatically generate salts/keys.
 
-## mu-plugins autoloader
+### mu-plugins autoloader
 
 Bedrock includes an autoloader that enables standard plugins to be required just like must-use plugins.
 The autoloaded plugins are included after all mu-plugins and standard plugins have been loaded.
@@ -324,11 +458,11 @@ This enables the use of mu-plugins through Composer if their package type is `wo
 
 [Soil](https://github.com/roots/soil) is a package with its type set to `wordpress-plugin`. Since it implements `composer/installers` we can override its type.
 
-## Todo
+### Todo
 
 * Solution for basic database syncing/copying
 
-## Contributing
+### Contributing
 
 Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this project. There are several ways you can contribute:
 
@@ -338,6 +472,6 @@ Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this proje
 * Fixing [issues](https://github.com/roots/bedrock/issues)
 * Replying to questions on the [forum](http://discourse.roots.io/)
 
-## Support
+### Support
 
 Use the [Roots Discourse](http://discourse.roots.io/) forum to ask questions and get support.

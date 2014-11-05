@@ -1,3 +1,6 @@
+# Secrets
+secret.json
+
 # WordPress
 web/wp
 web/.htaccess
@@ -27,9 +30,24 @@ web/app/uploads/*
 vendor/*
 !vendor/.gitkeep
 
-# Node Package Manager
-node_modules
-
 # Vagrant
 bin
 .vagrant
+
+# Ignore log files
+web/logs/*
+!web/logs/.gitkeep
+
+# Ignore db dumps
+web/mysqldumps/*
+!web/mysqldumps/.gitkeep
+
+# Ignore provision checks
+web/provision-checks/*
+!web/provision-checks/.gitkeep
+
+# Ignore hosts backup
+etchosts.bak
+remoteetchosts.bak
+
+*.DS_Store
