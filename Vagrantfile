@@ -6,10 +6,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # TODO update this with final box URL securely hosted somewhere within RevMsg-land
-  config.vm.box = "efeqdev/revmsg-vagrant-ubuntu-14.04"
+  config.vm.box = "efeqdev/wp-ubuntu-14.04"
   
-  config.vm.synced_folder "./web", "/var/www", id: "vagrant-root",
+  config.vm.synced_folder ".", "/var/www", id: "vagrant-root",
     owner: "vagrant",
     group: "vagrant"
   
@@ -32,6 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Remove provision check files on vagrant destroy
   config.trigger.before :destroy do
-    run_remote 'rm -rf /var/www/provision-checks/*txt'
+    run_remote 'rm -rf /var/www/web/provision-checks/*txt'
   end
 end

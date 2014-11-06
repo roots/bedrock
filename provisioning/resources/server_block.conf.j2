@@ -1,39 +1,10 @@
 <VirtualHost *:80>
-    DocumentRoot /var/www/revolutionmessaging
-    ServerName revolutionmessaging.dev
-    ServerAlias *.revolutionmessaging.dev
+    DocumentRoot /var/www/web/
+    ServerName {{ application_name }}.dev
     LogLevel warn
-    ErrorLog /var/www/logs/revolutionmessaging/error_log
-    CustomLog /var/www/logs/revolutionmessaging/access_log combined
-    <Directory /var/www/revolutionmessaging/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-<VirtualHost *:80>
-    DocumentRoot /var/www/revolutioncampaign
-    ServerName revolutioncampaign.dev
-    ServerAlias *.revolutioncampaign.dev
-    LogLevel warn
-    ErrorLog /var/www/logs/revolutioncampaign/error_log
-    CustomLog /var/www/logs/revolutioncampaign/access_log combined
-    <Directory /var/www/revolutioncampaign/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-<VirtualHost *:80>
-    DocumentRoot /var/www/reverehq
-    ServerName reverehq.dev
-    ServerAlias *.reverehq.dev
-    LogLevel warn
-    ErrorLog /var/www/logs/reverehq/error_log
-    CustomLog /var/www/logs/reverehq/access_log combined
-    <Directory /var/www/reverehq/>
+    ErrorLog /var/www/web/logs/error_log
+    CustomLog /var/www/web/logs/access_log combined
+    <Directory /var/www/web/>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted

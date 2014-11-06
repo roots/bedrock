@@ -24,18 +24,18 @@ cp etchosts etchosts.bak
 mv etchosts /etc/hosts
 
 # REMOTE - Vagrant hosts file - Create file
-rm sites/remoteetchosts
-touch sites/remoteetchosts
+rm web/remoteetchosts
+touch web/remoteetchosts
 
 # Add entries from Vagrant hosts file
 while read line; do
-		echo $line >> sites/remoteetchosts
+		echo $line >> web/remoteetchosts
 done < remotehosts
 
 # Add entries from RevMsg hosts file
 while read line; do
-    echo $line >> sites/remoteetchosts
+    echo $line >> web/remoteetchosts
 done < hosts
 
 # Make backups and move new file over to /etc/hosts
-cp sites/remoteetchosts sites/remoteetchosts.bak
+cp web/remoteetchosts web/remoteetchosts.bak

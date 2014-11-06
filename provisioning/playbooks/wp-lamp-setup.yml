@@ -3,40 +3,45 @@
 
   tasks:
   - name: Create Ansible checks folder
-    file: path=/var/www/provision-checks state=directory
+    file: path=/var/www/web/provision-checks state=directory
 
   - name: Setup MySQL
-    shell: sudo mysql_install_db && touch /var/www/provision-checks/setup_mysql.txt
+    shell: sudo mysql_install_db && touch /var/www/web/provision-checks/setup_mysql.txt
     args:
-      creates: /var/www/provision-checks/setup_mysql.txt
+      creates: /var/www/web/provision-checks/setup_mysql.txt
+
+  - name: Install Composer
+    shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && touch /var/www/web/provision-checks/composer.txt
+    args:
+      creates: /var/www/web/provision-checks/composer.txt
 
   - name: Start Apache
     service: name=apache2 state=running enabled=yes
 
   - name: Enable mod rewrite
-    shell: sudo a2enmod rewrite && touch /var/www/provision-checks/apache_a2enmod_rewrite.txt
+    shell: sudo a2enmod rewrite && touch /var/www/web/provision-checks/apache_a2enmod_rewrite.txt
     args:
-      creates: /var/www/provision-checks/apache_a2enmod_rewrite.txt
+      creates: /var/www/web/provision-checks/apache_a2enmod_rewrite.txt
 
   - name: Enable mod headers
-    shell: sudo a2enmod headers && touch /var/www/provision-checks/apache_a2enmod_headers.txt
+    shell: sudo a2enmod headers && touch /var/www/web/provision-checks/apache_a2enmod_headers.txt
     args:
-      creates: /var/www/provision-checks/apache_a2enmod_headers.txt
+      creates: /var/www/web/provision-checks/apache_a2enmod_headers.txt
 
   - name: Enable mod ssl
-    shell: sudo a2enmod ssl && touch /var/www/provision-checks/apache_a2enmod_ssl.txt
+    shell: sudo a2enmod ssl && touch /var/www/web/provision-checks/apache_a2enmod_ssl.txt
     args:
-      creates: /var/www/provision-checks/apache_a2enmod_ssl.txt
+      creates: /var/www/web/provision-checks/apache_a2enmod_ssl.txt
 
   - name: Enable mod expires
-    shell: sudo a2enmod expires && touch /var/www/provision-checks/apache_a2enmod_expires.txt
+    shell: sudo a2enmod expires && touch /var/www/web/provision-checks/apache_a2enmod_expires.txt
     args:
-      creates: /var/www/provision-checks/apache_a2enmod_expires.txt
+      creates: /var/www/web/provision-checks/apache_a2enmod_expires.txt
 
   - name: Delete default server block
-    shell: sudo a2dissite 000-default.conf && touch /var/www/provision-checks/apache_a2dissite_default.txt
+    shell: sudo a2dissite 000-default.conf && touch /var/www/web/provision-checks/apache_a2dissite_default.txt
     args:
-      creates: /var/www/provision-checks/apache_a2dissite_default.txt
+      creates: /var/www/web/provision-checks/apache_a2dissite_default.txt
 
   - name: Remove default server block
     file: path=/etc/apache2/sites-available/000-default.conf state=absent
@@ -45,17 +50,17 @@
     template: src=../resources/server_block.conf.j2 dest=/etc/apache2/sites-available/default.conf force=no
 
   - name: Enable site
-    shell: sudo a2ensite default.conf && touch /var/www/provision-checks/apache_a2ensite.txt
+    shell: sudo a2ensite default.conf && touch /var/www/web/provision-checks/apache_a2ensite.txt
     args:
-      creates: /var/www/provision-checks/apache_a2ensite.txt
+      creates: /var/www/web/provision-checks/apache_a2ensite.txt
 
   - name: Add ServerName to Apache config
     lineinfile: dest=/etc/apache2/apache2.conf regexp=^ServerName line="ServerName localhost" backup=yes
 
   - name: Restart Apache
-    shell: sudo service apache2 restart && touch /var/www/provision-checks/restart_apache_1.txt
+    shell: sudo service apache2 restart && touch /var/www/web/provision-checks/restart_apache_1.txt
     args:
-      creates: /var/www/provision-checks/restart_apache_1.txt
+      creates: /var/www/web/provision-checks/restart_apache_1.txt
 
   - name: Start Mysql Service
     service: name=mysql state=started enabled=true
@@ -67,10 +72,10 @@
     mysql_user: name="wp_db_u" password="password" priv=*.*:ALL host=localhost state=present
 
   #- name: Add standard multisite .htaccess file
-  #  copy: src=../resources/htaccess-multisite dest=/var/www/.htaccess force=yes
+  #  copy: src=../resources/htaccess-multisite dest=/var/www/web/.htaccess force=yes
 
   - name: Add standard .htaccess file
-    copy: src=../resources/htaccess-single dest=/var/www/.htaccess force=yes
+    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
 
   - name: Ensure PHPMyAdmin is installed (Debian).
     apt: pkg=phpmyadmin state=installed
@@ -92,9 +97,9 @@
     lineinfile: dest=/etc/php5/apache2/php.ini regexp=^upload_max_filesize line="upload_max_filesize = 250M" backup=yes
 
   - name: Source databases
-    shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/mysqldumps/output.sql && touch /var/www/provision-checks/source_database.txt
+    shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output.sql && touch /var/www/web/provision-checks/source_database.txt
     args:
-      creates: /var/www/provision-checks/source_database.txt
+      creates: /var/www/web/provision-checks/source_database.txt
 
   - name: Update Vagrant hosts file
-    shell: cp /etc/hosts /etc/hosts.backup && mv /var/www/remoteetchosts /etc/hosts
+    shell: cp /etc/hosts /etc/hosts.backup && cp /var/www/web/remoteetchosts /etc/hosts

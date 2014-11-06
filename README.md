@@ -25,10 +25,12 @@ Setting this project up for the first time:
 1. Be sure the hosts record for your project has been added to the efeqdev/bedrock repository hosts file. See instructions [here](https://docs.google.com/a/efeqdev.com/document/d/162i2Yc_XLP5eFkvawyhS0_v8kBL42l50ljVzMEYZuIo/edit?usp=sharing) if you are setting up a brand new project.
 2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git`
 3. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
-4. Add the Vagrant box: `vagrant box add efeqdev/vagrant-ubuntu-14.04`
-5. Start Vagrant and provision the box: `vagrant up`
-6. Check out http://yourprojectname.dev to confirm the site is up.
-7. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
+4. Pull database dump: `grunt process_dumps`
+5. Install packages: `composer install`
+6. Add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
+7. Start Vagrant and provision the box: `vagrant up`
+8. Check out http://yourprojectname.dev to confirm the site is up.
+9. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
 
 See Commands section for more detailed explanation of available tasks.
 
@@ -74,7 +76,7 @@ The base box has been set up with only basic libraries. We're using Ansible to p
 
 ```
 # One-time only
-$ vagrant box add efeqdev/vagrant-ubuntu-14.04
+$ vagrant box add efeqdev/wp-ubuntu-14.04
 
 # Later if there are updates to the box
 $ vagrant box outdated # check to make sure
@@ -123,11 +125,11 @@ $ mysql -u wp_db_u -ppassword projectname_dev < /var/www/mysqldumps/output.sql
 ## TODO
 
 Must do:
+* Pull/merge production uploads directory
 
 Nice to have:
 * Make hosts bash script into Grunt task instead.
-* Create loop in server_block.conf.j2 file.
-* Disable caching plugins in database.
+* Disable caching plugins in database?
 
 
 ## Information about this projects core architecture
