@@ -1,9 +1,18 @@
 ---
-- hosts: local    
+- hosts: local
+
+  vars_prompt:
+  - name: "source_database"    
+    prompt: "Source the database? (y/n)"    
 
   tasks:
   - name: Create Ansible checks folder
     file: path=/var/www/web/provision-checks state=directory
+
+  - name: Enable mcrypt
+    shell: sudo php5enmod mcrypt && touch /var/www/web/provision-checks/php5enmod-mcrypt.txt
+    args:
+      creates: /var/www/web/provision-checks/php5enmod-mcrypt.txt
 
   - name: Setup MySQL
     shell: sudo mysql_install_db && touch /var/www/web/provision-checks/setup_mysql.txt
@@ -96,10 +105,11 @@
   - name: Update PHP config with better max filesize
     lineinfile: dest=/etc/php5/apache2/php.ini regexp=^upload_max_filesize line="upload_max_filesize = 250M" backup=yes
 
+  - name: Update Vagrant hosts file
+    shell: cp /etc/hosts /etc/hosts.backup && cp /var/www/web/remoteetchosts /etc/hosts
+
   - name: Source databases
     shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output.sql && touch /var/www/web/provision-checks/source_database.txt
     args:
       creates: /var/www/web/provision-checks/source_database.txt
-
-  - name: Update Vagrant hosts file
-    shell: cp /etc/hosts /etc/hosts.backup && cp /var/www/web/remoteetchosts /etc/hosts
+    when: source_database == "y"
