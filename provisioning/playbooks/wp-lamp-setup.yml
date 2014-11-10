@@ -86,6 +86,9 @@
   - name: Add standard .htaccess file
     copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
 
+  - name: Add standard .env file
+    template: src=../resources/env.j2 dest=/var/www/.env force=yes
+
   - name: Ensure PHPMyAdmin is installed (Debian).
     apt: pkg=phpmyadmin state=installed
     when: ansible_os_family == "Debian"

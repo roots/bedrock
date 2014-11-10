@@ -26,15 +26,16 @@ Setting this project up for the first time:
 2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git`
 3. Change remote origin: `git remote rm origin && git remote add origin <github url of this site's repo> && git reset --hard origin/master`
 4. If there is not a line in the hosts file for this project, add one. Also, add the line to the main efeqdev/bedrock repository and commit/push change.
-5. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
-6. Update variables in secret.json file.
-7. If this is not a brand new project, pull database dump from production server: `grunt process_dumps`. Otherwise, skip this step.
-8. Install packages: `composer install`
-9. Add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
-10. Update /provisioning/hosts file with the correct application_name variable
-11. Start Vagrant and provision the box: `vagrant up`. When asked if you want to source the database, answer 'y' if you did Step 7.
-12. Check out http://yourprojectname.dev to confirm the site is up.
-13. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
+5. Install Grunt dependencies: `npm install`
+6. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
+7. Update variables in secret.json file.
+8. If this is not a brand new project, pull database dump from production server: `grunt process_dumps`. Otherwise, skip this step.
+9. Install packages: `composer install`
+10. Add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
+11. Update /provisioning/hosts file with the correct application_name variable
+12. Start Vagrant and provision the box: `vagrant up`. When asked if you want to source the database, answer 'y' if you did Step 7.
+13. Check out http://yourprojectname.dev to confirm the site is up.
+14. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
 
 See Commands section for more detailed explanation of available tasks.
 
