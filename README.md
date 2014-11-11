@@ -75,6 +75,14 @@ $ grunt exec:unzip_it # This will overwrite existing .sql files.
 
 ```
 
+### Syncing uploads directory
+
+```
+# To pull all uploads
+$ grunt get_uploads
+
+```
+
 ### Vagrant
 
 The base box has been set up with only basic libraries. We're using Ansible to provision it with other requirements on `vagrant up` which will allow for some flexibility.

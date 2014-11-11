@@ -30,6 +30,12 @@ module.exports = function(grunt) {
       },
       unzip_it: {
         cmd: 'gunzip -f web/mysqldumps/latest.sql.gz'
+      },
+      get_uploads: {
+        cmd: 'echo "Please be patient, this may run for a bit... Getting uploads directory." && scp -r root@<%= secret.host %>:/home/<%= secret.host %>/production/current/web/app/uploads/* web/app/uploads/'
+      },
+      sync_uploads: {
+        cmd: 'echo "Please be patient, this may run for a bit... Syncing uploads directory." && rsync -r root@<%= secret.host %>:/home/<%= secret.host %>/production/current/web/app/uploads/* web/app/uploads/'
       }
     }
   });
