@@ -24,7 +24,7 @@ Setting this project up for the first time:
 
 1. Be sure the hosts record for your project has been added to the efeqdev/bedrock repository hosts file. See instructions [here](https://docs.google.com/a/efeqdev.com/document/d/162i2Yc_XLP5eFkvawyhS0_v8kBL42l50ljVzMEYZuIo/edit?usp=sharing) if you are setting up a brand new project.
 2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git`
-3. Change remote origin: `git remote rm origin && git remote add origin <github url of this site's repo> && git reset --hard origin/master`
+3. Change remote origin: `git remote rm origin && git remote add origin <github url of this site's repo>`
 4. If there is not a line in the hosts file for this project, add one. Also, add the line to the main efeqdev/bedrock repository and commit/push change.
 5. Install Grunt dependencies: `npm install`
 6. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
