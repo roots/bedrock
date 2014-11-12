@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         },
         src:  'web/mysqldumps/url.sql',
         dest: 'web/mysqldumps/output.sql',
-        from: '/home/<%= secret.host %>/current/web',
+        from: '/home/<%= secret.host %>/production/current/web',
         to:   '<%= secret.path %>/web'
       }
 
