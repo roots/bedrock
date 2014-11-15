@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "21aa3fffb6e28a90a92533b84ffab135",
+    "hash": "20f6e6653cd176e30bad452e674b61a7",
     "packages": [
         {
             "name": "composer/installers",
@@ -123,7 +123,7 @@
             ],
             "authors": [
                 {
-                    "name": "Steve Buzonas",
+                    "name": "Steve Buzonas (slbmeh)",
                     "email": "steve@fancyguy.com",
                     "homepage": "http://www.stevebuzonas.com"
                 }
@@ -134,25 +134,30 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "1.0.6",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "2821c024b4c14c7e6d1ff99e063ae9532620beb2"
+                "reference": "56c252d48dce336da97926591aed71805203815b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2821c024b4c14c7e6d1ff99e063ae9532620beb2",
-                "reference": "2821c024b4c14c7e6d1ff99e063ae9532620beb2",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/56c252d48dce336da97926591aed71805203815b",
+                "reference": "56c252d48dce336da97926591aed71805203815b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "*"
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Dotenv": "src/"
@@ -176,7 +181,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2014-01-31 16:18:39"
+            "time": "2014-10-16 14:50:21"
         },
         {
             "name": "wordpress/wordpress",
@@ -193,21 +198,13 @@
             "type": "webroot"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.2"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
