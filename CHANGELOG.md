@@ -1,3 +1,14 @@
+### 1.3.0: 2014-11-20
+
+* Update to WordPress 4.0.1
+* Use johnpbloch/wordpress package instead of custom repository
+* Update default deploy.rb
+* Require PHP >= 5.4 in composer.json
+* Better PSR-1 adherence
+* Update phpdotenv dependency to 1.0.9
+* Fix Composer installer path plugin order
+* Add bedrock-autoloader mu-plugin
+
 ### 1.2.7: 2014-09-04
 
 * Update to WordPress 4.0
