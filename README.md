@@ -64,15 +64,21 @@ Database dumps on the remote server are made nightly at 11:55pm and live in /tmp
 In your local terminal, run these commands:
 
 ```
+# PULL AND PREP FOR DEVELOPMENT - does not source the database, that happens in the vagrant provisioning playbook - so do this before vagrant up
 # To pull dump, unzip, and search and replace domains
-$ grunt process_dumps
+$ grunt db_to_dev
 
-# To pull files only
-$ grunt exec:get_dumps
+# To pull file only
+$ grunt exec:get_prod_dump
 
 # To unzip only
-$ grunt exec:unzip_it # This will overwrite existing .sql files.
+$ grunt exec:unzip_prod # This will overwrite existing .sql files.
 
+# PREP DUMPS FOR OTHER DIRECTIONALS - dev to prod, staging to dev, etc.
+# We've started building out these functions, but the system is not complete
+$ grunt db_to_prod # requires a manually dumped db file at web/mysqldumps/latest_to_prod.sql
+$ grunt db_to_staging # requires a manually dumped db file at web/mysqldumps/latest_to_staging.sql
+$ grunt db_staging_to_dev # in case you are in need of the staging database and have grabbed a dump from the server - requires this file to be at web/mysqldumps/latest_staging_to_dev.sql.gz
 ```
 
 ### Syncing uploads directory
@@ -80,6 +86,9 @@ $ grunt exec:unzip_it # This will overwrite existing .sql files.
 ```
 # To pull all uploads
 $ grunt get_uploads
+
+# Or to sync - probably better and faster
+$ grunt sync_uploads
 
 ```
 
