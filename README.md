@@ -49,7 +49,7 @@ Note: While this is a project from the guys behind the [Roots starter theme](htt
 ## Requirements
 
 * Git
-* PHP >= 5.3.2 (for Composer)
+* PHP >= 5.4
 * Ruby >= 1.9 (for Capistrano)
 
 If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
