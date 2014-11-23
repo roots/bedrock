@@ -33,10 +33,11 @@ Setting this project up for the first time:
 9. Install packages: `composer install`
 10. If you don't already have it in your system, add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
 11. Update /provisioning/hosts file with the correct application_name variable.
-12. If this project is brand new and there is no production or staging database, comment out the last task "Source Databases" in provisioning/playbooks/wp-lamp-setup.yml. Remember later to comment that back in when the site has been launched to production.
+12. If this project is brand new and there is no production or staging database, comment out the last task "Source Databases" in provisioning/playbooks/wp-lamp-setup.yml. Remember later to comment that back in when the site has been launched to production. You'll need to create your local db after vagrant up.
 13. If this project already has a production database, run `grunt db_to_dev`.
 14. Grab the .env and deploy config files from the remote server located in /home/yourprojectname/local_dev_files. Put them in you local repo - overwrite the existing files.
 14. Start Vagrant and provision the box: `vagrant up`.
+15. If this is a brand new site, create local db using PHPMyAdmin or by ssh'ing into the vagrant box and creating it. Otherwise, the database will be sourced for you.
 15. Check out http://yourprojectname.dev to confirm the site is up.
 16. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
 
