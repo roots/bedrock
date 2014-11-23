@@ -9,9 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "efeqdev/wp-ubuntu-14.04"
   
   config.vm.synced_folder ".", "/var/www", id: "vagrant-root",
-    owner: "vagrant",
-    group: "vagrant",
-    mount_options: ["dmode=777,fmode=777"]
+    owner: "www-data",
+    group: "vagrant"
   
   config.vm.network "private_network", ip: "192.168.33.10"
   
