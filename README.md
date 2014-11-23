@@ -23,7 +23,7 @@ Before getting started, make sure you have the prerequisites listed above instal
 Setting this project up for the first time: 
 
 1. Be sure the hosts record for your project has been added to the efeqdev/bedrock repository hosts file. See instructions [here](https://docs.google.com/a/efeqdev.com/document/d/162i2Yc_XLP5eFkvawyhS0_v8kBL42l50ljVzMEYZuIo/edit?usp=sharing) if you are setting up a brand new project.
-2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git`
+2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git yourprojectname`
 3. Change remote origin: `git remote rm origin && git remote add origin <github url of this site's repo>`
 4. If there is not a line in the hosts file for this project, add one. Also, add the line to the main efeqdev/bedrock repository and commit/push change.
 5. Install Grunt dependencies: `npm install`
@@ -31,11 +31,14 @@ Setting this project up for the first time:
 7. Update variables in secret.json file.
 8. If this is not a brand new project, pull database dump from production server: `grunt process_dumps`. Otherwise, skip this step.
 9. Install packages: `composer install`
-10. Add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
-11. Update /provisioning/hosts file with the correct application_name variable
-12. Start Vagrant and provision the box: `vagrant up`. When asked if you want to source the database, answer 'y' if you did Step 7.
-13. Check out http://yourprojectname.dev to confirm the site is up.
-14. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
+10. If you don't already have it in your system, add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
+11. Update /provisioning/hosts file with the correct application_name variable.
+12. If this project is brand new and there is no production or staging database, comment out the last task "Source Databases" in provisioning/playbooks/wp-lamp-setup.yml. Remember later to comment that back in when the site has been launched to production.
+13. If this project already has a production database, run `grunt db_to_dev`.
+14. Grab the .env and deploy config files from the remote server located in /home/yourprojectname/local_dev_files. Put them in you local repo - overwrite the existing files.
+14. Start Vagrant and provision the box: `vagrant up`.
+15. Check out http://yourprojectname.dev to confirm the site is up.
+16. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
 
 See Commands section for more detailed explanation of available tasks.
 
@@ -149,6 +152,8 @@ $ mysql -u wp_db_u -ppassword projectname_dev < /var/www/web/mysqldumps/output.s
 Must do:
 * Pull/merge production uploads directory
 * Create this readme file dynamically with project appropriate language
+* Add running of hosts script to vagrant trigger on provision or reload
+* Pull in Bonestrap as a submodule, then break connection?
 
 Nice to have:
 * Make hosts bash script into Grunt task instead.
