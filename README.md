@@ -148,6 +148,7 @@ $ mysql -u wp_db_u -ppassword projectname_dev < /var/www/web/mysqldumps/output.s
 
 Must do:
 * Pull/merge production uploads directory
+* Create this readme file dynamically with project appropriate language
 
 Nice to have:
 * Make hosts bash script into Grunt task instead.
