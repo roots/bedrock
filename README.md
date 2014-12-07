@@ -136,11 +136,10 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 │   │   ├── staging.rb
 │   │   └── production.rb
 │   ├── deploy.rb
-│   ├── environments
-│   │   ├── development.php
-│   │   ├── staging.php
-│   │   └── production.php
-│   └── application.php
+│   └── environments
+│       ├── development.php
+│       ├── staging.php
+│       └── production.php
 ├── Gemfile
 ├── vendor
 └── web
