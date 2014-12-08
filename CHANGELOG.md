@@ -1,3 +1,7 @@
+### HEAD
+
+* Remove WPLANG constant
+
 ### 1.3.1: 2014-11-28
 
 * Add Capistrano task to fix/update WP theme paths after deploys
