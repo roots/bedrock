@@ -28,11 +28,11 @@ class Autoloader {
     self::$_single       = $this; // Singleton set.
     self::$relative_path = '/../' . basename(__DIR__); // Rel path set.
 
-    add_action('plugins_loaded', array($this, 'loadPlugins'), 0); // Always add filter to autoload.
-
     if (is_admin()) {
       add_filter('show_advanced_plugins', array($this, 'showInAdmin'), 0, 2); // Admin only filter.
     }
+
+    $this->load_plugins();
   }
 
   /**
