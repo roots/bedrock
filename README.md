@@ -29,7 +29,7 @@ Setting this project up for the first time:
 5. Install Grunt dependencies: `npm install`
 6. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
 7. Update variables in secret.json file.
-8. If this is not a brand new project, pull database dump from production server: `grunt process_dumps`. Otherwise, skip this step.
+8. If this is not a brand new project, pull database dump from production server: `grunt db_to_dev`. Otherwise, skip this step.
 9. Install packages: `composer install`
 10. If you don't already have it in your system, add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
 11. Update /provisioning/hosts file with the correct application_name variable.
@@ -150,7 +150,6 @@ $ mysql -u wp_db_u -ppassword projectname_dev < /var/www/web/mysqldumps/output.s
 ## TODO
 
 Must do:
-* Pull/merge production uploads directory
 * Create this readme file dynamically with project appropriate language
 * Add running of hosts script to vagrant trigger on provision or reload
 * Pull in Bonestrap as a submodule, then break connection?
