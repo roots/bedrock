@@ -22,7 +22,7 @@ class Autoloader {
   private static $relative_path; // Relative path to the mu-plugins dir.
   private static $_single; // Let's make this a singleton.
 
-  function __construct() {
+  public function __construct() {
     if (isset(self::$_single)) { return; }
 
     self::$_single       = $this; // Singleton set.
