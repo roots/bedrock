@@ -55,8 +55,9 @@ class Autoloader {
    */
   public function showInAdmin($bool, $type) {
     $screen = get_current_screen();
+    $current = is_multisite() ? 'plugins-network' : 'plugins';
 
-    if ($screen->{'base'} != 'plugins' || $type != 'mustuse' || !current_user_can('activate_plugins')) {
+    if ($screen->{'base'} != $current || $type != 'mustuse' || !current_user_can('activate_plugins')) {
       return $bool;
     }
 
