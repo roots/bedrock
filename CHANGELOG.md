@@ -1,3 +1,7 @@
+### 1.3.3
+
+* Update to WordPress 4.1.1
+
 ### 1.3.2: 2014-12-18
 
 * Update to WordPress 4.1
