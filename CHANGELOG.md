@@ -1,4 +1,4 @@
-### 1.3.3 2015-02-18
+### 1.3.3: 2015-02-18
 
 * Update to WordPress 4.1.1
 * mu-plugins autoloader Multisite fix
