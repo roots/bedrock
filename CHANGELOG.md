@@ -1,6 +1,8 @@
-### 1.3.3
+### 1.3.3 2015-02-18
 
 * Update to WordPress 4.1.1
+* mu-plugins autoloader Multisite fix
+* Coding standards update + TravisCI integration
 
 ### 1.3.2: 2014-12-18
 
