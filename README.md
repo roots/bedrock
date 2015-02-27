@@ -43,9 +43,9 @@ Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
 
-Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](http://roots.io/twelve-factor-wordpress/).
+Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
-Note: While this is a project from the guys behind the [Roots starter theme](http://roots.io/starter-theme/), Bedrock isn't tied to Roots in any way and works with any theme.
+Note: While this is a project from the guys behind the [Sage starter theme](https://roots.io/sage/), Bedrock isn't tied to Sage in any way and works with any theme.
 
 ## Requirements
 
@@ -215,10 +215,10 @@ You will lose the separation between config and code and potentially put secure 
 
 See these two blogs for more extensive documentation:
 
-* [Using Composer with WordPress](http://roots.io/using-composer-with-wordpress/)
-* [WordPress Plugins with Composer](http://roots.io/wordpress-plugins-with-composer/)
+* [Using Composer with WordPress](https://roots.io/using-composer-with-wordpress/)
+* [WordPress Plugins with Composer](https://roots.io/wordpress-plugins-with-composer/)
 
-Screencast ($): [Using Composer With WordPress](http://roots.io/screencasts/using-composer-with-wordpress/)
+Screencast ($): [Using Composer With WordPress](https://roots.io/screencasts/using-composer-with-wordpress/)
 
 #### Plugins
 
@@ -268,7 +268,7 @@ Composer support is built-in so when you run a deploy, `composer install` is aut
 
 It's written in Ruby so it's needed *locally* if you want to use it. Capistrano was recently rewritten to be completely language agnostic, so if you previously wrote it off for being too Rails-centric, take another look at it.
 
-Screencast ($): [Deploying WordPress with Capistrano](http://roots.io/screencasts/deploying-wordpress-with-capistrano/)
+Screencast ($): [Deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/)
 
 #### DB Syncing
 
@@ -336,8 +336,8 @@ Everyone is welcome to help [contribute](CONTRIBUTING.md) and improve this proje
 * Suggesting new features
 * Writing or refactoring code
 * Fixing [issues](https://github.com/roots/bedrock/issues)
-* Replying to questions on the [forum](http://discourse.roots.io/)
+* Replying to questions on the [forum](https://discourse.roots.io/)
 
 ## Support
 
-Use the [Roots Discourse](http://discourse.roots.io/) forum to ask questions and get support.
+Use the [Roots Discourse](https://discourse.roots.io/) forum to ask questions and get support.
