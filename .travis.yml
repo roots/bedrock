@@ -11,13 +11,10 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
-before_install:
-  - pyrus install pear/PHP_CodeSniffer
-  - phpenv rehash
-
 install:
   - composer self-update && composer --version
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer global require squizlabs/php_codesniffer
   - composer install --prefer-dist
 
 before_script:
