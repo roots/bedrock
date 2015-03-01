@@ -20,8 +20,8 @@ install:
 before_script:
   - mysql -e 'create database bedrock_test;'
   - cp .env.test .env
-  - svn export --quiet http://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ test-includes
+  - svn export --quiet http://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ tests-includes
 
 script:
-  - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,vendor/,tests/,test-includes/ -n -s .
+  - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,vendor/,tests/,tests-includes/ -n -s .
   - phpunit
