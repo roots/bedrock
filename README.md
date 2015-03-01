@@ -1,4 +1,4 @@
-# [Bedrock](http://roots.io/wordpress-stack/)
+# [Bedrock](https://roots.io/bedrock/)
 [![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
