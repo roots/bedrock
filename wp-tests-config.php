@@ -7,7 +7,7 @@ if (file_exists('.env')) {
 }
 
 /* Path to the WordPress codebase you'd like to test. Add a backslash in the end. */
-define('ABSPATH', dirname( __FILE__ ) . '/web/wp/');
+define('ABSPATH', dirname(__FILE__) . '/web/wp/');
 
 // Test with multisite enabled.
 // Alternatively, use the tests/phpunit/multisite.xml configuration file.
