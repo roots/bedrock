@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 if (file_exists('.env')) {
   Dotenv::load();
 }
