@@ -1,13 +1,30 @@
 sudo: false
 language: php
 php:
-- '5.6'
-- '5.5'
-- '5.4'
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
 
 before_install:
   - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
 
+install:
+  - composer self-update && composer --version
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer install --prefer-dist
+
+before_script:
+  - mysql -e 'create database bedrock_test;'
+  - cp .env.test .env
+  - svn export --quiet http://develop.svn.wordpress.org/trunk/tests/phpunit/includes/ test-includes
+
 script:
   - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,vendor/ -n -s .
+  - phpunit
