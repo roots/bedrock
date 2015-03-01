@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 
 if (file_exists('.env')) {
-  Dotenv::load();
+  Dotenv::load('.');
 }
 
 /* Path to the WordPress codebase you'd like to test. Add a backslash in the end. */
