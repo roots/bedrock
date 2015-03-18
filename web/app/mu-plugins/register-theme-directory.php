@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name:  Register Theme Directory
-Plugin URI:   http://roots.io/wordpress-stack/
+Plugin URI:   https://roots.io/bedrock/
 Description:  Register default theme directory
 Version:      1.0.0
 Author:       Roots
-Author URI:   http://roots.io/
+Author URI:   https://roots.io/
 License:      MIT License
 */
 
