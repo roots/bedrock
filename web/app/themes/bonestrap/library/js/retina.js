@@ -1,0 +1,2 @@
+(function(){1<window.devicePixelRatio&&(window.onload=function(){var b,g,c,h,d,f;d=document.getElementsByTagName("img");f=[];c=0;for(h=d.length;c<h;c++)b=d[c],f.push((g=function(){var e,a,c,d;if(b.complete){if(d=b.offsetWidth,c=b.offsetHeight,a=b.getAttribute("src").split("."),e=a.slice(0,a.length-1).join("."),a=a[a.length-1],e=""+e+"@2x."+a,a=new XMLHttpRequest,a.open("HEAD",e,!1),a.send(),200===a.status)return b.setAttribute("width",d),b.setAttribute("height",c),b.setAttribute("src",e)}else return setTimeout(g,
+5)})());return f})}).call(this);
