@@ -1,3 +1,7 @@
+### HEAD
+
+* Don't register theme directory if `WP_DEFAULT_THEME` is defined
+
 ### 1.3.3: 2015-02-18
 
 * Update to WordPress 4.1.1
