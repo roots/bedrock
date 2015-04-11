@@ -11,14 +11,12 @@ Bedrock is a modern WordPress stack that helps you get started with the best dev
 * [Installation/Usage](#installationusage)
   * [via Composer](#using-create-project)
   * [Manually](#manually)
-* [Deploying with Capistrano](#deploying-with-capistrano)
-  * [Steps](#deployment-steps)
-* [Documentation](#deploying-with-capistrano)
+* [Deploys](#deploys)
+* [Documentation](#documentation)
   * [Folder Structure](#folder-structure)
   * [Configuration Files](#configuration-files)
   * [Environment Variables](#environment-variables)
   * [Composer](#composer)
-  * [Capistrano](#capistrano)
   * [WP-CLI](#wp-cli)
   * [Vagrant/Ansible](#vagrantansible)
   * [mu-plugins Autoloader](#mu-plugins-autoloader)
@@ -34,11 +32,11 @@ Or run `composer create-project roots/bedrock <path>` (see [Installation/Usage](
 ## Features
 
 * Dependency management with [Composer](http://getcomposer.org)
-* Automated deployments with [Capistrano](http://www.capistranorb.com/)
 * Better folder structure
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Easy server environments with [Vagrant](http://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) - [bedrock-ansible](https://github.com/roots/bedrock-ansible) on GitHub
+* One-command deploys with [bedrock-ansible](https://github.com/roots/bedrock-ansible)
 * Autoloader for mu-plugins (let's you use regular plugins as mu-plugins)
 
 Bedrock is meant as a base for you to fork and modify to fit your needs. It is delete-key friendly and you can strip out or modify any part of it. You'll also want to customize Bedrock with settings specific to your sites/company.
@@ -50,9 +48,6 @@ Note: While this is a project from the guys behind the [Sage starter theme](http
 ## Requirements
 
 * PHP >= 5.4
-* Ruby >= 1.9 (for Capistrano)
-
-If you aren't interested in using a part, then you don't need its requirements either. Not deploying with Capistrano? Then don't worry about Ruby for example.
 
 ## Installation/Usage
 
@@ -79,7 +74,6 @@ Note: To generate salts without a prompt, run `create-project` with `-n` (non-in
 4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 5. Access WP Admin at `http://example.com/wp/wp-admin`
 
-
 ### Manually
 
 1. Clone/Fork repo
@@ -96,27 +90,16 @@ Note: To generate salts without a prompt, run `create-project` with `-n` (non-in
 4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 5. Access WP Admin at `http://example.com/wp/wp-admin`
 
+## Deploys
 
-### Deploying with Capistrano
+There are two methods to deploy Bedrock sites that work out of the box:
 
-Required Gems:
+* [bedrock-ansible](https://github.com/roots/bedrock-ansible)
+* [bedrock-capistrano](https://github.com/roots/bedrock-capistrano)
 
-* `capistrano` (> 3.1.0)
-* `capistrano-composer`
+Any other deployment method can be used as well with one requirement:
 
-These can be installed manually with `gem install <gem name>` but it's highly suggested you use [Bundler](http://bundler.io/) to manage them. Bundler is basically the Ruby equivalent to PHP's Composer. Just as Composer manages your PHP packages/dependencies, Bundler manages your Ruby gems/dependencies. Bundler itself is a Gem and can be installed via `gem install bundler` (sudo may be required).
-
-The `Gemfile` in the root of this repo specifies the required Gems (just like `composer.json`). Once you have Bundler installed, run `bundle install` to install the Gems in the `Gemfile`. When using Bundler, you'll need to prefix the `cap` command with `bundle exec` as seen below (this ensures you're not using system Gems which can cause conflicts).
-
-See http://capistranorb.com/documentation/getting-started/authentication-and-authorisation/ for the best way to set up SSH key authentication to your servers for password-less (and secure) deploys.
-
-### Deployment Steps
-
-1. Edit your `config/deploy/` stage/environment configs to set the roles/servers and connection options.
-2. Before your first deploy, run `bundle exec cap <stage> deploy:check` to create the necessary folders/symlinks.
-3. Add your `.env` file to `shared/` in your `deploy_to` path on the remote server for all the stages you use (ex: `/srv/www/example.com/shared/.env`)
-4. Run the normal deploy command: `bundle exec cap <stage> deploy`
-5. Enjoy one-command deploys!
+`composer install` must be run as part of the deploy process.
 
 ## Documentation
 
@@ -127,15 +110,10 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 ├── composer.json
 ├── config
 │   ├── application.php
-│   ├── deploy
-│   │   ├── staging.rb
-│   │   └── production.rb
-│   ├── deploy.rb
 │   └── environments
 │       ├── development.php
 │       ├── staging.php
 │       └── production.php
-├── Gemfile
 ├── vendor
 └── web
     ├── app
@@ -155,7 +133,6 @@ The organization of Bedrock is similar to putting WordPress in its own subdirect
 * Capistrano configs are also located in `config/` to make it consistent.
 * `vendor/` is where the Composer managed dependencies are installed to.
 * `wp/` is where the WordPress core lives. It's also managed by Composer but can't be put under `vendor` due to WP limitations.
-
 
 ### Configuration Files
 
@@ -238,36 +215,6 @@ Under most circumstances we recommend NOT doing #2 and instead keeping your main
 
 Just like plugins, WPackagist maintains a Composer mirror of the WP theme directory. To require a theme, just use the `wpackagist-theme` namespace.
 
-### Capistrano
-
-[Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
-
-* Deploy: `cap production deploy`
-* Rollback: `cap production deploy:rollback`
-
-Composer support is built-in so when you run a deploy, `composer install` is automatically run. Capistrano has a great [deploy flow](http://www.capistranorb.com/documentation/getting-started/flow/) that you can hook into and extend it.
-
-It's written in Ruby so it's needed *locally* if you want to use it. Capistrano was recently rewritten to be completely language agnostic, so if you previously wrote it off for being too Rails-centric, take another look at it.
-
-Screencast ($): [Deploying WordPress with Capistrano](https://roots.io/screencasts/deploying-wordpress-with-capistrano/)
-
-#### DB Syncing
-
-Bedrock doesn't come with anything by default to do DB syncing yet. The best option is to use WP-CLI.
-
-[@lavmeiker](https://github.com/lavmeiker) has a nice Capistrano WP-CLI wrapper plugin to make this even easier. [capistrano-wpcli](https://github.com/lavmeiker/capistrano-wpcli) offers the following commands (and more):
-
-* Sync DB: `cap production wpcli:db:push` and `cap production wpcli:db:pull`
-* Sync uploads: `cap production wpcli:uploads:rsync:push` and `cap production wpcli:uploads:rsync:pull`
-
-#### Don't want it?
-
-You will lose the one-command deploys and built-in integration with Composer. Another deploy method will be needed as well.
-
-* Remove `Capfile`, `Gemfile`, and `Gemfile.lock`
-* Remove `config/deploy.rb`
-* Remove `config/deploy/` directory
-
 ### wp-cron
 
 Bedrock disables the internal WP Cron via `define('DISABLE_WP_CRON', true);`. If you keep this setting, you'll need to manually set a cron job like the following in your crontab file:
@@ -290,7 +237,7 @@ Note that using Ansible you no longer need to manually create/edit a `.env` file
 
 Bedrock includes an autoloader that enables standard plugins to be required just like must-use plugins.
 The autoloaded plugins are included after all mu-plugins and standard plugins have been loaded.
-An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
+An asterisk (\*) next to the name of the plugin designates the plugins that have been autoloaded.
 To remove this functionality, just delete `web/app/mu-plugins/bedrock-autoloader.php`.
 
 This enables the use of mu-plugins through Composer if their package type is `wordpress-muplugin`. You can also override a plugin's type like the following example:
