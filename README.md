@@ -49,7 +49,6 @@ Note: While this is a project from the guys behind the [Sage starter theme](http
 
 ## Requirements
 
-* Git
 * PHP >= 5.4
 * Ruby >= 1.9 (for Capistrano)
 
@@ -66,8 +65,6 @@ Composer's `create-project` command will automatically install the Bedrock proje
 The post-install script will automatically copy `.env.example` to `.env` and you'll be prompted about generating salt keys and appending them to your `.env` file.
 
 Note: To generate salts without a prompt, run `create-project` with `-n` (non-interactive). You can also change the `generate-salts` setting in `composer.json` under `config` in your own fork. The default is `true`.
-
-To skip the scripts completely, `create-project` can be run with `--no-scripts` to disable it.
 
 1. Run `composer create-project roots/bedrock <path>` (`path` being the folder to install to)
 2. Edit `.env` and update environment variables:
@@ -99,14 +96,13 @@ To skip the scripts completely, `create-project` can be run with `--no-scripts` 
 4. Set your Nginx or Apache vhost to `/path/to/site/web/` (`/path/to/site/current/web/` if using Capistrano)
 5. Access WP Admin at `http://example.com/wp/wp-admin`
 
-Using Capistrano for deploys?
 
 ### Deploying with Capistrano
 
 Required Gems:
 
-* capistrano (> 3.1.0)
-* capistrano-composer
+* `capistrano` (> 3.1.0)
+* `capistrano-composer`
 
 These can be installed manually with `gem install <gem name>` but it's highly suggested you use [Bundler](http://bundler.io/) to manage them. Bundler is basically the Ruby equivalent to PHP's Composer. Just as Composer manages your PHP packages/dependencies, Bundler manages your Ruby gems/dependencies. Bundler itself is a Gem and can be installed via `gem install bundler` (sudo may be required).
 
@@ -121,8 +117,6 @@ See http://capistranorb.com/documentation/getting-started/authentication-and-aut
 3. Add your `.env` file to `shared/` in your `deploy_to` path on the remote server for all the stages you use (ex: `/srv/www/example.com/shared/.env`)
 4. Run the normal deploy command: `bundle exec cap <stage> deploy`
 5. Enjoy one-command deploys!
-
-* Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
 
 ## Documentation
 
@@ -178,14 +172,6 @@ Note: You can't re-define constants in PHP. So if you have a base setting in `ap
 * Remove the base option and be sure to define it in every environment it's needed
 * Only define the constant in `application.php` if it isn't already defined.
 
-#### Don't want it?
-
-You will lose the ability to define environment specific settings.
-
-* Move all configuration into `wp-config.php`
-* Manually deal with environment specific options
-* Remove `config` directory
-
 ### Environment Variables
 
 Bedrock tries to separate config from code as much as possible and environment variables are used to achieve this. The benefit is there's a single place (`.env`) to keep settings like database or other 3rd party credentials that isn't committed to your repository.
@@ -206,7 +192,6 @@ You will lose the separation between config and code and potentially put secure 
 
 * Remove `dotenv` from `composer.json` requires
 * Remove `.env.example` file from root
-* Remove `require_once('vendor/autoload.php');` from `wp-config.php`
 * Replace all `getenv` calls with whatever method you want to set those values
 
 ### Composer
@@ -253,10 +238,6 @@ Under most circumstances we recommend NOT doing #2 and instead keeping your main
 
 Just like plugins, WPackagist maintains a Composer mirror of the WP theme directory. To require a theme, just use the `wpackagist-theme` namespace.
 
-#### Don't want it?
-
-Composer integration is the biggest part of Bedrock, so if you were going to remove it there isn't much point in using Bedrock.
-
 ### Capistrano
 
 [Capistrano](http://www.capistranorb.com/) is a remote server automation and deployment tool. It will let you deploy or rollback your application in one command:
@@ -301,7 +282,7 @@ The `wp` command will automatically pick up Bedrock's subdirectory install as lo
 
 ## Vagrant/Ansible
 
-Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's README, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
+Vagrant and Ansible integration with Bedrock can now be found in the separate [bedrock-ansible](https://github.com/roots/bedrock-ansible) project. Basic instructions exist in that project's `README`, but if you want a Vagrant box tied to a specific Bedrock based WP application, copy the example `Vagrantfile` into your app's repo and edit the necessary file paths.
 
 Note that using Ansible you no longer need to manually create/edit a `.env` file (or use `composer create-project` to generate one). Ansible will generate a `.env` based on its config and automatically generate salts/keys.
 
@@ -323,10 +304,6 @@ This enables the use of mu-plugins through Composer if their package type is `wo
 ```
 
 [Soil](https://github.com/roots/soil) is a package with its type set to `wordpress-plugin`. Since it implements `composer/installers` we can override its type.
-
-## Todo
-
-* Solution for basic database syncing/copying
 
 ## Contributing
 
