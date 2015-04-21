@@ -3,7 +3,7 @@
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
-Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
+Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
 ## Features
 
@@ -13,9 +13,10 @@ Much of the philosphy behind Bedrock is inspired by the [Twelve-Factor App](http
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Autoloader for mu-plugins (use regular plugins as mu-plugins)
 
-Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for use additional features:
+Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional features:
 
-* Easy server environments with [Vagrant](http://www.vagrantup.com/) and [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
+* Easy development environments with [Vagrant](http://www.vagrantup.com/)
+* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
 * One-command deploys
 
 ## Requirements
@@ -40,7 +41,7 @@ Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for use addition
 
 ## Deploys
 
-There are two methods to deploy Bedrock sites that work out of the box:
+There are two methods to deploy Bedrock sites out of the box:
 
 * [bedrock-ansible](https://github.com/roots/bedrock-ansible)
 * [bedrock-capistrano](https://github.com/roots/bedrock-capistrano)
