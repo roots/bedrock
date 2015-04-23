@@ -1,9 +1,13 @@
-### 1.3.4: 2015-04-23
+### 1.3.5: 2015-04-23
 
 * Update to WordPress 4.2
 * Update to WordPress 4.1.2
 * Don't register theme directory if `WP_DEFAULT_THEME` is defined
 * Move Capistrano configs to https://github.com/roots/bedrock-capistrano
+
+### 1.3.4: 2015-02-18
+
+* WordPress 4.1.1 fix
 
 ### 1.3.3: 2015-02-18
 
