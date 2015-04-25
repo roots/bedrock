@@ -35,7 +35,7 @@ Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional f
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s)
+4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
 4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
 5. Access WP admin at `http://example.com/wp/wp-admin`
 
