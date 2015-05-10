@@ -22,6 +22,7 @@ Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional f
 ## Requirements
 
 * PHP >= 5.4
+* Composer [Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
 
