@@ -5,7 +5,7 @@ namespace Roots\Bedrock;
 use Composer\Script\Event;
 
 class Installer {
-  public static $KEYS = array(
+  public static $KEYS = [
     'AUTH_KEY',
     'SECURE_AUTH_KEY',
     'LOGGED_IN_KEY',
@@ -14,7 +14,7 @@ class Installer {
     'SECURE_AUTH_SALT',
     'LOGGED_IN_SALT',
     'NONCE_SALT'
-  );
+  ];
 
   public static function addSalts(Event $event) {
     $root = dirname(dirname(dirname(__DIR__)));
