@@ -1,7 +1,3 @@
-# This is a simple example of a change you might make to a file
-## Every file in your repository is tracked, and only the changes are updated / pushed to your server.
-### This works best for non-binary files, so manage images / assets with another tool.
-
 # [Bedrock](https://roots.io/bedrock/)
 [![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
 
