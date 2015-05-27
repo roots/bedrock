@@ -28,7 +28,7 @@
     "generate-salts": true
   },
   "autoload": {
-    "psr-0": {"Roots\\Bedrock\\Installer": "scripts"}
+    "psr-4": {"Roots\\Bedrock\\": "scripts/Roots/Bedrock"}
   },
   "scripts": {
     "post-root-package-install": ["Roots\\Bedrock\\Installer::addSalts"]
