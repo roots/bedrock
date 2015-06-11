@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name:  Disallow Indexing
-Plugin URI:   http://roots.io/wordpress-stack/
+Plugin URI:   https://roots.io/bedrock/
 Description:  Disallow indexing of your site on non-production environments.
 Version:      1.0.0
 Author:       Roots
-Author URI:   http://roots.io/
+Author URI:   https://roots.io/
 License:      MIT License
 */
 
