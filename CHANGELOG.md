@@ -1,3 +1,7 @@
+### 1.4.1: 2015-07-24
+
+* Update to WordPress 4.2.3
+
 ### 1.4.0: 2015-06-07
 
 * Removed .env generation script
