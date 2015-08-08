@@ -3,7 +3,7 @@
   "type": "project",
   "license": "MIT",
   "description": "A modern WordPress stack",
-  "homepage": "http://roots.io/wordpress-stack/",
+  "homepage": "https://roots.io/bedrock/",
   "authors": [
     {
       "name": "Scott Walkinshaw",
@@ -17,21 +17,14 @@
     }
   ],
   "keywords": [
-    "wordpress", "stack", "capistrano", "composer", "vagrant", "wp"
+    "bedrock", "roots", "wordpress", "stack", "composer", "vagrant", "wp"
   ],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
-    "forum": "http://discourse.roots.io/category/bedrock"
+    "forum": "https://discourse.roots.io/category/bedrock"
   },
   "config": {
-    "preferred-install": "dist",
-    "generate-salts": true
-  },
-  "autoload": {
-    "psr-0": {"Roots\\Bedrock\\Installer": "scripts"}
-  },
-  "scripts": {
-    "post-root-package-install": ["Roots\\Bedrock\\Installer::addSalts"]
+    "preferred-install": "dist"
   },
   "repositories": [
     {
@@ -42,24 +35,20 @@
       "type": "package",
       "package": {
         "name": "wordpress/wordpress",
-        "version": "4.1",
+        "version": "4.2.2",
         "type": "webroot",
         "dist": {
           "type": "zip",
-          "url": "https://wordpress.org/wordpress-4.1.zip"
-        },
-        "require" : {
-          "fancyguy/webroot-installer": "1.1.0"
+          "url": "https://wordpress.org/wordpress-4.2.2.zip"
         }
       }
     }
   ],
   "require": {
-    "php": ">=5.3.2",
-    "wordpress/wordpress": "4.1",
-    "fancyguy/webroot-installer": "1.1.0",
+    "php": ">=5.4",
+    "johnpbloch/wordpress": "4.2.2",
     "composer/installers": "v1.0.12",
-    "vlucas/phpdotenv": "~1.0.6",
+    "vlucas/phpdotenv": "~1.0.9",
     "nikic/php-parser": "1.0.*@dev",
     "dnoegel/php-xdg-base-dir": "dev-master",
     "wpackagist-plugin/advanced-custom-fields": ">=4.3.5",
@@ -69,7 +58,6 @@
     "wpackagist-plugin/mailchimp": ">=1.4.1",
     "wpackagist-plugin/mailchimp-widget": ">=0.8.12",
     "wpackagist-plugin/wordpress-importer": ">0.6"
-
   },
   "extra": {
     "installer-paths": {
@@ -77,7 +65,6 @@
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
-    "webroot-dir": "web/wp",
-    "webroot-package": "wordpress/wordpress"
+    "wordpress-install-dir": "web/wp"
   }
 }

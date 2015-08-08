@@ -1,3 +1,52 @@
+### 1.4.0: 2015-06-07
+
+* Removed .env generation script
+
+### 1.3.7: 2015-05-07
+
+* Update to WordPress 4.2.2
+
+### 1.3.6: 2015-04-27
+
+* Update to WordPress 4.2.1
+
+### 1.3.5: 2015-04-23
+
+* Update to WordPress 4.2
+* Update to WordPress 4.1.2
+* Don't register theme directory if `WP_DEFAULT_THEME` is defined
+* Move Capistrano configs to https://github.com/roots/bedrock-capistrano
+
+### 1.3.4: 2015-02-18
+
+* WordPress 4.1.1 fix
+
+### 1.3.3: 2015-02-18
+
+* Update to WordPress 4.1.1
+* mu-plugins autoloader Multisite fix
+* Coding standards update + TravisCI integration
+
+### 1.3.2: 2014-12-18
+
+* Update to WordPress 4.1
+* Remove WPLANG constant
+
+### 1.3.1: 2014-11-28
+
+* Add Capistrano task to fix/update WP theme paths after deploys
+
+### 1.3.0: 2014-11-20
+
+* Update to WordPress 4.0.1
+* Use johnpbloch/wordpress package instead of custom repository
+* Update default deploy.rb
+* Require PHP >= 5.4 in composer.json
+* Better PSR-1 adherence
+* Update phpdotenv dependency to 1.0.9
+* Fix Composer installer path plugin order
+* Add bedrock-autoloader mu-plugin
+
 ### 1.2.7: 2014-09-04
 
 * Update to WordPress 4.0

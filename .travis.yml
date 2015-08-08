@@ -1,0 +1,18 @@
+sudo: false
+language: php
+php:
+  - nightly
+  - 5.6
+  - 5.5
+  - 5.4
+
+matrix:
+  allow_failures:
+    - php: nightly
+
+before_install:
+  - pyrus install pear/PHP_CodeSniffer
+  - phpenv rehash
+
+script:
+  - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,vendor/ -n -s .
