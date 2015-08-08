@@ -1046,8 +1046,8 @@ pre code {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* line 95, ../scss/_grid.scss */
@@ -7298,40 +7298,45 @@ view.
 THEME STYLES
 *********************/
 /* line 723, ../scss/style.scss */
-.page-id-4 [class^=col-] {
+.page-id-4 [class^=col-], .page-id-7 [class^=col-] {
   font-size: 12px;
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
 }
 /* line 727, ../scss/style.scss */
-.page-id-4 [class^=col-]:last-child {
+.page-id-4 [class^=col-]:last-child, .page-id-7 [class^=col-]:last-child {
   border-right: 1px solid #ddd;
   border-right: 1px solid rgba(86, 61, 124, 0.2);
 }
 /* line 732, ../scss/style.scss */
-.page-id-4 p {
+.page-id-4 p, .page-id-7 p {
   font-size: 16px;
 }
 /* line 735, ../scss/style.scss */
-.page-id-4 .nested {
+.page-id-4 .nested, .page-id-7 .nested {
   background-color: #5bc0de;
 }
 /* line 739, ../scss/style.scss */
-.page-id-4 #grid-no-gutters [class^=col-] {
+.page-id-4 #grid-no-gutters [class^=col-], .page-id-7 #grid-no-gutters [class^=col-] {
   background-color: #eee;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 /* line 746, ../scss/style.scss */
-.page-id-4 #grid-with-gutters > .row, .page-id-4 #grid-with-images > .row {
+.page-id-4 #grid-with-gutters > .row, .page-id-4 #grid-with-images > .row, .page-id-7 #grid-with-gutters > .row, .page-id-7 #grid-with-images > .row {
   background-color: #428bca;
   margin-bottom: 15px;
 }
 /* line 751, ../scss/style.scss */
-.page-id-4 #grid-with-gutters [class^=col-] > span, .page-id-4 #grid-with-images [class^=col-] > span {
+.page-id-4 #grid-with-gutters [class^=col-] > span, .page-id-4 #grid-with-images [class^=col-] > span, .page-id-7 #grid-with-gutters [class^=col-] > span, .page-id-7 #grid-with-images [class^=col-] > span {
   display: block;
   background-color: #ddd;
   padding: 10px 0;
+}
+
+/* line 759, ../scss/style.scss */
+.div-padding {
+  padding: 15px;
 }
 
 /* line 21, ../scss/_mixins.scss */
