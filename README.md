@@ -21,7 +21,7 @@ Use [Trellis](https://github.com/roots/trellis) for additional features:
 
 ## Requirements
 
-* PHP >= 5.4
+* PHP >= 5.5
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
