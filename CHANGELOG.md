@@ -1,5 +1,6 @@
-### HEAD
+### 1.4.5: 2015-09-16
 
+* Update to WordPress 4.3.1
 * Bump minimum required PHP version to 5.5 ([#201](https://github.com/roots/bedrock/pull/201))
 
 ### 1.4.4: 2015-08-18
