@@ -1,4 +1,7 @@
 <?php
+error_reporting(0);
+@ini_set(‘display_errors’, 0);
+
 $root_dir = dirname(__DIR__);
 $webroot_dir = $root_dir . '/web';
 
@@ -70,6 +73,16 @@ define('NONCE_SALT', getenv('NONCE_SALT'));
 define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', true);
 define('DISALLOW_FILE_EDIT', true);
+define( 'WP_DEBUG', false );
+
+/*
+ * Proxy Settings 
+ */
+define('WP_PROXY_HOST', WP_HOME);
+define('WP_PROXY_PORT', '80');
+define('WP_PROXY_USERNAME', '');
+define('WP_PROXY_PASSWORD', '');
+define('WP_PROXY_BYPASS_HOSTS', 'localhost');
 
 /**
  * Bootstrap WordPress
