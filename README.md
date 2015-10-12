@@ -19,6 +19,8 @@ Use [Trellis](https://github.com/roots/trellis) for additional features:
 * Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
 * One-command deploys
 
+See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
+
 ## Requirements
 
 * PHP >= 5.5
