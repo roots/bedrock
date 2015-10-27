@@ -95,7 +95,7 @@ class Autoloader {
     require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
     self::$auto_plugins = get_plugins(self::$relative_path);
-    self::$mu_plugins   = get_mu_plugins(self::$relative_path);
+    self::$mu_plugins   = get_mu_plugins();
     $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
     $rebuild            = !is_array(self::$cache['plugins']);
     self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
