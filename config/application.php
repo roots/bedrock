@@ -1,5 +1,5 @@
 <?php
-$root_dir = dirname(__DIR__);
+$root_dir = rtrim(dirname(__DIR__), '/');
 $webroot_dir = $root_dir . '/web';
 
 /**
