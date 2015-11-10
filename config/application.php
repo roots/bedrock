@@ -10,6 +10,11 @@ if (file_exists($root_dir . '/.env')) {
   $dotenv->load();
   $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
 }
+/**
+ * Set ssl support for content uploads 
+ * Default: off
+ */
+$webroot_host = ( getenv('WP_SSL') == 'on' ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
 
 /**
  * Set up our global environment constant and load its config first
@@ -34,7 +39,7 @@ define('WP_SITEURL', getenv('WP_SITEURL'));
  */
 define('CONTENT_DIR', '/app');
 define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
-define('WP_CONTENT_URL', WP_HOME . CONTENT_DIR);
+define('WP_CONTENT_URL', $webroot_host . CONTENT_DIR);
 
 /**
  * DB settings
