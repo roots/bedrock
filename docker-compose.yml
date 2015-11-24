@@ -6,7 +6,7 @@ nginx:
     - "80:80"
 
 wp:
-  image: dockertest123
+  image: ocasta/docker-nginx-hhvm-4wp
 
   environment:
     VIRTUAL_HOST: docker.local
