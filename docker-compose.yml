@@ -1,0 +1,41 @@
+nginx:
+  image: jwilder/nginx-proxy
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  ports:
+    - "80:80"
+
+wp:
+  image: dockertest123
+
+  environment:
+    VIRTUAL_HOST: docker.local
+
+  links:
+    - mariadb
+
+  volumes:
+    - ./public_html/:/var/www/public_html/
+    - ./plugins:/var/www/plugins/
+    - ./dev-env:/var/www/public_html/.env
+    - ./hhvm/:/etc/hhvm/
+  expose:
+    - "80"
+
+mariadb:
+  image: tutum/mariadb
+  ports:
+    - "3306:3306"
+  volumes_from:
+    - dbdata
+  links:
+    - dbdata
+  environment:
+    MARIADB_PASS: "mypass"
+
+dbdata:  # Used to store the database files
+  image: tutum/ubuntu:trusty
+  volumes:
+    - /var/lib/mysql
+  expose:
+    - "20"
