@@ -40,8 +40,8 @@ See a complete working example in the [roots-example-project.com repo](https://g
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
   * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` - Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command) or from the [WordPress Salt Generator](https://api.wordpress.org/secret-key/1.1/salt/)
 4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
-4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
-5. Access WP admin at `http://example.com/wp/wp-admin`
+5. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
+6. Access WP admin at `http://example.com/wp/wp-admin`
 
 ## Deploys
 
