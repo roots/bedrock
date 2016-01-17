@@ -1,3 +1,7 @@
+### HEAD
+
+* Set default `DB_CHARSET` to `utf8mb4`
+
 ### 1.4.7: 2016-01-07
 
 * Update to WordPress 4.4.1
