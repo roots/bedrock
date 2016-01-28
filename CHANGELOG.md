@@ -1,4 +1,4 @@
-### HEAD
+### 1.5.1: 2016-01-27
 
 * Use [oscarotero/env](https://github.com/oscarotero/env) instead of `getenv` ([#229](https://github.com/roots/bedrock/pull/233))
 
