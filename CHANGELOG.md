@@ -1,3 +1,7 @@
+### HEAD
+
+* Use [oscarotero/env](https://github.com/oscarotero/env) instead of `getenv` ([#229](https://github.com/roots/bedrock/pull/233))
+
 ### 1.5.0: 2016-01-17
 
 * Fix `DISABLE_WP_CRON` setting via ENV variable ([#229](https://github.com/roots/bedrock/pull/229))
