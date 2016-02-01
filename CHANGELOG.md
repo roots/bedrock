@@ -1,3 +1,7 @@
+### 1.5.2: 2016-02-01
+
+* Bump `composer/installers` dependency to 1.0.23 to fix deprecation notice
+
 ### 1.5.1: 2016-01-27
 
 * Use [oscarotero/env](https://github.com/oscarotero/env) instead of `getenv` ([#229](https://github.com/roots/bedrock/pull/233))
