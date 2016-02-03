@@ -1,3 +1,7 @@
+### 1.5.3: 2016-02-03
+
+* Update to WordPress 4.4.2
+
 ### 1.5.2: 2016-02-01
 
 * Bump `composer/installers` dependency to 1.0.23 to fix deprecation notice
