@@ -71,6 +71,29 @@ define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
 
+if (true === env('BEDROCK_SECURE_ENV')) {
+  // If BEDROCK_SECURE_ENV is set to true, then unset all the security sensitive variables after they are used
+  bedrock_clear_env('DB_NAME');
+  bedrock_clear_env('DB_USER');
+  bedrock_clear_env('DB_PASSWORD');
+  bedrock_clear_env('DB_HOST');
+  bedrock_clear_env('DB_PREFIX');
+  bedrock_clear_env('AUTH_KEY');
+  bedrock_clear_env('SECURE_AUTH_KEY');
+  bedrock_clear_env('LOGGED_IN_KEY');
+  bedrock_clear_env('NONCE_KEY');
+  bedrock_clear_env('AUTH_SALT');
+  bedrock_clear_env('SECURE_AUTH_SALT');
+  bedrock_clear_env('LOGGED_IN_SALT');
+  bedrock_clear_env('NONCE_SALT');
+}
+
+function bedrock_clear_env($var_name) {
+  // Dotenv has a similar function Dotenv\Loader\clearEnvironmentVariable() but it is not exposed
+  putenv($var_name);
+  unset($_ENV[$var_name], $_SERVER[$var_name]);
+}
+
 /**
  * Bootstrap WordPress
  */
