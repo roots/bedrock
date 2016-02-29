@@ -1,3 +1,7 @@
+### HEAD
+
+* Add wp-password-bcrypt for more secure passwords ([#243](https://github.com/roots/bedrock/pull/243))
+
 ### 1.5.4: 2016-02-29
 
 * Use HTTPS for wpackagist.org
