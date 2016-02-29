@@ -1,3 +1,7 @@
+### 1.5.4: 2016-02-29
+
+* Use HTTPS for wpackagist.org
+
 ### 1.5.3: 2016-02-03
 
 * Update to WordPress 4.4.2
