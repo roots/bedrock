@@ -1,28 +1,39 @@
 ---
 - hosts: local
 
-  #vars_prompt:
-  #- name: "source_database"    
-  #  prompt: "Source the database? (y/n)"    
+  vars_prompt:
+  - name: "source_database"    
+    prompt: "Source the database right now from web/mysqldumps/output_to_dev.sql? (y/n)"
 
   tasks:
   - name: Create Ansible checks folder
     file: path=/var/www/web/provision-checks state=directory
+
+  - name: Ensure Apache and PHP are installed
+    apt: pkg={{item}} state=present update_cache=yes
+    with_items:
+    - apache2
+    - curl
+    - php5
+    - libapache2-mod-php5
+    - php5-mcrypt
+    - php5-gd
+    - libcurl3
+    - php5-curl
+    - php5-memcached
+    - memcached
 
   - name: Enable mcrypt
     shell: sudo php5enmod mcrypt && touch /var/www/web/provision-checks/php5enmod-mcrypt.txt
     args:
       creates: /var/www/web/provision-checks/php5enmod-mcrypt.txt
 
-  - name: Setup MySQL
-    shell: sudo mysql_install_db && touch /var/www/web/provision-checks/setup_mysql.txt
-    args:
-      creates: /var/www/web/provision-checks/setup_mysql.txt
-
   - name: Install Composer
     shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && touch /var/www/web/provision-checks/composer.txt
     args:
       creates: /var/www/web/provision-checks/composer.txt
+
+  - include: ../tasks/mysql.yml
 
   - name: Start Apache
     service: name=apache2 state=running enabled=yes
@@ -66,6 +77,9 @@
   - name: Add ServerName to Apache config
     lineinfile: dest=/etc/apache2/apache2.conf regexp=^ServerName line="ServerName localhost" backup=yes
 
+  - name: Make vagrant user run apache
+    lineinfile: dest=/etc/apache2/envvars regexp="^export APACHE_RUN_USER" line="export APACHE_RUN_USER=vagrant" backup=yes
+
   - name: Restart Apache
     shell: sudo service apache2 restart && touch /var/www/web/provision-checks/restart_apache_1.txt
     args:
@@ -74,20 +88,11 @@
   - name: Start Mysql Service
     service: name=mysql state=started enabled=true
 
-  - name: Create databases
-    mysql_db: name="{{ application_name }}_dev" state=present collation=utf8_general_ci
+  # - name: Add standard .htaccess file
+  #   copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
 
-  - name: Create a database user
-    mysql_user: name="wp_db_u" password="password" priv=*.*:ALL host=localhost state=present
-
-  #- name: Add standard multisite .htaccess file
-  #  copy: src=../resources/htaccess-multisite dest=/var/www/web/.htaccess force=yes
-
-  - name: Add standard .htaccess file
-    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
-
-  - name: Add standard .env file
-    template: src=../resources/env.j2 dest=/var/www/.env force=yes
+  # - name: Add standard .env file
+  #   template: src=../resources/env.j2 dest=/var/www/.env force=yes
 
   - name: Ensure PHPMyAdmin is installed (Debian).
     apt: pkg=phpmyadmin state=installed
@@ -108,11 +113,11 @@
   - name: Update PHP config with better max filesize
     lineinfile: dest=/etc/php5/apache2/php.ini regexp=^upload_max_filesize line="upload_max_filesize = 250M" backup=yes
 
-  # - name: Update Vagrant hosts file
-  #   shell: cp /etc/hosts /etc/hosts.backup && cp /var/www/web/remoteetchosts /etc/hosts
+  - name: Install WP-CLI
+    shell: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp && touch /var/www/web/provision-checks/wp_cli.txt
+    args:
+      creates: /var/www/web/provision-checks/wp_cli.txt
 
-  #- name: Source databases
-  #  shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output_to_dev.sql && touch /var/www/web/provision-checks/source_database.txt
-  #    creates: /var/www/web/provision-checks/source_database.txt
-
-    #when: source_database == "y"
+  - name: Source databases
+    shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output_to_dev.sql && touch /var/www/web/provision-checks/source_database.txt
+    when: source_database == "y"

@@ -1,11 +1,5 @@
 # Giant Hat Bedrock and Vagrant for Wordpress development
 =======
-# [Bedrock](https://roots.io/bedrock/)
-[![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
->>>>>>> e56f7c426029b75c563306729fe3545023f01632
-
-====
-
 
 This is the master repo for setting up a new Wordpress site locally.
 
@@ -17,104 +11,32 @@ You must have the following installed on your Mac OS X system in order to use th
 * Vagrant - [installation](https://docs.vagrantup.com/v2/installation/)
 * Vagrant Triggers plugin - `vagrant plugin install vagrant-triggers`
 * Ansible - [installation](http://docs.ansible.com/intro_installation.html)
-* Grunt - [installation](http://gruntjs.com/getting-started)
 * Virtualbox - [docs](https://www.virtualbox.org/)
 * Git - derp of course
+* Node/NPM
+* Bower
 
 ## Quick Start Guide
 =======
-Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
+Setting up a new WP site with this repo as a starting point:
 
-Before getting started, make sure you have the prerequisites listed above installed.
+1. Clone this repo `git clone git@github.com:gianthat/bedrock.git yourprojectname`
+2. Delete the project's .git folder with `rm -rf thisprojectfoldername`
+3. Add new git remote for wherever your git repo is hosted `git remote add origin git@github.com:gianthat/yourprojectname.git`
+4. Run `composer install`
+5. Edit `provisioning/hosts` file and change the `ansible_ssh_host` and `application_name` settings. The ssh host should ideally be a local IP address that doesn't match any other local IP's in use on your system (in `/etc/hosts` folder). Should be something like 192.168.33.##. Since others may be working on this repo as well, there may be conflicts with what other devs have setup locally so this may need to change once others are involved.
+6. Go to the `Vagrantfile` and set the IP address to the same address used above.
+7. Edit your local `/etc/hosts` file and add a line for `192.168.33.## yourprojectname.dev`
+8. Copy `.env.example` to `.env` and update environment variables.
+9. Go to `web/app/themes` folder and download theme from https://github.com/roots/sage
+10. Rename folder from `sage` to yourprojectname.
+11. Go to `web/app/themes/yourprojectname/assets` folder and set the *devURL* parameter to `http://yourprojectname.dev`
+12. Install npm modules `npm install`.
+13. Install bower components `bower install --save`.
+14. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
+15. Now read sections below on running Vagrant, Gulp, and PHPMyAdmin.
 
-
-Setting this project up for the first time: 
-
-1. Be sure the hosts record for your project has been added to the efeqdev/bedrock repository hosts file. See instructions [here](https://docs.google.com/a/efeqdev.com/document/d/162i2Yc_XLP5eFkvawyhS0_v8kBL42l50ljVzMEYZuIo/edit?usp=sharing) if you are setting up a brand new project.
-2. Download this repository: `git clone git@github.com:efeqdev/bedrock.git yourprojectname`
-3. Change remote origin: `git remote rm origin && git remote add origin <github url of this site's repo>`
-4. If there is not a line in the hosts file for this project, add one. Also, add the line to the main efeqdev/bedrock repository and commit/push change.
-5. Install Grunt dependencies: `npm install`
-6. Sync hosts files: `sudo /your/local/path/to/this/folder/hosts.sh`
-7. Update variables in secret.json file.
-8. If this is not a brand new project, pull database dump from production server: `grunt db_to_dev`. Otherwise, skip this step.
-9. Install packages: `composer install`
-10. If you don't already have it in your system, add the Vagrant box: `vagrant box add efeqdev/wp-ubuntu-14.04`
-11. Update /provisioning/hosts file with the correct application_name variable.
-12. If this project is brand new and there is no production or staging database, comment out the last task "Source Databases" in provisioning/playbooks/wp-lamp-setup.yml. Remember later to comment that back in when the site has been launched to production. You'll need to create your local db after vagrant up.
-13. If this project already has a production database, run `grunt db_to_dev`.
-14. Grab the .env and deploy config files from the remote server located in /home/yourprojectname/local_dev_files. Put them in you local repo - overwrite the existing files.
-15. Start Vagrant and provision the box: `vagrant up`.
-16. Check out http://yourprojectname.dev to confirm the site is up.
-17. Log in to PHPMyAdmin at http://192.168.33.10/phpmyadmin (Username: wp_db_u Password: password)
-
-See Commands section for more detailed explanation of available tasks.
-
-## Commands
-=======
-* Better folder structure
-* Dependency management with [Composer](http://getcomposer.org)
-* Easy WordPress configuration with environment specific files
-* Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-* Autoloader for mu-plugins (use regular plugins as mu-plugins)
-
-Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional features:
-
-* Easy development environments with [Vagrant](http://www.vagrantup.com/)
-* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
-* One-command deploys
-
-**Note:** All commands below assume you are cd'd into this directory.
-
-### Syncing Hosts file
-
-**Note:** If this project was previously worked on and you have an /etc/hosts file record for 127.0.0.1 yourprojectname.dev, remove that line before continuing.
-
-In your local terminal, run:
-
-`$ sudo /your/local/path/to/this/folder/hosts.sh`
-
-This will replace the lines in your /etc/hosts file and make a backup at /etc/hosts.backup.
-
-The IP address of 192.168.33.10 is in the protected range for private networking.
-
-**Note:** the hosts file contained in this directory has a comment `# Main Wordpress Cluster` that is used to ensure the process doesn't duplicate lines. So in that sense it is brittle and will break if you remove that comment from the file or put anything above it.
-
-### Pulling database dumps and unzipping / Search and Replace database dumps
-
-Database dumps on the remote server are made nightly at 11:55pm and live in /tmp/mysqldumps on the remote server. If this is a new project and there is no database on the remote server yet, skip this step.
-
-In your local terminal, run these commands:
-
-```
-# PULL AND PREP FOR DEVELOPMENT - does not source the database, that happens in the vagrant provisioning playbook - so do this before vagrant up
-# To pull dump, unzip, and search and replace domains
-$ grunt db_to_dev
-
-# To pull file only
-$ grunt exec:get_prod_dump
-
-# To unzip only
-$ grunt exec:unzip_prod # This will overwrite existing .sql files.
-
-# PREP DUMPS FOR OTHER DIRECTIONALS - dev to prod, staging to dev, etc.
-# We've started building out these functions, but the system is not complete
-$ grunt db_to_prod # requires a manually dumped db file at web/mysqldumps/latest_to_prod.sql
-$ grunt db_to_staging # requires a manually dumped db file at web/mysqldumps/latest_to_staging.sql
-$ grunt db_staging_to_dev # in case you are in need of the staging database and have grabbed a dump from the server - requires this file to be at web/mysqldumps/latest_staging_to_dev.sql.gz
-```
-
-### Syncing uploads directory
-
-```
-# To pull all uploads
-$ grunt get_uploads
-
-# Or to sync - probably better and faster
-$ grunt sync_uploads
-
-```
 
 ### Vagrant
 
@@ -122,14 +44,14 @@ The base box has been set up with only basic libraries. We're using Ansible to p
 
 ```
 # One-time only
-$ vagrant box add efeqdev/wp-ubuntu-14.04
+$ vagrant box add ubuntu/trusty64
 
 # Later if there are updates to the box
 $ vagrant box outdated # check to make sure
 $ vagrant box update # update it - this will take a long time
 
 # Each time you want to spin it up
-$ vagrant up # this will also provision
+$ vagrant up # this will also provision if first time
 
 # ssh into it
 $ vagrant ssh
@@ -145,9 +67,13 @@ $ vagrant destroy # doing this will cause all of the Ansible provisioning tasks 
 
 ```
 
+### Gulp
+
+In your theme folder, run `gulp build` one time. Thereafter, when you are actively working on the theme, run `gulp watch` which will watch for file changes and recompile assets into the `dist` folder. It also spins up the site at localhost:3000 and updates CSS there automatically. To stop gulp from watching, hit `Ctrl+C`.
+
 ### PHPMyAdmin
 
-You should be able to login at http://192.168.33.10/phpmyadmin with the following credentials:
+You should be able to login at http://192.168.33.##/phpmyadmin (or http://yourprojectname.dev/phpmyadmin with the following credentials:
 
 Username: wp_db_u
 Password: password
@@ -167,69 +93,3 @@ OR
 
 $ mysql -u wp_db_u -ppassword projectname_dev < /var/www/web/mysqldumps/output.sql
 ```
-
-## TODO
-
-Must do:
-* Create this readme file dynamically with project appropriate language
-* Add running of hosts script to vagrant trigger on provision or reload
-* Pull in Bonestrap as a submodule, then break connection?
-
-Nice to have:
-* Make hosts bash script into Grunt task instead.
-* Disable caching plugins in database?
-=======
-* PHP >= 5.4
-* Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
-
-## Installation
-
-1. Clone the git repo - `git clone https://github.com/roots/bedrock.git`
-2. Run `composer install`
-3. Copy `.env.example` to `.env` and update environment variables:
-  * `DB_NAME` - Database name
-  * `DB_USER` - Database user
-  * `DB_PASSWORD` - Database password
-  * `DB_HOST` - Database host
-  * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
-  * `WP_HOME` - Full URL to WordPress home (http://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
-4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
-5. Access WP admin at `http://example.com/wp/wp-admin`
-
-## Deploys
-
-There are two methods to deploy Bedrock sites out of the box:
-
-* [bedrock-ansible](https://github.com/roots/bedrock-ansible)
-* [bedrock-capistrano](https://github.com/roots/bedrock-capistrano)
-
-Any other deployment method can be used as well with one requirement:
-
-`composer install` must be run as part of the deploy process.
-
-## Documentation
-
-* [Folder structure](https://github.com/roots/bedrock/wiki/Folder-structure)
-* [Configuration files](https://github.com/roots/bedrock/wiki/Configuration-files)
-* [Environment variables](https://github.com/roots/bedrock/wiki/Environment-variables)
-* [Composer](https://github.com/roots/bedrock/wiki/Composer)
-* [wp-cron](https://github.com/roots/bedrock/wiki/wp-cron)
-* [mu-plugins autoloader](https://github.com/roots/bedrock/wiki/mu-plugins-autoloader)
-## Information about this projects core architecture
-
-efeqdev/bedrock is built off of [Bedrock](http://roots.io/wordpress-stack/), a modern WordPress stack that helps you get started with the best development tools and project structure. View the [github repo readme](https://github.com/roots/bedrock/blob/master/README.md) to learn more about that.
-
-
-=======
-Contributions are welcome from everyone. We have [contributing guidelines](CONTRIBUTING.md) to help you get started.
-
-## Community
-
-Keep track of development and community news.
-
-* Participate on the [Roots Discourse](https://discourse.roots.io/)
-* Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-* Read and subscribe to the [Roots Blog](https://roots.io/blog/)
-* Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)

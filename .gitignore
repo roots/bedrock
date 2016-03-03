@@ -1,11 +1,13 @@
 # Application
+web/app/mu-plugins/*/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
-web/app/mu-plugins/*
-!web/app/mu-plugins/.gitkeep
+!web/app/plugins/index.php
+!web/app/plugins/acf-repeater
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
+!web/app/uploads/index.php
 !web/app/mu-plugins/disallow-indexing.php
 !web/app/mu-plugins/register-theme-directory.php
 !web/app/mu-plugins/bedrock-autoloader.php
@@ -34,8 +36,10 @@ web/app/themes/*/library/scss/.sass-cache/*
 bin
 .vagrant
 
-# Grunt modules
-node_modules
+# Node/Grunt/Gulp/Bower
+*node_modules
+*bower_components
+secret.json
 
 # Ignore log files
 web/logs/*
@@ -49,9 +53,11 @@ web/mysqldumps/*
 web/provision-checks/*
 !web/provision-checks/.gitkeep
 
-# Ignore hosts backup
-*etchosts.bak
-*remoteetchosts.bak
-*remoteetchosts
+# Vim
+*.*~
+*.*.swp
 
+Thumbs.db
 *.DS_Store
+html/
+web/app/debug.log
