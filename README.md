@@ -24,18 +24,17 @@ Setting up a new WP site with this repo as a starting point:
 1. Clone this repo `git clone git@github.com:gianthat/bedrock.git yourprojectname`
 2. Delete the project's .git folder with `rm -rf thisprojectfoldername`
 3. Add new git remote for wherever your git repo is hosted `git remote add origin git@github.com:gianthat/yourprojectname.git`
-4. Run `composer install`
-5. Edit `provisioning/hosts` file and change the `ansible_ssh_host` and `application_name` settings. The ssh host should ideally be a local IP address that doesn't match any other local IP's in use on your system (in `/etc/hosts` folder). Should be something like 192.168.33.##. Since others may be working on this repo as well, there may be conflicts with what other devs have setup locally so this may need to change once others are involved.
-6. Go to the `Vagrantfile` and set the IP address to the same address used above.
-7. Edit your local `/etc/hosts` file and add a line for `192.168.33.## yourprojectname.dev`
-8. Copy `.env.example` to `.env` and update environment variables.
-9. Go to `web/app/themes` folder and download theme from https://github.com/roots/sage
-10. Rename folder from `sage` to yourprojectname.
-11. Go to `web/app/themes/yourprojectname/assets` folder and set the *devURL* parameter to `http://yourprojectname.dev`
-12. Install npm modules `npm install`.
-13. Install bower components `bower install --save`.
-14. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
-15. Now read sections below on running Vagrant, Gulp, and PHPMyAdmin.
+4. Edit `provisioning/hosts` file and change the `ansible_ssh_host` and `application_name` settings. The ssh host should ideally be a local IP address that doesn't match any other local IP's in use on your system (in `/etc/hosts` folder). Should be something like 192.168.33.##. Since others may be working on this repo as well, there may be conflicts with what other devs have setup locally so this may need to change once others are involved.
+5. Go to the `Vagrantfile` and set the IP address to the same address used above.
+6. Edit your local `/etc/hosts` file and add a line for `192.168.33.## yourprojectname.dev`
+7. Copy `.env.example` to `.env` and update environment variables.
+8. Go to `web/app/themes` folder and download theme from https://github.com/roots/sage
+9. Rename folder from `sage` to yourprojectname.
+10. Go to `web/app/themes/yourprojectname/assets` folder and set the *devURL* parameter to `http://yourprojectname.dev`
+11. Install npm modules `npm install`.
+12. Install bower components `bower install --save`.
+13. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
+14. Now read sections below on running Vagrant, Gulp, and PHPMyAdmin.
 
 
 ### Vagrant
