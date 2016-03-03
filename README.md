@@ -12,6 +12,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Autoloader for mu-plugins (use regular plugins as mu-plugins)
+* Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
 
 Use [Trellis](https://github.com/roots/trellis) for additional features:
 
