@@ -28,14 +28,25 @@ Setting up a new WP site with this repo as a starting point:
 5. Go to the `Vagrantfile` and set the IP address to the same address used above.
 6. Edit your local `/etc/hosts` file and add a line for `192.168.33.## yourprojectname.dev`
 7. Copy `.env.example` to `.env` and update environment variables.
-8. Go to `web/app/themes` folder and download theme from https://github.com/roots/sage
-9. Rename folder from `sage` to yourprojectname.
-10. Go to `web/app/themes/yourprojectname/assets` folder and set the *devURL* parameter to `http://yourprojectname.dev`
-11. Install npm modules `npm install`.
-12. Install bower components `bower install --save`.
-13. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
-14. Now read sections below on running Vagrant, Gulp, and PHPMyAdmin.
+8. Install Ruby gems for Capistrano deployment with `bundle install` (we've already done a `cap install` so all the files are there)
+9. Update `config/deploy.rb`, `config/deploy/staging.rb`, and `config/deploy/production.rb` to suit.
+10. Go to `web/app/themes` folder and download theme from https://github.com/roots/sage
+11. Rename folder from `sage` to yourprojectname.
+12. Go to `web/app/themes/yourprojectname/assets` folder and set the *devURL* parameter to `http://yourprojectname.dev`
+13. Install npm modules `npm install`.
+14. Install bower components `bower install --save`.
+15. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
+16. Now read sections below on running Composer, Vagrant, Gulp, and PHPMyAdmin.
 
+### Composer
+
+You need to run `composer install` locally, not in the vagrant shell. Your PHP version must be at least 5.4.
+
+After initial setup you'll periodically use Composer to add plugins and update the version of Wordpress core.
+
+To add a new plugin from Wordpress's wpackagist repo, use `composer require wpackagist-plugin/plugin-slug-here`.
+
+To remove a plugin from this project, use `composer remove wpackagist-plugin/plugin-slug-here`.
 
 ### Vagrant
 
@@ -68,7 +79,7 @@ $ vagrant destroy # doing this will cause all of the Ansible provisioning tasks 
 
 ### Gulp
 
-In your theme folder, run `gulp build` one time. Thereafter, when you are actively working on the theme, run `gulp watch` which will watch for file changes and recompile assets into the `dist` folder. It also spins up the site at localhost:3000 and updates CSS there automatically. To stop gulp from watching, hit `Ctrl+C`.
+In your theme folder, run `gulp build` (locally) the first time you set this up. Thereafter, when you are actively working on the theme, run `gulp watch` (locally) which will watch for file changes and recompile assets into the `dist` folder. It also spins up the site at localhost:3000 and updates CSS there automatically. To stop gulp from watching, hit `Ctrl+C`.
 
 ### PHPMyAdmin
 
