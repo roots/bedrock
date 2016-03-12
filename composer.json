@@ -40,6 +40,9 @@
     "oscarotero/env": "^1.0",
     "roots/wp-password-bcrypt": "1.0.0"
   },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^2.5.1"
+  },
   "extra": {
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
@@ -47,5 +50,10 @@
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "test": [
+      "vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."
+    ]
   }
 }
