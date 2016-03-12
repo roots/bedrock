@@ -1,5 +1,9 @@
 ### HEAD
 
+* Update coding standards (PSR-2) ([#244](https://github.com/roots/bedrock/pull/244))
+
+### 1.6.0: 2016-03-03
+
 * Add wp-password-bcrypt for more secure passwords ([#243](https://github.com/roots/bedrock/pull/243))
 
 ### 1.5.4: 2016-02-29
