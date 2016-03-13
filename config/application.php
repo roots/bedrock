@@ -1,5 +1,9 @@
 <?php
+
+/** @var string Directory containing all of the site's files */
 $root_dir = dirname(__DIR__);
+
+/** @var string Document Root */
 $webroot_dir = $root_dir . '/web';
 
 /**
