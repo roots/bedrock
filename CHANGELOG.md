@@ -1,5 +1,6 @@
-### HEAD
+### 1.6.1: 2016-04-12
 
+* Update to WordPress 4.5
 * Update coding standards (PSR-2) ([#244](https://github.com/roots/bedrock/pull/244))
 
 ### 1.6.0: 2016-03-03
