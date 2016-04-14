@@ -15,6 +15,12 @@ if ( ! is_multisite() ) {
     return;
 }
 
+/**
+ * Class URLFixer
+ * @package Roots\Bedrock
+ * @author Roots
+ * @link https://roots.io/
+ */
 class URLFixer {
     /** @var Roots\Bedrock\URLFixer Singleton instance */
     private static $instance = null;
