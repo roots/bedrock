@@ -1,3 +1,7 @@
+### 1.6.3: 2016-05-06
+
+* Update to WordPress 4.5.2
+
 ### 1.6.2: 2016-04-26
 
 * Update to WordPress 4.5.1
