@@ -88,11 +88,11 @@
   - name: Start Mysql Service
     service: name=mysql state=started enabled=true
 
-  # - name: Add standard .htaccess file
-  #   copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
+  - name: Add standard .htaccess file
+    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
 
-  # - name: Add standard .env file
-  #   template: src=../resources/env.j2 dest=/var/www/.env force=yes
+  - name: Add standard .env file
+    template: src=../resources/env.j2 dest=/var/www/.env force=yes
 
   - name: Ensure PHPMyAdmin is installed (Debian).
     apt: pkg=phpmyadmin state=installed
@@ -117,6 +117,11 @@
     shell: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp && touch /var/www/web/provision-checks/wp_cli.txt
     args:
       creates: /var/www/web/provision-checks/wp_cli.txt
+
+  - name: Add standard readme
+    template: src=../resources/readme.j2 dest=/var/www/README.md force=yes
+    args:
+      creates: /var/www/web/provision-checks/readme_added.md
 
   - name: Source databases
     shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output_to_dev.sql && touch /var/www/web/provision-checks/source_database.txt
