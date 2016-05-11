@@ -89,10 +89,10 @@
     service: name=mysql state=started enabled=true
 
   - name: Add standard .htaccess file
-    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=yes
+    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=no
 
   - name: Add standard .env file
-    template: src=../resources/env.j2 dest=/var/www/.env force=yes
+    template: src=../resources/env.j2 dest=/var/www/.env force=no
 
   - name: Ensure PHPMyAdmin is installed (Debian).
     apt: pkg=phpmyadmin state=installed
@@ -118,10 +118,13 @@
     args:
       creates: /var/www/web/provision-checks/wp_cli.txt
 
-  - name: Add standard readme
-    template: src=../resources/readme.j2 dest=/var/www/README.md force=yes
+  - name: Remove standard Bedrock readme
+    shell: rm /var/www/README.md 
     args:
       creates: /var/www/web/provision-checks/readme_added.md
+
+  - name: Add standard readme
+    template: src=../resources/readme.j2 dest=/var/www/readme.md force=no
 
   - name: Source databases
     shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output_to_dev.sql && touch /var/www/web/provision-checks/source_database.txt
