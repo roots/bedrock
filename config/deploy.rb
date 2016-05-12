@@ -13,6 +13,6 @@ set :repo_url, 'git@github.com:gianthat/yourprojectnamehere.git'
 
 set :log_level, :info
 
-set :linked_files, %w{.env web/.htaccess}
+set :linked_files, %w{.env web/.htaccess web/robots.txt}
 set :linked_dirs, %w{web/app/uploads}
 
