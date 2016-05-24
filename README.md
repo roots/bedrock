@@ -23,7 +23,7 @@ Setting up a new WP site with this repo as a starting point:
 
 1. Clone this repo `git clone git@github.com:gianthat/bedrock.git yourprojectname`
 2. Delete the project's .git folder with `rm -rf thisprojectfoldername`
-3. Add new git remote for wherever your git repo is hosted `git remote add origin git@github.com:gianthat/yourprojectname.git`
+3. Delete the .git folder, run `git init` and add new git remote for wherever your git repo is hosted `git remote add origin git@github.com:gianthat/yourprojectname.git`
 4. Edit `yourprojectname/provisioning/hosts` file and change the `ansible_ssh_host` and `application_name` settings. The ssh host should ideally be a local IP address that doesn't match any other local IP's in use on your system (in `/etc/hosts` folder). Should be something like 192.168.33.##. Since others may be working on this repo as well, there may be conflicts with what other devs have setup locally so this may need to change once others are involved.
 5. Go to the `yourprojectname/Vagrantfile` and set the IP address to the same address used above.
 6. Edit your local `/etc/hosts` file and add a line for `192.168.33.## yourprojectname.dev`
