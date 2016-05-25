@@ -81,11 +81,11 @@ define( 'WP_DEBUG', false );
 /*
  * Proxy Settings 
  */
-define('WP_PROXY_HOST', WP_HOME);
-define('WP_PROXY_PORT', '80');
-define('WP_PROXY_USERNAME', '');
-define('WP_PROXY_PASSWORD', '');
-define('WP_PROXY_BYPASS_HOSTS', 'localhost');
+//define('WP_PROXY_HOST', WP_HOME);
+//define('WP_PROXY_PORT', '80');
+//define('WP_PROXY_USERNAME', '');
+//define('WP_PROXY_PASSWORD', '');
+//define('WP_PROXY_BYPASS_HOSTS', 'localhost');
 
 /**
  * Bootstrap WordPress
