@@ -72,9 +72,9 @@ class Autoloader
         $this->validatePlugins();
         $this->countPlugins();
 
-        foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
-            load($plugin_file);
-        }
+        array_map(static function () {
+            include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
+        }, array_keys(self::$cache['plugins']));
 
         $this->pluginHooks();
     }
@@ -193,15 +193,6 @@ class Autoloader
 
         return self::$count;
     }
-}
-
-/**
- * Load an mu-plugin file
- *
- * @param  string $plugin_file  The plugin file path as returned by `get_plugins()`
- */
-function load() {
-    include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
 }
 
 new Autoloader();
