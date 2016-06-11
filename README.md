@@ -34,7 +34,7 @@ Setting up a new WP site with this repo as a starting point:
 11. Rename folder from `sage` to yourprojectname.
 12. Go to `web/app/themes/yourprojectname/assets/manifest.json` folder and set the *devURL* parameter to `http://yourprojectname.dev`
 13. Edit the style.css file and change the theme name and other details to suit your project
-14. Make sure you are in web/app/themes/yourprojectname/` and install npm modules `npm install`.
+14. Make sure you are in `web/app/themes/yourprojectname/` and install npm modules with `npm install`.
 15. Install bower components `bower install --save`.
 16. Go to the theme folder `.gitignore` file and delete the line with `dist` in it.
 17. Now read sections below on running Composer, Vagrant, Gulp, and PHPMyAdmin.
