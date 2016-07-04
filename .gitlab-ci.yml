@@ -1,0 +1,28 @@
+
+variables:
+  COMPOSER_HOME: composer-home
+
+cache:
+  key: "$CI_BUILD_NAME"
+  paths:
+    - composer-home/
+    - vendor/
+
+before_script:
+  - echo 'memory_limit=1024M' > /usr/local/etc/php/conf.d/memory_limit.ini
+  - composer install -o --prefer-dist --no-interaction
+
+test:5.5:
+  image: danieldent/php-5.5-composer
+  script:
+    - composer test
+
+test:5.6:
+  image: danieldent/php-5.6-composer
+  script:
+    - composer test
+
+test:7.0:
+  image: danieldent/php-7.0-composer
+  script:
+    - composer test
