@@ -1,3 +1,7 @@
+### 1.7.0: 2016-07-10
+
+* Bump PHP requirement to >= 5.6 (5.5 is no longer supported)
+
 ### 1.6.4: 2016-06-21
 
 * Update to WordPress 4.5.3
