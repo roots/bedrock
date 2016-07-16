@@ -33,7 +33,7 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
   `composer create-project roots/bedrock your-project-folder-name`
 
-1. Copy `.env.example` to `.env` and update environment variables:
+2. Copy `.env.example` to `.env` and update environment variables:
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
   * `DB_PASSWORD` - Database password
@@ -51,9 +51,11 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
   Or, you can cut and paste from the [Roots WordPress Salt Generator][roots-wp-salt].
 
-1. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
-1. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
-1. Access WP admin at `http://example.com/wp/wp-admin`
+3. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
+
+4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
+
+5. Access WP admin at `http://example.com/wp/wp-admin`
 
 ## Deploys
 
