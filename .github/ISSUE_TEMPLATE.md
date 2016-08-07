@@ -3,6 +3,7 @@
 - [ ] This is a feature request
 - [ ] This is a bug report
 - [ ] This request isn't a duplicate of an [existing issue](https://github.com/GSA/datagov-wp-boilerplate/issues)
+- [ ] This request isn't a duplicate of an [existing Data.gov issue](https://github.com/gsa/data.gov/issues)
 
 Replace any `X` with your information.
 
