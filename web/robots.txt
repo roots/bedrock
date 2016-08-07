@@ -1,0 +1,42 @@
+# Hello robots! 
+# For information on crawling the data.gov data catalog, see http://data.gov/developers/harvesting
+
+User-agent: *
+Allow: /
+
+# Disallow these directories, url types & file-types
+Disallow: /cgi-bin
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /search/*/feed
+Disallow: /search/*/*
+Disallow: /readme.html
+Disallow: /license.txt
+Disallow: /*?*
+Disallow: /*?
+Disallow: /*.php$
+Disallow: /*.js$
+Disallow: /*.inc$
+Disallow: /*.css$
+Disallow: /*.gz$
+Disallow: /*.wmv$
+Disallow: /*.cgi$
+Disallow: /*.xhtml$
+Allow: /wp-content/uploads/
+Allow: /wp-content/media/
+Allow: /*?page=*
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Adsbot-Google
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+Sitemap: http://data.gov/sitemap.xml

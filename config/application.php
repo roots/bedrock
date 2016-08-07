@@ -17,14 +17,15 @@ Env::init();
 $dotenv = new Dotenv\Dotenv($root_dir);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
-    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
+//    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
+    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
 }
 
 /**
  * Set up our global environment constant and load its config first
  * Default: development
  */
-define('WP_ENV', env('WP_ENV') ?: 'development');
+define('WP_ENV', env('WP_ENV') ?: 'production');
 
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
@@ -32,11 +33,22 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
+$protocol = 'http';
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    $protocol = 'https';
+}
+
+/**
+ * AWS
+ */
+define('DBI_AWS_ACCESS_KEY_ID', env('DBI_AWS_ACCESS_KEY_ID'));
+define('DBI_AWS_SECRET_ACCESS_KEY', env('DBI_AWS_SECRET_ACCESS_KEY'));
+
 /**
  * URLs
  */
-define('WP_HOME', env('WP_HOME'));
-define('WP_SITEURL', env('WP_SITEURL'));
+define('WP_HOME', env('WP_HOME') ?: $protocol . '://' . $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', env('WP_SITEURL') ?: WP_HOME . '/wp');
 
 /**
  * Custom Content Directory
@@ -72,7 +84,7 @@ define('NONCE_SALT', env('NONCE_SALT'));
  * Custom Settings
  */
 define('AUTOMATIC_UPDATER_DISABLED', true);
-define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: true);
 define('DISALLOW_FILE_EDIT', true);
 
 /**
