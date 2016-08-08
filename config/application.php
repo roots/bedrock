@@ -33,11 +33,6 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
-$protocol = 'http';
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-    $protocol = 'https';
-}
-
 /**
  * AWS
  */
@@ -47,7 +42,17 @@ define('DBI_AWS_SECRET_ACCESS_KEY', env('DBI_AWS_SECRET_ACCESS_KEY'));
 /**
  * URLs
  */
-define('WP_HOME', env('WP_HOME') ?: $protocol . '://' . $_SERVER['HTTP_HOST']);
+$protocol = 'http';
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    $protocol = 'https';
+}
+
+$default_host = 'data.gov';
+if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']) {
+    $default_host = $_SERVER['HTTP_HOST'];
+}
+
+define('WP_HOME', env('WP_HOME') ?: $protocol . '://' . $default_host);
 define('WP_SITEURL', env('WP_SITEURL') ?: WP_HOME . '/wp');
 
 /**
