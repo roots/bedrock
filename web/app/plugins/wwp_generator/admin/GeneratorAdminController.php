@@ -59,22 +59,23 @@ class GeneratorAdminController extends AbstractPluginBackendController
             $form = $generator->getPluginForm($data);
 
             $errors = array();
-            //if ($request->getMethod() == 'POST') {
+            if ($request->getMethod() == 'POST') {
                 $formValidator = $container->offsetGet('wwp.forms.formValidator');
                 //Form Validation
                 $formValidator->setFormInstance($form);
-                $data = array(
+                /*$data = array(
                     'table' => 'nllist',
                     'name' => 'wwp Newsletter',
                     'desc' => 'Module permettant de donner la possibilité à vos utilisateurs de s\'inscrire à des newsletter',
-                    'namespace' => 'WonderWp\Plugin\Newsletter'
-                );
+                    'namespace' => 'WonderWp\Plugin\Newsletter',
+                    'entityname' => 'Newsletter'
+                );*/
                 $errors = $formValidator->validate($data);
                 if(empty($errors)){
                     $generator->setData($data);
                     $generator->generate();
                 }
-            //}
+            }
 
             //Form View
             /* @var $formView \WonderWp\Forms\FormViewInterface */
