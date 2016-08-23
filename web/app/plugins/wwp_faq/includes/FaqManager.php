@@ -57,20 +57,6 @@ class FaqManager extends AbstractPluginManager{
         $container[$this->plugin_name.'.path.url'] = plugin_dir_url( dirname( __FILE__ ) );
     }
 
-    public function getRouter()
-    {
-        return null;
-    }
-
-    /**
-     * Register all of the hooks related to the admin area functionality
-     * of the plugin.
-     */
-    protected function define_admin_hooks($adminController) {
-        //Admin pages
-        $this->loader->add_action( 'admin_menu', $adminController, 'customizeMenus' );
-    }
-
     public function loadTextdomain()
     {
         load_plugin_textdomain(WWP_FAQ_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');

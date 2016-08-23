@@ -5,7 +5,7 @@ use WonderWp\APlugin\AbstractEntity;
 
 /**
  * Class Faq
- * @package WonderWp\Plugin\Faq
+ *
  * @Entity @Table(name="wwp_faq")
  **/
 class FaqEntity extends AbstractEntity{
