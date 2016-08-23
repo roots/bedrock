@@ -2,36 +2,36 @@
 
 namespace WonderWp\Plugin\Newsletter;
 
-use Doctrine\ORM\Mapping as ORM;
+
 
 /**
- * Nllist
+ * NewsletterEntity
  *
- * @ORM\Table(name="nllist")
- * @ORM\Entity
+ * @Table(name="wwp_nllist")
+ * @Entity
  */
-class Nllist extends \WonderWp\APlugin\AbstractEntity
+class NewsletterEntity extends \WonderWp\APlugin\AbstractEntity
 {
  /**
   * @var integer
   *
-  * @ORM\Column(name="id", type="integer", nullable=false)
-  * @ORM\Id
-  * @ORM\GeneratedValue(strategy="AUTO")
+  * @Column(name="id", type="integer", nullable=false)
+  * @Id
+  * @GeneratedValue(strategy="AUTO")
   */
  private $id;
 
  /**
   * @var integer
   *
-  * @ORM\Column(name="title", type="integer", nullable=false)
+  * @Column(name="title", type="integer", nullable=false)
   */
  private $title;
 
  /**
   * @var integer
   *
-  * @ORM\Column(name="subscribers", type="integer", nullable=true)
+  * @Column(name="subscribers", type="integer", nullable=true)
   */
  private $subscribers;
 
@@ -50,7 +50,7 @@ class Nllist extends \WonderWp\APlugin\AbstractEntity
   * Set title
   *
   * @param integer $title
-  * @return Nllist
+  * @return NewsletterEntity
   */
  public function setTitle($title)
  {
@@ -73,7 +73,7 @@ class Nllist extends \WonderWp\APlugin\AbstractEntity
   * Set subscribers
   *
   * @param integer $subscribers
-  * @return Nllist
+  * @return NewsletterEntity
   */
  public function setSubscribers($subscribers)
  {
