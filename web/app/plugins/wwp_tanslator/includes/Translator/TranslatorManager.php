@@ -8,6 +8,7 @@ use Pimple\Container as PContainer;
 use Symfony\Component\Translation\Translator;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\HttpFoundation\Request;
 
 class TranslatorManager extends AbstractPluginManager{
 
@@ -53,7 +54,7 @@ class TranslatorManager extends AbstractPluginManager{
                 'textdomain'=>WWP_TRANSLATOR_TEXTDOMAIN
             ));
         };
-        $container[$this->plugin_name.'.assetsService'] = function(){
+        $container[$this->plugin_name.'.assetService'] = function(){
             return new TranslatorAssetsService();
         };
         $container[$this->plugin_name.'.getTextService'] = function(){
@@ -62,7 +63,12 @@ class TranslatorManager extends AbstractPluginManager{
 
         $baseDir = plugin_dir_path( dirname( __FILE__ ));
         $container[$this->plugin_name.'.path.root'] = $baseDir;
-        $container[$this->plugin_name.'.path.url'] = plugin_dir_url( dirname( __FILE__ ) );
+        $container[$this->plugin_name.'.path.url'] = plugin_dir_url( dirname(dirname( __FILE__ ) ));
+
+        $container['wwp.currentLang'] = function($container){
+            $em = $container->offsetGet('entityManager');
+            return $em->getRepository(LangEntity::class)->getCurrentLang();
+        };
 
         include $baseDir.'/build/gettext-compiled.php';
         include $baseDir.'/build/shell-compiled.php';
@@ -93,6 +99,27 @@ class TranslatorManager extends AbstractPluginManager{
         $assetsManager = $container->offsetGet('wwp.assets.manager');
         $assetClass = $container->offsetGet('wwp.assets.assetClass');
         $assetsService->registerAssets($assetsManager,$assetClass);
+    }
+
+    protected function _translate()
+    {
+        $this->loader->add_action( 'locale', $this, 'locale_changer' );
+        parent::_translate();
+    }
+
+    public function locale_changer($lang){
+        $request = Request::getInstance();
+        $session = $request->getSession();
+        $storedLocale = $session->get('locale');
+        $newLocale = $request->get('locale');
+
+        if(empty($storedLocale)){ $newLocale=$lang; }
+
+        if(!empty($newLocale) && $newLocale!=$storedLocale){
+            $session->set('locale',$newLocale);
+            $storedLocale = $newLocale;
+        }
+        return $storedLocale;
     }
 
 }

@@ -6,7 +6,7 @@ use WonderWp\APlugin\AbstractEntity;
 /**
  * Class Faq
  * @package WonderWp\Plugin\Translator
- * @Entity @Table(name="wwp_lang")
+ * @Entity(repositoryClass="LangRepository") @Table(name="wwp_lang")
  **/
 class LangEntity extends AbstractEntity{
 

@@ -131,11 +131,15 @@ class TranslatorGetTextService
             }
 
             $potLines = array();
+            $potHeaders = !empty($newTranslations['pot']['headers']) ? unserialize($newTranslations['pot']['headers']) : array();
+            $potLines[] = $this->arrayToLines(array('msgid' => '', 'msgstr' => $this->arrayToLines($potHeaders)));
+
             if (!empty($locales)) {
                 $poLines = array();
+                //Generate headers for each po file from pot file template
                 foreach ($locales as $locale) {
                     $poLines[$locale] = array();
-                    $headers = !empty($newTranslations[$locale]['headers']) ? @unserialize($newTranslations[$locale]['headers']) : null;
+                    $headers = !empty($newTranslations[$locale]['headers']) ? unserialize($newTranslations[$locale]['headers']) : $potHeaders;
                     if (empty($headers['POT-Creation-Date'])) {
                         $headers['POT-Creation-Date'] = date('r');
                     }
@@ -146,6 +150,7 @@ class TranslatorGetTextService
                     $headers['X-Loco-Target-Locale'] = $locale;
                     $poLines[$locale][] = $this->arrayToLines(array('msgid' => '', 'msgstr' => $this->arrayToLines($headers)));
                 }
+                //Generating lines for each translation in the pot template, and in the po files as well
                 foreach ($newTranslations['pot']['lines'] as $i => $translationLine) {
                     $translationData = array('msgid' => $translationLine, 'msgstr' => '');
                     $potLines[] = $this->arrayToLines($translationData);
@@ -154,11 +159,23 @@ class TranslatorGetTextService
                         $poLines[$locale][] = $this->arrayToLines($translationData);
                     }
                 }
+                //Writing pot file
+                $content = implode("\n\n", $potLines);
+                $destFile = $translationFiles['pot'];
+                $write = file_put_contents($destFile, $content);
+                if(!$write){
+                    throw new Exception( Loco::__('Cannot write POT file') );
+                }
+
+                //Writing po files
                 if (!empty($poLines)) {
                     foreach ($poLines as $locale=>$langTranslated) {
                         $content = implode("\n\n", $langTranslated);
                         $destFile = !empty($translationFiles['po'][$locale]) ? $translationFiles['po'][$locale] : dirname($translationFiles['pot']).'/'.str_replace('.pot','-'.$locale.'.po',basename($translationFiles['pot']));
                         $write = file_put_contents($destFile, $content);
+                        if(!$write){
+                            throw new Exception( Loco::__('Cannot write PO file') );
+                        }
 
                         try {
 
@@ -203,7 +220,6 @@ class TranslatorGetTextService
                         catch( Exception $e ){
                             $response['compiled'] = $e->getMessage();
                         }
-
                     }
                 }
             }

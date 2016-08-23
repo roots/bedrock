@@ -40,7 +40,7 @@ define('WWP_TRANSLATOR_TEXTDOMAIN','wonderwp_translator');
  * This action is documented in includes/class-wonderwp-activator.php
  */
 register_activation_hook( __FILE__, function(){
-	require_once plugin_dir_path( __FILE__ ) . 'includes/TranslatorActivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/Translator/TranslatorActivator.php';
 	$activator = new \WonderWp\Plugin\Translator\TranslatorActivator(WWP_PLUGIN_TRANSLATOR_VERSION);
 	$activator->activate();
 } );
@@ -51,7 +51,7 @@ register_activation_hook( __FILE__, function(){
  * This action is documented in includes/class-wonderwp-deactivator.php
  */
 register_deactivation_hook( __FILE__, function(){
-	require_once plugin_dir_path( __FILE__ ) . 'includes/TranslatorDeactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/Translator/TranslatorDeactivator.php';
 	$deactivator = new \WonderWp\Plugin\Translator\TranslatorDeactivator();
 	$deactivator->deactivate();
 } );

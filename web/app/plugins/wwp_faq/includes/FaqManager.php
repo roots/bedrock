@@ -49,7 +49,7 @@ class FaqManager extends AbstractPluginManager{
                 'textdomain'=>WWP_FAQ_TEXTDOMAIN
             ));
         };
-        $container[$this->plugin_name.'.assetsService'] = function(){
+        $container[$this->plugin_name.'.assetService'] = function(){
             return new FaqAssetsService();
         };
 
@@ -74,14 +74,6 @@ class FaqManager extends AbstractPluginManager{
     public function loadTextdomain()
     {
         load_plugin_textdomain(WWP_FAQ_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');
-    }
-
-    public function registerAssets(){
-        $container = Container::getInstance();
-        $assetsService = $container->offsetGet($this->plugin_name.'.assetsService');
-        $assetsManager = $container->offsetGet('wwp.assets.manager');
-        $assetClass = $container->offsetGet('wwp.assets.assetClass');
-        $assetsService->registerAssets($assetsManager,$assetClass);
     }
 
 }

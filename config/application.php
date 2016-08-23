@@ -69,6 +69,11 @@ define('LOGGED_IN_SALT', env('LOGGED_IN_SALT'));
 define('NONCE_SALT', env('NONCE_SALT'));
 
 /**
+ * Langue
+ */
+define ('WPLANG', 'fr_FR');
+
+/**
  * Custom Settings
  */
 define('AUTOMATIC_UPDATER_DISABLED', true);

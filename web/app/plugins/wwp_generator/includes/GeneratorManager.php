@@ -1,15 +1,15 @@
 <?php
 
-namespace WonderWp\Plugin\Actu; //Correct namespace
+namespace WonderWp\Plugin\Generator; //Correct namespace
 
 //Must uses
-
 use \Composer\Autoload\ClassLoader as AutoLoader; //Must use the autoloader
 use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\HttpFoundation\Request;
 
-class ActuManager extends AbstractPluginManager{
+class GeneratorManager extends AbstractPluginManager{
 
     /**
      *
@@ -20,11 +20,11 @@ class ActuManager extends AbstractPluginManager{
      */
     public function autoLoad(AutoLoader $loader){
 
-        $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
-        $loader->addPsr4('WonderWp\\Plugin\\Actu\\',array(
+        $pluginDir = plugin_dir_path( dirname(__FILE__ ) );
+        $loader->addPsr4('WonderWp\\Plugin\\Generator\\',array(
             $pluginDir . 'includes',
+            $pluginDir . 'includes/generator',
             $pluginDir . 'admin',
-            $pluginDir . 'public',
         ));
 
     }
@@ -34,25 +34,31 @@ class ActuManager extends AbstractPluginManager{
         parent::register($container);
 
         $container[$this->plugin_name.'.adminController'] = function(){
-            return new ActuAdminController( $this->get_plugin_name(), $this->get_version() );
+            return new GeneratorAdminController( $this->get_plugin_name(), $this->get_version() );
         };
-        /*$container[$this->plugin_name.'.publicController'] = function() {
-            return $plugin_public = new PublicController($this->get_plugin_name(), $this->get_version());
-        };*/
 
-        $container[$this->plugin_name.'.wwp.entityName'] = ActuEntity::class;
         $container[$this->plugin_name.'.wwp.listTable.class'] = function($container){
-            return new ActuListTable(array(
-                'entityName'=>ActuEntity::class,
-                'textdomain'=>WWP_ACTU_TEXTDOMAIN
+            return new TableListTable(array(
+                'textdomain'=>WWP_GENERATOR_TEXTDOMAIN
             ));
         };
-        $container[$this->plugin_name.'.assetService'] = function(){
-            return new ActuAssetService();
+        $container['wwp.generator'] = function() {
+            return new PluginGenerator();
         };
 
-        $container[$this->plugin_name.'.path.root'] = plugin_dir_path( dirname( __FILE__ ) );
+        /*$container[$this->plugin_name.'.wwp.entityName'] = LangEntity::class;
+        $container[$this->plugin_name.'wwp.forms.modelForm'] = $container->factory(function($c){
+            return new LangForm();
+        });*/
+
+        $baseDir = plugin_dir_path( dirname( __FILE__ ));
+        $container[$this->plugin_name.'.path.root'] = $baseDir;
         $container[$this->plugin_name.'.path.url'] = plugin_dir_url( dirname( __FILE__ ) );
+    }
+
+    public function getRouter()
+    {
+        return null;
     }
 
     /**
@@ -66,7 +72,7 @@ class ActuManager extends AbstractPluginManager{
 
     public function loadTextdomain()
     {
-        load_plugin_textdomain(WWP_ACTU_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');
+        load_plugin_textdomain(WWP_GENERATOR_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');
     }
 
 }
