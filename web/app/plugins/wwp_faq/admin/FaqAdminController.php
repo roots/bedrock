@@ -30,7 +30,7 @@ class FaqAdminController extends AbstractPluginBackendController{
 	public function customizeMenus(){
 
 		//Add entry under top-level functionalities menu
-		add_submenu_page('wonderwp-modules', 'FAQ', 'FAQ', 'read', 'wwp_faq', array($this,'route'));
+		add_submenu_page('wonderwp-modules', 'FAQ', 'FAQ', 'read', 'wwp-faq', array($this,'route'));
 
 	}
 
