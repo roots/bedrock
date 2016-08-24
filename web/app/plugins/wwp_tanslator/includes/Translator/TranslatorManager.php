@@ -45,14 +45,13 @@ class TranslatorManager extends AbstractPluginManager{
         };*/
 
         $container[$this->plugin_name.'.wwp.entityName'] = LangEntity::class;
+        $container[$this->plugin_name.'.wwp.textDomain'] = WWP_TRANSLATOR_TEXTDOMAIN;
+
         $container[$this->plugin_name.'wwp.forms.modelForm'] = $container->factory(function($c){
             return new LangForm();
         });
         $container[$this->plugin_name.'.wwp.listTable.class'] = function($container){
-            return new LangListTable(array(
-                'entityName'=>LangEntity::class,
-                'textdomain'=>WWP_TRANSLATOR_TEXTDOMAIN
-            ));
+            return new LangListTable();
         };
         $container[$this->plugin_name.'.assetService'] = function(){
             return new TranslatorAssetsService();
@@ -90,7 +89,7 @@ class TranslatorManager extends AbstractPluginManager{
 
     public function loadTextdomain()
     {
-        load_plugin_textdomain(WWP_FAQ_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');
+        load_plugin_textdomain(WWP_TRANSLATOR_TEXTDOMAIN,false,dirname(dirname( dirname( plugin_basename( __FILE__ ) ) ) ). '/languages/');
     }
 
     public function registerAssets(){

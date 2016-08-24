@@ -40,6 +40,8 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
         };*/
 
         $container[$this->plugin_name.'.wwp.entityName'] = __PLUGIN_ENTITY__Entity::class;
+        $container[$this->plugin_name.'.wwp.textDomain'] = WWP___PLUGIN_CONST___TEXTDOMAIN;
+
         $container[$this->plugin_name.'wwp.forms.modelForm'] = $container->factory(function($c){
             return new __PLUGIN_ENTITY__Form();
         });

@@ -17,7 +17,7 @@
  * Plugin URI:        http://digital.wonderful.fr/wonderwp/__PLUGIN_SLUG__
  * Description:       __PLUGIN_DESC__
  * Version:           1.0.0
- * Author:            Wonderful
+ * Author:            WonderfulPlugin
  * Author URI:        http://digital.wonderful.fr
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

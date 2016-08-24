@@ -103,7 +103,9 @@ class PluginGenerator
             ->_generateEntity()
             ->_generateForm()
             ->_generateListTable()
-            ->_generateLanguages();
+            ->_generateLanguages()
+            ->_generateIcon()
+        ;
     }
 
     protected function _getClassMetaDatas()
@@ -128,7 +130,7 @@ class PluginGenerator
 
     protected function _createFolders()
     {
-        \WonderWp\trace($this->_data);
+        //\WonderWp\trace($this->_data);
         $this->_folders = array();
         $this->_folders['base'] = WP_PLUGIN_DIR . '/' . sanitize_title($this->_data['name']);
         $this->_folders['includes'] = $this->_folders['base'] . '/includes';
@@ -277,6 +279,15 @@ class PluginGenerator
 
     protected function _generateLanguages()
     {
+        $iconSrc = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR.'icon.svg';
+        $iconDest = $this->_folders['base'].DIRECTORY_SEPARATOR.'icon.svg';
+        $this->_fileSystem->copy($iconSrc,$iconDest);
+        return $this;
+    }
+
+    protected function _generateIcon()
+    {
+
         return $this;
     }
 

@@ -41,11 +41,9 @@ class ActuManager extends AbstractPluginManager{
         };*/
 
         $container[$this->plugin_name.'.wwp.entityName'] = ActuEntity::class;
+        $container[$this->plugin_name.'.wwp.textDomain'] = WWP_ACTU_TEXTDOMAIN;
         $container[$this->plugin_name.'.wwp.listTable.class'] = function($container){
-            return new ActuListTable(array(
-                'entityName'=>ActuEntity::class,
-                'textdomain'=>WWP_ACTU_TEXTDOMAIN
-            ));
+            return new ActuListTable();
         };
         $container[$this->plugin_name.'.assetService'] = function(){
             return new ActuAssetService();

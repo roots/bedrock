@@ -57,6 +57,7 @@ class TranslatorAdminController extends AbstractPluginBackendController
         return $tabs;
     }
 
+
     public function listTradsAction()
     {
         $container = Container::getInstance();
@@ -65,16 +66,22 @@ class TranslatorAdminController extends AbstractPluginBackendController
 
         // @var WP_Theme $theme
         $themes = array();
+        $exclude=array('twentyfifteen');
         foreach (wp_get_themes(array('allowed' => true)) as $name => $theme) {
-            $package = LocoPackage::get($name, 'theme') and
-            $name = $package->get_name();
-            $themes[$name] = $package;
+            if(!in_array($name,$exclude)) {
+                $package = LocoPackage::get($name, 'theme') and
+                $name = $package->get_name();
+                $themes[$name] = $package;
+            }
         }
         // @var array $plugin
         $plugins = array();
+        $exclude=array('cms-tree-page-view/index.php','debug-bar/debug-bar.php');
         foreach (get_plugins() as $plugin_file => $plugin) {
-            $package = LocoPackage::get($plugin_file, 'plugin') and
-            $plugins[] = $package;
+            if(!in_array($plugin_file,$exclude)) {
+                $package = LocoPackage::get($plugin_file, 'plugin') and
+                $plugins[] = $package;
+            }
         }
 
         $vue = $container->offsetGet('wwp.basePlugin.backendView');

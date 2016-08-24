@@ -21,13 +21,14 @@ class FaqForm extends ModelForm{
         $fieldName = $attr->getFieldName();
         $entity = $this->getModelInstance();
         $val = $entity->$fieldName;
+        $label = __($fieldName.'.trad',$this->_textDomain);
 
         switch($fieldName){
             case 'id':
-                $f = new HiddenField($attr->getFieldName(),$val);
+                $f = new HiddenField($attr->getFieldName(),$val, ['label'=>$label]);
                 break;
             case 'lang':
-                $f = new SelectField($attr->getFieldName(),$val, ['label'=>'Label '.$fieldName]);
+                $f = new SelectField($attr->getFieldName(),$val, ['label'=>$label]);
                 $opts = array(
                     'en_EN'=>'Anglais',
                     'fr_FR'=>'Français'
@@ -35,7 +36,7 @@ class FaqForm extends ModelForm{
                 $f->setOptions($opts);
                 break;
             case 'isActive':
-                $f = $f = new BooleanField($attr->getFieldName(), $val , ['label'=>'Label '.$fieldName]);
+                $f = $f = new BooleanField($attr->getFieldName(), $val, ['label'=>$label]);
                 break;
             default:
                 $f = parent::newField($attr);

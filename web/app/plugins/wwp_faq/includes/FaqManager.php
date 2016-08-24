@@ -40,14 +40,12 @@ class FaqManager extends AbstractPluginManager{
         };*/
 
         $container[$this->plugin_name.'.wwp.entityName'] = FaqEntity::class;
+        $container[$this->plugin_name.'.wwp.textDomain'] = WWP_FAQ_TEXTDOMAIN;
         $container[$this->plugin_name.'wwp.forms.modelForm'] = $container->factory(function($c){
             return new FaqForm();
         });
         $container[$this->plugin_name.'.wwp.listTable.class'] = function($container){
-            return new FaqListTable(array(
-                'entityName'=>FaqEntity::class,
-                'textdomain'=>WWP_FAQ_TEXTDOMAIN
-            ));
+            return new FaqListTable();
         };
         $container[$this->plugin_name.'.assetService'] = function(){
             return new FaqAssetsService();
