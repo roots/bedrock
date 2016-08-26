@@ -18,6 +18,7 @@ use WonderWp\APlugin\AbstractPluginActivator;
  * Fired during plugin activation.
  *
  * This class defines all code necessary to run during the plugin's activation.
+ * Mainly the table creation if need be
  *
  * @since      1.0.0
  * @package    Wonderwp
@@ -27,6 +28,9 @@ use WonderWp\APlugin\AbstractPluginActivator;
 class NewsletterActivator extends AbstractPluginActivator
 {
 
+    /**
+     * Create table for entity
+     */
     public function activate()
     {
         $this->_createTable('WonderWp\Plugin\Newsletter\NewsletterEntity');

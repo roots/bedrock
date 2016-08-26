@@ -26,6 +26,7 @@ class PluginGenerator
     protected $_metaDatas;
 
     protected $_container;
+    protected $_manager;
     /** @var  \WP_Filesystem_Direct */
     protected $_fileSystem;
     protected $_folders;
@@ -34,6 +35,7 @@ class PluginGenerator
     {
         $this->_container = Container::getInstance();
         $this->_fileSystem = $this->_container->offsetGet('wwp.fileSystem');
+        $this->_manager = $this->_container->offsetGet('wonderwp_generator.Manager');
     }
 
     /**
@@ -103,6 +105,7 @@ class PluginGenerator
             ->_generateEntity()
             ->_generateForm()
             ->_generateListTable()
+            ->_generateHookService()
             ->_generateLanguages()
             ->_generateIcon()
         ;
@@ -149,7 +152,7 @@ class PluginGenerator
 
     protected function _generateIndexFile()
     {
-        $indexTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'index.php';
+        $indexTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'index.php';
         $indexContent = $this->_fileSystem->get_contents($indexTpl);
         $indexFile = $this->_folders['base'] . DIRECTORY_SEPARATOR . 'index.php';
         $this->_fileSystem->put_contents($indexFile, $indexContent, FS_CHMOD_FILE);
@@ -158,7 +161,7 @@ class PluginGenerator
 
     protected function _generateBootsrtapFile()
     {
-        $bootstrapTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'plugin_bootstrap.php';
+        $bootstrapTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'plugin_bootstrap.php';
         $bootstrapContent = str_replace(
             array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_DESC__', '__PLUGIN_CONST__', '__PLUGIN_CONST_LOW__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__', '__PLUGIN_CLASSNAME__'),
             array($this->_data['name'], sanitize_title($this->_data['name']), $this->_data['desc'], strtoupper($this->_data['entityname']), strtolower($this->_data['entityname']), $this->_data['entityname'], $this->_data['namespace'], $this->_data['className']),
@@ -171,7 +174,7 @@ class PluginGenerator
 
     protected function _generateManager()
     {
-        $mgrTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Manager.php';
+        $mgrTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Manager.php';
         $mgrContent = str_replace(
             array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_DESC__', '__PLUGIN_CONST__', '__PLUGIN_CONST_LOW__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__', '__PLUGIN_CLASSNAME__', '__ESCAPED_PLUGIN_NS__'),
             array($this->_data['name'], sanitize_title($this->_data['name']), $this->_data['desc'], strtoupper($this->_data['entityname']), strtolower($this->_data['entityname']), $this->_data['entityname'], $this->_data['namespace'], $this->_data['className'],str_replace('\\','\\\\',$this->_data['namespace'])),
@@ -184,7 +187,7 @@ class PluginGenerator
 
     protected function _generateActivator()
     {
-        $acTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Activator.php';
+        $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Activator.php';
         $acContent = str_replace(
             array('__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
             array($this->_data['entityname'], $this->_data['namespace']),
@@ -202,7 +205,7 @@ class PluginGenerator
 
     protected function _generateAdminController()
     {
-        $acTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'AdminController.php';
+        $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'AdminController.php';
         $acContent = str_replace(
             array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
             array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace']),
@@ -253,7 +256,7 @@ class PluginGenerator
 
     protected function _generateForm()
     {
-        $acTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Form.php';
+        $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Form.php';
         $acContent = str_replace(
             array('__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
             array($this->_data['entityname'], $this->_data['namespace']),
@@ -266,7 +269,7 @@ class PluginGenerator
 
     protected function _generateListTable()
     {
-        $acTpl = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'ListTable.php';
+        $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'ListTable.php';
         $acContent = str_replace(
             array('__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
             array($this->_data['entityname'], $this->_data['namespace']),
@@ -277,9 +280,22 @@ class PluginGenerator
         return $this;
     }
 
+    protected function _generateHookService()
+    {
+        $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'HookService.php';
+        $acContent = str_replace(
+            array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
+            array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace']),
+            $this->_fileSystem->get_contents($acTpl)
+        );
+        $acFile = $this->_folders['includes'] . DIRECTORY_SEPARATOR . ($this->_data['entityname']) . 'HookService.php';
+        $this->_fileSystem->put_contents($acFile, $acContent, FS_CHMOD_FILE);
+        return $this;
+    }
+
     protected function _generateLanguages()
     {
-        $iconSrc = $this->_container['wonderwp_generator.path.root'] . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR.'icon.svg';
+        $iconSrc = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR.'icon.svg';
         $iconDest = $this->_folders['base'].DIRECTORY_SEPARATOR.'icon.svg';
         $this->_fileSystem->copy($iconSrc,$iconDest);
         return $this;

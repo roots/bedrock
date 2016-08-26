@@ -4,6 +4,10 @@ namespace __PLUGIN_NS__;
 
 use WonderWp\APlugin\ListTable as WwpListTable;
 
+/**
+ * Class __PLUGIN_ENTITY__ListTable
+ * @package __PLUGIN_NS__
+ */
 class __PLUGIN_ENTITY__ListTable extends WwpListTable{
 
     /**

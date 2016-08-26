@@ -3,18 +3,17 @@
     "id": 1,
     "title": "WonderWp Demo Site",
     "url": "http:\/\/local.wonderwp.com",
-    "theme_dest": "\/app\/themes\/wonderwp_theme\/assets\/final",
+    "theme_dest": "\/app\/themes\/wwp_child_theme\/assets\/final",
     "prefix": ".\/web"
   },
   "css": {
+    "app": [
+      ".\/web\/app\/plugins\/wwp_actu\/\/assets\/actu.scss",
+      ".\/web\/app\/plugins\/wwp_faq\/\/assets\/faq.scss"
+    ],
     "admin": [
       ".\/web\/app\/plugins\/wonderwp_plugin\/\/admin\/css\/wonderwp-admin.scss",
       ".\/web\/app\/plugins\/wwp_tanslator\/\/admin\/assets\/translator-admin.scss"
-    ],
-    "app": [
-      ".\/web\/app\/plugins\/wwp_actu\/\/assets\/actu.scss",
-      ".\/web\/app\/plugins\/wwp_faq\/\/assets\/faq.scss",
-      ".\/web\/app\/themes\/wonderwp_theme\/styleguide\/scss\/main.scss"
     ]
   },
   "js": {

@@ -4,6 +4,10 @@ namespace WonderWp\Plugin\Newsletter;
 
 use WonderWp\APlugin\ListTable as WwpListTable;
 
+/**
+ * Class NewsletterListTable
+ * @package WonderWp\Plugin\Newsletter
+ */
 class NewsletterListTable extends WwpListTable{
 
     /**

@@ -1,0 +1,25 @@
+.formGroup-check{
+  label{
+    font-weight:normal;
+    margin-bottom: 0; 
+  }
+}
+
+.formInput-check {
+    display:none;
+}
+.formInput-check + label span {
+    display:inline-block;
+    width:14px;
+    height:14px;
+    border-radius: 50%;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:#fff;
+    cursor:pointer;
+    position:relative;
+    top:-2px;
+}
+.formInput-check:checked + label span {
+    background:#222222;
+}

@@ -6,6 +6,7 @@ namespace WonderWp\Plugin\Actu; //Correct namespace
 
 use \Composer\Autoload\ClassLoader as AutoLoader; //Must use the autoloader
 use Pimple\Container as PContainer;
+use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 
@@ -33,38 +34,36 @@ class ActuManager extends AbstractPluginManager{
     {
         parent::register($container);
 
-        $container[$this->plugin_name.'.adminController'] = function(){
-            return new ActuAdminController( $this->get_plugin_name(), $this->get_version() );
-        };
+        //Register Config
+        $this->setConfig('path.root',plugin_dir_path( dirname( __FILE__ ) ));
+        $this->setConfig('path.base',dirname( dirname( plugin_basename( __FILE__ ) ) ));
+        $this->setConfig('path.url',plugin_dir_url( dirname( __FILE__ ) ));
+        $this->setConfig('entityName',ActuEntity::class);
+        $this->setConfig('textDomain',WWP_ACTU_TEXTDOMAIN);
+
+        //Register Controllers
+        $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
+            return new ActuAdminController( $this );
+        });
         /*$container[$this->plugin_name.'.publicController'] = function() {
             return $plugin_public = new PublicController($this->get_plugin_name(), $this->get_version());
         };*/
 
-        $container[$this->plugin_name.'.wwp.entityName'] = ActuEntity::class;
-        $container[$this->plugin_name.'.wwp.textDomain'] = WWP_ACTU_TEXTDOMAIN;
-        $container[$this->plugin_name.'.wwp.listTable.class'] = function($container){
+        //Register Services
+        $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
+            return new ActuHookService();
+        }));
+        /*$this->addService(AbstractManager::$MODELFORMSERVICENAME,$container->factory(function($c){
+            return new ActuForm();
+        }));*/
+        $this->addService(AbstractManager::$LISTTABLESERVICENAME, function($container){
             return new ActuListTable();
-        };
-        $container[$this->plugin_name.'.assetService'] = function(){
+        });
+        $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
             return new ActuAssetService();
-        };
+        });
 
-        $container[$this->plugin_name.'.path.root'] = plugin_dir_path( dirname( __FILE__ ) );
-        $container[$this->plugin_name.'.path.url'] = plugin_dir_url( dirname( __FILE__ ) );
-    }
-
-    /**
-     * Register all of the hooks related to the admin area functionality
-     * of the plugin.
-     */
-    protected function define_admin_hooks($adminController) {
-        //Admin pages
-        $this->loader->add_action( 'admin_menu', $adminController, 'customizeMenus' );
-    }
-
-    public function loadTextdomain()
-    {
-        load_plugin_textdomain(WWP_ACTU_TEXTDOMAIN,false,dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/');
+        return $this;
     }
 
 }

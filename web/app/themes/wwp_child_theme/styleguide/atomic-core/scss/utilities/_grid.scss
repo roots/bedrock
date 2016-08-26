@@ -1,0 +1,93 @@
+[class*='nb-'] {
+	position:relative;
+ 	 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+[class*='nb-']:last-of-type {
+	margin-right:0;
+}
+.nb-1{
+	width: 08.333333333%;
+	float: left;
+}
+.nb-2{
+	width: 16.6666666667%;
+	float: left;
+}
+.nb-3{
+	width: 25%;
+	float: left;
+}
+.nb-4{
+	width: 33.3333333333%;
+	float: left;
+}
+.nb-5{
+	width: 41.6666666667%;
+	float: left;
+}
+.nb-6{
+	width: 50%;
+	float: left;
+}
+.nb-7{
+	width: 58.3333333333%;
+	float: left;
+}
+.nb-8{
+	width: 66.6666666667%;
+	float: left;
+}
+.nb-9{
+	width: 75%;
+	float: left;
+}
+.nb-10{
+	width: 83.3333333333%;
+	float: left;
+}
+.nb-11{
+	width: 91.6666666667%;
+	float: left;
+}
+.nb-12{
+	width: 100%;
+	float: left;
+}
+.grid-row:after{
+	content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+$one: 100%;
+$two:	16.6666666667%;
+$three: 25%;
+$four: 33.3333333333%;
+$five: 41.6666666667%;
+$six: 50%;
+$seven: 58.3333333333%;
+$eight: 66.6666666667%;
+$nine: 75%;
+$ten: 83.3333333333%;
+$eleven: 91.6666666667%;
+$twelve: 100%;
+
+
+@mixin col($width) {
+  float:left;
+	width: $width;
+}
+/*@include col($six);*/
+
+@mixin row() {
+  content: "";
+  display: table;
+  clear: both;
+}
+

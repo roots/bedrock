@@ -11,7 +11,8 @@ class TranslatorAssetsService extends AbstractAssetService{
     public function registerAssets(AssetManager $assetManager, $assetClass){
 
         $container = Container::getInstance();
-        $pluginPath = $container['wonderwp_translator.path.url'];
+        $manager = $container->offsetGet('wonderwp_translator.Manager');
+        $pluginPath = $manager->getConfig('path.url');
 
         //CSS Back
         $assetManager->registerAsset('css', new $assetClass('translator-admin',$pluginPath.'/admin/assets/translator-admin.scss',array(),null,false,'admin'));

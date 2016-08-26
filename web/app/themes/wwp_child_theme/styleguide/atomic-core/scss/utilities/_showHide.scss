@@ -1,0 +1,31 @@
+.showHide{
+	display:none;
+	.form-control, .formInputGroup{
+		margin-bottom: 0;
+	}
+	textarea.form-control{
+		margin-bottom:12px;
+	}
+	
+}
+.aa_label.js-showHide-trigger{
+	margin-bottom: 24px;
+	position: relative;;
+	top:12px;
+	cursor:pointer;
+  font-size:18px;
+  transition:font-size .25s;
+	.fa-plus{
+		transform: rotate(0deg);
+		transition:all .25s;
+	}
+	.fa-plus-is-rotated{
+		transform: rotate(45deg);
+	}
+}
+.aa_label-is-closed{
+  font-size:12px !important; 
+}
+.aa_label-is-open{
+  font-size:20px !important; 
+}

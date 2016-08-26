@@ -1,0 +1,117 @@
+.aa_actionDrawer{
+  position:fixed;
+  top:0;
+  right:-100%;
+  bottom:0;
+  width:100%;
+  //background:#E3E4E3;
+  //background: rgba(227, 228, 227, 0.77);
+  background: rgba(227, 228, 227, 1);
+  z-index:6000; 
+  padding:50px;
+  height:100%;
+}
+
+.aa_actionDrawer__wrap{
+  max-width:500px;
+  margin:auto;
+  position: relative;
+  top: 30%;
+  transform: translateY(-30%);
+  h1{
+   color:#7A7A7A; 
+  }
+}
+
+.actionDrawer__content{
+  
+}
+
+.aa_actionDrawer__close{
+  //position:absolute; 
+  cursor:pointer;
+  /* color: #F94B4B; */
+  color: #B5B4B4;
+  position: absolute;
+  right: 0;
+  top: -53px;
+}
+
+.aa_label{
+  display: block;
+  margin-bottom: 6px;
+  color:#7A7A7A; 
+  font-weight: normal;
+}
+
+.aa_label__file{
+   color:#00aff0;
+   font-weight:bold;
+}
+
+.formInputGroup{
+  margin-bottom:12px;
+}
+
+.inputBtnGroup{
+  @extend .grid-row;
+  .aa_btn{
+    float: right;
+    &:focus{
+      outline: none;
+      border:none;
+    }
+  }
+  .form-control{
+    
+
+  }
+}
+.inputBtnGroup__inputWrap{
+  overflow: hidden;
+}
+
+.aa_btn{
+  height:50px; 
+  border: none;
+  width: 100px;
+  color: #fff;
+  background-color: #7A7A7A;
+}
+
+.aa_btn-pos{
+  background-color: #51CD6D;
+}
+.aa_btn-neg{
+  background-color: #CD5151;
+}
+
+
+.aa_errorBox{
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  text-align:center;
+  background:#CD5151; 
+  color:#fff;
+  font-weight:bold;
+  .fa{
+    cursor:pointer; 
+  }
+}
+.aa_errorBox__message{
+  margin: 11px; 
+}
+
+
+@media (max-width: 824px){ 
+ .aa_actionDrawer{
+    width: 100% !important;
+    padding: 25px;
+ }
+}
+
+
+
+

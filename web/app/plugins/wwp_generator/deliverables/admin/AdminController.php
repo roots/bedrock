@@ -26,12 +26,8 @@ use WonderWp\APlugin\AbstractPluginBackendController;
  */
 class __PLUGIN_ENTITY__AdminController extends AbstractPluginBackendController{
 
-
-	public function customizeMenus(){
-
-		//Add entry under top-level functionalities menu
-		add_submenu_page('wonderwp-modules', '__PLUGIN_NAME__', '__PLUGIN_NAME__', $this->getMinCapability(), '__PLUGIN_SLUG__', array($this,'route'));
-
-	}
+    /**
+     * Create here the method to call for you different routes
+     */
 
 }

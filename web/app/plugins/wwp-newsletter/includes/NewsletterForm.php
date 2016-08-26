@@ -14,6 +14,11 @@ use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\SelectField;
 use WonderWp\Forms\ModelForm;
 
+/**
+ * Class NewsletterForm
+ * @package WonderWp\Plugin\Newsletter
+ * Class that defines the form to use when adding / editing the entity
+ */
 class NewsletterForm extends ModelForm{
 
     public function newField(EntityAttribute $attr)
@@ -22,6 +27,7 @@ class NewsletterForm extends ModelForm{
         $entity = $this->getModelInstance();
         $val = $entity->$fieldName;
 
+        //Add here particular cases for your different fields
         switch($fieldName){
             default:
                 $f = parent::newField($attr);

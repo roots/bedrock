@@ -32,17 +32,6 @@ use WonderWp\Templates\VueFrag;
 class GeneratorAdminController extends AbstractPluginBackendController
 {
 
-
-    public function customizeMenus()
-    {
-        //Add top-level translation menu
-        $page_title = 'Génération de plugin';
-        $menu_title = 'Génération de plugin';
-        $menu_slug = 'wonderwp-generator';
-        $function = array($this, 'route');
-        add_management_page( $page_title, $menu_title, 'manage_options', $menu_slug, $function );
-    }
-
     public function pluginFormAction(){
         $request = Request::getInstance();
         $container = Container::getInstance();
@@ -51,7 +40,7 @@ class GeneratorAdminController extends AbstractPluginBackendController
 
         if(!empty($table)){
             /** @var PluginGenerator $generator */
-            $generator = $container->offsetGet('wwp.generator');
+            $generator = $this->_manager->getService('Generator');
             $generator->setTable($table);
 
             $data = $request->request->all();
@@ -82,11 +71,12 @@ class GeneratorAdminController extends AbstractPluginBackendController
             $formView = $container->offsetGet('wwp.forms.formView');
             $formView->setFormInstance($form);
 
+            $prefix = $this->_manager->getConfig('prefix');
             $vue = $container->offsetGet('wwp.basePlugin.backendView');
-            $vue->addFrag(new VueFrag( $container->offsetGet($this->plugin_name.'.wwp.path.templates.frags.header'),array('title'=>get_admin_page_title())));
-            if(!empty($tabs)){ $vue->addFrag(new VueFrag( $container->offsetGet($this->plugin_name.'.wwp.path.templates.frags.tabs'),array('tabs'=>$tabs))); }
-            $vue->addFrag(new VueFrag( $container->offsetGet($this->plugin_name.'.wwp.path.templates.frags.edit'),array('formView'=>$formView, 'formSubmitted'=>($request->getMethod() == 'POST'), 'formValid'=>(empty($errors)))));
-            $vue->addFrag(new VueFrag( $container->offsetGet($this->plugin_name.'.wwp.path.templates.frags.footer')));
+            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.header'),array('title'=>get_admin_page_title())));
+            if(!empty($tabs)){ $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.tabs'),array('tabs'=>$tabs))); }
+            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.edit'),array('formView'=>$formView, 'formSubmitted'=>($request->getMethod() == 'POST'), 'formValid'=>(empty($errors)))));
+            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.footer')));
             $vue->render();
         }
     }
