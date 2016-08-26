@@ -10,7 +10,8 @@ namespace WonderWp\Theme;
 class ThemePublicController{
 
     public function styleGuide(){
-
+        get_template_part('/styleguide/index');
+        die();
     }
 
 }

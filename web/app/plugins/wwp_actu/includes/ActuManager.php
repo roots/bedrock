@@ -45,9 +45,9 @@ class ActuManager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new ActuAdminController( $this );
         });
-        /*$container[$this->plugin_name.'.publicController'] = function() {
-            return $plugin_public = new PublicController($this->get_plugin_name(), $this->get_version());
-        };*/
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
+            return $plugin_public = new ActuPublicController($this);
+        });
 
         //Register Services
         $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
@@ -61,6 +61,9 @@ class ActuManager extends AbstractPluginManager{
         });
         $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
             return new ActuAssetService();
+        });
+        $this->addService(AbstractManager::$ROUTESERVICENAME,function(){
+            return new ActuRouteService();
         });
 
         return $this;

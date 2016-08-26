@@ -5,21 +5,22 @@
  * Date: 17/06/2016
  * Time: 09:46
  */
-namespace WonderWp\Theme;
+namespace WonderWp\Plugin\Actu;
 
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractRouter;
 use WonderWp\DI\Container;
+use WonderWp\Route\RouteServiceInterface;
 
-class ThemeRouter extends AbstractRouter{
+class ActuRouteService implements RouteServiceInterface{
 
     private $_routes;
 
     public function getRoutes(){
         if(empty($this->_routes)) {
-            $manager = Container::getInstance()->offsetGet('wwp.theme.Manager');
+            $manager = Container::getInstance()->offsetGet('wonderwp_actu.Manager');
             $this->_routes = array(
-                ['styleguide/*',array($manager->getController(AbstractManager::$PUBLICCONTROLLERTYPE),'styleGuide')]
+                ['actualites',array($manager->getController(AbstractManager::$PUBLICCONTROLLERTYPE),'listActus')]
             );
         }
 
