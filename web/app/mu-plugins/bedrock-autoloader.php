@@ -72,9 +72,9 @@ class Autoloader
         $this->validatePlugins();
         $this->countPlugins();
 
-        foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
-            include_once(WPMU_PLUGIN_DIR . '/' . $plugin_file);
-        }
+        array_map(static function () {
+            include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
+        }, array_keys(self::$cache['plugins']));
 
         $this->pluginHooks();
     }
