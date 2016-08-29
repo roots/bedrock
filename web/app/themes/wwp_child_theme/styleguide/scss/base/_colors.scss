@@ -1,22 +1,27 @@
 /*scss/base/_colors.scss*/
 
-$basecolor              : #504E4D !default;
-$red                    : #E20714 !default;
-$lightgrey              : #E5E1DF !default;
-$mediumgrey             : #C9C4C2 !default;
+$basecolor            : #3F4925 !default;
+$mediumgrey           : #979992 !default;
+$lightgrey            : #D6D6D6 !default;
+$darkpink             : #E50063 !default;
+$darkblue             : #253b49 !default;
 
+// For Atomic. Don't modify:
+$red                    : #E20714 !default;
+$blue                   : #00AFF0 !default;
+$warmgrey               : #F2F5F0 !default;
 
 .basecolor{
   background: $basecolor;
 }
-.lightgrey{
-  background: $lightgrey;
-  span {
-    color: #000; 
-  }
+.darkpink{
+  background: $darkpink;
 }
 .mediumgrey{
   background: $mediumgrey;
+}
+.lightgrey{
+  background: $lightgrey;
   span {
     color: #000; 
   }

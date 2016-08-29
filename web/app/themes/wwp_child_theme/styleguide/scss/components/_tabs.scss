@@ -26,11 +26,13 @@
   min-height: 3em;
   padding: 0.9em .5em .5em .5em;
   border-bottom: 0;
-  background: $mediumgrey;
+  color: #fff; 
+  background: $blue;
   cursor: pointer;
 }
 [role="tablist"] .js-tablist__item > a{
 	&:focus, &:hover, &:active, &[aria-selected="true"]{
+		color: #000; 
   		background: $lightgrey;
 	}
 	&:focus {

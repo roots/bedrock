@@ -2,15 +2,15 @@
 
 <div class="colors">
     <div class="color basecolor">
-        <span>$basecolor #504E4D</span>
+        <span>$basecolor #3F4925</span>
     </div>
-    <div class="color lightgrey">
-        <span>$lightgrey #E5E1DF</span>
+    <div class="color darkpink">
+        <span>$darkpink #E50063</span>
     </div>
     <div class="color mediumgrey">
         <span>$mediumgrey #C9C4C2</span>
     </div>
-    <div class="color red">
-        <span>$red #E20714</span>
+    <div class="color lightgrey">
+        <span>$lightgrey #F2D0D0</span>
     </div>
 </div>

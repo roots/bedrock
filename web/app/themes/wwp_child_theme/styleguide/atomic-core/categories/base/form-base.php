@@ -1,5 +1,5 @@
 <div class="aa_fileFormGroup">
-    <form id="form-create-file" class="aa_fileForm " action="/atomic-core/modules.php" method="post">
+    <form id="form-create-file" class="aa_fileForm " action="/atomic-core/base.php" method="post">
      
       <div class="inputGroup">
         <label class="aa_label">What's your component's name?</label>
@@ -12,7 +12,7 @@
           <input class="bgColor" type="text" name="bgColor" value="" />
         </div>
         <button class="aa_btn aa_btn-pos" type="submit" >Add</button>
-      <input type="hidden" name="compDir" value="modules"/>
+      <input type="hidden" name="compDir" value="base"/>
       <input type="hidden" name="create" value="create"/>
     </form>
 </div>

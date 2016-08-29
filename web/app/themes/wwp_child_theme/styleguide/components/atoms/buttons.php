@@ -7,13 +7,13 @@
 <input class="btn btn-default" type="submit" value="Submit">
 
 <hr>
-<span class="subTitle">Colors</span>
+<span class="subTitle">Button colors</span>
 <button type="button" class="btn btn-primary">Primary</button>
 <button type="button" class="btn btn-secondary">Secondary</button>
 <button type="button" class="btn btn-disabled" disabled>Disabled</button>
 
 <hr>
-<span class="subTitle">Sizes</span>
+<span class="subTitle">Button sizes</span>
 <button type="button" class="btn btn-primary btn-lg">Large button</button>
 <button type="button" class="btn btn-secondary btn-lg">Large button</button>
 <br><br>

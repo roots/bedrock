@@ -16,22 +16,21 @@
    </li>
   </ul>
  <div id="id_first" class="js-tabcontent">
-   here the content of 1st tab. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet.
+ 	<p><strong>here the content of 1st tab.</strong></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet.</p>
  </div>
  <div id="id_second" class="js-tabcontent">
-   here the content of 2nd tab. Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet veritatis facere quisquam consequuntur, asperiores facilis. Molestiae labore voluptate laboriosam recusandae, accusantium dicta.
+    <p><strong>here the content of 2nd tab.</strong></p>
+	<p>Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet veritatis facere quisquam consequuntur, asperiores facilis. Molestiae labore voluptate laboriosam recusandae, accusantium dicta.</p>
  </div>
  <div id="id_third" class="js-tabcontent">
-   here the content of 3rd tab. Molestiae labore voluptate laboriosam recusandae, accusantium dicta?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet veritatis facere quisquam consequuntur, asperiores facilis. 
+  	<p><strong>here the content of 3rd tab.</strong></p>
+	<p>Molestiae labore voluptate laboriosam recusandae, accusantium dicta?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam saepe sit laborum, nemo rem praesentium eveniet veritatis facere quisquam consequuntur, asperiores facilis. </p>
  </div>
  <div id="id_fourth" class="js-tabcontent">
-   here the content of 4th tab. Leritatis facere quisquam consequuntur, asperiores facilis. Molestiae labore voluptate laboriosam recusandae, accusantium.
+    <p><strong>here the content of 4th tab.</strong></p>
+	<p>Leritatis facere quisquam consequuntur, asperiores facilis. Molestiae labore voluptate laboriosam recusandae, accusantium.</p>
  </div>
 </div>
 
-
-
-
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-
-<script src="http://a11y.nicolas-hoffmann.net/tabs/js/jquery-accessible-tabs.js"></script>
+<script src="js/tabs.js"></script>
