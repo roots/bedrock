@@ -9,8 +9,19 @@ namespace WonderWp\Theme;
 
 class ThemePublicController{
 
+    /**
+     * Style guide
+     */
     public function styleGuide(){
         get_template_part('/styleguide/index');
+        die();
+    }
+
+    /**
+     * Sitemap
+     */
+    public function siteMap(){
+        get_template_part('/templates/sitemap');
         die();
     }
 

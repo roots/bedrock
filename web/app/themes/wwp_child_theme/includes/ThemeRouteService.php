@@ -20,7 +20,8 @@ class ThemeRouteService implements RouteServiceInterface{
         if(empty($this->_routes)) {
             $manager = Container::getInstance()->offsetGet('wwp.theme.Manager');
             $this->_routes = array(
-                ['styleguide',array($manager->getController(AbstractManager::$PUBLICCONTROLLERTYPE),'styleGuide')]
+                ['styleguide',array($manager->getController(AbstractManager::$PUBLICCONTROLLERTYPE),'styleGuide')],
+                ['sitemap',array($manager->getController(AbstractManager::$PUBLICCONTROLLERTYPE),'sitemap')]
             );
         }
 
