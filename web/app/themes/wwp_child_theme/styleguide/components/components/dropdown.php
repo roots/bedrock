@@ -14,4 +14,4 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-<script src="js/dropdown.js"></script>
+<script src="js/components/dropdown.js"></script>

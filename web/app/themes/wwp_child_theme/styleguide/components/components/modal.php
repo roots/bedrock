@@ -24,4 +24,4 @@
   </div>
 </div>
 
-<script src="js/modal.js"></script>
+<script src="js/components/modal.js"></script>

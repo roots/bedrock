@@ -2,6 +2,7 @@
 
     var cookieComponent = function ($cookieWrap) {
         this.$wrap = $cookieWrap;
+        this.init();
     };
     cookieComponent.prototype = {
         init: function () {
@@ -17,7 +18,7 @@
     };
 
     //Styleguide
-    var $styleGuideCookieComp = $('#cookies .component .cookies-wrap');
+    var $styleGuideCookieComp = $('.compWrap .cookies-wrap');
     if($styleGuideCookieComp.length) {
         new cookieComponent($styleGuideCookieComp);
     }
