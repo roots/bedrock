@@ -1,6 +1,10 @@
 /***
 Wonderful fix to avoid core conflicts with knacss and more
 ***/
+
+iframe{
+	border: none; 
+}
 .atomsWrap{
 	[class*="grid-"] > *{
 		margin-left: 0;
@@ -11,7 +15,7 @@ Wonderful fix to avoid core conflicts with knacss and more
 	.compTitle{
 		max-height: none; 
 		padding-left: 10px;
-		font-size: 2.5rem;
+		font-size: 2rem;
 	}
 }
 
@@ -25,4 +29,23 @@ Wonderful fix to avoid core conflicts with knacss and more
 
 .atomsWrap hr{
 	margin: 2em 0 2em;
+}
+
+// For framework tabs
+.compWrap ul.nav-tabs{
+	list-style: none;
+	padding-left: 0;
+	li{
+		display: inline-block;
+	}
+	li > a {
+		display: block;
+		padding: 1em; 
+	}
+}
+.tab-pane{
+	display: none;
+	&.active{
+		display: block;
+	}
 }

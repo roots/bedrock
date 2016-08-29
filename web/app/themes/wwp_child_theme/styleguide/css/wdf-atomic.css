@@ -1,11 +1,9 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0; }
-
 /***
 Wonderful fix to avoid core conflicts with knacss and more
 ***/
+iframe {
+  border: none; }
+
 .atomsWrap [class*="grid-"] > * {
   margin-left: 0; }
 .atomsWrap .atoms-main {
@@ -13,7 +11,7 @@ Wonderful fix to avoid core conflicts with knacss and more
 .atomsWrap .compTitle {
   max-height: none;
   padding-left: 10px;
-  font-size: 2.5rem; }
+  font-size: 2rem; }
 
 .subTitle {
   display: block;
@@ -24,5 +22,19 @@ Wonderful fix to avoid core conflicts with knacss and more
 
 .atomsWrap hr {
   margin: 2em 0 2em; }
+
+.compWrap ul.nav-tabs {
+  list-style: none;
+  padding-left: 0; }
+  .compWrap ul.nav-tabs li {
+    display: inline-block; }
+  .compWrap ul.nav-tabs li > a {
+    display: block;
+    padding: 1em; }
+
+.tab-pane {
+  display: none; }
+  .tab-pane.active {
+    display: block; }
 
 /*# sourceMappingURL=wdf-atomic.css.map */

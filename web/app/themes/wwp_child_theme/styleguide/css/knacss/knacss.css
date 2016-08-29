@@ -763,6 +763,128 @@ th {
     word-wrap: normal;
     hyphens: manual; } }
 /* ----------------------------- */
+/* ==WordPress reset             */
+/* ----------------------------- */
+/*
+Author: Geoffrey Crofte, Alsacréations
+Contributors: Automattic, Geoffrey Crofte
+Description: Reset styles for WordPress usage of KNACSS
+*/
+.comment-navigation,
+.paging-navigation,
+.post-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden; }
+
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.post-navigation .nav-previous {
+  float: left;
+  width: 50%; }
+
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.post-navigation .nav-next {
+  float: right;
+  text-align: right;
+  width: 50%; }
+
+.alignnone {
+  margin: .25em 1.5em 1.5em 0; }
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 1.5em auto; }
+
+.alignleft {
+  float: left;
+  margin: 0 1.5em .25em 0; }
+
+.alignright {
+  float: right;
+  margin: 0 0 .25em 1.5em; }
+
+.entry-content,
+.comment-content {
+  clear: both; }
+  .entry-content::after, .entry-content::before,
+  .comment-content::after,
+  .comment-content::before {
+    content: "";
+    display: table; }
+
+.widget + .widget {
+  margin: 1.5em 0 0; }
+
+.widget select {
+  max-width: 100%; }
+
+/* === 5.1 Posts - post_class === */
+/* === 5.2 Pages - body_class === */
+/* === 5.3 Posts and Pages - Contents === */
+.hentry {
+  margin: 0 0 1.5em; }
+
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5em 0 0; }
+
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em; }
+
+.comment-content a {
+  word-wrap: break-word; }
+
+img.wp-smiley {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+  border: none; }
+
+.wp-caption {
+  max-width: 100%;
+  margin-bottom: 1.5em; }
+
+.wp-caption img {
+  display: block;
+  margin: 0 auto; }
+
+.wp-caption-text {
+  margin: 1em 0;
+  text-align: center; }
+
+.gallery {
+  margin-bottom: 1.5em; }
+
+.gallery-item {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  vertical-align: top; }
+  .gallery-columns-2 .gallery-item {
+    max-width: 50%; }
+  .gallery-columns-3 .gallery-item {
+    max-width: 33.33%; }
+  .gallery-columns-4 .gallery-item {
+    max-width: 25%; }
+  .gallery-columns-5 .gallery-item {
+    max-width: 20%; }
+  .gallery-columns-6 .gallery-item {
+    max-width: 16.66%; }
+  .gallery-columns-7 .gallery-item {
+    max-width: 14.28%; }
+  .gallery-columns-8 .gallery-item {
+    max-width: 12.5%; }
+  .gallery-columns-9 .gallery-item {
+    max-width: 11.11%; }
+
+.gallery-caption {
+  display: block; }
+
+/* ----------------------------- */
 /* ==Global Layout               */
 /* ----------------------------- */
 /* module, gains superpower "BFC" Block Formating Context */
