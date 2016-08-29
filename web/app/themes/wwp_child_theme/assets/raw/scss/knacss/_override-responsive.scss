@@ -1,0 +1,342 @@
+/* -------------------------- */
+/* ==Responsive helpers       */
+/* -------------------------- */
+
+/* large screens */
+/* ------------- */
+
+@include media('>=large-screen') {
+
+  /* layouts for large screens */
+  .#{$kna-namespace}large-hidden {
+    display: none !important;
+  }
+
+  .#{$kna-namespace}large-visible {
+    display: block !important;
+  }
+
+  .#{$kna-namespace}large-no-float {
+    float: none;
+  }
+
+  .#{$kna-namespace}large-inbl {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+  .#{$kna-namespace}large-row {
+    display: table;
+    table-layout: fixed;
+    width: 100% !important;
+  }
+  .#{$kna-namespace}large-col {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  /* widths for large screens */
+  .#{$kna-namespace}large-w25 {
+    width: 25% !important;
+  }
+
+  .#{$kna-namespace}large-w33 {
+    width: 33.3333% !important;
+  }
+
+  .#{$kna-namespace}large-w50 {
+    width: 50% !important;
+  }
+
+  .#{$kna-namespace}large-w66 {
+    width: 66.6666% !important;
+  }
+
+  .#{$kna-namespace}large-w75 {
+    width: 75% !important;
+  }
+
+  .#{$kna-namespace}large-w100,
+  .#{$kna-namespace}large-wauto {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: 0;
+  }
+
+  /* margins for large screens */
+  .#{$kna-namespace}large-man,
+  .#{$kna-namespace}large-ma0 {
+    margin: 0 !important;
+  }
+}
+
+/* medium screens */
+/* -------------- */
+
+@include media('>=medium-screen', '<large-screen') {
+
+  /* layouts for medium screens */
+  .#{$kna-namespace}medium-hidden {
+    display: none !important;
+  }
+
+  .#{$kna-namespace}medium-visible {
+    display: block !important;
+  }
+
+  .#{$kna-namespace}medium-no-float {
+    float: none;
+  }
+
+  .#{$kna-namespace}medium-inbl {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .#{$kna-namespace}medium-row {
+    display: table;
+    table-layout: fixed;
+    width: 100% !important;
+  }
+
+  .#{$kna-namespace}medium-col {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  /* widths for medium screens */
+  .#{$kna-namespace}medium-w25 {
+    width: 25% !important;
+  }
+
+  .#{$kna-namespace}medium-w33 {
+    width: 33.3333% !important;
+  }
+
+  .#{$kna-namespace}medium-w50 {
+    width: 50% !important;
+  }
+
+  .#{$kna-namespace}medium-w66 {
+    width: 66.6666% !important;
+  }
+
+  .#{$kna-namespace}medium-w75 {
+    width: 75% !important;
+  }
+
+  .#{$kna-namespace}medium-w100,
+  .#{$kna-namespace}medium-wauto {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: 0;
+  }
+
+  /* margins for medium screens */
+  .#{$kna-namespace}medium-man,
+  .#{$kna-namespace}medium-ma0 {
+    margin: 0 !important;
+  }
+}
+
+/* small screens */
+/* ------------- */
+
+@include media('>=small-screen', '<medium-screen') {
+
+  /* layouts for small screens */
+  .#{$kna-namespace}small-hidden {
+    display: none !important;
+  }
+
+  .#{$kna-namespace}small-visible {
+    display: block !important;
+  }
+
+  .#{$kna-namespace}small-no-float {
+    float: none;
+  }
+
+  .#{$kna-namespace}small-inbl {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .#{$kna-namespace}small-row {
+    display: table !important;
+    table-layout: fixed !important;
+    width: 100% !important;
+  }
+
+  .#{$kna-namespace}small-col {
+    display: table-cell !important;
+    vertical-align: top !important;
+  }
+
+  /* widths for small screens */
+  .#{$kna-namespace}small-w25 {
+    width: 25% !important;
+  }
+
+  .#{$kna-namespace}small-w33 {
+    width: 33.3333% !important;
+  }
+
+  .#{$kna-namespace}small-w50 {
+    width: 50% !important;
+  }
+
+  .#{$kna-namespace}small-w66 {
+    width: 66.6666% !important;
+  }
+
+  .#{$kna-namespace}small-w75 {
+    width: 75% !important;
+  }
+
+  .#{$kna-namespace}small-w100,
+  .#{$kna-namespace}small-wauto {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: 0;
+  }
+
+  /* margins for small screens */
+  .#{$kna-namespace}small-man,
+  .#{$kna-namespace}small-ma0 {
+    margin: 0 !important;
+  }
+
+  .#{$kna-namespace}small-pan,
+  .#{$kna-namespace}small-pa0 {
+    padding: 0 !important;
+  }
+
+}
+
+/* tiny screens */
+/* ------------ */
+
+@include media('<small-screen') {
+
+  /* quick small resolution reset */
+  .#{$kna-namespace}mod,
+  .#{$kna-namespace}col,
+  fieldset {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: 0;
+  }
+
+  .#{$kna-namespace}flex-container {
+    flex-direction: column;
+  }
+
+  .#{$kna-namespace}row {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* layouts for tiny screens */
+  .#{$kna-namespace}tiny-hidden {
+    display: none !important;
+  }
+
+  .#{$kna-namespace}tiny-visible {
+    display: block !important;
+  }
+
+  .#{$kna-namespace}tiny-no-float {
+    float: none;
+  }
+
+  .#{$kna-namespace}tiny-inbl {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+
+  .#{$kna-namespace}tiny-row {
+    display: table !important;
+    table-layout: fixed !important;
+    width: 100% !important;
+  }
+
+  .#{$kna-namespace}tiny-col {
+    display: table-cell !important;
+    vertical-align: top !important;
+  }
+
+  th,
+  td {
+    display: block;
+    width: auto;
+    text-align: left;
+  }
+
+  thead {
+    display: none;
+  }
+
+  /* widths for tiny screens */
+  .#{$kna-namespace}tiny-w25 {
+    width: 25% !important;
+  }
+
+  .#{$kna-namespace}tiny-w33 {
+    width: 33.3333% !important;
+  }
+
+  .#{$kna-namespace}tiny-w50 {
+    width: 50% !important;
+  }
+
+  .#{$kna-namespace}tiny-w66 {
+    width: 66.6666% !important;
+  }
+
+  .#{$kna-namespace}tiny-w75 {
+    width: 75% !important;
+  }
+
+  .#{$kna-namespace}tiny-w100,
+  .#{$kna-namespace}tiny-wauto {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: 0;
+  }
+
+  /* margins for tiny screens */
+  .#{$kna-namespace}tiny-man,
+  .#{$kna-namespace}tiny-ma0 {
+    margin: 0 !important;
+  }
+
+  .#{$kna-namespace}tiny-pan,
+  .#{$kna-namespace}tiny-pa0 {
+    padding: 0 !important;
+  }
+
+}

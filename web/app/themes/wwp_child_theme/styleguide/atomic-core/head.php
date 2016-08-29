@@ -14,8 +14,6 @@
        	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 		
-		<link rel="stylesheet" href="css/knacss/knacss.css">
-
 		<link rel="stylesheet" href="atomic-core/css/main.css">
 
 		<link rel="stylesheet" href="css/main.css">

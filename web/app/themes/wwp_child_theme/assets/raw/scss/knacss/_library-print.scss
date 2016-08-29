@@ -1,0 +1,95 @@
+/* ----------------------------- */
+/* ==Print (quick print reset)   */
+/* ----------------------------- */
+
+@media print {
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    width: auto;
+    margin: auto;
+    font-family: serif;
+    font-size: 12pt;
+  }
+
+  p,
+  .#{$kna-namespace}p-like,
+  h1,
+  .#{$kna-namespace}h1-like,
+  h2,
+  .#{$kna-namespace}h2-like,
+  h3,
+  .#{$kna-namespace}h3-like,
+  h4,
+  .#{$kna-namespace}h4-like,
+  h5,
+  .#{$kna-namespace}h5-like,
+  h6,
+  .#{$kna-namespace}h6-like,
+  blockquote,
+  ul,
+  ol {
+    color: #000;
+    margin: auto;
+  }
+
+  .#{$kna-namespace}print {
+    display: block;
+  }
+
+  .#{$kna-namespace}no-print {
+    display: none;
+  }
+
+  /* no orphans, no widows */
+  p,
+  .#{$kna-namespace}p-like,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* no breaks inside these elements */
+  blockquote,
+  ul,
+  ol {
+    page-break-inside: avoid;
+  }
+
+  /* page break before main headers
+  h1,
+  .h1-like {
+    page-break-before: always;
+  }
+  */
+
+  /* no breaks after these elements */
+  h1,
+  .#{$kna-namespace}h1-like,
+  h2,
+  .#{$kna-namespace}h2-like,
+  h3,
+  .#{$kna-namespace}h3-like,
+  caption {
+    page-break-after: avoid;
+  }
+
+  a {
+    color: #000;
+  }
+
+  /* displaying URLs
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  */
+
+  a[href^="javascript:"]::after,
+  a[href^="#"]::after {
+    content: "";
+  }
+}
