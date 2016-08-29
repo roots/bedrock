@@ -1,13 +1,14 @@
+
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 /***
-Wonderful fix to avoid core conflicts with knacss
+Wonderful fix to avoid core conflicts with knacss and more
 ***/
-
-$darkpink             : #E50063 !default;
-// For Atomic. Don't modify:
-$red                    : #E20714 !default;
-$blue                   : #00AFF0 !default;
-$warmgrey               : #F2F5F0 !default;
-
 .atomsWrap{
 	[class*="grid-"] > *{
 		margin-left: 0;
@@ -20,27 +21,12 @@ $warmgrey               : #F2F5F0 !default;
 		padding-left: 10px;
 		font-size: 2.5rem;
 	}
-	.aa_dir__dirNameGroup__icon,
-	.compWrap .nav-tabs > li > a,
-	.compTitle,
-	.subTitle{
-		color: $darkpink; 
-	}
-	.atoms-side_hide{
-		background: $darkpink; 
-	}
-	:not(pre) > code[class*="language-"], 
-	pre[class*="language-"],
-	.compWrap .nav-tabs > li.active > a, .atomsWrap .compWrap .nav-tabs > li.active > a:focus, 
-	.compWrap .nav-tabs > li.active > a:hover{
-		background: $warmgrey; 
-	}
-
 }
 
 .subTitle{
 	display: block;
 	margin-bottom: 12px;
+	color: #00AFF0;
 	max-height: 25px;
 	font-size: 1.8rem;
 }

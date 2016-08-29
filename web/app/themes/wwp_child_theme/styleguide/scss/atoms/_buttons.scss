@@ -6,21 +6,18 @@
 .btn {
     display: inline-block;
     margin-bottom: 0; // For input.btn
-    padding: 1rem 2.2rem;
-    font-size: 1.3rem;
+    padding: .75rem 1.8rem;
+    font-size: 1.5rem;
     font-family: $font1;
     font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .2em;
     text-align: center;
     vertical-align: middle;
-    text-decoration: none;
-    color: $basecolor; 
-    background-color: rgba(0, 0, 0, 0.2);
+    color: #FFF; 
+    background-color: $mediumgrey;
     touch-action: manipulation;
     cursor: pointer;
-    border: 2px solid $basecolor;
-    border-radius: 2em; 
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
     white-space: nowrap;
     -webkit-transition: all .25s;
     transition: all .25s;
@@ -68,38 +65,34 @@ a.btn {
 // Buttons colors
 // --------------------------------------------------
 
-// $btn-primary:       #00AFF0 !default;
-// $btn-primary2:      #504E4D !default;
-// $btn-secondary:     #555555 !default;
-// $btn-secondary2:    #C9C4C2 !default;
+$btn-primary:       #00AFF0 !default;
+$btn-primary2:      #504E4D !default;
+$btn-secondary:     #555555 !default;
+$btn-secondary2:    #C9C4C2 !default;
 $btn-disabled:      #E5E1DF !default;
 $btn-disabled2:     #504E4D !default;
 $btn-disabled3:     #555555 !default;
 
 .btn-default {
-    color: $basecolor; 
-    background-color: rgba(0, 0, 0, 0.1);
+    color: #FFF; 
+    background-color: $mediumgrey;
     &:hover, &:focus {
-        color: #FFF;
-        background-color: $mediumgrey; 
+        background-color: $basecolor; 
     }
 }
 
 .btn-primary {
-    color: $basecolor; 
-    background-color: rgba(0, 0, 0, 0.1);
+    color: #FFF; 
+    background-color: $btn-primary;
     &:hover, &:focus {
-        color: #FFF;
-        background-color: $basecolor; 
+        background-color: $btn-primary2; 
     }
 }
 .btn-secondary {
-    color: $darkpink; 
-    background-color: rgba(0, 0, 0, 0.1);
-    border-color: $darkpink;
+    color: #FFF; 
+    background-color: $btn-secondary;
     &:hover, &:focus {
-        color: #FFF;
-        background-color: $darkpink; 
+        background-color: $btn-secondary2; 
     }
 }
 .btn-disabled {

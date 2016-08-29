@@ -1,16 +1,15 @@
 /*scss/base/_colors.scss*/
 .basecolor {
-  background: #3F4925; }
-
-.darkpink {
-  background: #E50063; }
-
-.mediumgrey {
-  background: #979992; }
+  background: green; }
 
 .lightgrey {
-  background: #D6D6D6; }
+  background: #E5E1DF; }
   .lightgrey span {
+    color: #000; }
+
+.mediumgrey {
+  background: #C9C4C2; }
+  .mediumgrey span {
     color: #000; }
 
 .red {
@@ -50,21 +49,20 @@
 
 /*scss/base/_fonts.scss*/
 body {
-  font-family: "Work Sans", sans-serif !important; }
+  font-family: "Open Sans", sans-serif; }
 
 .font {
   font-weight: normal;
-  margin-top: 0; }
+  margin-top: 0;
+  color: #6B6B6B; }
   .font span {
     display: block; }
 
 .font1 {
-  font-family: "Work Sans", sans-serif !important;
-  font-weight: 300; }
+  font-family: "Open Sans", sans-serif; }
 
 .font2 {
-  font-family: "Bree Serif", serif;
-  font-weight: 300; }
+  font-family: "Montserrat", sans-serif; }
 
 /*scss/base/_mixins.scss*/
 /*scss/base/_helpers.scss*/
@@ -74,12 +72,12 @@ body {
 .h1, h1, h2, .h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
   margin-top: 0;
   margin-bottom: 24px;
-  font-family: "Work Sans", sans-serif !important;
-  font-weight: 300;
-  color: #3F4925; }
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #504E4D; }
 
 h1, .h1-like {
-  font-size: 4.8rem; }
+  font-size: 5rem; }
 
 h2, .h2-like {
   font-size: 4rem; }
@@ -94,21 +92,18 @@ h4, .h4-like {
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  padding: 1rem 2.2rem;
-  font-size: 1.3rem;
-  font-family: "Work Sans", sans-serif !important;
+  padding: .75rem 1.8rem;
+  font-size: 1.5rem;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: .2em;
   text-align: center;
   vertical-align: middle;
-  text-decoration: none;
-  color: #3F4925;
-  background-color: rgba(0, 0, 0, 0.2);
+  color: #FFF;
+  background-color: #C9C4C2;
   touch-action: manipulation;
   cursor: pointer;
-  border: 2px solid #3F4925;
-  border-radius: 2em;
+  background-image: none;
+  border: 1px solid transparent;
   white-space: nowrap;
   -webkit-transition: all .25s;
   transition: all .25s; }
@@ -124,26 +119,22 @@ a.btn {
     pointer-events: none; }
 
 .btn-default {
-  color: #3F4925;
-  background-color: rgba(0, 0, 0, 0.1); }
+  color: #FFF;
+  background-color: #C9C4C2; }
   .btn-default:hover, .btn-default:focus {
-    color: #FFF;
-    background-color: #979992; }
+    background-color: #504E4D; }
 
 .btn-primary {
-  color: #3F4925;
-  background-color: rgba(0, 0, 0, 0.1); }
+  color: #FFF;
+  background-color: #00AFF0; }
   .btn-primary:hover, .btn-primary:focus {
-    color: #FFF;
-    background-color: #3F4925; }
+    background-color: #504E4D; }
 
 .btn-secondary {
-  color: #E50063;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-color: #E50063; }
+  color: #FFF;
+  background-color: #555555; }
   .btn-secondary:hover, .btn-secondary:focus {
-    color: #FFF;
-    background-color: #E50063; }
+    background-color: #C9C4C2; }
 
 .btn-disabled {
   color: #555555;
@@ -195,7 +186,7 @@ a.btn {
   padding: .75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #D6D6D6; }
+  background-color: #E5E1DF; }
   .breadcrumb::after {
     content: "";
     display: table;
@@ -238,14 +229,6 @@ a.btn {
 .card-text {
   margin-top: 0;
   margin-bottom: 1rem; }
-
-/*scss/molecules/_story-intro.scss*/
-.story-intro {
-  text-align: center; }
-
-.link-down svg {
-  fill: #E20714;
-  width: 7rem; }
 
 /*scss/components/_forms.scss*/
 .form-group {
@@ -401,13 +384,13 @@ input[type=file] {
 
 [role="tablist"] .js-tablist__item > a:focus, [role="tablist"] .js-tablist__item > a:hover, [role="tablist"] .js-tablist__item > a:active, [role="tablist"] .js-tablist__item > a[aria-selected="true"] {
   color: #000;
-  background: #D6D6D6; }
+  background: #E5E1DF; }
 [role="tablist"] .js-tablist__item > a:focus {
   outline: 1px dotted; }
 
 [role="tabpanel"].js-tabcontent {
   padding: 2em;
-  background: #D6D6D6; }
+  background: #E5E1DF; }
 
 /*scss/components/_modal.scss*/
 .modal-open {

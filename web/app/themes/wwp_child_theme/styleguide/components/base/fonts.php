@@ -1,11 +1,8 @@
 <!--components/base/fonts.php-->
 
-<p class="font font1">
-    <span class="bigger">Sans serif: $font1</span>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem dolorem expedita laborum laudantium incidunt repudiandae ipsum recusandae fuga, deserunt ut, consectetur facere ipsam quaerat eveniet accusamus, eum natus repellat corrupti!
+<p class="font font1 bigger">
+    <span>$font1: Open Sans</span>
 </p>
-<hr>
-<p class="font font2">
-    <span class="bigger">Serif: $font2</span>
-     Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+<p class="font font2 bigger">
+    <span>$font2: Montserrat</span>
 </p>
