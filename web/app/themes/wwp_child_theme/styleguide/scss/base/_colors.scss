@@ -1,0 +1,62 @@
+/*scss/base/_colors.scss*/
+
+$basecolor              : #504E4D !default;
+$red                    : #E20714 !default;
+$lightgrey              : #E5E1DF !default;
+$mediumgrey             : #C9C4C2 !default;
+
+
+.basecolor{
+  background: $basecolor;
+}
+.lightgrey{
+  background: $lightgrey;
+  span {
+    color: #000; 
+  }
+}
+.mediumgrey{
+  background: $mediumgrey;
+  span {
+    color: #000; 
+  }
+}
+.red{
+  background: $red;
+}
+
+.colors:before,
+.colors:after {
+  content: " ";
+  display: table;
+}
+
+.colors:after {
+  clear: both;
+}
+.colors {
+  *zoom: 1;
+}
+.color{
+  width:100px;
+  height:100px;
+  float:left;
+  margin-right:10px;
+  padding:10px;
+  color:#fff;
+  font-size:12px;
+}
+
+.colorFixed{
+  position: fixed;
+  z-index: 3000;
+  right: 0;
+  top: 0;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.57);
+  .color{
+    float: none;
+    margin-right:0;
+    width:70px;
+    height:50px;
+  }
+}

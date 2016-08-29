@@ -1,0 +1,1 @@
+<!--components/base/variables.php-->

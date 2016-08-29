@@ -1,0 +1,115 @@
+/*scss/atoms/_buttons.scss*/
+
+// Buttons general styles
+// --------------------------------------------------
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0; // For input.btn
+    padding: .75rem 1.8rem;
+    font-size: 1.5rem;
+    font-family: $font1;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFF; 
+    background-color: $mediumgrey;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    -webkit-transition: all .25s;
+    transition: all .25s;
+    
+    &,
+    &:active,
+    &.active {
+      &:focus,
+      &.focus {
+        // @include tab-focus;
+      }
+    }
+    
+    &:hover,
+    &:focus,
+    &.focus {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    &:active,
+    &.active {
+      outline: 0;
+    }
+    
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      // cursor: $cursor-disabled;
+      // @include opacity(.65);
+      // @include box-shadow(none);
+    }
+
+}
+
+a.btn {
+    text-decoration: none; 
+    &.disabled,
+    fieldset[disabled] & {
+        pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+    }
+}
+
+
+// Buttons colors
+// --------------------------------------------------
+
+$btn-primary:       #00AFF0 !default;
+$btn-primary2:      #504E4D !default;
+$btn-secondary:     #555555 !default;
+$btn-secondary2:    #C9C4C2 !default;
+$btn-disabled:      #E5E1DF !default;
+$btn-disabled2:     #504E4D !default;
+$btn-disabled3:     #555555 !default;
+
+.btn-default {
+    color: #FFF; 
+    background-color: $mediumgrey;
+    &:hover, &:focus {
+        background-color: $basecolor; 
+    }
+}
+
+.btn-primary {
+    color: #FFF; 
+    background-color: $btn-primary;
+    &:hover, &:focus {
+        background-color: $btn-primary2; 
+    }
+}
+.btn-secondary {
+    color: #FFF; 
+    background-color: $btn-secondary;
+    &:hover, &:focus {
+        background-color: $btn-secondary2; 
+    }
+}
+.btn-disabled {
+    color: $btn-disabled3; 
+    background-color: $btn-disabled;
+    &:hover, &:focus {
+        background-color: $btn-disabled2; 
+    }
+}
+
+// Buttons sizes
+// --------------------------------------------------
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+}
+.btn-sm {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}

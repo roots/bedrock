@@ -1,0 +1,29 @@
+/***
+Wonderful fix to avoid core conflicts with knacss
+***/
+
+.atomsWrap{
+	[class*="grid-"] > *{
+		margin-left: 0;
+	}
+	.atoms-main{
+		padding-left: 307px;
+	}
+	.compTitle{
+		max-height: none; 
+		padding-left: 10px;
+		font-size: 2.5rem;
+	}
+}
+
+.subTitle{
+	display: block;
+	margin-bottom: 12px;
+	color: #00AFF0;
+	max-height: 25px;
+	font-size: 1.8rem;
+}
+
+.atomsWrap hr{
+	margin: 2em 0 2em;
+}

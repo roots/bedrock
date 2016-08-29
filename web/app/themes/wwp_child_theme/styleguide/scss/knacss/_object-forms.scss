@@ -1,0 +1,110 @@
+/* ----------------------------- */
+/* ==Forms                       */
+/* ----------------------------- */
+
+/* thanks to HTML5boilerplate,
+* github.com/nathansmith/formalize and www.sitepen.com
+*/
+
+/* buttons */
+.#{$kna-namespace}btn {
+  display: inline-block;
+}
+
+/* forms items */
+form,
+fieldset {
+  border: none;
+}
+
+input,
+button,
+select,
+label,
+.#{$kna-namespace}btn {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: $base-color;
+}
+
+label {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+legend {
+  border: 0;
+  white-space: normal;
+}
+
+textarea {
+  min-height: 5em;
+  vertical-align: top;
+  font-family: inherit;
+  font-size: inherit;
+  resize: vertical;
+}
+
+select {
+  -webkit-appearance: menulist-button;
+}
+
+/* if select styling bugs on WebKit */
+/* select { -webkit-appearance: none; } */
+
+/* 'x' appears on right of search input when text is entered. This removes it */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #777;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #777;
+}
+
+.#{$kna-namespace}btn:focus,
+input[type="button"]:focus,
+button:focus {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/* unstyled forms */
+
+button.#{$kna-namespace}unstyled,
+input[type="button"].#{$kna-namespace}unstyled,
+input[type="submit"].#{$kna-namespace}unstyled,
+input[type="reset"].#{$kna-namespace}unstyled {
+  padding: 0;
+  border: none;
+  line-height: 1;
+  text-align: left;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}

@@ -1,0 +1,38 @@
+/*scss/atoms/_alert.scss*/
+
+$alert-success: 	#3c763d !default;
+$alert-success-bg: 	#dff0d8 !default;
+$alert-info: 		#31708f !default;
+$alert-info-bg: 	#d9edf7 !default;
+$alert-warning: 	#8a6d3b !default;
+$alert-warning-bg: 	#fcf8e3 !default;
+$alert-error: 		#d32F2f !default;
+$alert-error-bg: 	#f2d0d0 !default;
+
+
+.alert {
+	padding: 15px;
+	margin-bottom: 1rem;
+	border-bottom: 4px solid;
+}
+
+.alert-success {
+	color: $alert-success;
+	background-color: $alert-success-bg;
+	border-bottom-color: $alert-success; 
+}
+.alert-info {
+	color: $alert-info;
+	background-color: $alert-info-bg;
+	border-bottom-color: $alert-info; 
+}
+.alert-warning {
+	color: $alert-warning;
+	background-color: $alert-warning-bg;
+	border-bottom-color: $alert-warning; 
+}
+.alert-error, .form-errors {
+	color: $alert-error;
+	background-color: $alert-error-bg;
+	border-bottom-color: $alert-error; 
+}
