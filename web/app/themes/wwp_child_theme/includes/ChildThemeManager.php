@@ -21,6 +21,10 @@ class ChildThemeManager extends ThemeManager
         $this->addService(AbstractManager::$ROUTESERVICENAME,function(){
             return new ThemeRouteService();
         });
+        //Assets
+        $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
+            return new ThemeAssetService();
+        });
     }
 
 }
