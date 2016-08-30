@@ -12,6 +12,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var svgSprite = require('gulp-svg-sprite');
 
+var sassGraph = require('sass-graph');
 
 var fs = require('fs');
 global.errorMessage = '';
@@ -28,7 +29,7 @@ var config = {
     sass: {
         output: assets.site.prefix + assets.site.assets_dest + '/css/',
         compilerOptions: {
-            outputStyle: 'compressed'
+            outputStyle: assets.site.env=='development' ? 'nested' : 'compressed'
         }
     },
     svgSprites: {
@@ -68,15 +69,48 @@ gulp.task('write-version', function () {
 gulp.task('watch', function () {
 
     gulp.start('write-version');
+
+    //Watch assets defined in json files
     for (var i in assets.css) {
         var sassData = {
             name: i,
-            files: assets.css[i]
+            files: assets.css[i],
+            watchers: [],
+            output: config.sass.output,
+            destName: i + config.versionNum + '.css'
+        }
+        for(var j in assets.css[i]) {
+            var deps = sassGraph.parseFile(assets.css[i][j]);
+            for (var k in deps.index) {
+                sassData.watchers.push(k);
+            }
         }
         sassWatch(sassData);
     }
+
+    gulp.start('watch-styleguide');
+
+
 });
 gulp.task('default', ['watch']);
+
+gulp.task('watch-styleguide',function(){
+    //Watch styleguide
+    var styleguideSassData = {
+        name: 'styleguide',
+        files: [assets.site.prefix + assets.site.assets_src+'/../../styleguide/scss/main.scss'],
+        watchers: [],
+        output: assets.site.prefix + assets.site.assets_src+'/../../styleguide/css/',
+        destName: 'main.css'
+    }
+    for(var j in styleguideSassData.files) {
+        var deps = sassGraph.parseFile(styleguideSassData.files[j]);
+        for (var k in deps.index) {
+            styleguideSassData.watchers.push(k);
+        }
+    }
+    sassWatch(styleguideSassData);
+});
 
 gulp.task('svg-sprites', function () {
     var svgSrc = config.svgSprites.src,
@@ -88,10 +122,15 @@ gulp.task('svg-sprites', function () {
         .pipe(gulp.dest(svgDest));
 });
 
+gulp.task('test',function(){
+    //var file = assets.css['app'][2];
+    var file = './web/app/themes/wwp_child_theme/styleguide/scss/atoms/_chapo.scss';
+});
+
 
 function sassWatch(sassData) {
     gulp.src(sassData.files)
-        .pipe(watch(sassData.files, {}, function (file) {
+        .pipe(watch(sassData.watchers, {}, function (file) {
             if (file && file.basename) {
                 console.log(file.basename + ' has been changed. Compiling ' + sassData.name + ' group');
             }
@@ -115,8 +154,8 @@ function sassCompile(sassData) {
             global.errorMessage = err.message + " ";
         })
         .pipe(checkErrors())
-        .pipe(rename(sassData.name + config.versionNum + '.css'))
-        .pipe(gulp.dest(config.sass.output))
+        .pipe(rename(sassData.destName))
+        .pipe(gulp.dest(sassData.output))
         .pipe(livereload());
 }
 
