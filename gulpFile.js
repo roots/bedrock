@@ -10,31 +10,60 @@ var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var svgSprite = require('gulp-svg-sprite');
 
 
 var fs = require('fs');
 global.errorMessage = '';
 
+//Recuperation du fichier d'assets
 var assetsFile = './assets.json';
 var assets = require(assetsFile);
 var assetsAssoc = {};
 var date = new Date();
 
+//Configuration des différents modules gulp
 var config = {
     versionNum: 1,//date.getTime(),
     sass: {
-        output:  assets.site.prefix+assets.site.theme_dest + '/css/',
+        output: assets.site.prefix + assets.site.assets_dest + '/css/',
         compilerOptions: {
             outputStyle: 'compressed'
-        }        
+        }
+    },
+    svgSprites: {
+        src: assets.site.prefix + assets.site.assets_src + '/svg/*.svg',
+        compilerOptions: {
+            shape				: {
+                dimension		: {			// Set maximum dimensions
+                    maxWidth	: 128,
+                    maxHeight	: 128
+                },
+                spacing			: {			// Add padding
+                    padding		: 5
+                }
+            },
+            mode: {
+                view: {			// Activate the «view» mode
+                    bust: false,
+                    render: {
+                        scss: true		// Activate Sass output (with default options)
+                    }
+                },
+                symbol: false
+            },
+        },
+        dest: assets.site.prefix + assets.site.assets_dest+'/svg/'
     },
     autoPrefixr: {}
 };
 
-gulp.task('write-version', function(){
-    var versionContent = '<?php return '+config.versionNum+'; ?>';
+//======================================================================================//
+
+gulp.task('write-version', function () {
+    var versionContent = '<?php return ' + config.versionNum + '; ?>';
     return string_src('version.php', versionContent)
-    .pipe(gulp.dest(assets.site.prefix+assets.site.theme_dest))
+        .pipe(gulp.dest(assets.site.prefix + assets.site.assets_dest))
 });
 gulp.task('watch', function () {
 
@@ -49,12 +78,22 @@ gulp.task('watch', function () {
 });
 gulp.task('default', ['watch']);
 
+gulp.task('svg-sprites', function () {
+    var svgSrc = config.svgSprites.src,
+        svgDest = config.svgSprites.dest
+    console.log('Getting svgs from ' + svgSrc);
+    console.log('And trying to write to ' + svgDest);
+    gulp.src(svgSrc)
+        .pipe(svgSprite(config.svgSprites.compilerOptions))
+        .pipe(gulp.dest(svgDest));
+});
+
 
 function sassWatch(sassData) {
     gulp.src(sassData.files)
         .pipe(watch(sassData.files, {}, function (file) {
-            if(file && file.basename){
-                console.log(file.basename+' has been changed. Compiling '+sassData.name+' group');
+            if (file && file.basename) {
+                console.log(file.basename + ' has been changed. Compiling ' + sassData.name + ' group');
             }
             sassCompile(sassData);
         }));
@@ -65,7 +104,7 @@ function sassCompile(sassData) {
         groupScssContent += '@import "' + sassData.files[i] + '";' + "\n";
     }
     return string_src(sassData.name + '.scss', groupScssContent)
-        //.pipe(gulp.dest(config.sass.output))
+    //.pipe(gulp.dest(config.sass.output))
         .pipe(sourcemaps.init())
         .pipe(sass(config.sass.compilerOptions))
         .pipe(autoprefixer(config.autoPrefixr))
@@ -111,18 +150,18 @@ var checkErrors = function (obj) {
 };
 
 /*function getGroupFromFile(fileSrc){
-    if(assetsAssoc[fileSrc]){ return assetsAssoc[fileSrc]; }
+ if(assetsAssoc[fileSrc]){ return assetsAssoc[fileSrc]; }
 
-    var assetType = (fileSrc.indexOf('.js')>=0) ? 'js' : 'css';
-    for(var i in assets[assetType]){
-        if(assets[assetType][i].indexOf(fileSrc)>=0){
-            var thisGroup = {
-                name: i,
-                file: assets[assetType][i]
-            }
-            assetsAssoc[fileSrc] = thisGroup;
-            console.log(thisGroup);
-            return thisGroup;
-        }
-    }
-}*/
+ var assetType = (fileSrc.indexOf('.js')>=0) ? 'js' : 'css';
+ for(var i in assets[assetType]){
+ if(assets[assetType][i].indexOf(fileSrc)>=0){
+ var thisGroup = {
+ name: i,
+ file: assets[assetType][i]
+ }
+ assetsAssoc[fileSrc] = thisGroup;
+ console.log(thisGroup);
+ return thisGroup;
+ }
+ }
+ }*/
