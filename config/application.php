@@ -52,7 +52,10 @@ if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']) {
     $default_host = $_SERVER['HTTP_HOST'];
 }
 
-$port = in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
+$port = '';
+if (isset($_SERVER['SERVER_PORT']) && !in_array($_SERVER['SERVER_PORT'], array(80, 443))) {
+    $port = ':'.$_SERVER['SERVER_PORT'];
+}
 
 define('WP_HOME', env('WP_HOME') ?: $protocol . '://' . $default_host . $port);
 define('WP_SITEURL', env('WP_SITEURL') ?: WP_HOME . '/wp');
