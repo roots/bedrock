@@ -95,6 +95,37 @@ $btn-disabled3:     #555555 !default;
         background-color: $btn-secondary2; 
     }
 }
+.btn-white{
+    color: #FFF; 
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: #FFF;
+    &:hover, &:focus{
+        color: $basecolor;
+        background-color: #FFF; 
+    }
+}
+.btn-wrapper-inline{
+    display: inline-block;
+}
+.btn-icon{
+    position: relative;
+    padding: 1.2rem 6rem 1.3rem 3rem;
+    line-height: .8em;
+    svg{
+        position: absolute;
+        width: 26px;
+        right: 2rem;
+        top: calc(50% - 1.2rem);
+        fill: #FFF;
+    }
+    &:hover, &:focus{
+        color: #FFF;
+        background-color: $basecolor;
+        svg{
+            fill: #FFF;
+        }
+    } 
+}
 .btn-disabled {
     color: $btn-disabled3; 
     background-color: $btn-disabled;
