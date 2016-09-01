@@ -8,6 +8,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\Plugin\PageSettings\AbstractPageSettingsService;
 use WonderWp\Services\AbstractService;
 
 /**
@@ -78,6 +79,11 @@ class NewsletterManager extends AbstractPluginManager{
             //Asset service
             return new NewsletterAssetService();
         });*/
+        //Page settings
+        $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME, function(){
+            return new NewsletterPageSettingsService();
+        });
+
 
         return $this;
     }
