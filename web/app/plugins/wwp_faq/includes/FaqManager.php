@@ -8,6 +8,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\Services\AbstractService;
 
 class FaqManager extends AbstractPluginManager{
 
@@ -49,16 +50,16 @@ class FaqManager extends AbstractPluginManager{
         };*/
 
         //Register Services
-        $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
             return new FaqHookService();
         }));
-        $this->addService(AbstractManager::$MODELFORMSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$MODELFORMSERVICENAME,$container->factory(function($c){
             return new FaqForm();
         }));
-        $this->addService(AbstractManager::$LISTTABLESERVICENAME, function($container){
+        $this->addService(AbstractService::$LISTTABLESERVICENAME, function($container){
             return new FaqListTable();
         });
-        $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
+        $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             return new FaqAssetsService();
         });
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace WonderWp\Plugin\Actu;
-use WonderWp\APlugin\AbstractEntity;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * Class Actu

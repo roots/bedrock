@@ -10,7 +10,7 @@ namespace WonderWp\Plugin\Newsletter;
  * @Table(name="wwp_nllist")
  * @Entity
  */
-class NewsletterEntity extends \WonderWp\APlugin\AbstractEntity
+class NewsletterEntity extends \WonderWp\Entity\AbstractEntity
 {
  /**
   * @var integer

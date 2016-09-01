@@ -10,11 +10,10 @@ namespace WonderWp\Theme;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractRouter;
 use WonderWp\DI\Container;
+use WonderWp\Route\AbstractRouteService;
 use WonderWp\Route\RouteServiceInterface;
 
-class ThemeRouteService implements RouteServiceInterface{
-
-    private $_routes;
+class ThemeRouteService extends AbstractRouteService{
 
     public function getRoutes(){
         if(empty($this->_routes)) {

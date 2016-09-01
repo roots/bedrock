@@ -8,6 +8,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\Services\AbstractService;
 
 /**
  * Class __PLUGIN_ENTITY__Manager
@@ -60,20 +61,20 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
         };*/
 
         //Register Services
-        $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
             //Hook service
             return new __PLUGIN_ENTITY__HookService();
         }));
-        $this->addService(AbstractManager::$MODELFORMSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$MODELFORMSERVICENAME,$container->factory(function($c){
             //Model Form service
             return new __PLUGIN_ENTITY__Form();
         }));
-        $this->addService(AbstractManager::$LISTTABLESERVICENAME, function($container){
+        $this->addService(AbstractService::$LISTTABLESERVICENAME, function($container){
             //List Table service
             return new __PLUGIN_ENTITY__ListTable();
         });
         /* //Uncomment this if your plugin has assets
-        $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
+        $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
             return new __PLUGIN_ENTITY__AssetService();
         });*/

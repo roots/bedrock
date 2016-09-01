@@ -10,11 +10,10 @@ namespace WonderWp\Plugin\Actu;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractRouter;
 use WonderWp\DI\Container;
+use WonderWp\Route\AbstractRouteService;
 use WonderWp\Route\RouteServiceInterface;
 
-class ActuRouteService implements RouteServiceInterface{
-
-    private $_routes;
+class ActuRouteService extends AbstractRouteService{
 
     public function getRoutes(){
         if(empty($this->_routes)) {

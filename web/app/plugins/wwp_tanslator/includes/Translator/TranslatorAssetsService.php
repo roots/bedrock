@@ -8,17 +8,24 @@ use WonderWp\DI\Container;
 
 class TranslatorAssetsService extends AbstractAssetService{
 
-    public function registerAssets(AssetManager $assetManager, $assetClass){
+    public function getAssets()
+    {
+        if(empty($this->_assets)) {
+            $container = Container::getInstance();
+            $manager = $container->offsetGet('wonderwp_translator.Manager');
+            $pluginPath = $manager->getConfig('path.url');
+            $assetClass = $container->offsetGet('wwp.assets.assetClass');
 
-        $container = Container::getInstance();
-        $manager = $container->offsetGet('wonderwp_translator.Manager');
-        $pluginPath = $manager->getConfig('path.url');
-
-        //CSS Back
-        $assetManager->registerAsset('css', new $assetClass('translator-admin',$pluginPath.'/admin/assets/translator-admin.scss',array(),null,false,'admin'));
-        //JS Back
-        $assetManager->registerAsset('js', new $assetClass('translator-admin',$pluginPath.'/admin/assets/translator-admin.js',array(),null,false,'admin'));
-
+            $this->_assets = array(
+                'css' => array(
+                    new $assetClass('translator-admin',$pluginPath.'/admin/assets/translator-admin.scss',array(),null,false,AbstractAssetService::$ADMINASSETSGROUP)
+                ),
+                'js'=>array(
+                    new $assetClass('translator-admin',$pluginPath.'/admin/assets/translator-admin.js',array('wwp-admin'),null,false,AbstractAssetService::$ADMINASSETSGROUP)
+                )
+            );
+        }
+        return $this->_assets;
     }
 
 }

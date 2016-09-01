@@ -10,9 +10,8 @@ use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\ORM\Tools\DisconnectedClassMetadataFactory;
 use Doctrine\ORM\Tools\EntityGenerator;
 use Doctrine\ORM\Tools\SchemaTool;
-use WonderWp\APlugin\AbstractEntity;
+use WonderWp\Entity\AbstractEntity;
 use WonderWp\DI\Container;
-use WonderWp\FileSystem\FileSystem;
 use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\InputField;
 use WonderWp\Forms\Fields\TextAreaField;
@@ -284,8 +283,8 @@ class PluginGenerator
     {
         $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'HookService.php';
         $acContent = str_replace(
-            array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__'),
-            array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace']),
+            array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__','__PLUGIN_CONST__'),
+            array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace'],strtoupper($this->_data['entityname'])),
             $this->_fileSystem->get_contents($acTpl)
         );
         $acFile = $this->_folders['includes'] . DIRECTORY_SEPARATOR . ($this->_data['entityname']) . 'HookService.php';

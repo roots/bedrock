@@ -1,7 +1,7 @@
 <?php
 
 namespace WonderWp\Plugin\Translator;
-use WonderWp\APlugin\AbstractEntity;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * Class Faq

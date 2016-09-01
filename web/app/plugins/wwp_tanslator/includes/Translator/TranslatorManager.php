@@ -10,6 +10,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\HttpFoundation\Request;
+use WonderWp\Services\AbstractService;
 
 class TranslatorManager extends AbstractPluginManager{
 
@@ -52,16 +53,16 @@ class TranslatorManager extends AbstractPluginManager{
         });
 
         //Register Services
-        $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
             return new TranslatorHookService();
         }));
-        $this->addService(AbstractManager::$MODELFORMSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$MODELFORMSERVICENAME,$container->factory(function($c){
             return new LangForm();
         }));
-        $this->addService(AbstractManager::$LISTTABLESERVICENAME, function($container){
+        $this->addService(AbstractService::$LISTTABLESERVICENAME, function($container){
             return new LangListTable();
         });
-        $this->addService(AbstractManager::$ASSETSSERVICENAME,function(){
+        $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             return new TranslatorAssetsService();
         });
         $this->addService('getText',function(){

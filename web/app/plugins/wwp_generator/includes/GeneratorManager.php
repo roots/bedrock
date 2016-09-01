@@ -9,6 +9,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\HttpFoundation\Request;
+use WonderWp\Services\AbstractService;
 
 class GeneratorManager extends AbstractPluginManager{
 
@@ -46,10 +47,10 @@ class GeneratorManager extends AbstractPluginManager{
         });
 
         //Register Services
-        $this->addService(AbstractManager::$HOOKSERVICENAME,$container->factory(function($c){
+        $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
             return new GeneratorHookService();
         }));
-        $this->addService(AbstractManager::$LISTTABLESERVICENAME, function($container){
+        $this->addService(AbstractService::$LISTTABLESERVICENAME, function($container){
             return new TableListTable();
         });
         $this->addService('Generator', function() {

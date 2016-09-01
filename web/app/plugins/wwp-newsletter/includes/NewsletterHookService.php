@@ -11,7 +11,7 @@ namespace WonderWp\Plugin\Newsletter;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
-use WonderWp\Services\AbstractHookService;
+use WonderWp\Hooks\AbstractHookService;
 
 /**
  * Class NewsletterHookService
@@ -52,7 +52,7 @@ class NewsletterHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'Newsletter', 'Newsletter', 'read', 'wwp-newsletter', $callable);
+        add_submenu_page('wonderwp-modules', 'Newsletter', 'Newsletter', 'read', WWP_PLUGIN_NEWSLETTER_NAME, $callable);
 
     }
 

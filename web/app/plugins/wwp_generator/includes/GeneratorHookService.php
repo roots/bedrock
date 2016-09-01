@@ -11,7 +11,7 @@ namespace WonderWp\Plugin\Generator;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
-use WonderWp\Services\AbstractHookService;
+use WonderWp\Hooks\AbstractHookService;
 
 class GeneratorHookService extends AbstractHookService{
 
@@ -39,7 +39,7 @@ class GeneratorHookService extends AbstractHookService{
         //Add top-level translation menu
         $page_title = 'Génération de plugin';
         $menu_title = 'Génération de plugin';
-        $menu_slug = 'wonderwp-generator';
+        $menu_slug = WWP_PLUGIN_GENERATOR_NAME;
         add_management_page( $page_title, $menu_title, 'manage_options', $menu_slug, $callable );
 
     }

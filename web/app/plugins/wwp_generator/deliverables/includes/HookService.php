@@ -52,7 +52,7 @@ class __PLUGIN_ENTITY__HookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', '__PLUGIN_NAME__', '__PLUGIN_NAME__', 'read', '__PLUGIN_SLUG__', $callable);
+        add_submenu_page('wonderwp-modules', '__PLUGIN_NAME__', '__PLUGIN_NAME__', 'read', WWP_PLUGIN___PLUGIN_CONST___NAME, $callable);
 
     }
 

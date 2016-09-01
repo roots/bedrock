@@ -11,7 +11,7 @@ namespace WonderWp\Plugin\Actu;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
-use WonderWp\Services\AbstractHookService;
+use WonderWp\Hooks\AbstractHookService;
 
 class ActuHookService extends AbstractHookService{
 
@@ -37,7 +37,7 @@ class ActuHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'Actualités', 'Actualités', 'read', 'wwp-actualites', array($adminController,'route'));
+        add_submenu_page('wonderwp-modules', 'Actualités', 'Actualités', 'read', WWP_PLUGIN_ACTU_NAME, array($adminController,'route'));
 
     }
 

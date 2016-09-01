@@ -1,10 +1,19 @@
-(function($){
+(function($,ns){
 
-    var translator = {
+    var translatorComponent = function($context,givenOptions) {
+        var defaultOptions = {
+            $wrap: $context.find('.keyTableEditor')
+        };
+        this.options = $.extend(defaultOptions,givenOptions);
+        this.$wrap = this.options.$wrap;
+        this.init();
+    };
+    translatorComponent.prototype = {
 
         init: function(){
-            this.$wrap = $('.keyTableEditor');
-            this.bindUiActions();
+            if(this.$wrap.length) {
+                this.bindUiActions();
+            }
         },
         bindUiActions: function(){
             var t =this;
@@ -31,6 +40,7 @@
 
     };
 
-    translator.init();
+    ns.adminComponents = ns.adminComponents || {};
+    ns.adminComponents.translatorComponent = translatorComponent;
 
-})(jQuery);
+})(jQuery,window.wonderwp);
