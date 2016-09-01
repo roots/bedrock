@@ -51,7 +51,7 @@ var config = {
                         scss: true		// Activate Sass output (with default options)
                     }
                 },
-                symbol: false
+                symbol: true
             },
         },
         dest: assets.site.prefix + assets.site.assets_dest+'/svg/'
