@@ -8,4 +8,4 @@ if(is_object($viewService)){
 ?>
 
 
-<script src="js/components/cookies.js"></script>
+<script src="js/components/cookies/cookies.js"></script>
