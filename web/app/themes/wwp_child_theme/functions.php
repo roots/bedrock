@@ -17,15 +17,3 @@ function wwp_theme_setup() {
         echo "<div class='update-nag'>" . __( 'This theme requires the wonderwp plugin to run ('.$wwpplugin.')' ) . "</div>";
     }
 }
-
-function getSvgIcon($iconName){
-    $pathToSymbol = get_stylesheet_directory_uri().'/assets/final/svg/symbol/svg/sprite.symbol.svg';
-    echo '<svg class="shape-svg shape-'.$iconName.'">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'.$pathToSymbol.'#'.$iconName.'"></use>
-        </svg>';
-}
-add_shortcode( 'getSvgIcon', function($atts){
-    if(!empty($atts['icon'])){
-        getSvgIcon($atts['icon']);
-    }
-});

@@ -8,11 +8,12 @@
 
 namespace WonderWp\Plugin\Faq;
 
-use WonderWp\AbstractDefinitions\EntityAttribute;
+use WonderWp\Entity\EntityAttribute;
 use WonderWp\Forms\Fields\BooleanField;
 use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\SelectField;
 use WonderWp\Forms\ModelForm;
+use WonderWp\Plugin\Forms\Fields\LocaleField;
 
 class FaqForm extends ModelForm{
 
@@ -28,12 +29,7 @@ class FaqForm extends ModelForm{
                 $f = new HiddenField($attr->getFieldName(),$val, ['label'=>$label]);
                 break;
             case 'lang':
-                $f = new SelectField($attr->getFieldName(),$val, ['label'=>$label]);
-                $opts = array(
-                    'en_EN'=>'Anglais',
-                    'fr_FR'=>'Français'
-                );
-                $f->setOptions($opts);
+                $f = LocaleField::getInstance($attr->getFieldName(), $val, ['label'=>$label]);
                 break;
             case 'isActive':
                 $f = $f = new BooleanField($attr->getFieldName(), $val, ['label'=>$label]);

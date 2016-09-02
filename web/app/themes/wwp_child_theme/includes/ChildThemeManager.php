@@ -26,6 +26,10 @@ class ChildThemeManager extends ThemeManager
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             return new ThemeAssetService();
         });
+        //Shortcodes
+        $this->addService(AbstractService::$SHORTCODESERVICENAME,function(){
+            return new ThemeShortcodeService();
+        });
     }
 
 }
