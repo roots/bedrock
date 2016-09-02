@@ -91,3 +91,4 @@
         </div>
     </div>
 </div>
+<div class="compWrap"><span id="modal_video" class="compTitle">modal_video <span class="js-hideAll fa fa-eye"></span></span><p class="compNotes"></p><div class="component" style="background-color:"><?php include("../components/components/modal_video.php");?></div><div class="compCodeBox"> <ul class="nav nav-tabs" role="tablist"> <li role="presentation" class="active"><a href="#modal_video-markup" aria-controls="modal_video-markup" role="tab" data-toggle="tab">Markup</a></li><li role="presentation"><a href="#modal_video-css" aria-controls="modal_video-css" role="tab" data-toggle="tab">scss</a></li></ul> <div class="tab-content"> <div role="tabpanel" class="tab-pane active markup-display" id="modal_video-markup"></div><div role="tabpanel" class="tab-pane" id="modal_video-css"><pre><code class="language-css"><?php include("../scss/components/_modal_video.scss");?></code></pre></div></div></div></div>
