@@ -16,12 +16,12 @@ class ThemeShortcodeService extends AbstractShortcodeService{
     {
         add_shortcode( 'getSvgIcon', function($atts){
             if(!empty($atts['icon'])){
-                return $this->getSvgIcon($atts['icon']);
+                return self::getSvgIcon($atts['icon']);
             }
         });
     }
 
-    public function getSvgIcon($iconName){
+    public static function getSvgIcon($iconName){
         $pathToSymbol = get_stylesheet_directory_uri().'/assets/final/svg/symbol/svg/sprite.symbol.svg';
         return '<svg class="shape-svg shape-'.$iconName.'">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'.$pathToSymbol.'#'.$iconName.'"></use>

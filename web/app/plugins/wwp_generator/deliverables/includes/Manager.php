@@ -73,10 +73,25 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
             //List Table service
             return new __PLUGIN_ENTITY__ListTable();
         });
-        /* //Uncomment this if your plugin has assets
+        /* //Uncomment this if your plugin has assets, then create the __PLUGIN_ENTITY__AssetService class in the include folder
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
             return new __PLUGIN_ENTITY__AssetService();
+        });*/
+        /* //Uncomment this if your plugin has particular routes, then create the __PLUGIN_ENTITY__RouteService class in the include folder
+        $this->addService(AbstractService::$ROUTESERVICENAME,function(){
+            //Route service
+            return new __PLUGIN_ENTITY__RouteService();
+        });*/
+        /* //Uncomment this if your plugin has page settings, then create the __PLUGIN_ENTITY__PageSettingsService class in the include folder
+        $this->addService(AbstractService::$PAGESETTINGSSERVICENAME,function(){
+            //Page settings service
+            return new __PLUGIN_ENTITY__PageSettingsService();
+        });*/
+        /* //Uncomment this if your plugin has an api, then create the __PLUGIN_ENTITY__ApiService class in the include folder
+        $this->addService(AbstractService::$APISERVICENAME,function(){
+            //Api service
+            return new __PLUGIN_ENTITY__ApiService();
         });*/
 
         return $this;

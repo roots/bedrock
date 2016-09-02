@@ -19,7 +19,7 @@ class TableListTable extends \WP_List_Table{
 
         $this->_defineColumnHeaders();
 
-        $this->_baseUrl = admin_url('/tools.php?page=wonderwp-generator');
+        $this->_baseUrl = admin_url('/tools.php?page='.WWP_PLUGIN_GENERATOR_NAME);
 
         return $this;
     }

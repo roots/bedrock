@@ -17,3 +17,7 @@ function wwp_theme_setup() {
         echo "<div class='update-nag'>" . __( 'This theme requires the wonderwp plugin to run ('.$wwpplugin.')' ) . "</div>";
     }
 }
+
+function getSvgIcon($iconName){
+    return \WonderWp\Theme\ThemeShortcodeService::getSvgIcon($iconName);
+}
