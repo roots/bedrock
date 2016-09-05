@@ -15,7 +15,7 @@
 <hr>
 <div class="icon-set">
 	<span class="subTitle">Icon set:</span>
-	<div class="icon-item"><?php echo \getSvgIcon('arrow_down') ?><span>arrow_down</span></div>
+	<div class="icon-item"><?php echo getSvgIcon('arrow_down') ?><span>arrow_down</span></div>
 	<div class="icon-item"><?php echo getSvgIcon('video') ?><span>video</span></div>
 	<div class="icon-item"><?php echo getSvgIcon('logo_flat') ?><span>logo_flat</span></div>
 </div>
