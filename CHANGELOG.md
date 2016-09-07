@@ -1,3 +1,7 @@
+### 1.7.2: 2016-09-07
+
+* Update to WordPress 4.6.1
+
 ### 1.7.1: 2016-08-16
 
 * Update to WordPress 4.6
