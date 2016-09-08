@@ -11,7 +11,7 @@ namespace __PLUGIN_NS__;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
-use WonderWp\Services\AbstractHookService;
+use WonderWp\Hooks\AbstractHookService;
 
 /**
  * Class __PLUGIN_ENTITY__HookService

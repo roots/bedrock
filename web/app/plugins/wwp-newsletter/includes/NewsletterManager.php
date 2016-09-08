@@ -30,9 +30,10 @@ class NewsletterManager extends AbstractPluginManager{
 
         $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
         $loader->addPsr4('WonderWp\\Plugin\\Newsletter\\',array(
-            $pluginDir . 'includes',
-            $pluginDir . 'admin',
-            $pluginDir . 'public',
+            $pluginDir . 'includes'
+        ));
+        $loader->addClassMap(array(
+            'WonderWp\\Plugin\\Newsletter\\NewsletterAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'NewsletterAdminController.php'
         ));
 
     }

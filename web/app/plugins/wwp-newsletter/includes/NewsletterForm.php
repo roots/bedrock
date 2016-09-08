@@ -8,7 +8,7 @@
 
 namespace WonderWp\Plugin\Newsletter;
 
-use WonderWp\AbstractDefinitions\EntityAttribute;
+use WonderWp\Entity\EntityAttribute;
 use WonderWp\Forms\Fields\BooleanField;
 use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\SelectField;

@@ -24,9 +24,11 @@ class ActuManager extends AbstractPluginManager{
 
         $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
         $loader->addPsr4('WonderWp\\Plugin\\Actu\\',array(
-            $pluginDir . 'includes',
-            $pluginDir . 'admin',
-            $pluginDir . 'public',
+            $pluginDir . 'includes'
+        ));
+        $loader->addClassMap(array(
+            'WonderWp\\Plugin\\Actu\\ActuAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'ActuAdminController.php',
+            'WonderWp\\Plugin\\Actu\\ActuPublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'ActuPublicController.php',
         ));
 
     }

@@ -25,8 +25,10 @@ class GeneratorManager extends AbstractPluginManager{
         $pluginDir = plugin_dir_path( dirname(__FILE__ ) );
         $loader->addPsr4('WonderWp\\Plugin\\Generator\\',array(
             $pluginDir . 'includes',
-            $pluginDir . 'includes/generator',
-            $pluginDir . 'admin',
+            $pluginDir . 'includes/generator'
+        ));
+        $loader->addClassMap(array(
+            'WonderWp\\Plugin\\Generator\\GeneratorAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'GeneratorAdminController.php'
         ));
 
     }

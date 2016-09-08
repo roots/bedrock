@@ -28,9 +28,10 @@ class TranslatorManager extends AbstractPluginManager{
             $pluginDir . 'includes',
             $pluginDir . 'includes/Translator',
             $pluginDir . 'includes/Lang',
-            $pluginDir . 'includes/Loco',
-            $pluginDir . 'admin',
-            $pluginDir . 'public',
+            $pluginDir . 'includes/Loco'
+        ));
+        $loader->addClassMap(array(
+            'WonderWp\\Plugin\\Translator\\TranslatorAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'TranslatorAdminController.php'
         ));
 
     }
