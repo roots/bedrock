@@ -32,5 +32,3 @@
 	<p>Leritatis facere quisquam consequuntur, asperiores facilis. Molestiae labore voluptate laboriosam recusandae, accusantium.</p>
  </div>
 </div>
-
-<script src="js/components/tabs.js"></script>
