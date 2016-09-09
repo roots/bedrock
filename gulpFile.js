@@ -94,7 +94,7 @@ gulp.task('watch', function () {
 
 
 });
-gulp.task('default', ['write-version', 'watch-styleguide', 'watch']);
+gulp.task('default', ['write-version', 'svg-sprites', 'watch-styleguide', 'watch']);
 
 gulp.task('watch-styleguide', function () {
 
