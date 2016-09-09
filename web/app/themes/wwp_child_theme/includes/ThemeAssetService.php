@@ -28,7 +28,15 @@ class ThemeAssetService extends AbstractAssetService{
 
             $this->_assets = array(
                 'css' => array(
-                    new $assetClass('theme',$themePath.'/assets/raw/scss/theme.scss')
+                    new $assetClass('styleguide',$themePath.'/styleguide/scss/main.scss'),
+                    new $assetClass('theme',$themePath.'/assets/raw/scss/theme.scss',array('styleguide'))
+                ),
+                'js'=>array(
+                    new $assetClass('jquery',$themePath.'/assets/raw/js/jquery-2.2.3.min.js'),
+                    new $assetClass('app',$themePath.'/assets/raw/js/app.js',array('jquery')),
+                    new $assetClass('styleguide',$themePath.'/styleguide/js/styleguide.js',array('jquery')),
+                    new $assetClass('page',$themePath.'/assets/raw/js/page.js',array('jquery','app')),
+                    new $assetClass('theme',$themePath.'/assets/raw/js/theme.js',array('page'))
                 )
             );
         }

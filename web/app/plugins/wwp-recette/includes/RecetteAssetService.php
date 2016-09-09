@@ -24,7 +24,7 @@ class RecetteAssetService extends AbstractAssetService{
 
             $this->_assets = array(
                 'css' => array(
-                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/css/recette.scss', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP)
+                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/css/recette.scss', array('styleguide'), null, false, AbstractAssetService::$ADMINASSETSGROUP)
                 ),
                 'js' => array(
                     new $assetClass('wwp-recette-admin', $pluginPath . '/admin/js/recette.js', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP)
