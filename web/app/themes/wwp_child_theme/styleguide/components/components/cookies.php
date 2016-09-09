@@ -6,6 +6,3 @@ if(is_object($viewService)){
     echo $viewService->getBandeauCookie(true);
 }
 ?>
-
-
-<script src="js/components/cookies/cookies.js"></script>
