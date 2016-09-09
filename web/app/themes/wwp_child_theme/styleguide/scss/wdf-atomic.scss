@@ -5,7 +5,7 @@ Wonderful fix to avoid core conflicts with knacss and more
 iframe{
 	border: none; 
 }
-.atomsWrap{
+.atomsWrap, .compWrap{
 	[class*="grid-"] > *{
 		width: inherit;
 		margin-left: 0;
@@ -13,23 +13,25 @@ iframe{
 	.atoms-main{
 		padding-left: 307px;
 	}
+	.component{
+		width: 50%;
+		max-width: 600px;
+	}
+	.subTitle{
+		display: block;
+		margin-bottom: 12px;
+		color: #00AFF0;
+		max-height: 25px;
+		font-size: 1.8rem;
+	}
 	.compTitle{
 		max-height: none; 
 		padding-left: 10px;
 		font-size: 2rem;
 	}
-}
-
-.subTitle{
-	display: block;
-	margin-bottom: 12px;
-	color: #00AFF0;
-	max-height: 25px;
-	font-size: 1.8rem;
-}
-
-.atomsWrap hr{
-	margin: 2em 0 2em;
+	hr{
+		margin: 2em 0 2em;
+	}
 }
 
 // For framework tabs

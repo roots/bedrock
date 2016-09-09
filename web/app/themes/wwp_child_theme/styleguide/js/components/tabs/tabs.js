@@ -9,7 +9,7 @@ $(document).ready(function(){
         var hash = window.location.hash.replace( "#", "" );
  
         /* Tabs ------------------------------------------------------------------------------------------------------------ */
-        var $tabs = $( ".js-tabs" );
+        // var $tabs = $( ".js-tabs" );
 
         if ( $tabs.length ) {
 
