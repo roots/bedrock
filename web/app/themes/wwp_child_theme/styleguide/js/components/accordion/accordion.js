@@ -5,7 +5,7 @@ $(document).ready(function(){
      * Website: http://a11y.nicolas-hoffmann.net/accordion/
      * License MIT: https://github.com/nico3333fr/jquery-accessible-accordion-aria/blob/master/LICENSE
      */
-    var $accordions = $( ".js-accordion" );
+    // var $accordions = $( ".js-accordion" );
     if ( $accordions.length  ) { // if there are at least one :)
 
         // init
