@@ -1,5 +1,6 @@
-$(document).ready(function(){
+(function($,ns){
 
+    ns.initAccordion = function($accordions) {
     /*
      * jQuery Accessible Accordion system, using ARIA
      * Website: http://a11y.nicolas-hoffmann.net/accordion/
@@ -222,4 +223,6 @@ $(document).ready(function(){
     }
 
 
-});
+};
+
+})(jQuery,window.wonderwp);
