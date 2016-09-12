@@ -6,9 +6,3 @@
   <h2>Modal title</h2>
   <p>Modal content</p>
 </div>
-
-<script>
-  $(document).ready(function(){
-    $(".modaal").modaal();
-  });
-</script>

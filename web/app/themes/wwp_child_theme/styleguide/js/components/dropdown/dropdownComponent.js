@@ -1,27 +1,30 @@
-(function ($,ns) {
+(function ($, ns) {
 
-	var dropdownComponent = function ($dropdownWrap) {
-		this.$wrap = $dropdownWrap || $('.dropdown-wrap');
-		this.init();
-	};
+    var dropdownComponent = {
 
-	dropdownComponent.prototype = {
-		init: function () {
-
-			this.$wrap('.dropdown-toggle').on('click', function(e){
-				$(this).parent().toggleClass('open').siblings().removeClass('open');
-			});
-			$(document).on('mouseup', function(e){
-				if (!$(e.target).hasClass('dropdown-toggle')) {
-					$('.dropdown-menu').parent().removeClass('open');
-				}
-			});
+        global: false,
+        initiable: true,
+        defaultSelector: '.dropdown',
 
 
-		}
-	};
+        init: function ($wrap) {
 
+            var t = this;
+            t.$wrap = $wrap || $(t.defaultSelector);
 
+            t.$wrap.find('.dropdown-toggle').on('click', function (e) {
+                $(this).parent().toggleClass('open');
+            });
+            $(document).on('mouseup', function (e) {
+                if (!$(e.target).hasClass('dropdown-toggle')) {
+                    t.$wrap.removeClass('open');
+                }
+            });
+
+        }
+    };
+
+    ns.app.registerComponent('dropdown', dropdownComponent, {initGlobal: true}); //si on passe { initGlobal:true } il sera meme auto instancie
 
 
 })(jQuery, window.wonderwp);
