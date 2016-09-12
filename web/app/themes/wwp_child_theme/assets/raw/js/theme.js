@@ -11,17 +11,23 @@
 
                 //appeler ici une fonction par fonctionnalite
                 //Ex: this.registerMenuToggle()
-                t.initGlobalComponents();
+                t.initComponents(true);
                 t.runCurrentPageJs();
             });
         },
 
-        initGlobalComponents: function(){
+        initComponents: function(global,$context){
           var registeredComponents = ns.app.getComponents();
+
             if(registeredComponents){ for(var i in registeredComponents){
-                var thisRegisteredComp = registeredComponents[i];
-                if(thisRegisteredComp && thisRegisteredComp.opts && thisRegisteredComp.opts.initGlobal){
-                    new thisRegisteredComp.component();
+                var component = registeredComponents[i];
+
+                if(component.initiable && component.global === global && component.init){
+                    if(global) {
+                        component.init();
+                    } else {
+                        component.init($context.find(component.defaultSelector));
+                    }
                 }
             }}
         },

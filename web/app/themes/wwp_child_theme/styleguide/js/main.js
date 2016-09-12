@@ -1,6 +1,6 @@
 (function($,ns){
 
-    var themeJs = {
+    var styleguideJs = {
 
         //Chef d'orchestre, que veux faire mon theme?
         init: function(){
@@ -8,23 +8,30 @@
 
             $(document).one('ready', function() {
                 t.$wrap = $('body');
-                t.initGlobalComponents();
+                t.initComponents(true);
+                t.initComponents(false,$('.atoms-container'));
             });
         },
 
-        initGlobalComponents: function(){
+        initComponents: function(global,$context){
             var registeredComponents = ns.app.getComponents();
+
             if(registeredComponents){ for(var i in registeredComponents){
-                var thisRegisteredComp = registeredComponents[i];
-                if(thisRegisteredComp && thisRegisteredComp.opts && thisRegisteredComp.opts.initGlobal){
-                    new thisRegisteredComp.component();
+                var component = registeredComponents[i];
+
+                if(component.initiable && component.global === global && component.init){
+                    if(global) {
+                        component.init();
+                    } else {
+                        component.init($context.find(component.defaultSelector));
+                    }
                 }
             }}
-        }
+        },
 
     };
 
-    themeJs.init();
+    styleguideJs.init();
 
 
 })(jQuery,window.wonderwp);

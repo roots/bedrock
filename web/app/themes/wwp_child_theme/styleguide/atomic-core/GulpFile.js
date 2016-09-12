@@ -19,7 +19,7 @@ var jsFiles = 'js/*.js',
 gulp.task('scripts', function() {
     return gulp.src('js/*.js')
         .pipe(order([
-            'js/bootstrap.min.js',
+            //'js/bootstrap.min.js',
             'js/prism.js',
             'js/spectrum-picker.js',
             'js/uncomment.js',

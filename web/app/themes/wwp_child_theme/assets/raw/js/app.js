@@ -12,11 +12,10 @@
           return this.components;
         },
         registerComponent: function(name,component,opts){
-            this.components[name] = { component: component, opts:opts };
+            this.components[name] = component;
         },
         getComponent: function(name){
-            var comp = this.components[name] || null;
-            return comp ? comp.component : null;
+            return this.components[name] || null;
         },
 
         //Modules = js from plugins
