@@ -24,3 +24,6 @@
     </div>
 
 </div>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://a11y.nicolas-hoffmann.net/accordion/js/jquery-accessible-accordion-aria.js"></script>
