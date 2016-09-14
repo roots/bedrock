@@ -3,49 +3,166 @@
 $alert-error: 		#d32F2f !default;
 $alert-error-bg: 	#f2d0d0 !default;
 
-.form-group{
-	margin-bottom: 15px;
+/// Styles for Atomics
+#forms + p + .component{
+	max-width: 1000px;
 }
-label{
-	display: block;
-	max-width: 100%;
-	margin-bottom: 5px;
-	font-weight: 700;
+
+// TinyMce bug (fix it!)
+form{
+	p, br{
+		display: none !important;
+	}
+}
+
+.form-group{
+	position: relative;
+	margin-bottom: 2rem;
+}
+
+form{
+	padding: 2em;
+	background: $lightgrey;
+	legend, label{
+		font-family: $font-stack-headings;
+		font-weight: 300;
+		color: $basecolor;
+	}
 }
 .form-control{
-	height: 39px;
-	border: 1px solid #ccc;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	display: block;
+	width: 100%;
+	height: 46px;
+	padding: 6px 12px;
+	line-height: 1.42857143;
+	font-family: $font-stack-headings;
+	font-weight: 600;
+	font-size: 1.4rem;
+	letter-spacing: .1rem;
+	background-color: #fff;
+	border: none;
 }
 input[type=file]{
 	display: block;
 }
-.help-block{
-	display: block;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	color: #737373;
+::placeholder{
+	font-family: $font-stack-headings;
+	font-weight: 300;
+	color: $basecolor;
+}
+textarea{
+	margin-top: 0;
+}
+form .btn{
+	margin: 2rem 0;
+}
+
+// Customize radio + checkbox
+.radio-wrap, .checkbox-wrap{
+	input {
+		display: none;
+	}
+	label {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: 25px;
+		margin-right: 15px;
+		font-size: 13px;
+	}
+	label:before {
+		content: "";
+		display: inline-block;
+		width: 22px;
+		height: 22px;
+		position: absolute;
+		left: 0;
+		background-color: #FFFFFF;
+	}
+	input:checked + label:before {
+		content: "\2022";
+		font-size: 40px;
+		text-align: center;
+		line-height: 23px;
+		color: $blue;
+	}
+}
+.radio-wrap label:before{
+	border-radius: 50%;
+}
+.checkbox-wrap input:checked + label:before{
+	content: "\2714";
+	font-size: 15px;
+}
+
+
+// Hidden labels
+form.hide-labels{
+	label{
+		@extend .visually-hidden;
+	}
+}
+
+
+// Fieldset with inline (dates…)
+fieldset.inline{
+	margin: 0;
+	padding: 0;
+	.form-group{
+		display: inline-block;
+		margin-right: 5%;
+		&:last-child{
+			margin-right: 0;
+		}
+	}
 }
 
 // Error messages
+/*input:required:invalid, input:focus:invalid {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAKCAYAAABi8KSDAAAABGdBTUEAALGPC/xhBQAAAQNJREFUGBl1kL1KA0EUhb9Z/MNtxDKiprHUysrKxjewszHsLgn4AoKlhYK1RQo7KysfIWLrM4gBd4JiEawMgYznThhNoZeZe+ee+Ya9Z0HhqTqe4sFzsml9igFlS/rjO+0t05zAo8DkNjbwAkv7Da770iuYdIMYrTpnfjtzhBUDLXTRhK+epzz7BeNNPmK8oFc2RnkRCKd2/iOGjrmDBt2nCBvwz4Mf0JjM0jTcczql6nCf2h+pj3Ayk8RUNdpGYNwb0Gma5vR7DiXeTV1HbKh8r30cOyXN2l9keScTuD4Lmpk1blr6/GWCVVcnjPLY1xRXNeWrp707A8h0cS7j/o1qz/RvqSpX39JguKoAAAAASUVORK5CYII=');
+	background-position: calc(100% - 1rem) center;
+	background-repeat: no-repeat;
+}*/
+input[type="text"]:required:valid,
+input[type="number"]:required:valid{
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABGdBTUEAALGPC/xhBQAAAOFJREFUKBVjZCASzJmjrPP7z9+NDIyMKzLT71czEqMPrOnvv30M//+LgtQzMjOmMBHSiK4JqP47w1/ma2CNQEmVmTOV+NENwaaJmYnJLyPjznEmoAbvP3//Xf3////puXPVpWCacWlKS7u3B6SGccYMhSf/GRikwRwGxtusrGwOf/78Fv7H8H8vzE9Aue8gm2CaQGqZGBkZqoH0PxDnP8N/1V9/fh0kpAmkFhyq02cpJzD8+zsXyEcPLAybQJpAAB4dWDTj1ISiEcRB0vwT3U8gebxgxgwl59mzlY3xKgJKAgDWBHhtFDswJQAAAABJRU5ErkJggg==');
+	background-position: calc(100% - 1rem) center;
+	background-repeat: no-repeat;
+}
 .form-errors{
 	margin-bottom: 1rem;
 	padding: 15px;
 	font-size: 2rem;
 	color: $alert-error;
 	background-color: $alert-error-bg;
-	border-bottom: 4px solid $alert-error; 
+	border-bottom: 4px solid $alert-error;
 }
 .label-error{
-	margin-top: 5px;
-	margin-bottom: 0;
+	display: inline !important;
+	color: #FFFFFF;
+	background: $basecolor;
+	padding: 1.2rem 2rem;
+	font-family: $font-stack-headings;
 	font-weight: 400;
-	color: $alert-error;	
+	font-size: 1.2rem;
+	text-align: center;
+	position: absolute;
+	top: -37px;
+	right: 42px;
+	box-shadow: 0px 5px 12px 0px $basecolor;
+	&:after{
+		content: '';
+		width: 0;
+		height: 0;
+		border-left: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-top: 20px solid $basecolor;
+		position: absolute;
+		left: calc(50% - 20px);
+		bottom: -20px;
+	}
 }
-.has-error .form-control{
-	border-bottom: 2px solid $alert-error;	
-}
+
 
 @media (min-width: 768px){
 	.form-inline{
@@ -55,9 +172,17 @@ input[type=file]{
 			margin-bottom: 0;
 			vertical-align: baseline;
 		}
+		label{
+			display: inline;
+			margin-right: 1rem;
+		}
 		.form-control{
 			display: inline-block;
 			width: auto;
+		}
+		.btn{
+			margin-top: 0;
+			margin-bottom: 1rem;
 		}
 	}
 }
