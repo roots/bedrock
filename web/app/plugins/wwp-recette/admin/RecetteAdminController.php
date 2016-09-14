@@ -48,6 +48,8 @@ class RecetteAdminController extends AbstractPluginBackendController{
         $listTableInstance->setEntityName(Ingredient::class);
         $listTableInstance->setTextDomain(WWP_RECETTE_TEXTDOMAIN);
 
+        $tabs = $this->getTabs();
+
         $prefix = $this->_manager->getConfig('prefix');
         $vue = $container->offsetGet('wwp.basePlugin.backendView');
         $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));

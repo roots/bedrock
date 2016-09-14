@@ -56,9 +56,9 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new __PLUGIN_ENTITY__AdminController( $this );
         });
-        /*$container[$this->plugin_name.'.publicController'] = function() {
+        /*$this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
             return $plugin_public = new __PLUGIN_ENTITY__PublicController($this);
-        };*/
+        });*/
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){

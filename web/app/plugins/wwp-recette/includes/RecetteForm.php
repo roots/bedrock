@@ -208,7 +208,9 @@ class RecetteForm extends ModelForm
             $displayRules['inputAttributes']['class'] = ['nouvelle-etape', 'hidden'];
         } else {
             $displayRules['inputAttributes']['class'] = ['etape'];
+            $displayRules['after'] = '<button class="button remove-etape">Supprimer</button>';
         }
+        $displayRules['wrapAttributes'] = ['no-wrap' => true];
         $f = new FieldGroup('etapes' . $i, null, $displayRules);
 
         //Id
