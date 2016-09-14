@@ -1,95 +1,123 @@
 <!--components/components/forms.php-->
 
-<form method="" class="name-form" novalidate>
+<?php
+$form = new \WonderWp\Forms\Form();
 
-	<div class="form-group input-wrap text-wrap">
-		<label for="text1">Text label</label>
-		<input type="text" name="text1" class="form-control text" value="" placeholder="Text placeholder" required>
-	</div>
+$group1 = new \WonderWp\Forms\FormGroup('inputs','Inputs');
 
-	<div class="form-group input-wrap text-wrap">
-		<label for="text2">Text label</label>
-		<input type="text" name="text2" class="form-control text" value="" placeholder="Text placeholder with error message" required>
-		<p class="label-error">This the error message for Text 2</p>
-	</div>
+$group2 = new \WonderWp\Forms\FormGroup('others','Autres Elements');
 
-	<fieldset class="form-group inline">
-		<legend>Legend for an INLINE fieldset*</legend>
-		<div class="form-group input-wrap w10">
-			<label for="day">Day</label>
-			<input type="number" name="day" id="day" class="form-control number" value="" placeholder="JJ" required>
-		</div>
-		<div class="form-group input-wrap w10">
-			<label for="month">Month</label>
-			<input type="number" name="month" id="month" class="form-control number" value="" placeholder="MM" required>
-		</div>
-		<div class="form-group input-wrap w10">
-			<label for="year">Year</label>
-			<input type="number" name="year" id="year" class="form-control number" value="" placeholder="AAAA" required>
-		</div>
-	</fieldset>
+//Champ texte
+$f = new \WonderWp\Forms\Fields\InputField('inputField',null,['label'=>'Champ texte de base']);
+$group1->addField($f);
 
-	<div class="form-group textarea-wrap description-wrap">
-		<label for="description">Text area</label>
-		<textarea name="description" id="description" class="text form-control" placeholder="Write your text here"></textarea>
-	</div>
+//Champ texte requis
+$f = new \WonderWp\Forms\Fields\InputField('requiredInputField',null,['label'=>'Champ texte requis'],[ \Respect\Validation\Validator::notEmpty() ]);
+$group1->addField($f);
 
-	<div class="form-group radio-wrap">
-		<input id="radio1" type="radio" name="radioBt" value="radio 1" class="radio" required checked>
-		<label for="radio1">This is a radio button </label>
-		<input id="radio2" type="radio" name="radioBt" value="radio 2" class="radio" required>
-		<label for="radio2">This is a radio button </label>
-	</div>
+//Textarea
+$f = new \WonderWp\Forms\Fields\TextAreaField('textareaField',null,['label'=>'TextArea']);
+$group2->addField($f);
 
-	<div class="form-group checkbox-wrap">
-		<input id="check1" type="checkbox" name="checkBox" value="checkbox 1" class="checkbox" required checked>
-		<label for="check1">This is a pre-checked checkbox</label>
-		<br>
-		<input id="check2" type="checkbox" name="checkBox" value="checkbox 1" class="checkbox" required>
-		<label for="check2">This is a checkbox</label>
-	</div>
+//Email
+$f = new \WonderWp\Forms\Fields\EmailField('emailField',null,['label'=>'Email']);
+$group1->addField($f);
 
-	<div class="submitFormField txtcenter">
-		<button type="submit" class="btn btn-icon btn-secondary">
-			Valider <?php echo \getSvgIcon('arrow_right') ?>
-		</button>
-	</div>
+//Password
+$f = new \WonderWp\Forms\Fields\PasswordField('pwdField',null,['label'=>'Password']);
+$group1->addField($f);
 
-</form>
+//Numeric
+$f = new \WonderWp\Forms\Fields\NumericField('numericField',null,['label'=>'Numérique']);
+$group1->addField($f);
+
+//Url
+$f = new \WonderWp\Forms\Fields\UrlField('urlField',null,['label'=>'Url']);
+$group1->addField($f);
+
+//Date
+$f = new \WonderWp\Forms\Fields\DateField('dateField',null,['label'=>'Date']);
+$group1->addField($f);
+
+//Media
+$f = new \WonderWp\Forms\Fields\MediaField('mediaField',null,['label'=>'Média']);
+$group2->addField($f);
+
+//Select
+$f = new \WonderWp\Forms\Fields\SelectField('selectField',null,['label'=>'Select']);
+$f->setOptions([
+	''=>'Choisissez une option',
+	'1'=>'Option 1',
+	'2'=>'Option 2',
+	'3'=>'Option 3'
+]);
+$group2->addField($f);
+
+//Radios
+$f = new \WonderWp\Forms\Fields\RadioField('radioField',2,['label'=>'Radios']);
+$opts = array(
+	'1'=>'Option 1',
+	'2'=>'Option 2',
+	'3'=>'Option 3'
+);
+$f->setOptions($opts)->generateRadios();
+$group2->addField($f);
+
+//Checkbox
+$f = new \WonderWp\Forms\Fields\CheckBoxField('cbField',null,['label'=>'Checkbox']);
+$group2->addField($f);
+
+//Checkboxes
+$f = new \WonderWp\Forms\Fields\CheckBoxesField('checkboxesField',3,['label'=>'Checkboxes']);
+$opts = array(
+	'1'=>'Option 1',
+	'2'=>'Option 2',
+	'3'=>'Option 3'
+);
+$f->setOptions($opts)->generateCheckBoxes();
+$group2->addField($f);
+
+$form->addGroup($group1);
+$form->addGroup($group2);
+
+echo $formView = $form->renderView();
+?>
 
 <hr>
-
-<span class="subTitle">Visually hidden labels <i class="small">(add ".hide-labels" to your form tag)</i></span><br>
-<form method="" class="name-form hide-labels">
-
-	<div class="form-group input-wrap firstname-wrap">
-		<label for="firstname">Prénom</label>
-		<input type="text" name="firstname" id="firstname" class="form-control text" value="" placeholder="Prénom*">
-	</div>
-
-	<div class="form-group input-wrap name-wrap">
-		<label for="name">Prénom</label>
-		<input type="text" name="name" id="name" class="form-control text" value="" placeholder="Nom*">
-	</div>
-
-</form>
-
-<hr>
-
 <span class="subTitle">Inline form <i class="small">(add ".form-inline" to your form tag)</i></span><br>
-<form class="form-inline">
-	<div class="form-group input-wrap">
-		<label for="exampleInputEmail3">Email address</label>
-		<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-	</div>
-	<div class="form-group input-wrap">
-		<label for="exampleInputPassword3">Password</label>
-		<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-	</div>
-	<div class="form-group checkbox-wrap">
-		<input id="check3" type="checkbox" name="checkInline" value="checkbox 1" class="checkbox" required>
-		<label for="check3">Remember me</label>
-	</div>
 
-	<button type="submit" class="btn btn-secondary">Sign in</button>
+<?php
+$form2 = new \WonderWp\Forms\Form();
+
+//Email
+$f = new \WonderWp\Forms\Fields\EmailField('emailField',null,['label'=>'Email']);
+$form2->addField($f);
+
+//Password
+$f = new \WonderWp\Forms\Fields\PasswordField('pwdField',null,['label'=>'Password']);
+$form2->addField($f);
+
+$opts = array('formStart'=>['class'=>['form-inline']]);
+echo $formView2 = $form2->renderView($opts);
+
+?>
+
+<hr>
+
+<span class="subTitle">No label form <i class="small">(add ".no-label" to your form tag)</i></span><br>
+
+<hr>
+
+<span class="subTitle">Restant à générer<br>
+
+<form>
+
+	<div class="form-errors">Main error message</div>
+
+ 	<div class="form-group has-error">
+ 	  <label for="exampleInputText2">Text with error message</label>
+ 	  <input type="email" class="form-control" id="exampleInputText2" placeholder="Your text here">
+		<label class="label-error" for="exampleInputText2">An email is required</label>
+ 	</div>
+
 </form>

@@ -1,0 +1,76 @@
+.contact-form {
+  .data-wrap {
+    margin-top: 40px;
+    background: #fff;
+    padding: 20px;
+
+    > label {
+      padding-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  #data > .form-group {
+    border: 1px solid #eee;
+    padding: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background-color: #fff;
+
+    label {
+      padding-top: 0;
+    }
+    > label {
+      float: left;
+      cursor: move;
+    }
+
+    .checkbox-wrap {
+      float: right;
+      margin-left: 10px;
+      label, input {
+        display: inline-block;
+      }
+      input {
+        margin-left: 5px;
+      }
+    }
+
+  }
+
+  .sujet {
+    float: none;
+    width: auto;
+    clear: both;
+    overflow: hidden;
+    padding-top: 10px;
+    position: relative;
+
+    > .form-group {
+      float: left;
+      width: 32%;
+      margin-left: 1%;
+      overflow: hidden;
+    }
+  }
+
+  .add-subject-wrap {
+    clear: both;
+    padding-top: 10px;
+  }
+
+  .remove-subject {
+    position: absolute;
+    right: 0;
+    display: none;
+  }
+  .sujet:hover .remove-subject {
+    display: block;
+  }
+
+  .ui-sortable-placeholder {
+    margin-bottom: 10px;
+    background: #f1f1f1;
+    visibility: visible !important;
+  }
+}

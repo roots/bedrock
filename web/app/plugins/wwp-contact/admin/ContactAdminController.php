@@ -10,7 +10,7 @@
  * @subpackage Wonderwp/admin
  */
 
-namespace WonderWp\Plugin\Recette;
+namespace WonderWp\Plugin\Contact;
 
 use WonderWp\APlugin\AbstractPluginBackendController;
 use WonderWp\DI\Container;
@@ -26,27 +26,23 @@ use WonderWp\Templates\VueFrag;
  * @subpackage Wonderwp/admin
  * @author     Wonderful <jeremy.desvaux@wonderful.fr>
  */
-class RecetteAdminController extends AbstractPluginBackendController{
-
-    /**
-     * Create here the method to call for you different routes
-     */
+class ContactAdminController extends AbstractPluginBackendController{
 
     public function getTabs()
     {
         $tabs = array(
-            1 => array('action' => 'list', 'libelle' => 'Gestion des recettes'),
-            2 => array('action' => 'listIngredients', 'libelle' => 'Gestion des ingrédients')
+            1 => array('action' => 'list', 'libelle' => 'Liste des messages'),
+            2 => array('action' => 'listForms', 'libelle' => 'Gestion des formulaire')
         );
         return $tabs;
     }
 
-    public function listIngredientsAction(){
+    public function listFormsAction(){
         $container = Container::getInstance();
 
-        $listTableInstance = new IngredientListTable();
-        $listTableInstance->setEntityName(Ingredient::class);
-        $listTableInstance->setTextDomain(WWP_RECETTE_TEXTDOMAIN);
+        $listTableInstance = new ContactFormListTable();
+        $listTableInstance->setEntityName(ContactFormEntity::class);
+        $listTableInstance->setTextDomain(WWP_CONTACT_TEXTDOMAIN);
 
         $tabs = $this->getTabs();
 
@@ -61,9 +57,9 @@ class RecetteAdminController extends AbstractPluginBackendController{
         $vue->render();
     }
 
-    public function editIngredientAction(){
-        $modelForm = new IngredientForm();
-        parent::editAction(Ingredient::class,$modelForm);
+    public function editContactFormAction(){
+        $modelForm = new ContactFormForm();
+        parent::editAction(ContactFormEntity::class,$modelForm);
     }
 
 }

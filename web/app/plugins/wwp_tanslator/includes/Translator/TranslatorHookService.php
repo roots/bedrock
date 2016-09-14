@@ -65,6 +65,7 @@ class TranslatorHookService extends AbstractHookService{
             $session->set('locale',$newLocale);
             $storedLocale = $newLocale;
         }
+
         return $storedLocale;
     }
 

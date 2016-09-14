@@ -1,6 +1,6 @@
 <?php
 
-namespace __PLUGIN_NS__;
+namespace WonderWp\Plugin\Contact;
 
 //Must uses
 use \Composer\Autoload\ClassLoader as AutoLoader; //Must use the autoloader
@@ -8,16 +8,17 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\Plugin\PageSettings\AbstractPageSettingsService;
 use WonderWp\Services\AbstractService;
 
 /**
- * Class __PLUGIN_ENTITY__Manager
- * @package __PLUGIN_NS__
+ * Class ContactManager
+ * @package WonderWp\Plugin\Contact
  * The manager is the file that registers everything your plugin is going to use / need.
  * It's the most important file for your plugin, the one that bootstraps everything.
  * The manager registers itself with the DI container, so you can retrieve it somewhere else and use its config / controllers / services
  */
-class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
+class ContactManager extends AbstractPluginManager{
 
     /**
      * Register AutoLoad dependencies for this plugin.
@@ -28,7 +29,7 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
     public function autoLoad(AutoLoader $loader){
 
         $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
-        $loader->addPsr4('__ESCAPED_PLUGIN_NS__\\',array(
+        $loader->addPsr4('WonderWp\\Plugin\\Contact\\',array(
             $pluginDir . 'includes',
             $pluginDir . 'admin',
             $pluginDir . 'public',
@@ -49,49 +50,48 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
         $this->setConfig('path.root',plugin_dir_path( dirname( __FILE__ ) ));
         $this->setConfig('path.base',dirname( dirname( plugin_basename( __FILE__ ) ) ));
         $this->setConfig('path.url',plugin_dir_url( dirname( __FILE__ ) ));
-        $this->setConfig('entityName',__PLUGIN_ENTITY__Entity::class);
-        $this->setConfig('textDomain',WWP___PLUGIN_CONST___TEXTDOMAIN);
+        $this->setConfig('entityName',ContactEntity::class);
+        $this->setConfig('textDomain',WWP_CONTACT_TEXTDOMAIN);
 
         //Register Controllers
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
-            return new __PLUGIN_ENTITY__AdminController( $this );
+            return new ContactAdminController( $this );
         });
-        /*$this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
-            return $plugin_public = new __PLUGIN_ENTITY__PublicController($this);
-        });*/
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
+            return $plugin_public = new ContactPublicController($this);
+        });
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
             //Hook service
-            return new __PLUGIN_ENTITY__HookService();
+            return new ContactHookService();
         }));
         $this->addService(AbstractService::$MODELFORMSERVICENAME,$container->factory(function($c){
             //Model Form service
-            return new __PLUGIN_ENTITY__Form();
+            return new ContactForm();
         }));
         $this->addService(AbstractService::$LISTTABLESERVICENAME, function($container){
             //List Table service
-            return new __PLUGIN_ENTITY__ListTable();
+            return new ContactListTable();
         });
-        /* //Uncomment this if your plugin has assets, then create the __PLUGIN_ENTITY__AssetService class in the include folder
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
-            return new __PLUGIN_ENTITY__AssetService();
-        });*/
-        /* //Uncomment this if your plugin has particular routes, then create the __PLUGIN_ENTITY__RouteService class in the include folder
+            return new ContactAssetService();
+        });
+        /* //Uncomment this if your plugin has particular routes, then create the ContactRouteService class in the include folder
         $this->addService(AbstractService::$ROUTESERVICENAME,function(){
             //Route service
-            return new __PLUGIN_ENTITY__RouteService();
+            return new ContactRouteService();
         });*/
-        /* //Uncomment this if your plugin has page settings, then create the __PLUGIN_ENTITY__PageSettingsService class in the include folder
-        $this->addService(AbstractService::$PAGESETTINGSSERVICENAME,function(){
+        //Uncomment this if your plugin has page settings, then create the ContactPageSettingsService class in the include folder
+        $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME,function(){
             //Page settings service
-            return new __PLUGIN_ENTITY__PageSettingsService();
-        });*/
-        /* //Uncomment this if your plugin has an api, then create the __PLUGIN_ENTITY__ApiService class in the include folder
+            return new ContactPageSettingsService();
+        });
+        /* //Uncomment this if your plugin has an api, then create the ContactApiService class in the include folder
         $this->addService(AbstractService::$APISERVICENAME,function(){
             //Api service
-            return new __PLUGIN_ENTITY__ApiService();
+            return new ContactApiService();
         });*/
 
         return $this;

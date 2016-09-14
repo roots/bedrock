@@ -23,15 +23,9 @@
         },
         bindUiActions: function(){
             var t =this;
+
             /**
-             * Delete row
-             */
-            this.$wrap.find('.rowDeleter').on('click',function(e){
-                e.preventDefault();
-                //$(this).parents('tr').remove();
-            });
-            /**
-             * Add Row
+             * Add Etape
              */
             this.$wrap.find('#add-etape').on('click',function(e){
                 e.preventDefault();
@@ -43,6 +37,14 @@
 
                 $cloneMarkup.removeClass('nouvelle-etape hidden').addClass('etape');
                 $cloneMarkup.insertBefore($(this).parent());
+            });
+
+            /**
+             * Remove etape
+             */
+            this.$wrap.find('.remove-etape').on('click',function(e){
+                e.preventDefault();
+                $(this).parent().remove();
             });
         }
 
