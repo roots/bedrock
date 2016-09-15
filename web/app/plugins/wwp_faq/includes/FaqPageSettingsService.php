@@ -20,7 +20,16 @@ class FaqPageSettingsService extends AbstractPageSettingsService
     {
         $fields = array();
 
+        //locale
         $fields[] = LocaleField::getInstance();
+
+        //Presentation
+        $presField = (new SelectField('vue',null,['label'=>'Présentation']))->setOptions([
+            ''=>'Choisissez une présentation',
+            'list'=>'Vue liste',
+            'accordion'=>'Accordéon'
+        ]);
+        $fields[] = $presField;
 
         return $fields;
     }
