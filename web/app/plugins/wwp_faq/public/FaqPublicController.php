@@ -18,6 +18,9 @@ class FaqPublicController extends AbstractPluginFrontendController{
         if(empty($atts['locale'])){
             $atts['locale'] = get_locale();
         }
+        if(empty($atts['vue'])){
+            $atts['vue'] = 'accordion';
+        }
         return parent::handleShortcode($atts);
     }
 
@@ -33,7 +36,7 @@ class FaqPublicController extends AbstractPluginFrontendController{
         $filters = array('lang'=>$atts['locale']);
         $questions = $repository->findBy($filters);
 
-        $viewContent = $this->renderView('list',['questions'=>$questions]);
+        $viewContent = $this->renderView($atts['vue'],['questions'=>$questions]);
         return $viewContent;
     }
 

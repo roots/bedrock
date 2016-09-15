@@ -43,6 +43,7 @@
 
             //Init page class
             var p = new classtoCall($pageWrap).init();
+            this.initComponents(false,$pageWrap);
             return this;
         }
 
