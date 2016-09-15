@@ -5,8 +5,8 @@
 
 .btn {
     display: inline-block;
-    margin-bottom: 0; // For input.btn
-    padding: .75rem 1.8rem;
+    margin-bottom: 0;
+    padding: 1.18rem 1.8rem;
     font-size: 1.5rem;
     font-family: $font1;
     font-weight: 400;
@@ -27,15 +27,17 @@
     &.active {
       &:focus,
       &.focus {
-        // @include tab-focus;
+          color: #fff;
+          background-color: $basecolor;
       }
     }
     
     &:hover,
     &:focus,
     &.focus {
-      color: #fff;
-      text-decoration: none;
+        color: #fff;
+        background-color: $basecolor;
+        text-decoration: none;
     }
     
     &:active,
