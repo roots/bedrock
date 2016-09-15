@@ -1,0 +1,35 @@
+/*scss/molecules/_timeline-horizontal.scss*/
+
+.component ul.timeline.timeline-horizontal{
+    margin-top: 10rem;
+} // For Atomics only
+
+
+ul.timeline.timeline-horizontal{
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    border-top: 1px solid #fff;
+    border-right: 0;
+    li{
+        display: inline-block;
+        min-width: 10rem;
+        text-align: center;
+    }
+    li:before{
+        top: -13px;
+        left: calc(50% - 12px);
+    }
+    li:after{
+        top: -7px;
+        left: calc(50% - 6px);
+    }
+    li > a{
+        padding-right: 0;
+    }
+    li.active:before, li:hover:before{
+        top: -12px;
+        left: calc(50% - 11px);
+    }
+}
