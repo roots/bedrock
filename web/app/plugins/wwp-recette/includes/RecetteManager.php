@@ -32,7 +32,8 @@ class RecetteManager extends AbstractPluginManager{
             $pluginDir . 'includes'
         ));
         $loader->addClassMap(array(
-            'WonderWp\\Plugin\\Recette\\RecetteAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'RecetteAdminController.php'
+            'WonderWp\\Plugin\\Recette\\RecetteAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'RecetteAdminController.php',
+            'WonderWp\\Plugin\\Recette\\RecettePublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'RecettePublicController.php'
         ));
 
     }
@@ -57,9 +58,9 @@ class RecetteManager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new RecetteAdminController( $this );
         });
-        /*$container[$this->plugin_name.'.publicController'] = function() {
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
             return $plugin_public = new RecettePublicController($this);
-        };*/
+        });
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){

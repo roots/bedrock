@@ -30,9 +30,11 @@ class ContactManager extends AbstractPluginManager{
 
         $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
         $loader->addPsr4('WonderWp\\Plugin\\Contact\\',array(
-            $pluginDir . 'includes',
-            $pluginDir . 'admin',
-            $pluginDir . 'public',
+            $pluginDir . 'includes'
+        ));
+        $loader->addClassMap(array(
+            'WonderWp\\Plugin\\Contact\\ContactAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'ContactAdminController.php',
+            'WonderWp\\Plugin\\Contact\\ContactPublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'ContactPublicController.php'
         ));
 
     }
