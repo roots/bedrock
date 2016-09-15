@@ -105,9 +105,25 @@ echo $formView2 = $form2->renderView($opts);
 
 <span class="subTitle">No label form <i class="small">(add ".no-label" to your form tag)</i></span><br>
 
+<?php
+$form3 = new \WonderWp\Forms\Form();
+
+//Email
+$f = new \WonderWp\Forms\Fields\EmailField('emailField',null,['label'=>'Email']);
+$form3->addField($f);
+
+//Password
+$f = new \WonderWp\Forms\Fields\PasswordField('pwdField',null,['label'=>'Password']);
+$form3->addField($f);
+
+$opts = array('formStart'=>['class'=>['no-label']]);
+echo $formView3 = $form3->renderView($opts);
+
+?>
+
 <hr>
 
-<span class="subTitle">Restant à générer</span>
+<span class="subTitle">Error messages</span><br>
 
 <form>
 
@@ -115,7 +131,7 @@ echo $formView2 = $form2->renderView($opts);
 
  	<div class="form-group has-error">
  	  <label for="exampleInputText2">Text with error message</label>
- 	  <input type="email" class="form-control" id="exampleInputText2" placeholder="Your text here"/>
+ 	  <input type="email" class="form-control" id="exampleInputText2" placeholder="Your text here">
 		<label class="label-error" for="exampleInputText2">An email is required</label>
  	</div>
 
