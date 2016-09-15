@@ -1,6 +1,6 @@
 <!--components/molecules/card.php-->
 
-<div class="card w30">
+<div class="card">
 	<img class="card-img-top" src="http://placehold.it/300x150" alt="Card image cap">
 	<div class="card-block">
 		<h2 class="card-title">Card title</h2>
