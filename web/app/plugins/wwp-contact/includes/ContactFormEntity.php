@@ -37,6 +37,14 @@ class ContactFormEntity extends AbstractEntity
     private $data;
 
     /**
+     * @var string
+     *
+     * @Column(name="sendTo", type="string", length=45, nullable=true)
+     */
+    private $sendTo;
+
+
+    /**
      * @return int
      */
     public function getId()
@@ -82,6 +90,23 @@ class ContactFormEntity extends AbstractEntity
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSendTo()
+    {
+        return $this->sendTo;
+    }
+
+    /**
+     * @param string $sendTo
+     */
+    public function setSendTo($sendTo)
+    {
+        $this->sendTo = $sendTo;
+        return $this;
     }
 
 }

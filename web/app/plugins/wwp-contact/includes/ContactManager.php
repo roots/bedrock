@@ -80,11 +80,10 @@ class ContactManager extends AbstractPluginManager{
             //Asset service
             return new ContactAssetService();
         });
-        /* //Uncomment this if your plugin has particular routes, then create the ContactRouteService class in the include folder
         $this->addService(AbstractService::$ROUTESERVICENAME,function(){
             //Route service
             return new ContactRouteService();
-        });*/
+        });
         //Uncomment this if your plugin has page settings, then create the ContactPageSettingsService class in the include folder
         $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME,function(){
             //Page settings service
@@ -95,6 +94,10 @@ class ContactManager extends AbstractPluginManager{
             //Api service
             return new ContactApiService();
         });*/
+        $this->addService('contactHandler',function(){
+            //Page settings service
+            return new ContactHandlerService();
+        });
 
         return $this;
     }

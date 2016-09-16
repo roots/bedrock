@@ -12,11 +12,16 @@ use Doctrine\ORM\EntityRepository;
 use Respect\Validation\Rules\In;
 use Respect\Validation\Validator;
 use WonderWp\APlugin\AbstractPluginFrontendController;
+use WonderWp\DI\Container;
 use WonderWp\Forms\Fields\EmailField;
+use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\InputField;
 use WonderWp\Forms\Fields\SelectField;
 use WonderWp\Forms\Fields\TextAreaField;
 use WonderWp\Forms\Form;
+use WonderWp\Forms\FormValidator;
+use WonderWp\HttpFoundation\Request;
+use WonderWp\Theme\ThemeViewService;
 
 class ContactPublicController extends AbstractPluginFrontendController
 {
@@ -35,8 +40,35 @@ class ContactPublicController extends AbstractPluginFrontendController
 
         $formItem = $this->_entityManager->find(ContactFormEntity::class, $atts['form']);
         $formInstance = $this->_getFormInstanceFromItem($formItem);
+        /** @var ThemeViewService $viewService */
+        $viewService = wwp_get_theme_service('view');
 
-        return $this->renderView('form', ['formView' => $formInstance->renderView()]);
+        $notifications = $viewService->flashesToNotifications();
+
+        $opts = array('formStart'=>['action'=>'/contactFormSubmit']);
+        return $this->renderView('form', ['formView' => $formInstance->renderView($opts), 'notifications'=>$notifications]);
+    }
+
+    public function handleFormAction(){
+        $request = Request::getInstance();
+        $container = Container::getInstance();
+        $data = $request->request->all();
+        $formItem = $this->_entityManager->find(ContactFormEntity::class, $data['form']);
+        $formInstance = $this->_getFormInstanceFromItem($formItem);
+
+        /** @var ContactHandlerService $contactHandlerService */
+        $contactHandlerService = $this->_manager->getService('contactHandler');
+        $mailSent = $contactHandlerService->handleSubmit($data,$formInstance,$formItem);
+
+        $prevPage = get_permalink($data['post']);
+        if ($mailSent) {
+            //save success msg
+            $request->getSession()->getFlashbag()->add('success',__('mail.sent',WWP_CONTACT_TEXTDOMAIN));
+        } else {
+            //save error msg
+            $request->getSession()->getFlashbag()->add('error',__('mail.notsent',WWP_CONTACT_TEXTDOMAIN));
+        }
+        wp_redirect($prevPage);
     }
 
     /**
@@ -45,16 +77,24 @@ class ContactPublicController extends AbstractPluginFrontendController
      */
     private function _getFormInstanceFromItem($formItem)
     {
+        global $post;
         $formInstance = new Form();
 
+        //Add configured fields
         $data = json_decode($formItem->getData());
-
         if (!empty($data)) {
             foreach ($data as $fieldName => $fieldData) {
                 $field = $this->_generateDefaultField($fieldName, $fieldData);
                 $formInstance->addField($field);
             }
         }
+
+        //Add other necessary field
+        $f = new HiddenField('form',$formItem->getId());
+        $formInstance->addField($f);
+
+        $f = new HiddenField('post',$post->ID);
+        $formInstance->addField($f);
 
         return $formInstance;
     }
