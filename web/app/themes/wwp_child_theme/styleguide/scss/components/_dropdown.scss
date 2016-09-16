@@ -17,6 +17,9 @@
 		display: table;
 		content: " ";		
 	}
+	.btn{
+		margin-bottom: 0;
+	}
 }
 .dropdown-toggle:focus {
   outline: 0;
@@ -30,7 +33,7 @@
 	float: left;
 	min-width: 160px;
 	padding: 5px 0;
-	margin: 2px 0 0;
+	margin-top: 0;
 	font-size: 14px;
 	text-align: left;
 	list-style: none;
@@ -44,13 +47,17 @@
 }
 .dropdown-menu>li>a {
 	display: block;
-	padding: 3px 20px;
+	padding: 1rem 2rem;
 	clear: both;
 	font-weight: 400;
 	line-height: 1.42857143;
 	color: #333;
 	white-space: nowrap;
 	text-decoration: none;
+	border-bottom: 1px solid $mediumgrey;
+}
+.dropdown-menu > li:last-child > a{
+	border-bottom: none;
 }
 
 .open>.dropdown-toggle.btn-primary {
