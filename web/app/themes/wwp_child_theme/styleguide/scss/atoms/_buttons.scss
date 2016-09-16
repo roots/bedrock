@@ -1,18 +1,24 @@
 /*scss/atoms/_buttons.scss*/
 
+/// Styles for Atomics
+.component .btn {
+    margin-bottom: 2rem;
+}
+
 // Buttons general styles
 // --------------------------------------------------
 
 .btn {
     display: inline-block;
     margin-bottom: 0;
-    padding: 1.18rem 1.8rem;
+    padding: 1.2rem 3rem;
     font-size: 1.5rem;
     font-family: $font1;
     font-weight: 400;
     text-align: center;
     vertical-align: middle;
-    color: #FFF; 
+    text-decoration: none;
+    color: #FFF;
     background-color: $mediumgrey;
     touch-action: manipulation;
     cursor: pointer;
@@ -109,24 +115,19 @@ $btn-disabled3:     #555555 !default;
 .btn-wrapper-inline{
     display: inline-block;
 }
-.btn-icon{
+.btn.btn-icon{
     position: relative;
-    padding: 1.3rem 6rem 1.3rem 3rem;
-    line-height: .8em;
-    svg{
+    padding-right: 6rem;
+    &:after {
+        content: '';
+        @extend .svg-arrow_right_w_s;
+        @extend .svg-arrow_right_w_s-dims;
+        background-image: url("../../assets/final/svg/view/svg/sprite.view.svg") !important;
         position: absolute;
-        width: 26px;
-        right: 2rem;
-        top: calc(50% - 1.2rem);
-        fill: #FFF;
+        top: calc(50% - 1.4rem);
+        right: 1.8rem;
+        pointer-events: none;
     }
-    &:hover, &:focus{
-        color: #FFF;
-        background-color: $basecolor;
-        svg{
-            fill: #FFF;
-        }
-    } 
 }
 .btn-disabled {
     color: $btn-disabled3; 
