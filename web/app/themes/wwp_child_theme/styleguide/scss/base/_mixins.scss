@@ -1,5 +1,17 @@
 /*scss/base/_mixins.scss*/
 
-.mixins{
+@mixin absolute-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+// SVG sprites method (TODO: create mixin. Here, "arrow_down" is the svg name)
+.sprite-selector:after {
+    display: inline-block;
+    content: '';
+    @extend .svg-arrow_down;
+    @extend .svg-arrow_down-dims;
+    background-image: url("../svg/view/svg/sprite.view.svg") !important;
 }
