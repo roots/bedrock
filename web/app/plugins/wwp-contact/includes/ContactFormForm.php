@@ -61,7 +61,7 @@ class ContactFormForm extends ModelForm
 
         $savedFields = is_object($val) ? array_keys(get_object_vars($val)) : array();
 
-        $defaultFields = array('nom', 'prenom', 'email', 'sujet', 'message');
+        $defaultFields = array('nom', 'prenom', 'mail', 'sujet', 'message');
 
         $fields = array_merge($savedFields,array_diff($defaultFields,$savedFields));
 

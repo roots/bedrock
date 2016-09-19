@@ -1,7 +1,5 @@
 <?php
 
-$editionTable = $values['editionTable'];
-
 if (!empty($editionTable)): ?>
     <form method="post" class="keyTableEditor">
         <table class="widefat">

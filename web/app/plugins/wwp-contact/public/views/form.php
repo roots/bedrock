@@ -1,8 +1,8 @@
 <section class="module-contact">
 
-    <?php
-    echo $formView;
-    ?>
+    <?php if(!empty($notifications)){ echo implode("\n",$notifications); } ?>
+
+    <?php echo $formView; ?>
 
 
 </section>
