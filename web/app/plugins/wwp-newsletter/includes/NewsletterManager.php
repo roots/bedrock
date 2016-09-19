@@ -33,7 +33,8 @@ class NewsletterManager extends AbstractPluginManager{
             $pluginDir . 'includes'
         ));
         $loader->addClassMap(array(
-            'WonderWp\\Plugin\\Newsletter\\NewsletterAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'NewsletterAdminController.php'
+            'WonderWp\\Plugin\\Newsletter\\NewsletterAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'NewsletterAdminController.php',
+            'WonderWp\\Plugin\\Newsletter\\NewsletterPublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'NewsletterPublicController.php'
         ));
 
     }
@@ -58,9 +59,9 @@ class NewsletterManager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new NewsletterAdminController( $this );
         });
-        /*$container[$this->plugin_name.'.publicController'] = function() {
-            return $plugin_public = new NewsletterPublicController($this);
-        };*/
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
+            return new NewsletterPublicController( $this );
+        });
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
@@ -83,6 +84,10 @@ class NewsletterManager extends AbstractPluginManager{
         //Page settings
         $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME, function(){
             return new NewsletterPageSettingsService();
+        });
+        //Passerelles
+        $this->addService('passerelle', function(){
+            return new NewsletterPasserelleService();
         });
 
 

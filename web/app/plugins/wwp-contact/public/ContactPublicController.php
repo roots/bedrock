@@ -78,7 +78,7 @@ class ContactPublicController extends AbstractPluginFrontendController
     private function _getFormInstanceFromItem($formItem)
     {
         global $post;
-        $formInstance = new Form();
+        $formInstance = Container::getInstance()->offsetGet('wwp.forms.form');
 
         //Add configured fields
         $data = json_decode($formItem->getData());
