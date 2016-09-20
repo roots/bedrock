@@ -1,17 +1,19 @@
 /*scss/components/_accordion.scss*/
 
-.my-accordion-name{
+.js-accordion{
     button, div{
         width:100%;
     }
 }
-.my-accordion-name__panel[aria-hidden=true] {
+.js-accordion__panel[aria-hidden=true] {
     display: none;
 }
-.my-accordion-name__header {
+.js-accordion__header {
     display: block;
+    width: 100%;
     margin-top: 4px;
     padding: 1em;
+    font-size: 2rem;
     background-color: $lightgrey;
     border: none;
     &[aria-expanded="true"]{
@@ -33,7 +35,7 @@
     }
 }
 
-.my-accordion-name__panel {
+.js-accordion__panel {
     display: block;
     margin: 0;
     padding: 1em;
@@ -47,9 +49,12 @@
     transition: visibility .5s ease, max-height .2s ease, opacity 1s ease;
     transition-delay: 0s;
 }
+.my-accordion-name__title{
+    display: none;
+}
 
 /* This is the hidden state */
-[aria-hidden=true].my-accordion-name__panel {
+[aria-hidden=true].js-accordion__panel {
     display: block;
     max-height: 0;
     opacity: 0;

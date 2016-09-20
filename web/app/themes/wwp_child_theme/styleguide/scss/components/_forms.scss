@@ -72,9 +72,11 @@ input[type=file]{
 			position: absolute;
 			top: calc(50% - 3px);
 			right: 2rem;
+			pointer-events:none;
 		}
 		select {
-			padding: 1.2rem 5rem 1.2rem 3rem;
+			width: 100%;
+			padding: 1.2rem 4rem 1.2rem 2rem;
 			border: none;
 			box-shadow: none;
 			background: transparent;
@@ -158,7 +160,6 @@ form.no-label{
 			display: inline-block;
 			margin-right: 2rem;
 			margin-bottom: 0;
-			vertical-align: baseline;
 		}
 		label{
 			display: inline;
