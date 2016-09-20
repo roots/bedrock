@@ -48,6 +48,8 @@ class GeneratorAdminController extends AbstractPluginBackendController
             $form = $generator->getPluginForm($data);
 
             $errors = array();
+            $notification = null;
+
             if ($request->getMethod() == 'POST') {
                 $formValidator = $container->offsetGet('wwp.forms.formValidator');
                 //Form Validation
@@ -63,7 +65,13 @@ class GeneratorAdminController extends AbstractPluginBackendController
                 if(empty($errors)){
                     $generator->setData($data);
                     $generator->generate();
+                    $notifType = 'success';
+                    $notifMsg = $container->offsetGet('wwp.forms.add.success');
+                } else {
+                    $notifType = 'error';
+                    $notifMsg = $container->offsetGet('wwp.forms.add.error');
                 }
+                $notification = new AdminNotification($notifType, $notifMsg);
             }
 
             //Form View
@@ -72,12 +80,17 @@ class GeneratorAdminController extends AbstractPluginBackendController
             $formView->setFormInstance($form);
 
             $prefix = $this->_manager->getConfig('prefix');
-            $vue = $container->offsetGet('wwp.basePlugin.backendView');
-            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.header'),array('title'=>get_admin_page_title())));
-            if(!empty($tabs)){ $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.tabs'),array('tabs'=>$tabs))); }
-            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.edit'),array('formView'=>$formView, 'formSubmitted'=>($request->getMethod() == 'POST'), 'formValid'=>(empty($errors)))));
-            $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.footer')));
-            $vue->render();
+
+            $vue = $container->offsetGet('wwp.views.editAdmin')
+                ->registerFrags($prefix)
+                ->render([
+                    'title' => get_admin_page_title(),
+                    'tabs' => $this->getTabs(),
+                    'formView' => $formView,
+                    'formSubmitted' => ($request->getMethod() == 'POST'),
+                    'formValid' => (empty($errors)),
+                    'notification' => $notification
+                ]);
         }
     }
 }

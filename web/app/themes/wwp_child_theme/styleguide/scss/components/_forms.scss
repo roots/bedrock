@@ -54,10 +54,46 @@ input:not(.btn), textarea{
 input[type=file]{
 	display: block;
 }
+.select-wrap{
+	display: inline-block;
+	width: auto;
+	.select-style {
+		position: relative;
+		padding: 0;
+		background: #FFFFFF;
+		overflow: hidden;
+		&:after{
+			content: '';
+			width: 0;
+			height: 0;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-top: 7px solid $mediumgrey;
+			position: absolute;
+			top: calc(50% - 3px);
+			right: 2rem;
+			pointer-events:none;
+		}
+		select {
+			width: 100%;
+			padding: 1.2rem 4rem 1.2rem 2rem;
+			border: none;
+			box-shadow: none;
+			background: transparent;
+			background-image: none;
+			appearance: none;
+		}
+	}
+}
+
+
 ::placeholder{
 	font-family: $font-stack-headings;
 	font-weight: 300;
 	color: $basecolor;
+}
+fieldset{
+	border: 1px solid #FFFFFF;
 }
 
 
@@ -124,7 +160,6 @@ form.no-label{
 			display: inline-block;
 			margin-right: 2rem;
 			margin-bottom: 0;
-			vertical-align: baseline;
 		}
 		label{
 			display: inline;

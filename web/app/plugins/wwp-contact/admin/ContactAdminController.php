@@ -47,7 +47,7 @@ class ContactAdminController extends AbstractPluginBackendController{
         $tabs = $this->getTabs();
 
         $prefix = $this->_manager->getConfig('prefix');
-        $vue = $container->offsetGet('wwp.basePlugin.backendView');
+        $vue = $container->offsetGet('wwp.views.baseAdmin');
         $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
         if (!empty($tabs)) {
             $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));

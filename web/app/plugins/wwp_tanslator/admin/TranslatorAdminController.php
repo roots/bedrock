@@ -17,7 +17,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractPluginBackendController;
 use WonderWp\DI\Container;
 use WonderWp\HttpFoundation\Request;
-use WonderWp\Templates\VueFrag;
+use WonderWp\Templates\Views\VueFrag;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -62,13 +62,11 @@ class TranslatorAdminController extends AbstractPluginBackendController
     {
         $container = Container::getInstance();
 
-        $tabs = $this->getTabs();
-
         // @var WP_Theme $theme
         $themes = array();
-        $exclude=array('twentyfifteen');
+        $exclude = array('twentyfifteen');
         foreach (wp_get_themes(array('allowed' => true)) as $name => $theme) {
-            if(!in_array($name,$exclude)) {
+            if (!in_array($name, $exclude)) {
                 $package = LocoPackage::get($name, 'theme') and
                 $name = $package->get_name();
                 $themes[$name] = $package;
@@ -76,23 +74,30 @@ class TranslatorAdminController extends AbstractPluginBackendController
         }
         // @var array $plugin
         $plugins = array();
-        $exclude=array('cms-tree-page-view/index.php','debug-bar/debug-bar.php');
+        $exclude = array('cms-tree-page-view/index.php', 'debug-bar/debug-bar.php');
         foreach (get_plugins() as $plugin_file => $plugin) {
-            if(!in_array($plugin_file,$exclude)) {
+            if (!in_array($plugin_file, $exclude)) {
                 $package = LocoPackage::get($plugin_file, 'plugin') and
                 $plugins[] = $package;
             }
         }
 
+        $notifications = $this->flashesToNotifications();
+
         $prefix = $this->_manager->getConfig('prefix');
-        $vue = $container->offsetGet('wwp.basePlugin.backendView');
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
-        if (!empty($tabs)) {
-            $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));
-        }
-        $vue->addFrag(new VueFrag(__DIR__ . '/pages/TranslatorView.php', array('themes' => $themes, 'plugins' => $plugins)));
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer')));
-        $vue->render();
+        $vue = $container->offsetGet('wwp.views.baseAdmin')
+            ->registerFrags($prefix, array(
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header')),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs')),
+                new VueFrag(__DIR__ . '/pages/TranslatorView.php'),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer'))
+            ))
+            ->render([
+                'title' => get_admin_page_title(),
+                'tabs' => $this->getTabs(),
+                'themes' => $themes, 'plugins' => $plugins,
+                'notifications' => $notifications
+            ]);
     }
 
     public function fscheckAction()
@@ -104,20 +109,25 @@ class TranslatorAdminController extends AbstractPluginBackendController
             $package = LocoPackage::get($_GET['name'], $_GET['type']);
         }
 
+        $args = array(
+            'title' => get_admin_page_title(),
+            'tabs'=>$this->getTabs()
+        );
+
         if (isset($_GET['fscheck'])) {
-            $args = $package->meta() + compact('package');
+            $args = $args + $package->meta() + compact('package');
         }
 
         $container = Container::getInstance();
         $prefix = $this->_manager->getConfig('prefix');
-        $vue = $container->offsetGet('wwp.basePlugin.backendView');
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
-        if (!empty($tabs)) {
-            $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));
-        }
-        $vue->addFrag(new VueFrag(__DIR__ . '/pages/admin-fscheck.tpl.php', $args));
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer')));
-        $vue->render();
+        $vue = $container->offsetGet('wwp.views.baseAdmin')
+            ->registerFrags($prefix,[
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header')),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs')),
+                new VueFrag(__DIR__ . '/pages/admin-fscheck.tpl.php'),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer'))
+            ])
+            ->render($args);
     }
 
     public function editTradsAction()
@@ -152,15 +162,18 @@ class TranslatorAdminController extends AbstractPluginBackendController
 
         $editionTable = $getTextService->prepareTranslationTable($translationFiles, $languages);
 
-        $tabs = $this->getTabs();
-        $vue = $container->offsetGet('wwp.basePlugin.backendView');
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
-        if (!empty($tabs)) {
-            $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));
-        }
-        $vue->addFrag(new VueFrag(__DIR__ . '/pages/admin-editionTable.tpl.php', array('editionTable' => $editionTable)));
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer')));
-        $vue->render();
+        $vue = $container->offsetGet('wwp.views.baseAdmin')
+            ->registerFrags($prefix,[
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header')),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs')),
+                new VueFrag(__DIR__ . '/pages/admin-editionTable.tpl.php'),
+                new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer'))
+            ])
+            ->render([
+                'title' => get_admin_page_title(),
+                'tabs'=>$this->getTabs(),
+                'editionTable' => $editionTable
+            ]);
 
     }
 }

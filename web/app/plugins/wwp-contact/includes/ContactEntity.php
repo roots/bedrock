@@ -79,7 +79,7 @@ class ContactEntity extends \WonderWp\Entity\AbstractEntity
     /**
      * @var string
      *
-     * @Column(name="sentTo", type="string", length=45, nullable=false)
+     * @Column(name="sentTo", type="string", length=45, nullable=true)
      */
     private $sentto;
 
@@ -308,5 +308,22 @@ class ContactEntity extends \WonderWp\Entity\AbstractEntity
     public function getSentto()
     {
         return $this->sentto;
+    }
+
+    /**
+     * @return ContactFormEntity
+     */
+    public function getForm()
+    {
+        return $this->form;
+    }
+
+    /**
+     * @param ContactFormEntity $form
+     */
+    public function setForm($form)
+    {
+        $this->form = $form;
+        return $this;
     }
 }

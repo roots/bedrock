@@ -123,6 +123,27 @@ echo $formView3 = $form3->renderView($opts);
 
 <hr>
 
+
+//Reste à générer
+
+<span class="subTitle">Select</span><br>
+
+<form action="">
+	<div class="form-group select-wrap selectField-wrap">
+		<label for="selectField">Select</label>
+		<div class="select-style">
+			<select name="selectField" id="selectField" class="form-control">
+				<option value="" selected="selected">Choisissez une option</option>
+				<option value="1">Option 1</option>
+				<option value="2">Option 2</option>
+				<option value="3">Option 3</option>
+			</select>
+		</div>
+	</div>
+</form>
+
+<hr>
+
 <span class="subTitle">Error messages</span><br>
 
 <form>
