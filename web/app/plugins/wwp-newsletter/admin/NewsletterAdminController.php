@@ -96,7 +96,7 @@ class NewsletterAdminController extends AbstractPluginBackendController
         $defaultOptions = array(
 
             array(
-                "name" => __('choix de la passerelle'),
+                "name" => __('Choix de la passerelle'),
                 "id" => $shortname . "_passerelle",
                 "type" => "radio",
                 "options" => $passerellesChoice,
@@ -104,6 +104,24 @@ class NewsletterAdminController extends AbstractPluginBackendController
             )
 
         ) + $passerellesOpts;
+
+        $entityManager = Container::getInstance()->offsetGet('entityManager');
+        $repo = $entityManager->getRepository(NewsletterEntity::class);
+        $lists = $repo->findAll();
+        $listOpts = array(''=>'Choisissez la liste dont on affichera le formulaire d\'inscription');
+        if(!empty($lists)){ foreach ($lists as $list){
+            /** @var $list NewsletterEntity */
+            $listOpts[$list->getId()] = $list->getTitle();
+        } }
+
+        $defaultOptions[] = array(
+            "name" => __("Inscription globale"),
+            "id" => $shortname . "_autoload_listform",
+            "type" => "select",
+            "options" => $listOpts,
+            'std' => reset($listOpts),
+            "desc"=>"Vous pouvez choisir une liste dont le formulaire d'inscription sera présent sur toutes les pages"
+        );
 
         $prefix = $this->_manager->getConfig('prefix');
         $vue = $container->offsetGet('wwp.views.optionsAdmin')
