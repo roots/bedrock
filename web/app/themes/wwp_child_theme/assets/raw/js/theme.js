@@ -33,7 +33,7 @@
         },
 
         runCurrentPageJs: function(){
-            var $pageWrap = this.$wrap.find('#content > article.page');
+            var $pageWrap = this.$wrap.find('#content > article.hentry');
             //does the page give instructions about the class to load?
             var potentialClassName = $pageWrap.data('name') ? 'Page'+$pageWrap.data('name') : 'Page';
             var potentialClass = ns[potentialClassName];

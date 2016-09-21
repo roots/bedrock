@@ -43,8 +43,6 @@
          */
         initModules: function() {
 
-            console.log(ns.app.modules);
-
             var scope = this;
             if(!ns.app.modules) return;
 

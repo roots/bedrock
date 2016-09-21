@@ -30,8 +30,11 @@ class MailChimpPasserelle extends AbstractPasserelle
      */
     public function __construct()
     {
-        $_mailChimpWrapper = new MailChimp(get_option('cleApiMC'));
-        $this->_mailChimpWrapper = $_mailChimpWrapper;
+        $mcApiKey = get_option('cleApiMC');
+        if(!empty($mcApiKey)) {
+            $_mailChimpWrapper = new MailChimp($mcApiKey);
+            $this->_mailChimpWrapper = $_mailChimpWrapper;
+        }
     }
 
 
