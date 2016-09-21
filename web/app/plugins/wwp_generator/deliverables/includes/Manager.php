@@ -29,9 +29,12 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
 
         $pluginDir = plugin_dir_path( dirname( __FILE__ ) );
         $loader->addPsr4('__ESCAPED_PLUGIN_NS__\\',array(
-            $pluginDir . 'includes',
-            $pluginDir . 'admin',
-            $pluginDir . 'public',
+            $pluginDir . 'includes'
+        ));
+
+        $loader->addClassMap(array(
+            '__ESCAPED_PLUGIN_NS__\\__PLUGIN_ENTITY__AdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'__PLUGIN_ENTITY__AdminController.php',
+            //'__ESCAPED_PLUGIN_NS__\\__PLUGIN_ENTITY__PublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'__PLUGIN_ENTITY__PublicController.php', //Uncomment this if your plugin has a public controller
         ));
 
     }
@@ -56,6 +59,7 @@ class __PLUGIN_ENTITY__Manager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new __PLUGIN_ENTITY__AdminController( $this );
         });
+        //Uncomment this if your plugin has a public controller
         /*$this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
             return $plugin_public = new __PLUGIN_ENTITY__PublicController($this);
         });*/
