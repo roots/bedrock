@@ -1,5 +1,12 @@
 /*scss/atoms/_icons.scss*/
 
+.arrow_down.icon-class{
+	@include svgIcon(arrow_down, .5)
+	&:hover{
+		transform: scale(1);
+	}
+}
+
 .icon-item{
 	display: inline-block;
 	width: 70px;
@@ -7,5 +14,5 @@
 	text-align: center;
 	span{
 		display: block;
-	} 
+	}
 }

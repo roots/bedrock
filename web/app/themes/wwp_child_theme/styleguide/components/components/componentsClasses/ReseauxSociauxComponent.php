@@ -35,7 +35,7 @@ class ReseauxSociauxComponent extends AbstractComponent
         }
 
         if(!empty($reseauxActifs)){
-            $markup = '<ul class="reseaux-sociaux">
+            $markup = '<ul class="social-networks">
                 '.implode("\n",$reseauxActifs).'
             </ul>';
         }

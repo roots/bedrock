@@ -7,11 +7,16 @@
     transform: translate(-50%, -50%);
 }
 
-// SVG sprites method (TODO: create mixin. Here, "arrow_down" is the svg name)
-.sprite-selector:after {
-    display: inline-block;
+@mixin svgIcon($iconName, $iconScale){
+    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg");
+    display: block;
     content: '';
-    @extend .svg-arrow_down;
-    @extend .svg-arrow_down-dims;
-    background-image: url("../svg/view/svg/sprite.view.svg") !important;
+    @extend .svg-#{$iconName};
+    @extend .svg-#{$iconName}-dims;
+    transform: scale($iconScale);
+    background-repeat: no-repeat;
+}
+// Utilisation :
+.arrow_down{
+    @include svgIcon(arrow_down, 3)
 }

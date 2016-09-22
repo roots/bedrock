@@ -44,9 +44,9 @@
     max-height: 100em;
     /* magic number for max-height = enough height */
     visibility: visible;
+    transition: visibility .5s ease, max-height .2s ease, opacity 1s ease;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    transition: visibility .5s ease, max-height .2s ease, opacity 1s ease;
     transition-delay: 0s;
 }
 .my-accordion-name__title{
