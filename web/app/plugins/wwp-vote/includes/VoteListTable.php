@@ -19,7 +19,7 @@ class VoteListTable extends WwpListTable{
         $cols = parent::get_columns();
         /* foreach(array() as $col) {
             unset($cols[$col]);
-        }*/
+        } */
         return $cols;
     }
 

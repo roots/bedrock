@@ -34,7 +34,7 @@ class VoteManager extends AbstractPluginManager{
 
         $loader->addClassMap(array(
             'WonderWp\\Plugin\\Vote\\VoteAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'VoteAdminController.php',
-            //'WonderWp\\Plugin\\Vote\\VotePublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'VotePublicController.php', //Uncomment this if your plugin has a public controller
+            'WonderWp\\Plugin\\Vote\\VotePublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'VotePublicController.php'
         ));
 
     }
@@ -59,10 +59,9 @@ class VoteManager extends AbstractPluginManager{
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new VoteAdminController( $this );
         });
-        //Uncomment this if your plugin has a public controller
-        /*$this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
             return $plugin_public = new VotePublicController($this);
-        });*/
+        });
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
@@ -77,16 +76,14 @@ class VoteManager extends AbstractPluginManager{
             //List Table service
             return new VoteListTable();
         });
-        /* //Uncomment this if your plugin has assets, then create the VoteAssetService class in the include folder
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
             return new VoteAssetService();
-        });*/
-        /* //Uncomment this if your plugin has particular routes, then create the VoteRouteService class in the include folder
+        });
         $this->addService(AbstractService::$ROUTESERVICENAME,function(){
             //Route service
             return new VoteRouteService();
-        });*/
+        });
         /* //Uncomment this if your plugin has page settings, then create the VotePageSettingsService class in the include folder
         $this->addService(AbstractService::$PAGESETTINGSSERVICENAME,function(){
             //Page settings service
@@ -97,6 +94,10 @@ class VoteManager extends AbstractPluginManager{
             //Api service
             return new VoteApiService();
         });*/
+        $this->addService('voteHandler',function(){
+            //Asset service
+            return new VoteHandlerService();
+        });
 
         return $this;
     }
