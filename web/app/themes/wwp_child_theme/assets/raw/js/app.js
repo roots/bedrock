@@ -3,6 +3,7 @@
     var app = {
         components:{},
         modules: {},
+        templates: null,
         init: function(){
 
         },
@@ -28,6 +29,15 @@
         getModule: function(name){
             return this.modules[name] || null;
         },
+
+        //Templates
+        getTemplates: function(){
+            this.templates = $.parseJSON($('#jsTemplates').html());
+        },
+        getTemplate: function(tplName){
+            if(this.templates===null){ this.getTemplates(); }
+            return this.templates[tplName] ? this.templates[tplName] : null;
+        }
     };
 
     ns.app = app;

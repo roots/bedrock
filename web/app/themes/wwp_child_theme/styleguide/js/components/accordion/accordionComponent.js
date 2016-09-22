@@ -19,7 +19,7 @@
         }
     };
 
-    ns.app.registerComponent('accordion', accordionComponent, {initGlobal: true}); //si on passe { initGlobal:true } il sera meme auto instancie
+    ns.app.registerComponent('accordion', accordionComponent);
 
 
 })(jQuery, window.wonderwp);

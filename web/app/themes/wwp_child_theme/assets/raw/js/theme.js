@@ -1,4 +1,4 @@
-(function($,ns){
+(function($,ns,app){
 
     var themeJs = {
 
@@ -17,7 +17,7 @@
         },
 
         initComponents: function(global,$context){
-          var registeredComponents = ns.app.getComponents();
+          var registeredComponents = app.getComponents();
 
             if(registeredComponents){ for(var i in registeredComponents){
                 var component = registeredComponents[i];
@@ -52,4 +52,4 @@
         themeJs.init();
 
 
-})(jQuery,window.wonderwp);
+})(jQuery,window.wonderwp,window.wonderwp.app);

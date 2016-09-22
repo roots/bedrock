@@ -18,10 +18,10 @@ class FaqAssetsService extends AbstractAssetService{
 
             $this->_assets = array(
                 'css' => array(
-                    new $assetClass('faq',$pluginPath.'/assets/faq.scss',array('styleguide'))
+                    new $assetClass('faq',$pluginPath.'/public/css/faq.scss',array('styleguide'))
                 ),
                 'js' => array(
-                    new $assetClass('faq',$pluginPath.'/assets/faq.js',array('app','styleguide'))
+                    new $assetClass('faq',$pluginPath.'/public/js/faq.js',array('app','styleguide'))
                 )
             );
         }

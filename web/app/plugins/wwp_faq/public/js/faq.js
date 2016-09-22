@@ -16,7 +16,7 @@
 
     faq.prototype = {
         init: function(){
-            console.log(this.$context);
+            console.log('Module example',this.$context);
         }
     };
 
