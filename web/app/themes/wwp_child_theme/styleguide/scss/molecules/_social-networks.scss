@@ -1,0 +1,61 @@
+/*scss/molecules/_social-networks.scss*/
+
+/*ul.social-networks{
+    padding-left: 0;
+    list-style: none;
+    li{
+        display: inline-block;
+        padding: 10px;
+        text-indent: -9999em;
+        outline: 0;
+        position: relative;
+        background-color: $mediumgrey;
+    }
+    li.facebook > a{
+        display: block;
+        content: '';
+        @extend .svg-facebook;
+        @extend .svg-facebook-dims;
+        background-image: url("../../assets/final/svg/view/svg/sprite.view.svg") !important;
+    }
+}*/ // Cannot change icon's size
+
+ul.social-networks, ul.reseaux-sociaux{
+    padding-left: 0;
+    list-style: none;
+    li{
+        display: inline-block;
+        margin-right: 1rem;
+        text-indent: -9999em;
+        outline: 0; // Hide text
+    }
+    li > a{
+        display: block;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        fill: #fff;
+        background-color: $mediumgrey;
+        &:hover, &:focus{
+            background-color: $blue;
+        }
+    }
+    li.facebook > a{
+        content: url("../../assets/raw/svg/facebook.svg");
+    }
+    li.twitter > a{
+        content: url("../../assets/raw/svg/twitter.svg");
+    }
+    li.youtube > a{
+        content: url("../../assets/raw/svg/youtube.svg");
+    }
+    li.instagram > a{
+        content: url("../../assets/raw/svg/instagram.svg");
+    }
+    li.pinterest > a{
+        content: url("../../assets/raw/svg/pinterest.svg");
+    }
+    li.flickr > a{
+        content: url("../../assets/raw/svg/flickr.svg");
+    }
+} // Cannot custom fill color
