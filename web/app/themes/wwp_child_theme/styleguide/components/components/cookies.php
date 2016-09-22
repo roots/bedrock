@@ -7,5 +7,5 @@
 $cookieComponent = new \WonderWp\Theme\Components\CookieComponent();
 
 //Get markup
-echo $cookieComponent->getMarkup(true);
+echo $cookieComponent->getMarkup(['force'=>true]);
 ?>

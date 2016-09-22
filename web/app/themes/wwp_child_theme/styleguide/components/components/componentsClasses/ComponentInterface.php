@@ -10,6 +10,6 @@ namespace WonderWp\Theme\Components;
 
 interface ComponentInterface{
 
-    public function getMarkup();
+    public function getMarkup($opts=array());
 
 }

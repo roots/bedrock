@@ -19,7 +19,7 @@ class GridComponent extends AbstractComponent
         $this->_cards[] = $card;
     }
 
-    public function getMarkup()
+    public function getMarkup($opts=array())
     {
         $markup='';
         if (!empty($this->_cards)) {

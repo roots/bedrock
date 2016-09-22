@@ -31,7 +31,7 @@ class BreadCrumbComponent extends AbstractComponent
         return $this;
     }
 
-    public function getMarkup()
+    public function getMarkup($opts=array())
     {
         $markup = '';
         $breadcrumbs = $this->_crumbs;
