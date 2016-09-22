@@ -85,7 +85,7 @@ class CardComponent extends AbstractComponent
         return $this;
     }
 
-    public function getMarkup()
+    public function getMarkup($opts=array())
     {
         $markup = '<div class="card">';
 

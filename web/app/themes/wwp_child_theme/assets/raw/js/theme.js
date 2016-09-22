@@ -1,4 +1,4 @@
-(function($,ns){
+(function($,ns,app){
 
     var themeJs = {
 
@@ -17,7 +17,7 @@
         },
 
         initComponents: function(global,$context){
-          var registeredComponents = ns.app.getComponents();
+          var registeredComponents = app.getComponents();
 
             if(registeredComponents){ for(var i in registeredComponents){
                 var component = registeredComponents[i];
@@ -33,7 +33,7 @@
         },
 
         runCurrentPageJs: function(){
-            var $pageWrap = this.$wrap.find('#content > article.page');
+            var $pageWrap = this.$wrap.find('#content > article.hentry');
             //does the page give instructions about the class to load?
             var potentialClassName = $pageWrap.data('name') ? 'Page'+$pageWrap.data('name') : 'Page';
             var potentialClass = ns[potentialClassName];
@@ -52,4 +52,4 @@
         themeJs.init();
 
 
-})(jQuery,window.wonderwp);
+})(jQuery,window.wonderwp,window.wonderwp.app);

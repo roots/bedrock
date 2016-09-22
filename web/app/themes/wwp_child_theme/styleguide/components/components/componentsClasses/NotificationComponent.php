@@ -9,24 +9,15 @@
 namespace WonderWp\Theme\Components;
 
 
-class NotificationComponent extends AbstractComponent
+use WonderWp\Notification\AdminNotification;
+
+class NotificationComponent extends AdminNotification implements ComponentInterface
 {
-    private $_notif = array();
+    public static $template = '<div class="alert alert-{type}" role="alert">{message}</div>';
 
-    /**
-     * @param array $notif
-     */
-    public function setNotif($type,$message)
+    public function getMarkup($opts=array())
     {
-        $this->_notif = ['type'=>$type,'msg'=>$message];
-        return $this;
-    }
-
-    public function getMarkup()
-    {
-        $markup = '<div class="alert alert-'.$this->_notif['type'].'" role="alert">
-          '.$this->_notif['msg'].'
-        </div>';
+        $markup=str_replace(array('{type}','{message}'),array($this->_type,$this->_message),self::$template);
 
         return $markup;
     }
