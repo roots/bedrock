@@ -53,7 +53,7 @@ class NewsletterPublicController extends AbstractPluginFrontendController
         /** @var ThemeViewService $viewService */
         $viewService = wwp_get_theme_service('view');
 
-        $notifications = $viewService->flashesToNotifications();
+        $notifications = $viewService->flashesToNotifications('newsletter');
 
         //$opts = array('formStart'=>['action'=>'/contactFormSubmit']);
         $opts = array();
