@@ -8,11 +8,11 @@
 }
 
 @mixin svgIcon($iconName, $iconScale){
-    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg");
+    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg") !important;
     display: block;
     content: '';
-    @extend .svg-#{$iconName};
-    @extend .svg-#{$iconName}-dims;
+    @extend .svg-#{$iconName} !optional;
+    @extend .svg-#{$iconName}-dims !optional;
     transform: scale($iconScale);
     background-repeat: no-repeat;
 }

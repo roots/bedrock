@@ -1,20 +1,20 @@
 <!--components/atoms/loader.php-->
 
 <span class="subTitle">Simple spinner</span>
-<div class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-</div>
+<span class="loader"></span>
+<span class="loader-blue"></span>
 
 <hr>
 <span class="subTitle">Button + spinner</span>
 
-<button class="btn btn-default" type="button">
+<button class="btn btn-secondary button-loader" type="button">
     Bouton
-    <div class="spinner spinner-white">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
 </button>
+
+<hr>
+<span class="subTitle">Add spinner on button form, when class "loading" is added to form tag</span>
+<form action="" class="loading">
+    <button class="btn btn-secondary" type="button">
+        Bouton avec loader
+    </button>
+</form>
