@@ -17,6 +17,8 @@ use WonderWp\Forms\Fields\InputField;
 use WonderWp\Forms\Fields\TextAreaField;
 use WonderWp\Forms\Form;
 use WonderWp\Plugin\Faq\FaqEntity;
+use WonderWp\Plugin\Translator\LangEntity;
+use WonderWp\Plugin\Translator\LocoAdmin;
 
 class PluginGenerator
 {
@@ -106,8 +108,7 @@ class PluginGenerator
             ->_generateListTable()
             ->_generateHookService()
             ->_generateLanguages()
-            ->_generateIcon()
-        ;
+            ->_generateIcon();
     }
 
     protected function _getClassMetaDatas()
@@ -137,6 +138,7 @@ class PluginGenerator
         $this->_folders['base'] = WP_PLUGIN_DIR . '/' . sanitize_title($this->_data['name']);
         $this->_folders['includes'] = $this->_folders['base'] . '/includes';
         $this->_folders['admin'] = $this->_folders['base'] . '/admin';
+        $this->_folders['languages'] = $this->_folders['base'] . '/languages';
 
         if (!empty($this->_folders)) {
             foreach ($this->_folders as $folder) {
@@ -176,7 +178,7 @@ class PluginGenerator
         $mgrTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'Manager.php';
         $mgrContent = str_replace(
             array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_DESC__', '__PLUGIN_CONST__', '__PLUGIN_CONST_LOW__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__', '__PLUGIN_CLASSNAME__', '__ESCAPED_PLUGIN_NS__'),
-            array($this->_data['name'], sanitize_title($this->_data['name']), $this->_data['desc'], strtoupper($this->_data['entityname']), strtolower($this->_data['entityname']), $this->_data['entityname'], $this->_data['namespace'], $this->_data['className'],str_replace('\\','\\\\',$this->_data['namespace'])),
+            array($this->_data['name'], sanitize_title($this->_data['name']), $this->_data['desc'], strtoupper($this->_data['entityname']), strtolower($this->_data['entityname']), $this->_data['entityname'], $this->_data['namespace'], $this->_data['className'], str_replace('\\', '\\\\', $this->_data['namespace'])),
             $this->_fileSystem->get_contents($mgrTpl)
         );
         $mgrFile = $this->_folders['includes'] . DIRECTORY_SEPARATOR . ($this->_data['entityname']) . 'Manager.php';
@@ -283,8 +285,8 @@ class PluginGenerator
     {
         $acTpl = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'HookService.php';
         $acContent = str_replace(
-            array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__','__PLUGIN_CONST__'),
-            array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace'],strtoupper($this->_data['entityname'])),
+            array('__PLUGIN_NAME__', '__PLUGIN_SLUG__', '__PLUGIN_ENTITY__', '__PLUGIN_NS__', '__PLUGIN_CONST__'),
+            array(str_replace('wwp ', '', $this->_data['name']), sanitize_title($this->_data['name']), $this->_data['entityname'], $this->_data['namespace'], strtoupper($this->_data['entityname'])),
             $this->_fileSystem->get_contents($acTpl)
         );
         $acFile = $this->_folders['includes'] . DIRECTORY_SEPARATOR . ($this->_data['entityname']) . 'HookService.php';
@@ -294,15 +296,75 @@ class PluginGenerator
 
     protected function _generateLanguages()
     {
-        $iconSrc = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR.'icon.svg';
-        $iconDest = $this->_folders['base'].DIRECTORY_SEPARATOR.'icon.svg';
-        $this->_fileSystem->copy($iconSrc,$iconDest);
+        $container = Container::getInstance();
+        $em = $container->offsetGet('entityManager');
+        $repo = $em->getRepository(LangEntity::class);
+        $langs = $repo->findAll();
+
+        $fieldNames = $this->_metaDatas->fieldNames;
+
+        $pot = '
+msgid ""
+msgstr ""
+"X-Generator :wonderwp"';
+        $po = array();
+
+        if (!empty($fieldNames)) {
+            foreach ($fieldNames as $fieldName) {
+                $pot .= '
+msgid "' . $fieldName . '.trad"
+msgstr ""
+';
+                if (!empty($langs)) {
+                    foreach ($langs as $lang) {
+                        $locale = $lang->getLocale();
+                        if (empty($po[$locale])) {
+                            $current_user = wp_get_current_user();
+                            $po[$locale] = 'msgid ""
+msgstr ""
+"POT-Creation-Date :'.date('r').'"
+"PO-Revision-Date :'.date('r').'"
+"Last-Translator : '.$current_user->user_login.' <'.$current_user->user_email.'>"
+"X-Generator :wonderwp"
+"X-Loco-Target-Locale :'.$locale.'"
+';
+                        }
+                        $po[$locale] .= '
+msgid "' . $fieldName . '.trad"
+msgstr "' . ucfirst($fieldName) . '"
+';
+                    }
+                }
+            }
+        }
+
+        if (!empty($pot)) {
+            $potFile = $this->_folders['languages'] . DIRECTORY_SEPARATOR . sanitize_title($this->_data['name']) . '.pot';
+            $this->_fileSystem->put_contents($potFile, $pot, FS_CHMOD_FILE);
+            if (!empty($po)) {
+                foreach ($po as $locale => $localizedPo) {
+                    $localizedPoFile = $this->_folders['languages'] . DIRECTORY_SEPARATOR . sanitize_title($this->_data['name']) . '-' . $locale . '.po';
+                    $this->_fileSystem->put_contents($localizedPoFile, $localizedPo, FS_CHMOD_FILE);
+
+                    if(class_exists(LocoAdmin::class)) {
+                        $po = LocoAdmin::parse_po($localizedPoFile);
+                        $mo = LocoAdmin::msgfmt_native($po);
+                        $moPath = $this->_folders['languages'] . DIRECTORY_SEPARATOR . sanitize_title($this->_data['name']) . '-' . $locale . '.mo';
+                        $bytes = file_put_contents($moPath, $mo);
+                    }
+
+                }
+            }
+        }
+
         return $this;
     }
 
     protected function _generateIcon()
     {
-
+        $iconSrc = $this->_manager->getConfig('path.root') . DIRECTORY_SEPARATOR . 'deliverables' . DIRECTORY_SEPARATOR . 'icon.svg';
+        $iconDest = $this->_folders['base'] . DIRECTORY_SEPARATOR . 'icon.svg';
+        $this->_fileSystem->copy($iconSrc, $iconDest);
         return $this;
     }
 

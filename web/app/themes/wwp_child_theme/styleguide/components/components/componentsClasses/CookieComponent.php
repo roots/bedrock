@@ -16,7 +16,7 @@ use WonderWp\HttpFoundation\Request;
 class CookieComponent extends AbstractComponent
 {
 
-    public function getMarkup($force = false)
+    public function getMarkup($opts=array())
     {
         $bandeau = null;
 
@@ -30,7 +30,7 @@ class CookieComponent extends AbstractComponent
         $cookies = Request::getInstance()->cookies;
         $cookieSet = $cookies->has($cookieName);
 
-        if ($force || !$cookieSet) {
+        if (!empty($opts['force']) || !$cookieSet) {
             $bandeau = '
         <div class="cookies-wrap active">
             <p>' . __('cookies.txt.trad', WWP_THEME_TEXTDOMAIN) . '</p>
@@ -39,7 +39,7 @@ class CookieComponent extends AbstractComponent
         </div>';
         }
 
-        if(!$force && !empty($bandeau) && !$cookieSet){
+        if(empty($opts['force']) && !empty($bandeau) && !$cookieSet){
             $cookie = new Cookie($cookieName,true,time()+(60*60*24*7*30*6)); //Expires in 6 months
             setcookie($cookie->getName(),$cookie->getValue(),$cookie->getExpiresTime());
         }

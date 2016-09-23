@@ -20,7 +20,7 @@
                 this.$wrap.find('button').on('click', function (e) {
                     e.preventDefault();
                     t.$wrap.removeClass('active');
-                    $(t.$wrap).bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
+                    t.$wrap.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
                         t.$wrap.remove();
                     });
                 });

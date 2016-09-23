@@ -43,7 +43,7 @@ class ContactPublicController extends AbstractPluginFrontendController
         /** @var ThemeViewService $viewService */
         $viewService = wwp_get_theme_service('view');
 
-        $notifications = $viewService->flashesToNotifications();
+        $notifications = $viewService->flashesToNotifications('contact');
 
         $opts = array('formStart'=>['action'=>'/contactFormSubmit']);
         return $this->renderView('form', ['formView' => $formInstance->renderView($opts), 'notifications'=>$notifications]);
@@ -63,10 +63,10 @@ class ContactPublicController extends AbstractPluginFrontendController
         $prevPage = get_permalink($data['post']);
         if ($mailSent) {
             //save success msg
-            $request->getSession()->getFlashbag()->add('success',__('mail.sent',WWP_CONTACT_TEXTDOMAIN));
+            $request->getSession()->getFlashbag()->add('contact',['success',__('mail.sent',WWP_CONTACT_TEXTDOMAIN)]);
         } else {
             //save error msg
-            $request->getSession()->getFlashbag()->add('error',__('mail.notsent',WWP_CONTACT_TEXTDOMAIN));
+            $request->getSession()->getFlashbag()->add('contact',['error',__('mail.notsent',WWP_CONTACT_TEXTDOMAIN)]);
         }
         wp_redirect($prevPage);
     }
@@ -78,7 +78,7 @@ class ContactPublicController extends AbstractPluginFrontendController
     private function _getFormInstanceFromItem($formItem)
     {
         global $post;
-        $formInstance = new Form();
+        $formInstance = Container::getInstance()->offsetGet('wwp.forms.form');
 
         //Add configured fields
         $data = json_decode($formItem->getData());

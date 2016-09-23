@@ -39,6 +39,8 @@ class NewsletterHookService extends AbstractHookService{
         //Translate
         add_action( 'plugins_loaded', array($this, 'loadTextdomain' ));
 
+        add_action( 'wwp_before_footer', array($this,'loadGlobalRegisterForm'));
+
         return $this;
     }
 
@@ -63,6 +65,14 @@ class NewsletterHookService extends AbstractHookService{
     {
         $languageDir = $this->_manager->getConfig('path.base') . '/languages/';
         load_plugin_textdomain($this->_manager->getConfig('textDomain'),false,$languageDir);
+    }
+
+    public function loadGlobalRegisterForm(){
+        $listId = get_option('wwp-newsletter_autoload_listform');
+        if(!empty($listId)) {
+            $shortCode = '[wwpmodule slug="wwp-newsletter"  list="' . $listId . '" ]';
+            echo do_shortcode($shortCode);
+        }
     }
 
 }

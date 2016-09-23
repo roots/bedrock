@@ -16,7 +16,7 @@ class AccordionComponent extends AbstractComponent
         $this->_blocks[] = ['title'=>$title,'content'=>$content];
     }
 
-    public function getMarkup()
+    public function getMarkup($opts=array())
     {
         $markup = '';
         if(!empty($this->_blocks)){

@@ -40,8 +40,8 @@ class ContactHandlerService extends AbstractService
 
             //Save Contact
             //\WonderWp\trace($contact);
-            //$em->persist($contact);
-            //$em->flush();
+            $em->persist($contact);
+            $em->flush();
             //\WonderWp\trace($contact);
 
             //Send Email

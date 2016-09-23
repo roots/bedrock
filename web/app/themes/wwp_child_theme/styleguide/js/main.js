@@ -10,6 +10,7 @@
                 t.$wrap = $('body');
                 t.initComponents(true);
                 t.initComponents(false,$('.atoms-container'));
+                t.addOpenLink();
             });
         },
 
@@ -28,6 +29,15 @@
                 }
             }}
         },
+
+        addOpenLink: function(){
+            if(window.frameElement && window.frameElement.src) {
+                var openLink = '<a class="btn btn-sm newWindowLink" href="' + window.frameElement.src + '" target="_blank" style="position: absolute; right: 20px; top: 0;">' +
+                    'Ouvrir dans un nouvel onglet' +
+                '</a>';
+                $('body.base').prepend($(openLink));
+            }
+        }
 
     };
 

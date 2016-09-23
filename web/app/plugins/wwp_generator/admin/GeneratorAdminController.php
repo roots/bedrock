@@ -17,6 +17,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractPluginBackendController;
 use WonderWp\DI\Container;
 use WonderWp\HttpFoundation\Request;
+use WonderWp\Notification\AdminNotification;
 use WonderWp\Templates\VueFrag;
 
 /**
@@ -66,10 +67,10 @@ class GeneratorAdminController extends AbstractPluginBackendController
                     $generator->setData($data);
                     $generator->generate();
                     $notifType = 'success';
-                    $notifMsg = $container->offsetGet('wwp.forms.add.success');
+                    $notifMsg = $container->offsetGet('wwp.element.add.success');
                 } else {
                     $notifType = 'error';
-                    $notifMsg = $container->offsetGet('wwp.forms.add.error');
+                    $notifMsg = $container->offsetGet('wwp.element.add.error');
                 }
                 $notification = new AdminNotification($notifType, $notifMsg);
             }

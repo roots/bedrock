@@ -11,7 +11,7 @@ namespace WonderWp\Theme\Components;
 
 class ReseauxSociauxComponent extends AbstractComponent
 {
-    public function getMarkup()
+    public function getMarkup($opts=array())
     {
 
         $markup = '';
