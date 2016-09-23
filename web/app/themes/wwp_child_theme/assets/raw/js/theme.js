@@ -11,7 +11,14 @@
 
                 //appeler ici une fonction par fonctionnalite
                 //Ex: this.registerMenuToggle()
+
+                //Init Global Components
                 t.initComponents(true);
+                //Init Global Modules
+                t.initGlobalModules();
+
+
+                //Init current page js + components
                 t.runCurrentPageJs();
             });
         },
@@ -30,6 +37,25 @@
                     }
                 }
             }}
+        },
+
+        initGlobalModules: function(){
+            //var t = this;
+            if (!ns.app.modules) return;
+            var $defaultPageWrap = $('#content > article.hentry');
+
+            for (var moduleSlug in ns.app.modules) {
+                // init module script in each of its section in the page
+                var $moduleSection = $('body').find('.module-' + moduleSlug);
+                if ($moduleSection.length) {
+                    $moduleSection.each(function (i, context) {
+                        if(!$.contains($defaultPageWrap[0],context)) {
+                            var module = new ns.app.modules[moduleSlug]($(context));
+                            //t.modules.push(module);
+                        }
+                    });
+                }
+            }
         },
 
         runCurrentPageJs: function(){

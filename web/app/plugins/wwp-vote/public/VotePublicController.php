@@ -132,9 +132,9 @@ class VotePublicController extends AbstractPluginFrontendController
 
         $prevPage = get_permalink($data['post']);
         if ($success) {
-            $result = new Result(200,['msg'=>__('vote.success', WWP_CONTACT_TEXTDOMAIN)]);
+            $result = new Result(200,['msg'=>__('vote.success', WWP_VOTE_TEXTDOMAIN)]);
         } else {
-            $result = new Result(403,['msg'=>__('vote.error', WWP_CONTACT_TEXTDOMAIN)]);
+            $result = new Result(403,['msg'=>__('vote.error', WWP_VOTE_TEXTDOMAIN)]);
         }
 
         if($request->isXmlHttpRequest()){
@@ -143,6 +143,8 @@ class VotePublicController extends AbstractPluginFrontendController
             die();
         } else {
             $request->getSession()->getFlashbag()->add('vote', [($success ? 'success' : 'error'), $result->getData('msg')]);
+            die();
+
             wp_redirect($prevPage);
         }
     }
