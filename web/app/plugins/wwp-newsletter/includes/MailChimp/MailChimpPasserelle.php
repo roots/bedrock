@@ -3,6 +3,8 @@
 namespace WonderWp\Plugin\Newsletter\MailChimp;
 
 use Doctrine\ORM\EntityManager;
+use Respect\Validation\Validator;
+use WonderWp\API\Result;
 use WonderWp\DI\Container;
 use WonderWp\Forms\Fields\EmailField;
 use WonderWp\Forms\Fields\HiddenField;
@@ -92,31 +94,41 @@ class MailChimpPasserelle extends AbstractPasserelle
     {
         /** @var Form $form */
         $form = Container::getInstance()->offsetGet('wwp.forms.form');
-        /*$form = new NoewpFormulaire();
-        $form->action = $posturl;
-        $form->id = "mc-embedded-subscribe-form";
-        if (empty($listid)) {
-            $form->disabled = true;
-        }
-        $form->attributs['target'] = '_top';*/
 
         $f = new HiddenField('LIST_ID', $list->getId());
         $form->addField($f);
 
-        $f = new EmailField('EMAIL',null,['label'=>__('subscribe.label.trad',WWP_NEWSLETTER_TEXTDOMAIN)]);
+        $placeholder = __('subscribe.placeholder.trad',WWP_NEWSLETTER_TEXTDOMAIN);
+        $displayRules = [
+            'label'=>__('subscribe.label.trad',WWP_NEWSLETTER_TEXTDOMAIN)
+        ];
+        if(!empty($placeholder)){
+            $displayRules['inputAttributes'] = array('placeholder'=>$placeholder);
+        }
+        $validationRules = array(Validator::notEmpty());
+        $f = new EmailField('EMAIL',null,$displayRules,$validationRules);
         $form->addField($f);
 
-        $savedData = $list->getData();
-        $postUrl=$savedData->postUrl;
+        return $form;
 
-        $opts = array(
-            'formStart'=>array(
-                'action'=>$postUrl,
-                'id'=>'mc-embedded-subscribe-form',
-                'target'=>'_top'
-            )
-        );
-        return $form->renderView($opts);
+    }
 
+    public function handleFormSubmit(array $data)
+    {
+
+        if(empty($data['LIST_ID']) || empty($data['EMAIL'])){
+            return new Result('403',['msg'=>"Missing List or Email"]);
+        }
+
+        $postRes = $this->_mailChimpWrapper->post("lists/".$data['LIST_ID']."/members", [
+            'email_address' => $data['EMAIL'],
+            'status'        => 'subscribed',
+        ]);
+
+        if($postRes['status']=='subscribed'){
+            return new Result(200);
+        } else {
+            return new Result($postRes['status'],['msg'=>$postRes['title']]);
+        }
     }
 }

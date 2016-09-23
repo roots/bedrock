@@ -8,9 +8,17 @@
 
 namespace WonderWp\Plugin\Newsletter;
 
+use WonderWp\API\Result;
+
 interface PasserelleInterface
 {
     public function getOptions();
     public function syncListes();
     public function getSignupForm(NewsletterEntity $list);
+
+    /**
+     * @param array $data
+     * @return Result
+     */
+    public function handleFormSubmit(array $data);
 }

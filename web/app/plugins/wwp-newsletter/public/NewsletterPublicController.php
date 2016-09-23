@@ -11,6 +11,7 @@ namespace WonderWp\Plugin\Newsletter;
 use Doctrine\ORM\EntityRepository;
 use Respect\Validation\Rules\In;
 use Respect\Validation\Validator;
+use WonderWp\API\Result;
 use WonderWp\APlugin\AbstractPluginFrontendController;
 use WonderWp\DI\Container;
 use WonderWp\Forms\Fields\EmailField;
@@ -48,20 +49,65 @@ class NewsletterPublicController extends AbstractPluginFrontendController
 
         $listItem = $this->_entityManager->find(NewsletterEntity::class, $atts['list']);
 
-        $formView = $passerelle->getSignupForm($listItem);
+        $form = $passerelle->getSignupForm($listItem);
+
+        $opts = array(
+            'formStart'=>array(
+                'action'=>'/newsletterFormSubmit',
+                'class'=>'nlForm form-inline'
+            )
+        );
+        $formView = $form->renderView($opts);
 
         /** @var ThemeViewService $viewService */
         $viewService = wwp_get_theme_service('view');
-
         $notifications = $viewService->flashesToNotifications('newsletter');
 
-        //$opts = array('formStart'=>['action'=>'/contactFormSubmit']);
-        $opts = array();
         return $this->renderView('form', [
             'formTitle'=>$formTitle,
             'formView' => $formView,
             'notifications' => $notifications
         ]);
+    }
+
+    public function handleFormAction(){
+        $passerelleClass = get_option("wwp-newsletter_passerelle");
+
+        /** @var PasserelleInterface $passerelle */
+        $passerelle = new $passerelleClass();
+
+        $request = Request::getInstance();
+
+        $data = $request->request->all();
+
+        $submitResult = $passerelle->handleFormSubmit($data);
+
+        $success = $submitResult->getCode()===200;
+
+        $prevPage = $_SERVER['HTTP_REFERER'];
+        if ($success) {
+            $result = new Result(200,['msg'=>__('newsletter.subscribe.success', WWP_NEWSLETTER_TEXTDOMAIN)]);
+        } else {
+            if($submitResult->getData('msg')=='Member Exists'){
+                $result = new Result(202,['msg' => __('newsletter.alreadysubscribe.info', WWP_NEWSLETTER_TEXTDOMAIN)]);
+            } else {
+                $result = new Result(403, ['msg' => __('newsletter.subscribe.error', WWP_NEWSLETTER_TEXTDOMAIN)]);
+            }
+        }
+
+        if($request->isXmlHttpRequest()){
+            header('Content-Type: application/json');
+            echo $result;
+            die();
+        } else {
+            $notifType = 'error';
+            if($result->getCode()===200){ $notifType='success'; }
+            if($result->getCode()===202){ $notifType='info'; }
+            $notif = [$notifType, $result->getData('msg')];
+            $request->getSession()->getFlashbag()->add('newsletter', $notif);
+            wp_redirect($prevPage);
+            die();
+        }
     }
 
 }

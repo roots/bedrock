@@ -76,18 +76,21 @@ class NewsletterManager extends AbstractPluginManager{
             //List Table service
             return new NewsletterListTable();
         });
-        /* //Uncomment this if your plugin has assets
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
             return new NewsletterAssetService();
-        });*/
-        //Page settings
+        });
         $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME, function(){
+            //Page settings
             return new NewsletterPageSettingsService();
         });
-        //Passerelles
         $this->addService('passerelle', function(){
+            //Passerelles
             return new NewsletterPasserelleService();
+        });
+        $this->addService(AbstractService::$ROUTESERVICENAME, function(){
+            //Route
+            return new NewsletterRouteService();
         });
 
 
