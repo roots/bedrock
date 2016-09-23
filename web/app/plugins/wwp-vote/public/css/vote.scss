@@ -1,0 +1,32 @@
+/**
+ *	Plugin vote
+ */
+
+.module-vote{
+    .radio-group .input-wrap{
+        margin-right: 0;
+        border-radius: 0;
+        label{
+            overflow: hidden;
+            width: 23px;
+            height: 23px;
+            margin: 0;
+            padding: 0;
+            text-indent: 101%;
+        }
+        label:before{
+            @include svgIcon(star_grey, 1);
+        }
+        label:hover:before{
+            @include svgIcon(star_darkgrey, 1);
+        }
+        &.active{
+            label:before{
+                @include svgIcon(star_pink, 1);
+            }
+        }
+    }
+    .submitFormField{
+        display: none;
+    } // TODO: shown when no JS
+}

@@ -8,7 +8,7 @@
 }
 
 @mixin svgIcon($iconName, $iconScale){
-    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg");
+    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg") !important;
     display: block;
     content: '';
     @extend .svg-#{$iconName} !optional;
