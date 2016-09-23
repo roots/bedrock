@@ -23,17 +23,21 @@
             var t = this;
             t.$context.find('form.voteForm').on('submit',function(e){
                 e.preventDefault();
-                var $form = $(this);
-                $form.addClass('loading').find('input[type="submit"]').attr('disabled', 'disabled');
-                $.post($(this).attr('action'),$(this).serializeArray(),function(res){
-                    var notifComponent = ns.app.getComponent('notification');
+                var $form = $(this),
+                    $loader = $(ns.app.getTemplate('loaders')['loader-alt-small']),
+                    formData = $form.serializeArray();
 
+                $form.append($loader);
+                $form.addClass('loading').find('input').attr('disabled', 'disabled');
+                $.post($form.attr('action'),formData,function(res){
+                    var notifComponent = ns.app.getComponent('notification');
                     if(res && res.code && res.code==200){
                         notifComponent.show('success',res.data.msg,t.$context);
                     } else {
                         notifComponent.show('error',res.data.msg || 'Error',t.$context);
                     }
-                    $form.removeClass('loading').find('input[type="submit"]').removeAttr('disabled','disabled');
+                    $form.removeClass('loading').find('input').removeAttr('disabled','disabled');
+                    $loader.remove();
                 });
             })
         },

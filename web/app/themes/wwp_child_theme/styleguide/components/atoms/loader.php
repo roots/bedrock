@@ -1,8 +1,19 @@
 <!--components/atoms/loader.php-->
 
 <span class="subTitle">Simple spinner</span>
-<span class="loader"></span>
-<span class="loader-blue"></span>
+
+<?php
+$loaderComp = new \WonderWp\Theme\Components\Loadercomponent();
+
+//way to render one tpl:
+//echo $loaderComp->getMarkup(['tpl' => "loader"]);
+
+$loadersTemplates = $loaderComp->getTemplates();
+if(!empty($loadersTemplates)){ foreach($loadersTemplates as $tplName=>$loaderTemplate){
+    echo $loaderTemplate;
+} }
+
+?>
 
 <hr>
 <span class="subTitle">Button + spinner</span>

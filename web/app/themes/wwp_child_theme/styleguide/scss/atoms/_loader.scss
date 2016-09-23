@@ -8,19 +8,18 @@
 
 .loader{
     display: inline-block;
-    @extend .svg-loader_puff;
-    @extend .svg-loader_puff-dims;
-    /*background-image: url("#{$get-path-to-assets}/raw/svg/view/svg/sprite.view.svg") !important;*/
-    background-image: url("#{$get-path-to-assets}/raw/svg/loader_puff.svg") !important;
-    background-position: center center;
+    @include svgIcon(loader_puff, 1);
     background-color: $blue;
+    &.small{
+        transform: scale(.5);
+    }
 }
-.loader-blue{
+.loader-alt{
     display: inline-block;
-    @extend .svg-loader_puff_blue;
-    @extend .svg-loader_puff_blue-dims;
-    background-image: url("#{$get-path-to-assets}/raw/svg/loader_puff_blue.svg") !important;
-    background-position: center center;
+    @include svgIcon(loader_puff_blue, 1);
+    &.small{
+        transform: scale(.5);
+    }
 }
 
 .button-loader,

@@ -64,7 +64,7 @@ class VotePublicController extends AbstractPluginFrontendController
         $viewService = wwp_get_theme_service('view');
         $notifications = $viewService->flashesToNotifications('vote');
 
-        $opts = array('formStart' => ['action' => '/voteFormSubmit','class'=>['voteForm']]);
+        $opts = array('formStart' => ['action' => '/voteFormSubmit','class'=>['voteForm inline-form']]);
         return $this->renderView('form', [
             'nbVotes' => $nbVotes,
             'formView' => $form->renderView($opts),

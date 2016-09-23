@@ -40,7 +40,14 @@ class ChildThemeHookService extends ThemeHookService
 
     public function loadJsonTpls(){
         $templates = array();
+
+        //Notifications
         $templates['notification'] = NotificationComponent::$template;
+
+        //Loaders
+        $loaderComp = new \WonderWp\Theme\Components\Loadercomponent();
+        $templates['loaders'] = $loaderComp->getTemplates();
+
         echo'<script type="content/json" id="jsTemplates">'.json_encode($templates).'</script>';
     }
 }
