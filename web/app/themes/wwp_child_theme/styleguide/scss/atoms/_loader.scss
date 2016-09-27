@@ -8,7 +8,9 @@
 
 .loader{
     display: inline-block;
-    @include svgIcon(loader_puff, 1);
+    width: 44px;
+    height: 44px;
+    background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff.svg") !important;
     background-color: $blue;
     &.small{
         transform: scale(.5);
@@ -16,7 +18,9 @@
 }
 .loader-alt{
     display: inline-block;
-    @include svgIcon(loader_puff_blue, 1);
+    width: 44px;
+    height: 44px;
+    background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff_blue.svg") !important;
     &.small{
         transform: scale(.5);
     }
@@ -29,12 +33,12 @@
     &:after {
         content: '';
         display: block;
-        @extend .svg-loader_puff;
-        @extend .svg-loader_puff-dims;
-        background-image: url("#{$get-path-to-assets}/raw/svg/loader_puff.svg") !important;
+        width: 44px;
+        height: 44px;
+        background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff.svg") !important;
         background-position: center center;
         position: absolute;
         right: 0;
-        top: -.4rem;
+        top: 0;
     }
 }
