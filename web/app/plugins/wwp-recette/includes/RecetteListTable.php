@@ -17,9 +17,9 @@ class RecetteListTable extends WwpListTable{
      */
     function get_columns() {
         $cols = parent::get_columns();
-        /* foreach(array() as $col) {
+        foreach(array('media','description','slug') as $col) {
             unset($cols[$col]);
-        }*/
+        }
         return $cols;
     }
 

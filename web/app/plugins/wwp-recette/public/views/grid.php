@@ -9,18 +9,21 @@
 <section class="module-recette">
     <?php
     if (!empty($recettes)) {
-        $gridComponent = new \WonderWp\Theme\Components\GridComponent();
+        echo'<ul class="recipe-list grid-4">';
         foreach ($recettes as $recette) {
             /** @var $recette \WonderWp\Plugin\Recette\RecetteEntity*/
-            echo'<br />'.$recette->getTitle();
-            $card = new \WonderWp\Theme\Components\CardComponent();
+            $card = new \WonderWp\Theme\Components\RecipeCardComponent();
             $card
                 ->setImage($recette->getMedia())
                 ->setTitle($recette->getTitle())
+                ->setLink($card->formatLink())
+                ->setRating($recette->getRatings())
+                ->setCategory($recette->getCategory())
                 ;
-            $gridComponent->addCard($card);
+            echo $card->getMarkup();
+
         }
-        echo $gridComponent->getMarkup();
+        echo '</ul>';
     }
     ?>
 </section>

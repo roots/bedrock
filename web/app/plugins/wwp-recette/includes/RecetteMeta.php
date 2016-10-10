@@ -25,7 +25,7 @@ class RecetteMeta extends AbstractEntity
     /**
      * @var string
      *
-     * @Column(name="val", type="string", length=140, nullable=true)
+     * @Column(name="val", type="string", length=65535, nullable=true)
      */
     private $val;
 

@@ -24,7 +24,7 @@ use WonderWp\Forms\Fields\BtnField;
 use WonderWp\Forms\Fields\FieldGroup;
 use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\InputField;
-use WonderWp\Forms\Fields\MediaField;
+use WonderWp\Forms\Fields\FileField;
 use WonderWp\Forms\Fields\NumericField;
 use WonderWp\Forms\Fields\SelectField;
 use WonderWp\Forms\Fields\TextAreaField;
@@ -33,6 +33,8 @@ use WonderWp\Forms\FormGroup;
 use WonderWp\Forms\FormInterface;
 use WonderWp\Forms\FormValidatorInterface;
 use WonderWp\Forms\ModelForm;
+use WonderWp\Plugin\Forms\Fields\LocaleField;
+use WonderWp\Plugin\Forms\Fields\MediaField;
 
 /**
  * Class RecetteForm
@@ -64,6 +66,12 @@ class RecetteForm extends ModelForm
         switch ($fieldName) {
             case'media':
                 $f = new MediaField($fieldName, $val, ['label' => $label]);
+                break;
+            case 'locale':
+                $f = LocaleField::getInstance($fieldName,$val,['label' => $label]);
+                break;
+            case 'slug':
+                $f = new HiddenField($fieldName, sanitize_title($this->_modelInstance->getTitle()));
                 break;
             default:
                 $f = parent::newField($attr);
@@ -105,7 +113,7 @@ class RecetteForm extends ModelForm
         $this->_formInstance->addGroup(new FormGroup('metas', __('metasrecette.trad', WWP_RECETTE_TEXTDOMAIN), ['class' => ['closed']]));
 
         $metaFieldsDef = array(
-            ['nbPers', NumericField::class], //Nombre de personnes
+            ['nbPers', InputField::class], //Nombre de personnes
             ['tpsPrepa', InputField::class], //Temps de préparation
             ['tpsCuisson', InputField::class], //Temps de cuisson
             ['difficulte', InputField::class], //Difficulté
@@ -238,7 +246,7 @@ class RecetteForm extends ModelForm
             'label' => __('etape.media.trad', WWP_RECETTE_TEXTDOMAIN),
             'inputAttributes' => ['name' => 'etapes[' . $i . '][media]']
         ];
-        $eMedia = new MediaField('etape_' . $i . '_media', $etape->getMedia(), $displayRules);
+        $eMedia = new FileField('etape_' . $i . '_media', $etape->getMedia(), $displayRules);
         $f->addFieldToGroup($eMedia);
 
         //Ingredients

@@ -80,11 +80,10 @@ class RecetteManager extends AbstractPluginManager{
             //Asset service
             return new RecetteAssetService();
         });
-        /* //Uncomment this if your plugin has particular routes, then create the RecetteRouteService class in the include folder
         $this->addService(AbstractService::$ROUTESERVICENAME,function(){
             //Route service
             return new RecetteRouteService();
-        });*/
+        });
         /* //Uncomment this if your plugin has page settings, then create the RecettePageSettingsService class in the include folder
         $this->addService(AbstractService::$PAGESETTINGSSERVICENAME,function(){
             //Page settings service
