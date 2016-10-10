@@ -48,17 +48,7 @@ class RecetteAdminController extends AbstractPluginBackendController{
         $listTableInstance->setEntityName(Ingredient::class);
         $listTableInstance->setTextDomain(WWP_RECETTE_TEXTDOMAIN);
 
-        $tabs = $this->getTabs();
-
-        $prefix = $this->_manager->getConfig('prefix');
-        $vue = $container->offsetGet('wwp.views.baseAdmin');
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
-        if (!empty($tabs)) {
-            $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));
-        }
-        $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.list'),array('listTableInstance'=>$listTableInstance)));
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer')));
-        $vue->render();
+        parent::listAction($listTableInstance);
     }
 
     public function editIngredientAction(){

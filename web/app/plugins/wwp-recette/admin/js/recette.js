@@ -25,6 +25,15 @@
             var t =this;
 
             /**
+             * Check slug
+             */
+            this.$wrap.find('.title-wrap input.text').on('change',function(){
+               var newTitle = $(this).val(),
+                   newSlug = ns.adminApp.stringToSlug(newTitle);
+                t.$wrap.find('#slug').val(newSlug);
+            });
+
+            /**
              * Add Etape
              */
             this.$wrap.find('#add-etape').on('click',function(e){

@@ -1,0 +1,41 @@
+/**
+ *	Recipe's list page example
+ */
+
+// Body background color (+ images ?)
+body.page-recettes{
+    background: linear-gradient(#F4E5E0, #FCF3EE);
+    .entry-title {
+        @extend .visually-hidden;
+    }
+}
+
+.module-recette{
+    margin: 4rem 0;
+}
+ul.recipe-list{
+    padding-left: 0;
+    list-style-type: none;
+    @media (min-width: $tiny + 1){
+        @include grid(4, 2rem);
+    }
+    @media (min-width: $small + 1){
+        @include grid(4, 4rem);
+    }
+}
+
+
+
+
+
+
+
+// .recipe-list-item styles are in styleguide recipe's card
+
+
+// Mediaqueries up to 1024px
+/*@media (max-width: $medium){
+    ul.recipe-list{
+        @include grid(4, 2rem);
+    }
+}*/

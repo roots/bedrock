@@ -256,7 +256,7 @@ class Ingredient extends AbstractEntity
      * @param IngredientTrad $trad
      * @return bool
      */
-    public function removeTranslation(RecetteMeta $trad)
+    public function removeTranslation(IngredientTrad $trad)
     {
         if(is_null($this->translations)){
             $this->translations = new ArrayCollection();

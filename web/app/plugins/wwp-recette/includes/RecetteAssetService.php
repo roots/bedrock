@@ -24,10 +24,13 @@ class RecetteAssetService extends AbstractAssetService{
 
             $this->_assets = array(
                 'css' => array(
-                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/css/recette.scss', array('styleguide'), null, false, AbstractAssetService::$ADMINASSETSGROUP)
+                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/css/recette.scss', array('styleguide'), null, false, AbstractAssetService::$ADMINASSETSGROUP),
+                    new $assetClass('wwp-recette-list', $pluginPath . '/public/css/recipeslist.scss', array('styleguide')),
+                    new $assetClass('wwp-recette', $pluginPath . '/public/css/recipe.scss', array('styleguide'))
                 ),
                 'js' => array(
-                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/js/recette.js', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP)
+                    new $assetClass('wwp-recette-admin', $pluginPath . '/admin/js/recette.js', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP),
+                    new $assetClass('wwp-ingredient-admin', $pluginPath . '/admin/js/ingredient.js', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP)
                 )
             );
         }
