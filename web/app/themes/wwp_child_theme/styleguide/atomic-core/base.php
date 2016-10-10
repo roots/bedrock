@@ -2,7 +2,7 @@
 	<body class="base">
 	
 	
-	<div class="grid-row atoms-container">
+	<div class="atoms-container">
 			<?php include ("sidebar.php");?>
 			
 			
