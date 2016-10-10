@@ -42,4 +42,4 @@
     <div>...</div>
 </div>
 
-<span class="subTitle">Plus ur le site de grillade.css (offsets pull et push, réordonner les éléments, inverser la grille…)</span>
+<span class="subTitle">Plus sur le site de <a href="http://knacss.com/grillade/">grillade.css</a> (offsets pull et push, réordonner les éléments, inverser la grille…)</span>
