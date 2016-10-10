@@ -1,0 +1,17 @@
+/*scss/base/_grids.scss*/
+
+.atomsWrap, .compWrap {
+    [class*="grid-3"] > *, .grid-perso > *{
+        margin-bottom: 1rem;
+        padding: 1rem;
+        &:nth-child(even) {
+            background-color: $mediumgrey;
+        }
+        &:nth-child(odd) {
+            background-color: $darkgrey;
+        }
+    }
+    .grid-perso {
+        @include grid(4, 0);
+    }
+}

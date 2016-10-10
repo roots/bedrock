@@ -1,0 +1,122 @@
+/* ----------------------------- */
+/* ==Global Layout               */
+/* ----------------------------- */
+
+/* module, gains superpower "BFC" Block Formating Context */
+.mod,
+.bfc {
+  overflow: hidden;
+}
+
+/* blocks that needs to be placed under floats */
+.clear {
+  clear: both;
+}
+
+/* blocks that must contain floats */
+.clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    border-collapse: collapse;
+  }
+}
+
+/* simple blocks alignment */
+.#{$kna-namespace}left {
+  margin-right: auto;
+}
+
+.#{$kna-namespace}right {
+  margin-left: auto;
+}
+
+.#{$kna-namespace}center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* text and contents alignment */
+.#{$kna-namespace}txtleft {
+  text-align: left;
+}
+
+.#{$kna-namespace}txtright {
+  text-align: right;
+}
+
+.#{$kna-namespace}txtcenter {
+  text-align: center;
+}
+
+/* floating elements */
+.#{$kna-namespace}fl {
+  float: left;
+}
+
+img.#{$kna-namespace}fl {
+  margin-right: $small-value;
+}
+
+.#{$kna-namespace}fr {
+  float: right;
+}
+
+img.#{$kna-namespace}fr {
+  margin-left: $small-value;
+}
+
+img.#{$kna-namespace}fl,
+img.#{$kna-namespace}fr {
+  margin-bottom: $tiny-value;
+}
+
+/* inline-block */
+.#{$kna-namespace}inbl {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* flexbox layout
+http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html
+*/
+
+[class*="#{$kna-namespace}flex-container"],
+.#{$kna-namespace}flex-container{
+  display : flex;
+  flex-wrap: wrap;
+}
+
+.#{$kna-namespace}flex-container-h {
+  flex-direction: row;
+}
+
+.#{$kna-namespace}flex-container-v {
+  flex-direction: column;
+}
+
+.#{$kna-namespace}flex-item-fluid {
+  flex: 1;
+  min-width: 0;
+}
+
+.#{$kna-namespace}flex-item-first,
+.#{$kna-namespace}grid-item-first {
+  order : -1;
+}
+
+.#{$kna-namespace}flex-item-medium,
+.#{$kna-namespace}grid-item-medium {
+  order : 0;
+}
+
+.#{$kna-namespace}flex-item-last,
+.#{$kna-namespace}grid-item-last {
+  order : 1;
+}
+
+.#{$kna-namespace}flex-item-center,
+.#{$kna-namespace}grid-item-center {
+  margin: auto;
+}

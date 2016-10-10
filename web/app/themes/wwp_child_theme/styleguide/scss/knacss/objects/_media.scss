@@ -1,0 +1,21 @@
+/* Media object */
+@media (min-width: ($tiny + 1)) {
+  .o-media {
+    display: flex;
+    align-items: flex-start;
+  }
+  .o-media-content {
+    flex: 1;
+    min-width: 0; /* avoid min-width:auto */
+  }
+}
+
+/* Media variants */
+@media (min-width: ($tiny + 1)) {
+  .o-media--reverse {
+    flex-direction: row-reverse;
+  }
+  .o-media-figure--center {
+    align-self: center;
+  }
+}

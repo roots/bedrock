@@ -71,7 +71,7 @@ function createPageTemplate($dirName)
 	<body class="'.$dirName.'">
 	
 	
-	<div class="grid-row atoms-container">
+	<div class="atoms-container">
 			<?php include ("sidebar.php");?>
 			
 			
