@@ -1,0 +1,113 @@
+/* ----------------------------- */
+/* ==Stylings (minor stylings)   */
+/* ----------------------------- */
+
+/* styling elements */
+code, kbd, mark {
+  border-radius: 2px;
+}
+
+kbd {
+  padding: 0 2px;
+  border: 1px solid #999;
+}
+
+code {
+  padding: 2px 4px;
+  background: rgba(0,0,0,0.04);
+  color: #b11;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  border-radius: 0;
+}
+
+mark {
+  padding:2px 4px;
+}
+
+sup,
+sub {
+  vertical-align: 0;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: 0.5ex;
+}
+
+blockquote {
+  position: relative;
+  padding-left: 3em;
+}
+
+blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: georgia, serif;
+  font-size: 5em;
+  line-height: 0.9;
+  color: rgba(0, 0, 0, .3);
+}
+
+blockquote > footer {
+  margin-top: .75em;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, .7);
+}
+
+blockquote > footer::before {
+  content: "\2014 \0020";
+}
+
+q {
+  font-style: normal;
+}
+
+q,
+.#{$kna-namespace}q {
+  quotes: "“\00a0" "\00a0”";
+}
+
+q:lang(fr),
+.#{$kna-namespace}q:lang(fr) {
+  quotes: "«\00a0" "\00a0»";
+}
+
+hr {
+  display: block;
+  clear: both;
+  height: 1px;
+  margin: 1em 0 2em;
+  padding: 0;
+  border: 0;
+  color: #ccc;
+  background-color: #ccc;
+}
+
+/* tables */
+table,
+.#{$kna-namespace}table {
+  border: 1px solid #ccc;
+}
+
+caption {
+  padding: $small-value;
+  color: #555;
+  font-style: italic;
+}
+
+td,
+th {
+  padding: 0.3em 0.8em;
+  border: 1px #aaa dotted;
+  text-align: left;
+}

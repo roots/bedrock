@@ -1,0 +1,38 @@
+// Additionnal "utility" breakpoints aliases
+// ex. @include respond-to("portrait-up") {...} 
+@function breakpoint($bp) {
+  @if $bp == 'mobile' {
+    @return '(max-width: #{$tiny})';
+  }
+  @else if $bp == 'portrait' {
+    @return '(min-width: #{$tiny + 1}) and (max-width: #{$small})';
+  }
+  @else if $bp == 'landscape' {
+    @return '(min-width: #{$small + 1}) and (max-width: #{$medium})';
+  }
+  @else if $bp == 'desktop' {
+    @return '(min-width: #{$medium + 1})';
+  }
+  @else if $bp == 'portrait-down' {
+    @return '(max-width: #{$small})';
+  }
+  @else if $bp == 'portrait-up' {
+    @return '(min-width: #{$tiny + 1})';
+  }
+  @else if $bp == 'landscape-down' {
+    @return '(max-width: #{$medium})';
+  }
+  @else if $bp == 'landscape-up' {
+    @return '(min-width: #{$small + 1})';
+  }
+  @else if $bp == 'retina' {
+    @return '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)';
+  }
+}
+
+@mixin respond-to($value) {
+  $string: breakpoint($value);
+  @media screen and #{$string} {
+    @content;
+  }
+}

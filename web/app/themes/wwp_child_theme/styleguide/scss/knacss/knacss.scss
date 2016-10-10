@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com V5.0.1 (24 mai 2016) @author: Alsacreations, Raphael Goetter
+* www.KNACSS.com V6.0.0 (27 septembre 2016) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -12,43 +12,49 @@
 /* 3- Print (print quick reset) */
 /* 4- Stylings (minor stylings) */
 /* 5- Misc (skip links, hyphens) */
-/* (6- WordPress reset (disabled by default)) */
-/* 7- Global Layout (alignment, modules, positionning) */
-/* 8- Grid Layout (grillade) */
-/* 9- Tables (data tables consistency) */
-/* 10- Forms (forms consistency) */
+/* 6- Tables (data tables consistency) */
+/* 7- Forms (forms consistency) */
+/* 8- Media object */
+/* 9- Autogrid object */
+/* 10- Global Layout (alignment, modules, positionning) */
 /* 11- Helpers (width and spacers helpers) */
-/* 12- Responsive (Responsive Web Design helpers) */
+/* (12- WordPress reset (disabled by default)) */
+/* 13- Responsive (Responsive Web Design helpers) */
+/* 14- Grid Layout (grillade) */
 
 /* ---------------------------------- */
 /* ==Normalize (basic reset)          */
 /* ---------------------------------- */
 
-@import "_normalize/_normalize.scss"; // normalize (basic reset)
-@import "_include-media/_include-media.scss"; // include-media
+@import "_vendor/_normalize.scss"; // normalize (basic reset)
 
-// WARNING : you should comment the following @import (config)
-// and move config file from knacss folder to your own project folder!
-@import "_config-variables.scss";
+// WARNING : you should comment the following @import (variables)
+// and move variables file from knacss folder to your own project folder!
+@import "_config/_variables.scss";
+
+@import "_config/_breakpoints.scss";
+@import "_config/_mixins.scss";
 
 // Libraries
-@import "_library-base.scss"; // basic styles
-@import "_library-print.scss"; // print quick reset
-@import "_library-styling.scss"; // minor stylings
-@import "_library-misc.scss"; // skip links, hyphens
-@import "_library-wordpress.scss"; // WordPress reset and basic styles
-
-// Layout
-@import "_layout-general.scss"; // alignment, modules, positionning
-@import "_layout-grids.scss"; // grids
+@import "library/_base.scss"; // basic styles
+@import "library/_print.scss"; // print quick reset
+@import "library/_styling.scss"; // minor stylings
+@import "library/_misc.scss"; // skip links, hyphens
+@import "library/_tables.scss"; // data tables consistency
+@import "library/_forms.scss"; // forms consistency
 
 // Objects
-@import "_object-tables.scss"; // data tables consistency
-@import "_object-forms.scss"; // forms consistency
+@import "objects/_media.scss"; // media object
+@import "objects/_autogrid.scss"; // media autogrid
 
-// Overrides
-@import "_override-helpers.scss"; // width and spacers helpers
-@import "_override-responsive.scss"; // Responsive Web Design helpers
+// Utilities
+@import "utilities/_layout.scss"; // alignment, modules, positionning
+@import "utilities/_helpers.scss"; // width and spacers helpers
+@import "utilities/_wordpress.scss"; // WordPress reset and basic styles
+@import "utilities/_responsive.scss"; // Responsive Web Design helpers
+
+// Grids
+@import "grids/_grillade.scss"; // grids
 
 
 /* ----------------------------- */

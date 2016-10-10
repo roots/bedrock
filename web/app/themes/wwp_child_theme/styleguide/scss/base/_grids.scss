@@ -1,0 +1,21 @@
+/*scss/base/_grids.scss*/
+
+.atomsWrap, .compWrap {
+    [class*="grid-"]:not([class*="grid-3"], .grid-perso{
+        width: inherit;
+        margin-left: 0;
+    } // Gère conflit avec framwork d'Atomics
+    [class*="grid-3"] > * {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        &:nth-child(even) {
+            background-color: $mediumgrey;
+        }
+        &:nth-child(odd) {
+            background-color: $darkgrey;
+        }
+    }
+    .grid-perso {
+        @include grid(4, 0);
+    }
+}

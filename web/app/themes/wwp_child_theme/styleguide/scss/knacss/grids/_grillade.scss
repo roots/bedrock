@@ -1,0 +1,339 @@
+/* ---------------------------------- */
+/* ==Grillade : Simple Grid System    */
+/* ---------------------------------- */
+/* Doc : http://grillade.knacss.com */
+
+// Grids variables
+$grid-gutter: 1rem !default; // gutter value for grid layouts. Unit can be: %, px, em, rem
+$grid-gutter-l: $grid-gutter * 2;
+$grid-gutter-xl: $grid-gutter * 4;
+
+/* Grids common rules (for mono- and multi-lines grid) */
+@media (min-width: ($tiny + 1)) {
+  [class*=" grid"],
+  [class^="grid"] {
+    & > * {
+      box-sizing: border-box;
+      min-width: 0; /* avoid min-width: auto */
+      min-height: 0; /* avoid min-height: auto */
+    }
+
+    &.has-gutter {
+      margin-right: -$grid-gutter / 2;
+      margin-left: -$grid-gutter / 2;
+
+      & > * {
+        margin-right: $grid-gutter / 2;
+        margin-left: $grid-gutter / 2;
+      }
+    }
+
+    &.has-gutter-l {
+      margin-right: -$grid-gutter-l / 2;
+      margin-left: -$grid-gutter-l / 2;
+
+      & > * {
+        margin-right: $grid-gutter-l / 2;
+        margin-left: $grid-gutter-l / 2;
+      }
+    }
+
+    &.has-gutter-xl {
+      margin-right: -$grid-gutter-xl / 2;
+      margin-left: -$grid-gutter-xl / 2;
+
+      & > * {
+        margin-right: $grid-gutter-xl / 2;
+        margin-left: $grid-gutter-xl / 2;
+      }
+    }
+  }
+  /* Mono-line grid system (.grid) */
+  .grid {
+    display: flex;
+
+    & > * {
+      flex: 1 1 0%;
+    }
+  }
+  /* Multi-line grid system (.grid-X) */
+  [class*=" grid-"],
+  [class^="grid-"] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & > * {
+      flex: 0 0 auto;
+      width: calc(100% - .01px); /* @bugfix IE https://github.com/alsacreations/KNACSS/issues/133; */
+    }
+
+    &.has-gutter > * {
+      width: calc(100% - #{$grid-gutter} - .01px);
+    }
+
+    &.has-gutter-l > * {
+      width: calc(100% - #{$grid-gutter-l} - .01px);
+    }
+
+    &.has-gutter-xl > * {
+      width: calc(100% - #{$grid-gutter-xl} - .01px);
+    }
+  }
+}
+/* Grid offsets */
+.push {
+  margin-left: auto;
+}
+
+.pull {
+  margin-right: auto;
+}
+/* Grid order */
+.grid-item-first {
+  order: -1;
+}
+
+.grid-item-last {
+  order: 1;
+}
+
+[class*="--reverse"] {
+  flex-direction: row-reverse;
+}
+// Sass mixin for Multi-line grid system
+// example : .grid-perso { @include grid(12, 3rem); }
+@mixin grid($grid-number:4, $new-gutter:$grid-gutter) {
+  & > * {
+    width: calc(100% * 1 / #{$grid-number} - .01px);
+  }
+
+  &.has-gutter > * {
+    width: calc(100% * 1 / #{$grid-number} - #{$grid-gutter} - .01px);
+  }
+
+  &.has-gutter-l > * {
+    width: calc(100% * 1 / #{$grid-number} - #{$grid-gutter-l} - .01px);
+  }
+
+  &.has-gutter-xl > * {
+    width: calc(100% * 1 / #{$grid-number} - #{$grid-gutter-xl} - .01px);
+  }
+  @if ($new-gutter != 0) {
+     @if ($new-gutter != $grid-gutter){
+      margin-right: -$new-gutter / 2;
+      margin-left: -$new-gutter / 2;
+
+      & > * {
+        margin-right: $new-gutter / 2;
+        margin-left: $new-gutter / 2;
+        width: calc(100% * 1 / #{$grid-number} - #{$new-gutter} - .01px);
+      }
+    }
+  }
+}
+// Constructing grids : will be compiled in CSS
+@media (min-width: ($tiny + 1)) {
+   @for $i from 2 through 12{
+    [class*="grid-#{$i}"] {
+      @include grid(#{$i},0);
+    }
+  }
+}
+/* Sizing individual children */
+@media (min-width: ($tiny + 1)) {
+  .full {
+    flex: 0 0 auto;
+    width: calc(100% - .01px);
+
+    .has-gutter & {
+      width: calc(100% - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .one-half {
+    flex: 0 0 auto;
+    width: calc(50% - .01px);
+
+    .has-gutter & {
+      width: calc(50% - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(50% - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(50% - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .one-third {
+    flex: 0 0 auto;
+    width: calc(100% / 3 - .01px);
+
+    .has-gutter & {
+      width: calc(100% / 3 - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% / 3 - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% / 3 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .one-quarter {
+    flex: 0 0 auto;
+    width: calc(100% / 4 - .01px);
+
+    .has-gutter & {
+      width: calc(100% / 4 - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% / 4 - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% / 4 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .one-fifth {
+    flex: 0 0 auto;
+    width: calc(100% / 5 - .01px);
+
+    .has-gutter & {
+      width: calc(100% / 5 - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% / 5 - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% / 5 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .two-thirds {
+    flex: 0 0 auto;
+    width: calc(100% / 3 * 2 - .01px);
+
+    .has-gutter & {
+      width: calc(100% / 3 * 2 - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% / 3 * 2 - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% / 3 * 2 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  .three-quarters {
+    flex: 0 0 auto;
+    width: calc(100% / 4 * 3 - .01px);
+
+    .has-gutter & {
+      width: calc(100% / 4 * 3 - #{$grid-gutter} - .01px);
+    }
+
+    .has-gutter-l & {
+      width: calc(100% / 4 * 3 - #{$grid-gutter-l} - .01px);
+    }
+
+    .has-gutter-xl & {
+      width: calc(100% / 4 * 3 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+}
+/* Responsive Small Breakpoint */
+// -small-X suffix means "X columns on small screen"
+// example : .grid-4-small-2 will be 1 column (tiny and down) then 2 columns (until small) then 4 columns
+@media (min-width: ($tiny + 1)) and (max-width: $small) {
+  [class*="-small-4"] {
+    & > * {
+      width: calc(100% / 4 - .01px);
+    }
+
+    &.has-gutter > * {
+      width: calc(100% / 4 - #{$grid-gutter} - .01px);
+    }
+
+    &.has-gutter-l > * {
+      width: calc(100% / 4 - #{$grid-gutter-l} - .01px);
+    }
+
+    &.has-gutter-xl > * {
+      width: calc(100% / 4 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  [class*="-small-3"] {
+    & > * {
+      width: calc(100% / 3 - .01px);
+    }
+
+    &.has-gutter > * {
+      width: calc(100% / 3 - #{$grid-gutter} - .01px);
+    }
+
+    &.has-gutter-l > * {
+      width: calc(100% / 3 - #{$grid-gutter-l} - .01px);
+    }
+
+    &.has-gutter-xl > * {
+      width: calc(100% / 3 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  [class*="-small-2"] {
+    & > * {
+      width: calc(100% / 2 - .01px);
+    }
+
+    &.has-gutter > * {
+      width: calc(100% / 2 - #{$grid-gutter} - .01px);
+    }
+
+    &.has-gutter-l > * {
+      width: calc(100% / 2 - #{$grid-gutter-l} - .01px);
+    }
+
+    &.has-gutter-xl > * {
+      width: calc(100% / 2 - #{$grid-gutter-xl} - .01px);
+    }
+  }
+
+  [class*="-small-1"] {
+    & > * {
+      width: calc(100% - .01px);
+    }
+
+    &.has-gutter > * {
+      width: calc(100% - #{$grid-gutter} - .01px);
+    }
+
+    &.has-gutter-l > * {
+      width: calc(100% - #{$grid-gutter-l} - .01px);
+    }
+
+    &.has-gutter-xl > * {
+      width: calc(100% - #{$grid-gutter-xl} - .01px);
+    }
+  }
+}
