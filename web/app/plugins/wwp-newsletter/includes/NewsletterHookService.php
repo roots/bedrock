@@ -12,6 +12,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
+use WonderWp\Plugin\WwpAdminChangerService;
 
 /**
  * Class NewsletterHookService
@@ -54,7 +55,7 @@ class NewsletterHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'Newsletter', 'Newsletter', 'read', WWP_PLUGIN_NEWSLETTER_NAME, $callable);
+        add_submenu_page('wonderwp-modules', 'Newsletter', 'Newsletter', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_NEWSLETTER_NAME, $callable);
 
     }
 

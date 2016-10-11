@@ -30,6 +30,18 @@ class TranslatorActivator extends AbstractPluginActivator
     public function activate()
     {
         $this->_createTable('\WonderWp\Plugin\Translator\LangEntity');
+        $this->_createTranslatorRole();
+    }
+
+    private function _createTranslatorRole(){
+        global $wp_roles;
+
+        //Nouveau profil Traducteur
+        $translatorCapabilities = array(
+            'read' => true
+        );
+
+        add_role('translator', 'Traducteur', $translatorCapabilities);
     }
 
 }

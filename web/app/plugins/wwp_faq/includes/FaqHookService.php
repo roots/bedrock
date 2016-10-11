@@ -12,6 +12,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
+use WonderWp\Plugin\WwpAdminChangerService;
 
 class FaqHookService extends AbstractHookService{
 
@@ -37,7 +38,7 @@ class FaqHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'FAQ', 'FAQ', 'read', WWP_PLUGIN_FAQ_NAME, $callable);
+        add_submenu_page('wonderwp-modules', 'FAQ', 'FAQ', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_FAQ_NAME, $callable);
 
     }
 

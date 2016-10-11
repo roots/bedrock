@@ -12,6 +12,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
+use WonderWp\Plugin\WwpAdminChangerService;
 
 /**
  * Class VoteHookService
@@ -52,7 +53,7 @@ class VoteHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'Vote', 'Vote', 'read', WWP_PLUGIN_VOTE_NAME, $callable);
+        add_submenu_page('wonderwp-modules', 'Vote', 'Vote', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_VOTE_NAME, $callable);
 
     }
 

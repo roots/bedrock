@@ -12,6 +12,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
+use WonderWp\Plugin\WwpAdminChangerService;
 
 /**
  * Class ContactHookService
@@ -52,7 +53,7 @@ class ContactHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        $suffix = add_submenu_page('wonderwp-modules', 'Contact', 'Contact', 'read', WWP_PLUGIN_CONTACT_NAME, $callable);
+        $suffix = add_submenu_page('wonderwp-modules', 'Contact', 'Contact', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_CONTACT_NAME, $callable);
 
         add_action( "admin_print_scripts-$suffix", array($this,'my_plugin_admin_scripts'));
     }

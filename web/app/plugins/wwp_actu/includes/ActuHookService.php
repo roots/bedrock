@@ -12,6 +12,7 @@ use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
+use WonderWp\Plugin\WwpAdminChangerService;
 
 class ActuHookService extends AbstractHookService{
 
@@ -37,7 +38,7 @@ class ActuHookService extends AbstractHookService{
         $callable = array($adminController,'route');
 
         //Add entry under top-level functionalities menu
-        add_submenu_page('wonderwp-modules', 'Actualités', 'Actualités', 'read', WWP_PLUGIN_ACTU_NAME, array($adminController,'route'));
+        add_submenu_page('wonderwp-modules', 'Actualités', 'Actualités', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_ACTU_NAME, array($adminController,'route'));
 
     }
 

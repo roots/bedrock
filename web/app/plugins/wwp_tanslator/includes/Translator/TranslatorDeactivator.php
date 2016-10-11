@@ -33,7 +33,7 @@ class TranslatorDeactivator implements DeactivatorInterface{
 	 * @since    1.0.0
 	 */
 	public function deactivate() {
-
+        remove_role('translator');
 	}
 
 }
