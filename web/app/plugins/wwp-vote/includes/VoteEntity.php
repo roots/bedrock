@@ -1,71 +1,72 @@
 <?php
 
 namespace WonderWp\Plugin\Vote;
-
+use Doctrine\ORM\Mapping as ORM;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * VoteEntity
  *
- * @Table(name="vote")
- * @Entity
+ * @ORM\Table(name="vote")
+ * @ORM\Entity
  */
-class VoteEntity extends \WonderWp\Entity\AbstractEntity
+class VoteEntity extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var integer
      *
-     * @Column(name="score", type="integer", nullable=false)
+     * @ORM\Column(name="score", type="integer", nullable=false)
      */
     private $score;
 
     /**
      * @var string
      *
-     * @Column(name="entityName", type="string", length=45, nullable=false)
+     * @ORM\Column(name="entityName", type="string", length=45, nullable=false)
      */
     private $entityname;
 
     /**
      * @var integer
      *
-     * @Column(name="entityId", type="integer", nullable=false)
+     * @ORM\Column(name="entityId", type="integer", nullable=false)
      */
     private $entityid;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="datetime", type="datetime", nullable=false)
+     * @ORM\Column(name="datetime", type="datetime", nullable=false)
      */
     private $datetime;
 
     /**
      * @var string
      *
-     * @Column(name="data", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="data", type="text", length=65535, nullable=false)
      */
     private $data;
 
     /**
      * @var integer
      *
-     * @Column(name="post", type="integer", nullable=false)
+     * @ORM\Column(name="post", type="integer", nullable=false)
      */
     private $post;
 
     /**
      * @var string
      *
-     * @Column(name="uid", type="string", length=45, nullable=false)
+     * @ORM\Column(name="uid", type="string", length=45, nullable=false)
      */
     private $uid;
 

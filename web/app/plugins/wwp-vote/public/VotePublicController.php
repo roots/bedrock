@@ -68,7 +68,8 @@ class VotePublicController extends AbstractPluginFrontendController
         return $this->renderView('form', [
             'nbVotes' => $nbVotes,
             'formView' => $form->renderView($opts),
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'average'=>$average
         ]);
     }
 
@@ -143,9 +144,8 @@ class VotePublicController extends AbstractPluginFrontendController
             die();
         } else {
             $request->getSession()->getFlashbag()->add('vote', [($success ? 'success' : 'error'), $result->getData('msg')]);
-            die();
-
             wp_redirect($prevPage);
+            die();
         }
     }
 
