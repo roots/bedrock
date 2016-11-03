@@ -238,12 +238,7 @@ class PluginGenerator
         $namespacedDest = $this->_folders['includes'] . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $this->_metaDatas->name) . '.php';
         $inludeDest = $this->_folders['includes'] . DIRECTORY_SEPARATOR . $this->_data['className'] . 'Entity.php';
 
-        $acContent = str_replace(
-            array('use Doctrine\ORM\Mapping as ORM;', '@ORM\\'),
-            array('', '@'),
-            $this->_fileSystem->get_contents($namespacedDest)
-        );
-        $acFile = $this->_folders['includes'] . DIRECTORY_SEPARATOR . ($this->_data['entityname']) . 'Form.php';
+        $acContent = $this->_fileSystem->get_contents($namespacedDest);
         $this->_fileSystem->put_contents($inludeDest, $acContent, FS_CHMOD_FILE);
 
         for ($i = 1; $i < $numOfDirsCreatedByNamespace; $i++) {
