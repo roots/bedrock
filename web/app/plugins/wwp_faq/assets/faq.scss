@@ -1,0 +1,47 @@
+/**
+ *	FAQ's page example
+ */
+
+// General
+.page-faq{
+    .entry-title{
+        display: none;
+    }
+}
+.module-faq {
+    padding: 4rem 0 6rem 0 !important;
+    h1 {
+        position: relative;
+        z-index: -1;
+        margin-top: -300px;
+        padding: 0 10rem 3rem 10rem;
+        font-size: 3.4rem;
+        text-align: center;
+        counter-reset: section;
+        @media (max-width: $medium){
+            margin-left: -2rem;
+            margin-right: -2rem;
+        }
+        @media (max-width: $tiny){
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+        strong {
+          height: 4rem;
+          font-size: 4.8rem;
+          font-weight: 300;
+          &:after {
+            display: block;
+            content: '';
+            width: 45px;
+            height: 3px;
+            margin: 2rem auto 1rem auto;
+          }
+        }
+    }
+    .js-accordion__header{
+        .counter{
+            margin-right: 1rem;
+        }
+    }
+}

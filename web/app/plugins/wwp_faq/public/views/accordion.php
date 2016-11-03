@@ -2,9 +2,12 @@
     <?php
     if (!empty($questions)) {
         $accordion = new \WonderWp\Theme\Components\AccordionComponent();
+        $cpt = 1;
         foreach ($questions as $q) {
             /** @var $q \WonderWp\Plugin\Faq\FaqEntity */
-            $accordion->addBlock($q->getTitle(),$q->getContent());
+            $title = '<span class="counter">'.$cpt.' •</span>'.$q->getTitle();
+            $accordion->addBlock($title,$q->getContent());
+            $cpt++;
         }
         echo $accordion->getMarkup();
     }
