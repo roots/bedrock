@@ -1,94 +1,95 @@
 <?php
 
 namespace WonderWp\Plugin\Contact;
-
+use Doctrine\ORM\Mapping as ORM;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * ContactEntity
  *
- * @Table(name="contact")
- * @Entity
+ * @ORM\Table(name="contact")
+ * @ORM\Entity
  */
-class ContactEntity extends \WonderWp\Entity\AbstractEntity
+class ContactEntity extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="nom", type="string", length=45, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @Column(name="prenom", type="string", length=45, nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=45, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @Column(name="mail", type="string", length=45, nullable=true)
+     * @ORM\Column(name="mail", type="string", length=45, nullable=true)
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @Column(name="sujet", type="string", length=45, nullable=true)
+     * @ORM\Column(name="sujet", type="string", length=45, nullable=true)
      */
     private $sujet;
 
     /**
      * @var string
      *
-     * @Column(name="message", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="message", type="text", length=65535, nullable=false)
      */
     private $message;
 
     /**
      * @var integer
      *
-     * @Column(name="post", type="integer", nullable=false)
+     * @ORM\Column(name="post", type="integer", nullable=false)
      */
     private $post;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="datetime", type="datetime", nullable=false)
+     * @ORM\Column(name="datetime", type="datetime", nullable=false)
      */
     private $datetime;
 
     /**
      * @var string
      *
-     * @Column(name="locale", type="string", length=6, nullable=false)
+     * @ORM\Column(name="locale", type="string", length=6, nullable=false)
      */
     private $locale;
 
     /**
      * @var string
      *
-     * @Column(name="sentTo", type="string", length=45, nullable=true)
+     * @ORM\Column(name="sentTo", type="string", length=45, nullable=true)
      */
     private $sentto;
 
     /**
      * @var ContactFormEntity
      *
-     * @ManyToOne(targetEntity="ContactFormEntity")
-     * @JoinColumns({
-     *   @JoinColumn(name="form_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ContactFormEntity")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="form_id", referencedColumnName="id")
      * })
      */
     private $form;

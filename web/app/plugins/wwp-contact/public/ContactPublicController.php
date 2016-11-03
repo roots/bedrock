@@ -11,6 +11,7 @@ namespace WonderWp\Plugin\Contact;
 use Doctrine\ORM\EntityRepository;
 use Respect\Validation\Rules\In;
 use Respect\Validation\Validator;
+use WonderWp\API\Result;
 use WonderWp\APlugin\AbstractPluginFrontendController;
 use WonderWp\DI\Container;
 use WonderWp\Forms\Fields\EmailField;
@@ -45,7 +46,7 @@ class ContactPublicController extends AbstractPluginFrontendController
 
         $notifications = $viewService->flashesToNotifications('contact');
 
-        $opts = array('formStart'=>['action'=>'/contactFormSubmit']);
+        $opts = array('formStart'=>['action'=>'/contactFormSubmit','class'=>['contactForm']]);
         return $this->renderView('form', ['formView' => $formInstance->renderView($opts), 'notifications'=>$notifications]);
     }
 
@@ -59,16 +60,22 @@ class ContactPublicController extends AbstractPluginFrontendController
         /** @var ContactHandlerService $contactHandlerService */
         $contactHandlerService = $this->_manager->getService('contactHandler');
         $mailSent = $contactHandlerService->handleSubmit($data,$formInstance,$formItem);
-
-        $prevPage = get_permalink($data['post']);
         if ($mailSent) {
-            //save success msg
-            $request->getSession()->getFlashbag()->add('contact',['success',__('mail.sent',WWP_CONTACT_TEXTDOMAIN)]);
+            $result = new Result(200,['msg'=>__('mail.sent',WWP_CONTACT_TEXTDOMAIN)]);
         } else {
-            //save error msg
-            $request->getSession()->getFlashbag()->add('contact',['error',__('mail.notsent',WWP_CONTACT_TEXTDOMAIN)]);
+            $result = new Result(403,['msg'=>__('mail.notsent',WWP_CONTACT_TEXTDOMAIN)]);
         }
-        wp_redirect($prevPage);
+
+        if($request->isXmlHttpRequest()){
+            header('Content-Type: application/json');
+            echo $result;
+            die();
+        } else {
+            $prevPage = get_permalink($data['post']);
+            $request->getSession()->getFlashbag()->add('contact', [($mailSent ? 'success' : 'error'), $result->getData('msg')]);
+            wp_redirect($prevPage);
+            die();
+        }
     }
 
     /**

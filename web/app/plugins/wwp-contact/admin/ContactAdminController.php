@@ -26,7 +26,8 @@ use WonderWp\Templates\VueFrag;
  * @subpackage Wonderwp/admin
  * @author     Wonderful <jeremy.desvaux@wonderful.fr>
  */
-class ContactAdminController extends AbstractPluginBackendController{
+class ContactAdminController extends AbstractPluginBackendController
+{
 
     public function getTabs()
     {
@@ -37,29 +38,21 @@ class ContactAdminController extends AbstractPluginBackendController{
         return $tabs;
     }
 
-    public function listFormsAction(){
+    public function listFormsAction()
+    {
         $container = Container::getInstance();
 
         $listTableInstance = new ContactFormListTable();
         $listTableInstance->setEntityName(ContactFormEntity::class);
         $listTableInstance->setTextDomain(WWP_CONTACT_TEXTDOMAIN);
 
-        $tabs = $this->getTabs();
-
-        $prefix = $this->_manager->getConfig('prefix');
-        $vue = $container->offsetGet('wwp.views.baseAdmin');
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.header'), array('title' => get_admin_page_title())));
-        if (!empty($tabs)) {
-            $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.tabs'), array('tabs' => $tabs)));
-        }
-        $vue->addFrag(new VueFrag( $container->offsetGet($prefix.'.wwp.path.templates.frags.list'),array('listTableInstance'=>$listTableInstance)));
-        $vue->addFrag(new VueFrag($container->offsetGet($prefix . '.wwp.path.templates.frags.footer')));
-        $vue->render();
+        parent::listAction($listTableInstance);
     }
 
-    public function editContactFormAction(){
+    public function editContactFormAction()
+    {
         $modelForm = new ContactFormForm();
-        parent::editAction(ContactFormEntity::class,$modelForm);
+        parent::editAction(ContactFormEntity::class, $modelForm);
     }
 
 }

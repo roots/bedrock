@@ -40,12 +40,13 @@ class ContactHandlerService extends AbstractService
 
             //Save Contact
             //\WonderWp\trace($contact);
-            $em->persist($contact);
-            $em->flush();
+            //$em->persist($contact);
+            //$em->flush();
             //\WonderWp\trace($contact);
 
             //Send Email
             $sent = $this->_sendContactMail($contact);
+            if($sent){ $this->_sendReceiptMail($contact); }
         }
         return $sent;
     }
@@ -54,6 +55,8 @@ class ContactHandlerService extends AbstractService
     {
         $mailSent = false;
         $container = Container::getInstance();
+        $formItem = $contactEntity->getForm();
+        $formData = json_decode($formItem->getData());
 
         /** @var WwpWpMailer $mail */
         $mail = $container->offsetGet('wwp.emails.mailer');
@@ -87,13 +90,19 @@ class ContactHandlerService extends AbstractService
         /**
          * Subject
          */
-        $subject = 'Test sub';
-        $mail->setSubject($subject);
+        $chosenSubject = $contactEntity->getSujet();
+        $subject = __('default_subject',WWP_CONTACT_TEXTDOMAIN);
+        if(!empty($formData) && !empty($formData->sujet) && !empty($formData->sujet->sujets) && !empty($formData->sujet->sujets->{$chosenSubject}) && !empty($formData->sujet->sujets->{$chosenSubject}->text)){
+            $subject = $formData->sujet->sujets->{$chosenSubject}->text;
+        }
+        $localeFrags = explode('_',get_locale());
+        $firstFrag = reset($localeFrags);
+        $mail->setSubject('[Site Pink Lady® - '.strtoupper($firstFrag).'] '.$subject);
 
         /**
          * Body
          */
-        $body = $this->_getBody($contactEntity);
+        $body = $this->_getBody($contactEntity,$subject);
         $mail->setBody($body);
 
         //$mail->addBcc('jeremy.desvaux+bcc@wonderful.fr','JD BCC');
@@ -105,6 +114,44 @@ class ContactHandlerService extends AbstractService
         $sent = $mail->send();
 
         return $sent;
+    }
+
+    private function _sendReceiptMail(ContactEntity $contactEntity){
+        $container = Container::getInstance();
+        /** @var WwpWpMailer $mail */
+        $mail = $container->offsetGet('wwp.emails.mailer');
+
+        //Set Mail From
+        $fromMail = get_option('wonderwp_email_frommail');
+        $fromName = get_option('wonderwp_email_fromname');
+        $mail->setFrom($fromMail, $fromName);
+
+        //Set Mail To
+        //Did the user provide his last name or first name in the form?
+        if (!empty($contactEntity->getNom())) {
+            $fromName = $contactEntity->getNom();
+            if (!empty($contactEntity->getPrenom())) {
+                $fromName = $contactEntity->getPrenom() . ' ' . $contactEntity->getNom();
+            }
+        } else {
+            $fromName = $fromMail;
+        }
+        $mail->addTo($contactEntity->getMail(),$fromName);
+
+        //Subject
+        $subject = __('default_receipt_subject',WWP_CONTACT_TEXTDOMAIN);
+        $mail->setSubject('['.get_bloginfo('name').'] '.$subject);
+
+        $body=$this->_getReceiptBody();
+        $mail->setBody($body);
+
+        /**
+         * Envoi
+         */
+        $sent = $mail->send();
+
+        return $sent;
+
     }
 
     /**
@@ -129,7 +176,7 @@ class ContactHandlerService extends AbstractService
         } else {
             //Use info saved in the website settings
             $fromMail = get_option('wonderwp_email_frommail');
-            $fromName = get_option('wonderwp_email_fromName');
+            $fromName = get_option('wonderwp_email_fromname');
         }
         return array($fromMail, $fromName);
     }
@@ -168,7 +215,7 @@ class ContactHandlerService extends AbstractService
         return $toMail;
     }
 
-    private function _getBody(ContactEntity $contactEntity)
+    private function _getBody(ContactEntity $contactEntity,$subject)
     {
         //\WonderWp\trace($contactEntity);
         $mailContent = '
@@ -182,6 +229,7 @@ class ContactHandlerService extends AbstractService
         if(!empty($infosChamps)){ foreach ( $infosChamps as $column_name ) {
             if(!in_array($column_name,$unnecessary)) {
                 $val = stripslashes(str_replace('\r\n','<br />',$contactEntity->{$column_name}));
+                if($column_name=='sujet'){ $val = $subject; }
                 $label = __($column_name . '.trad', WWP_CONTACT_TEXTDOMAIN);
                 if(!empty($val)){
                     $mailContent.='<p><strong>'.$label.':</strong> <span>'.stripslashes($val).'</span></p>';
@@ -193,6 +241,13 @@ class ContactHandlerService extends AbstractService
                     <p>'.__('contact.msg.registered.bo',WWP_CONTACT_TEXTDOMAIN).'</p>
                     ';
 
+        return $mailContent;
+    }
+
+    private function _getReceiptBody(){
+        $mailContent = '
+        <h2>'.__('new.receipt.msg.title',WWP_CONTACT_TEXTDOMAIN).'</h2>
+        <p>'.__('new.receipt.msg.content',WWP_CONTACT_TEXTDOMAIN).': </p>';
         return $mailContent;
     }
 }

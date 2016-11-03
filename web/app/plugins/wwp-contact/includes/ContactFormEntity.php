@@ -8,38 +8,38 @@ use WonderWp\Entity\AbstractEntity;
 /**
  * Form
  *
- * @Table(name="contact_form")
- * @Entity
+ * @ORM\Table(name="contact_form")
+ * @ORM\Entity
  */
 class ContactFormEntity extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @Column(name="data", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="data", type="text", length=65535, nullable=false)
      */
     private $data;
 
     /**
      * @var string
      *
-     * @Column(name="sendTo", type="string", length=45, nullable=true)
+     * @ORM\Column(name="sendTo", type="string", length=45, nullable=true)
      */
     private $sendTo;
 

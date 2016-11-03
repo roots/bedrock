@@ -24,9 +24,11 @@ class ContactAssetService extends AbstractAssetService{
 
             $this->_assets = array(
                 'css' => array(
-                    new $assetClass('wwp-contact-admin', $pluginPath . '/admin/css/contact.scss', array('styleguide'), null, false, AbstractAssetService::$ADMINASSETSGROUP)
+                    new $assetClass('wwp-contact-admin', $pluginPath . '/admin/css/contact.scss', array('styleguide'), null, false, AbstractAssetService::$ADMINASSETSGROUP),
+                    new $assetClass('wwp-contact', $pluginPath . '/public/css/contact.scss', array('styleguide'))
                 ),
                 'js' => array(
+                    new $assetClass('wwp-contact', $pluginPath . '/public/js/contact.js', array('app','styleguide')),
                     new $assetClass('wwp-contact-admin', $pluginPath . '/admin/js/contact.js', array(), null, false, AbstractAssetService::$ADMINASSETSGROUP)
                 )
             );
