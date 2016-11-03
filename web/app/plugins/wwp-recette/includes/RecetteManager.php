@@ -94,6 +94,12 @@ class RecetteManager extends AbstractPluginManager{
             //Api service
             return new RecetteApiService();
         });*/
+        $this->addService('recette',function(){
+            //General recette service
+            return new RecetteService();
+        });
+
+        add_image_size( 'recette-detail', 676, 384, true );
 
         return $this;
     }

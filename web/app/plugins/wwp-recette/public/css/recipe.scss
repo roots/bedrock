@@ -1,349 +1,1 @@
-/**
- *	Recipe's page example
- */
-
-// Body background color (+ images ?)
-body.recipe{
-     background: linear-gradient(#F4E5E0, #FCF3EE);
-    .entry-title {
-      @extend .visually-hidden;
-    }
-}
-
-// Fullscreen background image
-.bg-recipe-spicy{
-  position: absolute;
-  min-height: 1558px;
-  background-image: url('#{$get-path-to-assets}/final/images/recipes/bg-recipe-spicy-top.jpg');
-  background-position: center top;
-  background-size: initial;
-}
-
-// Global
-.recipe-content, .recipe-more, .recipe-instant{
-  h2, p.title{
-    font-family: $font-stack-headings;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: $base-color;
-    letter-spacing: .15rem;
-    font-size: 1.7rem;
-    text-align: center;
-  }
-  p.text, p.title, p.chapo{
-    text-align: center;
-  }
-  p.chapo{
-    font-size: 1.7rem;
-  }
-}
-.recipe-share-and-news, .recipe-more, .recipe-instant{
-  padding: 4rem;
-  background: #FFFFFF;
-}
-
-// Recipe presentation
-.recipe-presentation{
-  h1{
-    margin-top: 1rem;
-    text-align: center;
-  }
-}
-
-.recipe-image-block{
-  background: #FFFFFF;
-}
-.recipe-image{
-  width: 667px;
-  img{
-    width: 100%;
-    height: auto;
-  }
-}
-.recipe-infos{
-  position: relative;
-  height: 384px; // Bug: should be defined in percent
-  &:before{
-    content: '';
-    width: 1px;
-    height: 110px;
-    background: $mediumgrey;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -55px;
-  }
-  &:after{
-    content: '';
-    width: 110px;
-    height: 1px;
-    background: $mediumgrey;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -55px;
-  }
-  div{
-    position: relative;
-    float: left;
-    width: 50%;
-    height: 50%;
-    text-align: center;
-    vertical-align: middle;
-    div{
-      display: inline-block;
-      @include absolute-center;
-    }
-    .value{
-      display: block;
-      padding-top: 3rem;
-      line-height: 1.5rem;
-      font-family: $font-stack-headings;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: $base-color;
-      letter-spacing: .15rem;
-      strong{
-        font-size: 4.3rem;
-        font-weight: 300;
-        text-transform: none;
-        color: $mediumgrey;
-      }
-      .unit{
-        font-size: 1.5rem;
-      }
-    }
-    strong{
-      display: block;
-      font-size: 5rem;
-    }
-  }
-}
-.recipe-introduction-text{
-  width: 42%;
-  margin: 0 auto;
-  padding: 2em 0;
-  text-align: center;
-  p.text{
-    font-size: 1.5rem;
-  }
-}
-
-// Recipe preparation
-.recipe-preparation{
-  .container-l{
-    overflow: hidden;
-  }
-}
-img.recipe-preparation-image{
-  position: absolute;
-  height: 100%;
-  width: auto;
-  filter: blur(40px);
-  opacity: .8;
-}
-.recipe-preparation .js-tablist{
-  display: table-cell;
-  width: 30%;
-  padding-top: 1rem;
-}  .js-tablist__item{
-     display: block;
-     width:100%;
-     text-align: right;
-     border-right: none;
-     font-family: $font-stack-common-3;
-     text-transform: uppercase;
-     color: $base-color;
-     letter-spacing: .2rem;
-     font-size: 1.6rem;
-     a{
-       position: relative;
-       display: block;
-       padding: 3rem 3rem 3rem 0;
-       color: $basecolor;
-       background: transparent;
-       opacity: .5;
-       &:after{
-         content: "";
-         width: 30px;
-         height: 3px;
-         background: #FFFFFF;
-         position: absolute;
-         bottom: 0;
-         right: 10rem;
-       }
-     }
-   }
-.recipe-preparation .js-tabcontent[aria-hidden=true]:nth-of-type(1) {
-  display: table-cell;
-}
-.recipe-preparation .js-tablist__item > a:focus,
-.recipe-preparation .js-tablist__item > a:hover,
-.recipe-preparation .js-tablist__item > a:active,
-.recipe-preparation .js-tablist__item > a[aria-selected="true"]{
-  background: transparent;
-  opacity: 1;
-  &:after{
-    bottom: 0;
-    right: 0;
-    width: 13rem;
-    background: #F7F6F7;
-  }
-}
-.recipe-preparation .js-tabcontent{
-  position: relative;
-  z-index: 1;
-  padding: 0;
-  background: #FFFFFF;
-  .col{
-    padding: 4rem;
-    background: $verylightgrey;
-  }
-  .col + .col{
-    background: #FFFFFF;
-  }
-  .title{
-    position: relative;
-    text-align: left;
-    font-family: $font-stack-headings;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: $base-color;
-    letter-spacing: .2rem;
-    font-size: 1.3rem;
-    padding-left: 1rem;
-    border-left: 2px solid $pink;
-    svg{
-      width: 25px;
-      height: 28px;
-      position: absolute;
-      left: -30px;
-      top: -7px;
-      fill: $pink;
-    }
-  }
-  ul, ol{
-    padding-left: 0;
-    li{
-      margin-bottom: 1rem;
-    }
-  }
-}
-
-// Recipe tips and comments
-.recipe-tips{
-  > div{
-    margin-bottom: 5rem;
-    text-align: center;
-  }
-}
-.recipe-tips-intro{
-  padding: 3rem 10rem;
-  border: 3px solid #FFFFFF;
-  border-top: 0;
-  svg{
-    width: 30px;
-    height: 30px;
-    fill: $pink;
-  }
-}
-.recipe-rate{
-  width: small-screen;
-  svg{
-    width: 30px;
-    height: 30px;
-    fill: $pink;
-  }
-}
-.add-rate{
-  &:after{
-    content: '';
-    width: 120px;
-    height: 3px;
-    background: #FFFFFF;
-    display: block;
-    margin: 4rem auto;
-  }
-}
-.add-comment{
-  margin-bottom: 3rem;
-  a{
-    margin: 0 2rem;
-  }
-}
-
-.recipe-comment-list{
-  padding-left: 0;
-  list-style: none;
-  .comment-author {
-    margin-bottom: 1.5rem;
-    img {
-      display: initial;
-      width: 64px;
-      height: 64px;
-      border-radius: 100%;
-    }
-    cite{
-      display: block;
-      font-style: normal;
-    }
-    a {
-      text-decoration: none;
-    }
-    .says{
-      display: none;
-    }
-  }
-  p{
-    font-family: $font-stack-headings;
-    font-weight: 300;
-    font-size: 1.2rem;
-  }
-  .commentmetadata{
-    display: none;
-  }
-}
-
-// Recipe share and Newsletter
-.recipe-share-and-news {
-    background: #FFFFFF;
-    p.title{
-        margin-bottom: 3rem;
-        font-family: $font-stack-headings;
-        font-weight: 300;
-        font-size: 3.4rem;
-        line-height: 4rem;
-        color: $mediumgrey;
-        strong{
-            display: block;
-            color: $pink;
-            font-weight: 300;
-        }
-    }
-}
-
-.recipe-newsletter{
-    position: relative;
-    &:before{
-        content: '';
-        width: 2px;
-        height: 120px;
-        background-color: $mediumgrey;
-        position: absolute;
-        left: -9rem;
-        top: 5rem;
-    }
-}
-
-// Recipes more
-.recipe-more{
-  padding-top: 10rem;
-  background: $verylightgrey;
-}
-.recipe-more-wrapper{
-  overflow: hidden;
-}
-.recipe-more-container{
-  width: 1600px;
-  margin-left: calc((1600px - 1440px) / -2);
-}
+/** *	Recipe's page example */// Temporary fix#wwp-loader{    display: none;}// Globalbody.recipe{    background: linear-gradient(-90deg, #F4E5E0, #FCF3EE);    .breadcrumb-wrapper {        top: -13.5rem;        left: 1rem;    }    .entry-title {        @extend .visually-hidden;    }    h1{        text-transform: none;    }    .entry-content .container{        padding-right: 0;        padding-left: 0;    }}.recipe-content, .recipe-more, .recipe-instant{  h2, p.title{      font-family: $font-stack-headings;      font-weight: 600;      text-transform: uppercase;      color: $base-color;      letter-spacing: .15rem;      font-size: 1.7rem;      text-align: center  }    h2:before{        content: none;    }    p.text, p.title, p.chapo{        text-align: center;    }    p.chapo{        font-size: 1.7rem;        letter-spacing: .1rem;    }}.recipe-instant{    padding: 4rem;    background: #FFFFFF;}// Recipe presentation.recipe-presentation{  h1{    margin-top: 1rem;    text-align: center;  }}.recipe-image-block{    display: flex;    flex-direction: row;    flex-wrap: nowrap;    justify-content: flex-start;    align-content: flex-start;    align-items: stretch;    background: #FFFFFF;    @media (max-width: $small - 1){        flex-wrap: wrap;    }}.recipe-image{    flex: 0 1 66%;    @media (max-width: $small - 1){        flex: 100%;    }    img{        width: 100%;        /*height: 384px;*/        height: auto;    }}.recipe-infos{    flex: 0 1 34%;    position: relative;    max-height: 384px; // TODO : supprimer quand la taille des images sera OK    @media (max-width: $small - 1){        flex: 100%;        min-height: 22rem;    }    &:before{      content: '';      width: 1px;      height: 110px;      background: $mediumgrey;      position: absolute;      top: 50%;      left: 50%;      margin-top: -55px;    }    &:after{      content: '';      width: 110px;      height: 1px;      background: $mediumgrey;      position: absolute;      top: 50%;      left: 50%;      margin-left: -55px;    }    div {        position: relative;        float: left;        width: 50%;        height: 50%;        text-align: center;        vertical-align: middle;        div {            display: block;            width: 80%;            @include absolute-center;        }        .value {            display: inline-block;            padding-top: 2rem;            line-height: 1.5rem;            font-family: $font-stack-headings;            font-weight: 600;            text-transform: uppercase;            color: $base-color;            text-align: center;            font-size: 1.2rem;            letter-spacing: .15rem;            vertical-align: baseline;            strong {                display: block;                margin-bottom: 1rem;                font-size: 5rem;                font-weight: normal;                font-size: 4.3rem;                text-transform: none;                color: $mediumgrey;                @media (max-width: $small){                    margin-bottom: 0;                }            }            .unit {                font-size: 1.5rem;            }            @media (max-width: $small){                padding-top: 1rem;            }            @media (max-width: $small - 1){                line-height: 1.2rem;            }        }        &.difficulty div{            transform: translate(-50%, -114%);            .value{                padding-top: 3rem;            }            .value strong{                margin-bottom: 0;            }        }    }    .difficulty .value strong {        font-size: 1px;        color: #fff;    }    .difficulty-1 .value strong{        &:after{            @include svgIcon(difficulty_1, 1);            margin: 0 auto;        }    }    .difficulty-2 .value strong{        &:after{            @include svgIcon(difficulty_2, 1);            margin: 0 auto;        }    }    .difficulty-3 .value strong{        &:after{            @include svgIcon(difficulty_3, 1);            margin: 0 auto;        }    }    .difficulty-4 .value strong{        &:after{            @include svgIcon(difficulty_4, 1);            margin: 0 auto;        }    }}.recipe-introduction-text{    width: 42%;    margin: 0 auto;    padding:    2em 0;    text-align: center;    @media (max-width: $small){        width: 80%;    }    @media (max-width: $tiny){        width: 100%;    }    p.text{        font-size: 1.5rem;    }}// Recipe preparation.recipe-preparation{    overflow: hidden;    position: relative;    background: #FFFFFF;    .container-l{        overflow: hidden;        background: none;        @media (max-width: $extra-large){            padding-right: 0;            padding-left: 0;        }    }}img.recipe-preparation-image{    position: absolute;    width: auto;    filter: blur(40px);    opacity: .6;    @media (max-width: $small - 1){        display: none;    }}.js-tabs{    display: flex;    flex-direction: row;    flex-wrap: nowrap;    justify-content: flex-start;    align-content: flex-start;    align-items: stretch;    background: #FFFFFF;}.recipe-preparation .js-tablist{    display: initial;    flex: 0 1 46rem;    padding-top: 1rem;    @media (max-width: $small - 1){        background: $mediumgrey;    }}.js-tablist__item{    display: block;    width: 100%;    text-align: right;    border-right: none;    text-transform: uppercase;    color: $base-color;    letter-spacing: .2rem;    font-size: 1.6rem;    @media (max-width: $small - 1){        font-size: 1.2rem;    }    a{        position: relative;        display: block;        padding: 3rem 3rem 3rem 1rem;        color: $basecolor;        background: transparent;        opacity: .5;        @media (max-width: $small - 1){            padding-right: 1.5rem;        }        &:after{            content: "";            width: 30px;            height: 3px;            background: #FFFFFF;            position: absolute;            bottom: 0;            right: 6rem;            @media (max-width: $small - 1){                right: calc(50% - 15px);            }        }    }}.recipe-preparation .js-tablist__item > a:focus,.recipe-preparation .js-tablist__item > a:hover,.recipe-preparation .js-tablist__item > a:active,.recipe-preparation .js-tablist__item > a[aria-selected="true"]{    background: transparent;    opacity: 1;    @media (max-width: $small - 1){        color: #FFFFFF;    }    &:after{        bottom: 0;        right: 0;        width: 13rem;        background: #F7F6F7;    }}.recipe-preparation .js-tabcontent{    flex: 0 1 auto;    position: relative;    z-index: 1;    padding: 0;    background: #FFFFFF;    .etape-inner{        display: flex;        @media (max-width: $small - 1){            flex-wrap: wrap;        }    }    .ingredients{        flex: 0 1 26rem;        padding: 4rem;        @media (max-width: $small - 1){            flex: 100%;        }    }    .ingredient-title{        margin-bottom: 2rem;    }    .preparation{        flex: 0 1 auto;        padding: 4rem;        background: #FFFFFF;        @media (max-width: $small - 1){            flex: 100%;        }    }    .title{        position: relative;        text-align: left;        font-family: $font-stack-headings;        font-weight: 600;        text-transform: uppercase;        color: $base-color;        letter-spacing: .2rem;        font-size: 1.3rem;        padding-left: 1rem;        svg{            width: 25px;            height: 28px;            position: absolute;            left: -30px;            top: -7px;        }    }  ul, ol{    padding-left: 0;    li{      margin-bottom: 1rem;    }  }}.recipe-preparation .js-tabcontent[aria-hidden=true]:nth-of-type(1) {    flex: 0 1 auto;}// Recipe tips and comments.recipe-tips{    > div{        margin-bottom: 5rem;        text-align: center;    }}.recipe-tips-intro{    padding: 3rem 10rem 5rem 10rem;    border: 2px solid #FFFFFF;    border-top: 0;    @media (max-width: $tiny){        padding-right: 0;        padding-left: 0;        border: none;    }    h2{        margin-bottom: 4rem;        &:after{            content: '';            width: 120px;            height: 3px;            background: #FFFFFF;            display: block;            margin: 1rem auto;        }    }    svg{      width: 30px;      height: 30px;    }}.recipe-rate{    width: small-screen;    svg{        width: 30px;        height: 30px;    }}.add-rate{    &:after{        content: '';        width: 120px;        height: 3px;        background: #FFFFFF;        display: block;        margin: 4rem auto;    }}.add-comment{    margin-bottom: 3rem;    .title{        margin-bottom: 2rem;    }    a{        margin: 0 2rem;        @media (max-width: $small - 1){            display: block;        }    }}.recipe-comment-list{  padding-left: 0;  list-style: none;  .comment-author {    margin-bottom: 1.5rem;    img {      display: initial;      width: 64px;      height: 64px;      border-radius: 100%;    }    cite{      display: block;      font-style: normal;    }    a {      text-decoration: none;    }    .says{      display: none;    }  }  p{    font-family: $font-stack-headings;    font-weight: 300;    font-size: 1.2rem;  }  .commentmetadata{    display: none;  }}// Recipe share.module-recette{    ul.social-networks li{        margin-right: 3rem;        @media (max-width: $small){            margin-right: 1.5rem;        }    }}// Recipes more.recipe-more{    padding: 10rem 0 4rem 0;    @media (max-width: $extra-large){        padding-right: 0;        padding-left: 0;    }}

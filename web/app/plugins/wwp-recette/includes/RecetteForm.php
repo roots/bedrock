@@ -12,6 +12,7 @@ namespace WonderWp\Plugin\Recette;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Entity;
+use Respect\Validation\Validator;
 use Symfony\Component\HttpFoundation\Request;
 use WonderWp\DI\Container;
 use WonderWp\Entity\AbstractEntity;
@@ -21,6 +22,7 @@ use WonderWp\Forms\Fields\AbstractField;
 use WonderWp\Forms\Fields\AbstractFieldGroup;
 use WonderWp\Forms\Fields\BooleanField;
 use WonderWp\Forms\Fields\BtnField;
+use WonderWp\Forms\Fields\CategoryField;
 use WonderWp\Forms\Fields\FieldGroup;
 use WonderWp\Forms\Fields\HiddenField;
 use WonderWp\Forms\Fields\InputField;
@@ -113,13 +115,13 @@ class RecetteForm extends ModelForm
         $this->_formInstance->addGroup(new FormGroup('metas', __('metasrecette.trad', WWP_RECETTE_TEXTDOMAIN), ['class' => ['closed']]));
 
         $metaFieldsDef = array(
-            ['nbPers', InputField::class], //Nombre de personnes
-            ['tpsPrepa', InputField::class], //Temps de préparation
-            ['tpsCuisson', InputField::class], //Temps de cuisson
-            ['difficulte', InputField::class], //Difficulté
-            ['cout', InputField::class], //Cout
-            ['published', BooleanField::class], //Publication
-            ['astuce', TextAreaField::class], //Astuce
+            ['nbPers', InputField::class,true], //Nombre de personnes
+            ['tpsPrepa', InputField::class,true], //Temps de préparation
+            ['tpsCuisson', InputField::class,false], //Temps de cuisson
+            ['difficulte', InputField::class,true], //Difficulté
+            ['cout', InputField::class,false], //Cout
+            ['published', BooleanField::class,false], //Publication
+            ['astuce', TextAreaField::class,false] //Astuce
         );
 
         if (!empty($metaFieldsDef)) {
@@ -128,15 +130,51 @@ class RecetteForm extends ModelForm
                     'label' => __('meta.' . $def[0] . '.trad', WWP_RECETTE_TEXTDOMAIN),
                     'inputAttributes' => ['name' => 'metas[' . $def[0] . ']']
                 ];
-                $f = new $def[1]('metas_' . $def[0], (!empty($metaValues[$def[0]]) ? $metaValues[$def[0]] : null), $displayRules);
+                $validationRules = array();
+                if($def[2]){ $validationRules[] = Validator::notEmpty(); }
+
+                $f = new $def[1]('metas_' . $def[0], (!empty($metaValues[$def[0]]) ? $metaValues[$def[0]] : null), $displayRules,$validationRules);
                 $this->_formInstance->addField($f, 'metas');
             }
         }
+
+        //Saveur
+        $displayRules = [
+            'label' => __('meta.metas_saveur.trad', WWP_RECETTE_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'metas[metas_saveur]']
+        ];
+        $f = new CategoryField('metas_saveur', (!empty($metaValues['metas_saveur']) ? $metaValues['metas_saveur'] : null), $displayRules,[Validator::notEmpty()],4);
+        $this->_formInstance->addField($f, 'metas');
+
+        //Moment de conso
+        $displayRules = [
+            'label' => __('meta.metas_moment.trad', WWP_RECETTE_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'metas[metas_moment]']
+        ];
+        $f = new CategoryField('metas_moment', (!empty($metaValues['metas_moment']) ? $metaValues['metas_moment'] : null), $displayRules,[Validator::notEmpty()],9);
+        $this->_formInstance->addField($f, 'metas');
+
+        //Type de plat
+        $displayRules = [
+            'label' => __('meta.metas_type_plat.trad', WWP_RECETTE_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'metas[metas_type_plat]']
+        ];
+        $f = new CategoryField('metas_type_plat', (!empty($metaValues['metas_type_plat']) ? $metaValues['metas_type_plat'] : null), $displayRules,[Validator::notEmpty()],13);
+        $this->_formInstance->addField($f, 'metas');
+
+        //Auteur
+        $displayRules = [
+            'label' => __('meta.metas_auteur.trad', WWP_RECETTE_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'metas[auteur]']
+        ];
+        $f = new CategoryField('metas_auteur', (!empty($metaValues['auteur']) ? $metaValues['auteur'] : null), $displayRules,[],18);
+        $this->_formInstance->addField($f, 'metas');
 
     }
 
     private function _generateIngredientsGroup()
     {
+        $locale = get_locale();
         $container = Container::getInstance();
         /** @var EntityManager $entityManager */
         $entityManager = $container->offsetGet('entityManager');
@@ -161,18 +199,30 @@ class RecetteForm extends ModelForm
                 'class' => ['ingredientsPicker']
             ]
         ];
-        $f = new SelectField('ingredients', $selectedIngredienIds, $displayRules);
+        $f = new SelectField('ingredients', $selectedIngredienIds, $displayRules,[Validator::notEmpty()]);
         if (!empty($availableIngredients)) {
             $ingredientOptions = array(
                 '' => __('ingredients.choose.trad', WWP_RECETTE_TEXTDOMAIN)
             );
             foreach ($availableIngredients as $ingredient) {
                 /** @var Ingredient $ingredient */
-                $ingredientOptions[$ingredient->getId()] = $ingredient->getSlug();
+                /** @var IngredientTrad $tradObj */
+                $tradObj = $ingredient->getTranslation($locale);
+                $trad = is_object($tradObj) ? $tradObj->getTitle() : $ingredient->getSlug();
+                $ingredientOptions[$ingredient->getId()] = $trad;
             }
             $f->setOptions($ingredientOptions);
         }
 
+        $this->_formInstance->addField($f, 'ingredients');
+
+
+        //Unit picker
+        $displayRules = [
+            'wrapAttributes'=>['class'=>['hidden']],
+            'label' => __('unit.picker.trad', WWP_RECETTE_TEXTDOMAIN)
+        ];
+        $f = new CategoryField('unit_picker', null, $displayRules,[],22);
         $this->_formInstance->addField($f, 'ingredients');
 
     }
@@ -180,6 +230,7 @@ class RecetteForm extends ModelForm
     private function _generateEtapesGroup()
     {
         //Create field group
+        $this->_formInstance->removeGroup('etapes');
         $this->_formInstance->addGroup(new FormGroup('etapes', __('etapes.trad', WWP_RECETTE_TEXTDOMAIN)));
 
         //Get recipe etapes
@@ -203,7 +254,7 @@ class RecetteForm extends ModelForm
         $this->_formInstance->addField($f, 'etapes');
     }
 
-    private function _generateEtapeGroup($etape)
+    private function _generateEtapeGroup(RecetteEtape $etape)
     {
         $i = $etape->getId();
         if (empty($i)) {
@@ -214,9 +265,11 @@ class RecetteForm extends ModelForm
         $displayRules = array();
         if ($i == '_newstep_') {
             $displayRules['inputAttributes']['class'] = ['nouvelle-etape', 'hidden'];
+            $validationRules=[];
         } else {
             $displayRules['inputAttributes']['class'] = ['etape'];
             $displayRules['after'] = '<button class="button remove-etape">Supprimer</button>';
+            $validationRules=[Validator::notEmpty()];
         }
         $displayRules['wrapAttributes'] = ['no-wrap' => true];
         $f = new FieldGroup('etapes' . $i, null, $displayRules);
@@ -224,7 +277,8 @@ class RecetteForm extends ModelForm
         //Id
         $displayRules = [
             'inputAttributes' => [
-                'name' => 'etapes[' . $i . '][id]'
+                'name' => 'etapes[' . $i . '][id]',
+                'class'=>['etape-id']
             ]
         ];
         $eId = new HiddenField('etape_' . $i . '_id', $etape->getId(), $displayRules);
@@ -238,46 +292,94 @@ class RecetteForm extends ModelForm
                 'class' => ['etape-title']
             ]
         ];
-        $eTitle = new InputField('etape_' . $i . '_title', $etape->getTitle(), $displayRules);
+        $eTitle = new InputField('etape_' . $i . '_title', $etape->getTitle(), $displayRules,$validationRules);
         $f->addFieldToGroup($eTitle);
 
         //Media
         $displayRules = [
             'label' => __('etape.media.trad', WWP_RECETTE_TEXTDOMAIN),
-            'inputAttributes' => ['name' => 'etapes[' . $i . '][media]']
+            'inputAttributes' => ['name' => 'etapes[' . $i . '][media]'],
+            'wrapAttributes' => ['class' => ['media-wrap']]
         ];
         $eMedia = new FileField('etape_' . $i . '_media', $etape->getMedia(), $displayRules);
         $f->addFieldToGroup($eMedia);
 
         //Ingredients
+        $etapeIngredientsWrap = new FieldGroup('EtapeIngredientsWrap' . $i,null,['label' => __('etape.ingredients.trad', WWP_RECETTE_TEXTDOMAIN)]);
+
         $availableIngredients = $this->_modelInstance->getIngredients();
-        $thisEtapeIngredients = $etape->getIngredients();
+        $thisEtapeIngredients = $etape->getEtapeIngredients();
         $selectedIngredienIds = $thisEtapeIngredients->map(function ($entity) {
-            return $entity->getId();
+            return $entity->getIngredient()->getId();
         })->toArray();
+
+        //Liste
+        $locale = get_locale();
+        $list='<br /><label>'.__('etape.ingredient.list.title.trad', WWP_RECETTE_TEXTDOMAIN).'</label>
+        <ul class="stepIngredients">';
+        if (!empty($thisEtapeIngredients)) {
+            foreach ($thisEtapeIngredients as $etapeIngredient) {
+                /** @var $etapeIngredient \WonderWp\Plugin\Recette\EtapeIngredient */
+                $ingredient = $etapeIngredient->getIngredient();
+                if(!empty($ingredient)) {
+                    try {
+                        $trad = $ingredient->getTranslation($locale);
+                        if (!empty($trad)) {
+                            $qty = $etapeIngredient->getQty();
+                            $unitCat = get_category($etapeIngredient->getUnit());
+                            $unitTrad = !is_wp_error($unitCat) ? __('term_' . $unitCat->slug, WWP_RECETTE_TEXTDOMAIN) : null;
+
+                            $list .= '<li>                        
+                            <a href="#">' . ($qty > 0 ? $qty : '') . ' ' . $unitTrad . ' ' . $trad->getTitle() . '</a>
+                            <input type="hidden" class="ingredient-qty" name="etapes[' . $i . '][ingredients][' . $ingredient->getId() . '][qty]" value="' . (int)$qty . '" />
+                            <input type="hidden" class="ingredient-unit" data-name="' . $unitTrad . '" name="etapes[' . $i . '][ingredients][' . $ingredient->getId() . '][unit]" value="' . (int)$etapeIngredient->getUnit() . '" />
+                            <input type="hidden" class="ingredient-id" data-name="' . $trad->getTitle() . '" name="etapes[' . $i . '][ingredients][' . $ingredient->getId() . '][id]" value="' . $ingredient->getId() . '" />
+                            <button class="button delete-wrap">&times;</button>
+                        </li>';
+                        }
+                    } catch (\Doctrine\ORM\EntityNotFoundException $nf) {
+
+                    }
+                }
+            }
+        }
+        $list.='</ul>';
+
+        //Recherche
         $displayRules = [
-            'label' => __('etape.ingredients.trad', WWP_RECETTE_TEXTDOMAIN),
+            'label' => __('etape.recherche.ingredients.trad', WWP_RECETTE_TEXTDOMAIN),
             'inputAttributes' => [
-                'name' => 'etapes[' . $i . '][ingredients]',
+                'name' => ' ',
                 'multiple' => 'multiple',
                 'class' => ['ingredientsPicker']
-            ]
+            ],
+            'after'=>$list
         ];
-        $eIngredients = new SelectField('etape_' . $i . '_ingredients', $selectedIngredienIds, $displayRules);
+        $selectedIngredienIds = $thisEtapeIngredients->map(function ($entity) {
+            return $entity->getIngredient()->getId();
+        })->toArray();
+        $eIngredients = new SelectField('etape_' . $i . '_ingredients', $selectedIngredienIds, $displayRules,$validationRules);
         $ingredientOptions = array();
         foreach ($availableIngredients as $ingredient) {
             /** @var Ingredient $ingredient */
-            $ingredientOptions[$ingredient->getId()] = $ingredient->getSlug();
+            $trad = $ingredient->getTranslation($locale);
+            if(!empty($trad)) {
+                $ingredientOptions[$ingredient->getId()] = $trad->getTitle();
+            }
         }
         $eIngredients->setOptions($ingredientOptions);
-        $f->addFieldToGroup($eIngredients);
+
+
+        $etapeIngredientsWrap->addFieldToGroup($eIngredients);
+        $f->addFieldToGroup($etapeIngredientsWrap);
+
 
         //Instructions
         $displayRules = [
             'label' => __('etape.instructions.trad', WWP_RECETTE_TEXTDOMAIN),
             'inputAttributes' => ['name' => 'etapes[' . $i . '][content]']
         ];
-        $eInstructions = new TextAreaField('etape_' . $i . '_content', $etape->getContent(), $displayRules);
+        $eInstructions = new TextAreaField('etape_' . $i . '_content', $etape->getContent(), $displayRules,$validationRules);
         $f->addFieldToGroup($eInstructions);
 
         return $f;
@@ -433,6 +535,7 @@ class RecetteForm extends ModelForm
                 return !in_array($entry->getId(), array_keys($rawEtapesData));
             }
         );
+
         if (!empty($etapesToRemove)) {
             foreach ($etapesToRemove as $e) {
                 $recette->removeEtape($e);
@@ -452,28 +555,56 @@ class RecetteForm extends ModelForm
                     unset($val['ingredients']);
                 }
 
-                if ($id > 0) {
+                if (strpos($val['id'],'_newstep_')===false) {
                     $etape = $em->find(RecetteEtape::class, $id);
                 } else {
                     if (empty($val['title'])) {
                         continue;
                     } //pas de donnees postees pour ajouter une nouvelle etape
                     $etape = new RecetteEtape();
-                }
-
-                $etape->populate($val)
-                    ->setRecette($recette);
-                if ($recette->addEtape($etape)) {
                     $em->persist($etape);
+                    $recette->addEtape($etape);
+                    $val['id'] = $recette->getId();
                 }
+                $etape->populate($val);
 
-                $this->_handleIngredients($rawIngredientsData, $etape);
+                $em->flush();
+                $this->_handleEtapeIngredients($rawIngredientsData, $etape);
             }
         }
         $em->flush();
 
+        $this->_generateEtapesGroup();
 
         return $errors;
+    }
+
+    private function _handleEtapeIngredients($rawEtapeIngredientsData, RecetteEtape $etape){
+
+        /** @var EntityManager $em */
+        $em = $this->_em;
+
+        //Remove other etapeIngredients
+        $eid = $etape->getId();
+        if($eid>0) {
+            $query = $em->createQuery('DELETE ' . EtapeIngredient::class . ' ei WHERE ei.recetteEtape = ' . $etape->getId());
+            $query->execute();
+        }
+
+        $etape->setEtapeIngredients(new ArrayCollection());
+
+        //Add ingredients
+        if(!empty($rawEtapeIngredientsData)){ foreach($rawEtapeIngredientsData as $rawEtapeIngredientData){
+            $etapeIngredient = new EtapeIngredient();
+            $etapeIngredient->setQty($rawEtapeIngredientData['qty'])
+                ->setUnit($rawEtapeIngredientData['unit']);
+            $ingredient = $item = $em->find(Ingredient::class, $rawEtapeIngredientData['id']);
+
+            $etape->addEtapeIngredient($etapeIngredient);
+            $ingredient->addEtapeIngredient($etapeIngredient);
+        }}
+
+        $em->flush();
     }
 
 }

@@ -9,57 +9,55 @@ use WonderWp\Entity\AbstractEntity;
 /**
  * Recetteetape
  *
- * @Table(name="recetteEtape", indexes={@Index(name="fk_recetteEtape_recette1_idx", columns={"recette_id"})})
- * @Entity
+ * @ORM\Table(name="recetteEtape", indexes={@ORM\Index(name="fk_recetteEtape_recette1_idx", columns={"recette_id"})})
+ * @ORM\Entity
  */
 class RecetteEtape extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string", length=45, nullable=false)
+     * @ORM\Column(name="title", type="string", length=45, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @Column(name="media", type="string", length=140, nullable=true)
+     * @ORM\Column(name="media", type="string", length=140, nullable=true)
      */
     private $media;
 
     /**
      * @var string
      *
-     * @Column(name="content", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="content", type="text", length=65535, nullable=true)
      */
     private $content;
 
     /**
      * @var \Recette
      *
-     * @ManyToOne(targetEntity="RecetteEntity")
-     * @JoinColumns({
-     *   @JoinColumn(name="recette_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="RecetteEntity", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
      * })
      */
     private $recette;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ManyToMany(targetEntity="Ingredient", mappedBy="recetteEtapes")
+     * @ORM\OneToMany(targetEntity="EtapeIngredient", mappedBy="recetteEtape", cascade={"persist", "remove"}, orphanRemoval=TRUE))
      */
-    private $ingredients;
+    private $etapeIngredients;
 
 
     /**
@@ -67,7 +65,7 @@ class RecetteEtape extends AbstractEntity
      */
     public function __construct()
     {
-        $this->ingredient = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->etapeIngredients = new ArrayCollection();
     }
 
     /**
@@ -151,68 +149,40 @@ class RecetteEtape extends AbstractEntity
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getIngredients()
+    public function getEtapeIngredients()
     {
-        if(is_null($this->ingredients)){
-            $this->ingredients = new ArrayCollection();
-        }
-        return $this->ingredients;
+        return $this->etapeIngredients;
     }
 
     /**
-     * @param \Doctrine\Common\Collections\Collection $ingredients
+     * @param mixed $etapeIngredients
      */
-    public function setIngredients($ingredients)
+    public function setEtapeIngredients($etapeIngredients)
     {
-        $this->ingredients = $ingredients;
+        $this->etapeIngredients = $etapeIngredients;
+        return $this;
     }
 
-    /**
-     * @param Ingredient $ingredient
-     * @return bool
-     */
-    public function addIngredient(Ingredient $ingredient)
+    public function addEtapeIngredient(EtapeIngredient $etapeIngredient)
     {
-        if(is_null($this->ingredients)){
-            $this->ingredients = new ArrayCollection();
+        if (!$this->etapeIngredients->contains($etapeIngredient)) {
+            $this->etapeIngredients->add($etapeIngredient);
+            $etapeIngredient->setRecetteEtape($this);
         }
 
-        $colIngredienIds = $this->ingredients->map(function ($entity) {
-            return $entity->getId();
-        })->toArray();
-
-        if (in_array($ingredient->getId(),$colIngredienIds)) {
-            return false;
-        }
-
-        $this->ingredients->add($ingredient);
-        $ingredient->addRecetteEtape($this);
-        return true;
+        return $this;
     }
 
-    /**
-     * @param Ingredient $ingredient
-     * @return bool
-     */
-    public function removeIngredient(Ingredient $ingredient)
+    public function removeEtapeIngredient(EtapeIngredient $etapeIngredient)
     {
-        if(is_null($this->ingredients)){
-            $this->ingredients = new ArrayCollection();
+        if ($this->etapeIngredients->contains($etapeIngredient)) {
+            $this->etapeIngredients->removeElement($etapeIngredient);
+            $etapeIngredient->setRecetteEtape(null);
         }
 
-        $colIngredientIds = $this->ingredients->map(function ($entity) {
-            return $entity->getId();
-        })->toArray();
-
-        if (!in_array($ingredient->getId(),$colIngredientIds)) {
-            return false;
-        }
-
-        $this->ingredients->removeElement($ingredient);
-        $ingredient->removeRecetteEtape($this);
-        return true;
-    }
+        return $this;
+    }    
 
 }
