@@ -2,36 +2,37 @@
 
 namespace WonderWp\Plugin\Translator;
 use WonderWp\Entity\AbstractEntity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Faq
  * @package WonderWp\Plugin\Translator
- * @Entity(repositoryClass="LangRepository") @Table(name="wwp_lang")
+ * @ORM\Entity(repositoryClass="LangRepository") @ORM\Table(name="wwp_lang")
  **/
 class LangEntity extends AbstractEntity{
 
     /**
-     * @Id @Column(type="integer", nullable=true) @GeneratedValue
+     * @ORM\Id @ORM\Column(type="integer", nullable=true) @ORM\GeneratedValue
      * @var int
      */
     private $id;
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     private $title;
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     private $locale;
     /**
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      * @var int
      */
     private $arbo;
     /**
-     * @Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      * @var bool
      */
     private $isActive;
