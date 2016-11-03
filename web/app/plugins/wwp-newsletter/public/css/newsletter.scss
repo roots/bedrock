@@ -1,0 +1,61 @@
+/**
+ *	Newsletter plugin
+ */
+
+.module-newsletter{
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: #fff;
+    @media (max-width: $small){
+        margin-bottom: 0;
+        padding: 0;
+    }
+    form{
+        display: inline-block;
+        width: 100%;
+        padding: 0;
+        background: #fff;
+    }
+    .form-group{
+        display: inline-block;
+        height: auto;
+        width: 75%;
+        margin-right: 0;
+        @media (max-width: $small - 1){
+            margin-bottom: 0;
+        }
+        label{
+            @extend .visually-hidden;
+        }
+        input[type="email"]{
+            width: 100%;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+            &, &::placeholder{
+                font-size: 2rem;
+                opacity: 1;
+            }
+            &{
+                color: #000;
+            }
+        }
+    }
+    .submitFormField {
+        width: 25%;
+        text-align: right;
+        .btn{
+            margin: 0;
+            padding: 0;
+            color: $mediumgrey;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            background: transparent;
+            border: 0;
+            &:hover, &:focus{
+                color: #000;
+            }
+        }
+    }
+
+}

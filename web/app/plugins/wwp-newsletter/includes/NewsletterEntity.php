@@ -1,43 +1,44 @@
 <?php
 
 namespace WonderWp\Plugin\Newsletter;
-
+use Doctrine\ORM\Mapping as ORM;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * NewsletterEntity
  *
- * @Table(name="wwp_nllist")
- * @Entity
+ * @ORM\Table(name="wwp_nllist")
+ * @ORM\Entity
  */
-class NewsletterEntity extends \WonderWp\Entity\AbstractEntity
+class NewsletterEntity extends AbstractEntity
 {
     /**
      * @var string
      *
-     * @Column(name="id", type="string", length=45, nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="id", type="string", length=45, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string", length=45, nullable=false)
+     * @ORM\Column(name="title", type="string", length=45, nullable=false)
      */
     private $title;
 
     /**
      * @var integer
      *
-     * @Column(name="subscribers", type="integer", nullable=true)
+     * @ORM\Column(name="subscribers", type="integer", nullable=true)
      */
     private $subscribers;
 
     /**
      * @var string
      *
-     * @Column(name="data", type="string", length=255, nullable=true)
+     * @ORM\Column(name="data", type="string", length=255, nullable=true)
      */
     private $data;
 

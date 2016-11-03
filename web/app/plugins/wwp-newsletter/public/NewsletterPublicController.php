@@ -48,7 +48,6 @@ class NewsletterPublicController extends AbstractPluginFrontendController
         $passerelle = new $passerelleClass();
 
         $listItem = $this->_entityManager->find(NewsletterEntity::class, $atts['list']);
-
         $form = $passerelle->getSignupForm($listItem);
 
         $opts = array(
@@ -80,19 +79,19 @@ class NewsletterPublicController extends AbstractPluginFrontendController
 
         $data = $request->request->all();
 
-        $submitResult = $passerelle->handleFormSubmit($data);
+        $container = Container::getInstance();
+        $listItem = $this->_entityManager->find(NewsletterEntity::class, $request->request->get('listid'));
+        $form = $passerelle->getSignupForm($listItem);
 
-        $success = $submitResult->getCode()===200;
+        //Form Validation
+        $formValidator = $container->offsetGet('wwp.forms.formValidator');
+        $formValidator->setFormInstance($form);
+        $errors = $formValidator->validate($data);
 
-        $prevPage = $_SERVER['HTTP_REFERER'];
-        if ($success) {
-            $result = new Result(200,['msg'=>__('newsletter.subscribe.success', WWP_NEWSLETTER_TEXTDOMAIN)]);
+        if(!empty($errors)){
+            $result = new Result(403,['msg'=>__('newsletter.form.error', WWP_NEWSLETTER_TEXTDOMAIN),'errors'=>$errors]);
         } else {
-            if($submitResult->getData('msg')=='Member Exists'){
-                $result = new Result(202,['msg' => __('newsletter.alreadysubscribe.info', WWP_NEWSLETTER_TEXTDOMAIN)]);
-            } else {
-                $result = new Result(403, ['msg' => __('newsletter.subscribe.error', WWP_NEWSLETTER_TEXTDOMAIN)]);
-            }
+            $result = $passerelle->handleFormSubmit($data);
         }
 
         if($request->isXmlHttpRequest()){
@@ -100,6 +99,7 @@ class NewsletterPublicController extends AbstractPluginFrontendController
             echo $result;
             die();
         } else {
+            $prevPage = $_SERVER['HTTP_REFERER'];
             $notifType = 'error';
             if($result->getCode()===200){ $notifType='success'; }
             if($result->getCode()===202){ $notifType='info'; }

@@ -33,7 +33,7 @@ class MailChimpPasserelle extends AbstractPasserelle
     public function __construct()
     {
         $mcApiKey = get_option('cleApiMC');
-        if(!empty($mcApiKey)) {
+        if (!empty($mcApiKey)) {
             $_mailChimpWrapper = new MailChimp($mcApiKey);
             $this->_mailChimpWrapper = $_mailChimpWrapper;
         }
@@ -75,15 +75,14 @@ class MailChimpPasserelle extends AbstractPasserelle
             foreach ($result['lists'] as $listData) {
                 //\WonderWp\trace($listData);
                 $saveData = array(
-                    'postUrl'=>$listData['subscribe_url_long']
+                    'postUrl' => $listData['subscribe_url_long']
                 );
                 $list = new NewsletterEntity();
                 $list
                     ->setId($listData['id'])
                     ->setTitle($listData['name'])
                     ->setSubscribers($listData['stats']['member_count'])
-                    ->setData($saveData)
-                    ;
+                    ->setData($saveData);
                 $entityManager->persist($list);
             }
             $entityManager->flush();
@@ -95,18 +94,24 @@ class MailChimpPasserelle extends AbstractPasserelle
         /** @var Form $form */
         $form = Container::getInstance()->offsetGet('wwp.forms.form');
 
-        $f = new HiddenField('LIST_ID', $list->getId());
+        $validationRules = array(
+            Validator::notEmpty()
+        );
+        $f = new HiddenField('listid', $list->getId(), array(), $validationRules);
         $form->addField($f);
 
-        $placeholder = __('subscribe.placeholder.trad',WWP_NEWSLETTER_TEXTDOMAIN);
+        $placeholder = __('subscribe.placeholder.trad', WWP_NEWSLETTER_TEXTDOMAIN);
         $displayRules = [
-            'label'=>__('subscribe.label.trad',WWP_NEWSLETTER_TEXTDOMAIN)
+            'label' => __('subscribe.label.trad', WWP_NEWSLETTER_TEXTDOMAIN)
         ];
-        if(!empty($placeholder)){
-            $displayRules['inputAttributes'] = array('placeholder'=>$placeholder);
+        if (!empty($placeholder)) {
+            $displayRules['inputAttributes'] = array('placeholder' => $placeholder);
         }
-        $validationRules = array(Validator::notEmpty());
-        $f = new EmailField('EMAIL',null,$displayRules,$validationRules);
+        $validationRules = array(
+            Validator::notEmpty(),
+            Validator::email()
+        );
+        $f = new EmailField('email', null, $displayRules, $validationRules);
         $form->addField($f);
 
         return $form;
@@ -116,19 +121,21 @@ class MailChimpPasserelle extends AbstractPasserelle
     public function handleFormSubmit(array $data)
     {
 
-        if(empty($data['LIST_ID']) || empty($data['EMAIL'])){
-            return new Result('403',['msg'=>"Missing List or Email"]);
+        if (empty($data['LIST_ID']) || empty($data['EMAIL'])) {
+            return new Result('403', ['msg' => "Missing List or Email"]);
         }
 
-        $postRes = $this->_mailChimpWrapper->post("lists/".$data['LIST_ID']."/members", [
+        $postRes = $this->_mailChimpWrapper->post("lists/" . $data['LIST_ID'] . "/members", [
             'email_address' => $data['EMAIL'],
-            'status'        => 'subscribed',
+            'status' => 'subscribed',
         ]);
 
-        if($postRes['status']=='subscribed'){
-            return new Result(200);
+        if ($postRes['status'] == 'subscribed') {
+            return new Result(200, ['msg' => __('newsletter.subscribe.success', WWP_NEWSLETTER_TEXTDOMAIN)]);
+        } elseif ($postRes['title'] == 'Member Exists') {
+            return new Result(202, ['msg' => __('newsletter.alreadysubscribe.info', WWP_NEWSLETTER_TEXTDOMAIN)]);
         } else {
-            return new Result($postRes['status'],['msg'=>$postRes['title']]);
+            return new Result(403, ['msg' => __('newsletter.subscribe.error', WWP_NEWSLETTER_TEXTDOMAIN)]);
         }
     }
 }
