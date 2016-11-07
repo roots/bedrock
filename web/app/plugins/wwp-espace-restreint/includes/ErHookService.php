@@ -78,7 +78,9 @@ class ErHookService extends AbstractHookService{
 
         if($isProtected){
             $manager = Container::getInstance()->offsetGet('wwp-espace-restreint.Manager');
-            \WonderWp\redirect('/'.$manager->getConfig('login_url'));
+            /** @var ErGeneralService $erGleService */
+            $erGleService = $manager->getService('er');
+            \WonderWp\redirect($erGleService->getLoginUrl());
         }
     }
 

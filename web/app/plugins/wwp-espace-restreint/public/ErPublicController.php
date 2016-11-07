@@ -4,6 +4,8 @@ namespace WonderWp\Plugin\EspaceRestreint;
 use WonderWp\API\Result;
 use WonderWp\APlugin\AbstractPluginFrontendController;
 use WonderWp\HttpFoundation\Request;
+use WonderWp\Theme\ThemeQueryService;
+use WonderWp\Theme\ThemeViewService;
 
 /**
  * Created by PhpStorm.
@@ -41,26 +43,32 @@ class ErPublicController extends AbstractPluginFrontendController
     }
 
     public function registerAction(){
+
+        add_filter( 'body_class', function($classes){
+            $classes[] = 'club-subscription';
+            return $classes;
+        });
+
         /** @var ErGeneralService $erGleService */
         $erGleService = $this->_manager->getService('er');
 
         /** @var ErFormService $erService */
         $erFormService = $this->_manager->getService('erForm');
-        $loginForm = $erFormService->getRegisterForm();
+        $registerForm = $erFormService->getRegisterForm();
 
         /** @var ErFormHandlerService $erFormHandlerService */
         $erFormHandlerService = $this->_manager->getService('erFormHandler');
         $formHandler = array($erFormHandlerService,'handleLoginForm');
 
         $viewOpts = array(
-            'file'=>'default',
+            'file'=>'register',
             'title'=>__('register',WWP_ER_TEXTDOMAIN),
             'params'=>[
                 'loginUrl'=>$erGleService->getLoginUrl()
             ]
         );
 
-        return $this->_abstractAction($loginForm,$formHandler,$viewOpts);
+        return $this->_abstractAction($registerForm,$formHandler,$viewOpts);
     }
 
     public function logoutAction(){
@@ -87,7 +95,7 @@ class ErPublicController extends AbstractPluginFrontendController
 
         /** @var ErFormService $erService */
         $erFormService = $this->_manager->getService('erForm');
-        $loginForm = $erFormService->getForgotPwdForm();
+        $forgetPwdForm = $erFormService->getForgotPwdForm();
 
         /** @var ErFormHandlerService $erFormHandlerService */
         $erFormHandlerService = $this->_manager->getService('erFormHandler');
@@ -101,7 +109,7 @@ class ErPublicController extends AbstractPluginFrontendController
             ]
         );
 
-        return $this->_abstractAction($loginForm,$formHandler,$viewOpts);
+        return $this->_abstractAction($forgetPwdForm,$formHandler,$viewOpts);
     }
 
     public function resetPasswordAction(){

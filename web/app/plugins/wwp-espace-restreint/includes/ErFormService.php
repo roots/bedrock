@@ -34,12 +34,22 @@ class ErFormService extends AbstractService{
         $container = Container::getInstance();
 
         /** @var Form $form */
-        $form = $container->offsetGet('wwp.forms.form');
-        $form->setName('er-signup-form');
+        $formInstance = $container->offsetGet('wwp.forms.form');
+        $formInstance->setName('er-signup-form');
+
+        $item = new MembreEntity();
+
+        $manager = $container->offsetGet('wwp-espace-restreint.Manager');
+        $modelForm = $manager->getService(AbstractService::$MODELFORMSERVICENAME);
+
+        //Set Model instance
+        $modelForm->setModelInstance($item);
+
+        //Set form instance, then build form from model attributes and groups
+        $modelForm->setFormInstance($formInstance)->buildForm();
 
 
-
-        return $form;
+        return $modelForm->getFormInstance();
     }
 
     public function getForgotPwdForm(){
