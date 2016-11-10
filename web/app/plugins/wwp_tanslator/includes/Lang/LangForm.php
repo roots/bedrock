@@ -12,6 +12,7 @@ use WonderWp\Entity\EntityAttribute;
 use WonderWp\Forms\Fields\BooleanField;
 use WonderWp\Forms\Fields\HiddenField;
 
+use WonderWp\Forms\Fields\PageField;
 use WonderWp\Forms\ModelForm;
 
 class LangForm extends ModelForm{
@@ -21,10 +22,14 @@ class LangForm extends ModelForm{
         $fieldName = $attr->getFieldName();
         $entity = $this->getModelInstance();
         $val = $entity->$fieldName;
+        $label = __($fieldName . '.trad', $this->_textDomain);
 
         switch($fieldName){
             case 'id':
                 $f = new HiddenField($attr->getFieldName(),$val);
+                break;
+            case 'arbo':
+                $f = new PageField( $fieldName, $val, ['label' => $label]);
                 break;
             case 'isActive':
                 $f = $f = new BooleanField($attr->getFieldName(), $val , ['label'=>'Label '.$fieldName]);
