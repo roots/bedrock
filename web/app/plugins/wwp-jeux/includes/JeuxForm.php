@@ -137,11 +137,107 @@ class JeuxForm extends ModelForm
         }
     }
 
+    private function _generateQuestionsGroup()
+    {
+        //Create field group
+        $this->_formInstance->removeGroup('questions');
+        $this->_formInstance->addGroup(new FormGroup('questions', __('questions.trad', WWP_JEUX_TEXTDOMAIN)));
+
+        //Get jeux questions
+        $thisQuestions = $this->_modelInstance->getQuestions();
+
+        //One field group per question
+        if (!empty($thisQuestions)) {
+            /** @var JeuxQuestion $question */
+            foreach ($thisQuestions as $question) {
+                $f = $this->_generateQuestionGroup($question);
+                $this->_formInstance->addField($f, 'questions');
+            }
+        }
+
+        //Add question btn
+        $addBtn = new BtnField('add-question', null, ['label' => 'Ajouter une question','inputAttributes'=>['class'=>['add-repeatable'],'data-repeatable' => '_newquestion_']]);
+        $this->_formInstance->addField($addBtn, 'questions');
+
+        //One extra field for new steps
+        $f = $this->_generateQuestionGroup(new JeuxQuestion());
+        $this->_formInstance->addField($f, 'questions');
+    }
+
+    private function _generateQuestionGroup(JeuxQuestion $question)
+    {
+        $i = $question->getId();
+        if (empty($i)) {
+            $i = '_newquestion_';
+        }
+
+        /** @var JeuxQuestion $question */
+        $displayRules = array();
+        if ($i == '_newquestion_') {
+            $displayRules['inputAttributes']['class'] = ['_newquestion_','nouveau-repeatable', 'hidden'];
+            $validationRules = [];
+        } else {
+            $displayRules['inputAttributes']['class'] = ['question','repeatable'];
+            $displayRules['after'] = '<button class="button remove-question remove-repeatable">Supprimer</button>';
+            $validationRules = [Validator::notEmpty()];
+        }
+        $displayRules['wrapAttributes'] = ['no-wrap' => true];
+        $f = new FieldGroup('questions' . $i, null, $displayRules);
+
+        //Id
+        $displayRules = [
+            'inputAttributes' => [
+                'name' => 'questions[' . $i . '][id]',
+                'class' => ['question-id','repeatable-id']
+            ]
+        ];
+        $eId = new HiddenField('question_' . $i . '_id', $question->getId(), $displayRules);
+        $f->addFieldToGroup($eId);
+
+        //Title
+        $displayRules = [
+            'inputAttributes' => [
+                'name' => 'questions[' . $i . '][titre]',
+                'placeholder' => __('question.titre.trad', WWP_JEUX_TEXTDOMAIN),
+                'class' => ['question-titre']
+            ]
+        ];
+        $eTitle = new InputField('question_' . $i . '_titre', $question->getTitre(), $displayRules, $validationRules);
+        $f->addFieldToGroup($eTitle);
+
+        //Media
+        $displayRules = [
+            'label' => __('question.visuel.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'questions[' . $i . '][visuel]'],
+            'wrapAttributes' => ['class' => ['visuel-wrap']]
+        ];
+        $eMedia = new MediaField('question_' . $i . '_visuel', $question->getVisuel(), $displayRules);
+        $f->addFieldToGroup($eMedia);
+
+        //Description
+        $displayRules = [
+            'label' => __('question.contenu.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'questions[' . $i . '][contenu]']
+        ];
+        $eInstructions = new TextAreaField('question_' . $i . '_contenu', $question->getContenu(), $displayRules);
+        $f->addFieldToGroup($eInstructions);
+
+        //Is Active
+        $displayRules = [
+            'label' => __('question.isActive.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'questions[' . $i . '][isActive]']
+        ];
+        $eActive = new BooleanField('question_' . $i . '_isActive', $question->getIsActive(), $displayRules);
+        $f->addFieldToGroup($eActive);
+
+        return $f;
+    }
+
     private function _generateLotsGroup()
     {
         //Create field group
         $this->_formInstance->removeGroup('lots');
-        $this->_formInstance->addGroup(new FormGroup('lots', __('lots.trad', WWP_JEUX_TEXTDOMAIN)));
+        $this->_formInstance->addGroup(new FormGroup('lots', __('lots.trad', WWP_JEUX_TEXTDOMAIN), ['class' => ['closed']]));
 
         //Get jeux lots
         $thisLots = $this->_modelInstance->getLots();
@@ -156,7 +252,7 @@ class JeuxForm extends ModelForm
         }
 
         //Add lot btn
-        $addBtn = new BtnField('add-lot', null, ['label' => 'Ajouter un lot']);
+        $addBtn = new BtnField('add-lot', null, ['label' => 'Ajouter un lot','inputAttributes'=>['class'=>['add-repeatable'],'data-repeatable' => '_newlot_']]);
         $this->_formInstance->addField($addBtn, 'lots');
 
         //One extra field for new steps
@@ -174,11 +270,11 @@ class JeuxForm extends ModelForm
         /** @var JeuxLot $lot */
         $displayRules = array();
         if ($i == '_newlot_') {
-            $displayRules['inputAttributes']['class'] = ['nouveau-lot', 'hidden'];
+            $displayRules['inputAttributes']['class'] = ['_newlot_','nouveau-repeatable', 'hidden'];
             $validationRules = [];
         } else {
-            $displayRules['inputAttributes']['class'] = ['lot'];
-            $displayRules['after'] = '<button class="button remove-lot">Supprimer</button>';
+            $displayRules['inputAttributes']['class'] = ['lot','repeatable'];
+            $displayRules['after'] = '<button class="button remove-lot remove-repeatable">Supprimer</button>';
             $validationRules = [Validator::notEmpty()];
         }
         $displayRules['wrapAttributes'] = ['no-wrap' => true];
@@ -188,7 +284,7 @@ class JeuxForm extends ModelForm
         $displayRules = [
             'inputAttributes' => [
                 'name' => 'lots[' . $i . '][id]',
-                'class' => ['lot-id']
+                'class' => ['lot-id','repeatable-id']
             ]
         ];
         $eId = new HiddenField('lot_' . $i . '_id', $lot->getId(), $displayRules);
@@ -219,13 +315,21 @@ class JeuxForm extends ModelForm
             'label' => __('lot.contenu.trad', WWP_JEUX_TEXTDOMAIN),
             'inputAttributes' => ['name' => 'lots[' . $i . '][contenu]']
         ];
-        $eInstructions = new TextAreaField('lot_' . $i . '_contenu', $lot->getContenu(), $displayRules, $validationRules);
+        $eInstructions = new TextAreaField('lot_' . $i . '_contenu', $lot->getContenu(), $displayRules);
         $f->addFieldToGroup($eInstructions);
 
         //Mecanique de gain
         $mecanique = $this->_modelInstance->getMecaniqueGain();
         $mecaGroup = $mecanique::generateLotMecanique($lot, 'lots[' . $i . '][mecaniqueGain]');
         $f->addFieldToGroup($mecaGroup);
+
+        //Is Active
+        $displayRules = [
+            'label' => __('lot.isActive.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'lots[' . $i . '][isActive]']
+        ];
+        $eActive = new BooleanField('lot_' . $i . '_isActive', $lot->getIsActive(), $displayRules);
+        $f->addFieldToGroup($eActive);
 
         return $f;
     }
@@ -308,12 +412,12 @@ class JeuxForm extends ModelForm
             unset($data['lots']);
         }
 
-        /*//Extract Ingredients
-        $rawIngredientsData = array();
-        if (isset($data['ingredients'])) {
-            $rawIngredientsData = $data['ingredients'];
-            unset($data['ingredients']);
-        }*/
+        //Extract Questions
+        $rawQuestionsData = array();
+        if (isset($data['questions'])) {
+            $rawQuestionsData = $data['questions'];
+            unset($data['questions']);
+        }
 
         $errors = parent::handleRequest($data, $formValidator);
         $this->_formInstance->fill($postedData);
@@ -334,11 +438,11 @@ class JeuxForm extends ModelForm
         $lotErrors = $this->_handleLots($rawLotsData);
         $errors = $errors + $lotErrors;
 
-        /*//Process Ingredients
-        $ingredientErrors = $this->_handleIngredients($rawIngredientsData, $jeux);
-        $errors = $errors + $ingredientErrors;
+        //Process Questions
+        $questionsErrors = $this->_handleQuestions($rawQuestionsData);
+        $errors = $errors + $questionsErrors;
 
-        //Process Lots
+        /*//Process Lots
         $lotsErrors = $this->_handleLots($rawLotsData);
         $errors = $errors + $lotsErrors;*/
 
@@ -372,7 +476,7 @@ class JeuxForm extends ModelForm
 
         if (!empty($lotsToRemove)) {
             foreach ($lotsToRemove as $e) {
-                $jeux->removeLot($e);
+                $jeux->removeRelatedEntity('lots',$e,'setJeux');
                 $em->remove($e);
             }
             $em->flush();
@@ -386,7 +490,7 @@ class JeuxForm extends ModelForm
                     $val['mecaniqueGain'] = json_encode($val['mecaniqueGain']);
                 }
 
-                if (strpos($val['id'],'_newlot_')===false) {
+                if (strpos($val['id'],'_newrepeatable_')===false) {
                     $lot = $em->find(JeuxLot::class, $id);
                 } else {
                     if (empty($val['titre'])) {
@@ -394,10 +498,68 @@ class JeuxForm extends ModelForm
                     } //pas de donnees postees pour ajouter une nouvelle lot
                     $lot = new JeuxLot();
                     $em->persist($lot);
-                    $jeux->addLot($lot);
+                    $jeux->addRelatedEntity('lots',$lot,'setJeux');
                     $val['id'] = $jeux->getId();
                 }
                 $lot->populate($val);
+
+                $em->flush();
+
+            }
+        }
+        $em->flush();
+
+        return $errors;
+    }
+
+    private function _handleQuestions($rawQuestionsData)
+    {
+
+        if (isset($rawQuestionsData['_newquestion_'])) {
+            unset($rawQuestionsData['_newquestion_']);
+        }
+
+        $errors = array();
+
+        /** @var JeuxEntity $jeux */
+        $jeux = $this->_modelInstance;
+
+        /** @var EntityManager $em */
+        $em = $this->_em;
+
+        //Remove old questions
+        //aka those which are in my collection but not the posted ids
+        $questionsToRemove = $jeux->getQuestions()->filter(
+            function ($entry) use ($rawQuestionsData) {
+                return !in_array($entry->getId(), array_keys($rawQuestionsData));
+            }
+        );
+
+        if (!empty($questionsToRemove)) {
+            foreach ($questionsToRemove as $e) {
+                $jeux->removeRelatedEntity('questions',$e,'setJeux');
+                $em->remove($e);
+            }
+            $em->flush();
+        }
+
+        //Recreate questions
+        if (!empty($rawQuestionsData)) {
+            foreach ($rawQuestionsData as $val) {
+                $id = $val['id'];
+
+                if (strpos($val['id'],'_newrepeatable_')===false) {
+                    $question = $em->find(JeuxQuestion::class, $id);
+                } else {
+                    if (empty($val['titre'])) {
+                        continue;
+                    } //pas de donnees postees pour ajouter une nouvelle question
+                    $question = new JeuxQuestion();
+                    $em->persist($question);
+                    $jeux->addRelatedEntity('questions',$question,'setJeux');
+                    $val['id'] = $jeux->getId();
+                }
+                $question->populate($val);
 
                 $em->flush();
 

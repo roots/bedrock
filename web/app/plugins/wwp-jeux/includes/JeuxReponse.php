@@ -3,6 +3,7 @@
 namespace WonderWp\Plugin\Jeux;
 
 use Doctrine\ORM\Mapping as ORM;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * Jeuxreponse

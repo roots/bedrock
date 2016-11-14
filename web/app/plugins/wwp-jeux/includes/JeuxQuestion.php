@@ -3,6 +3,7 @@
 namespace WonderWp\Plugin\Jeux;
 
 use Doctrine\ORM\Mapping as ORM;
+use WonderWp\Entity\AbstractEntity;
 
 /**
  * Jeuxquestion
@@ -27,6 +28,20 @@ class JeuxQuestion extends AbstractEntity
      * @ORM\Column(name="titre", type="string", length=140, nullable=true)
      */
     private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="visuel", type="string", length=140, nullable=true)
+     */
+    private $visuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+     */
+    private $contenu;
 
     /**
      * @var boolean
@@ -82,9 +97,45 @@ class JeuxQuestion extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getVisuel()
+    {
+        return $this->visuel;
+    }
+
+    /**
+     * @param string $visuel
+     * @return static
+     */
+    public function setVisuel($visuel)
+    {
+        $this->visuel = $visuel;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param string $contenu
+     * @return static
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
-    public function isIsActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }

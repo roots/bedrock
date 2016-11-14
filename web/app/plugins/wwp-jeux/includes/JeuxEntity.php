@@ -100,9 +100,23 @@ class JeuxEntity extends \WonderWp\Entity\AbstractEntity
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * @var Collection
      *
+     * @ORM\OneToMany(targetEntity="JeuxQuestion", mappedBy="jeux")
+     */
+    private $questions;
+
+    /**
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     * @var Collection
+     *
      * @ORM\OneToMany(targetEntity="JeuxLot", mappedBy="jeux")
      */
     private $lots;
+
+    public function __construct()
+    {
+        $this->lots = new ArrayCollection();
+        $this->questions = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -363,26 +377,21 @@ class JeuxEntity extends \WonderWp\Entity\AbstractEntity
     }
 
     /**
-     * @param JeuxLot $lot
+     * @return Collection
      */
-    public function addLot(JeuxLot $lot)
+    public function getQuestions()
     {
-        if (!$this->lots->contains($lot)) {
-            $this->lots->add($lot);
-            $lot->setJeux($this);
-        }
-        return $this;
+        return $this->questions;
     }
 
     /**
-     * @param JeuxLot $lot
+     * @param Collection $questions
+     * @return static
      */
-    public function removeLot(JeuxLot $lot)
+    public function setQuestions($questions)
     {
-        if ($this->lots->contains($lot)) {
-            $this->lots->removeElement($lot);
-            $lot->setJeux(null);
-        }
+        $this->questions = $questions;
         return $this;
-    } 
+    }
+
 }

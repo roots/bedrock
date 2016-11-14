@@ -51,6 +51,13 @@ class JeuxLot extends AbstractEntity
     private $mecaniqueGain;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+
+    /**
      * @var \Jeux
      *
      * @ORM\ManyToOne(targetEntity="JeuxEntity")
@@ -165,6 +172,24 @@ class JeuxLot extends AbstractEntity
     public function setJeux($jeux)
     {
         $this->jeux = $jeux;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param boolean $isActive
+     * @return JeuxLot
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
         return $this;
     }
 
