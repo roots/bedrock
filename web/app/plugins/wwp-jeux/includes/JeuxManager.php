@@ -77,11 +77,10 @@ class JeuxManager extends AbstractPluginManager{
             //List Table service
             return new JeuxListTable();
         });
-        /* //Uncomment this if your plugin has assets, then create the JeuxAssetService class in the include folder
         $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
             //Asset service
             return new JeuxAssetService();
-        });*/
+        });
         /* //Uncomment this if your plugin has particular routes, then create the JeuxRouteService class in the include folder
         $this->addService(AbstractService::$ROUTESERVICENAME,function(){
             //Route service

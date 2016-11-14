@@ -33,7 +33,10 @@ class JeuxActivator extends AbstractPluginActivator
      */
     public function activate()
     {
-        $this->_createTable('WonderWp\Plugin\Jeux\JeuxEntity');
+        $this->_createTable(JeuxEntity::class);
+        $this->_createTable(JeuxQuestion::class);
+        $this->_createTable(JeuxReponse::class);
+        $this->_createTable(JeuxLot::class);
     }
 
 }
