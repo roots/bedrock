@@ -51,14 +51,14 @@ class JeuxReponse extends AbstractEntity
     private $score;
 
     /**
-     * @var \Jeuxquestion
+     * @var JeuxQuestion
      *
      * @ORM\ManyToOne(targetEntity="JeuxQuestion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="jeux_questions_id", referencedColumnName="id")
      * })
      */
-    private $jeuxQuestions;
+    private $question;
 
     /**
      * @return int
@@ -99,7 +99,7 @@ class JeuxReponse extends AbstractEntity
     /**
      * @return boolean
      */
-    public function isIsCorrect()
+    public function getIsCorrect()
     {
         return $this->isCorrect;
     }
@@ -117,7 +117,7 @@ class JeuxReponse extends AbstractEntity
     /**
      * @return boolean
      */
-    public function isIsActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }
@@ -151,20 +151,20 @@ class JeuxReponse extends AbstractEntity
     }
 
     /**
-     * @return \Jeuxquestion
+     * @return JeuxQuestion
      */
-    public function getJeuxQuestions()
+    public function getQuestion()
     {
-        return $this->jeuxQuestions;
+        return $this->question;
     }
 
     /**
-     * @param \Jeuxquestion $jeuxQuestions
-     * @return JeuxReponse
+     * @param JeuxQuestion $question
+     * @return static
      */
-    public function setJeuxQuestions($jeuxQuestions)
+    public function setQuestion($question)
     {
-        $this->jeuxQuestions = $jeuxQuestions;
+        $this->question = $question;
         return $this;
     }
 

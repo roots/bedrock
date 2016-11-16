@@ -8,6 +8,7 @@ use Pimple\Container as PContainer;
 use WonderWp\APlugin\AbstractManager;
 use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
+use WonderWp\Plugin\PageSettings\AbstractPageSettingsService;
 use WonderWp\Services\AbstractService;
 
 /**
@@ -34,7 +35,7 @@ class JeuxManager extends AbstractPluginManager{
 
         $loader->addClassMap(array(
             'WonderWp\\Plugin\\Jeux\\JeuxAdminController'=>$pluginDir.'admin'.DIRECTORY_SEPARATOR.'JeuxAdminController.php',
-            //'WonderWp\\Plugin\\Jeux\\JeuxPublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'JeuxPublicController.php', //Uncomment this if your plugin has a public controller
+            'WonderWp\\Plugin\\Jeux\\JeuxPublicController'=>$pluginDir.'public'.DIRECTORY_SEPARATOR.'JeuxPublicController.php'
         ));
 
     }
@@ -55,14 +56,16 @@ class JeuxManager extends AbstractPluginManager{
         $this->setConfig('entityName',JeuxEntity::class);
         $this->setConfig('textDomain',WWP_JEUX_TEXTDOMAIN);
 
+        $this->setConfig('userEntityName',JeuxUser::class);
+        $this->setConfig('userFormName',JeuxUserForm::class);
+
         //Register Controllers
         $this->addController(AbstractManager::$ADMINCONTROLLERTYPE,function(){
             return new JeuxAdminController( $this );
         });
-        //Uncomment this if your plugin has a public controller
-        /*$this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
+        $this->addController(AbstractManager::$PUBLICCONTROLLERTYPE,function(){
             return $plugin_public = new JeuxPublicController($this);
-        });*/
+        });
 
         //Register Services
         $this->addService(AbstractService::$HOOKSERVICENAME,$container->factory(function($c){
@@ -86,16 +89,19 @@ class JeuxManager extends AbstractPluginManager{
             //Route service
             return new JeuxRouteService();
         });*/
-        /* //Uncomment this if your plugin has page settings, then create the JeuxPageSettingsService class in the include folder
-        $this->addService(AbstractService::$PAGESETTINGSSERVICENAME,function(){
+        $this->addService(AbstractPageSettingsService::$PAGESETTINGSSERVICENAME,function(){
             //Page settings service
             return new JeuxPageSettingsService();
-        });*/
+        });
         /* //Uncomment this if your plugin has an api, then create the JeuxApiService class in the include folder
         $this->addService(AbstractService::$APISERVICENAME,function(){
             //Api service
             return new JeuxApiService();
         });*/
+        $this->addService('jeuxForm',function(){
+            //General service
+            return new JeuxFormService();
+        });
 
         return $this;
     }

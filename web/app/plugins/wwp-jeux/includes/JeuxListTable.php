@@ -17,10 +17,24 @@ class JeuxListTable extends WwpListTable{
      */
     function get_columns() {
         $cols = parent::get_columns();
-        foreach(array('visuel','contenu','pageDotation','pageReglement','pageGagnants') as $col) {
+        foreach(array('visuel','contenu','pageDotation','pageReglement','pageGagnants','pageJeux') as $col) {
             unset($cols[$col]);
         }
         return $cols;
+    }
+
+    public function column_default($item, $column_name)
+    {
+        switch($column_name) {
+            case'mecaniqueGain':
+                $val = $this->_getItemVal($item, $column_name);
+                $frags = explode('\\',$val);
+                echo end($frags);
+                break;
+            default:
+                parent::column_default($item, $column_name);
+                break;
+        }
     }
 
 }

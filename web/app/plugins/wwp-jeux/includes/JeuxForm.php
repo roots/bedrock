@@ -106,6 +106,7 @@ class JeuxForm extends ModelForm
             case'locale':
                 $f = LocaleField::getInstance($fieldName, $val, ['label' => $label]);
                 break;
+            case 'pageJeux':
             case 'pageDotation':
             case 'pageReglement':
             case 'pageGagnants':
@@ -141,7 +142,7 @@ class JeuxForm extends ModelForm
     {
         //Create field group
         $this->_formInstance->removeGroup('questions');
-        $this->_formInstance->addGroup(new FormGroup('questions', __('questions.trad', WWP_JEUX_TEXTDOMAIN)));
+        $this->_formInstance->addGroup(new FormGroup('questions', __('questions.trad', WWP_JEUX_TEXTDOMAIN), ['class' => ['closed']]));
 
         //Get jeux questions
         $thisQuestions = $this->_modelInstance->getQuestions();
@@ -229,6 +230,114 @@ class JeuxForm extends ModelForm
         ];
         $eActive = new BooleanField('question_' . $i . '_isActive', $question->getIsActive(), $displayRules);
         $f->addFieldToGroup($eActive);
+
+        //Réponses
+        $reponseGroup = $this->_generateReponsesGroup($question);
+        $f->addFieldToGroup($reponseGroup);
+
+        return $f;
+    }
+
+
+    private function _generateReponsesGroup(JeuxQuestion $question)
+    {
+        //Create field group
+        $reponsesGroup = new FieldGroup('reponses', null, ['label'=>'Réponses']);
+
+        //Get jeux reponses
+        $thisReponses = $question->getReponses();
+
+        //One field group per reponse
+        if (!empty($thisReponses)) {
+            /** @var JeuxReponse $reponse */
+            foreach ($thisReponses as $reponse) {
+                $f = $this->_generateReponseGroup($question,$reponse);
+                $reponsesGroup->addFieldToGroup($f);
+            }
+        }
+
+        //Add reponse btn
+        $addBtn = new BtnField('add-reponse', null, ['label' => 'Ajouter une reponse','inputAttributes'=>['class'=>['add-repeatable'],'data-repeatable' => '_newreponse_']]);
+        $reponsesGroup->addFieldToGroup($addBtn);
+
+        //One extra field for new steps
+        $f = $this->_generateReponseGroup($question, new JeuxReponse());
+        $reponsesGroup->addFieldToGroup($f);
+
+        return $reponsesGroup;
+    }
+
+    private function _generateReponseGroup(JeuxQuestion $question, JeuxReponse $reponse)
+    {
+        $i = $reponse->getId();
+        if (empty($i)) {
+            $i = '_newreponse_';
+        }
+        $j = $question->getId();
+        if (empty($j)) {
+            $j = '_newquestion_';
+        }
+
+        /** @var JeuxReponse $reponse */
+        $displayRules = array();
+        if ($i == '_newreponse_') {
+            $displayRules['inputAttributes']['class'] = ['_newreponse_','nouveau-repeatable', 'hidden'];
+            $validationRules = [];
+        } else {
+            $displayRules['inputAttributes']['class'] = ['reponse','repeatable'];
+            $displayRules['after'] = '<button class="button remove-reponse remove-repeatable">Supprimer</button>';
+            $validationRules = [Validator::notEmpty()];
+        }
+        $displayRules['wrapAttributes'] = ['no-wrap' => true];
+        $f = new FieldGroup('reponses' . $i, null, $displayRules);
+
+        //Id
+        $displayRules = [
+            'inputAttributes' => [
+                'name' => 'questions[' . $j . '][reponses][' . $i . '][id]',
+                'class' => ['reponse-id','repeatable-id']
+            ]
+        ];
+        $eId = new HiddenField('reponse_' . $i . '_id', $reponse->getId(), $displayRules);
+        $f->addFieldToGroup($eId);
+
+        //Title
+        $displayRules = [
+            'inputAttributes' => [
+                'name' => 'questions[' . $j . '][reponses][' . $i . '][titre]',
+                'placeholder' => __('reponse.titre.trad', WWP_JEUX_TEXTDOMAIN),
+                'class' => ['reponse-titre']
+            ]
+        ];
+        $eTitle = new InputField('reponse_' . $i . '_titre', $reponse->getTitre(), $displayRules, $validationRules);
+        $f->addFieldToGroup($eTitle);
+
+        /*//Media
+        $displayRules = [
+            'label' => __('reponse.visuel.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'reponses[' . $i . '][visuel]'],
+            'wrapAttributes' => ['class' => ['visuel-wrap']]
+        ];
+        $eMedia = new MediaField('reponse_' . $i . '_visuel', $reponse->getVisuel(), $displayRules);
+        $f->addFieldToGroup($eMedia);*/
+
+        //isCorrect
+        $displayRules = [
+            'label' => __('reponse.isCorrect.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'questions[' . $j . '][reponses][' . $i . '][isCorrect]']
+        ];
+        $eCorrect = new BooleanField('reponse_' . $i . '_isCorrect', $reponse->getIsCorrect(), $displayRules);
+        $f->addFieldToGroup($eCorrect);
+
+        //Is Active
+        $displayRules = [
+            'label' => __('reponse.isActive.trad', WWP_JEUX_TEXTDOMAIN),
+            'inputAttributes' => ['name' => 'questions[' . $j . '][reponses][' . $i . '][isActive]']
+        ];
+        $eActive = new BooleanField('reponse_' . $i . '_isActive', $reponse->getIsActive(), $displayRules);
+        $f->addFieldToGroup($eActive);
+
+        //Réponses
 
         return $f;
     }
@@ -346,50 +455,6 @@ class JeuxForm extends ModelForm
             return [];
         }
 
-        /*$data = array(
-            'id' => null,
-            'visuel' => null,
-            'titre' => 'Quiz PinKids Âge de glace',
-            'contenu' => 'test',
-            'locale' => 'fr_FR',
-            'startsAt' => '2016-11-08',
-            'endsAt' => '2016-11-25',
-            'pageDotation' => '6',
-            'pageReglement' => '10',
-            'pageGagnants' => '4',
-            'mecaniqueGain' => 'WonderWp\Plugin\Jeux\Mecaniques\TirageAuSort',
-            'lots' => array
-            (
-                '_newlot_1' => array
-                (
-                    'id' => '_newlot_1',
-                    'titre' => 'test lot 1',
-                    'visuel' => 'http://local.wonderwp.com/app/uploads/2016/06/thumb_IMG_3839_1024.jpg',
-                    'content' => 'test desc 1',
-                    'stock' => '5'
-                ),
-
-                '_newlot_2' => array
-                (
-                    'id' => '_newlot_2',
-                    'titre' => 'Test lot 2',
-                    'visuel' => null,
-                    'content' => 'test desc 2',
-                    'stock' => '2'
-                ),
-
-                '_newlot_' => array
-                (
-                    'id' => null,
-                    'titre' => null,
-                    'visuel' => null,
-                    'content' => null,
-                    'stock' => null
-                )
-
-            )
-        );*/
-
         if (!empty($data['startsAt'])) {
             $data['startsAt'] = \DateTime::createFromFormat('Y-m-d', $data['startsAt']);
         } else {
@@ -412,7 +477,7 @@ class JeuxForm extends ModelForm
             unset($data['lots']);
         }
 
-        //Extract Questions
+        //Extract Reponses
         $rawQuestionsData = array();
         if (isset($data['questions'])) {
             $rawQuestionsData = $data['questions'];
@@ -438,7 +503,7 @@ class JeuxForm extends ModelForm
         $lotErrors = $this->_handleLots($rawLotsData);
         $errors = $errors + $lotErrors;
 
-        //Process Questions
+        //Process Reponses
         $questionsErrors = $this->_handleQuestions($rawQuestionsData);
         $errors = $errors + $questionsErrors;
 
@@ -509,6 +574,8 @@ class JeuxForm extends ModelForm
         }
         $em->flush();
 
+        $this->_generateLotsGroup();
+
         return $errors;
     }
 
@@ -548,6 +615,13 @@ class JeuxForm extends ModelForm
             foreach ($rawQuestionsData as $val) {
                 $id = $val['id'];
 
+                //Extract Reponses
+                $rawReponseData = array();
+                if (isset($val['reponses'])) {
+                    $rawReponseData = $val['reponses'];
+                    unset($val['reponses']);
+                }
+
                 if (strpos($val['id'],'_newrepeatable_')===false) {
                     $question = $em->find(JeuxQuestion::class, $id);
                 } else {
@@ -560,6 +634,71 @@ class JeuxForm extends ModelForm
                     $val['id'] = $jeux->getId();
                 }
                 $question->populate($val);
+
+                $em->flush();
+                $this->_handleQuestionReponses($rawReponseData, $question);
+
+            }
+        }
+        $em->flush();
+
+        $this->_generateQuestionsGroup();
+
+        return $errors;
+    }
+
+    private function _handleQuestionReponses($rawReponseData, JeuxQuestion $question)
+    {
+
+        if (isset($rawReponseData['_newreponse_'])) {
+            unset($rawReponseData['_newreponse_']);
+        }
+
+        $errors = array();
+
+        /** @var EntityManager $em */
+        $em = $this->_em;
+
+        //Remove old reponses
+        //aka those which are in my collection but not the posted ids
+        $reponsesToRemove = $question->getReponses()->filter(
+            function ($entry) use ($rawReponseData) {
+                return !in_array($entry->getId(), array_keys($rawReponseData));
+            }
+        );
+
+        if (!empty($reponsesToRemove)) {
+            foreach ($reponsesToRemove as $e) {
+                $question->removeRelatedEntity('reponses',$e,'setQuestion');
+                $em->remove($e);
+            }
+            $em->flush();
+        }
+
+        //Recreate reponses
+        if (!empty($rawReponseData)) {
+            foreach ($rawReponseData as $val) {
+                $id = $val['id'];
+
+                //Extract Reponses
+                $rawReponseData = array();
+                if (isset($val['reponses'])) {
+                    $rawReponseData = $val['reponses'];
+                    unset($val['reponses']);
+                }
+
+                if (strpos($val['id'],'_newrepeatable_')===false) {
+                    $reponse = $em->find(JeuxReponse::class, $id);
+                } else {
+                    if (empty($val['titre'])) {
+                        continue;
+                    } //pas de donnees postees pour ajouter une nouvelle reponse
+                    $reponse = new JeuxReponse();
+                    $em->persist($reponse);
+                    $question->addRelatedEntity('reponses',$reponse,'setQuestion');
+                    //$val['id'] = $jeux->getId();
+                }
+                $reponse->populate($val);
 
                 $em->flush();
 

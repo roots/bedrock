@@ -2,6 +2,8 @@
 
 namespace WonderWp\Plugin\Jeux;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use WonderWp\Entity\AbstractEntity;
 
@@ -59,6 +61,19 @@ class JeuxQuestion extends AbstractEntity
      * })
      */
     private $jeux;
+
+    /**
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="JeuxReponse", mappedBy="question")
+     */
+    private $reponses;
+
+    public function __construct()
+    {
+        $this->reponses = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -168,5 +183,22 @@ class JeuxQuestion extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @return Collection
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
+    }
+
+    /**
+     * @param Collection $reponses
+     * @return static
+     */
+    public function setReponses($reponses)
+    {
+        $this->reponses = $reponses;
+        return $this;
+    }
 
 }

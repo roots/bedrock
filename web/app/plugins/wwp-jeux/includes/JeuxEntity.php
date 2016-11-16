@@ -68,6 +68,13 @@ class JeuxEntity extends \WonderWp\Entity\AbstractEntity
     /**
      * @var integer
      *
+     * @ORM\Column(name="page_jeux", type="integer", nullable=true)
+     */
+    private $pageJeux;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="page_dotation", type="integer", nullable=true)
      */
     private $pageDotation;
@@ -264,6 +271,24 @@ class JeuxEntity extends \WonderWp\Entity\AbstractEntity
     public function getEndsAt()
     {
         return $this->endsAt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageJeux()
+    {
+        return $this->pageJeux;
+    }
+
+    /**
+     * @param int $pageJeux
+     * @return static
+     */
+    public function setPageJeux($pageJeux)
+    {
+        $this->pageJeux = $pageJeux;
+        return $this;
     }
 
     /**

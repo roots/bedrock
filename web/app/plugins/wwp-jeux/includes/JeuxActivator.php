@@ -37,6 +37,7 @@ class JeuxActivator extends AbstractPluginActivator
         $this->_createTable(JeuxQuestion::class);
         $this->_createTable(JeuxReponse::class);
         $this->_createTable(JeuxLot::class);
+        $this->_createTable(JeuxUser::class);
     }
 
 }
