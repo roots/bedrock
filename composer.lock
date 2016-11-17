@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d43897fe2e9c2f2e1b0b4c9f8b2930b4",
-    "content-hash": "5ee62481fc58c5ea6227e91db7c40102",
+    "hash": "85d794ad0cc36e64ea13186a52f291a4",
+    "content-hash": "fe7630fa691ac5402f4b00b09da0e291",
     "packages": [
         {
             "name": "composer/installers",
@@ -258,14 +258,15 @@
         },
         {
             "name": "pdffiller/feather",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/pdffiller/blog-theme/archive/master.zip",
-                "reference": null,
-                "shasum": null
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pdffiller/blog-theme.git",
+                "reference": "4ef4c8e2b8bf18bf26528420b9bc5b0f48bedee0"
             },
-            "type": "wordpress-theme"
+            "type": "wordpress-theme",
+            "description": "PDFfiller blog theme",
+            "time": "2016-11-17 10:40:06"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -427,15 +428,15 @@
         },
         {
             "name": "wpackagist-plugin/jetpack",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/4.3.1"
+                "reference": "tags/4.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.4.3.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.4.3.2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -507,15 +508,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "6.2.0",
+            "version": "6.2.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/6.2.0"
+                "reference": "tags/6.2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.6.2.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.6.2.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -527,15 +528,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "3.6",
+            "version": "3.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/3.6"
+                "reference": "tags/3.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.8.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -547,15 +548,15 @@
         },
         {
             "name": "wpackagist-plugin/wptouch",
-            "version": "4.3.1",
+            "version": "4.3.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wptouch/",
-                "reference": "tags/4.3.1"
+                "reference": "tags/4.3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -567,15 +568,15 @@
         },
         {
             "name": "wpackagist-plugin/youtube-embed",
-            "version": "5.0.1",
+            "version": "5.0.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/youtube-embed/",
-                "reference": "tags/5.0.1"
+                "reference": "tags/5.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/youtube-embed.5.0.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/youtube-embed.5.0.2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -668,7 +669,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "pdffiller/feather": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
