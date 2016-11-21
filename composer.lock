@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f1327d07d20001ddf265d1ff950f8ea",
-    "content-hash": "6d2612b1f6288302559f20ee1441616f",
+    "hash": "641b07ee5be739499ed675959c509c6f",
+    "content-hash": "bd633411c870fc8ea87e26be17f50b79",
     "packages": [
         {
             "name": "composer/installers",
@@ -218,10 +218,10 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GSA/data.gov",
-                "reference": "dffe1bd3405d3c9f75dd93ab8968f8f3aea4c272"
+                "reference": "b9dcb401b6739857cac3d611ccada0e918cf7117"
             },
             "type": "wordpress-theme",
-            "time": "2016-10-20 19:47:59"
+            "time": "2016-11-21 09:07:54"
         },
         {
             "name": "gsa/datagov-custom",
@@ -250,20 +250,6 @@
             },
             "type": "wordpress-plugin",
             "time": "2016-05-11 18:58:46"
-        },
-        {
-            "name": "gsa/q-and-a",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GSA/q-and-a",
-                "reference": "569c678b59cef6a29b5bc79ec54a5ac487aa0b32"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "time": "2016-01-08 20:55:54"
         },
         {
             "name": "gsa/restrict-categories",
@@ -350,36 +336,6 @@
             "time": "2015-01-09 16:37:41"
         },
         {
-            "name": "gsa/wordpress-seo",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GSA/wordpress-seo",
-                "reference": "43b3536e9f1be2519412bdcf60960e67e6db8e16"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Joost de Valk",
-                    "email": "support@yoast.com",
-                    "homepage": "https://yoast.com"
-                }
-            ],
-            "description": "Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the WordPress SEO plugin by Yoast.",
-            "homepage": "https://yoast.com/wordpress/plugins/seo/",
-            "keywords": [
-                "seo",
-                "wordpress"
-            ],
-            "time": "2015-04-23 17:24:27"
-        },
-        {
             "name": "gsa/wp-open311",
             "version": "dev-master",
             "source": {
@@ -392,20 +348,6 @@
             },
             "type": "wordpress-plugin",
             "time": "2015-07-28 22:24:39"
-        },
-        {
-            "name": "gsa/wp-rss-multi-importer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GSA/wp-rss-multi-importer",
-                "reference": "25e679886e25ebd0b72b9adad7d7e15551fde9f4"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "time": "2016-07-31 01:57:19"
         },
         {
             "name": "gsa/wp-sitemap-page",
@@ -661,16 +603,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.6.1",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "58a8137754bc24b25740d4281399a4a3596058e0"
+                "reference": "6c52c2722f8460122f96f86346600e1077ce22cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/58a8137754bc24b25740d4281399a4a3596058e0",
-                "reference": "58a8137754bc24b25740d4281399a4a3596058e0",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/6c52c2722f8460122f96f86346600e1077ce22cb",
+                "reference": "6c52c2722f8460122f96f86346600e1077ce22cb",
                 "shasum": ""
             },
             "require": {
@@ -678,10 +620,11 @@
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2",
                 "sebastian/comparator": "^1.1",
-                "sebastian/recursion-context": "^1.0"
+                "sebastian/recursion-context": "^1.0|^2.0"
             },
             "require-dev": {
-                "phpspec/phpspec": "^2.0"
+                "phpspec/phpspec": "^2.0",
+                "phpunit/phpunit": "^4.8 || ^5.6.5"
             },
             "type": "library",
             "extra": {
@@ -719,7 +662,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2016-06-07 08:13:47"
+            "time": "2016-11-21 14:58:47"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -917,16 +860,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da"
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
                 "shasum": ""
             },
             "require": {
@@ -962,7 +905,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-09-15 10:49:45"
+            "time": "2016-11-15 14:06:22"
         },
         {
             "name": "phpunit/phpunit",
@@ -1094,22 +1037,22 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "1.2.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22"
+                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/937efb279bd37a375bcadf584dec0726f84dbf22",
-                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
+                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "sebastian/diff": "~1.2",
-                "sebastian/exporter": "~1.2"
+                "sebastian/exporter": "~1.2 || ~2.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.4"
@@ -1154,7 +1097,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2015-07-26 15:48:44"
+            "time": "2016-11-19 09:18:40"
         },
         {
             "name": "sebastian/diff",
@@ -1703,15 +1646,15 @@
         },
         {
             "name": "wpackagist-plugin/better-wp-security",
-            "version": "5.7.0",
+            "version": "5.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/better-wp-security/",
-                "reference": "tags/5.7.0"
+                "reference": "tags/5.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/better-wp-security.5.7.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/better-wp-security.5.7.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1903,7 +1846,7 @@
         },
         {
             "name": "wpackagist-plugin/no-category-base-wpml",
-            "version": "1.2",
+            "version": "1.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/no-category-base-wpml/",
@@ -1923,15 +1866,15 @@
         },
         {
             "name": "wpackagist-plugin/plugin-vulnerabilities",
-            "version": "2.0.29",
+            "version": "2.0.31",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/plugin-vulnerabilities/",
-                "reference": "tags/2.0.29"
+                "reference": "tags/2.0.31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/plugin-vulnerabilities.2.0.29.zip",
+                "url": "https://downloads.wordpress.org/plugin/plugin-vulnerabilities.2.0.31.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1982,8 +1925,28 @@
             "homepage": "https://wordpress.org/plugins/redirection/"
         },
         {
+            "name": "wpackagist-plugin/rss-post-importer",
+            "version": "2.2.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/rss-post-importer/",
+                "reference": "tags/2.2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/rss-post-importer.2.2.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/rss-post-importer/"
+        },
+        {
             "name": "wpackagist-plugin/si-captcha-for-wordpress",
-            "version": "2.7.7.7",
+            "version": "2.7.7.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/si-captcha-for-wordpress/",
@@ -2043,15 +2006,15 @@
         },
         {
             "name": "wpackagist-plugin/the-events-calendar",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/the-events-calendar/",
-                "reference": "tags/4.3.2"
+                "reference": "tags/4.3.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/the-events-calendar.4.3.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/the-events-calendar.4.3.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2083,15 +2046,15 @@
         },
         {
             "name": "wpackagist-plugin/w3-total-cache",
-            "version": "0.9.4.1",
+            "version": "0.9.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/w3-total-cache/",
-                "reference": "tags/0.9.4.1"
+                "reference": "tags/0.9.5.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/w3-total-cache.0.9.4.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/w3-total-cache.0.9.5.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2120,6 +2083,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-importer/"
+        },
+        {
+            "name": "wpackagist-plugin/wordpress-seo",
+            "version": "3.8",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
+                "reference": "tags/3.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.8.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wordpress-seo/"
         },
         {
             "name": "wpackagist-plugin/wp-crontrol",
@@ -2223,7 +2206,7 @@
         },
         {
             "name": "wpackagist-plugin/check-email",
-            "version": "0.3",
+            "version": "0.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/check-email/",
@@ -2312,15 +2295,12 @@
         "gsa/data.gov": 20,
         "gsa/datagov-custom": 20,
         "gsa/metric-count": 20,
-        "gsa/q-and-a": 20,
         "gsa/restrict-categories": 20,
         "gsa/saml-20-single-sign-on": 20,
         "gsa/sticky-posts-in-category": 20,
         "gsa/twitter-posts-to-blog": 20,
         "gsa/twitter-widget-pro": 20,
         "gsa/usa-search": 20,
-        "gsa/wordpress-seo": 20,
-        "gsa/wp-rss-multi-importer": 20,
         "gsa/wp-sitemap-page": 20,
         "gsa/wp-open311": 20,
         "philipashlock/wp-no-taxonomy-base": 20
