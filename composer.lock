@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "85d794ad0cc36e64ea13186a52f291a4",
-    "content-hash": "fe7630fa691ac5402f4b00b09da0e291",
+    "hash": "4a991800ab31942b33cb90f7f7be6324",
+    "content-hash": "ec45a226c93485e86bac79ee65546681",
     "packages": [
         {
             "name": "composer/installers",
@@ -428,15 +428,15 @@
         },
         {
             "name": "wpackagist-plugin/jetpack",
-            "version": "4.3.2",
+            "version": "4.4.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/4.3.2"
+                "reference": "tags/4.4.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.4.3.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.4.4.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -508,15 +508,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "6.2.5",
+            "version": "6.2.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/6.2.5"
+                "reference": "tags/6.2.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.6.2.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.6.2.6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -547,16 +547,36 @@
             "homepage": "https://wordpress.org/plugins/wordpress-seo/"
         },
         {
-            "name": "wpackagist-plugin/wptouch",
-            "version": "4.3.6",
+            "name": "wpackagist-plugin/wp-force-ssl",
+            "version": "1.2.1",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wptouch/",
-                "reference": "tags/4.3.6"
+                "url": "https://plugins.svn.wordpress.org/wp-force-ssl/",
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-force-ssl.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-force-ssl/"
+        },
+        {
+            "name": "wpackagist-plugin/wptouch",
+            "version": "4.3.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wptouch/",
+                "reference": "tags/4.3.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.7.zip",
                 "reference": null,
                 "shasum": null
             },
