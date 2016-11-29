@@ -7,7 +7,7 @@ echo "\n\n//==[ Build Step 2 : Build Documentation ]==========================\n
 cd ../;
 
 echo "\n=> Generating PHPDOC";
-#vendor/apigen/apigen/bin/apigen generate
+vendor/apigen/apigen/bin/apigen generate
 
 echo "\n\n=> Generating Developer Documentation";
 echo "\n- Gathering Documentation Parts";
