@@ -21,7 +21,7 @@ echo "Launching build steps\n";
 
 sh ./build-local.sh
 
-if test $JENKINSENV = 'preprod'
+if test $ENV = 'preprod'
 then
     sh ./build-documentation.sh
 fi
