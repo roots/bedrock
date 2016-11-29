@@ -37,30 +37,6 @@ if (file_exists($env_config)) {
  * AWS
  */
 define( 'AWS_USE_EC2_IAM_ROLE', true );
-define( 'WPOS3_SETTINGS', serialize( array(
-    // S3 bucket to upload files
-    'bucket' => '',
-    // Automatically copy files to S3 on upload
-    'copy-to-s3' => true,
-    // Rewrite file URLs to S3
-    'serve-from-s3' => true,
-    // S3 URL format to use ('path', 'cloudfront')
-    'domain' => 'path',
-    // Custom domain if 'domain' set to 'cloudfront'
-    'cloudfront' => '',
-    // Enable object prefix, useful if you use your bucket for other files
-    'enable-object-prefix' => true,
-    // Object prefix to use if 'enable-object-prefix' is 'true'
-    'object-prefix' => '',
-    // Organize S3 files into YYYY/MM directories
-    'use-yearmonth-folders' => true,
-    // Serve files over HTTPS
-    'force-https' => false,
-    // Remove the local file version once offloaded to S3
-    'remove-local-file' => true,
-    // Append a timestamped folder to path of files offloaded to S3
-    'object-versioning' => true,
-) ) );
 
 /**
  * URLs
