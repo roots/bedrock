@@ -13,6 +13,8 @@ echo "\n\n=> Generating Developer Documentation";
 echo "\n- Gathering Documentation Parts";
 rm -Rf web/documentation/dev/src/wonderwp_framework
 cp -R vendor/wonderwp/framework/documentation/ web/documentation/dev/src/wonderwp_framework
+
+rm -Rf web/documentation/dev/src/wonderwp_theme
 cp -R web/app/themes/wonderwp_theme/documentation web/documentation/dev/src/wonderwp_theme
 echo "\n- Serving doc";
 vendor/jeremy-wdf/daux.io/bin/daux generate -s web/documentation/dev/src/ -d  web/documentation/dev/dest/ --delete
