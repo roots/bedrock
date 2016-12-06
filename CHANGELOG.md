@@ -1,5 +1,6 @@
-### HEAD
+### 1.7.3: 2016-12-06
 
+* Update to WordPress 4.7
 * Default `WP_ENV` to `production` instead of `development` ([#277](https://github.com/roots/bedrock/pull/277))
 
 ### 1.7.2: 2016-09-07
