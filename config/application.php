@@ -41,10 +41,10 @@ define( 'AWS_USE_EC2_IAM_ROLE', true );
 /**
  * URLs
  */
-$protocol = 'http';
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-    $protocol = 'https';
-}
+$protocol = 'https';
+//if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+//    $protocol = 'https';
+//}
 
 $default_host = 'data.gov';
 if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']) {
