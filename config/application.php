@@ -46,7 +46,7 @@ define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
 define('WP_CONTENT_URL', WP_HOME . CONTENT_DIR);
 
 /**
- * DB settings
+ * DB Settings
  */
 define('DB_NAME', env('DB_NAME'));
 define('DB_USER', env('DB_USER'));
@@ -74,6 +74,22 @@ define('NONCE_SALT', env('NONCE_SALT'));
 define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
+
+/**
+ * Multisite Settings
+ */
+define('WP_ALLOW_MULTISITE', true);
+define('MULTISITE', true);
+define('SUBDOMAIN_INSTALL', false);
+define('DOMAIN_CURRENT_SITE', env('DOMAIN_CURRENT_SITE'));
+define('PATH_CURRENT_SITE', '/');
+define('SITE_ID_CURRENT_SITE', 1);
+define('BLOG_ID_CURRENT_SITE', 1);
+
+/**
+ * Pressbooks Settings
+ */
+define('PB_EPUBCHECK_COMMAND', '/usr/bin/epubcheck'); // Required because Pressbooks 3.9.6 defaults to an EpubCheck jarfile.
 
 /**
  * Bootstrap WordPress
