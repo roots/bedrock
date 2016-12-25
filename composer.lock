@@ -306,13 +306,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GSA/metric-count",
-                "reference": "d16c22bc158a1af6906887e22ff857fcea907634"
+                "reference": "f3699a864ce7e1c97aac092694439415db9451e4"
             },
             "require": {
-                "composer/installers": "~1.0"
+                "composer/installers": "~1.0",
+                "phpoffice/phpexcel": "^1.8"
             },
             "type": "wordpress-plugin",
-            "time": "2016-12-24 19:34:16"
+            "time": "2016-12-25 05:12:28"
         },
         {
             "name": "gsa/restrict-categories",
@@ -759,6 +760,63 @@
                 }
             ],
             "time": "2015-02-03 12:10:50"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
         },
         {
             "name": "phpspec/prophecy",
@@ -2234,7 +2292,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/social-media-feather.zip",
-                "reference": null,
+                "reference": "trunk",
                 "shasum": null
             },
             "require": {
@@ -2254,7 +2312,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/the-events-calendar.4.3.5.zip",
-                "reference": null,
+                "reference": "tags/4.3.5",
                 "shasum": null
             },
             "require": {
@@ -2354,7 +2412,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.4.zip",
-                "reference": null,
+                "reference": "tags/1.4",
                 "shasum": null
             },
             "require": {
