@@ -34,39 +34,35 @@ if (file_exists($env_config)) {
 }
 
 /**
- * AWS
+ * AWS s3 offload plugin setting
  */
-define( 'AWS_USE_EC2_IAM_ROLE', true );
+define('AWS_USE_EC2_IAM_ROLE', true);
 
 /**
- * URLs
+ * http or https ?
  */
-$protocol = 'http';
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-    $protocol = 'https';
-}
+define('WP_CONTENT_PROTOCOL', env('WP_CONTENT_PROTOCOL'));
+$protocol = WP_CONTENT_PROTOCOL;
 
-$default_host = 'data.gov';
+$host = 'data.gov';
 if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']) {
-    $default_host = $_SERVER['HTTP_HOST'];
+    $host = $_SERVER['HTTP_HOST'];
 }
 
 $port = '';
 if (isset($_SERVER['SERVER_PORT']) && !in_array($_SERVER['SERVER_PORT'], array(80, 443))) {
-    $port = ':'.$_SERVER['SERVER_PORT'];
+    $port = ':' . $_SERVER['SERVER_PORT'];
 }
 
-define('WP_HOME', env('WP_HOME') ?: ($protocol . '://' . $default_host . $port));
-define('WP_SITEURL', env('WP_SITEURL') ?: ($protocol . '://' . $default_host . $port . '/wp'));
+define('WP_HOME', env('WP_HOME') ?: ($protocol . '://' . $host . $port));
+define('WP_SITEURL', env('WP_SITEURL') ?: ($protocol . '://' . $host . $port . '/wp'));
 
 /**
  * Custom Content Directory
  */
 define('CONTENT_DIR', '/app');
 define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
-define('WP_CONTENT_URL', (env('WP_CONTENT_PROTOCOL') ?: $protocol) . '://' . $default_host . $port . CONTENT_DIR);
-
-define('WP_CONTENT_PROTOCOL', env('WP_CONTENT_PROTOCOL') ?: $protocol);
+define('WP_CONTENT_URL', $protocol . '://' . $host . $port . CONTENT_DIR);
 
 /**
  * DB settings
