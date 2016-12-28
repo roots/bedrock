@@ -66,6 +66,8 @@ define('CONTENT_DIR', '/app');
 define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
 define('WP_CONTENT_URL', (env('WP_CONTENT_PROTOCOL') ?: $protocol) . '://' . $default_host . $port . CONTENT_DIR);
 
+define('WP_CONTENT_PROTOCOL', env('WP_CONTENT_PROTOCOL') ?: $protocol);
+
 /**
  * DB settings
  */
