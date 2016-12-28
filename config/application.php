@@ -90,6 +90,11 @@ define('LOGGED_IN_SALT', env('LOGGED_IN_SALT'));
 define('NONCE_SALT', env('NONCE_SALT'));
 
 /**
+ * Default email_from
+ */
+define('WP_DEFAULT_EMAIL_FROM', env('WP_DEFAULT_EMAIL_FROM'));
+
+/**
  * Custom Settings
  */
 define('AUTOMATIC_UPDATER_DISABLED', true);
