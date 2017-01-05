@@ -32,6 +32,8 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
+Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL'));
+
 /**
  * URLs
  */
