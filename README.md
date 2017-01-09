@@ -52,7 +52,7 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
   Or, you can cut and paste from the [Roots WordPress Salt Generator][roots-wp-salt].
 
-3. Add theme(s) in `web/wp-content/themes` as you would for a normal WordPress site.
+3. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
 
 4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
 
