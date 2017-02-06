@@ -33,7 +33,7 @@ class VoteActivator extends AbstractPluginActivator
      */
     public function activate()
     {
-        $this->_createTable('WonderWp\Plugin\Vote\VoteEntity');
+        $this->createTable('WonderWp\Plugin\Vote\VoteEntity');
     }
 
 }

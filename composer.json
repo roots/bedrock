@@ -24,7 +24,8 @@
     "forum": "https://discourse.roots.io/category/bedrock"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "secure-http": false
   },
   "repositories": [
     {
@@ -32,8 +33,8 @@
       "url": "https://wpackagist.org"
     },
     {
-      "type":"vcs",
-      "url":"https://github.com/jeremy-wdf/wonderwp"
+      "type": "composer",
+      "url": "http://preprod.www.wonderwp.com.wdf-01.ovea.com"
     },
     {
       "type":"vcs",
@@ -49,13 +50,14 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "wpackagist-plugin/cms-tree-page-view": "dev-trunk",
     "wonderwp/framework": "dev-feature/poc",
-    "justinrainbow/json-schema": "1.6.1",
-    "jeremy-wdf/daux.io": "dev-master"
+    "agencewonderful/wwp-translator": "dev-master"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.5.1",
     "wpackagist-plugin/debug-bar": "dev-trunk",
-    "apigen/apigen": "^4.1"
+    "apigen/apigen": "^4.1",
+    "justinrainbow/json-schema": "1.6.1",
+    "jeremy-wdf/daux.io": "dev-master"
   },
   "extra": {
     "installer-paths": {

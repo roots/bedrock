@@ -29,7 +29,7 @@ class ActuActivator extends AbstractPluginActivator
 
     public function activate()
     {
-        $this->_createTable('\WonderWp\Plugin\Actu\ActuEntity');
+        $this->createTable('\WonderWp\Plugin\Actu\ActuEntity');
     }
 
 }

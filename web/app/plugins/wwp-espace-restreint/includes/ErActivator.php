@@ -33,7 +33,7 @@ class ErActivator extends AbstractPluginActivator
      */
     public function activate()
     {
-        $this->_createTable('WonderWp\Plugin\EspaceRestreint\MembreEntity');
+        $this->createTable('WonderWp\Plugin\EspaceRestreint\MembreEntity');
     }
 
 }

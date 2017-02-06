@@ -35,11 +35,11 @@ class RecetteActivator extends AbstractPluginActivator
      */
     public function activate()
     {
-        $this->_createTable(RecetteEntity::class);
-        $this->_createTable(RecetteMeta::class);
-        $this->_createTable(RecetteEtape::class);
-        $this->_createTable(Ingredient::class);
-        $this->_createTable(IngredientTrad::class);
+        $this->createTable(RecetteEntity::class);
+        $this->createTable(RecetteMeta::class);
+        $this->createTable(RecetteEtape::class);
+        $this->createTable(Ingredient::class);
+        $this->createTable(IngredientTrad::class);
 
         $this->insertData();
     }
