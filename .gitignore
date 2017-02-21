@@ -1,6 +1,15 @@
 # Application
+web/app/mu-plugins/*/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
+!web/app/plugins/index.php
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+!web/app/uploads/index.php
+!web/app/mu-plugins/disallow-indexing.php
+!web/app/mu-plugins/register-theme-directory.php
+!web/app/mu-plugins/bedrock-autoloader.php
 web/app/mu-plugins/*/
 web/app/upgrade
 web/app/uploads/*
@@ -10,6 +19,10 @@ web/app/uploads/*
 web/wp
 web/.htaccess
 
+#Premium Plugins
+!web/app/plugins/advanced-custom-fields-pro
+!web/app/plugins/giant-hat-plugin-manager
+
 # Dotenv
 .env
 .env.*
@@ -18,3 +31,40 @@ web/.htaccess
 # Composer
 vendor/*
 !vendor/.gitkeep
+<<<<<<< HEAD
+
+#SASS-CACHE
+web/app/themes/*/library/scss/.sass-cache/*
+
+# Vagrant
+bin
+.vagrant
+
+# Node/Grunt/Gulp/Bower
+*node_modules
+*bower_components
+secret.json
+
+# Ignore log files
+web/logs/*
+!web/logs/.gitkeep
+
+# Ignore db dumps
+web/mysqldumps/*
+!web/mysqldumps/.gitkeep
+
+# Ignore provision checks
+web/provision-checks/*
+!web/provision-checks/.gitkeep
+!web/provision-checks/readme_added.md
+
+# Vim
+*.*~
+*.*.swp
+
+Thumbs.db
+*.DS_Store
+html/
+web/app/debug.log
+=======
+>>>>>>> 21cc78e92543c90a0223b1ae81b85885dafc2bf9

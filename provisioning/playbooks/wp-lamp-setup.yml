@@ -1,0 +1,131 @@
+---
+- hosts: local
+
+  vars_prompt:
+  - name: "source_database"    
+    prompt: "Source the database right now from web/mysqldumps/output_to_dev.sql? (y/n)"
+
+  tasks:
+  - name: Create Ansible checks folder
+    file: path=/var/www/web/provision-checks state=directory
+
+  - name: Ensure Apache and PHP are installed
+    apt: pkg={{item}} state=present update_cache=yes
+    with_items:
+    - apache2
+    - curl
+    - php5
+    - libapache2-mod-php5
+    - php5-mcrypt
+    - php5-gd
+    - libcurl3
+    - php5-curl
+    - php5-memcached
+    - memcached
+
+  - name: Enable mcrypt
+    shell: sudo php5enmod mcrypt && touch /var/www/web/provision-checks/php5enmod-mcrypt.txt
+    args:
+      creates: /var/www/web/provision-checks/php5enmod-mcrypt.txt
+
+  - name: Install Composer
+    shell: curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && touch /var/www/web/provision-checks/composer.txt
+    args:
+      creates: /var/www/web/provision-checks/composer.txt
+
+  - include: ../tasks/mysql.yml
+
+  - name: Start Apache
+    service: name=apache2 state=running enabled=yes
+
+  - name: Enable mod rewrite
+    shell: sudo a2enmod rewrite && touch /var/www/web/provision-checks/apache_a2enmod_rewrite.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2enmod_rewrite.txt
+
+  - name: Enable mod headers
+    shell: sudo a2enmod headers && touch /var/www/web/provision-checks/apache_a2enmod_headers.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2enmod_headers.txt
+
+  - name: Enable mod ssl
+    shell: sudo a2enmod ssl && touch /var/www/web/provision-checks/apache_a2enmod_ssl.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2enmod_ssl.txt
+
+  - name: Enable mod expires
+    shell: sudo a2enmod expires && touch /var/www/web/provision-checks/apache_a2enmod_expires.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2enmod_expires.txt
+
+  - name: Delete default server block
+    shell: sudo a2dissite 000-default.conf && touch /var/www/web/provision-checks/apache_a2dissite_default.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2dissite_default.txt
+
+  - name: Remove default server block
+    file: path=/etc/apache2/sites-available/000-default.conf state=absent
+
+  - name: Add server block
+    template: src=../resources/server_block.conf.j2 dest=/etc/apache2/sites-available/default.conf force=no
+
+  - name: Enable site
+    shell: sudo a2ensite default.conf && touch /var/www/web/provision-checks/apache_a2ensite.txt
+    args:
+      creates: /var/www/web/provision-checks/apache_a2ensite.txt
+
+  - name: Add ServerName to Apache config
+    lineinfile: dest=/etc/apache2/apache2.conf regexp=^ServerName line="ServerName localhost" backup=yes
+
+  - name: Make vagrant user run apache
+    lineinfile: dest=/etc/apache2/envvars regexp="^export APACHE_RUN_USER" line="export APACHE_RUN_USER=vagrant" backup=yes
+
+  - name: Restart Apache
+    shell: sudo service apache2 restart && touch /var/www/web/provision-checks/restart_apache_1.txt
+    args:
+      creates: /var/www/web/provision-checks/restart_apache_1.txt
+
+  - name: Start Mysql Service
+    service: name=mysql state=started enabled=true
+
+  - name: Add standard .htaccess file
+    copy: src=../resources/htaccess-single dest=/var/www/web/.htaccess force=no
+
+  - name: Add standard .env file
+    template: src=../resources/env.j2 dest=/var/www/.env force=no
+
+  - name: Ensure PHPMyAdmin is installed (Debian).
+    apt: pkg=phpmyadmin state=installed
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure PHPMyAdmin config file is included in Apache config (Debian).
+    lineinfile: >
+      dest=/etc/apache2/apache2.conf
+      state=present
+      regexp="^Include.+phpmyadmin.+$"
+      line="Include /etc/phpmyadmin/apache.conf"
+      insertafter="EOF"
+    when: ansible_os_family == "Debian"
+
+  - name: Create default PHPMyAdmin config
+    template: src=../resources/phpmyadmin_config.j2 dest=/etc/phpmyadmin/config.inc.php force=yes
+
+  - name: Update PHP config with better max filesize
+    lineinfile: dest=/etc/php5/apache2/php.ini regexp=^upload_max_filesize line="upload_max_filesize = 250M" backup=yes
+
+  - name: Install WP-CLI
+    shell: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && sudo mv wp-cli.phar /usr/local/bin/wp && touch /var/www/web/provision-checks/wp_cli.txt
+    args:
+      creates: /var/www/web/provision-checks/wp_cli.txt
+
+  - name: Remove standard Bedrock readme
+    shell: rm /var/www/README.md 
+    args:
+      creates: /var/www/web/provision-checks/readme_added.md
+
+  - name: Add standard readme
+    template: src=../resources/readme.j2 dest=/var/www/readme.md force=no
+
+  - name: Source databases
+    shell: mysql -u wp_db_u -ppassword {{ application_name }}_dev < /var/www/web/mysqldumps/output_to_dev.sql && touch /var/www/web/provision-checks/source_database.txt
+    when: source_database == "y"

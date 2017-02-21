@@ -45,6 +45,11 @@ define('CONTENT_DIR', '/app');
 define('WP_CONTENT_DIR', $webroot_dir . CONTENT_DIR);
 define('WP_CONTENT_URL', WP_HOME . CONTENT_DIR);
 
+/** 
+ * Custom Single Directory
+ */
+define('SINGLE_PATH', '/single');
+
 /**
  * DB settings
  */
@@ -74,6 +79,16 @@ define('NONCE_SALT', env('NONCE_SALT'));
 define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
+define( 'WP_DEBUG', false );
+
+/*
+ * Proxy Settings 
+ */
+//define('WP_PROXY_HOST', WP_HOME);
+//define('WP_PROXY_PORT', '80');
+//define('WP_PROXY_USERNAME', '');
+//define('WP_PROXY_PASSWORD', '');
+//define('WP_PROXY_BYPASS_HOSTS', 'localhost');
 
 /**
  * Bootstrap WordPress

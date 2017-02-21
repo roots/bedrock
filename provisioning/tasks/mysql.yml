@@ -1,0 +1,27 @@
+---
+
+- name: ensure MySQL is installed
+  apt: pkg={{item}} state=present
+  with_items:
+  - mysql-server
+  - libapache2-mod-auth-mysql
+  - php5-mysql
+  - python-mysqldb
+
+- name: Setup MySQL
+  shell: sudo mysql_install_db && touch /var/www/web/provision-checks/setup_mysql.txt
+  args:
+    creates: /var/www/provision-checks/setup_mysql.txt
+
+- name: Start Mysql Service
+  service: name=mysql state=started enabled=true
+  sudo: true
+
+- name: Create databases
+  mysql_db: name="{{ application_name }}_dev" state=present collation=utf8_general_ci
+
+- name: Create a database user
+  mysql_user: name={{ item }} password="password" priv=*.*:ALL host=localhost state=present
+  with_items:
+  - 'wp_db_u'
+  - 'vagrant'

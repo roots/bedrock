@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    DocumentRoot /var/www/web/
+    ServerName {{ application_name }}.dev
+    LogLevel warn
+    ErrorLog /var/www/web/logs/error_log
+    CustomLog /var/www/web/logs/access_log combined
+    <Directory /var/www/web/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
