@@ -1,3 +1,3 @@
-### 1.0.0: 2016-03-03 
+### 1.1.0: 2017-02-21
 
-* Initial release - syncs up key components with roots/bedrock 1.5.4
+* Merges upstream from roots/bedrock v.1.7.5 

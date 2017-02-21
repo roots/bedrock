@@ -3,7 +3,6 @@ web/app/mu-plugins/*/
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 !web/app/plugins/index.php
-!web/app/plugins/acf-repeater
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
@@ -11,23 +10,28 @@ web/app/uploads/*
 !web/app/mu-plugins/disallow-indexing.php
 !web/app/mu-plugins/register-theme-directory.php
 !web/app/mu-plugins/bedrock-autoloader.php
+web/app/mu-plugins/*/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
 
 # WordPress
 web/wp
 web/.htaccess
 
-# WP-CLI
-db-sync
-sql-dump-*.sql
+#Premium Plugins
+!web/app/plugins/advanced-custom-fields-pro
+!web/app/plugins/giant-hat-plugin-manager
 
 # Dotenv
 .env
 .env.*
 !.env.example
 
-# Vendor (e.g. Composer)
+# Composer
 vendor/*
 !vendor/.gitkeep
+<<<<<<< HEAD
 
 #SASS-CACHE
 web/app/themes/*/library/scss/.sass-cache/*
@@ -62,3 +66,5 @@ Thumbs.db
 *.DS_Store
 html/
 web/app/debug.log
+=======
+>>>>>>> 21cc78e92543c90a0223b1ae81b85885dafc2bf9
