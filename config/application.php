@@ -91,6 +91,15 @@ define('BLOG_ID_CURRENT_SITE', 1);
  * Pressbooks Settings
  */
 define('PB_EPUBCHECK_COMMAND', '/usr/bin/epubcheck'); // Required because Pressbooks 3.9.6 defaults to an EpubCheck jarfile.
+if (env('STRIPE_SK')) {
+    define('STRIPE_SK', env('STRIPE_SK'));
+}
+if (env('STRIPE_PK')) {
+    define('STRIPE_PK', env('STRIPE_PK'));
+}
+if (env('WPCOM_API_KEY')) {
+    define('WPCOM_API_KEY', env('WPCOM_API_KEY'));
+}
 
 /**
  * Bootstrap WordPress
