@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b7d6ac7a777e6dff3dd10d67f785f914",
-    "content-hash": "64d4340c4b294313c90f17a655295bc2",
+    "hash": "83d9cf5161bd18175f6545ceb506337d",
+    "content-hash": "89b14461b91d2e77582f4bcc340d59a8",
     "packages": [
         {
             "name": "composer/installers",
@@ -236,32 +236,34 @@
         },
         {
             "name": "pdffiller/blog-plugin-form-content-provider",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/pdffiller/blog-plugin-form-content-provider/archive/master.zip",
-                "reference": null,
-                "shasum": null
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:pdffiller/blog-plugin-form-content-provider.git",
+                "reference": "e3e612956d9ae289aaed4fc9d72bcb030e5b2385"
             },
-            "type": "wordpress-plugin"
+            "type": "wordpress-plugin",
+            "description": "PDFfiller Blog Form Content Provider Plugin",
+            "time": "2017-03-01 06:47:59"
         },
         {
             "name": "pdffiller/blog-plugin-text-seo-scoring",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/pdffiller/blog-plugin-text-seo-scoring/archive/master.zip",
-                "reference": null,
-                "shasum": null
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:pdffiller/blog-plugin-text-seo-scoring.git",
+                "reference": "66f19d2b674b124a8b083a719716ee4bd9b6fbf5"
             },
-            "type": "wordpress-plugin"
+            "type": "wordpress-plugin",
+            "description": "PDFfiller Text SEO Scoring Plugin",
+            "time": "2017-03-01 06:44:09"
         },
         {
             "name": "pdffiller/feather",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pdffiller/blog-theme.git",
+                "url": "git@github.com:pdffiller/blog-theme.git",
                 "reference": "a8286eebab2cc0246adc66e00e56210b47796be4"
             },
             "type": "wordpress-theme",
@@ -417,7 +419,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/contact-form-7-honeypot.1.10.zip",
-                "reference": "tags/1.10",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -457,7 +459,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/kraken-image-optimizer.2.6.2.zip",
-                "reference": "tags/2.6.2",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -477,7 +479,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/pro-categories-widget.zip",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -497,7 +499,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/real-time-find-and-replace.zip",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -517,7 +519,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/tumblr-crosspostr.zip",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -537,7 +539,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/visual-editor-tinymce-buttons.zip",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -548,15 +550,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "6.3.1",
+            "version": "6.3.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/6.3.1"
+                "reference": "tags/6.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.6.3.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.6.3.2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -568,15 +570,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "4.3",
+            "version": "4.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/4.3"
+                "reference": "tags/4.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.4.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.4.4.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -637,7 +639,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/youtube-embed.5.0.3.zip",
-                "reference": "tags/5.0.3",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -730,7 +732,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "pdffiller/feather": 20
+        "pdffiller/feather": 20,
+        "pdffiller/blog-plugin-text-seo-scoring": 20,
+        "pdffiller/blog-plugin-form-content-provider": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
