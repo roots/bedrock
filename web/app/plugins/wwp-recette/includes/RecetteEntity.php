@@ -7,59 +7,61 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use WonderWp\DI\Container;
+use WonderWp\Entity\AbstractEntity;
 use WonderWp\Entity\WP\Comment;
 use WonderWp\Entity\WP\CommentMeta;
 use WonderWp\Plugin\Vote\VoteEntity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * RecetteEntity
  *
- * @Table(name="recette")
- * @Entity
+ * @ORM\Table(name="recette")
+ * @ORM\Entity(repositoryClass="WonderWp\Plugin\Recette\RecetteRepository")
  */
-class RecetteEntity extends \WonderWp\Entity\AbstractEntity
+class RecetteEntity extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="media", type="string", length=140, nullable=true)
+     * @ORM\Column(name="media", type="string", length=140, nullable=true)
      */
     private $media;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string", length=140, nullable=false)
+     * @ORM\Column(name="title", type="string", length=140, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @Column(name="description", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @Column(name="locale", type="string", length=6, nullable=false)
+     * @ORM\Column(name="locale", type="string", length=6, nullable=false)
      */
     private $locale;
 
     /**
      * @var string
      *
-     * @Column(name="slug", type="string", length=255, nullable=true)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     private $slug;
 
@@ -69,21 +71,21 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * @var Collection
      *
-     * @OneToMany(targetEntity="RecetteMeta", mappedBy="recette")
+     * @ORM\OneToMany(targetEntity="RecetteMeta", mappedBy="recette")
      */
     private $metas;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="Ingredient", inversedBy="recettes")
-     * @JoinTable(name="recette_has_ingredient",
+     * @ORM\ManyToMany(targetEntity="Ingredient", inversedBy="recettes")
+     * @ORM\JoinTable(name="recette_has_ingredient",
      *   joinColumns={
-     *     @JoinColumn(name="recette_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
      *
      *   },
      *   inverseJoinColumns={
-     *     @JoinColumn(name="ingredient_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      *   }
      * )
      */
@@ -93,7 +95,7 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * @var Collection
      *
-     * @OneToMany(targetEntity="RecetteEtape", mappedBy="recette")
+     * @ORM\OneToMany(targetEntity="RecetteEtape", mappedBy="recette")
      */
     private $etapes;
 
@@ -371,20 +373,12 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
      */
     public function addEtape(RecetteEtape $etape)
     {
-        if (is_null($this->etapes)) {
-            $this->etapes = new ArrayCollection();
+        if (!$this->etapes->contains($etape)) {
+            $this->etapes->add($etape);
+            $etape->setRecette($this);
         }
 
-        $colIngredienIds = $this->etapes->map(function ($entity) {
-            return $entity->getId();
-        })->toArray();
-
-        if (in_array($etape->getId(), $colIngredienIds)) {
-            return false;
-        }
-
-        $this->etapes->add($etape);
-        return true;
+        return $this;
     }
 
     /**
@@ -393,20 +387,10 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
      */
     public function removeEtape(RecetteEtape $etape)
     {
-        if (is_null($this->etapes)) {
-            $this->etapes = new ArrayCollection();
+        if ($this->etapes->contains($etape)) {
+            $this->etapes->removeElement($etape);
+            $etape->setRecette(null);
         }
-
-        $colIngredientIds = $this->etapes->map(function ($entity) {
-            return $entity->getId();
-        })->toArray();
-
-        if (!in_array($etape->getId(), $colIngredientIds)) {
-            return false;
-        }
-
-        $this->etapes->removeElement($etape);
-        return true;
     }
 
     public function getRatings()
@@ -422,10 +406,15 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
                     "entityid" => $this->id
                 ]);
                 $score = 0;
+                $max=0;
+                $min=10000;
                 if (!empty($votes)) {
                     foreach ($votes as $v) {
                         /** @var $v VoteEntity */
-                        $score += $v->getScore();
+                        $thisScore = $v->getScore();
+                        $score += $thisScore;
+                        if($thisScore<$min){ $min = $thisScore; }
+                        if($thisScore>$max){ $max = $thisScore; }
                     }
                 }
                 $nbVotes = count($votes);
@@ -433,7 +422,12 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
                     $average = round($score / $nbVotes);
                 }
             }
-            $this->ratings = $average;
+            $this->ratings = array(
+                'average'=>$average,
+                'count'=>$nbVotes,
+                'min'=>$min,
+                'max'=>$max
+            );
         }
         return $this->ratings;
     }
@@ -442,23 +436,7 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
         if(empty($this->comments)){
             $metaKey = 'entity';
             $metaVal = RecetteEntity::class.'#'.$this->id;
-            /** @var EntityManager $em */
-            //$em = Container::getInstance()->offsetGet('entityManager');
-            /** @var Query $qb */
-            /*$qb = $em->createQueryBuilder();
 
-            $this->comments = $qb->select('c')
-                ->from(Comment::class, 'c')
-                ->leftJoin('c.metas', 'm')
-                ->where('m.key = :keyName')
-                ->andWhere('m.value = :value')
-                ->setParameters(array(
-                    'keyName' => $metaKey,
-                    'value' => $metaVal,
-                ))
-                ->getQuery()
-                ->getResult()
-            ;*/
             $this->comments = get_comments([
                 'meta_key' => $metaKey,
                 'meta_value' => $metaVal,
@@ -469,6 +447,12 @@ class RecetteEntity extends \WonderWp\Entity\AbstractEntity
     }
 
     public function getCategory(){
-        return 'Smoothie';
+        $catMeta = $this->getMeta('metas_type_plat');
+        $catId = is_object($catMeta) ? $catMeta->getVal() : '';
+        if(!empty($catId)) {
+            $cat = get_category($catId);
+            return __('term_'.$cat->slug,'WWP_THEME_TEXTDOMAIN');
+        }
+        return null;
     }
 }

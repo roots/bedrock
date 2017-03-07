@@ -32,11 +32,60 @@
 .form-group-etapes .field-group{
   border: 1px solid #eee;
   padding: 0 20px 20px 20px;
-  margin-bottom: 50px;
   background: #fcfcfc;
 }
-.form-group-etapes  .etape-title{
+.form-group-etapes .etape-title{
   margin-top: -20px;
+}
+.form-group-etapes .remove-etape{
+  margin-bottom: 50px;
+}
+.etape .search-choice{
+  display: none;
+}
+
+.stepIngredients li{
+  position: relative;
+
+  .delete-wrap{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+  }
+
+  &:hover .delete-wrap{
+    display: block;
+  }
+  &.hasForm:hover .delete-wrap{
+    display: none;
+  }
+}
+
+.form-group .ingredientEditBox{
+  background: #fff;
+  padding: 20px;
+  display: none;
+
+  input, select, span, button{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+  input{
+    width: 50px;
+    padding: 5px;
+    margin-left: 0;
+  }
+  select{
+    width: 100px;
+  }
+}
+
+/* for pink lady ony */
+
+.etape .media-wrap, .metas_cout-wrap{
+  display: none;
 }
 
 

@@ -2,36 +2,37 @@
 
 namespace WonderWp\Plugin\Faq;
 use WonderWp\Entity\AbstractEntity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Faq
  *
- * @Entity @Table(name="wwp_faq")
+ * @ORM\Entity @ORM\Table(name="wwp_faq")
  **/
 class FaqEntity extends AbstractEntity{
 
     /**
-     * @Id @Column(type="integer", nullable=true) @GeneratedValue
+     * @ORM\Id @ORM\Column(type="integer", nullable=true) @ORM\GeneratedValue
      * @var int
      */
     protected $id;
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     private $title;
     /**
-     * @Column(type="text")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $content;
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     private $lang;
     /**
-     * @Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      * @var bool
      */
     private $isActive;

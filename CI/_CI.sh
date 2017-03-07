@@ -18,6 +18,14 @@ echo "Navigating to $WORKSPACE/CI";
 cd $WORKSPACE/CI;
 
 echo "Launching build steps\n";
+
 sh ./build-local.sh
+
+if test $ENV = 'preprod'
+then
+    sh ./build-documentation.sh
+fi
+
 sh ./code-migration.sh
+
 sh ./db-migration.sh

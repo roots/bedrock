@@ -11,55 +11,43 @@ use WonderWp\Entity\AbstractEntity;
 /**
  * Ingredient
  *
- * @Table(name="ingredient")
- * @Entity
+ * @ORM\Table(name="ingredient")
+ * @ORM\Entity
  */
 class Ingredient extends AbstractEntity
 {
     /**
      * @var integer
      *
-     * @Column(name="id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @Column(name="slug", type="string", length=45, nullable=false)
+     * @ORM\Column(name="slug", type="string", length=140, nullable=false)
      */
     private $slug;
 
     /**
      * @var string
      *
-     * @Column(name="image", type="string", length=140, nullable=true)
+     * @ORM\Column(name="image", type="string", length=140, nullable=true)
      */
     private $image;
 
-
-
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ManyToMany(targetEntity="RecetteEtape", inversedBy="ingredients")
-     * @JoinTable(name="recetteetape_has_ingredient",
-     *   joinColumns={
-     *     @JoinColumn(name="ingredient_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @JoinColumn(name="recetteEtape_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="EtapeIngredient", mappedBy="ingredient", cascade={"persist", "remove"}, orphanRemoval=TRUE))
      */
-    private $recetteEtapes;
+    private $etapeIngredients;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="RecetteEntity", mappedBy="ingredients")
+     * @ORM\ManyToMany(targetEntity="RecetteEntity", mappedBy="ingredients", fetch="EXTRA_LAZY")
      */
     private $recettes;
 
@@ -67,7 +55,7 @@ class Ingredient extends AbstractEntity
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * @var Collection
      *
-     * @OneToMany(targetEntity="IngredientTrad", mappedBy="ingredient")
+     * @ORM\OneToMany(targetEntity="IngredientTrad", mappedBy="ingredient", cascade={"persist", "remove"}, orphanRemoval=TRUE))
      */
     private $translations;
 
@@ -76,8 +64,9 @@ class Ingredient extends AbstractEntity
      */
     public function __construct()
     {
-        $this->recetteetape = new ArrayCollection();
+        $this->etapeIngredients = new ArrayCollection();
         $this->recettes = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -129,22 +118,6 @@ class Ingredient extends AbstractEntity
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRecetteEtapes()
-    {
-        return $this->recetteEtapes;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $recetteEtapes
-     */
-    public function setRecetteEtapes($recetteEtapes)
-    {
-        $this->recetteEtapes = $recetteEtapes;
-    }
-
-    /**
      * @return Collection
      */
     public function getRecettes()
@@ -174,6 +147,17 @@ class Ingredient extends AbstractEntity
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+    }
+
+    public function getTranslation($locale){
+        $trad=null;
+        $translations = $this->getTranslations();
+        if (!empty($translations)) {
+            $trad = $translations->filter(function ($item) use ($locale) {
+                return $item->getLocale() == $locale;
+            })->first();
+        }
+        return $trad;
     }
 
     /**
@@ -207,36 +191,6 @@ class Ingredient extends AbstractEntity
     }
 
     /**
-     * @param RecetteEtape $recetteEtape
-     */
-    public function addRecetteEtape(RecetteEtape $recetteEtape)
-    {
-        if (!$this->recetteEtapes instanceof ArrayCollection) {
-            $this->recetteEtapes = new ArrayCollection();
-        }
-        if ($this->recetteEtapes->contains($recetteEtape)) {
-            return;
-        }
-        $this->recetteEtapes->add($recetteEtape);
-        $recetteEtape->addIngredient($this);
-    }
-
-    /**
-     * @param RecetteEtape $recette
-     */
-    public function removeRecetteEtape(RecetteEtape $recetteEtape)
-    {
-        if (!$this->recetteEtapes instanceof ArrayCollection) {
-            $this->recetteEtapes = new ArrayCollection();
-        }
-        if (!$this->recetteEtapes->contains($recetteEtape)) {
-            return;
-        }
-        $this->recetteEtapes->removeElement($recetteEtape);
-        $recetteEtape->removeIngredient($this);
-    }
-
-    /**
      * @param IngredientTrad $trad
      * @return bool
      */
@@ -267,5 +221,34 @@ class Ingredient extends AbstractEntity
         $this->translations->removeElement($trad);
         return true;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEtapeIngredients()
+    {
+        return $this->etapeIngredients;
+    }
+
+    public function addEtapeIngredient(EtapeIngredient $etapeIngredient)
+    {
+        if (!$this->etapeIngredients->contains($etapeIngredient)) {
+            $this->etapeIngredients->add($etapeIngredient);
+            $etapeIngredient->setIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtapeIngredient(EtapeIngredient $etapeIngredient)
+    {
+        if ($this->etapeIngredients->contains($etapeIngredient)) {
+            $this->etapeIngredients->removeElement($etapeIngredient);
+            $etapeIngredient->setIngredient(null);
+        }
+
+        return $this;
+    }
+
 
 }

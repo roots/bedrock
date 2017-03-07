@@ -8,35 +8,35 @@ use WonderWp\Entity\AbstractEntity;
 /**
  * RecetteMeta
  *
- * @Table(name="recetteMeta", indexes={@Index(name="IDX_8820A19189312FE9", columns={"recette_id"})})
- * @Entity
+ * @ORM\Table(name="recetteMeta", indexes={@ORM\Index(name="IDX_8820A19189312FE9", columns={"recette_id"})})
+ * @ORM\Entity
  */
 class RecetteMeta extends AbstractEntity
 {
     /**
      * @var string
      *
-     * @Column(name="name", type="string", length=45, nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @Column(name="val", type="string", length=65535, nullable=true)
+     * @ORM\Column(name="val", type="string", length=65535, nullable=true)
      */
     private $val;
 
     /**
      * @var \Recette
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="RecetteEntity")
-     * @JoinColumns({
-     *   @JoinColumn(name="recette_id", referencedColumnName="id")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="RecetteEntity")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
      * })
      */
     private $recette;

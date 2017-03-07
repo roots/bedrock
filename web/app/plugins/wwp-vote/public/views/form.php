@@ -8,12 +8,14 @@
 ?>
 <section class="module-vote">
 
-<?php if(!empty($notifications)){ echo implode("\n",$notifications); } ?>
+    <?php if (!empty($notifications)) {
+        echo implode("\n", $notifications);
+    } ?>
 
-<?php if(!empty($nbVotes)): ?>
-<span class="nbVotes"><?php echo $nbVotes. ' '.__('nbVotes',WWP_VOTE_TEXTDOMAIN); ?></span>
-<?php endif; ?>
+    <?php echo $formView; ?>
 
-<?php echo $formView; ?>
+    <?php if (!empty($nbVotes)): ?>
+        <span class="nbVotes"><?php echo $nbVotes . ' ' . __('nbVotes', WWP_VOTE_TEXTDOMAIN); ?></span>
+    <?php endif; ?>
 
 </section>

@@ -13,19 +13,22 @@ use WonderWp\APlugin\AbstractPluginManager;
 use WonderWp\DI\Container;
 use WonderWp\Hooks\AbstractHookService;
 use WonderWp\Plugin\WwpAdminChangerService;
+use WonderWp\Services\AbstractService;
 
 /**
  * Class RecetteHookService
  * @package WonderWp\Plugin\Recette
  * Defines the different hooks that are going to be used by your plugin
  */
-class RecetteHookService extends AbstractHookService{
+class RecetteHookService extends AbstractHookService
+{
 
     /**
      * Run
      * @return $this
      */
-    public function run(){
+    public function run()
+    {
 
         //Get Manager
         $container = Container::getInstance();
@@ -35,10 +38,10 @@ class RecetteHookService extends AbstractHookService{
          * Admin Hooks
          */
         //Menus
-        add_action( 'admin_menu', array($this, 'customizeMenus' ));
+        add_action('admin_menu', array($this, 'customizeMenus'));
 
         //Translate
-        add_action( 'plugins_loaded', array($this, 'loadTextdomain' ));
+        add_action('plugins_loaded', array($this, 'loadTextdomain'));
 
         return $this;
     }
@@ -46,11 +49,12 @@ class RecetteHookService extends AbstractHookService{
     /**
      * Add entry under top-level functionalities menu
      */
-    public function customizeMenus(){
+    public function customizeMenus()
+    {
 
         //Get admin controller
         $adminController = $this->_manager->getController(AbstractManager::$ADMINCONTROLLERTYPE);
-        $callable = array($adminController,'route');
+        $callable = array($adminController, 'route');
 
         //Add entry under top-level functionalities menu
         add_submenu_page('wonderwp-modules', 'Recette', 'Recette', WwpAdminChangerService::$DEFAULTMODULECAP, WWP_PLUGIN_RECETTE_NAME, $callable);
@@ -63,7 +67,17 @@ class RecetteHookService extends AbstractHookService{
     public function loadTextdomain()
     {
         $languageDir = $this->_manager->getConfig('path.base') . '/languages/';
-        load_plugin_textdomain($this->_manager->getConfig('textDomain'),false,$languageDir);
+        load_plugin_textdomain($this->_manager->getConfig('textDomain'), false, $languageDir);
     }
+
+    public function test_rewrite($rules)
+    {
+
+        \WonderWp\trace($rules);
+        die();
+
+        return $rules;
+    }
+
 
 }

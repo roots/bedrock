@@ -5,37 +5,37 @@ namespace WonderWp\Plugin\Recette;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ingredienttrad
+ * IngredientTrad
  *
- * @Table(name="ingredientTrad", indexes={@Index(name="IDX_C64585F2933FE08C", columns={"ingredient_id"})})
- * @Entity
+ * @ORM\Table(name="ingredientTrad", indexes={@ORM\Index(name="IDX_C64585F2933FE08C", columns={"ingredient_id"})})
+ * @ORM\Entity
  */
 class IngredientTrad
 {
     /**
      * @var string
      *
-     * @Column(name="locale", type="string", length=6, nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="locale", type="string", length=6, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $locale;
 
     /**
      * @var string
      *
-     * @Column(name="title", type="string", length=45, nullable=false)
+     * @ORM\Column(name="title", type="string", length=140, nullable=false)
      */
     private $title;
 
     /**
      * @var \Ingredient
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Ingredient")
-     * @JoinColumns({
-     *   @JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Ingredient")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      * })
      */
     private $ingredient;

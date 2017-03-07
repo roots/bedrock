@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "\n\n//==[ Build Step 2 : Code Migration ]==========================\n";
+echo "\n\n//==[ Build Step 3 : Code Migration ]==========================\n";
 
 echo "Hello this is build $BUILD_NUMBER";
 echo "Built into the workspace $WORKSPACE";

@@ -29,7 +29,7 @@ class FaqActivator extends AbstractPluginActivator
 
     public function activate()
     {
-        $this->_createTable('\WonderWp\Plugin\Faq\FaqEntity');
+        $this->createTable('\WonderWp\Plugin\Faq\FaqEntity');
     }
 
 }
