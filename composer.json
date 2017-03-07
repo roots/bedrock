@@ -24,16 +24,19 @@
     "forum": "https://discourse.roots.io/category/bedrock"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "secure-http": false
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "composer",
       "url": "https://wpackagist.org"
     },
     {
-      "type":"path",
-      "url":"../framework"
+      "type": "composer",
+      "url": "http://preprod.www.wonderwp.com.wdf-01.ovea.com"
     }
   ],
   "require": {
