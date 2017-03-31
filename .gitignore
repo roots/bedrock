@@ -1,5 +1,4 @@
 # Application
-!web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
 web/app/upgrade
 web/app/uploads/*
@@ -29,13 +28,6 @@ node_modules
 bin
 .vagrant
 
-composer.lock
-
-web/app/plugins/cms-tree-page-view
-web/app/plugins/debug-bar
-web/app/plugins/loco-translate
-web/app/themes/wwp_child_theme/assets/final
-
 # Idea
 .idea/jsLibraryMappings.xml
 .idea/modules.xml
@@ -44,18 +36,22 @@ web/app/themes/wwp_child_theme/assets/final
 .idea/workspace.xml
 .idea/copyright/profiles_settings.xml
 
-
 # Compiled assets
 main.css
-web/app/themes/pinklady2016/assets/final/css/*
+web/app/themes/wwp_child_theme/assets/final/css/*
+web/app/themes/wwp_child_theme/assets/final/js/*
+web/app/themes/wwp_child_theme/assets/final/svg/*
 styleguide.js
+
+# Documentation
 web/documentation/output
 web/documentation/dev/dest
 web/documentation/dev/src/wonderwp_framework
 web/documentation/dev/src/wonderwp_theme
 web/documentation/phpdoc
-web/app/plugins/wwp-jeux
-web/app/plugins/wwp-newsletter
-web/app/plugins/wwp_generator
-web/app/plugins/wwp_tanslator
-web/app/plugins/wwp-contact
+
+# Plugins
+# web/app/plugins/*
+!web/app/plugins/.gitkeep
+
+# Other
