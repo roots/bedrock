@@ -18,7 +18,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 Use [Trellis](https://github.com/roots/trellis) for additional features:
 
 * Easy development environments with [Vagrant](http://www.vagrantup.com/)
-* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 7, MariaDB)
+* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 16.04, PHP 7.1, MariaDB)
 * One-command deploys
 
 See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
