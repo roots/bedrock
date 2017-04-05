@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "83d9cf5161bd18175f6545ceb506337d",
-    "content-hash": "89b14461b91d2e77582f4bcc340d59a8",
+    "content-hash": "61aa20b6eefb63e146b00aebdb7a6179",
     "packages": [
         {
             "name": "composer/installers",
@@ -105,24 +104,62 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-04-13 19:46:30"
+            "time": "2016-04-13T19:46:30+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.7.2",
+            "version": "4.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "ac7b1792641d1fb61cb2901db292903b31694057"
+                "reference": "9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/ac7b1792641d1fb61cb2901db292903b31694057",
-                "reference": "ac7b1792641d1fb61cb2901db292903b31694057",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a",
+                "reference": "9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a",
                 "shasum": ""
             },
             "require": {
+                "johnpbloch/wordpress-core": "4.7.3",
                 "johnpbloch/wordpress-core-installer": "~0.2",
+                "php": ">=5.3.2"
+            },
+            "type": "package",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "time": "2017-03-18T04:47:24+00:00"
+        },
+        {
+            "name": "johnpbloch/wordpress-core",
+            "version": "4.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core.git",
+                "reference": "21255f593ac7db93892724321f468c276b15aa65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/21255f593ac7db93892724321f468c276b15aa65",
+                "reference": "21255f593ac7db93892724321f468c276b15aa65",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=5.3.2"
             },
             "type": "wordpress-core",
@@ -140,9 +177,10 @@
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
-                "cms"
+                "cms",
+                "wordpress"
             ],
-            "time": "2017-01-26 18:32:19"
+            "time": "2017-03-06T18:43:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -190,7 +228,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-06-11 15:15:30"
+            "time": "2015-06-11T15:15:30+00:00"
         },
         {
             "name": "oscarotero/env",
@@ -232,7 +270,19 @@
             "keywords": [
                 "env"
             ],
-            "time": "2016-05-08 17:14:32"
+            "time": "2016-05-08T17:14:32+00:00"
+        },
+        {
+            "name": "pdffiller/blog-pdffiller-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:pdffiller/blog-pdffiller-client.git",
+                "reference": "0a956a55542a90246240c92e14ab35a62c9bd593"
+            },
+            "type": "wordpress-plugin",
+            "description": "PDFfiller Blog Client for Product",
+            "time": "2017-04-05 10:51:03"
         },
         {
             "name": "pdffiller/blog-plugin-form-content-provider",
@@ -240,11 +290,23 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-form-content-provider.git",
-                "reference": "e3e612956d9ae289aaed4fc9d72bcb030e5b2385"
+                "reference": "acc00c395e7c41da35b5fe122335f6151c2cd695"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Form Content Provider Plugin",
-            "time": "2017-03-01 06:47:59"
+            "time": "2017-04-03 08:31:24"
+        },
+        {
+            "name": "pdffiller/blog-plugin-related-forms",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:pdffiller/blog-plugin-related-forms.git",
+                "reference": "c6a276fe7ea9a45f45bb86644c924fcc3ccaef05"
+            },
+            "type": "wordpress-plugin",
+            "description": "PDFfiller Blog Related Forms Plugin",
+            "time": "2017-04-05 10:50:02"
         },
         {
             "name": "pdffiller/blog-plugin-text-seo-scoring",
@@ -264,11 +326,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-theme.git",
-                "reference": "a8286eebab2cc0246adc66e00e56210b47796be4"
+                "reference": "c832751371dae2e211221b2c205698c026d1d1be"
             },
             "type": "wordpress-theme",
             "description": "PDFfiller blog theme",
-            "time": "2017-02-22 12:30:24"
+            "time": "2017-04-05 13:38:12"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -325,7 +387,7 @@
             "keywords": [
                 "wordpress wp bcrypt password"
             ],
-            "time": "2016-03-01 16:27:06"
+            "time": "2016-03-01T16:27:06+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -375,7 +437,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01 10:05:43"
+            "time": "2016-09-01T10:05:43+00:00"
         },
         {
             "name": "wp-premium/gravityforms",
@@ -390,15 +452,15 @@
         },
         {
             "name": "wpackagist-plugin/contact-form-7",
-            "version": "4.6.1",
+            "version": "4.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/contact-form-7/",
-                "reference": "tags/4.6.1"
+                "reference": "tags/4.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/contact-form-7.4.6.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/contact-form-7.4.7.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -430,15 +492,15 @@
         },
         {
             "name": "wpackagist-plugin/jetpack",
-            "version": "4.6",
+            "version": "4.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/4.6"
+                "reference": "tags/4.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.4.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.4.8.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -478,7 +540,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/pro-categories-widget.zip",
+                "url": "https://downloads.wordpress.org/plugin/pro-categories-widget.zip?timestamp=1451711488",
                 "reference": null,
                 "shasum": null
             },
@@ -498,7 +560,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/real-time-find-and-replace.zip",
+                "url": "https://downloads.wordpress.org/plugin/real-time-find-and-replace.zip?timestamp=1481133448",
                 "reference": null,
                 "shasum": null
             },
@@ -518,7 +580,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/tumblr-crosspostr.zip",
+                "url": "https://downloads.wordpress.org/plugin/tumblr-crosspostr.zip?timestamp=1484175705",
                 "reference": null,
                 "shasum": null
             },
@@ -538,7 +600,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/visual-editor-tinymce-buttons.zip",
+                "url": "https://downloads.wordpress.org/plugin/visual-editor-tinymce-buttons.zip?timestamp=1382856851",
                 "reference": null,
                 "shasum": null
             },
@@ -550,15 +612,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "6.3.2",
+            "version": "6.3.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/6.3.2"
+                "reference": "tags/6.3.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.6.3.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.6.3.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -570,15 +632,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "4.4",
+            "version": "4.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/4.4"
+                "reference": "tags/4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.4.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.4.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -598,7 +660,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-force-ssl.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-force-ssl.zip?timestamp=1486771744",
                 "reference": null,
                 "shasum": null
             },
@@ -610,15 +672,15 @@
         },
         {
             "name": "wpackagist-plugin/wptouch",
-            "version": "4.3.12",
+            "version": "4.3.14",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wptouch/",
-                "reference": "tags/4.3.12"
+                "reference": "tags/4.3.14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.12.zip",
+                "url": "https://downloads.wordpress.org/plugin/wptouch.4.3.14.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -652,16 +714,16 @@
     "packages-dev": [
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.8.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "86dd55a522238211f9f3631e3361703578941d9a"
+                "reference": "d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/86dd55a522238211f9f3631e3361703578941d9a",
-                "reference": "86dd55a522238211f9f3631e3361703578941d9a",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d",
+                "reference": "d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d",
                 "shasum": ""
             },
             "require": {
@@ -726,7 +788,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-02-02 03:30:00"
+            "time": "2017-03-01T22:17:45+00:00"
         }
     ],
     "aliases": [],
@@ -734,7 +796,9 @@
     "stability-flags": {
         "pdffiller/feather": 20,
         "pdffiller/blog-plugin-text-seo-scoring": 20,
-        "pdffiller/blog-plugin-form-content-provider": 20
+        "pdffiller/blog-plugin-form-content-provider": 20,
+        "pdffiller/blog-pdffiller-client": 20,
+        "pdffiller/blog-plugin-related-forms": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
