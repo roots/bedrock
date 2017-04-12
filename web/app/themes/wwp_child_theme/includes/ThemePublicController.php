@@ -5,7 +5,7 @@
  * Date: 17/06/2016
  * Time: 09:46
  */
-namespace WonderWp\Theme;
+namespace WonderWp\Theme\Child;
 
 class ThemePublicController{
 

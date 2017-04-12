@@ -6,9 +6,9 @@
  * Time: 09:46
  */
 
-namespace WonderWp\Theme;
+namespace WonderWp\Theme\Child;
 
-use WonderWp\Shortcode\AbstractShortcodeService;
+use WonderWp\Framework\Shortcode\AbstractShortcodeService;
 
 class ThemeShortcodeService extends AbstractShortcodeService{
 

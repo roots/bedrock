@@ -6,44 +6,42 @@
  * Time: 12:04
  */
 
-namespace WonderWp\Theme;
+namespace WonderWp\Theme\Child;
 
-use Pimple\Container as PContainer;
-use WonderWp\APlugin\AbstractManager;
-use WonderWp\Services\AbstractService;
-use \Composer\Autoload\ClassLoader as AutoLoader;
+use WonderWp\Framework\AbstractPlugin\AbstractManager;
+use WonderWp\Framework\DependencyInjection\Container;
+use WonderWp\Framework\Service\ServiceInterface;
+use WonderWp\Theme\Core\ThemeManager;
 
 class ChildThemeManager extends ThemeManager
 {
 
-    public function autoLoad(AutoLoader $loader)
-    {
-        parent::autoLoad($loader);
-
-        $loader->addPsr4('WonderWp\\Theme\\Components\\', array(STYLESHEETPATH . '/styleguide/components/components/componentsClasses', TEMPLATEPATH . '/includes'));
-
-        return $this;
-    }
-
-    public function register(PContainer $container)
+    public function register(Container $container)
     {
         parent::register($container);
+
+        //Controllers
+        $this->addController(AbstractManager::PUBLIC_CONTROLLER_TYPE,function(){
+           return new ThemePublicController();
+        });
+
         //Hooks
-        $this->addService(AbstractService::$HOOKSERVICENAME,function(){
+        $this->addService(ServiceInterface::HOOK_SERVICE_NAME,function(){
             return new ChildThemeHookService();
         });
         //Routes
-        $this->addService(AbstractService::$ROUTESERVICENAME,function(){
+        $this->addService(ServiceInterface::ROUTE_SERVICE_NAME,function(){
             return new ThemeRouteService();
         });
         //Assets
-        $this->addService(AbstractService::$ASSETSSERVICENAME,function(){
+        $this->addService(ServiceInterface::ASSETS_SERVICE_NAME,function(){
             return new ThemeAssetService();
         });
         //Shortcodes
-        $this->addService(AbstractService::$SHORTCODESERVICENAME,function(){
+        $this->addService(ServiceInterface::SHORT_CODE_SERVICE_NAME,function(){
             return new ThemeShortcodeService();
         });
+
     }
 
 }

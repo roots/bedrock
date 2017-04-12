@@ -10,8 +10,8 @@ namespace WonderWp\Theme\Components;
 
 
 use Symfony\Component\HttpFoundation\Cookie;
-use WonderWp\DI\Container;
-use WonderWp\HttpFoundation\Request;
+use WonderWp\Framework\DependencyInjection\Container;
+use WonderWp\Framework\HttpFoundation\Request;
 
 class CookieComponent extends AbstractComponent
 {
