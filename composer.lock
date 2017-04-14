@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ca7d9619e46598430cc445dd1414f26",
+    "content-hash": "72525c67852c886e050a82b300a20c40",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -528,16 +528,54 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "eef7c0520b1e7187cd2cd7540dc997c4c3b0340a"
+                "reference": "9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/eef7c0520b1e7187cd2cd7540dc997c4c3b0340a",
-                "reference": "eef7c0520b1e7187cd2cd7540dc997c4c3b0340a",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a",
+                "reference": "9f1f8eb6c37d10d73b9d7946c0ab5425a5492a9a",
                 "shasum": ""
             },
             "require": {
+                "johnpbloch/wordpress-core": "4.7.3",
                 "johnpbloch/wordpress-core-installer": "~0.2",
+                "php": ">=5.3.2"
+            },
+            "type": "package",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "time": "2017-03-18T04:47:24+00:00"
+        },
+        {
+            "name": "johnpbloch/wordpress-core",
+            "version": "4.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core.git",
+                "reference": "21255f593ac7db93892724321f468c276b15aa65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/21255f593ac7db93892724321f468c276b15aa65",
+                "reference": "21255f593ac7db93892724321f468c276b15aa65",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=5.3.2"
             },
             "type": "wordpress-core",
@@ -555,9 +593,10 @@
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
-                "cms"
+                "cms",
+                "wordpress"
             ],
-            "time": "2017-03-06T16:01:58+00:00"
+            "time": "2017-03-06T18:43:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -1630,16 +1669,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.18",
+            "version": "v2.8.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "bb4ec47e8e109c1c1172145732d0aa468d967cd0"
+                "reference": "88b65f0ac25355090e524aba4ceb066025df8bd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/bb4ec47e8e109c1c1172145732d0aa468d967cd0",
-                "reference": "bb4ec47e8e109c1c1172145732d0aa468d967cd0",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/88b65f0ac25355090e524aba4ceb066025df8bd2",
+                "reference": "88b65f0ac25355090e524aba4ceb066025df8bd2",
                 "shasum": ""
             },
             "require": {
@@ -1686,7 +1725,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21T08:33:48+00:00"
+            "time": "2017-04-03T20:37:06+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1816,7 +1855,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.11.zip",
-                "reference": "tags/4.4.11",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1847,15 +1886,15 @@
         },
         {
             "name": "wpackagist-plugin/amazon-s3-and-cloudfront",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/amazon-s3-and-cloudfront/",
-                "reference": "tags/1.1.5"
+                "reference": "tags/1.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/amazon-s3-and-cloudfront.1.1.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/amazon-s3-and-cloudfront.1.1.6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1867,16 +1906,16 @@
         },
         {
             "name": "wpackagist-plugin/amazon-web-services",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/amazon-web-services/",
-                "reference": "tags/1.0.1"
+                "reference": "tags/1.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/amazon-web-services.1.0.1.zip",
-                "reference": "tags/1.0.1",
+                "url": "https://downloads.wordpress.org/plugin/amazon-web-services.1.0.2.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1896,7 +1935,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/aryo-activity-log.2.3.4.zip",
-                "reference": "tags/2.3.4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1915,8 +1954,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/baw-login-logout-menu.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/baw-login-logout-menu.zip?timestamp=1438297400",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1936,7 +1975,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/better-wp-security.5.9.0.zip",
-                "reference": "tags/5.9.0",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1956,7 +1995,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.2.zip",
-                "reference": "tags/1.11.2",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1976,7 +2015,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/bulk-move.1.2.1.zip",
-                "reference": "tags/1.2.1",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1991,12 +2030,12 @@
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/category-sticky-post/",
-                "reference": "trunk"
+                "reference": "tags/2.9.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/category-sticky-post.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/category-sticky-post.2.9.0.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2036,7 +2075,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/custom-content-type-manager.0.9.8.9.zip",
-                "reference": "tags/0.9.8.9",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2056,7 +2095,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/disable-json-api.1.3.zip",
-                "reference": "tags/1.3",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2076,7 +2115,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/disable-xml-rpc.1.0.1.zip",
-                "reference": "tags/1.0.1",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2096,7 +2135,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/flamingo.1.5.zip",
-                "reference": "tags/1.5",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2116,7 +2155,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/google-analyticator.6.4.9.7.zip",
-                "reference": "tags/6.4.9.7",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2135,7 +2174,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/m-wp-popup.zip",
+                "url": "https://downloads.wordpress.org/plugin/m-wp-popup.zip?timestamp=1484936778",
                 "reference": null,
                 "shasum": null
             },
@@ -2155,8 +2194,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/no-category-base-wpml.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/no-category-base-wpml.zip?timestamp=1481133411",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2167,15 +2206,15 @@
         },
         {
             "name": "wpackagist-plugin/plugin-vulnerabilities",
-            "version": "2.0.42",
+            "version": "2.0.44",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/plugin-vulnerabilities/",
-                "reference": "tags/2.0.42"
+                "reference": "tags/2.0.44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/plugin-vulnerabilities.2.0.42.zip",
+                "url": "https://downloads.wordpress.org/plugin/plugin-vulnerabilities.2.0.44.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2196,7 +2235,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/posts-in-page.1.2.4.zip",
-                "reference": "tags/1.2.4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2216,7 +2255,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/redirection.2.5.zip",
-                "reference": "tags/2.5",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2236,7 +2275,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/rss-post-importer.2.2.4.zip",
-                "reference": "tags/2.2.4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2251,12 +2290,12 @@
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/si-captcha-for-wordpress/",
-                "reference": "trunk"
+                "reference": "tags/2.7.7.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/si-captcha-for-wordpress.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/si-captcha-for-wordpress.2.7.7.8.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2276,7 +2315,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/simple-tooltips.2.1.3.zip",
-                "reference": "tags/2.1.3",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2295,8 +2334,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/social-media-feather.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/social-media-feather.zip?timestamp=1482285108",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2307,15 +2346,15 @@
         },
         {
             "name": "wpackagist-plugin/the-events-calendar",
-            "version": "4.4.3",
+            "version": "4.4.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/the-events-calendar/",
-                "reference": "tags/4.4.3"
+                "reference": "tags/4.4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/the-events-calendar.4.4.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/the-events-calendar.4.4.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2336,7 +2375,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/upload-scanner.1.2.zip",
-                "reference": "tags/1.2",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2356,7 +2395,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/w3-total-cache.0.9.5.1.zip",
-                "reference": "tags/0.9.5.1",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2376,7 +2415,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wordpress-importer.0.6.3.zip",
-                "reference": "tags/0.6.3",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2396,7 +2435,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wordpress-seo.3.8.zip",
-                "reference": "tags/3.8",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2407,16 +2446,16 @@
         },
         {
             "name": "wpackagist-plugin/wp-crontrol",
-            "version": "1.4",
+            "version": "1.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-crontrol/",
-                "reference": "tags/1.4"
+                "reference": "tags/1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.4.zip",
-                "reference": "tags/1.4",
+                "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.5.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2515,8 +2554,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/check-email.zip",
-                "reference": "trunk",
+                "url": "https://downloads.wordpress.org/plugin/check-email.zip?timestamp=1485729252",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2536,7 +2575,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/debug-bar.0.8.4.zip",
-                "reference": "tags/0.8.4",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -2567,15 +2606,15 @@
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "2.13.3",
+            "version": "2.13.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/2.13.3"
+                "reference": "tags/2.13.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.2.13.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.2.13.4.zip",
                 "reference": null,
                 "shasum": null
             },
