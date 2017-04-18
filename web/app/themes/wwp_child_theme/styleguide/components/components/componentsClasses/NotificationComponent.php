@@ -9,7 +9,7 @@
 namespace WonderWp\Theme\Components;
 
 
-use WonderWp\Notification\AdminNotification;
+use WonderWp\Framework\Notification\AdminNotification;
 
 class NotificationComponent extends AdminNotification implements ComponentInterface
 {

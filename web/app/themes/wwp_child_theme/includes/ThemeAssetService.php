@@ -1,10 +1,10 @@
 <?php
 
-namespace WonderWp\Theme;
+namespace WonderWp\Theme\Child;
 
-use WonderWp\Assets\AbstractAssetService;
-use WonderWp\Assets\AssetManager;
-use WonderWp\DI\Container;
+use WonderWp\Framework\Asset\AbstractAssetService;
+use WonderWp\Framework\Asset\AssetManager;
+use WonderWp\Framework\DependencyInjection\Container;
 
 class ThemeAssetService extends AbstractAssetService{
 
