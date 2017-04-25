@@ -8,6 +8,7 @@
 
 namespace WonderWp\Theme\Components;
 
+use WonderWp\Theme\Core\Component\AbstractComponent;
 
 class TabsComponent extends AbstractComponent
 {
@@ -19,9 +20,9 @@ class TabsComponent extends AbstractComponent
         $this->_blocks[] = ['title' => $title, 'content' => $content];
     }
 
-    public function getMarkup($opts=array())
+    public function getMarkup(array $opts = [])
     {
-        $markup = '';
+        $markup     = '';
         $listMarkup = '';
         $tabsMarkup = '';
         if (!empty($this->_blocks)) {
@@ -29,7 +30,7 @@ class TabsComponent extends AbstractComponent
             $listMarkup .= '<ul class="js-tablist">';
             foreach ($this->_blocks as $i => $block) {
                 $listMarkup .= '<li class="js-tablist__item">
-                    <a href="#tab'.$i.'" class="js-tablist__link">'.$block['title'].'</a>
+                    <a href="#tab' . $i . '" class="js-tablist__link">' . $block['title'] . '</a>
                 </li>';
                 $tabsMarkup .= '<div id="tab' . $i . '" class="js-tabcontent">' . $block['content'] . '</div>';
             }
@@ -38,6 +39,7 @@ class TabsComponent extends AbstractComponent
             $markup .= $tabsMarkup;
             $markup .= '</div>';
         }
+
         return $markup;
     }
 

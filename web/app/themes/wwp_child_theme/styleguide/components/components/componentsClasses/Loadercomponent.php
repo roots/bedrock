@@ -9,6 +9,8 @@
 namespace WonderWp\Theme\Components;
 
 
+use WonderWp\Theme\Core\Component\AbstractComponent;
+
 class Loadercomponent extends AbstractComponent
 {
     private $_templates;
@@ -31,7 +33,7 @@ class Loadercomponent extends AbstractComponent
         return $this->_templates;
     }
 
-    public function getMarkup($opts = array())
+    public function getMarkup(array $opts = array())
     {
         $tpl = !empty($opts['tpl']) ? $opts['tpl'] : 'loader';
         return $this->_templates[$tpl];

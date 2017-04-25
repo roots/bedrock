@@ -2,6 +2,8 @@
 
 namespace WonderWp\Theme\Components;
 
+use WonderWp\Theme\Core\Component\AbstractComponent;
+
 /**
  * Created by PhpStorm.
  * User: jeremydesvaux
@@ -16,7 +18,7 @@ class AccordionComponent extends AbstractComponent
         $this->_blocks[] = ['title'=>$title,'content'=>$content];
     }
 
-    public function getMarkup($opts=array())
+    public function getMarkup(array $opts=array())
     {
         $markup = '';
         if(!empty($this->_blocks)){

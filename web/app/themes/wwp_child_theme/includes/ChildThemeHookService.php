@@ -9,7 +9,7 @@
 namespace WonderWp\Theme\Child;
 
 
-use WonderWp\Theme\Components\NotificationComponent;
+use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\ThemeHookService;
 
 class ChildThemeHookService extends ThemeHookService
