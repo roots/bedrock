@@ -34,7 +34,7 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
   `composer create-project roots/bedrock your-project-folder-name`
 
-2. Copy `.env.example` to `.env` and update environment variables:
+2. Update environment variables in `.env`  file:
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
   * `DB_PASSWORD` - Database password
