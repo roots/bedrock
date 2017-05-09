@@ -1,11 +1,11 @@
 # Application
 web/app/mu-plugins/*/
-web/app/upgrade
+web/app/upgrade/
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 
 # WordPress
-web/wp
+web/wp/
 web/.htaccess
 
 # WP-CLI
@@ -22,19 +22,10 @@ vendor/*
 !vendor/.gitkeep
 
 # Node Package Manager
-node_modules
-
-# Vagrant
-bin
-.vagrant
+node_modules/
 
 # Idea
-.idea/jsLibraryMappings.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/wonderwp-base.iml
-.idea/workspace.xml
-.idea/copyright/profiles_settings.xml
+.idea/
 
 # Compiled assets
 main.css
@@ -56,6 +47,6 @@ web/app/plugins/*
 
 # Other
 pimple.json
-wonderwp-plugin-core
 wonderwp-theme-core
 version.php
+wonderwp-plugin-core

@@ -72,6 +72,10 @@
         },
         {
             "type": "path",
+            "url": "~/Sites/wonderwp/plugins/wwp-social"
+        },
+        {
+            "type": "path",
             "url": "~/Sites/wonderwp/plugins/wwp-translator"
         },
         {
@@ -113,6 +117,7 @@
         "agencewonderful/wwp-jeux": "*",
         "agencewonderful/wwp-meteo": "*",
         "agencewonderful/wwp-newsletter": "*",
+        "agencewonderful/wwp-social": "*",
         "agencewonderful/wwp-trombinoscope": "*",
         "agencewonderful/wwp-translator": "*",
         "agencewonderful/wwp-vote": "*"
@@ -128,7 +133,8 @@
     "autoload": {
         "psr-4": {
             "WonderWp\\Theme\\Components\\": "web/app/themes/wwp_child_theme/styleguide/components/components/componentsClasses",
-            "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes"
+            "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes",
+            "WonderWp\\Plugin\\Social\\": "web/app/plugins/wwp-social/includes"
         }
     },
     "extra": {

@@ -16,11 +16,11 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 // replace with file to your own project bootstrap
 if(!defined('WP_USE_THEMES')){ define('WP_USE_THEMES', false); }
 require_once( __DIR__.'/../web/wp/wp-blog-header.php' );
-require_once( __DIR__.'/../vendor/wonderwp/framework/src/Loader.php' );
+require_once( __DIR__.'/../vendor/wonderwp/framework/src/WonderWp/Framework/Loader.php' );
 
 // replace with mechanism to retrieve EntityManager in your app
-$loader = \WonderWp\Loader::getInstance();
-$container = \WonderWp\DI\Container::getInstance();
+$loader = \WonderWp\Framework\Loader::getInstance();
+$container = \WonderWp\Framework\DependencyInjection\Container::getInstance();
 $entityManager = $container->offsetGet('entityManager');
 
 return ConsoleRunner::createHelperSet($entityManager);

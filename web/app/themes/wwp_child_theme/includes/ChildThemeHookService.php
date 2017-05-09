@@ -22,6 +22,8 @@ class ChildThemeHookService extends ThemeHookService
         //add_action( 'wwp_after_footer', array($viewService,'prepareCookies'));
         add_filter('wwp.mailer.setBody', array($this,'includeMailTemplate'));
         add_action( 'wp_footer', array($this,'loadJsonTpls'));
+        //Disable visual editor
+        add_filter('user_can_richedit', '__return_false', 50);
     }
 
     public function includeMailTemplate($mailBody){
