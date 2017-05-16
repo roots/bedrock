@@ -5,7 +5,7 @@
  * Date: 17/06/2016
  * Time: 09:46
  */
-namespace WonderWp\Theme\Child;
+namespace WonderWp\Theme\Child\Service;
 
 use WonderWp\Framework\AbstractPlugin\AbstractManager;
 use WonderWp\Framework\DependencyInjection\Container;

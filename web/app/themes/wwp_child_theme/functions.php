@@ -15,5 +15,5 @@ function wwp_theme_setup()
 
 function getSvgIcon($iconName)
 {
-    return \WonderWp\Theme\Child\ThemeShortcodeService::getSvgIcon($iconName);
+    return \WonderWp\Theme\Child\Service\ChildThemeShortcodeService::getSvgIcon($iconName);
 }

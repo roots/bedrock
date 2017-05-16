@@ -11,6 +11,10 @@ namespace WonderWp\Theme\Child;
 use WonderWp\Framework\AbstractPlugin\AbstractManager;
 use WonderWp\Framework\DependencyInjection\Container;
 use WonderWp\Framework\Service\ServiceInterface;
+use WonderWp\Theme\Child\Service\ChildThemeHookService;
+use WonderWp\Theme\Child\Service\ChildThemeShortcodeService;
+use WonderWp\Theme\Child\Service\ThemeAssetService;
+use WonderWp\Theme\Child\Service\ThemeRouteService;
 use WonderWp\Theme\Core\ThemeManager;
 
 class ChildThemeManager extends ThemeManager
@@ -39,7 +43,7 @@ class ChildThemeManager extends ThemeManager
         });
         //Shortcodes
         $this->addService(ServiceInterface::SHORT_CODE_SERVICE_NAME,function(){
-            return new ThemeShortcodeService();
+            return new ChildThemeShortcodeService();
         });
 
     }

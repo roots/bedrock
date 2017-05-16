@@ -6,11 +6,11 @@
  * Time: 11:42
  */
 
-namespace WonderWp\Theme\Child;
+namespace WonderWp\Theme\Child\Service;
 
 
 use WonderWp\Theme\Core\Component\NotificationComponent;
-use WonderWp\Theme\Core\ThemeHookService;
+use WonderWp\Theme\Core\Service\ThemeHookService;
 
 class ChildThemeHookService extends ThemeHookService
 {
