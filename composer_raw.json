@@ -47,6 +47,12 @@
         "wpackagist-plugin/debug-bar": "dev-trunk",
         "justinrainbow/json-schema": "1.6.1"
     },
+    "autoload": {
+        "psr-4": {
+            "WonderWp\\Theme\\Components\\": "web/app/themes/wwp_child_theme/styleguide/components/components/componentsClasses",
+            "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes"
+        }
+    },
     "extra": {
         "installer-paths": {
             "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
