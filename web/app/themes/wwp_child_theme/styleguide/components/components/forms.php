@@ -39,7 +39,7 @@ $f = new \WonderWp\Framework\Form\Field\DateField('dateField', null, ['label' =>
 $form->addField($f);
 
 //Media
-$f = new \WonderWp\Framework\Form\Field\MediaField('mediaField', null, ['label' => 'Média']);
+$f = new \WonderWp\Plugin\Core\Framework\Form\Field\MediaField('mediaField', null, ['label' => 'Média']);
 $group2->addField($f);
 
 //Select

@@ -5,9 +5,9 @@
 //This is how to use the notification component
 
 //Init component, //Set notif type and message, then get markup
-echo (new \WonderWp\Theme\Components\NotificationComponent('success','<strong>Well done!</strong> You successfully read this important alert message.'))->getMarkup();
-echo (new \WonderWp\Theme\Components\NotificationComponent('info','<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.'))->getMarkup();
-echo (new \WonderWp\Theme\Components\NotificationComponent('warning','<strong>Warning!</strong> Better check yourself, you\'re not looking too good.'))->getMarkup();
-echo (new \WonderWp\Theme\Components\NotificationComponent('error','<strong>Oh snap!</strong> Change a few things up and try submitting again.'))->getMarkup();
+echo (new \WonderWp\Theme\Core\Component\NotificationComponent('success','<strong>Well done!</strong> You successfully read this important alert message.'))->getMarkup();
+echo (new \WonderWp\Theme\Core\Component\NotificationComponent('info','<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.'))->getMarkup();
+echo (new \WonderWp\Theme\Core\Component\NotificationComponent('warning','<strong>Warning!</strong> Better check yourself, you\'re not looking too good.'))->getMarkup();
+echo (new \WonderWp\Theme\Core\Component\NotificationComponent('error','<strong>Oh snap!</strong> Change a few things up and try submitting again.'))->getMarkup();
 
 ?>

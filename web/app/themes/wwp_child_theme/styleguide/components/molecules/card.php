@@ -4,7 +4,7 @@
 //This is how to use the card component
 
 //Init component
-$card = new \WonderWp\Theme\Components\CardComponent();
+$card = new \WonderWp\Theme\Core\Component\CardComponent();
 $card
 	->setImage('http://placehold.it/300x150')
 	->setTitle('Card title')

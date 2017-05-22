@@ -4,7 +4,7 @@
 //This is how to use the cookie component:
 
 //Init component
-$cookieComponent = new \WonderWp\Theme\Components\CookieComponent();
+$cookieComponent = new \WonderWp\Theme\Core\Component\CookieComponent();
 
 //Get markup
 echo $cookieComponent->getMarkup(['force'=>true]);

@@ -4,7 +4,7 @@
 //This is how to use the breadcrumb
 
 //Init component
-$breadCrumb = new \WonderWp\Theme\Components\BreadCrumbComponent();
+$breadCrumb = new \WonderWp\Theme\Core\Component\BreadCrumbComponent();
 
 //Add elements to the breadcrumb
 echo $breadCrumb->setCrumbs([
