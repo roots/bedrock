@@ -36,7 +36,7 @@ class ThemeAssetService extends AbstractAssetService
                 'js'  => [
                     new $assetClass('jquery', $themePath . '/assets/raw/js/jquery-2.2.3.min.js'),
                     new $assetClass('app', $themePath . '/assets/raw/js/app.js', ['jquery']),
-                    new $assetClass('styleguide', $themePath . '/styleguide/js/styleguide.js', ['jquery']),
+                    new $assetClass('styleguide', $themePath . '/styleguide/js/compiled/styleguide.js', ['jquery']),
                     new $assetClass('page', $themePath . '/assets/raw/js/page.js', ['jquery', 'app']),
                     new $assetClass('theme', $themePath . '/assets/raw/js/theme.js', ['page']),
                 ],
