@@ -35,8 +35,9 @@ if (file_exists($env_config)) {
 /**
  * URLs
  */
-define('WP_HOME', env('WP_HOME'));
-define('WP_SITEURL', env('WP_SITEURL'));
+#define('WP_HOME', env('WP_HOME'));
+define('WP_HOME', sprintf('http://%s', $_SERVER['HTTP_HOST']));
+define('WP_SITEURL', sprintf('%s/wp', WP_HOME));
 
 /**
  * Custom Content Directory
