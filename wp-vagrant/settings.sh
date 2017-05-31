@@ -40,16 +40,9 @@ mysql_root_password='root'
 # set to true to download and install latest version of WP
 # if we detect existing core files, then the WP download will not take place, even if
 # this is set to true, so it's normally safe to always have this set to true
-download_wordpress=false
 
 install_wordpress=true
 
-
-# WordPress version to install (if install_wordpress=true)
-# if blank, then current stable version will be installed
-# wp_version="3.5.2"
-# wp_version="4.0-beta1"
-wp_version=""
 
 
 #
@@ -60,10 +53,10 @@ wp_version=""
 wp_db_name=${DB_NAME?'bedrock'}
 
 # database user name, leave empty to use the root user
-wp_db_user='wpdev'
+wp_db_user=${DB_USER?'wpdev'}
 
 # database password
-wp_db_password='wpdev'
+wp_db_password=${DB_PASSWORD?'wpdev'}
 
 #
 # initial WP admin user

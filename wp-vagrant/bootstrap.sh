@@ -38,6 +38,8 @@ service php7.0-fpm stop
 service php${php_version}-fpm restart
 service mysql restart
 
+# Composer
+. /vagrant/wp-vagrant/composer/install-composer.sh
 
 # WP-CLI
 . /vagrant/wp-vagrant/wp/wp-cli.sh
