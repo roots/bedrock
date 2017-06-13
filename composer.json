@@ -46,7 +46,8 @@
     "roots/wp-password-bcrypt": "1.0.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^2.5.1"
+    "phpunit/phpunit": "~5.5",
+    "humanmade/coding-standards": "^0.2.1"
   },
   "extra": {
     "installer-paths": {
@@ -61,7 +62,11 @@
       "php -r \"copy('.env.example', '.env');\""
     ],
     "test": [
-      "vendor/bin/phpcs"
+      "vendor/bin/phpunit --configuration web/app/plugins/pressbooks/phpunit.xml --coverage-clover web/app/plugins/pressbooks/coverage.xml",
+      "@standards"
+    ],
+    "standards": [
+      "vendor/bin/phpcs --standard=web/app/plugins/pressbooks/phpcs.ruleset.xml web/app/plugins/pressbooks/*.php web/app/plugins/pressbooks/inc/ web/app/plugins/pressbooks/bin/"
     ]
   }
 }
