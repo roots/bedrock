@@ -62,11 +62,11 @@
       "php -r \"copy('.env.example', '.env');\""
     ],
     "test": [
-      "vendor/bin/phpunit --configuration web/app/plugins/pressbooks/phpunit.xml --coverage-clover web/app/plugins/pressbooks/coverage.xml",
+      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpunit --configuration web/app/plugins/$PB_PLUGIN/phpunit.xml --coverage-clover web/app/plugins/$PB_PLUGIN/coverage.xml",
       "@standards"
     ],
     "standards": [
-      "vendor/bin/phpcs --standard=web/app/plugins/pressbooks/phpcs.ruleset.xml web/app/plugins/pressbooks/*.php web/app/plugins/pressbooks/inc/ web/app/plugins/pressbooks/bin/"
+      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpcs --standard=web/app/plugins/$PB_PLUGIN/phpcs.ruleset.xml web/app/plugins/$PB_PLUGIN/*.php web/app/plugins/$PB_PLUGIN/inc/ web/app/plugins/$PB_PLUGIN/bin/"
     ]
   }
 }
