@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f20311b48dfb3c35b63310bbcc88e77",
+    "content-hash": "acd786bd5bc0475808d6363ac9006336",
     "packages": [
         {
             "name": "anttiviljami/wp-server-log-viewer",
@@ -36,35 +36,39 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.0.12",
+            "version": "v1.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa"
+                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/4127333b03e8b4c08d081958548aae5419d1a2fa",
-                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa",
+                "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
                 "shasum": ""
             },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
             "replace": {
+                "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "4.1.*"
             },
-            "type": "composer-installer",
+            "type": "composer-plugin",
             "extra": {
-                "class": "Composer\\Installers\\Installer",
+                "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Composer\\Installers\\": "src/"
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -75,27 +79,36 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
-                    "role": "Developer"
+                    "homepage": "https://github.com/shama"
                 }
             ],
             "description": "A multi-framework Composer library installer",
-            "homepage": "http://composer.github.com/installers/",
+            "homepage": "https://composer.github.io/installers/",
             "keywords": [
                 "Craft",
+                "Dolibarr",
                 "Hurad",
+                "ImageCMS",
                 "MODX Evo",
+                "Mautic",
                 "OXID",
+                "SMF",
+                "Thelia",
                 "WolfCMS",
                 "agl",
+                "aimeos",
                 "annotatecms",
+                "bitrix",
                 "cakephp",
+                "chef",
                 "codeigniter",
                 "concrete5",
                 "croogo",
+                "dokuwiki",
                 "drupal",
                 "elgg",
                 "fuelphp",
+                "grav",
                 "installer",
                 "joomla",
                 "kohana",
@@ -105,9 +118,12 @@
                 "mako",
                 "mediawiki",
                 "modulework",
+                "moodle",
                 "phpbb",
                 "piwik",
                 "ppi",
+                "puppet",
+                "roundcube",
                 "shopware",
                 "silverstripe",
                 "symfony",
@@ -116,7 +132,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-02-24T04:21:34+00:00"
+            "time": "2016-04-13T19:46:30+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -341,51 +357,6 @@
                 "wordpress wp bcrypt password"
             ],
             "time": "2016-03-01T16:27:06+00:00"
-        },
-        {
-            "name": "seravo/seravo-plugin",
-            "version": "1.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seravo/seravo-plugin.git",
-                "reference": "3929bd4b0aeaa29d11309c08ac224758768b9564"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seravo/seravo-plugin/zipball/3929bd4b0aeaa29d11309c08ac224758768b9564",
-                "reference": "3929bd4b0aeaa29d11309c08ac224758768b9564",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "v1.0.12"
-            },
-            "type": "wordpress-muplugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPLv3"
-            ],
-            "authors": [
-                {
-                    "name": "Antti Kuosmanen",
-                    "email": "antti@seravo.fi",
-                    "homepage": "https://github.com/anttiviljami"
-                },
-                {
-                    "name": "Otto Kekäläinen",
-                    "email": "otto@seravo.fi",
-                    "homepage": "https://github.com/ottok"
-                }
-            ],
-            "description": "Enhances WordPress with Seravo.com specific features and integrations",
-            "homepage": "http://seravo.com",
-            "keywords": [
-                "seravo",
-                "seravo.com",
-                "wordpress",
-                "wp",
-                "wp-palvelu"
-            ],
-            "time": "2017-08-25T11:04:16+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
