@@ -1,3 +1,7 @@
+### 1.8.2: 2017-09-19
+
+* Update to WordPress 4.8.2
+
 ### 1.8.1: 2017-08-02
 
 * Update to WordPress 4.8.1
