@@ -1,27 +1,24 @@
-# [Bedrock](https://roots.io/bedrock/)
-[![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
-[![Build Status](https://img.shields.io/travis/roots/bedrock.svg?style=flat-square)](https://travis-ci.org/roots/bedrock)
+# Pixels Bedrock
 
-Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
+Pixels Bedrock is a forked version of [roots/bedrock](https://github.com/roots/bedrock), a modern WordPress stack that helps you get started with the best development tools and project structure.
 
 Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
-## Features
+## Updates
 
-* Better folder structure
+Pixels Bedrock will be updated every 6 months, along the same timeline as the [Pixels Starter Theme](https://github.com/pixelshelsinki/pixels-starter-theme), merging in updates that have been made over the previous 6 months.
+
+## Issues, improvements and these instructions.
+
+Please read the documentation below before using. **If things are not clear or you find a mistake, or simply a way to improve the theme, please submit an issue or pull request.**
+
+## Tools and Technologies
+
 * Dependency management with [Composer](http://getcomposer.org)
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Autoloader for mu-plugins (use regular plugins as mu-plugins)
 * Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
-
-Use [Trellis](https://github.com/roots/trellis) for additional features:
-
-* Easy development environments with [Vagrant](http://www.vagrantup.com/)
-* Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 16.04, PHP 7.1, MariaDB)
-* One-command deploys
-
-See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
 
 ## Requirements
 
@@ -30,11 +27,19 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
 ## Installation
 
-1. Create a new project in a new folder for your project:
+These instructions should cover most installation instances, for full project setup instructions a project including using Local by Flywheel, see [here](https://public.3.basecamp.com/p/PQmrYKcbrnrKCYpKnEq7DSLV)
 
-  `composer create-project roots/bedrock your-project-folder-name`
+1. Download this repository as a ZIP (don't clone!).
 
-2. Update environment variables in `.env`  file:
+2. Drop it into your `sites` or equivalent development folder, and rename to be the project name.
+
+3. In Terminal run `composer install` in the root of this folder.
+
+4. Create an `.env` file by duplicating `.env.example`.
+
+   `cp .env.example .env`
+
+5. Update the environment variables in the `.env` file:
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
   * `DB_PASSWORD` - Database password
@@ -42,50 +47,22 @@ See a complete working example in the [roots-example-project.com repo](https://g
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-  * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT`
+  * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` using the [Roots WordPress Salt Generator][roots-wp-salt].
 
-  If you want to automatically generate the security keys (assuming you have wp-cli installed locally) you can use the very handy [wp-cli-dotenv-command][wp-cli-dotenv]:
+6. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
 
-      wp package install aaemnnosttv/wp-cli-dotenv-command
+7. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
 
-      wp dotenv salts regenerate
-
-  Or, you can cut and paste from the [Roots WordPress Salt Generator][roots-wp-salt].
-
-3. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
-
-4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
-
-5. Access WP admin at `http://example.com/wp/wp-admin`
+8. Access WP admin at `http://example.com/wp/wp-admin`
 
 ## Deploys
 
-There are two methods to deploy Bedrock sites out of the box:
+Pixels Bedrock sites are (ideally) deployed using Capistrano.
 
-* [Trellis](https://github.com/roots/trellis)
-* [bedrock-capistrano](https://github.com/roots/bedrock-capistrano)
+Deploy scripts are already in `config/deploy.rb`, project variables can be found in `config/config.rb` and environment deploy variables in `config/deploy/<environment>.rb`.
 
-Any other deployment method can be used as well with one requirement:
-
-`composer install` must be run as part of the deploy process.
+For deployment to servers that don't allow SSH connections etc, custom deployment scripts will need to be written.
 
 ## Documentation
 
-Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
-
-## Contributing
-
-Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/roots/guidelines/blob/master/CONTRIBUTING.md) to help you get started.
-
-## Community
-
-Keep track of development and community news.
-
-* Participate on the [Roots Discourse](https://discourse.roots.io/)
-* Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-* Read and subscribe to the [Roots Blog](https://roots.io/blog/)
-* Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
-* Listen to the [Roots Radio podcast](https://roots.io/podcast/)
-
-[roots-wp-salt]:https://roots.io/salts.html
-[wp-cli-dotenv]:https://github.com/aaemnnosttv/wp-cli-dotenv-command
+Original Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
