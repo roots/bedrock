@@ -1,0 +1,62 @@
+global:
+  sql_adapter: "default"
+
+local:
+  vhost: "http://bedrock.dev"
+  wordpress_path: "/var/www/bedrock.dev/web/wp" # use an absolute path here
+
+  database:
+    name: "bedrock_dev"
+    user: "bedrock_dev"
+    password: "password"
+    host: "127.0.0.1"
+
+  paths: # you can customize wordpress internal paths
+    wp_content: "../app"
+    uploads: "../app/uploads"
+    plugins: "../app/plugins"
+    mu_plugins: "../app/mu-plugins"
+    themes: "../app/themes"
+    languages: "../app/languages"
+
+bedrock:
+  vhost: "http://bedrock.com"
+  wordpress_path: "/var/www/bedrock.dev/web/wp" # use an absolute path here
+
+  database:
+    name: "bedrock_dev"
+    user: "bedrock_dev"
+    password: "password"
+    host: "127.0.0.1"
+
+  exclude:
+    - ".git/"
+    - ".gitignore"
+    - ".sass-cache/"
+    - "node_modules/"
+    - "cache/"
+    - "bin/"
+    - "tmp/*"
+    - "Gemfile*"
+    - "Movefile"
+    - "*.sql"
+    - "*.gz"
+    - ".htaccess"
+    - ".idea"
+    - ".DS_Store"
+    - "htdocs"
+    - "public"
+    - "cache"
+
+  paths: # you can customize wordpress internal paths
+    wp_content: "../app"
+    uploads: "../app/uploads"
+    plugins: "../app/plugins"
+    mu_plugins: "../app/mu-plugins"
+    themes: "../app/themes"
+    languages: "../app/languages"
+
+  ssh:
+    host: "bedrock.com"
+    user: "bedrock_dev"
+    rsync_options: "--verbose" # Additional rsync options, optional
