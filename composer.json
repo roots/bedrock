@@ -23,80 +23,16 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "~/Sites/wonderwp/theme"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugin"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-actu"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-branchepage"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-contact"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-download"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-espace-restreint"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-faq"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-generator"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-jeux"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-map"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-meteo"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-newsletter"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-social"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-translator"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-trombinoscope"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-vote"
-        },
-        {
             "type": "composer",
             "url": "https://wpackagist.org"
         },
         {
             "type": "vcs",
             "url": "https://github.com/jeremy-wdf/daux.io"
+        },
+        {
+            "type": "composer",
+            "url": "https://won.wonderful.fr/satis/packages-mirror"
         }
     ],
     "minimum-stability": "dev",
@@ -110,7 +46,7 @@
         "roots/wp-password-bcrypt": "1.0.0",
         "wpackagist-plugin/cms-tree-page-view": "dev-trunk",
         "agencewonderful/wonderwp-theme-core":"*",
-
+        "agencewonderful/wonderwp-plugin-core":"*",
         "agencewonderful/wwp-actu": "*",
         "agencewonderful/wwp-branchepage": "*",
         "agencewonderful/wwp-contact": "*",
@@ -125,7 +61,8 @@
         "agencewonderful/wwp-social": "*",
         "agencewonderful/wwp-trombinoscope": "*",
         "agencewonderful/wwp-translator": "*",
-        "agencewonderful/wwp-vote": "*"
+        "agencewonderful/wwp-vote": "*",
+        "twig/twig": "~2.0"
 
     },
     "require-dev": {

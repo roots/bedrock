@@ -93,3 +93,5 @@ define('ASSETS_GROUP_APP','app');
 if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
 }
+
+define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)

@@ -1,3 +1,4 @@
+
 <div class="compWrap"><span id="forms" class="compTitle">forms <span class="js-hideAll fa fa-eye"></span></span>
     <p class="compNotes"></p>
     <div class="component" style="background-color:"><?php include("../components/components/forms.php"); ?></div>
@@ -34,6 +35,11 @@
         </div>
     </div>
 </div>
+
+<?php
+$path = __DIR__.'/../assets/raw/final/version.php';
+$version = include(__DIR__.'/../../../../assets/final/version.php');?>
+<script src="../assets/final/js/app<? echo $version; ?>.js"></script>
 <div class="compWrap"><span id="tabs" class="compTitle">tabs <span class="js-hideAll fa fa-eye"></span></span>
     <p class="compNotes"></p>
     <div class="component" style="background-color:"><?php include("../components/components/tabs.php"); ?></div>

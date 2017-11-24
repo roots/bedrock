@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "wonderwp base poc",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --display-error-details && npm run sprites",
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "sprites": "node compile-sprites.js"
   },
   "repository": {
     "type": "git",
@@ -16,20 +20,25 @@
   },
   "homepage": "https://github.com/wdfproje/wonderwp-base#readme",
   "devDependencies": {
-    "glob": "^7.0.6",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-livereload": "^3.8.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sequence": "^0.4.6",
-    "gulp-sourcemaps": "^2.6.0",
-    "gulp-svg-sprite": "1.3.7",
-    "gulp-uglify": "^3.0.0",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.8",
-    "map-stream": "0.0.7",
-    "sass-graph": "^2.1.2"
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "0.28.7",
+    "expose-loader": "^0.7.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "file-system": "^2.2.2",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "0.19.0",
+    "svg-sprite": "^1.3.7",
+    "vinyl": "^2.1.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "webpack-vendor-chunk-plugin": "^1.0.0",
+    "webpack-version-file": "^0.1.3"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "pewjs": "git+https://github.com/agencewonderful/pewjs.git"
   }
 }

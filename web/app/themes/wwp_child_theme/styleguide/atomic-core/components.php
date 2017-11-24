@@ -1,17 +1,13 @@
 <?php include("head.php"); ?>
     <body class="components">
 
-
     <div class="atoms-container">
         <?php include("sidebar.php"); ?>
-
 
         <div class="atoms-main">
             <h1 id="components" class="atomic-h1">components</h1>
 
-
             <?php include("categories/components/components.php"); ?>
-
 
         </div>
     </div>
@@ -21,4 +17,5 @@
             <div id="js_actionDrawer__content" class="actionDrawer__content"></div>
             <div/>
         </div>
+
 <?php include("footer.php"); ?>

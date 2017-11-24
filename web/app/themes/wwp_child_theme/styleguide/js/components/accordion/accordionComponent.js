@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+
 (function ($, ns) {
 
     var accordionComponent = {
@@ -18,8 +20,8 @@
 
         }
     };
-
-    ns.app.registerComponent('accordion', accordionComponent);
+   // window.pew.addRegistryEntry('wdf-accordion', {selector: accordionComponent.defaultSelector, classDef: accordionComponent)});
+    //ns.app.registerComponent('accordion', accordionComponent);
 
 
 })(jQuery, window.wonderwp);

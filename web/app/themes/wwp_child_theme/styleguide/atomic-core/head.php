@@ -17,18 +17,18 @@ require_once( get_stylesheet_directory().'/functions.php' );
 		<title></title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<link rel="stylesheet" href="atomic-core/css/main.css">
 
 		<link rel="stylesheet" href="css/main.css">
-    
+
         <link rel="stylesheet" href="atomic-core/font-awesome/css/font-awesome.min.css">
 
 
 		<?php
 			$filename = '../atomic-head.php';
 			if (file_exists($filename)) {
-			    include ("../atomic-head.php"); 
+			    include ("../atomic-head.php");
 			}
 		?>
 </head>

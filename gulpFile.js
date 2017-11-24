@@ -2,19 +2,13 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var sass = require('gulp-sass');
-var rename = require("gulp-rename");
 var map = require("map-stream");
-var livereload = require("gulp-livereload");
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
-var svgSprite = require('gulp-svg-sprite');
 var concat = require('gulp-concat');
 var path = require('path');
 var glob = require('glob');
-var sassGraph = require('sass-graph');
 var fs = require('fs');
 var gulpSequence = require('gulp-sequence');
 
@@ -27,7 +21,6 @@ global.errorMessage = '';
 //Recuperation du fichier d'assets
 var assetsFile = './assets.json';
 var assets = require(assetsFile);
-var assetsAssoc = {};
 var date = new Date();
 var isDev = assets.site.env == 'development';
 
@@ -75,28 +68,6 @@ var config = {
 //Tasks
 //======================================================================================//
 
-gulp.task('write-version', function () {
-    //console.log('write-version');
-    var versionContent = '<?php return ' + config.versionNum + '; ?>';
-    var thisPipe =  string_src('version.php', versionContent)
-        .pipe(gulp.dest(assets.site.prefix + assets.site.assets_dest));
-    console.log('The new version num is now '+config.versionNum);
-    //console.log('end write-version');
-    return thisPipe;
-});
-
-gulp.task('svg-sprites', function () {
-    //console.log('svg-sprites');
-    var svgSrc = config.svgSprites.src,
-        svgDest = config.svgSprites.dest
-    console.log('Getting svgs from ' + svgSrc);
-    console.log('And trying to write to ' + svgDest);
-    var thisPipe = gulpSrc(svgSrc)
-        .pipe(svgSprite(config.svgSprites.compilerOptions))
-        .pipe(gulp.dest(svgDest));
-    //console.log('end-svg-sprites');
-    return thisPipe;
-});
 
 gulp.task('watch-styleguide', function () {
     sassWatch(getStyleGuideSassData());
@@ -115,13 +86,7 @@ gulp.task('build-styleguide-js', function () {
     return thisPipe;
 });
 
-gulp.task('watch', function () {
-    //Watch assets defined in json files
-    var sassDatas = getSassDatas();
-    for (var i in sassDatas) {
-        sassWatch(sassDatas[i]);
-    }
-});
+
 gulp.task('build-others', function () {
     //console.log('build-others');
     //Watch assets defined in json files
@@ -138,11 +103,6 @@ gulp.task('build-others', function () {
     //console.log('end-build-others');
 });
 
-
-gulp.task('test', function () {
-    console.log('test');
-});
-
 gulp.task('build',   gulpSequence('write-version', 'svg-sprites', ['build-styleguide-sass', 'build-styleguide-js'],'build-others'));
 gulp.task('default', gulpSequence('build', ['watch-styleguide', 'watch']));
 
@@ -150,91 +110,7 @@ gulp.task('default', gulpSequence('build', ['watch-styleguide', 'watch']));
 // Functions
 //======================================================================================//
 
-function getSassDatas() {
-    var sassDatas = [];
-    for (var i in assets.css) {
-        var sassData = {
-            name: i,
-            files: assets.css[i],
-            watchers: [],
-            output: config.sass.output,
-            destName: i + config.versionNum + '.css'
-        }
-        for (var j in assets.css[i]) {
-            var deps = sassGraph.parseFile(assets.css[i][j]);
-            for (var k in deps.index) {
-                sassData.watchers.push(k);
-            }
-        }
-        sassDatas.push(sassData);
-    }
-    return sassDatas;
-}
 
-function getStyleGuideSassData() {
-    //Watch styleguide SCSS
-    var styleguideSassData = {
-        name: 'styleguide',
-        files: [assets.site.prefix + assets.site.assets_src + '/../../styleguide/scss/main.scss'],
-        watchers: [],
-        output: path.resolve(assets.site.prefix + assets.site.assets_src + '/../../styleguide/css') + '/',
-        destName: 'main.css'
-    }
-    for (var j in styleguideSassData.files) {
-        var deps = sassGraph.parseFile(styleguideSassData.files[j]);
-        for (var k in deps.index) {
-            styleguideSassData.watchers.push(k);
-        }
-    }
-    return styleguideSassData;
-}
-
-function sassWatch(sassData) {
-    return gulpSrc(sassData.files)
-        .pipe(watch(sassData.watchers, {}, function (file) {
-            if (file && file.basename) {
-                console.log(file.basename + ' has been changed. Compiling ' + sassData.name + ' group');
-                sassCompile(sassData);
-            }
-        }));
-}
-
-function sassCompile(sassData) {
-    //Create fake scss file
-    var groupScssContent = '';
-    for (var i in sassData.files) {
-        groupScssContent += '@import "' + sassData.files[i] + '";' + "\n";
-    }
-
-    //Delete previous versions
-    var oldVersions = sassData.output+sassData.name+'*.css';
-    glob(oldVersions,function(err,files){
-        if (err) throw err;
-        // Delete files
-        files.forEach(function(item,index,array){
-            fs.unlink(item, function(err){
-                if (err) throw err;
-            });
-        });
-    });
-
-    //Compile
-    return string_src(sassData.name + '.scss', groupScssContent)
-    //.pipe(gulp.dest(config.sass.output))
-        .pipe(sourcemaps.init())
-        .pipe(sass(config.sass.compilerOptions))
-        .pipe(autoprefixer(config.autoPrefixr))
-        .pipe(sourcemaps.write())
-        .on('error', function (err) {
-            gutil.log(err.message);
-            gutil.beep();
-            global.errorMessage = err.message + " ";
-        })
-        .pipe(checkErrors())
-        .pipe(rename(sassData.destName))
-        .pipe(gulp.dest(sassData.output))
-        .pipe(livereload());
-}
 
 
 function getJsDatas() {
