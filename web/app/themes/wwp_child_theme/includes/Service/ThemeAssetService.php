@@ -12,13 +12,13 @@ class ThemeAssetService extends AbstractAssetService
 
     public function registerAssets(AssetManager $assetManager, $assetClass)
     {
-        $container = Container::getInstance();
-        $manager   = $container->offsetGet('wwp.theme.Manager');
-        $themePath = $manager->getConfig('path.url');
 
         //CSS
         // TODO : Check ce que ça fait ici
-      //  $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
+        $container = Container::getInstance();
+        $manager   = $container->offsetGet('wwp.theme.Manager');
+        $themePath = $manager->getConfig('path.url');
+       //  $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
 
     }
 
