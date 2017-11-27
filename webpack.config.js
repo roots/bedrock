@@ -4,18 +4,18 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const VersionFile = require('webpack-version-file');
 const webpack = require('webpack');
 
-var assetsFile = './assets.json';
-var assets = require(assetsFile);
-var versionNum = new Date().getTime();
-
-var buildDir = assets.site.prefix + assets.site.assets_dest;
+let assetsFile = './assets.json';
+let assets = require(assetsFile);
+let versionNum = new Date().getTime();
+let buildDir = assets.site.prefix + assets.site.assets_dest;
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name]'+versionNum+'.css'
 });
 
 const cleanWebpack = new CleanWebpackPlugin([
-    buildDir
+    buildDir+'/js',
+    buildDir+'/css',
 ]);
 
 const versionFile = new VersionFile({
@@ -34,22 +34,14 @@ const providePlugin = new webpack.ProvidePlugin({
     jQuery: 'jquery/dist/jquery.min'
 });
 
+const entry = getAssetsEntries();
 
 module.exports = {
-
-    entry: {
-        'js/vendor': "jquery/dist/jquery.min",
-        'js/core': assets.js.core,
-        'js/admin': assets.js.admin,
-        'js/plugins': assets.js.plugins,
-        'js/styleguide': assets.js.styleguide,
-        'js/bootstrap': assets.js.bootstrap,
-        'css/core': assets.css.core
-    },
+    entry: entry,
     devtool: 'inline-source-map',
     module: {
         rules: [
-                {
+            {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [{
@@ -60,8 +52,8 @@ module.exports = {
                     // use style-loader in development
                     fallback: "style-loader"
                 }),
-                }
-            ]
+            }
+        ]
     },
     output: {
         filename:  '[name]'+versionNum+'.js',
@@ -76,3 +68,20 @@ module.exports = {
     ],
     target: 'web'
 };
+
+
+function getAssetsEntries() {
+    let jsAssets = Object.keys(assets.js);
+    let entry = {'js/vendor': "jquery/dist/jquery.min"};
+
+    jsAssets.forEach((key) => {
+        let attr = 'js/'+key;
+        entry[attr] = assets.js[key];
+    });
+    let cssAssets = Object.keys(assets.css);
+    cssAssets.forEach((key) => {
+        let attr = 'css/'+key;
+        entry[attr] = assets.css[key];
+    });
+    return entry;
+}

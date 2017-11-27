@@ -55,3 +55,5 @@ glob.glob('**/*.svg', {cwd: cwd}, function(err, files) {
         }
     })
 });
+
+console.warn('[Webpack] Known issue : background-url is not handled properly in scss files. Please go to sprite.scss and replace the background-url property from "%svg-common" with absolute path instead of relative, in sprite.scss. TODO : read&write in generated file at the end of this script');

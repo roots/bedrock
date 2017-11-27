@@ -36,15 +36,7 @@
     </div>
 </div>
 
-<?php
-// TODO : check how to load appXXXX.js on ES5 versions
-$path = __DIR__.'/../assets/raw/final/version.php';
-$version = include(__DIR__.'/../../../../assets/final/version.php');?>
-<script src="../assets/final/js/vendor<? echo $version; ?>.js"></script>
-<script src="../assets/final/js/core<? echo $version; ?>.js"></script>
-<script src="../assets/final/js/styleguide<? echo $version; ?>.js"></script>
-<script src="../assets/final/js/plugins<? echo $version; ?>.js"></script>
-<script src="../assets/final/js/bootstrap<? echo $version; ?>.js"></script>
+
 
 <div class="compWrap"><span id="tabs" class="compTitle">tabs <span class="js-hideAll fa fa-eye"></span></span>
     <p class="compNotes"></p>
