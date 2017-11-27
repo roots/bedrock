@@ -17,7 +17,8 @@ class ThemeAssetService extends AbstractAssetService
         $themePath = $manager->getConfig('path.url');
 
         //CSS
-        $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
+        // TODO : Check ce que ça fait ici
+      //  $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
 
     }
 
