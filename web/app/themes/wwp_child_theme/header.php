@@ -47,7 +47,6 @@
     <div class="skip-links"><a href="#content"><?php _e('Skip to content', 'wonderwp'); ?></a></div>
 
     <header id="header">
-        Header
         <?php _e('trad.welcome', WWP_THEME_TEXTDOMAIN); ?>
         <ul id="menu">
             <?php
