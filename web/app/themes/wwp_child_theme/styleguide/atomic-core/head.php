@@ -26,10 +26,11 @@ require_once( get_stylesheet_directory().'/functions.php' );
     $final_path_uri = get_stylesheet_directory_uri().'/assets/final';
 
     $version = include($final_path_dir.'/version.php');
+    $filename = (defined('FRONT_ENV') && FRONT_ENV==='webpack') ? 'styleguide' : 'app';
     ?>
 
 
-    <link rel="stylesheet" href="<?= $final_path_uri . "/css/styleguide". $version; ?>.css">
+    <link rel="stylesheet" href="<?= $final_path_uri . "/css/".$filename.$version; ?>.css">
     <link rel="stylesheet" href="atomic-core/font-awesome/css/font-awesome.min.css">
 
 
