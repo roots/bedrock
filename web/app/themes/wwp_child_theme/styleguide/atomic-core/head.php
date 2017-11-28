@@ -21,7 +21,6 @@ require_once( get_stylesheet_directory().'/functions.php' );
     <link rel="stylesheet" href="atomic-core/css/main.css">
 
     <?php
-    // TODO : check how to load appXXXX.js on ES5 versions
     $final_path_dir = get_stylesheet_directory().'/assets/final';
     $final_path_uri = get_stylesheet_directory_uri().'/assets/final';
 

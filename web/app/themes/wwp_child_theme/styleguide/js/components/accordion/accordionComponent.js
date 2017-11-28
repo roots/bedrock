@@ -20,8 +20,7 @@ import jQuery from "jquery";
 
         }
     };
-   // window.pew.addRegistryEntry('wdf-accordion', {selector: accordionComponent.defaultSelector, classDef: accordionComponent)});
-    //ns.app.registerComponent('accordion', accordionComponent);
 
+    ns.app.registerComponent('accordion', accordionComponent);
 
 })(jQuery, window.wonderwp);

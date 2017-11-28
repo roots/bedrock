@@ -32,7 +32,7 @@ import jQuery from "jquery";
         };
 
     //Enregistrement du composant aupres de l'application pour etre auto loade
-   // ns.app.registerComponent('cookie', cookieComponent, {initGlobal: true}); //si on passe { initGlobal:true } il sera meme auto instancie
+    ns.app.registerComponent('cookie', cookieComponent, {initGlobal: true}); //si on passe { initGlobal:true } il sera meme auto instancie
 
 })(jQuery, window.wonderwp);
 //On passe en bas de la fonction auto appelante les objet que l'on avoir avoir de disponible en son sein.
