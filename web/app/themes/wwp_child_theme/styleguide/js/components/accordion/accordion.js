@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+
 (function($,ns){
 
     ns.initAccordion = function($accordions) {
