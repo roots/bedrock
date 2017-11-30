@@ -13,7 +13,7 @@ All plugins and themes can be installed using composer.
 
 1. Clone this repo:
 
-  `git clone https://github.com/pdffiller/blog.git`
+  `git clone git@github.com:pdffiller/blog.git`
 
 2. Copy `.env.example` to `.env` and update environment variables:
   * `DB_NAME` - Database name
