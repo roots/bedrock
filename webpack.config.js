@@ -15,7 +15,7 @@ const extractSass = new ExtractTextPlugin({
 
 const cleanWebpack = new CleanWebpackPlugin([
     buildDir+'/js',
-    buildDir+'/css',
+    buildDir+'/css'
 ]);
 
 const versionFile = new VersionFile({
@@ -42,10 +42,21 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                exclude: /node_modules(?!\/pewjs)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['babel-preset-es2015-ie']
+                    }
+                }
+            },
+
+            {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [{
-                        loader: "css-loader"
+                        loader: "css-loader?url=false"
                     }, {
                         loader: "sass-loader", // compiles Sass to CSS
                     }],
@@ -79,6 +90,7 @@ function getAssetsEntries() {
         entry[attr] = assets.js[key];
     });
     let cssAssets = Object.keys(assets.css);
+
     cssAssets.forEach((key) => {
         let attr = 'css/'+key;
         entry[attr] = assets.css[key];
