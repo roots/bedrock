@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+
 (function ($, ns) { //Fonction auto appelante avec les parametres definis dans l'ordre en bas
 
     var cookieComponent = {

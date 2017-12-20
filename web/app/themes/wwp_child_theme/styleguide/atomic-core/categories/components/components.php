@@ -1,3 +1,4 @@
+
 <div class="compWrap"><span id="forms" class="compTitle">forms <span class="js-hideAll fa fa-eye"></span></span>
     <p class="compNotes"></p>
     <div class="component" style="background-color:"><?php include("../components/components/forms.php"); ?></div>
@@ -34,6 +35,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="compWrap"><span id="tabs" class="compTitle">tabs <span class="js-hideAll fa fa-eye"></span></span>
     <p class="compNotes"></p>
     <div class="component" style="background-color:"><?php include("../components/components/tabs.php"); ?></div>

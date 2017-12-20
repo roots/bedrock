@@ -23,84 +23,16 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "~/Sites/wonderwp/theme"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugin"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-actu"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-branchepage"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-contact"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-download"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-espace-restreint"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-faq"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-generator"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-jeux"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-map"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-meteo"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-newsletter"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-social"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-stats"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-translator"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-trombinoscope"
-        },
-        {
-            "type": "path",
-            "url": "~/Sites/wonderwp/plugins/wwp-vote"
-        },
-        {
             "type": "composer",
             "url": "https://wpackagist.org"
         },
         {
             "type": "vcs",
             "url": "https://github.com/jeremy-wdf/daux.io"
+        },
+        {
+            "type": "composer",
+            "url": "https://won.wonderful.fr/satis/packages-mirror"
         }
     ],
     "minimum-stability": "dev",
@@ -113,38 +45,34 @@
         "johnpbloch/wordpress": "^4.7",
         "roots/wp-password-bcrypt": "1.0.0",
         "wpackagist-plugin/cms-tree-page-view": "dev-trunk",
-
-        "agencewonderful/wwp-actu": "*",
-        "agencewonderful/wwp-branchepage": "*",
-        "agencewonderful/wwp-contact": "*",
-        "agencewonderful/wwp-download": "*",
-        "agencewonderful/wwp-espace-restreint": "*",
-        "agencewonderful/wwp-faq": "*",
-        "agencewonderful/wwp-generator": "*",
-        "agencewonderful/wwp-jeux": "*",
-        "agencewonderful/wwp-map": "*",
-        "agencewonderful/wwp-meteo": "*",
-        "agencewonderful/wwp-newsletter": "*",
-        "agencewonderful/wwp-social": "*",
-        "agencewonderful/wwp-stats": "*",
-        "agencewonderful/wwp-trombinoscope": "*",
-        "agencewonderful/wwp-translator": "*",
-        "agencewonderful/wwp-vote": "*"
+        "agencewonderful/wonderwp-theme-core":"dev-develop@dev",
+        "agencewonderful/wwp-actu": "dev-develop@dev",
+        "agencewonderful/wwp-branchepage": "dev-develop@dev",
+        "agencewonderful/wwp-contact": "dev-develop@dev",
+        "agencewonderful/wwp-download": "dev-develop@dev",
+        "agencewonderful/wwp-espace-restreint": "dev-develop@dev",
+        "agencewonderful/wwp-faq": "dev-develop@dev",
+        "agencewonderful/wwp-generator": "dev-develop@dev",
+        "agencewonderful/wwp-jeux": "dev-develop@dev",
+        "agencewonderful/wwp-map": "dev-develop@dev",
+        "agencewonderful/wwp-meteo": "dev-develop@dev",
+        "agencewonderful/wwp-newsletter": "dev-develop@dev",
+        "agencewonderful/wwp-social": "dev-develop@dev",
+        "agencewonderful/wwp-stats": "dev-develop@dev",
+        "agencewonderful/wwp-trombinoscope": "dev-develop@dev",
+        "agencewonderful/wwp-translator": "dev-develop@dev",
+        "agencewonderful/wwp-vote": "dev-develop@dev"
 
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.5.1",
         "wpackagist-plugin/debug-bar": "dev-trunk",
-        "apigen/apigen": "dev-master",
-        "roave/better-reflection": "dev-master#c87d856",
-        "justinrainbow/json-schema": "1.6.1",
         "daux/daux.io": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "WonderWp\\Theme\\Components\\": "web/app/themes/wwp_child_theme/styleguide/components/components/componentsClasses",
-            "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes",
-            "WonderWp\\Plugin\\Stats\\": "web/app/plugins/wwp-stats/includes"
+            "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes"
         }
     },
     "extra": {

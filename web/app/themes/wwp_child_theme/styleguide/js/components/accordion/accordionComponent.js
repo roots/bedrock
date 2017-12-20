@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+
 (function ($, ns) {
 
     var accordionComponent = {
@@ -20,6 +22,5 @@
     };
 
     ns.app.registerComponent('accordion', accordionComponent);
-
 
 })(jQuery, window.wonderwp);
