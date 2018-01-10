@@ -5,7 +5,9 @@
 echo "\n\n//==[ Build Step 2 : Build Documentation ]==========================\n";
 
 echo "\n=> Generating PHPDOC";
-php -d memory_limit=1024M vendor/bin/apigen generate vendor/wonderwp/framework/src vendor/pimple/pimple web/wp/wp-admin/includes web/wp/wp-includes --destination web/documentation/phpdoc
+#php -d memory_limit=1024M vendor/bin/apigen generate vendor/wonderwp/framework/src vendor/pimple/pimple web/wp/wp-admin/includes web/wp/wp-includes --destination web/documentation/phpdoc
+phpdoc -d vendor/wonderwp/framework/src -t web/documentation/phpdoc
+
 
 echo "\n\n=> Generating Developer Documentation";
 echo "\n- Gathering Documentation Parts";
