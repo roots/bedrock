@@ -1,0 +1,94 @@
+@import "~bxslider/dist/jquery.bxslider.css";
+
+.bx-wrapper {
+    box-shadow: none;
+    border: none;
+    margin-bottom: 15rem;
+
+    .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
+        width: 100%;
+        text-align: center;
+
+    }
+    .bx-controls-direction {
+        display: none;
+    }
+    .bx-pager.bx-default-pager a {
+        background: lightblue;
+        margin-bottom: 2.5px;
+        &:hover {
+            background: black;
+        }
+        &:active, &:focus {
+            background: lightblue;
+        }
+    }
+    .bx-pager.bx-default-pager a.active {
+        margin-bottom: -1px;
+        width: 18px;
+        height: 18px;
+        background: white;
+        border: 2px solid lightblue;
+        border-radius: 100%;
+        &:hover {
+            border-color: black;
+        }
+    }
+
+    @media (max-width: $small-plus-screen) {
+        margin-bottom: 10rem;
+    }
+
+    @media (max-width: $small-screen) {
+        margin-bottom: 7rem;
+    }
+}
+
+.slider-img {
+    padding: 0 2rem;
+
+    img {
+        margin: auto;
+    }
+}
+
+.slider-title {
+    /* Rencontres AIPALS: */
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: black;
+    letter-spacing: 1.79px;
+    line-height: 30px;
+}
+
+.slider-place {
+    /* 15 février 2018 - Mo: */
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: orange;
+    letter-spacing: 4.12px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.slider-content {
+    /* Comment inventer la: */
+    font-size: 1.4rem;
+    letter-spacing: 0;
+    line-height: 23px;
+    margin: 1.5rem 0;
+    width: 100%;
+}
+
+.slider-panel {
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    @media (max-width: $small-screen) {
+        /*margin-bottom: 3rem;*/
+    }
+}

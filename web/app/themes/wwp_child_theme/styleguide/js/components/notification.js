@@ -48,7 +48,7 @@ export class NotificationComponent {
         let node = this;
         setTimeout(function(){
             node.removeChild(node.firstChild);
-        },1000);
+         },1000);
     }
 }
 
