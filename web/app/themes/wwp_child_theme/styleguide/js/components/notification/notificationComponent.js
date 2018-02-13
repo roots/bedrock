@@ -1,47 +1,55 @@
-(function ($, ns) {
+let NotificationOptions = {
+    jsTemplates: '#jsTemplates',
+    templateType: 'notification',
+    delay:4000
+};
 
-    var notificationComponent = {
+export class NotificationComponent {
+    constructor() {
+        this.options = NotificationOptions;
+    }
 
-        global: false,
-        initiable: false,
+    replaceTplWithMsg(type, msg) {
+        let jsTemplates = document.querySelector(this.options.jsTemplates);
+        jsTemplates = JSON.parse(jsTemplates.innerHTML);
 
-        show: function (type, message, $dest, delay) {
-            $dest = $dest || $('body');
-            delay = delay || 4000;
-            var t = this,
-                notifTpl = ns.app.getTemplate('notification');
+        let tpl = jsTemplates[this.options.templateType]; // get "notification" template
 
-            if (notifTpl) {
-                var notif = notifTpl
-                        .replace('{type}', type)
-                        .replace('{message}', message)
-                    ;
-                var $notif = $(notif);
-                $notif.addClass('alert-js active').prependTo($dest);
+        tpl = tpl
+            .replace('{type}', type)
+            .replace('{message}', msg);
 
-                $notif.on('click',function(){
-                    t.close($notif);
-                });
+        var d = document.createElement('div');
+        d.innerHTML = tpl;
+        return d.firstChild;
+    }
 
-                setTimeout(function(){
-                    t.close($notif);
-                },delay);
-            }
-        },
-        close: function($notif){
-            var closeTimeout = setTimeout(function(){
-                $notif.remove();
-            },1000);
-            $notif.removeClass('active');
-            $notif.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
-                $notif.remove();
-                clearTimeout(closeTimeout);
-            });
-        }
+    show(type, msg, $dest) {
 
-    };
+        $dest = $dest || document.getElementsByTagName('body');
 
-    ns.app.registerComponent('notification', notificationComponent); //si on passe { initGlobal:true } il sera meme auto instancie
+        this.dest = $dest[0];
+
+        this.tpl = this.replaceTplWithMsg(type, msg);
+        this.tpl.classList.add('alert-js');
+        this.tpl.classList.add('active');
+
+        this.dest.insertBefore(this.tpl, this.dest.firstChild);
+        this.tpl.addEventListener('click', this.close.bind(this.dest), false);
 
 
-})(jQuery, window.wonderwp);
+        let self = this;
+        setTimeout(function () {
+            self.tpl.click();
+        }, self.options.delay);
+    }
+
+    close() { // scope : this.dest
+        let node = this;
+        setTimeout(function(){
+            node.removeChild(node.firstChild);
+        },1000);
+    }
+}
+
+window.pew.addRegistryEntry({key: 'wdf-notification', domSelector: '.contactForm', classDef: NotificationComponent});
