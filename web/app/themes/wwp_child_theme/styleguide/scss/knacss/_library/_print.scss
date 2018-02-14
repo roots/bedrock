@@ -17,37 +17,38 @@
   }
 
   p,
-  .#{$kna-namespace}p-like,
+  .p-like,
   h1,
-  .#{$kna-namespace}h1-like,
+  .h1-like,
   h2,
-  .#{$kna-namespace}h2-like,
+  .h2-like,
   h3,
-  .#{$kna-namespace}h3-like,
+  .h3-like,
   h4,
-  .#{$kna-namespace}h4-like,
+  .h4-like,
   h5,
-  .#{$kna-namespace}h5-like,
+  .h5-like,
   h6,
-  .#{$kna-namespace}h6-like,
+  .h6-like,
   blockquote,
+  label,
   ul,
   ol {
     color: #000;
     margin: auto;
   }
 
-  .#{$kna-namespace}print {
+  .print {
     display: block;
   }
 
-  .#{$kna-namespace}no-print {
+  .no-print {
     display: none;
   }
 
   /* no orphans, no widows */
   p,
-  .#{$kna-namespace}p-like,
+  .p-like,
   blockquote {
     orphans: 3;
     widows: 3;
@@ -69,11 +70,11 @@
 
   /* no breaks after these elements */
   h1,
-  .#{$kna-namespace}h1-like,
+  .h1-like,
   h2,
-  .#{$kna-namespace}h2-like,
+  .h2-like,
   h3,
-  .#{$kna-namespace}h3-like,
+  .h3-like,
   caption {
     page-break-after: avoid;
   }
@@ -88,8 +89,10 @@
   }
   */
 
-  a[href^="javascript:"]::after,
-  a[href^="#"]::after {
-    content: "";
+  a[href^="javascript:"],
+  a[href^="#"] {
+    &::after {
+      content: "";
+    }
   }
 }

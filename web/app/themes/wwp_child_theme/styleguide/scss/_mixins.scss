@@ -1,0 +1,32 @@
+
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.absolute-center {
+  @include absolute-center;
+}
+
+// Assets path
+$get-path-to-assets: "/app/themes/wwp_child_theme/assets";
+$get-path-to-styleguide: "/app/themes/wwp_child_theme/styleguide";
+
+// SVG Icons
+@mixin svgIcon($iconName) {
+  background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg") !important;
+  display: inline-block;
+  content: '';
+  @extend .svg-#{$iconName} !optional;
+  @extend .svg-#{$iconName}-dims !optional;
+  background-repeat: no-repeat;
+}
+
+// Utilisation
+.arrow-right {
+  @include svgIcon('arrow-r-white');
+}

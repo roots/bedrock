@@ -1,28 +1,216 @@
-/**
- *	Config file and project variables
- *  Copy and paste from here:
- *  /styleguide/scss/knacss/_config-variables.scss
- */
+// Config file and project variables
 
+// ----------------
+// Breakpoints zone
+// ----------------
 
-// Breakpoints
-$tiny-screen       :    320px !default;
-$tiny-plus-screen  :    480px !default;
-$small-screen      :    640px !default;
-$small-plus-screen :    768px !default;
-$medium-screen     :    960px !default;
-$medium-plus-screen:    1024px !default;
-$large-screen      :    1280px !default;
-$large-plus-screen :    1440px !default;
-$extra-large-screen:    1600px !default;
-$ultra-large-screen:    1920px !default;
+// Warning: you should use your own values, regardless of the devices
+// Best practise is Mobile First: (min-width: $breakpoint)
+$verytiny     : 320px !default;
+$tiny         : 480px !default;
+$small        : 576px !default; // grid-small
+$medium       : 768px !default; // Mobile <768px
+$large        : 992px !default; // .container-s
+$very-large   : 1200px !default; // .container
+$extra-large  : 1280px !default; // .container-l
 
-// grids
-$grid-gutter:  5rem;
+// ----------
+// Fonts zone
+// ----------
 
-// Assets path
-$get-path-to-assets: "/app/themes/wwp_child_theme/assets";
-$get-path-to-styleguide: "/app/themes/wwp_child_theme/styleguide";
-.selector {
-    background-image: url("#{$get-path-to-assets}/final/svg/view/svg/sprite.view.svg");
-}
+// Font families
+$font-family-base      : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default; // system font stack
+$font-family-headings  : sans-serif !default; // font for h1, h2.. h6
+$font-family-monospace : consolas, courier, monospace !default; // font for code and samples
+
+// Font sizes (1.6rem value is "16px" equivalent)
+$font-size-base : 1.6rem !default;
+
+$font-sizes: (
+    base: (
+        mobile  : 1.4rem,
+        desktop : $font-size-base
+    ),
+    h1: (
+        mobile  : 2.8rem,
+        desktop : 3.2rem
+    ),
+    h2: (
+        mobile  : 2.4rem,
+        desktop : 2.8rem
+    ),
+    h3: (
+        mobile  : 2.0rem,
+        desktop : 2.4rem
+    ),
+    h4: (
+        mobile  : 1.8rem,
+        desktop : 2.0rem
+    ),
+    h5: (
+        mobile  : 1.6rem,
+        desktop : 1.8rem
+    ),
+    h6: (
+        mobile  : 1.4rem,
+        desktop : 1.6rem
+    )
+) !default;
+
+// Line heights
+$line-height-s    : 1.3 !default;
+$line-height-base : 1.5 !default;
+$line-height-l    : 1.7 !default;
+
+// Default margin-bottom
+$margin-bottom-base     : 1rem !default;
+$headings-margin-bottom : $margin-bottom-base /2 !default;
+$paragraph-margin-bottom: $margin-bottom-base !default;
+
+// Font weights
+$weight-light   : 200 !default;
+$weight-book    : 300 !default;
+$weight-regular : 400 !default;
+$weight-medium  : 500 !default;
+$weight-bold    : 700 !default;
+
+// Activate hyphenation on small screens
+$hyphens: false !default;
+
+// ------------
+// Spacing zone
+// ------------
+
+// Grid gutters (for .has-gutter-* classes)
+$grid-gutters: (
+    '': 1rem,
+    '-l': 2rem,
+    '-xl': 4rem
+) !default;
+
+// Spacings
+$spacer-tiny             : .5rem  !default;
+$spacer-tiny-plus        : .7rem !default;
+$spacer-small            : 1rem !default;
+$spacer-small-plus       : 1.5rem !default;
+$spacer-medium           : 2rem !default;
+$spacer-medium-plus      : 3rem !default;
+$spacer-large            : 4rem !default;
+$spacer-large-plus       : 6rem !default;
+$spacer-extra-large      : 8rem !default;
+$spacer-extra-large-plus : 12rem !default;
+$spacer-ultra-large      : 16rem !default;
+$spacer-ultra-large-plus : 20rem !default;
+
+// z-indexes
+$zindex-navigation   : 1000 !default;
+$zindex-dropdown     : 2000 !default;
+$zindex-popover      : 3000 !default;
+$zindex-tooltip      : 4000 !default;
+$zindex-modal        : 5000 !default;
+$zindex-notification : 6000 !default;
+$zindex-debug        : 7000 !default;
+
+// ----------
+// Color zone
+// ----------
+
+// Color names
+$white    : #fff !default;
+$gray-100 : #f8f9fa !default;
+$gray-200 : #e7e9ed !default;
+$gray-300 : #dee2e6 !default;
+$gray-400 : #ced4da !default;
+$gray-500 : #acb3c2 !default;
+$gray-600 : #727e96 !default;
+$gray-700 : #454d5d !default;
+$gray-800 : #333 !default;
+$gray-900 : #212529 !default;
+$black    : #000 !default;
+
+$blue-300   : #5BC0DE !default;
+$blue-500   : #0275D8 !default;
+$green-500  : #5CB85C !default;
+$orange-500 : #F0AD4E !default;
+$red-500    : #D9534F !default;
+
+// Semantic colors
+$color-brand    : $green-500;
+$color-primary  : $blue-500;
+$color-success  : $green-500;
+$color-info     : $blue-300;
+$color-warning  : $orange-500;
+$color-danger   : $red-500;
+$color-inverse  : $gray-800;
+$color-ghost    : transparent;
+$color-muted    : $gray-200;
+
+$color-base      : $gray-900;
+$background-base : $white;
+
+$forms-color     : $gray-800;
+
+// ---------------
+// Components zone
+// ---------------
+
+// Component: links
+$link-color            : $gray-800;
+$link-color-hover      : darken($link-color, 15%);
+$link-decoration       : underline;
+$link-decoration-hover : underline;
+
+// Global border-radius
+$border-radius: 0 !default;
+
+// Component: quotes
+$quote-color     : $gray-200;
+
+// Component: arrows
+$arrow-color     : $black;
+
+// Components: checkboxes, radios, switches
+$checkbox-color         : $gray-800;
+$checkbox-size          : 2rem;
+$checkbox-border-radius : 4px;
+$switch-color           : $gray-800;
+$switch-size            : 2rem;
+$switch-border-radius   : 3em;
+
+// Component: tables
+$table-border               : $gray-500;
+$table-caption-color        : $gray-800;
+$table-background           : transparent;
+$table-head-color           : $color-base;
+$table-head-background      : transparent;
+$table-footer-color         : $color-base;
+$table-footer-background    : transparent;
+
+// Components: buttons, badges, alerts color variants list
+// Convention is: name - background-color - color - border
+$variants-list: (
+        (primary,    $color-primary,    $white,    none),
+        (success,    $color-success,    $white,    none),
+        (info,       $color-info,       $black,    none),
+        (warning,    $color-warning,    $black,    none),
+        (danger,     $color-danger,     $white,    none),
+        (inverse,    $color-inverse,    $white,    none),
+        (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
+) !default;
+
+// Component: tabs
+$tabs-border            : $gray-200;
+$tabs-active-border     : $gray-800;
+$tabs-color             : $color-base;
+$tabs-active-color      : $gray-800;
+$tabs-background        : transparent;
+$tabs-active-background : transparent;
+$tabs-border-radius     : 0;
+
+// Component: nav burger button
+$burger-color             : $gray-800;
+$burger-background        : transparent;
+$burger-hover-background  : transparent;
+$burger-size              : 2.6rem;
+$burger-weight            : 5px; // size of stripes
+$burger-padding           : 0;

@@ -1,0 +1,141 @@
+/* ----------------------------- */
+/* ==Global Micro Layout         */
+/* ----------------------------- */
+
+/* module, gains superpower "BFC" Block Formating Context */
+.mod,
+.bfc {
+  overflow: hidden;
+}
+
+/* blocks that needs to be placed under floats */
+.clear {
+  clear: both;
+}
+
+/* blocks that must contain floats */
+.clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    border-collapse: collapse;
+  }
+}
+
+/* simple blocks alignment */
+.left {
+  margin-right: auto;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* text and contents alignment */
+.txtleft {
+  text-align: left;
+}
+
+.txtright {
+  text-align: right;
+}
+
+.txtcenter {
+  text-align: center;
+}
+
+/* floating elements */
+.fl {
+  float: left;
+}
+
+img.fl {
+  margin-right: $spacer-small;
+}
+
+.fr {
+  float: right;
+}
+
+img.fr {
+  margin-left: $spacer-small;
+}
+
+img.fl,
+img.fr {
+  margin-bottom: $spacer-tiny;
+}
+
+/* inline-block */
+.inbl {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* flexbox layout
+http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html
+*/
+
+.flex-container,
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container--row,
+.flex-row {
+  @extend .flex-container;
+  flex-direction: row;
+}
+
+.flex-container--column,
+.flex-column {
+  @extend .flex-container;
+  flex-direction: column;
+}
+
+.flex-container--row-reverse,
+.flex-row-reverse {
+  @extend .flex-container;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.flex-container--column-reverse,
+.flex-column-reverse {
+  @extend .flex-container;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+}
+
+.flex-item-fluid,
+.item-fluid {
+  flex: 1 1 0%;
+}
+
+.flex-item-first,
+.item-first {
+  order: -1;
+}
+
+.flex-item-medium,
+.item-medium {
+  order: 0;
+}
+
+.flex-item-last,
+.item-last {
+  order: 1;
+}
+
+.flex-item-center,
+.item-center,
+.mr-auto {
+  margin: auto;
+}

@@ -20,23 +20,19 @@ Description: Reset styles for WordPress usage of KNACSS
 .comment-navigation,
 .paging-navigation,
 .post-navigation {
-  margin: 0 0 1.5em;
   overflow: hidden;
-}
+  margin: 0 0 1.5em;
 
-.comment-navigation .nav-previous,
-.paging-navigation .nav-previous,
-.post-navigation .nav-previous {
-  float: left;
-  width: 50%;
-}
+  & .nav-previous {
+    float: left;
+    width: 50%;
+  }
 
-.comment-navigation .nav-next,
-.paging-navigation .nav-next,
-.post-navigation .nav-next {
-  float: right;
-  text-align: right;
-  width: 50%;
+  & .nav-next {
+    float: right;
+    width: 50%;
+    text-align: right;
+  }
 }
 
 // class in img elements
@@ -64,7 +60,8 @@ Description: Reset styles for WordPress usage of KNACSS
 .comment-content {
   clear: both;
 
-  &::after, &::before {
+  &::after,
+  &::before {
     content: "";
     display: table;
   }
@@ -115,7 +112,7 @@ Description: Reset styles for WordPress usage of KNACSS
   }
 }
 
-// class for categorie
+// class for category
 .category- {
   &name-of-category {
   }
@@ -128,6 +125,7 @@ Description: Reset styles for WordPress usage of KNACSS
   // if display posts
   &.blog {
   }
+
   // if static page
   &.page {
   }
@@ -138,6 +136,7 @@ Description: Reset styles for WordPress usage of KNACSS
   // if is frontpage
   &.home {
   }
+
   // if static page
   &.page {
   }
@@ -160,6 +159,7 @@ Description: Reset styles for WordPress usage of KNACSS
   // if has results
   .search-results {
   }
+
   // if has no results
   .search-no-results {
   }
@@ -235,10 +235,10 @@ img.wp-smiley {
   text-align: center;
   vertical-align: top;
 
-	@for $i from 2 through 9 {
-		.gallery-columns-#{$i} & {
-			$w: floor(10000/$i)/100;
-			max-width: unquote($w + '%');
+  @for $i from 2 through 9 {
+    .gallery-columns-#{$i} & {
+      $w: floor(10000 / $i) / 100;
+      max-width: unquote($w + '%');
 		}
 	}
 }

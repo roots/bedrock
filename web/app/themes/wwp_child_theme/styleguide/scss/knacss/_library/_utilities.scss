@@ -1,0 +1,359 @@
+/* ---------------------------------- */
+/* ==Helpers                          */
+/* ---------------------------------- */
+
+/* Typo Helpers  */
+/* ------------- */
+
+.u-bold {
+  font-weight: $weight-bold;
+}
+
+.u-italic {
+  font-style: italic;
+}
+
+.u-normal {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.u-uppercase {
+  text-transform: uppercase;
+}
+
+.u-lowercase {
+  text-transform: lowercase;
+}
+
+.u-smaller {
+  font-size: 0.6em;
+}
+
+.u-small {
+  font-size: 0.8em;
+}
+
+.u-big {
+  font-size: 1.2em;
+}
+
+.u-bigger {
+  font-size: 1.5em;
+}
+
+.u-biggest {
+  font-size: 2em;
+}
+
+.u-txt-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.u-txt-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@if variable-exists(hyphens) and $hyphens==true {
+  @media (max-width: ($small - 1)) {
+    div,
+    textarea,
+    table,
+    td,
+    th,
+    code,
+    pre,
+    samp {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+}
+
+/* State Helpers */
+/* ------------- */
+
+/* invisible for all */
+.is-hidden,
+.js-hidden,
+[hidden] {
+  display: none;
+}
+
+/* hidden but not for an assistive technology like a screen reader, Yahoo! method */
+.visually-hidden {
+  position: absolute !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+.is-disabled,
+.js-disabled,
+[disabled],
+.is-disabled ~ label,
+[disabled] ~ label {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  filter: grayscale(1);
+}
+
+ul {
+  &.is-unstyled,
+  &.unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+.color--inverse {
+  color: $white;
+}
+
+/* Width Helpers */
+/* ------------- */
+
+/* blocks widths (percentage and pixels) */
+$i: 100;
+
+@while $i > 0 {
+    .w#{$i} {
+      width: $i * 1%;
+    }
+    $i: $i - 5;
+}
+.w66 {
+  width: calc(100% / 3 * 2);
+}
+.w33 {
+  width: calc(100% / 3);
+}
+
+$i: 1000;
+
+.wauto {
+  width: auto;
+}
+
+.w960p {
+  width: 960px;
+}
+
+.mw960p {
+  max-width: 960px;
+}
+
+.w1140p {
+  width: 1140px;
+}
+
+.mw1140p {
+  max-width: 1140px;
+}
+
+@while $i > 0 {
+    .w#{$i}p {
+      width: $i * 1px;
+    }
+    $i: $i - 50;
+}
+
+/* Spacing Helpers */
+/* --------------- */
+
+.man,
+.ma0 {
+  margin: 0;
+}
+
+.pan,
+.pa0 {
+  padding: 0;
+}
+
+.mas {
+  margin: $spacer-small;
+}
+
+.mam {
+  margin: $spacer-medium;
+}
+
+.mal {
+  margin: $spacer-large;
+}
+
+.pas {
+  padding: $spacer-small;
+}
+
+.pam {
+  padding: $spacer-medium;
+}
+
+.pal {
+  padding: $spacer-large;
+}
+
+.mtn,
+.mt0 {
+  margin-top: 0;
+}
+
+.mts {
+  margin-top: $spacer-small;
+}
+
+.mtm {
+  margin-top: $spacer-medium;
+}
+
+.mtl {
+  margin-top: $spacer-large;
+}
+
+.mrn,
+.mr0 {
+  margin-right: 0;
+}
+
+.mrs {
+  margin-right: $spacer-small;
+}
+
+.mrm {
+  margin-right: $spacer-medium;
+}
+
+.mrl {
+  margin-right: $spacer-large;
+}
+
+.mbn,
+.mb0 {
+  margin-bottom: 0;
+}
+
+.mbs {
+  margin-bottom: $spacer-small;
+}
+
+.mbm {
+  margin-bottom: $spacer-medium;
+}
+
+.mbl {
+  margin-bottom: $spacer-large;
+}
+
+.mln,
+.ml0 {
+  margin-left: 0;
+}
+
+.mls {
+  margin-left: $spacer-small;
+}
+
+.mlm {
+  margin-left: $spacer-medium;
+}
+
+.mll {
+  margin-left: $spacer-large;
+}
+
+.mauto {
+  margin: auto;
+}
+
+.mtauto {
+  margin-top: auto;
+}
+
+.mrauto {
+  margin-right: auto;
+}
+
+.mbauto {
+  margin-bottom: auto;
+}
+
+.mlauto {
+  margin-left: auto;
+}
+
+.ptn,
+.pt0 {
+  padding-top: 0;
+}
+
+.pts {
+  padding-top: $spacer-small;
+}
+
+.ptm {
+  padding-top: $spacer-medium;
+}
+
+.ptl {
+  padding-top: $spacer-large;
+}
+
+.prn,
+.pr0 {
+  padding-right: 0;
+}
+
+.prs {
+  padding-right: $spacer-small;
+}
+
+.prm {
+  padding-right: $spacer-medium;
+}
+
+.prl {
+  padding-right: $spacer-large;
+}
+
+.pbn,
+.pb0 {
+  padding-bottom: 0;
+}
+
+.pbs {
+  padding-bottom: $spacer-small;
+}
+
+.pbm {
+  padding-bottom: $spacer-medium;
+}
+
+.pbl {
+  padding-bottom: $spacer-large;
+}
+
+.pln,
+.pl0 {
+  padding-left: 0;
+}
+
+.pls {
+  padding-left: $spacer-small;
+}
+
+.plm {
+  padding-left: $spacer-medium;
+}
+
+.pll {
+  padding-left: $spacer-large;
+}

@@ -1,0 +1,34 @@
+/* ----------------------------- */
+/* ==Arrows                      */
+/* ----------------------------- */
+/* see https://knacss.com/styleguide.html#arrows */
+
+[class*="icon-arrow--"] {
+  vertical-align: middle;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    mask-size: cover;
+    background-color: $arrow-color;
+    line-height: 1;
+  }
+}
+
+.icon-arrow--down::after {
+  mask-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20style%3D%22isolation%3Aisolate%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cpath%20d%3D%22%20M%209.96%2011.966%20L%203.523%205.589%20C%202.464%204.627%200.495%206.842%201.505%207.771%20L%201.505%207.771%20L%208.494%2014.763%20C%209.138%2015.35%2010.655%2015.369%2011.29%2014.763%20L%2011.29%2014.763%20L%2018.49%207.771%20C%2019.557%206.752%2017.364%204.68%2016.262%205.725%20L%2016.262%205.725%20L%209.96%2011.966%20Z%20%22%20fill%3D%22inherit%22/%3E%3C/svg%3E");
+}
+
+.icon-arrow--up::after {
+  mask-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20style%3D%22isolation%3Aisolate%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cpath%20d%3D%22%20M%209.96%208.596%20L%203.523%2014.973%20C%202.464%2015.935%200.495%2013.72%201.505%2012.791%20L%201.505%2012.791%20L%208.494%205.799%20C%209.138%205.212%2010.655%205.193%2011.29%205.799%20L%2011.29%205.799%20L%2018.49%2012.791%20C%2019.557%2013.809%2017.364%2015.882%2016.262%2014.837%20L%2016.262%2014.837%20L%209.96%208.596%20Z%20%22%20fill%3D%22inherit%22/%3E%3C/svg%3E");
+}
+
+.icon-arrow--right::after {
+  mask-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20style%3D%22isolation%3Aisolate%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cpath%20d%3D%22%20M%2011.685%2010.321%20L%205.308%2016.758%20C%204.346%2017.817%206.561%2019.786%207.49%2018.776%20L%207.49%2018.776%20L%2014.482%2011.787%20C%2015.069%2011.142%2015.088%209.626%2014.482%208.991%20L%2014.482%208.991%20L%207.49%201.791%20C%206.472%200.724%204.399%202.916%205.444%204.019%20L%205.444%204.019%20L%2011.685%2010.321%20Z%20%22%20fill%3D%22inherit%22/%3E%3C/svg%3E");
+}
+
+.icon-arrow--left::after {
+  mask-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20style%3D%22isolation%3Aisolate%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20height%3D%2220%22%3E%3Cpath%20d%3D%22%20M%208.315%2010.321%20L%2014.692%2016.758%20C%2015.654%2017.817%2013.439%2019.786%2012.51%2018.776%20L%2012.51%2018.776%20L%205.518%2011.787%20C%204.931%2011.142%204.912%209.626%205.518%208.991%20L%205.518%208.991%20L%2012.51%201.791%20C%2013.528%200.724%2015.601%202.916%2014.556%204.019%20L%2014.556%204.019%20L%208.315%2010.321%20Z%20%22%20fill%3D%22inherit%22/%3E%3C/svg%3E");
+}

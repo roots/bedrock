@@ -1,5 +1,5 @@
 /*!
-* www.KNACSS.com V6.0.0 (27 septembre 2016) @author: Alsacreations, Raphael Goetter
+* www.KNACSS.com v7.0.2 (januar, 4 2017) @author: Alsacreations, Raphael Goetter
 * Licence WTFPL http://www.wtfpl.net/
 */
 
@@ -7,60 +7,60 @@
 /* ==Table Of Content            */
 /* ----------------------------- */
 
-/* 1- Normalize (basic reset) */
-/* 2- Base (basic styles) */
-/* 3- Print (print quick reset) */
-/* 4- Stylings (minor stylings) */
-/* 5- Misc (skip links, hyphens) */
-/* 6- Tables (data tables consistency) */
-/* 7- Forms (forms consistency) */
-/* 8- Media object */
-/* 9- Autogrid object */
-/* 10- Global Layout (alignment, modules, positionning) */
-/* 11- Helpers (width and spacers helpers) */
-/* (12- WordPress reset (disabled by default)) */
-/* 13- Responsive (Responsive Web Design helpers) */
-/* 14- Grid Layout (grillade) */
+/*
+1- Reboot (basic reset)
+2- Libraries  :
+  - Base
+  - Print
+  - Misc (hyphens)
+  - Layout (alignment, modules, positionning)
+  - Utilities (width and spacers helpers)
+  - Responsive helpers
+  - WordPress reset (disabled by default)
+  - Grillade (Grid System)
+3- Components :
+  - Media object
+  - Autogrid object
+  - Skip Links for accessibility
+  - Tables
+  - Forms
+  - Buttons
+  - Checkbox
+  - Tabs
+  - Tags
+  - Badges
+  - Alerts
+*/
 
-/* ---------------------------------- */
-/* ==Normalize (basic reset)          */
-/* ---------------------------------- */
-
-@import "_vendor/_normalize.scss"; // normalize (basic reset)
+@import "_vendor/reboot"; // Bootstrap reboot (basic reset)
 
 // WARNING : you should comment the following @import (variables)
 // and move variables file from knacss folder to your own project folder!
-@import "_config/_variables.scss";
+@import "_config/variables";
 
-@import "_config/_breakpoints.scss";
-@import "_config/_mixins.scss";
+@import "_config/mixins";
 
-// Libraries
-@import "library/_base.scss"; // basic styles
-@import "library/_print.scss"; // print quick reset
-@import "library/_styling.scss"; // minor stylings
-@import "library/_misc.scss"; // skip links, hyphens
-@import "library/_tables.scss"; // data tables consistency
-@import "library/_forms.scss"; // forms consistency
+// Core Libraries
+@import "_library/base";         // basic styles
+@import "_library/print";        // print quick reset
+@import "_library/layout";       // alignment, modules, positionning
+@import "_library/utilities";    // width and spacers helpers
+@import "_library/responsive";   // Responsive Web Design helpers
+// @import "_library/wordpress"; // WordPress reset and basic styles
 
-// Objects
-@import "objects/_media.scss"; // media object
-@import "objects/_autogrid.scss"; // media autogrid
+// New Grid System by default (Grid Layout). If you prefer old "Flexbox" Grid System, replace file with "_library/grillade-flex"
+// Note that none of these file is prefixed by an underscore, in order to compile them.
+@import "_library/grillade-grid"; // grid system with Grid Layout
 
-// Utilities
-@import "utilities/_layout.scss"; // alignment, modules, positionning
-@import "utilities/_helpers.scss"; // width and spacers helpers
-@import "utilities/_wordpress.scss"; // WordPress reset and basic styles
-@import "utilities/_responsive.scss"; // Responsive Web Design helpers
-
-// Grids
-@import "grids/_grillade.scss"; // grids
-
-
-/* ----------------------------- */
-/* ==Own stylesheet              */
-/* ----------------------------- */
-
-/* Here should go your own CSS styles */
-// You can also link them with a Sass @import
-// @import "my-styles";
+// Components
+@import "components/media";      // media object
+@import "components/skip-links"; // skip links
+@import "components/tables";     // data tables consistency
+@import "components/forms";      // forms consistency and styles
+@import "components/buttons";    // buttons styles
+@import "components/checkbox";   // checkbox, radio, switch styles
+@import "components/tabs";       // tabs styles
+@import "components/arrows";     // arrows styles
+@import "components/tags";        // tags styles
+@import "components/badges";     // badges styles
+@import "components/alerts";     // alerts styles

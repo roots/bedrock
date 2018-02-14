@@ -5,50 +5,50 @@
 /* large screens */
 /* ------------- */
 
-@media (min-width: ($large + 1)) {
+@media (min-width: $large) {
 
   /* layouts for large screens */
-  .#{$kna-namespace}large-hidden {
+  .large-hidden {
     display: none !important;
   }
 
-  .#{$kna-namespace}large-visible {
+  .large-visible {
     display: block !important;
   }
 
-  .#{$kna-namespace}large-no-float {
+  .large-no-float {
     float: none;
   }
 
-  .#{$kna-namespace}large-inbl {
+  .large-inbl {
     display: inline-block;
     float: none;
     vertical-align: top;
   }
 
   /* widths for large screens */
-  .#{$kna-namespace}large-w25 {
+  .large-w25 {
     width: 25% !important;
   }
 
-  .#{$kna-namespace}large-w33 {
+  .large-w33 {
     width: 33.333333% !important;
   }
 
-  .#{$kna-namespace}large-w50 {
+  .large-w50 {
     width: 50% !important;
   }
 
-  .#{$kna-namespace}large-w66 {
+  .large-w66 {
     width: 66.666666% !important;
   }
 
-  .#{$kna-namespace}large-w75 {
+  .large-w75 {
     width: 75% !important;
   }
 
-  .#{$kna-namespace}large-w100,
-  .#{$kna-namespace}large-wauto {
+  .large-w100,
+  .large-wauto {
     display: block !important;
     float: none !important;
     clear: none !important;
@@ -59,8 +59,8 @@
   }
 
   /* margins for large screens */
-  .#{$kna-namespace}large-man,
-  .#{$kna-namespace}large-ma0 {
+  .large-man,
+  .large-ma0 {
     margin: 0 !important;
   }
 }
@@ -68,50 +68,50 @@
 /* medium screens */
 /* -------------- */
 
-@media (min-width: ($small + 1)) and (max-width: $large) {
+@media (min-width: $medium) and (max-width: ($large - 1)) {
 
   /* layouts for medium screens */
-  .#{$kna-namespace}medium-hidden {
+  .medium-hidden {
     display: none !important;
   }
 
-  .#{$kna-namespace}medium-visible {
+  .medium-visible {
     display: block !important;
   }
 
-  .#{$kna-namespace}medium-no-float {
+  .medium-no-float {
     float: none;
   }
 
-  .#{$kna-namespace}medium-inbl {
+  .medium-inbl {
     display: inline-block;
     float: none;
     vertical-align: top;
   }
 
   /* widths for medium screens */
-  .#{$kna-namespace}medium-w25 {
+  .medium-w25 {
     width: 25% !important;
   }
 
-  .#{$kna-namespace}medium-w33 {
+  .medium-w33 {
     width: 33.333333% !important;
   }
 
-  .#{$kna-namespace}medium-w50 {
+  .medium-w50 {
     width: 50% !important;
   }
 
-  .#{$kna-namespace}medium-w66 {
+  .medium-w66 {
     width: 66.666666% !important;
   }
 
-  .#{$kna-namespace}medium-w75 {
+  .medium-w75 {
     width: 75% !important;
   }
 
-  .#{$kna-namespace}medium-w100,
-  .#{$kna-namespace}medium-wauto {
+  .medium-w100,
+  .medium-wauto {
     display: block !important;
     float: none !important;
     clear: none !important;
@@ -122,8 +122,8 @@
   }
 
   /* margins for medium screens */
-  .#{$kna-namespace}medium-man,
-  .#{$kna-namespace}medium-ma0 {
+  .medium-man,
+  .medium-ma0 {
     margin: 0 !important;
   }
 }
@@ -131,50 +131,50 @@
 /* small screens */
 /* ------------- */
 
-@media (min-width: ($tiny + 1)) and (max-width: $small) {
+@media (min-width: $small) and (max-width: ($medium - 1)) {
 
   /* layouts for small screens */
-  .#{$kna-namespace}small-hidden {
+  .small-hidden {
     display: none !important;
   }
 
-  .#{$kna-namespace}small-visible {
+  .small-visible {
     display: block !important;
   }
 
-  .#{$kna-namespace}small-no-float {
+  .small-no-float {
     float: none;
   }
 
-  .#{$kna-namespace}small-inbl {
+  .small-inbl {
     display: inline-block;
     float: none;
     vertical-align: top;
   }
 
   /* widths for small screens */
-  .#{$kna-namespace}small-w25 {
+  .small-w25 {
     width: 25% !important;
   }
 
-  .#{$kna-namespace}small-w33 {
+  .small-w33 {
     width: 33.333333% !important;
   }
 
-  .#{$kna-namespace}small-w50 {
+  .small-w50 {
     width: 50% !important;
   }
 
-  .#{$kna-namespace}small-w66 {
+  .small-w66 {
     width: 66.666666% !important;
   }
 
-  .#{$kna-namespace}small-w75 {
+  .small-w75 {
     width: 75% !important;
   }
 
-  .#{$kna-namespace}small-w100,
-  .#{$kna-namespace}small-wauto {
+  .small-w100,
+  .small-wauto {
     display: block !important;
     float: none !important;
     clear: none !important;
@@ -185,13 +185,13 @@
   }
 
   /* margins for small screens */
-  .#{$kna-namespace}small-man,
-  .#{$kna-namespace}small-ma0 {
+  .small-man,
+  .small-ma0 {
     margin: 0 !important;
   }
 
-  .#{$kna-namespace}small-pan,
-  .#{$kna-namespace}small-pa0 {
+  .small-pan,
+  .small-pa0 {
     padding: 0 !important;
   }
 
@@ -200,11 +200,11 @@
 /* tiny screens */
 /* ------------ */
 
-@media (max-width: $tiny) {
+@media (max-width: $small - 1) {
 
   /* quick small resolution reset */
-  .#{$kna-namespace}mod,
-  .#{$kna-namespace}col,
+  .mod,
+  .col,
   fieldset {
     display: block !important;
     float: none !important;
@@ -215,52 +215,52 @@
     border: 0;
   }
 
-  .#{$kna-namespace}flex-container {
+  .flex-container {
     flex-direction: column;
   }
 
   /* layouts for tiny screens */
-  .#{$kna-namespace}tiny-hidden {
+  .tiny-hidden {
     display: none !important;
   }
 
-  .#{$kna-namespace}tiny-visible {
+  .tiny-visible {
     display: block !important;
   }
 
-  .#{$kna-namespace}tiny-no-float {
+  .tiny-no-float {
     float: none;
   }
 
-  .#{$kna-namespace}tiny-inbl {
+  .tiny-inbl {
     display: inline-block;
     float: none;
     vertical-align: top;
   }
 
   /* widths for tiny screens */
-  .#{$kna-namespace}tiny-w25 {
+  .tiny-w25 {
     width: 25% !important;
   }
 
-  .#{$kna-namespace}tiny-w33 {
+  .tiny-w33 {
     width: 33.333333% !important;
   }
 
-  .#{$kna-namespace}tiny-w50 {
+  .tiny-w50 {
     width: 50% !important;
   }
 
-  .#{$kna-namespace}tiny-w66 {
+  .tiny-w66 {
     width: 66.666666% !important;
   }
 
-  .#{$kna-namespace}tiny-w75 {
+  .tiny-w75 {
     width: 75% !important;
   }
 
-  .#{$kna-namespace}tiny-w100,
-  .#{$kna-namespace}tiny-wauto {
+  .tiny-w100,
+  .tiny-wauto {
     display: block !important;
     float: none !important;
     clear: none !important;
@@ -271,13 +271,13 @@
   }
 
   /* margins for tiny screens */
-  .#{$kna-namespace}tiny-man,
-  .#{$kna-namespace}tiny-ma0 {
+  .tiny-man,
+  .tiny-ma0 {
     margin: 0 !important;
   }
 
-  .#{$kna-namespace}tiny-pan,
-  .#{$kna-namespace}tiny-pa0 {
+  .tiny-pan,
+  .tiny-pa0 {
     padding: 0 !important;
   }
 

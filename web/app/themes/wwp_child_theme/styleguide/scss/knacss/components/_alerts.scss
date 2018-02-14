@@ -1,0 +1,53 @@
+/* ----------------------------- */
+/* ==Alerts                      */
+/* ----------------------------- */
+/* use .alert-- classes for variants */
+
+.alert {
+  padding: $spacer-small $spacer-small;
+  margin-top: 0.75em;
+  margin-bottom: 0;
+  color: $color-base;
+  border-radius: $border-radius;
+  background-color: $color-muted;
+
+  & a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.alert {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend .alert;
+      background-color: $background-color;
+      color: $color;
+      box-shadow: $border;
+    }
+  }
+}
+
+// alert state variants
+.alert {
+  &--small {
+    font-size: $font-size-base - 0.4rem;
+  }
+
+  &--big {
+    font-size: $font-size-base + 0.4rem;
+  }
+
+  &--block {
+    width: 100% !important;
+    display: block;
+  }
+  &.disabled,
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &:empty {
+    display: none;
+  }
+}

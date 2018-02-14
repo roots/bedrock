@@ -1,0 +1,157 @@
+/* ----------------------------- */
+/* ==Buttons                     */
+/* ----------------------------- */
+/* preferably use <button> for buttons !*/
+/* use .btn-- or .button-- classes for variants */
+
+%btn {
+  display: inline-block;
+  padding: $spacer-small $spacer-small-plus;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.25s;
+  transition-property: box-shadow, background-color, color, border;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  color: $color-base;
+  border: none;
+  border-radius: $border-radius;
+  background-color: $color-muted;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1;
+}
+
+.btn,
+.button,
+[type="button"],
+button {
+  @extend %btn;
+
+  &:focus {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.btn,
+.button {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend %btn;
+      background-color: $background-color;
+      color: $color;
+      box-shadow: $border;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: darken( $background-color, 10% );
+      }
+    }
+  }
+}
+
+// button state variants
+.btn,
+.button {
+  &--small {
+    padding: $spacer-tiny-plus $spacer-small;
+    font-size: .8em;
+  }
+
+  &--big {
+    padding: $spacer-small-plus $spacer-medium;
+    font-size: 1.4em;
+  }
+
+  &--block {
+    width: 100% !important;
+    display: block;
+  }
+
+  &--unstyled {
+    padding: 0;
+    border: none;
+    text-align: left;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+// nav "burger" button
+// active it with a JS toggle-class to .is-active
+// recommanded HTML : <button class="nav-button" type="button" role="button" aria-label="open/close navigation"><i></i></button>
+// see doc : https://knacss.com/styleguide.html#buttons
+.nav-button {
+  padding: 0;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: $burger-size;
+    width: $burger-size;
+    padding: $burger-padding;
+    background-color: $burger-background;
+    background-image: linear-gradient($burger-color, $burger-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: 100% $burger-weight;
+    transition: .25s;
+    transition-property: transform, background;
+    will-change: transform, background;
+
+    &::before,
+    &::after {
+      content: "";
+      height: $burger-weight;
+      background: $burger-color;
+      transition: .25s;
+      transition-property: transform, top;
+      will-change: transform, top;
+    }
+  }
+
+  &:hover {
+    & > * {
+      background-color: $burger-hover-background;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.is-active {
+
+    & > * {
+      background-image: none;
+      justify-content: center;
+
+      &::before {
+        transform: translateY(50%) rotate3d(0,0,1,45deg);
+      }
+      &::after {
+        transform: translateY(-50%) rotate3d(0,0,1,-45deg);
+      }
+    }
+  }
+}
