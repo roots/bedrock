@@ -1,15 +1,17 @@
-
+@charset "UTF-8";
+/**
+ *	Header menu
+ */
 
 ul#menu {
     display: flex;
     justify-content: center;
     position: relative;
+    width: 100%;
     margin-bottom: 0;
     padding-left: 0;
     list-style: none;
     text-align: center;
-    background-color: $gray-900;
-    transition: background-color 0.5s ease;
 
     li.page_item_has_children > a::after {
         position: absolute;
@@ -33,19 +35,10 @@ ul#menu {
         cursor: pointer;
     }
 
-    &:hover > ul.children,
-    &:focus > ul.children {
-        display: flex;
-    }
-
     li.m0 {
         &:hover,
         &:focus {
             background-color: $gray-600;
-
-            > ul.children {
-                display: flex;
-            }
         }
 
         &.page_item_has_children:hover > a::after,
@@ -63,12 +56,17 @@ ul#menu {
         background-color: $gray-400;
     }
 
+    li:hover > ul.children,
+    li:focus > ul.children {
+        display: flex;
+    }
+
     li.m0 > ul {
         top: 64px;
         left: 0;
         right: 0;
         background-color: $gray-400;
-        box-shadow: 6px 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 6px 2px 5px rgba(0, 0, 0, 0.4);
         text-align: left;
 
         li > a {
