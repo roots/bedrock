@@ -1,6 +1,8 @@
 import "bxslider"
+import {PewComponent} from "./pew-component";
 
-var SliderOptions = {
+// see https://bxslider.com/options/
+const SliderOptions = {
     mode: 'horizontal',
     autoControlsCombine: true,
     keyboardEnabled: true,
@@ -12,17 +14,11 @@ var SliderOptions = {
     stopAutoOnClick: true
 };
 
-export class Slider {
-    constructor(element, options) {
-        this.element = (element instanceof jQuery) ? element : $(element);
-        this.options = (options) ? Object.assign(SliderOptions, options) : SliderOptions;
-        this.init();
+export class Slider extends PewComponent {
+    constructor(element) {
+        super(element, SliderOptions);
     }
     init() {
-        var self = this;
-        this.element.each(function(){
-            var $sliderWrap = $(this);
-            $sliderWrap.bxSlider(self.options);
-        })
+        this.element.bxSlider(this.options);
     }
 }

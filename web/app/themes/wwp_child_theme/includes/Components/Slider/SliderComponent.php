@@ -14,6 +14,7 @@ class SliderComponent extends TwigComponent
 {
     protected $sliderItems;
     protected $markups;
+    protected $class; // add Check to add "wdf-slider" by default
 
     public function __construct()
     {

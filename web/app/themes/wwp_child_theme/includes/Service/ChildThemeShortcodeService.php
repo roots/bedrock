@@ -8,6 +8,7 @@
 
 namespace WonderWp\Theme\Child\Service;
 
+use WonderWp\Theme\Child\Components\Modal\ModalComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderItem\SliderItem;
 use WonderWp\Theme\Core\Service\ThemeShortcodeService;
@@ -20,6 +21,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
 
         add_shortcode('slider', [$this, 'slider']);
         add_shortcode('slider-item', [$this, 'slideritem']);
+        add_shortcode('modal', [$this, 'modal']);
 
         return $this;
     }
@@ -27,6 +29,8 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
     public function slider($attr, $content)
     {
         $slider      = new SliderComponent();
+        $slider->fillWith($attr);
+
         $sliderItems = [];
 
         $shortcodes = $this->extractShortcodes($content, 'slider-item');
@@ -45,9 +49,20 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         $slideritem->fillWith($attr);
 
         if (isset($content) && !empty($content)) {
-            $slideritem->setContent($content);
+            $slideritem->content = $content;
         }
 
         return $slideritem->getMarkup();
+    }
+
+    public function modal($attr, $content) {
+        $modal = new ModalComponent();
+        $modal->fillWith($attr);
+
+        if (isset($content) && !empty($content)) {
+            $modal->content = $content;
+        }
+
+        return $modal->getMarkup();
     }
 }

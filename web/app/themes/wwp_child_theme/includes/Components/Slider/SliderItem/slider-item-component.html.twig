@@ -1,9 +1,12 @@
 <div class="sliderItem grid-2">
-    <div class="slider-img"><img src="{{ img }}"/></div>
+    {% if img %}
+        <div class="slider-img"><img src="{{ img }}"/></div>
+    {% endif %}
     <div class="slider-panel">
         <div class="slider-title">{{ title }}</div>
         <div class="slider-place">{{ place }}</div>
         <div class="slider-content">{{ content | raw}}</div>
         <div class="aip-btn dashed-shadow"><a class="aip-a" href="{{ link }}">{{ linkLabel }}</a></div>
+        <button>{{ buttonLabel }}</button>
     </div>
 </div>
