@@ -1,0 +1,7 @@
+<div class="{{ class }}">
+    {% if sliderItems %}
+        {% for sliderItem in sliderItems %}
+            {{ sliderItem | raw }}
+        {% endfor %}
+    {% endif  %}
+</div>

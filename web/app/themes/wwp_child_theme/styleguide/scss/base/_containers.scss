@@ -4,7 +4,7 @@
 #containers ~ .component{
     width: 100%;
     max-width: $extra-large;
-    .container, .container-s, .container-l {
+    .container-xs, .container-s, .container, .container-l, .container-xl {
         margin-bottom: 2rem;
         padding: 1rem;
         background: grey;
@@ -49,6 +49,15 @@
     width: $extra-large;
 
     @media (max-width: $extra-large) {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.container-xl {
+    width: $extra-extra-large;
+
+    @media (max-width: $extra-extra-large) {
         margin: 0;
         width: 100%;
     }

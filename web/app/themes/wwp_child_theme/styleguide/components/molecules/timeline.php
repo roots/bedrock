@@ -1,10 +1,12 @@
 <!--components/molecules/timeline.php-->
 
-<ul class="timeline">
-	<li class="active"><a href="#"><span>Step 1</span></a></li>
-	<li><a href="#><span>Step 2</span></a></li>
-	<li><a href="#"><span>Step 3</span></a></li>
-	<li><a href="#"><span>Step 4</span></a></li>
-	<li><a href="#"><span>Step 5</span></a></li>
-	<li><a href="#"><span>Step 6</span></a></li>
-</ul>
+<?php echo do_shortcode ('[timeline]
+    [timeline_item date="1900" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif" image="http://via.placeholder.com/350x220"]
+    [timeline_item date="1910" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif"]
+    [timeline_item date="1920" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif" image="http://via.placeholder.com/350x220"]
+    [timeline_item date="1930" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif"]
+    [timeline_item date="1940" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif" image="http://via.placeholder.com/350x220"]
+    [timeline_item date="1950" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif"]
+    [timeline_item date="1960" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif" image="http://via.placeholder.com/350x220"]
+    [timeline_item date="1970" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit" alt="Texte alternatif"]
+[/timeline]'); ?>

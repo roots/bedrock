@@ -1,15 +1,13 @@
 <!--components/molecules/card.php-->
-<div class="grid3">
-  <div class="card">
-    <a href="link">
-      <div class="image-wrapper">
-        <img src="http://placehold.it/300x150" alt="">
-      </div>
-      <div class="content">
-        <h3>titre</h3>
-        <p>text</p>
-      </div>
-      <button class="btn">button</button>
-    </a>
-  </div>
+<span class="subTitle">Bloc de contenu polyvalent utilisé notamment pour créer des Call to Action.
+  <br> Peut contenir des titre, texte, image, bouton et lien (attributs du shortcode disponibles : "title", "text", "img", "link", "button" et "class").
+  <br> Les classes fonctionnelles suivantes permettent de modifier son apparence : "negative", "reverse", "two-cols", "inline" (ex : class="negative").
+  <br> On peut intervenir sur la couleur dominante des textes ou du fond avec les attributs du shortcode : "color" et "background"</span>
+<code>[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor(…)" image="http://via.placeholder.com/350x150" link="/une-page" button="Découvrir" color="blue" background="blue" class="reverse negative "]</code>
+
+
+<div class="grid-3 has-gutter-xl">
+    <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir"]'); ?>
+    <?php echo do_shortcode ('[card title="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir" class="negative"]'); ?>
+    <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir" class="reverse"]'); ?>
 </div>

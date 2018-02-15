@@ -3,7 +3,7 @@
 <span class="subTitle">Simple spinner</span>
 
 <?php
-$loaderComp = new \WonderWp\Theme\Components\Loadercomponent();
+$loaderComp = new \WonderWp\Theme\Child\Components\Loader\Loadercomponent();
 
 //way to render one tpl:
 //echo $loaderComp->getMarkup(['tpl' => "loader"]);
@@ -16,16 +16,16 @@ if(!empty($loadersTemplates)){ foreach($loadersTemplates as $tplName=>$loaderTem
 ?>
 
 <hr>
-<span class="subTitle">Button + spinner</span>
+<span class="subTitle">Bouton + spinner</span>
 
-<button class="btn btn-secondary button-loader" type="button">
-    Bouton
+<button class="btn button-loader" type="button">
+  Bouton
 </button>
 
 <hr>
 <span class="subTitle">Add spinner on button form, when class "loading" is added to form tag</span>
 <form action="" class="loading">
-    <button class="btn btn-secondary" type="button">
-        Bouton avec loader
-    </button>
+  <button class="btn" type="button">
+    Bouton avec loader
+  </button>
 </form>

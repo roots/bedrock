@@ -1,44 +1,7 @@
 /*scss/atoms/_loader.scss*/
 
 // Specific styleguide
-.component .spinner-white{
+.component .spinner-white {
     float: right;
     margin-left: 3rem;
-}
-
-.loader{
-    display: inline-block;
-    width: 44px;
-    height: 44px;
-    background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff.svg") !important;
-    background-color: $blue;
-    &.small{
-        transform: scale(.5);
-    }
-}
-.loader-alt{
-    display: inline-block;
-    width: 44px;
-    height: 44px;
-    background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff_blue.svg") !important;
-    &.small{
-        transform: scale(.5);
-    }
-}
-
-.button-loader,
-.loading .btn{
-    position: relative;
-    padding-right: 5rem;
-    &:after {
-        content: '';
-        display: block;
-        width: 44px;
-        height: 44px;
-        background-image: url("#{$get-path-to-assets}/final/images/loaders/loader_puff.svg") !important;
-        background-position: center center;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
 }

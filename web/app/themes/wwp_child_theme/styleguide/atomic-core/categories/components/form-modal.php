@@ -1,31 +1,31 @@
 <div class="aa_fileFormGroup">
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Rename</span> modal</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Rename</span> Modal</label>
 <div class="showHide">
   <form id="form-rename-file"  class="aa_fileForm " action="/atomic-core/partial-mngr/file-rename.php" method="post">
       <div class="formInputGroup">
         <div class="inputBtnGroup">
           
           <button class="aa_btn aa_btn-pos" type="submit" >Rename</button>
-          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="renameFileName" value="modal" required></div>
+          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="renameFileName" value="Modal" required></div>
         </div>     
       </div>
       <input type="hidden" name="compDir" value="components"/>
       <input type="hidden" name="rename" value="rename"/>
-      <input type="hidden" name="oldName" value="modal"/>
+      <input type="hidden" name="oldName" value="Modal"/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">description</span> for modal</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">description</span> for Modal</label>
 <div class="showHide">
    <form id="form-rename-notes"  class="aa_fileForm " action="/atomic-core/partial-mngr/notes-rename.php" method="post">
         <textarea class="form-control" name="compNotesNew"></textarea>        
         <button class="aa_btn aa_btn-pos" type="submit" >Update</button>
       <input type="hidden" name="compDir" value="components"/>
-      <input type="hidden" name="fileName" value="modal"/>
+      <input type="hidden" name="fileName" value="Modal"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">contextual background color</span> for modal</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">contextual background color</span> for Modal</label>
 <div class="showHide">
    <form id="form-change-bgColor"  class="aa_fileForm " action="/atomic-core/partial-mngr/bgcolor-rename.php" method="post">
         
@@ -34,12 +34,12 @@
         </div>      
         <button class="aa_btn aa_btn-pos" type="submit" >Update</button>
       <input type="hidden" name="compDir" value="components"/>
-      <input type="hidden" name="fileName" value="modal"/>
+      <input type="hidden" name="fileName" value="Modal"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Move</span>  modal</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Move</span>  Modal</label>
 <div class="showHide">
   <form id="form-file-move" class="aa_fileForm " action="/atomic-core/partial-mngr/file-move.php" method="post">
       <div class="formGroup">
@@ -69,19 +69,19 @@
         </div>
       </div>
       <input type="hidden" name="compDir" value="components"/>
-      <input type="hidden" name="fileMoveName" value="modal"/>
+      <input type="hidden" name="fileMoveName" value="Modal"/>
       <input type="hidden" name="moveFile" value="moveFile"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Delete</span> modal</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Delete</span> Modal</label>
 <div class="showHide">
     <form id="form-delete-file" class="aa_fileForm " action="/atomic-core/partial-mngr/delete.php" method="post">
       <div class="formInputGroup">
         <div class="inputBtnGroup">
           <button class="aa_btn aa_btn-neg" type="submit" >Delete</button>
-          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="deleteFileName" placeholder="Must type modal to delete"></div>
+          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="deleteFileName" placeholder="Must type Modal to delete"></div>
         </div>  
       </div>
       <input type="hidden" name="compDir" value="components"/>
