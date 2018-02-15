@@ -12,5 +12,7 @@ use WonderWp\Theme\Core\Service\ThemeShortcodeService;
 
 class ChildThemeShortcodeService extends ThemeShortcodeService
 {
-
+    public function registerShortcodes() {
+        add_shortcode ('card', [$this, 'card']);
+    }
 }

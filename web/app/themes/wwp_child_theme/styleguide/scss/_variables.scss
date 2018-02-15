@@ -214,3 +214,33 @@ $burger-hover-background  : transparent;
 $burger-size              : 2.6rem;
 $burger-weight            : 5px; // size of stripes
 $burger-padding           : 0;
+
+// Custom styleguide (overrides AtomicDocs css)
+.atoms-side_hide,
+#containers ~ .component .container,
+#containers ~ .component .container-s,
+#containers ~ .component .container-l,
+.atomsWrap [class*="grid-3"] > *:nth-child(odd),
+.atomsWrap .grid-perso > *:nth-child(odd),
+.compWrap [class*="grid-3"] > *:nth-child(odd),
+.compWrap .grid-perso > *:nth-child(odd) {
+    color: $white;
+    background-color: $gray-600 !important;
+} // medium dark background color
+
+.compTitle,
+.compWrap .nav-tabs > li > a,
+.aa_dir__dirNameGroup__icon,
+.atomsWrap .subTitle,
+.compWrap .subTitle {
+    color: $gray-600 !important;
+} // medium dark color
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"],
+.atomsWrap [class*="grid-3"] > *:nth-child(even),
+.atomsWrap .grid-perso > *:nth-child(even),
+.compWrap [class*="grid-3"] > *:nth-child(even),
+.compWrap .grid-perso > *:nth-child(even) {
+    background: $gray-100 !important;
+} // light background color
