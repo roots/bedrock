@@ -6,17 +6,17 @@
  * Time: 12:22
  */
 
-namespace WonderWp\Theme\Child\Components\Modal;
+namespace WonderWp\Theme\Child\Components\Dropdown;
 
 use WonderWp\Theme\Core\Component\TwigComponent;
 
-class ModalComponent extends TwigComponent
+class DropdownComponent extends TwigComponent
 {
     protected $class;
     protected $content;
 
     public function __construct()
     {
-        parent::__construct(__DIR__, 'modal');
+        parent::__construct(__DIR__, 'dropdown');
     }
 }

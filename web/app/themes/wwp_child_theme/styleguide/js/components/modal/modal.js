@@ -1,5 +1,5 @@
 import "modaal/dist/js/modaal";
-import {PewComponent} from "./pew-component";
+import {PewComponent} from "../pew-component";
 
 // https://github.com/humaan/Modaal
 const ModalOptions = {
