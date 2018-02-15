@@ -1,26 +1,27 @@
 /*scss/atoms/_breadcrumb.scss*/
 
 .breadcrumb {
-	padding: .75rem 1rem;
-	margin-bottom: 1rem;
-	list-style: none;
-	background-color: $lightgrey;
-	&::after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
+
 .breadcrumb-item {
-	float: left;
-	a {
-		text-decoration: none;
-	}
+    float: left;
+    a {
+        text-decoration: none;
+    }
 }
-.breadcrumb-item+.breadcrumb-item::before {
-	display: inline-block;
-	padding-right: .5rem;
-	padding-left: .5rem;
-	color: #818a91;
-	content: "/";
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #818a91;
+    content: "/";
 }

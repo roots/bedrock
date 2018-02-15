@@ -1,0 +1,50 @@
+/* ----------------------------- */
+/* ==Tags                      */
+/* ----------------------------- */
+/* use .tag-- classes for variants */
+
+.tag {
+  display: inline-block;
+  padding: 3px $spacer-tiny;
+  vertical-align: baseline;
+  white-space: nowrap;
+  color: $color-base;
+  border-radius: $border-radius;
+  background-color: $color-muted;
+  line-height: 1;
+}
+
+.tag {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend .tag;
+      background-color: $background-color;
+      color: $color;
+      box-shadow: $border;
+    }
+  }
+}
+
+// tag state variants
+.tag {
+  &--small {
+    font-size: $font-size-base - 0.4rem;
+  }
+
+  &--big {
+    font-size: $font-size-base + 0.4rem;
+  }
+
+  &--block {
+    width: 100% !important;
+    display: block;
+  }
+  &.disabled,
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &:empty {
+    display: none;
+  }
+}

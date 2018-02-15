@@ -8,6 +8,7 @@
 
 namespace WonderWp\Theme\Child\Service;
 
+use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\Modal\ModalComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderComponent;
@@ -18,6 +19,7 @@ use WonderWp\Theme\Core\Service\ThemeShortcodeService;
 
 class ChildThemeShortcodeService extends ThemeShortcodeService
 {
+
     public function registerShortcodes()
     {
         parent::registerShortcodes();
@@ -25,6 +27,8 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         add_shortcode('slider', [$this, 'slider']);
         add_shortcode('slider-item', [$this, 'slideritem']);
         add_shortcode('modal', [$this, 'modal']);
+        add_shortcode ('card', [$this, 'card']);
+        add_shortcode ('timeline', [$this, 'timeline']);
         add_shortcode('dropdown', [$this, 'dropdown']);
         add_shortcode('tabs', [$this, 'tabs']);
         add_shortcode('tab-item', [$this, 'tabitem']);
@@ -32,6 +36,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         return $this;
     }
 
+    // Slider wrapper
     public function slider($attr, $content)
     {
         $slider      = new SliderComponent();
@@ -49,6 +54,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
 
     }
 
+    // Slider item
     public function slideritem($attr, $content)
     {
         $slideritem = new SliderItem();
@@ -61,6 +67,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         return $slideritem->getMarkup();
     }
 
+    // Modale
     public function modal($attr, $content) {
         $modal = new ModalComponent();
         $modal->fillWith($attr);
@@ -71,6 +78,40 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
 
         return $modal->getMarkup();
     }
+
+    // Generic card
+    public function card($attr) {
+        $card = new CardComponent();
+        $card->fillWith ($attr);
+
+        return $card->getMarkup();
+    }
+
+    // Timeline wrapper
+/*    public function timeline($attr, $content)
+    {
+        $timeline = new TimelineComp
+
+        $timeline->setItemsMarkup (do_shortcode($content));
+
+        $opts = [];
+
+        if (!empty($attr['type'])) {
+            $opts['classes'] = ['timeline-' . $attr['type']];
+        }
+
+        return $timeline->getMarkup ($opts);
+    }
+    // Timeline item
+    public function timelineItem($attr)
+    {
+        $timelineItem = new TimelineItemComponent();
+        $timelineItem->fillWith ($attr);
+
+        return $timelineItem->getMarkup ();
+    }*/
+
+
 
 
     public function dropdown($attr) {

@@ -3,42 +3,62 @@
 // For Style guide
 #containers ~ .component{
     width: 100%;
-    max-width: $extra-large-screen;
-    .container, .container-s, .container-l, .container-xl{
+    max-width: $extra-large;
+    .container-xs, .container-s, .container, .container-l, .container-xl {
         margin-bottom: 2rem;
         padding: 1rem;
-        background: $lightgrey;
+        background: grey;
         text-align: center;
     }
 }
 
 
 // Container
-.container, .container-s, .container-l, .container-xl{
-    position: relative;
+.container-s, .container, .container-l {
     display: block;
     margin: 0 auto;
 }
+
+.container, .container-l {
+
+    @media (max-width: $very-large) {
+        width: 100% !important;
+    }
+}
+
+.container-s {
+    width: $large;
+
+    @media (max-width: $medium) {
+        width: 100% !important;
+        padding-right: 2em;
+        padding-left: 2em;
+    }
+}
+
 .container {
-    width: $medium-plus-screen;
-    @media (max-width: $medium-plus-screen) {
-        position:       relative;
-        margin:         0;
-        width:          100%;
-        padding-right:  2em;
-        padding-left:   2em;
-    }
-    @media (max-width: $small-screen) {
-        padding-right:  2%;
-        padding-left:   2%;
+    width: $very-large;
+
+    @media (max-width: $very-large) {
+        padding-right: 2em;
+        padding-left: 2em;
     }
 }
-.container-s{
-    width: $tiny-plus-screen;
+
+.container-l {
+    width: $extra-large;
+
+    @media (max-width: $extra-large) {
+        margin: 0;
+        width: 100%;
+    }
 }
-.container-l{
-    width: $large-plus-screen;
-}
-.container-xl{
-    width: $extra-large-screen;
+
+.container-xl {
+    width: $extra-extra-large;
+
+    @media (max-width: $extra-extra-large) {
+        margin: 0;
+        width: 100%;
+    }
 }

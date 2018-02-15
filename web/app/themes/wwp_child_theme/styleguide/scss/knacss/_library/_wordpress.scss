@@ -1,0 +1,248 @@
+/* ----------------------------- */
+/* ==WordPress reset             */
+/* ----------------------------- */
+
+/*
+Author: Geoffrey Crofte, Alsacréations
+Contributors: Automattic, Geoffrey Crofte
+Description: Reset styles for WordPress usage of KNACSS
+*/
+
+// current menu elements
+.current_page_item > a {
+}
+.current-menu-item > a {
+}
+.current_page_ancestor > a {
+}
+
+// blocks of content navigation
+.comment-navigation,
+.paging-navigation,
+.post-navigation {
+  overflow: hidden;
+  margin: 0 0 1.5em;
+
+  & .nav-previous {
+    float: left;
+    width: 50%;
+  }
+
+  & .nav-next {
+    float: right;
+    width: 50%;
+    text-align: right;
+  }
+}
+
+// class in img elements
+.alignnone {
+  margin: .25em 1.5em 1.5em 0;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 1.5em auto;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 1.5em .25em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 .25em 1.5em;
+}
+
+.entry-content,
+.comment-content {
+  clear: both;
+
+  &::after,
+  &::before {
+    content: "";
+    display: table;
+  }
+}
+
+.widget + .widget {
+  margin: 1.5em 0 0;
+}
+
+// usage example:
+.widget select {
+  max-width: 100%;
+}
+
+/* === 5.1 Posts - post_class === */
+
+// featured content
+.sticky {
+}
+
+// attachment post
+.attachment {
+}
+
+// format of post
+.format- {
+  &aside {
+  }
+  &gallery {
+  }
+  &link {
+  }
+  &image {
+  }
+  &quote {
+  }
+  &status {
+  }
+  &video {
+  }
+  &chat {
+  }
+}
+
+// class for a tag
+.tag- {
+  &name-of-tag {
+  }
+}
+
+// class for category
+.category- {
+  &name-of-category {
+  }
+}
+
+/* === 5.2 Pages - body_class === */
+
+// front page
+.home {
+  // if display posts
+  &.blog {
+  }
+
+  // if static page
+  &.page {
+  }
+}
+
+// page displays posts
+.blog {
+  // if is frontpage
+  &.home {
+  }
+
+  // if static page
+  &.page {
+  }
+}
+
+// simple page
+.page {
+}
+
+// page of single post
+.single {
+}
+
+// page of archives
+.archive {
+}
+
+// page of search
+.search {
+  // if has results
+  .search-results {
+  }
+
+  // if has no results
+  .search-no-results {
+  }
+}
+
+// page 404
+.error404 {
+}
+
+// user logged in
+.logged-in {
+}
+
+// text direction if right-to-left
+// prefer rtl.css: http://codex.wordpress.org/Right-to-Left_Language_Support
+.rtl {
+}
+
+/* === 5.3 Posts and Pages - Contents === */
+
+.hentry {
+  margin: 0 0 1.5em;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5em 0 0;
+}
+
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em;
+}
+
+.comment-content a {
+  word-wrap: break-word;
+}
+
+.bypostauthor {
+  // some make-the-logo-bigger styles
+}
+
+img.wp-smiley {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+  border: none;
+}
+
+.wp-caption {
+  max-width: 100%;
+  margin-bottom: 1.5em;
+}
+
+.wp-caption img {
+  display: block;
+  margin: 0 auto;
+}
+
+.wp-caption-text {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.gallery {
+  margin-bottom: 1.5em;
+}
+
+.gallery-item {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  vertical-align: top;
+
+  @for $i from 2 through 9 {
+    .gallery-columns-#{$i} & {
+      $w: floor(10000 / $i) / 100;
+      max-width: unquote($w + '%');
+		}
+	}
+}
+
+.gallery-caption {
+  display: block;
+}

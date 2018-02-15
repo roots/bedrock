@@ -1,0 +1,116 @@
+/* --------------------------------------- */
+/* ==Grillade : ultra light Grid System    */
+/* --------------------------------------- */
+// WARNING: THIS IS NOT A COMPLETE GRID FRAMEWORK, just ultra light Grid System
+// if you need complex Grid :
+//   1- use vanilla CSS Grid Layout spec (perfect for you)
+//   2- use Bootstrap (good luck)
+
+// use these variables only for a standalone Grillade
+// in KNACSS, you shall modify variables file instead
+$tiny: 480px !default;
+$medium: 768px !default;
+
+// classic Grid
+[class*=" grid-"],
+[class^="grid-"] {
+  @media (min-width: $tiny) {
+    display: grid;
+    grid-auto-flow: dense;
+
+    // gutters
+    @if variable_exists(grid-gutters) {
+      $gutter: $grid-gutters !global;
+    }
+    @else {
+      $gutter: ( '': 1rem, '-l': 2rem, '-xl': 4rem ) !global;
+    }
+    @each $affix, $size in $gutter {
+      &.has-gutter#{$affix} {
+        grid-gap: $size;
+      }
+    }
+  }
+}
+
+// autogrid
+.autogrid,
+.grid {
+  @media (min-width: $tiny) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+
+    // gutters
+    @if variable_exists(grid-gutters) {
+      $gutter: $grid-gutters !global;
+
+    } @else {
+      $gutter: ( '': 1rem, '-l': 2rem, '-xl': 4rem ) !global;
+    }
+    @each $affix, $size in $gutter {
+      &.has-gutter#{$affix} {
+        grid-column-gap: $size;
+      }
+    }
+  }
+}
+
+// grid constructor (.grid-2 to .grid-12)
+@for $i from 2 through 12 {
+  [class*="grid-#{$i}"] {
+    grid-template-columns: repeat(#{$i}, 1fr);
+  }
+}
+
+// grid items constructor (.col-1 to .col-12, .row-1 to .row-12)
+@for $i from 1 through 12 {
+  [class*="col-#{$i}"] {
+    grid-column: auto / span #{$i};
+  }
+
+  [class*="row-#{$i}"] {
+    grid-row: auto / span #{$i};
+  }
+}
+
+/* intermediate breakpoints */
+// -small-X suffix means "X columns when < medium screen"
+// example : .grid-4-small-2 will be 1 column (< tiny) then 2 columns (< medium) then 4 columns
+@media (min-width: $tiny) and (max-width: ($medium - 1)) {
+   @for $i from 1 through 4{
+    [class*="grid-"][class*="-small-#{$i}"] {
+      grid-template-columns: repeat(#{$i}, 1fr);
+    }
+
+    [class*="col-"][class*="-small-#{$i}"] {
+      grid-column: auto / span #{$i};
+    }
+  }
+  [class*="-small-all"] {
+    grid-column: 1 / -1;
+  }
+}
+
+// grid order
+.item-first {
+  order: -1;
+}
+
+.item-last {
+  order: 1;
+}
+
+// grid offset
+.grid-offset {
+  visibility: hidden;
+}
+
+// spanning all collumns or rows
+.col-all {
+  grid-column: 1 / -1;
+}
+
+.row-all {
+  grid-row: 1 / -1;
+}

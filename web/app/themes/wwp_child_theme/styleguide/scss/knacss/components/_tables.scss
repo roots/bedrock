@@ -1,0 +1,51 @@
+/* ----------------------------- */
+/* ==Tables                      */
+/* ----------------------------- */
+
+table,
+.table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  vertical-align: top;
+  margin-bottom: $spacer-medium;
+}
+
+.table {
+  display: table;
+  border: 1px solid $table-border;
+  background: $table-background;
+
+  &--zebra {
+    & tbody tr:nth-child(odd) {
+      background: $gray-200;
+    }
+  }
+
+  & caption {
+    caption-side: bottom;
+    padding: $spacer-small;
+    color: $table-caption-color;
+    font-style: italic;
+    text-align: right;
+  }
+
+  & td,
+  & th {
+    padding: 0.3rem 0.6rem;
+    min-width: $spacer-medium;
+    vertical-align: top;
+    border: 1px $table-border dotted;
+    text-align: left;
+    cursor: default;
+  }
+  & thead {
+    color: $table-head-color;
+    background: $table-head-background;
+  }
+}
+
+.table--auto {
+  table-layout: auto;
+}

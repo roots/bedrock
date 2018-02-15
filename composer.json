@@ -1,39 +1,16 @@
 {
-    "name": "wonderwp/site",
+    "name": "wonderwp\/site",
     "type": "project",
     "license": "MIT",
     "description": "A modern WordPress stack",
-    "homepage": "https://roots.io/bedrock/",
-    "authors": [
-        {
-            "name": "Jeremy Desvaux",
-            "email": "jeremy.desvaux@wonderful.fr",
-            "homepage": "https://github.com/jeremy-wdf"
-        }
-    ],
-    "keywords": [
-        "bedrock", "roots", "wordpress", "stack", "composer", "vagrant", "wp"
-    ],
-    "config": {
-        "preferred-install": {
-            "wonderwp/*": "source",
-            "agencewonderful/*": "source",
-            "*": "dist"
-        }
-    },
+    "homepage": "https:\/\/roots.io\/bedrock\/",
+    "authors": [{"name": "Jeremy Desvaux", "email": "jeremy.desvaux@wonderful.fr", "homepage": "https:\/\/github.com\/jeremy-wdf"}],
+    "keywords": ["bedrock", "roots", "wordpress", "stack", "composer", "vagrant", "wp"],
+    "config": {"preferred-install": {"wonderwp\/*": "source", "agencewonderful\/*": "source", "*": "dist"}},
     "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/jeremy-wdf/daux.io"
-        },
-        {
-            "type": "composer",
-            "url": "https://won.wonderful.fr/satis/packages-mirror"
-        }
+        {"type": "composer", "url": "https:\/\/wpackagist.org"},
+        {"type": "vcs", "url": "https:\/\/github.com\/jeremy-wdf\/daux.io"},
+        {"type": "composer", "url": "https:\/\/won.wonderful.fr\/satis\/packages-mirror"}
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -73,19 +50,16 @@
     "autoload": {
         "psr-4": {
             "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes"
+
         }
     },
     "extra": {
         "installer-paths": {
-            "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-            "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-            "web/app/themes/{$name}/": ["type:wordpress-theme"]
+            "web\/app\/mu-plugins\/{$name}\/": ["type:wordpress-muplugin"],
+            "web\/app\/plugins\/{$name}\/": ["type:wordpress-plugin"],
+            "web\/app\/themes\/{$name}\/": ["type:wordpress-theme"]
         },
-        "wordpress-install-dir": "web/wp"
+        "wordpress-install-dir": "web\/wp"
     },
-    "scripts": {
-        "test": [
-            "vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."
-        ]
-    }
+    "scripts": {"test": ["vendor\/bin\/phpcs --ignore=web\/wp\/,vendor\/ -n -s ."]}
 }

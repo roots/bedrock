@@ -1,0 +1,145 @@
+/* ---------------------------------- */
+/* ==Grillade v6                      */
+/* ---------------------------------- */
+/* IMPORTANT : this is the KNACSS v6 old Grid System based on Flexbox */
+/* You only need it for projects on older browsers (IE11-) */
+
+// Responsive breakpoints variables
+
+// Warning : you should use your own values, regardless of the devices
+// Best practise : (max-width: ($BP - 1)) and (min-width: $BP)
+
+$tiny: 480px !default; // or 'em' if you prefer, of course
+$small: 576px !default;
+$medium: 768px !default;
+$large: 992px !default;
+$extra-large: 1200px !default;
+
+// gutter values for grid layouts. Unit can be: %, px, em, rem
+$grid-gutters: ( '': 1rem, '-l': 2rem, '-xl': 4rem );
+// IEfixing, see
+// https://github.com/alsacreations/KNACSS/issues/133;
+$iefix: 0.01px;
+@media (min-width: $small) {
+  [class*=" grid-"],
+  [class^="grid-"] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & > * {
+      box-sizing: border-box;
+      min-width: 0;
+      min-height: 0;
+    }
+  }
+}
+// Multi-line grid constructor
+// example : .grid-perso { @include grid(12, 3rem); }
+@mixin grid($grid-number: 1, $own-gutter: 0) {
+  & > * {
+    width: calc(100% / #{$grid-number} - #{$iefix});
+  }
+  @each $affix, $size in $grid-gutters {
+    &.has-gutter#{$affix} {
+      margin-right: -$size / 2;
+      margin-left: -$size / 2;
+
+      & > * {
+        width: calc(100% / #{$grid-number} - #{$size} - #{$iefix});
+        margin-right: $size / 2;
+        margin-left: $size / 2;
+      }
+    }
+  }
+  @if ($own-gutter != 0) {
+    margin-right: -$own-gutter / 2;
+    margin-left: -$own-gutter / 2;
+
+    & > * {
+      width: calc(100% / #{$grid-number} - #{$own-gutter} - #{$iefix});
+      margin-right: $own-gutter / 2;
+      margin-left: $own-gutter / 2;
+    }
+  }
+}
+// Mono-line grid constructor (.grid)
+@media (min-width: $small) {
+  .grid,
+  .grid--reverse {
+    display: flex;
+
+    & > * {
+      flex: 1 1 0%;
+      box-sizing: border-box;
+      min-width: 0;
+      min-height: 0;
+    }
+    @each $affix, $size in $grid-gutters {
+      &.has-gutter#{$affix} > * + * {
+        margin-left: calc(#{$size} - #{$iefix});
+      }
+    }
+  }
+}
+// Constructing grids : will be compiled in CSS
+@media (min-width: $small) {
+  @for $i from 2 through 12 {
+    [class*="grid-#{$i}"] {
+      @include grid(#{$i}, 0);
+    }
+  }
+}
+
+// Grid offsets
+.push {
+  margin-left: auto !important;
+}
+
+.pull {
+  margin-right: auto !important;
+}
+
+// Grid order
+.item-first {
+  order: -1;
+}
+
+.item-last {
+  order: 1;
+}
+
+[class*="grid-"][class*="--reverse"] {
+  flex-direction: row-reverse;
+}
+// sizing individual children
+@media (min-width: $small) {
+  @each $flow, $divider in ("full" "1"), ("one-half" "2"), ("one-third" "3"), ("one-quarter" "4"), ("one-fifth" "5"), ("one-sixth" "6"), ("two-thirds" "3 * 2"), ("three-quarters" "4 * 3"), ("five-sixths" "6 * 5") {
+    .#{$flow} {
+      flex: 0 0 auto;
+      width: calc(100% / #{$divider} - #{$iefix});
+    }
+    @each $affix, $size in $grid-gutters {
+      .has-gutter#{$affix} > .#{$flow} {
+        width: calc(100% / #{$divider} - #{$size} - #{$iefix});
+      }
+    }
+  }
+}
+/* Responsive Small Breakpoint */
+// -small-X suffix means "X columns on small-medium screen"
+// example : .grid-4-small-2 will be 1 column (tiny and down) then 2 columns (until medium) then 4 columns
+@media (min-width: $small) and (max-width: ($medium - 1)) {
+  @for $i from 1 through 4 {
+    [class*="-small-#{$i}"] {
+      & > * {
+        width: calc(100% / #{$i} - #{$iefix});
+      }
+      @each $affix, $size in $grid-gutters {
+        &.has-gutter#{$affix} > * {
+          width: calc(100% / #{$i} - #{$size} - #{$iefix});
+        }
+      }
+    }
+  }
+}

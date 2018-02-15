@@ -18,7 +18,7 @@ class ThemeAssetService extends AbstractAssetService
         $container = Container::getInstance();
         $manager   = $container->offsetGet('wwp.theme.Manager');
         $themePath = $manager->getConfig('path.url');
-       //  $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
+       // $assetManager->registerAsset('css', new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', false, 'core' ));
 
     }
 
@@ -33,8 +33,7 @@ class ThemeAssetService extends AbstractAssetService
 
             $this->_assets = [
                 'css' => [
-                    new $assetClass('styleguide', $themePath . '/styleguide/scss/main.scss', [], '', true, 'styleguide' ),
-                    new $assetClass('theme', $themePath . '/assets/raw/scss/theme.scss', [], '', true, 'styleguide' )
+                    new $assetClass('styleguide', $themePath . '/assets/raw/scss/theme.scss', [], '', true, 'styleguide' )
                 ],
                 'js' => [
                     new $assetClass('core', $themePath . '/assets/raw/js/app_bootstrap.js', [], '', true, 'core' ), // global app entry point

@@ -1,0 +1,50 @@
+/* ----------------------------- */
+/* ==Badges                      */
+/* ----------------------------- */
+/* use .badge-- classes for variants */
+
+.badge {
+  display: inline-block;
+  padding: $spacer-tiny;
+  border-radius: 50%;
+  color: $color-base;
+  background-color: $color-muted;
+  line-height: 1;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 100%;
+  }
+}
+
+.badge {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend .badge;
+      background-color: $background-color;
+      color: $color;
+    }
+  }
+}
+
+// badge state variants
+.badge {
+  &--small {
+    font-size: $font-size-base - 0.4rem;
+  }
+
+  &--big {
+    font-size: $font-size-base + 0.4rem;
+  }
+
+  &.disabled,
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &:empty {
+    display: none;
+  }
+}

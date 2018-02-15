@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/**
+ *	Header menu
+ */
+
+ul#menu {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+
+    li.page_item_has_children > a::after {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 0;
+        width: 0;
+        border: 8px solid transparent;
+        z-index: 2;
+    }
+
+    li > a {
+        flex: 1;
+        justify-content: center;
+        display: inline-flex;
+        color: $white;
+        text-decoration: none;
+        padding: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    li.m0 {
+        &:hover,
+        &:focus {
+            background-color: $gray-600;
+        }
+
+        &.page_item_has_children:hover > a::after,
+        &.page_item_has_children:focus > a::after {
+            content: '';
+            border-top-color: $gray-600;
+        }
+    }
+
+    ul.children {
+        display: none;
+        padding-left: 0;
+        list-style: none;
+        position: absolute;
+        background-color: $gray-400;
+    }
+
+    li:hover > ul.children,
+    li:focus > ul.children {
+        display: flex;
+    }
+
+    li.m0 > ul {
+        top: 64px;
+        left: 0;
+        right: 0;
+        background-color: $gray-400;
+        box-shadow: 6px 2px 5px rgba(0, 0, 0, 0.4);
+        text-align: left;
+
+        li > a {
+            color: $gray-600;
+        }
+
+        li:hover,
+        li:focus {
+            background-color: $gray-600;
+
+            > a {
+                color: $white;
+            }
+
+            > ul.children {
+                display: flex;
+            }
+        }
+
+        li.page_item_has_children:hover a::after,
+        li.page_item_has_children:focus a::after {
+            content: '';
+            border-top-color: $gray-600;
+        }
+    }
+
+    @media (max-width: $medium - 1) {
+
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 0;
+
+        li > a {
+            width: 100%;
+        }
+
+        li.m0 > ul li > a {
+            border-bottom: 1px solid $gray-600;
+        }
+
+        li.m0:hover > ul.children,
+        li.m0 > ul li:hover > ul.children,
+        li.m0:focus > ul.children,
+        li.m0 > ul li:focus > ul.children {
+            flex-direction: column;
+            position: relative;
+            top: 0;
+        }
+
+    }
+}

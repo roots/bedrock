@@ -1,0 +1,42 @@
+/*scss/atoms/_loader.scss*/
+
+// Specific styleguide
+.component {
+    .spinner-white {
+        float: right;
+        margin-left: 3rem;
+    }
+    form {
+        padding: 0;
+    }
+}
+
+.loader {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff.svg") no-repeat $gray-600 !important;
+    &--small {
+        transform: scale(.5);
+    }
+    &--alt {
+        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff_alt.svg") no-repeat transparent !important;
+    }
+}
+
+.button-loader,
+.loading .btn {
+    position: relative;
+    padding-right: 6rem;
+    &:after {
+        content: '';
+        display: block;
+        width: 44px;
+        height: 44px;
+        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff_alt.svg") no-repeat center center!important;
+        position: absolute;
+        right: 1rem;
+        top: calc(50% - 22px);
+        transform: scale(.8);
+    }
+}

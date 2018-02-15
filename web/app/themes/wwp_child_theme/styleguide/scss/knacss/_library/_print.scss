@@ -1,0 +1,98 @@
+/* ----------------------------- */
+/* ==Print (quick print reset)   */
+/* ----------------------------- */
+
+@media print {
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    width: auto;
+    margin: auto;
+    font-family: serif;
+    font-size: 12pt;
+  }
+
+  p,
+  .p-like,
+  h1,
+  .h1-like,
+  h2,
+  .h2-like,
+  h3,
+  .h3-like,
+  h4,
+  .h4-like,
+  h5,
+  .h5-like,
+  h6,
+  .h6-like,
+  blockquote,
+  label,
+  ul,
+  ol {
+    color: #000;
+    margin: auto;
+  }
+
+  .print {
+    display: block;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  /* no orphans, no widows */
+  p,
+  .p-like,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* no breaks inside these elements */
+  blockquote,
+  ul,
+  ol {
+    page-break-inside: avoid;
+  }
+
+  /* page break before main headers
+  h1,
+  .h1-like {
+    page-break-before: always;
+  }
+  */
+
+  /* no breaks after these elements */
+  h1,
+  .h1-like,
+  h2,
+  .h2-like,
+  h3,
+  .h3-like,
+  caption {
+    page-break-after: avoid;
+  }
+
+  a {
+    color: #000;
+  }
+
+  /* displaying URLs
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  */
+
+  a[href^="javascript:"],
+  a[href^="#"] {
+    &::after {
+      content: "";
+    }
+  }
+}

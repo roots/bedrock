@@ -1,0 +1,25 @@
+/* ----------------------------- */
+/* ==Media object                */
+/* ----------------------------- */
+/* recommanded HTML : <div class="media"><img class="media-figure"><div class="media-content"></div></div> */
+/* see http://codepen.io/raphaelgoetter/pen/KMWWwj */
+
+@media (min-width: $tiny) {
+  .media {
+    display: flex;
+    align-items: flex-start;
+
+    &-content {
+      flex: 1 1 0%;
+    }
+
+    // vertical align image
+    &-figure--center {
+      align-self: center;
+    }
+    // reverse variant
+    &--reverse {
+      flex-direction: row-reverse;
+    }
+  }
+}
