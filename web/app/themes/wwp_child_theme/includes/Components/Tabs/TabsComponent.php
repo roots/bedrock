@@ -18,7 +18,7 @@ class TabsComponent extends TwigComponent
     protected $content;
     private $tabs;
 
-    public function setTabItems($tabItems) {
+    private function setTabItems($tabItems) {
         $this->tabItems = $tabItems;
         return $this;
     }
