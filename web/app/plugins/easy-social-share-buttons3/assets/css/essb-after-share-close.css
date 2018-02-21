@@ -1,0 +1,204 @@
+.essbasc-popup {
+	background-color: #ffffff;
+	z-index: 100001;
+	/*border: 4px solid #bdbdbd;*/
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	-ms-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	-o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	display: none;
+	color: #111;
+	-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+.essbasc-popup h3 {
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	opacity: 0.8;
+	background: rgba(0,0,0,0.4);
+	border-radius: 3px 3px 0 0;
+}
+
+.essbasc-popup-content {
+	padding: 15px;
+	margin: 0;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.essbasc-popup-shadow {
+	position:fixed;
+	_position:absolute; /* hack for IE 6*/
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	background: rgba(33, 33, 33, 0.70);
+	z-index:100000;
+	display: none;
+}
+
+.essbasc-popup-close {
+ width:12px;
+    height:12px;
+    display:inline-block;
+    position:absolute;
+    top:10px;
+    right:10px;
+    -webkit-transition:all ease 0.50s;
+    transition:all ease 0.75s;
+	font-weight:bold;
+    text-decoration:none;
+    color:#111;
+    line-height:160%;
+	font-size:24px;
+	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDEuNzU2cHgiIGhlaWdodD0iNDEuNzU2cHgiIHZpZXdCb3g9IjAgMCA0MS43NTYgNDEuNzU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MS43NTYgNDEuNzU2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTI3Ljk0OCwyMC44NzhMNDAuMjkxLDguNTM2YzEuOTUzLTEuOTUzLDEuOTUzLTUuMTE5LDAtNy4wNzFjLTEuOTUxLTEuOTUyLTUuMTE5LTEuOTUyLTcuMDcsMEwyMC44NzgsMTMuODA5TDguNTM1LDEuNDY1Yy0xLjk1MS0xLjk1Mi01LjExOS0xLjk1Mi03LjA3LDBjLTEuOTUzLDEuOTUzLTEuOTUzLDUuMTE5LDAsNy4wNzFsMTIuMzQyLDEyLjM0MkwxLjQ2NSwzMy4yMmMtMS45NTMsMS45NTMtMS45NTMsNS4xMTksMCw3LjA3MUMyLjQ0LDQxLjI2OCwzLjcyMSw0MS43NTUsNSw0MS43NTVjMS4yNzgsMCwyLjU2LTAuNDg3LDMuNTM1LTEuNDY0bDEyLjM0My0xMi4zNDJsMTIuMzQzLDEyLjM0M2MwLjk3NiwwLjk3NywyLjI1NiwxLjQ2NCwzLjUzNSwxLjQ2NHMyLjU2LTAuNDg3LDMuNTM1LTEuNDY0YzEuOTUzLTEuOTUzLDEuOTUzLTUuMTE5LDAtNy4wNzFMMjcuOTQ4LDIwLjg3OHoiLz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PC9zdmc+);
+	background-size: 12px;
+	z-index: 1001; }
+}
+
+
+.essbasc-text-before {
+	margin-bottom: 10px;
+}
+
+.essbasc-text-after {
+	margin-top: 10px;
+}
+
+.essbasc-fans {
+	padding: 0;
+ 	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+	line-height: 1;
+}
+
+.essbasc-fans-single {
+	width: 31%;
+	display: block;
+	position: relative;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	height: 80px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.essbasc-fans-single .essbasc-fans-icon {
+	text-align: center;
+	padding: 10px;
+	font-size: 21px;
+}
+
+
+
+.essbasc-fans-single .essbasc-fans-text div {
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+.essbasc-fans-single.essbasc-fans-facebook {
+	background-color: #3b5998;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3b5998+0,283c67+100 */
+background: #3b5998; /* Old browsers */
+background: -moz-linear-gradient(top,  #3b5998 0%, #283c67 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #3b5998 0%,#283c67 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #3b5998 0%,#283c67 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b5998', endColorstr='#283c67',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+
+.essbasc-fans-single .essbasc-fans-text {
+	padding: 10px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.essbasc-fans-single.essbasc-fans-google {
+	background-color: #D95232;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d95232+0,a8391f+100 */
+background: #d95232; /* Old browsers */
+background: -moz-linear-gradient(top,  #d95232 0%, #a8391f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #d95232 0%,#a8391f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #d95232 0%,#a8391f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d95232', endColorstr='#a8391f',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+
+.essbasc-fans-single.essbasc-fans-twitter {
+	background-color: #00ABF0;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00abf0+0,007bac+100 */
+background: #00abf0; /* Old browsers */
+background: -moz-linear-gradient(top,  #00abf0 0%, #007bac 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #00abf0 0%,#007bac 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #00abf0 0%,#007bac 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00abf0', endColorstr='#007bac',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+.essbasc-fans-single.essbasc-fans-pinterest {
+	background-color: #ae181f;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ae181f+0,721014+100 */
+background: #ae181f; /* Old browsers */
+background: -moz-linear-gradient(top,  #ae181f 0%, #721014 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #ae181f 0%,#721014 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #ae181f 0%,#721014 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae181f', endColorstr='#721014',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+.essbasc-fans-single.essbasc-fans-youtube {
+	background-color: #cc181e;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc181e+0,721014+100 */
+background: #cc181e; /* Old browsers */
+background: -moz-linear-gradient(top,  #cc181e 0%, #721014 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #cc181e 0%,#721014 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #cc181e 0%,#721014 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc181e', endColorstr='#721014',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+.essbasc-fans-single.essbasc-fans-linkedin {
+	background-color: #007bb6;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007bb6+0,004d72+100 */
+background: #007bb6; /* Old browsers */
+background: -moz-linear-gradient(top,  #007bb6 0%, #004d72 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #007bb6 0%,#004d72 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #007bb6 0%,#004d72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007bb6', endColorstr='#004d72',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+
+.essbasc-fans-single.essbasc-fans-vk {
+	background-color: #5e81a8;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5e81a8+0,004d72+100 */
+background: #5e81a8; /* Old browsers */
+background: -moz-linear-gradient(top,  #5e81a8 0%, #004d72 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #5e81a8 0%,#004d72 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #5e81a8 0%,#004d72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e81a8', endColorstr='#004d72',GradientType=0 ); /* IE6-9 */
+
+	color: #fff;
+}
+
+.essbasc-fans.onecol .essbasc-fans-single {
+	width: 98%;	
+}
+
+.essbasc-fans.twocols .essbasc-fans-single {
+	width: 47%;	
+}
