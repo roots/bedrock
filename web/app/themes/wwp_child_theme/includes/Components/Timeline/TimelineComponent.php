@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marclafay
- * Date: 05/02/2018
- * Time: 18:37
- */
 
 namespace WonderWp\Theme\Child\Components\Timeline;
 
@@ -20,5 +14,4 @@ class TimelineComponent extends TwigComponent
     {
         parent::__construct(__DIR__, 'timeline');
     }
-
 }

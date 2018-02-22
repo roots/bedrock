@@ -1,5 +1,5 @@
 import "bxslider"
-import {PewComponent} from "./pew-component";
+import {PewComponent} from "../pew-component";
 
 // see https://bxslider.com/options/
 const SliderOptions = {

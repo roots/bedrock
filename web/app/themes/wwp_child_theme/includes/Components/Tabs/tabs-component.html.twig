@@ -1,0 +1,19 @@
+<div class="wdf-tabs js-tabs">
+    <ul class="js-tablist">
+
+        {% for tabItem in tabItems %}
+            <li class="js-tablist__item">
+                <a href="#tab{{ loop.index }}" class="js-tablist__link">{{ tabItem.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% for tabItem in tabItems %}
+
+
+    <div id="tab{{ loop.index }}" class="js-tabcontent">
+        <div>{{ tabItem.content | raw }}</div>
+    </div>
+
+    {% endfor %}
+
+</div>

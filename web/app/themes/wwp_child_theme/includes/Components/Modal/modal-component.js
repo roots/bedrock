@@ -1,8 +1,3 @@
-import {Modal} from "../../../styleguide/js/components/modal";
+import {Modal} from "../../../styleguide/js/components/modal/modal";
 
-export const ModalSelector = '.wdf-modal';
-
-export class ModalComponent extends Modal {
-
-}
-window.pew.addRegistryEntry({key: 'wdf-modal', domSelector: ModalSelector, classDef: ModalComponent});
+window.pew.addRegistryEntry({key: 'wdf-modal', domSelector: '.wdf-modal', classDef: Modal});

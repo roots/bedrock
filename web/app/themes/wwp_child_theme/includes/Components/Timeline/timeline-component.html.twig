@@ -1,7 +1,7 @@
-<ul class="timeline {{ class }}">
+<ul class="timeline timeline--{{ class }}">
   {% if timelineItems %}
-    {% for timelineItem in timelineItems %}
-      {{ timelineItem | raw }}
+    {% for sliderItem in timelineItems %}
+      {{ sliderItem | raw }}
     {% endfor %}
-  {% endif %}
+  {% endif  %}
 </ul>

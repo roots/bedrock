@@ -9,9 +9,12 @@
 namespace WonderWp\Theme\Child\Service;
 
 use WonderWp\Theme\Child\Components\Card\CardComponent;
+use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\Modal\ModalComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderItem\SliderItem;
+use WonderWp\Theme\Child\Components\Tabs\TabsComponent;
+use WonderWp\Theme\Child\Components\Tabs\TabItem\TabItem;
 use WonderWp\Theme\Child\Components\Timeline\TimelineComponent;
 use WonderWp\Theme\Child\Components\Timeline\TimelineItem\TimelineItem;
 use WonderWp\Theme\Core\Service\ThemeShortcodeService;
@@ -29,6 +32,9 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         add_shortcode ('card', [$this, 'card']);
         add_shortcode ('timeline', [$this, 'timeline']);
         add_shortcode ('timeline-item', [$this, 'timelineitem']);
+        add_shortcode('dropdown', [$this, 'dropdown']);
+        add_shortcode('tabs', [$this, 'tabs']);
+        add_shortcode('tab-item', [$this, 'tabitem']);
 
         return $this;
     }
@@ -64,36 +70,6 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         return $slideritem->getMarkup();
     }
 
-    // Timeline wrapper
-    public function timeline($attr, $content)
-    {
-        $timeline = new TimelineComponent();
-        $timeline->fillWith($attr);
-
-        $timelineItems = [];
-
-        $shortcodes = $this->extractShortcodes($content, 'timeline-item');
-        foreach ($shortcodes as $shortcode) {
-            array_push($timelineItems, do_shortcode($shortcode)); // push timeline item markup to timeline component
-        }
-        $timeline->timelineItems = $timelineItems;
-
-        return $timeline->getMarkup();
-    }
-
-    // Timeline item
-    public function timelineitem($attr, $content)
-    {
-        $timelineitem = new TimelineItem();
-        $timelineitem->fillWith ($attr);
-
-        if (isset($content) && !empty($content)) {
-            $timelineitem->content = $content;
-        }
-
-        return $timelineitem->getMarkup();
-    }
-
     // Modale
     public function modal($attr, $content) {
         $modal = new ModalComponent();
@@ -114,4 +90,81 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         return $card->getMarkup();
     }
 
+    // Timeline wrapper
+    public function timeline($attr, $content)
+    {
+        $timeline = new TimelineComponent();
+        $timeline->fillWith($attr);
+
+        $timelineItems = [];
+
+        $shortcodes = $this->extractShortcodes($content, 'timeline-item');
+        foreach ($shortcodes as $shortcode) {
+            array_push($timelineItems, do_shortcode($shortcode));
+        }
+        $timeline->timelineItems = $timelineItems;
+
+        return $timeline->getMarkup();
+    }
+    // Timeline item
+    public function timelineitem($attr)
+    {
+        $timelineitem = new TimelineItem();
+        $timelineitem->fillWith($attr);
+
+        return $timelineitem->getMarkup ();
+    }
+
+
+    public function dropdown($attr) {
+        $modal = new DropdownComponent();
+        $modal->fillWith($attr);
+
+        return $modal->getMarkup();
+    }
+
+    public function tabs($attr, $content) {
+        $tab = new TabsComponent();
+
+        $nbTabs = $attr['nbtabs'];
+        $tabItems = [];
+
+        $shortcodes = $this->extractShortcodes($content, 'tab-item');
+
+
+        for($i = 1; $i <= $nbTabs; $i++) {
+            $tabItems[$i]['markup'] = do_shortcode($shortcodes[$i - 1]);
+            $tabItems[$i]['title'] = $attr['title_'.$i];
+        }
+        $tab->tabItems = $tabItems;
+
+
+        return $tab->getMarkup();
+    }
+
+    public function tabitem($attr, $content) {
+        $tabitem = new TabItem();
+        $tabitem->fillWith($attr);
+
+        if (isset($content) && !empty($content)) {
+            $tabitem->content = $content;
+        }
+
+        return $tabitem->getMarkup();
+    }
+
+    public static function extractShortcode($content, $element) {
+        $results = [];
+
+        $pattern = get_shortcode_regex();
+
+        if (   preg_match_all( '/'. $pattern .'/s', $content, $matches )
+            && array_key_exists( 2, $matches )
+            && in_array( $element, $matches[2] ) )
+        {
+            $results = $matches[0];
+        }
+
+        return $results;
+    }
 }

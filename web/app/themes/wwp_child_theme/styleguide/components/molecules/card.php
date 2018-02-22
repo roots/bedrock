@@ -1,8 +1,7 @@
 <!--components/molecules/card.php-->
-<span class="subTitle">Bloc de contenu polyvalent utilisé notamment pour créer des Call to Action.
-  <br> Peut contenir des titre, texte, image, bouton et lien (attributs du shortcode disponibles : "title", "text", "img", "link", "button" et "class").
-  <br> Les classes fonctionnelles suivantes permettent de modifier son apparence : "negative", "reverse", "two-cols", "inline" (ex : class="negative").
-  <br> On peut intervenir sur la couleur dominante des textes ou du fond avec les attributs du shortcode : "color" et "background"</span>
+<p class="subTitle">Bloc de contenu polyvalent utilisé notamment pour créer des Call to Action.</p>
+<p> Peut contenir des titre, texte, image, bouton et lien (attributs du shortcode disponibles : "title", "text", "img", "link", "button" et "class"). Les classes fonctionnelles suivantes permettent de modifier son apparence : "negative", "reverse", "two-cols", "inline" (ex : class="negative"). On peut intervenir sur la couleur dominante des textes ou du fond avec les attributs du shortcode : "color" et "background"</p>
+
 <code>[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor(…)" image="http://via.placeholder.com/350x150" link="/une-page" button="Découvrir" color="blue" background="blue" class="reverse negative "]</code>
 
 
