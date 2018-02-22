@@ -15,7 +15,7 @@ class TimelineItem extends TwigComponent
 
     protected $date;
     protected $text;
-    protected $image;
+    protected $img;
     protected $alt;
 
     public function __construct()

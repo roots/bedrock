@@ -5,7 +5,7 @@
 <code>[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor(…)" image="http://via.placeholder.com/350x150" link="/une-page" button="Découvrir" color="blue" background="blue" class="reverse negative "]</code>
 
 
-<div class="grid-3 has-gutter-xl">
+<div class="grid-3-small-2 has-gutter-xl">
     <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir"]'); ?>
     <?php echo do_shortcode ('[card title="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir" class="negative"]'); ?>
     <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." img="http://via.placeholder.com/350x220" link="/une-page" button="Découvrir" class="reverse"]'); ?>
