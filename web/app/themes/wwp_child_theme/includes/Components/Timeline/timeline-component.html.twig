@@ -1,11 +1,7 @@
-<li>
-  <a href="">
-    <span class="date">{{ date }}</span>
-    <span class="text">{{ text }}</span>
-    {{% if image %}}
-      <div class="image-wrapper"><img src="{{ image }}" alt="{{ alt }}"></div>
-    {{% endif %}}
-    <span class="alt">{{ alt }}</span>
-  </a>
-</li>
-
+<ul class="timeline timeline--{{ class }}">
+  {% if timelineItems %}
+    {% for sliderItem in timelineItems %}
+      {{ sliderItem | raw }}
+    {% endfor %}
+  {% endif  %}
+</ul>

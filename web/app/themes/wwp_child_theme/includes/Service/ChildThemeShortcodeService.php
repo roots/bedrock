@@ -15,6 +15,8 @@ use WonderWp\Theme\Child\Components\Slider\SliderComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderItem\SliderItem;
 use WonderWp\Theme\Child\Components\Tabs\TabsComponent;
 use WonderWp\Theme\Child\Components\Tabs\TabItem\TabItem;
+use WonderWp\Theme\Child\Components\Timeline\TimelineComponent;
+use WonderWp\Theme\Child\Components\Timeline\TimelineItem\TimelineItem;
 use WonderWp\Theme\Core\Service\ThemeShortcodeService;
 
 class ChildThemeShortcodeService extends ThemeShortcodeService
@@ -29,6 +31,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         add_shortcode('modal', [$this, 'modal']);
         add_shortcode ('card', [$this, 'card']);
         add_shortcode ('timeline', [$this, 'timeline']);
+        add_shortcode ('timeline-item', [$this, 'timelineitem']);
         add_shortcode('dropdown', [$this, 'dropdown']);
         add_shortcode('tabs', [$this, 'tabs']);
         add_shortcode('tab-item', [$this, 'tabitem']);
@@ -39,7 +42,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
     // Slider wrapper
     public function slider($attr, $content)
     {
-        $slider      = new SliderComponent();
+        $slider = new SliderComponent();
         $slider->fillWith($attr);
 
         $sliderItems = [];
@@ -88,30 +91,29 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
     }
 
     // Timeline wrapper
-/*    public function timeline($attr, $content)
+    public function timeline($attr, $content)
     {
-        $timeline = new TimelineComp
+        $timeline = new TimelineComponent();
+        $timeline->fillWith($attr);
 
-        $timeline->setItemsMarkup (do_shortcode($content));
+        $timelineItems = [];
 
-        $opts = [];
-
-        if (!empty($attr['type'])) {
-            $opts['classes'] = ['timeline-' . $attr['type']];
+        $shortcodes = $this->extractShortcodes($content, 'timeline-item');
+        foreach ($shortcodes as $shortcode) {
+            array_push($timelineItems, do_shortcode($shortcode));
         }
+        $timeline->timelineItems = $timelineItems;
 
-        return $timeline->getMarkup ($opts);
+        return $timeline->getMarkup();
     }
     // Timeline item
-    public function timelineItem($attr)
+    public function timelineitem($attr)
     {
-        $timelineItem = new TimelineItemComponent();
-        $timelineItem->fillWith ($attr);
+        $timelineitem = new TimelineItem();
+        $timelineitem->fillWith($attr);
 
-        return $timelineItem->getMarkup ();
-    }*/
-
-
+        return $timelineitem->getMarkup ();
+    }
 
 
     public function dropdown($attr) {

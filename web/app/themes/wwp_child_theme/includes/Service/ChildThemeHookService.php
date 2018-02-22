@@ -9,6 +9,7 @@
 namespace WonderWp\Theme\Child\Service;
 
 
+use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\Service\ThemeHookService;
 
@@ -47,7 +48,7 @@ class ChildThemeHookService extends ThemeHookService
         $templates['notification'] = NotificationComponent::$template;
 
         //Loaders
-        $loaderComp = new \WonderWp\Theme\Components\Loadercomponent();
+        $loaderComp = new Loadercomponent();
         $templates['loaders'] = $loaderComp->getTemplates();
 
         echo'<script type="content/json" id="jsTemplates">'.json_encode($templates).'</script>';
