@@ -15,7 +15,7 @@
 <?php do_action('wwp_before_footer'); ?>
 
 <footer id="colophon" class="site-footer">
-    <div class="maxi-size">
+    <div class="footer-content">
         <?php wp_nav_menu(['theme_location' => 'footer-menu']); ?>
     </div><!-- .site-info -->
 </footer><!-- .site-footer -->

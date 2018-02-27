@@ -1,26 +1,28 @@
-/*scss/base/_fonts.scss*/
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Fonts      */
+/* ----------------------------- */
 
-$font1: 'Open Sans', sans-serif;
-$font2: 'Montserrat', sans-serif;
+/* Fonts example (defined in variables.scss file) */
 
-body{
-  font-family:$font1;
+.font {
+    font-weight: normal;
+    margin-top: 0;
+    span {
+        display: block;
+    }
 }
 
-.font{
-  font-weight:normal;
-  margin-top:0;
-  color: #6B6B6B;
-  span{
-    display:block;
-  }
+.font1 {
+    font-family: $font-family-base;
 }
 
-.font1{
-  font-family: $font1;
+.font2 {
+    font-family: $font-family-headings;
 }
-.font2{
-  font-family: $font2;
+
+.font3 {
+    font-family: $font-family-secondary;
 }
 
 
