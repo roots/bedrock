@@ -1,5 +1,7 @@
 <!--components/base/containers.php-->
 
+<p>Les tailles des différents container sont définies dans le fichier variables.scss</p>
+
 <div class="container-xs">Largeur réduite ($medium - 768px de large)</div>
 
 <div class="container-s">Largeur moyenne ($large - 992px de large)</div>
