@@ -1,13 +1,18 @@
-/*scss/molecules/_pagination.scss*/
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Pagination      */
+/* ----------------------------- */
 
-.pagination{
+/* Colors example (defined in variables.scss file) */
+
+.pagination {
     padding: 6rem 0;
     text-align: center;
-    li{
+    li {
         display: inline-block;
         margin: 0 .5rem;
     }
-    li > a{
+    li > a {
         padding: 6px 11px 5px 11px;
         color: $pink;
         background: #fff;
@@ -15,11 +20,11 @@
         border-radius: 50%;
         transition: all 0.3s ease;
     }
-    li > a:hover, li > a:focus{
+    li > a:hover, li > a:focus {
         color: #fff;
         background: $mediumgrey;
     }
-    li.select > a{
+    li.select > a {
         color: #fff;
         background: $pink;
     }
