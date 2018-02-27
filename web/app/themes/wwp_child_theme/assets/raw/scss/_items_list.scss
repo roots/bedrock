@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Items lists generic styles      */
+/* ----------------------------- */
+
+/* Filters */
+/* ------------- */
+.has-filters {
+
+}
+
+.items-filters {
+    margin-bottom: 4rem;
+
+    form {
+        @include grid(2, 1rem);
+        padding: 4rem 4rem 2rem 4rem;
+        background-color: $gray-200;
+    }
+
+    .submitFormField {
+        grid-column: auto/span 2;
+        text-align: center;
+    }
+}
