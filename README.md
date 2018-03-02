@@ -4,12 +4,57 @@ Created using Wordpress and [Bedrock](https://roots.io/bedrock/).
 All plugins and themes can be installed using composer.
 
 ## Requirements
+#### Docker
+* PHP >= 5.6
+* Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+* Docker - [Install](https://docs.docker.com/install/)
+* Docker compose - [Install](https://docs.docker.com/compose/install/)
 
+#### Local server
 * PHP >= 5.6
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 * WP-CLI - [Install](http://wp-cli.org/#installing)
 
 ## Installation
+#### Docker
+
+1. Clone this repo:
+
+    `git clone git@github.com:pdffiller/blog.git`
+  
+2. Install Wordpress, plugins and themes by composer.
+
+    `composer install`
+  
+3. Run:
+
+    `sudo docker-compose up`
+  
+    Makes sure it works [http://localhost:8081](http://localhost:8081)
+  
+4. Put MySQL dump into your local server.
+
+   Use pre-installed Adminer - [http://localhost:8082](http://localhost:8082)
+   
+   Or [install](https://www.adminer.org/#download) your own
+
+   Connection data(according to docker-compose.yml):
+
+    * Server - database-wp.dev
+    * User - admin
+    * Password - admin
+    * Database  - wp_blog
+
+   If you need console. Run:
+
+       sudo docker ps -a
+       sudo docker exec -it <CONTAINER_ID>/bin/sh
+    
+5. [Login](http://localhost:8081/wp/wp-login.php) using existed admin credentials, create your own admin user. 
+Go to "Plugins" and deactivate "WP Force SSL" plugin, because built in php server can't work trough HTTPS
+
+
+#### Local server
 
 1. Clone this repo:
 

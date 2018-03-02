@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "8081:80"
+    volumes:
+     - .:/app
+
+  mysql:
+    image: "mysql:5"
+    container_name: database-wp.dev
+    ports:
+     - "3306:3306"
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: wp_blog
+      MYSQL_ROOT_PASSWORD: root
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8082:8080
