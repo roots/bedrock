@@ -9,10 +9,10 @@ export class FormManager extends PewComponent {
         super(element);
     }
     init() {
-        this.addDefaultValidators();
+        this.setDefaultValidators();
+        this.setDefaultInputStyles();
         this.addCustomValidators();
-        this.improveSelect();
-        this.improveDateInput();
+
         this.validate();
     }
     addCustomValidators() {}
@@ -53,10 +53,14 @@ export class FormManager extends PewComponent {
             rules: this.rules
         });
     }
-    addDefaultValidators() {
+    setDefaultValidators() {
         this.addValidatorPhone();
         this.addValidatorDateFr();
         this.setCustomMessages();
+    }
+    setDefaultInputStyles() {
+        this.improveSelectInput();
+        this.improveDateInput();
     }
     addValidatorPhone() {
         $.validator.addMethod(
@@ -89,7 +93,7 @@ export class FormManager extends PewComponent {
         });
     }
 
-    improveSelect() {
+    improveSelectInput() {
         let select = this.element.find('select');
         select.each((index, item) => {
 
@@ -114,7 +118,7 @@ export class FormManager extends PewComponent {
     }
 }
 
-window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.validate-form', classDef: FormManager});
+window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.wdf-form', classDef: FormManager});
 
 /*
 Override example to use wherever you want :
