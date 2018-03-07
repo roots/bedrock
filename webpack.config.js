@@ -30,8 +30,8 @@ const commonChunk = new webpack.optimize.CommonsChunkPlugin({
 });
 
 const providePlugin = new webpack.ProvidePlugin({
-    $: 'jquery/dist/jquery.min',
-    jQuery: 'jquery/dist/jquery.min'
+    $: 'jquery',
+    jQuery: 'jquery'
 });
 
 const entry = getAssetsEntries();
@@ -77,13 +77,18 @@ module.exports = {
         cleanWebpack,
         versionFile,
     ],
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    },
     target: 'web'
 };
 
 
 function getAssetsEntries() {
     let jsAssets = Object.keys(assets.js);
-    let entry = {'js/vendor': "jquery/dist/jquery.min"};
+    let entry = {};
 
     jsAssets.forEach((key) => {
         let attr = 'js/'+key;
