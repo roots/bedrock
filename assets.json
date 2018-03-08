@@ -9,6 +9,10 @@
     "env": "development"
   },
   "css": {
+    "styleguide": [
+      ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/scss\/theme.scss",
+      ".\/web\/app\/plugins\/wwp-newsletter\/\/public\/css\/newsletter.scss"
+    ],
     "app": [
       ".\/web\/app\/plugins\/wwp-social\/\/public\/scss\/_social-wall.scss"
     ],
@@ -28,11 +32,6 @@
       ".\/web\/app\/plugins\/wwp-jeux\/\/public\/css\/import-es6.scss",
       ".\/web\/app\/plugins\/wwp-map\/\/public\/scss\/_map.scss",
       ".\/web\/app\/plugins\/wwp-vote\/\/public\/css\/import-es6.scss"
-    ],
-    "styleguide": [
-      ".\/web\/app\/themes\/wwp_child_theme\/styleguide\/scss\/main.scss",
-      ".\/web\/app\/plugins\/wwp-newsletter\/\/public\/css\/newsletter.scss",
-      ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/scss\/theme.scss"
     ]
   },
   "js": {
@@ -83,6 +82,9 @@
     ],
     "bootstrap": [
       ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/js\/app_init.js"
+    ],
+    "critical": [
+      ".\/critical\/critical.js"
     ]
   }
 }

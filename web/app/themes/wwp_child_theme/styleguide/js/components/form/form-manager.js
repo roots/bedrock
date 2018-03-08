@@ -3,6 +3,7 @@ import {PewComponent} from "../pew-component";
 import "selectric";
 import "pikaday/plugins/pikaday.jquery";
 
+
 // Do not modify this class for child theme customization reasons. See inheritance example below instead.
 export class FormManager extends PewComponent {
     constructor(element) {
