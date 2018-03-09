@@ -1,16 +1,5 @@
 <?php
-/**
- *
- * Plugin Name: Lazy Load
- * Description: Lazy load images to improve page load times. Uses jQuery.sonar to only load an image when it's visible in the viewport.
- * Version: 0.6.1
- * Text Domain: lazy-load
- *
- * Code by the WordPress.com VIP team, TechCrunch 2011 Redesign team, and Jake Goldman (10up LLC).
- * Uses jQuery.sonar by Dave Artz (AOL): http://www.artzstudio.com/files/jquery-boston-2010/jquery.sonar/ 
- *
- * License: GPL2
- */
+
 
 if ( ! class_exists( 'LazyLoad_Images' ) ) :
 
@@ -39,8 +28,8 @@ class LazyLoad_Images {
 	}
 
 	static function add_scripts() {
-		wp_enqueue_script( 'wpcom-lazy-load-images',  self::get_url( 'js/lazy-load.js' ), array( 'jquery', 'jquery-sonar' ), self::version, true );
-		wp_enqueue_script( 'jquery-sonar', self::get_url( 'js/jquery.sonar.min.js' ), array( 'jquery' ), self::version, true );
+	//	wp_enqueue_script( 'wpcom-lazy-load-images',  self::get_url( 'js/lazy-load.js' ), array( 'jquery', 'jquery-sonar' ), self::version, true );
+	//	wp_enqueue_script( 'jquery-sonar', self::get_url( 'js/jquery.sonar.min.js' ), array( 'jquery' ), self::version, true );
 	}
 
 	static function add_image_placeholders( $content ) {
@@ -52,7 +41,7 @@ class LazyLoad_Images {
 			return $content;
 
 		// Don't lazy-load if the content has already been run through previously
-		if ( false !== strpos( $content, 'data-lazy-src' ) )
+		if ( false !== strpos( $content, 'data-src' ) )
 			return $content;
 
 		// This is a pretty simple regex, but it works
@@ -76,11 +65,13 @@ class LazyLoad_Images {
 
 		// Remove src and lazy-src since we manually add them
 		$new_attributes = $old_attributes;
-		unset( $new_attributes['src'], $new_attributes['data-lazy-src'] );
+		unset( $new_attributes['src'], $new_attributes['data-src'] );
 
 		$new_attributes_str = self::build_attributes_string( $new_attributes );
 
-		return sprintf( '<img src="%1$s" data-lazy-src="%2$s" %3$s><noscript>%4$s</noscript>', esc_url( $placeholder_image ), esc_url( $image_src ), $new_attributes_str, $matches[0] );
+		// could use %3$s to generate data-srcset as well !
+		// return sprintf( '<img src="%1$s" data-src="%2$s" %3$s><noscript>%4$s</noscript>', esc_url( $placeholder_image ), esc_url( $image_src ), $new_attributes_str, $matches[0] );
+		return sprintf( '<img src="%1$s" data-src="%2$s"><noscript>%4    $s</noscript>', esc_url( $placeholder_image ), esc_url( $image_src ), $new_attributes_str, $matches[0] );
 	}
 
 	private static function build_attributes_string( $attributes ) {
