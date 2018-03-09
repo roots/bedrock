@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const VersionFile = require('webpack-version-file');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let assetsFile = './assets.json';
 let assets = require(assetsFile);
@@ -30,9 +31,16 @@ const commonChunk = new webpack.optimize.CommonsChunkPlugin({
 });
 
 const providePlugin = new webpack.ProvidePlugin({
-    $: 'jquery/dist/jquery.min',
-    jQuery: 'jquery/dist/jquery.min'
+    $: 'jquery',
+    jQuery: 'jquery'
 });
+
+const copyPlugin = new CopyWebpackPlugin([
+    {
+        from: 'critical/critical.js',
+        to: path.resolve(__dirname,buildDir + '/js/critical'+ versionNum + '.js' )
+    }
+]);
 
 const entry = getAssetsEntries();
 
@@ -43,7 +51,9 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules(?!\/pewjs)/,
+                exclude: [
+                    /node_modules(?!\/pewjs)/,
+                ],
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -71,29 +81,39 @@ module.exports = {
         path: path.resolve(__dirname,buildDir )
     },
     plugins: [
+        copyPlugin,
         providePlugin,
         commonChunk,
         extractSass,
         cleanWebpack,
         versionFile,
+
     ],
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    },
     target: 'web'
 };
 
 
 function getAssetsEntries() {
     let jsAssets = Object.keys(assets.js);
-    let entry = {'js/vendor': "jquery/dist/jquery.min"};
+    let entry = {};
 
     jsAssets.forEach((key) => {
-        let attr = 'js/'+key;
-        entry[attr] = assets.js[key];
+        if(key !== 'critical') { // critical.js is manually copied in dist
+            let attr = 'js/'+key;
+            entry[attr] = assets.js[key];
+        }
     });
-    let cssAssets = Object.keys(assets.css);
 
+    let cssAssets = Object.keys(assets.css);
     cssAssets.forEach((key) => {
         let attr = 'css/'+key;
         entry[attr] = assets.css[key];
     });
+
     return entry;
 }

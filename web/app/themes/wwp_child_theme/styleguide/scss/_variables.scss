@@ -20,9 +20,10 @@ $extra-extra-large  : 1440px !default; // .container-xl
 // ----------
 
 // Font families
-$font-family-base      : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default; // system font stack
-$font-family-headings  : sans-serif !default; // font for h1, h2.. h6
-$font-family-monospace : consolas, courier, monospace !default; // font for code and samples
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700|Work+Sans:400,500,600,900|Comfortaa:400,700');
+$font-family-base: 'Work Sans', sans-serif;
+$font-family-headings: 'Roboto Slab', serif;
+$font-family-secondary: 'Comfortaa', cursive;
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : 1.6rem !default;
@@ -136,18 +137,18 @@ $orange-500 : #F0AD4E !default;
 $red-500    : #D9534F !default;
 
 // Semantic colors
+$color-base      : $gray-900;
+$background-base : $white;
+
 $color-brand    : $green-500;
 $color-primary  : $blue-500;
 $color-success  : $green-500;
 $color-info     : $blue-300;
 $color-warning  : $orange-500;
-$color-danger   : $red-500;
+$color-error    : $red-500;
 $color-inverse  : $gray-800;
 $color-ghost    : transparent;
 $color-muted    : $gray-200;
-
-$color-base      : $gray-900;
-$background-base : $white;
 
 $forms-color     : $gray-800;
 
@@ -194,7 +195,7 @@ $variants-list: (
         (success,    $color-success,    $white,    none),
         (info,       $color-info,       $black,    none),
         (warning,    $color-warning,    $black,    none),
-        (danger,     $color-danger,     $white,    none),
+        (error,      $color-error,      $white,    none),
         (inverse,    $color-inverse,    $white,    none),
         (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
 ) !default;

@@ -1,31 +1,31 @@
 <div class="aa_fileFormGroup">
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Rename</span> mixins</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Rename</span> images</label>
 <div class="showHide">
   <form id="form-rename-file"  class="aa_fileForm " action="/atomic-core/partial-mngr/file-rename.php" method="post">
       <div class="formInputGroup">
         <div class="inputBtnGroup">
           
           <button class="aa_btn aa_btn-pos" type="submit" >Rename</button>
-          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="renameFileName" value="mixins" required></div>
+          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="renameFileName" value="images" required></div>
         </div>     
       </div>
       <input type="hidden" name="compDir" value="base"/>
       <input type="hidden" name="rename" value="rename"/>
-      <input type="hidden" name="oldName" value="mixins"/>
+      <input type="hidden" name="oldName" value="images"/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">description</span> for mixins</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">description</span> for images</label>
 <div class="showHide">
    <form id="form-rename-notes"  class="aa_fileForm " action="/atomic-core/partial-mngr/notes-rename.php" method="post">
         <textarea class="form-control" name="compNotesNew"></textarea>        
         <button class="aa_btn aa_btn-pos" type="submit" >Update</button>
       <input type="hidden" name="compDir" value="base"/>
-      <input type="hidden" name="fileName" value="mixins"/>
+      <input type="hidden" name="fileName" value="images"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">contextual background color</span> for mixins</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> Change the <span class="aa_label__file">contextual background color</span> for images</label>
 <div class="showHide">
    <form id="form-change-bgColor"  class="aa_fileForm " action="/atomic-core/partial-mngr/bgcolor-rename.php" method="post">
         
@@ -34,12 +34,12 @@
         </div>      
         <button class="aa_btn aa_btn-pos" type="submit" >Update</button>
       <input type="hidden" name="compDir" value="base"/>
-      <input type="hidden" name="fileName" value="mixins"/>
+      <input type="hidden" name="fileName" value="images"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Move</span>  mixins</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Move</span>  images</label>
 <div class="showHide">
   <form id="form-file-move" class="aa_fileForm " action="/atomic-core/partial-mngr/file-move.php" method="post">
       <div class="formGroup">
@@ -69,19 +69,19 @@
         </div>
       </div>
       <input type="hidden" name="compDir" value="base"/>
-      <input type="hidden" name="fileMoveName" value="mixins"/>
+      <input type="hidden" name="fileMoveName" value="images"/>
       <input type="hidden" name="moveFile" value="moveFile"/>
       <input type="hidden" name="compNotes" value=""/>
       <input type="hidden" name="bgColor" value=""/>
     </form>
 </div>
-<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Delete</span> mixins</label>
+<label class="aa_label js-showHide-trigger"><span class="fa fa-plus"></span> <span class="aa_label__file">Delete</span> images</label>
 <div class="showHide">
     <form id="form-delete-file" class="aa_fileForm " action="/atomic-core/partial-mngr/delete.php" method="post">
       <div class="formInputGroup">
         <div class="inputBtnGroup">
           <button class="aa_btn aa_btn-neg" type="submit" >Delete</button>
-          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="deleteFileName" placeholder="Must type mixins to delete"></div>
+          <div class="inputBtnGroup__inputWrap"><input type="text" class="form-control" name="deleteFileName" placeholder="Must type images to delete"></div>
         </div>  
       </div>
       <input type="hidden" name="compDir" value="base"/>

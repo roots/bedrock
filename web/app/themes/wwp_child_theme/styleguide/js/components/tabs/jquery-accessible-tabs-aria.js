@@ -8,13 +8,9 @@ export class JQueryAccessibleTabsAria {
         // Store current URL hash.
         var hash = window.location.hash.replace("#", "");
 
-        console.log($tabs.length);
-
         if ($tabs.length) {
 
             var $tab_list = $tabs.find(".js-tablist");
-
-            console.log($tab_list);
 
             $tab_list.each(function () {
                 var $this_tab_list = $(this),

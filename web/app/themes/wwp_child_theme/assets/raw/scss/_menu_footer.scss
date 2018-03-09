@@ -1,7 +1,13 @@
 @charset "UTF-8";
-/**
- *	Footer
- */
+/* ----------------------------- */
+/* ==Footer menu      */
+/* ----------------------------- */
+
+/* Colors */
+/* ------------- */
+$list-item-color-active: $white;
+$list-item-bgcolor-active: $gray-600;
+/* ------------- */
 
 .site-footer .menu ul {
     display: flex;
@@ -34,6 +40,10 @@
     li:hover > ul.children,
     li:focus > ul.children {
         display: flex;
+
+        > a {
+            text-decoration: underline;
+        }
     }
 
     @media (max-width: $medium - 1) {

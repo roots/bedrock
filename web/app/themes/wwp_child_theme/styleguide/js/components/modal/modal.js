@@ -5,7 +5,6 @@ import {PewComponent} from "../pew-component";
 const ModalOptions = {
     type: "inline",
     animation: "fade",
-    animation_speed: 300,
     after_callback_delay : 350,
     is_locked: false,
     hide_close: false,

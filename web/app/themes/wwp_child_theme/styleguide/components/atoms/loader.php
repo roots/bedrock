@@ -23,7 +23,7 @@ if(!empty($loadersTemplates)){ foreach($loadersTemplates as $tplName=>$loaderTem
 </button>
 
 <hr>
-<span class="subTitle">Add spinner on button form, when class "loading" is added to form tag</span>
+<p>Ajoute un spinner sur le bouton du formulaire quand la slasse "loading" "loading" est ajoutée sur la balise "form"</p>
 <form action="" class="loading">
   <button class="btn" type="button">
     Bouton avec loader
