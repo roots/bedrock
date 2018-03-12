@@ -1,6 +1,16 @@
 // Config file and project variables
 
 // ----------------
+// Defaut presentation - for demo sites (to override)
+// ----------------
+.site-content {
+    @extend .container;
+}
+.items-list {
+    @include grid(3, 4rem);
+}
+
+// ----------------
 // Breakpoints zone
 // ----------------
 
@@ -27,37 +37,6 @@ $font-family-secondary: 'Comfortaa', cursive;
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : 1.6rem !default;
-
-$font-sizes: (
-    base: (
-        mobile  : 1.4rem,
-        desktop : $font-size-base
-    ),
-    h1: (
-        mobile  : 2.8rem,
-        desktop : 3.2rem
-    ),
-    h2: (
-        mobile  : 2.4rem,
-        desktop : 2.8rem
-    ),
-    h3: (
-        mobile  : 2.0rem,
-        desktop : 2.4rem
-    ),
-    h4: (
-        mobile  : 1.8rem,
-        desktop : 2.0rem
-    ),
-    h5: (
-        mobile  : 1.6rem,
-        desktop : 1.8rem
-    ),
-    h6: (
-        mobile  : 1.4rem,
-        desktop : 1.6rem
-    )
-) !default;
 
 // Line heights
 $line-height-s    : 1.3 !default;
