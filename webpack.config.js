@@ -46,7 +46,7 @@ const entry = getAssetsEntries();
 
 module.exports = {
     entry: entry,
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -66,9 +66,14 @@ module.exports = {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [{
-                        loader: "css-loader?url=false"
+                        loader: "css-loader", options: {
+                            url: false,
+                            sourceMap: true
+                        }
                     }, {
-                        loader: "sass-loader", // compiles Sass to CSS
+                        loader: "sass-loader", options: {
+                            sourceMap: true
+                        }
                     }],
                     // use style-loader in development
                     fallback: "style-loader"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee51cc787c97afc92cf658b325f476a3",
+    "content-hash": "5a9f7cfd16c1ac249719c3fefaacf160",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -364,6 +364,38 @@
             ],
             "description": "Plugin wwp-jeux",
             "time": "2018-02-22T17:07:49+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-lazyload",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-lazyload.git",
+                "reference": "95fd2e6e621129960202765dd827b111e7391897"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-lazyload/zipball/95fd2e6e621129960202765dd827b111e7391897",
+                "reference": "95fd2e6e621129960202765dd827b111e7391897",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\LazyLoad\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "Plugin wwp-lazyload",
+            "time": "2018-03-12T09:13:09+00:00"
         },
         {
             "name": "agencewonderful/wwp-map",
@@ -5583,7 +5615,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cms-tree-page-view.zip?timestamp=1515248595",
+                "url": "https://downloads.wordpress.org/plugin/cms-tree-page-view.zip?timestamp=1508088610",
                 "reference": null,
                 "shasum": null
             },
@@ -5592,7 +5624,7 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/cms-tree-page-view/",
-            "time": "2018-01-06T14:23:15+00:00"
+            "time": "2017-10-15T18:30:10+00:00"
         }
     ],
     "packages-dev": [
@@ -6002,6 +6034,7 @@
         "agencewonderful/wwp-trombinoscope": 20,
         "agencewonderful/wwp-translator": 20,
         "agencewonderful/wwp-vote": 20,
+        "agencewonderful/wwp-lazyload": 20,
         "wpackagist-plugin/debug-bar": 20,
         "daux/daux.io": 20
     },
