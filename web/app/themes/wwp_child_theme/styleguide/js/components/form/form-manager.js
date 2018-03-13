@@ -27,7 +27,7 @@ export class FormManager extends PewComponent {
             'validator.message.regex': 'TOTOOTOT'
         };*/
 
-        let i18n = (window.wonderwp.i18n.validator) ? window.wonderwp.i18n.validator : null;
+        let i18n = (window.wonderwp.i18n && window.wonderwp.i18n.validator) ? window.wonderwp.i18n.validator : null;
         if(i18n) {
             let keys = Object.keys(i18n);
             let messages = {};
@@ -119,7 +119,8 @@ export class FormManager extends PewComponent {
     }
 }
 
-window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.wdf-form', classDef: FormManager});
+window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.wdf-form', classDef: FormManager}); // GENERIC VERSION
+window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.contactForm', classDef: FormManager});
 
 /*
 Override example to use wherever you want :

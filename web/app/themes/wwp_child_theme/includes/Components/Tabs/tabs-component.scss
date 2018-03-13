@@ -1,45 +1,52 @@
 /*scss/components/_tabs.scss*/
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Tabs      */
+/* ----------------------------- */
 
-.js-tabcontent[aria-hidden=true]{
-  display: none;
+/* Colors */
+/* ------------- */
+
+/* ------------- */
+
+.js-tabcontent[aria-hidden=true] {
+    display: none;
 }
 
 /* styles with JS */
-.js-tablist {
-  display: table;
-  padding-left: 0;
-  margin-bottom: 0;
-  margin-top: 0;
+ul.js-tablist {
+    @include grid(2, 1rem);
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    list-style: none;
 }
 
-.js-tablist__item {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
-  width: 20%;
-  text-align: center;
-  border-right: 4px solid #fff;
+li.js-tablist__item {
+    text-align: center;
+
+    > a {
+        line-height: 1.1;
+        display: block;
+        min-height: 3em;
+        padding: 0.9em .5em .5em .5em;
+        border-bottom: 0;
+        color: #fff;
+        background: $gray-700;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    > a:focus, > a:hover, > a:active, > a[aria-selected="true"] {
+        color: #000;
+        background: $gray-300;
+    }
+    > a:focus {
+        outline: 1px dotted;
+    }
 }
-.js-tablist__item > a {
-  line-height: 1.1;
-  display: block;
-  min-height: 3em;
-  padding: 0.9em .5em .5em .5em;
-  border-bottom: 0;
-  color: #fff;
-  background: $gray-700;
-  cursor: pointer;
-}
-.js-tablist__item > a{
-  &:focus, &:hover, &:active, &[aria-selected="true"]{
-    color: #000;
-    background: $gray-300;
-  }
-  &:focus {
-    outline: 1px dotted;
-  }
-}
+
 .js-tabcontent {
-  padding: 2em;
-  background: $gray-300;
+    padding: 2em;
+    background: $gray-300;
 }

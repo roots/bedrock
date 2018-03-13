@@ -1,6 +1,6 @@
 <!--components/components/slider.php-->
 
-<p class="subTitle">Attibuts disponibles : "title", "img", "link", "label", "content". l'attribut "class" sert à cibler le slider afin de définir des options spécifiques (développement).</p>
+<p class="subTitle">Attibuts disponibles : "title", "img", "link", "label", "content". <br>L'attribut "class" sert à cibler le slider afin de définir des options spécifiques (développement).</p>
 
 <code>[slider class="wdf-slider"][slider-item title="Titre de la première slide" img="https://placeimg.com/950/600/nature" link="/" label="En savoir plus" content="rem ipsum dolor sit amet (...)"][/slider]</code>
 <br>

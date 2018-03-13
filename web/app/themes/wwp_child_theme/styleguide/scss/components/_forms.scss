@@ -2,8 +2,12 @@
 
 /*@import "/node_modules/pikaday/css/pikaday.css";*/
 
+/* Colors */
+/* ------------- */
 $alert-error: #d32F2f !default;
 $alert-error-bg: #f2d0d0 !default;
+/* ------------- */
+
 
 /// Styles for Atomics
 #forms + p + .component {
@@ -19,86 +23,189 @@ form {
 
 form {
     padding: 2em;
-    background: $gray-200;
-    label {
-        font-family: $font-family-base;
-        font-weight: 300;
-        color: $color-base;
+
+    ul, ol {
+        list-style: none;
+        padding-left: 0;
     }
-    legend {
-        font-family: $font-family-base;
+
+    fieldset {
+        border: 1px solid #FFFFFF;
+    }
+
+    input, textarea {
+        width: 100%;
+        height: 70px;
+        min-height: 0;
+        padding: 2rem 3rem;
+        font-size: inherit;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: .2rem;
+        color: $color-base;
+        background-color: $gray-200;
+        border: none;
+    }
+
+    input {
+        padding-right: 5rem;
+    }
+    [type="color"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="email"],
+    [type="month"],
+    [type="number"],
+    [type="password"],
+    [type="search"],
+    [type="submit"],
+    [type="tel"],
+    [type="text"],
+    [type="time"],
+    [type="url"],
+    [type="week"],
+    select,
+    textarea {
+        box-shadow: none;
+    } // reset knacss
+    input[type=file] {
+        font-size: inherit;
+    }
+
+    label {
         font-weight: 400;
         color: $color-base;
     }
+
+    legend {
+        font-weight: 400;
+        color: $color-base;
+    }
+
+    ::placeholder {
+        font-size: 1.8rem;
+    }
+
     .btn {
         margin: 2rem 0;
+    }
+
+    @media (max-width: $medium - 1) {
+        input {
+            padding-right: 4.5rem;
+            padding-left: 2rem;
+        }
+        textarea {
+            min-height: 250px;
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
     }
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 2rem;
 }
 
-input:not(.btn), textarea {
-    display: block;
-    width: 100%;
-    height: 46px;
-    margin-top: 3px;
-    padding: 6px 12px;
-    line-height: 1.42857143;
-    font-family: $font-family-base;
-    font-weight: 600;
-    font-size: 1.4rem;
-    letter-spacing: .1rem;
-    background-color: #fff;
-    border: none;
-}
 
-input[type=file] {
-    display: block;
-}
-
+// Custom selects with Selectric
 .select-wrap {
     display: inline-block;
     width: auto;
-    margin: 1rem;
-    label {
-        @extend .visually-hidden;
+}
+.select-style {
+    label.error {
+        display: none;
     }
-    .select-style {
-        position: relative;
-        padding: 1rem;
-        background: #FFFFFF;
+}
+.selectric-wrapper {
+    position: relative;
+
+    .selectric {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        padding: 2rem 3rem;
+        color: $gray-400;
+        background-color: $gray-200;
+        border: none;
+
+        .label {
+            margin-left: 0;
+            font-size: 1.8rem;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: .2rem;
+        }
+    }
+
+    .selectric .button {
+        height: 100%;
+        width: 70px;
+        background-color: transparent;
+    }
+
+    .selectric .button::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid $gray-400;
+        pointer-events: none;
+    }
+
+    .selectric-items {
+        display: block;
+        width: 100%;
+        border: 0;
         overflow: hidden;
-        &:after {
-            content: '';
-            @include svgIcon('chevron-b-small-working-for-us');
-            position: absolute;
-            top: calc(50% - 15px);
-            right: 2rem;
-            pointer-events: none;
+        max-height: 0;
+        transition: .5s all 0.1s;
+        li {
+            display: flex;
+            align-items: center;
+            height: 55px;
+            margin-bottom: 0;
+            padding: 0 10px 0 27px;
+            font-size: 1.6rem;
+            line-height: 1.2;
+            background-color: $gray-100;
+            border-bottom: 2px solid #ffffff;
+            &::before {
+                content: none;
+            }
         }
-        select {
-            width: calc(100% + 3rem);
-            padding: 1.2rem 4rem 1.2rem 2rem;
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            background-image: none;
-            appearance: none;
+        li:hover, li:focus, li.highlighted {
+            background-color: $gray-400;
         }
     }
-}
 
-::placeholder {
-    font-family: $font-family-base;
-    font-weight: 300;
-    color: $color-base;
-}
+    &.selectric-open {
+        .selectric-items {
+            opacity: 1;
+            max-height: none;
+        }
+        .selectric-items li[data-index="0"] {
+            display: none;
+        }
+    }
 
-fieldset {
-    border: 1px solid #FFFFFF;
+    @media (max-width: $medium - 1) {
+
+        .selectric {
+            padding-left: 2rem;
+
+            .label {
+                margin-right: 1rem;
+            }
+
+            .button {
+                width: 45px;
+            }
+        }
+    }
 }
 
 // Custom radio + checkbox
@@ -130,7 +237,7 @@ fieldset {
         font-size: 30px;
         text-align: center;
         line-height: 23px;
-        color: $color-brand;
+        color: $gray-200;
     }
 }
 
@@ -147,11 +254,10 @@ fieldset {
 }
 
 //Submit button
-.submitFormField {
-    display: inline-block;
-    .btn {
-        @extend .btn--primary;
-    }
+button[type="submit"] {
+    @extend .btn--primary;
+    height: 70px;
+    padding: 2rem 4rem;
 }
 
 // Hidden labels
@@ -193,13 +299,23 @@ fieldset.inline {
     }
 }
 
-// Error messages
-
+// Error messages (More in styleguide/atoms/alert)
 input[type="text"]:required:valid,
 input[type="number"]:required:valid {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABGdBTUEAALGPC/xhBQAAAOFJREFUKBVjZCASzJmjrPP7z9+NDIyMKzLT71czEqMPrOnvv30M//+LgtQzMjOmMBHSiK4JqP47w1/ma2CNQEmVmTOV+NENwaaJmYnJLyPjznEmoAbvP3//Xf3////puXPVpWCacWlKS7u3B6SGccYMhSf/GRikwRwGxtusrGwOf/78Fv7H8H8vzE9Aue8gm2CaQGqZGBkZqoH0PxDnP8N/1V9/fh0kpAmkFhyq02cpJzD8+zsXyEcPLAybQJpAAB4dWDTj1ISiEcRB0vwT3U8gebxgxgwl59mzlY3xKgJKAgDWBHhtFDswJQAAAABJRU5ErkJggg==');
-    background-position: calc(100% - 1rem) center;
+    background-position: calc(100% - 2rem) center;
     background-repeat: no-repeat;
+}
+
+form {
+    label.error {
+        font-size: .9em;
+        font-style: italic;
+        color: $alert-error;
+    }
+    input.error {
+        background-color: $alert-error-bg;
+    }
 }
 
 .form-errors {
@@ -208,14 +324,14 @@ input[type="number"]:required:valid {
     font-size: 2rem;
     color: $alert-error;
     background-color: $alert-error-bg;
-    border-bottom: 4px solid $color-error;
+    border-bottom: 4px solid $alert-error;
 }
 
 .has-error {
     input {
-        border: 1px solid #f00;
+        border: 1px solid $alert-error;
     }
     .label-error {
-        color: $color-error;
+        color: $alert-error;
     }
 }

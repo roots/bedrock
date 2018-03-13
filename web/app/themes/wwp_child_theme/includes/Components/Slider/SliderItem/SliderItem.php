@@ -12,6 +12,7 @@ namespace WonderWp\Theme\Child\Components\Slider\SliderItem;
 use WonderWp\Theme\Core\Component\TwigComponent;
 
 class SliderItem extends TwigComponent
+
 {
     protected $img;
     protected $title;
