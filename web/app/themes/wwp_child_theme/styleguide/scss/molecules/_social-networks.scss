@@ -3,64 +3,54 @@
 /* ==Social networks      */
 /* ----------------------------- */
 
-/* Colors example (defined in variables.scss file) */
 
-/*ul.social-networks{
+ul.social-networks {
     padding-left: 0;
     list-style: none;
-    li{
+    li {
         display: inline-block;
-        padding: 10px;
-        text-indent: -9999em;
-        outline: 0;
-        position: relative;
-        background-color: $mediumgrey;
-    }
-    li.facebook > a{
-        display: block;
-        content: '';
-        @extend .svg-facebook;
-        @extend .svg-facebook-dims;
-        background-image: url("../../assets/final/svg/view/svg/sprite.view.svg") !important;
-    }
-}*/ // Cannot change icon's size
-
-ul.social-networks, ul.reseaux-sociaux{
-    padding-left: 0;
-    list-style: none;
-    li{
-        display: inline-block;
-        margin-right: 1rem;
+        height: 106px;
+        width: 106px;
+        margin-right: 2rem;
         text-indent: -9999em;
         outline: 0; // Hide text
     }
-    li > a{
+    li > a {
+        position: relative;
         display: block;
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-        fill: #fff;
-        background-color: $gray-300;
-        &:hover, &:focus{
-            background-color: $gray-700;
+        height: 100%;
+        border: 2px solid #000;
+        border-radius: 10px;
+        &::after {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            /*transform: scale(.6);*/
+            transform-origin: top left;
+        }
+        &:hover, &:focus {
+            opacity: .5;
         }
     }
-    li.facebook > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/facebook.svg");
+    li.facebook > a::after {
+        @include svgIcon('facebook');
     }
-    li.twitter > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/twitter.svg");
+    li.twitter > a::after {
+        @include svgIcon('twitter');
     }
-    li.youtube > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/youtube.svg");
+    li.youtube > a::after {
+        @include svgIcon('youtube');
     }
-    li.instagram > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/instagram.svg");
+    li.instagram > a::after {
+        @include svgIcon('instagram');
     }
-    li.pinterest > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/pinterest.svg");
+    li.pinterest > a::after {
+        @include svgIcon('pinterest');
     }
-    li.flickr > a{
-        content: url("/web/app/themes/wwp_child_theme/assets/raw/svg/flickr.svg");
+    li.flickr > a::after {
+        @include svgIcon('flickr');
     }
-} // Cannot custom fill color
+    li.linkedin > a::after {
+        @include svgIcon('linkedin');
+    }
+}
