@@ -1,16 +1,8 @@
 <!--components/components/slider.php-->
 
-<!--The following markup is generated using this shortcode :
+<p class="subTitle">Attibuts disponibles : "title", "img", "link", "label", "content". l'attribut "class" sert à cibler le slider afin de définir des options spécifiques (développement).</p>
 
-[slider]
-    [slider-item title="title 1" link="http://www.google.com"]
-    [slider-item title="title 2" link="http://www.google.com"]
-[/slider]
--->
+<code>[slider class="wdf-slider"][slider-item title="Titre de la première slide" img="https://placeimg.com/950/600/nature" link="/" label="En savoir plus" content="rem ipsum dolor sit amet (...)"][/slider]</code>
+<br>
 
-<?php
-
-
-echo do_shortcode('[slider class="wdf-slider"][slider-item title="title 1" link="http://www.google.com"][slider-item title="title 2" link="http://www.google.com"][/slider]');
-
-echo do_shortcode('[slider class="wdf-slider-content"][slider-item title="title 1" link="http://www.google.com"][slider-item title="title 2" link="http://www.google.com"][/slider]');
+<?php echo do_shortcode('[slider class="wdf-slider"][slider-item title="Titre de la première slide" img="https://placeimg.com/950/600/nature" link="/" label="En savoir plus" content="<p>Prem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"][slider-item title="Titre de la deuxième slide" img="https://placeimg.com/950/600/animals" link="/" label="En savoir plus" content="<p>Prem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"][/slider]'); ?>

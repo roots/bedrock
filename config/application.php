@@ -97,3 +97,4 @@ if (!defined('ABSPATH')) {
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
 //define("WWP_PLUGIN_JEUX_MANAGER",WonderWp\Plugin\Jeux\Child\JeuxThemeManager::class);
 //define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
+//define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);

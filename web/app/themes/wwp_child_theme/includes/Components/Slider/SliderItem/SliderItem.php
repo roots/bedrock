@@ -23,6 +23,7 @@ class SliderItem extends TwigComponent
     public function __construct()
     {
         parent::__construct(__DIR__, 'slider-item');
+
     }
 
 }

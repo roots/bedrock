@@ -1,94 +1,182 @@
 @import "~bxslider/dist/jquery.bxslider.css";
 
+/* ****************************************
+   GENERAL STYLES FOR ALL COMPASS SLIDERS
+******************************************* */
+
+/*Remove plugin styles*/
 .bx-wrapper {
+    margin-bottom: 0;
     box-shadow: none;
     border: none;
-    margin-bottom: 15rem;
-
-    .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
-        width: 100%;
-        text-align: center;
-
-    }
-    .bx-controls-direction {
-        display: none;
-    }
-    .bx-pager.bx-default-pager a {
-        background: lightblue;
-        margin-bottom: 2.5px;
-        &:hover {
-            background: black;
-        }
-        &:active, &:focus {
-            background: lightblue;
-        }
-    }
-    .bx-pager.bx-default-pager a.active {
-        margin-bottom: -1px;
-        width: 18px;
-        height: 18px;
-        background: white;
-        border: 2px solid lightblue;
-        border-radius: 100%;
-        &:hover {
-            border-color: black;
-        }
-    }
-
-/*    @media (max-width: $small-plus-screen) {
-        margin-bottom: 10rem;
-    }
-
-    @media (max-width: $small-screen) {
-        margin-bottom: 7rem;
-    }*/
-}
-
-.slider-img {
-    padding: 0 2rem;
+    background: transparent;
 
     img {
-        margin: auto;
+        min-width: 100%;
+        min-height: 100%;
     }
 }
 
-.slider-title {
-    /* Rencontres AIPALS: */
-    font-weight: 800;
-    font-size: 2.5rem;
-    color: black;
-    letter-spacing: 1.79px;
-    line-height: 30px;
-}
+/*General styles*/
+.bx-wrapper {
 
-.slider-place {
-    /* 15 février 2018 - Mo: */
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: orange;
-    letter-spacing: 4.12px;
-    line-height: 20px;
-    text-transform: uppercase;
-}
+    // Previous and next buttons
+    .bx-controls-direction a {
+        top: 50%;
+        transform: translateY(-50%) !important;
+        width: 38px;
+        height: 70px;
+        margin-top: 0 !important;
+    }
 
-.slider-content {
-    /* Comment inventer la: */
-    font-size: 1.4rem;
-    letter-spacing: 0;
-    line-height: 23px;
-    margin: 1.5rem 0;
-    width: 100%;
-}
+    .bx-prev, .bx-next {
+        background: none;
+        overflow: hidden;
+    }
 
-.slider-panel {
-    padding: 2rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    .bx-prev {
+        left: 2rem !important;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include svgIcon(chevron-l-grey);
+            transition: transform .4s;
+        }
+        &:hover::before, &:focus::before {
+            opacity: .5;
+        }
+    }
 
-/*    @media (max-width: $small-screen) {
+    .bx-next {
+        right: 2rem !important;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include svgIcon(chevron-r-grey);
+        }
+        &:hover::before, &:focus::before {
+            opacity: .5;
+        }
+
+    }
+
+    // Pager steps
+    .bx-pager {
+        position: absolute;
+        width: 100% !important;
+        text-align: center !important;
+        bottom: -4rem;
+
+        a.bx-pager-link {
+            margin: 0 1rem;
+            background-color: $color-base !important;
+            border: 1px solid $color-base;
+            transition: all .4s;
+
+            &:hover,
+            &:focus {
+                transform: scale(2);
+            }
+
+            &.active {
+                background-color: transparent !important;
+            }
+        }
+    }
+
+    // Play and pause buttons
+    .bx-controls-auto {
+        display: none;
+        right: 100px !important;
+        bottom: 2px;
+        width: 50px !important;
+
+        .bx-stop, .bx-start {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            margin: 0;
+            color: rgba(0, 0, 0, 0); // Hide text
+            border: none;
+            background: none;
+            overflow: hidden;
+            transition: all .4s;
+        }
+        .bx-stop::before {
+            @include svgIcon('pause');
+        }
+        .bx-start::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 11px solid rgba(0, 0, 0, 0);
+            border-bottom: 11px solid rgba(0, 0, 0, 0);
+            border-left: 16px solid $color-brand;
+            transition: all .4s;
+        }
+        .bx-stop:hover::before, .bx-stop:focus::before {
+            opacity: .5;
+        }
+        .bx-start:hover::before, .bx-start:focus::before {
+            border-left-color: $gray-100;
+        }
+    }
+
+    // Slide content
+    ul.bxslider {
+        li {
+            margin-bottom: 0;
+        }
+    }
+
+    .slider-img {
+        img {
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
+
+    .slider-panel {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        font-size: 5rem;
+        line-height: 1.2;
+        color: $white;
+        text-align: center;
+    }
+
+    .slider-title {
         margin-bottom: 3rem;
-    }*/
+    }
+
+    .slider-content {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        position: absolute;
+        bottom: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        @extend .btn--primary;
+        font-size: 1.8rem;
+    }
+
+    // Loader
+    .bx-loading {
+        background: url('#{$get-path-to-assets}/raw/images/bx-slider/bx_loader.gif') center center no-repeat #ffffff;
+    }
+
 }
