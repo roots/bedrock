@@ -14,6 +14,7 @@ $list-item-m0-color: $gray-600;
 
 ul#menu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     position: relative;
     width: 100%;
@@ -34,7 +35,6 @@ ul#menu {
     }
 
     li > a {
-        flex: 1;
         justify-content: center;
         display: inline-flex;
         color: $white;
@@ -68,6 +68,7 @@ ul#menu {
     li:hover > ul.children,
     li:focus > ul.children {
         display: flex;
+        flex-wrap: wrap;
     }
 
     ul.level1 {
