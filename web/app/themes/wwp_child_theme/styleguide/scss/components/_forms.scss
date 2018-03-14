@@ -268,15 +268,16 @@ form.no-label {
 }
 
 // Form inline (ie: newsletter form
-@media (min-width: 768px) {
+@media (min-width: $medium) {
     .form-inline {
+        display: flex;
+        align-items: center;
+
         .form-group {
-            display: inline-block;
             margin-right: 2rem;
             margin-bottom: 0;
         }
         label {
-            display: inline;
             margin-right: 1rem;
         }
         .form-control {

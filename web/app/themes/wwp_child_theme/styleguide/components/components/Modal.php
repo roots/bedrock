@@ -1,6 +1,6 @@
 <!--components/components/Modal.php-->
 
-<p class="subTitle">Le contenu ajouté dans les balises du shortcode sera affiché dans la modale. La valeur de l'iD sera définie par l'attribut "class".</p>
+<p class="subTitle">Le contenu ajouté dans les balises du shortcode sera affiché dans la modale. <br>L'attribut "class" sert à cibler la modale afin de définir des options spécifiques (développement).</p>
 
 <code>[modal class="wdf-modal-example"]Some content over here[/modal]</code>
 <br>
