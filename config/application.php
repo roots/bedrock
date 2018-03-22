@@ -90,7 +90,7 @@ define('BLOG_ID_CURRENT_SITE', 1);
 /**
  * Pressbooks Settings
  */
-define('PB_EPUBCHECK_COMMAND', '/usr/bin/epubcheck'); // Required because Pressbooks 3.9.6 defaults to an EpubCheck jarfile.
+define('PB_EPUBCHECK_COMMAND', '/usr/bin/java -jar /opt/epubcheck/epubcheck.jar');
 if (env('DOCRAPTOR_API_KEY')) {
     define('DOCRAPTOR_API_KEY', env('DOCRAPTOR_API_KEY'));
 }
