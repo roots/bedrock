@@ -13,9 +13,16 @@
     margin-bottom: 4rem;
 
     form {
-        @include grid(2, 1rem);
         padding: 4rem 4rem 2rem 4rem;
         background-color: $gray-200;
+    }
+
+    .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .field-group {
+        @extend .autogrid;
     }
 
     .submitFormField {

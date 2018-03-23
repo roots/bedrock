@@ -2,10 +2,18 @@
 
 /*@import "/node_modules/pikaday/css/pikaday.css";*/
 
-/* Colors */
+/* Variables */
 /* ------------- */
 $alert-error: #d32F2f !default;
 $alert-error-bg: #f2d0d0 !default;
+
+// Components: checkboxes, radios, switches
+$checkbox-color         : $gray-600 !important;
+$checkbox-size          : 3rem;
+$checkbox-border-radius : 0;
+$switch-color           : $gray-600;
+$switch-size            : 3rem;
+$switch-border-radius   : 3em;
 /* ------------- */
 
 
@@ -108,7 +116,7 @@ form {
 }
 
 
-// Custom selects with Selectric
+// Custom SELECT with Selectric
 .select-wrap {
     display: inline-block;
     width: auto;
@@ -208,52 +216,38 @@ form {
     }
 }
 
-// Custom radio + checkbox
-.radio-group .form-group, .checkbox-wrap {
-    display: inline-block;
+// Custom RADIO + CHECKBOX + SWITCH
+.switch-wrap,
+.checkbox-wrap,
+.radio-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.switch,
+.checkbox,
+.radio {
+    box-shadow: 0 0 0 1px $gray-600 inset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    ~ label {
+        margin-bottom: 0;
+    }
+}
+
+.checkbox,
+.radio {
+    width: $checkbox-size;
+    height: $checkbox-size;
     margin-right: 1rem;
-    input {
-        display: none;
-    }
-    label {
-        display: inline-block;
-        cursor: pointer;
-        position: relative;
-        padding-left: 28px;
-        margin-right: 15px;
-        font-size: 13px;
-    }
-    label:before {
-        content: "";
-        display: inline-block;
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        left: 0;
-        background-color: #FFFFFF;
-    }
-    input:checked + label:before {
-        content: "\2022";
-        font-size: 30px;
-        text-align: center;
-        line-height: 23px;
-        color: $gray-200;
+    transition: background-color .15s;
+    &:checked {
+        background-color: $checkbox-color;
     }
 }
 
-.radio-group .form-group {
-    margin-bottom: 0;
-    label:before {
-        border-radius: 50%;
-    }
-}
-
-.checkbox-wrap input:checked + label:before {
-    content: "\2714";
-    font-size: 15px;
-}
-
-//Submit button
+//SUBMIT button
 button[type="submit"] {
     @extend .btn--primary;
     height: 70px;
