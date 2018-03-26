@@ -11,17 +11,17 @@ let versionNum = new Date().getTime();
 let buildDir = assets.site.prefix + assets.site.assets_dest;
 
 const extractSass = new ExtractTextPlugin({
-    filename: '[name]'+versionNum+'.css'
+    filename: '[name]' + versionNum + '.css'
 });
 
 const cleanWebpack = new CleanWebpackPlugin([
-    buildDir+'/js',
-    buildDir+'/css'
+    buildDir + '/js',
+    buildDir + '/css'
 ]);
 
 const versionFile = new VersionFile({
-    output: buildDir+'/version.php',
-    templateString: '<?php return '+ versionNum +'; ?>'
+    output: buildDir + '/version.php',
+    templateString: '<?php return ' + versionNum + '; ?>'
 });
 
 
@@ -38,7 +38,7 @@ const providePlugin = new webpack.ProvidePlugin({
 const copyPlugin = new CopyWebpackPlugin([
     {
         from: 'critical/critical.js',
-        to: path.resolve(__dirname,buildDir + '/js/critical'+ versionNum + '.js' )
+        to: path.resolve(__dirname, buildDir + '/js/critical' + versionNum + '.js')
     }
 ]);
 
@@ -61,29 +61,38 @@ module.exports = {
                     }
                 }
             },
-
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: extractSass.extract({
-                    use: [{
-                        loader: "css-loader", options: {
-                            url: false,
-                            sourceMap: true
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false,
+                                sourceMap: true
+                            }
+                        },{
+                            loader: "postcss-loader", options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
                         }
-                    }, {
-                        loader: "sass-loader", options: {
-                            sourceMap: true
-                        }
-                    }],
-                    // use style-loader in development
-                    fallback: "style-loader"
-                }),
+                    ]
+                })
             }
-        ]
+
+       ]
     },
     output: {
-        filename:  '[name]'+versionNum+'.js',
-        path: path.resolve(__dirname,buildDir )
+        filename: '[name]' + versionNum + '.js',
+        path: path.resolve(__dirname, buildDir)
     },
     plugins: [
         copyPlugin,
@@ -92,7 +101,6 @@ module.exports = {
         extractSass,
         cleanWebpack,
         versionFile,
-
     ],
     resolve: {
         alias: {
@@ -108,15 +116,15 @@ function getAssetsEntries() {
     let entry = {};
 
     jsAssets.forEach((key) => {
-        if(key !== 'critical') { // critical.js is manually copied in dist
-            let attr = 'js/'+key;
+        if (key !== 'critical') { // critical.js is manually copied in dist
+            let attr = 'js/' + key;
             entry[attr] = assets.js[key];
         }
     });
 
     let cssAssets = Object.keys(assets.css);
     cssAssets.forEach((key) => {
-        let attr = 'css/'+key;
+        let attr = 'css/' + key;
         entry[attr] = assets.css[key];
     });
 
