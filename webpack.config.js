@@ -4,6 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const VersionFile = require('webpack-version-file');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackBarPlugin = require('webpackbar');
 
 let assetsFile = './assets.json';
 let assets = require(assetsFile);
@@ -41,6 +42,9 @@ const copyPlugin = new CopyWebpackPlugin([
         to: path.resolve(__dirname, buildDir + '/js/critical' + versionNum + '.js')
     }
 ]);
+
+const webpackBarPlugin = new WebpackBarPlugin();
+
 
 const entry = getAssetsEntries();
 
@@ -101,12 +105,14 @@ module.exports = {
         extractSass,
         cleanWebpack,
         versionFile,
+        webpackBarPlugin
     ],
     resolve: {
         alias: {
             jquery: "jquery/src/jquery"
         }
     },
+    stats: "minimal",
     target: 'web'
 };
 
