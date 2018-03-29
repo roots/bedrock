@@ -7,6 +7,10 @@
  */
 function wwp_theme_setup()
 {
+    $request = \WonderWp\Framework\HttpFoundation\Request::getInstance();
+    if(!$request->getSession()->isStarted() && session_status() === PHP_SESSION_NONE) {
+        $request->getSession()->start();
+    }
     get_template_part('/includes/ThemeManager');
     get_template_part('/includes/ChildThemeManager');
     $setupManager = new WonderWp\Theme\Child\ChildThemeManager();
