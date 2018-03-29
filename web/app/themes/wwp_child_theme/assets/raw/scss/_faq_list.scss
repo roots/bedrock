@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==FAQ lists generic styles      */
+/* ----------------------------- */
+
+
+.faq-question-wrap {
+    margin-bottom: 2rem;
+    padding: 2rem 0 0 0;
+    border-top: 2px solid $gray-200;
+}
+
+ul.post-categories {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+        margin-right: 2rem;
+    }
+
+    li > a {
+        @extend .tag;
+        text-decoration: none;
+    }
+}
+
+.faq-question {
+
+}
+
+.faq-answer {
+
+}

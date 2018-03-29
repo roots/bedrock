@@ -3,6 +3,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const VersionFile = require('webpack-version-file');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackBarPlugin = require('webpackbar');
 
 let assetsFile = './assets.json';
 let assets = require(assetsFile);
@@ -10,17 +12,17 @@ let versionNum = new Date().getTime();
 let buildDir = assets.site.prefix + assets.site.assets_dest;
 
 const extractSass = new ExtractTextPlugin({
-    filename: '[name]'+versionNum+'.css'
+    filename: '[name]' + versionNum + '.css'
 });
 
 const cleanWebpack = new CleanWebpackPlugin([
-    buildDir+'/js',
-    buildDir+'/css'
+    buildDir + '/js',
+    buildDir + '/css'
 ]);
 
 const versionFile = new VersionFile({
-    output: buildDir+'/version.php',
-    templateString: '<?php return '+ versionNum +'; ?>'
+    output: buildDir + '/version.php',
+    templateString: '<?php return ' + versionNum + '; ?>'
 });
 
 
@@ -30,20 +32,32 @@ const commonChunk = new webpack.optimize.CommonsChunkPlugin({
 });
 
 const providePlugin = new webpack.ProvidePlugin({
-    $: 'jquery/dist/jquery.min',
-    jQuery: 'jquery/dist/jquery.min'
+    $: 'jquery',
+    jQuery: 'jquery'
 });
+
+const copyPlugin = new CopyWebpackPlugin([
+    {
+        from: 'critical/critical.js',
+        to: path.resolve(__dirname, buildDir + '/js/critical' + versionNum + '.js')
+    }
+]);
+
+const webpackBarPlugin = new WebpackBarPlugin();
+
 
 const entry = getAssetsEntries();
 
 module.exports = {
     entry: entry,
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules(?!\/pewjs)/,
+                exclude: [
+                    /node_modules(?!\/pewjs)/,
+                ],
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -51,49 +65,74 @@ module.exports = {
                     }
                 }
             },
-
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: extractSass.extract({
-                    use: [{
-                        loader: "css-loader?url=false"
-                    }, {
-                        loader: "sass-loader", // compiles Sass to CSS
-                    }],
-                    // use style-loader in development
-                    fallback: "style-loader"
-                }),
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false,
+                                sourceMap: true
+                            }
+                        },{
+                            loader: "postcss-loader", options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
+                })
             }
-        ]
+
+       ]
     },
     output: {
-        filename:  '[name]'+versionNum+'.js',
-        path: path.resolve(__dirname,buildDir )
+        filename: '[name]' + versionNum + '.js',
+        path: path.resolve(__dirname, buildDir)
     },
     plugins: [
+        copyPlugin,
         providePlugin,
         commonChunk,
         extractSass,
         cleanWebpack,
         versionFile,
+        webpackBarPlugin
     ],
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    },
+    stats: "minimal",
     target: 'web'
 };
 
 
 function getAssetsEntries() {
     let jsAssets = Object.keys(assets.js);
-    let entry = {'js/vendor': "jquery/dist/jquery.min"};
+    let entry = {};
 
     jsAssets.forEach((key) => {
-        let attr = 'js/'+key;
-        entry[attr] = assets.js[key];
+        if (key !== 'critical') { // critical.js is manually copied in dist
+            let attr = 'js/' + key;
+            entry[attr] = assets.js[key];
+        }
     });
-    let cssAssets = Object.keys(assets.css);
 
+    let cssAssets = Object.keys(assets.css);
     cssAssets.forEach((key) => {
-        let attr = 'css/'+key;
+        let attr = 'css/' + key;
         entry[attr] = assets.css[key];
     });
+
     return entry;
 }

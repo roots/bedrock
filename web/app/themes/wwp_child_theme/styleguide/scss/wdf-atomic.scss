@@ -1,6 +1,7 @@
-/***
-   To custom colors and fonts + avoid conflicts
-***/
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==To custom colors and fonts + avoid conflicts      */
+/* ----------------------------- */
 
 // Fix conflicts
 iframe {
@@ -41,6 +42,7 @@ iframe {
     }
 }
 
+// Styleguide custom
 .compWrap {
     max-width: 1000px;
 }
@@ -78,11 +80,6 @@ iframe {
     background-color: $gray-400 !important;
 }  // medium background color
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"],
-.tag, .tag--primary, .tag--success, .tag--info, .tag--warning, .tag--danger, .tag--inverse, .tag--ghost {
-    background: $gray-100 !important;
-}  // light background color
 
 .compTitle,
 .compWrap .nav-tabs > li > a,
@@ -91,3 +88,7 @@ pre[class*="language-"],
 .compWrap .subTitle {
     color: $gray-600 !important;
 }  // dark color
+
+.compCodeBox {
+    display: none;
+} // Hide tabs with html and css

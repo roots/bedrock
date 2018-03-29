@@ -4,6 +4,6 @@
 //This is how to use the card component
 
 //Init component
-$rs = new \WonderWp\Theme\Components\ReseauxSociauxComponent();
+$rs = new \WonderWp\Theme\Child\Components\ReseauxSociaux\ReseauxSociauxComponent();
 echo $rs->getMarkup();
 ?>

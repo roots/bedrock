@@ -1,6 +1,6 @@
 <!--components/atoms/lists.php-->
 
-<span class="subTitle">Unordered list</span>
+<span class="subTitle">Listes ordonnées</span>
 <ul>
 	<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
 	<li>Quod eos eum quos ipsa blanditiis impedit ab totam deleniti in sequi esse.</li>
@@ -9,7 +9,7 @@
 
 <hr>
 
-<span class="subTitle">Ordered list</span>
+<span class="subTitle">Listes non ordonnées</span>
 <ol>
 	<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
 	<li>Quod eos eum quos ipsa blanditiis impedit ab totam deleniti in sequi esse.</li>

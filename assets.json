@@ -9,6 +9,10 @@
     "env": "development"
   },
   "css": {
+    "styleguide": [
+      ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/scss\/theme.scss",
+      ".\/web\/app\/plugins\/wwp-newsletter\/\/public\/css\/newsletter.scss"
+    ],
     "app": [
       ".\/web\/app\/plugins\/wwp-social\/\/public\/scss\/_social-wall.scss"
     ],
@@ -26,13 +30,7 @@
     "plugins": [
       ".\/web\/app\/plugins\/wwp-contact\/\/public\/css\/contact.scss",
       ".\/web\/app\/plugins\/wwp-jeux\/\/public\/css\/import-es6.scss",
-      ".\/web\/app\/plugins\/wwp-map\/\/public\/scss\/_map.scss",
-      ".\/web\/app\/plugins\/wwp-vote\/\/public\/css\/import-es6.scss"
-    ],
-    "styleguide": [
-      ".\/web\/app\/themes\/wwp_child_theme\/styleguide\/scss\/main.scss",
-      ".\/web\/app\/plugins\/wwp-newsletter\/\/public\/css\/newsletter.scss",
-      ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/scss\/theme.scss"
+      ".\/web\/app\/plugins\/wwp-map\/\/public\/scss\/_map.scss"
     ]
   },
   "js": {
@@ -69,6 +67,7 @@
     "plugins": [
       ".\/web\/app\/plugins\/wwp-actu\/\/public\/js\/actu.js",
       ".\/web\/app\/plugins\/wwp-contact\/\/public\/js\/contact-es6.js",
+      ".\/web\/app\/plugins\/wwp-lazyload\/\/public\/js\/lazy-load.js",
       ".\/web\/app\/plugins\/wwp-map\/\/public\/js\/Gmap\/mapInstance.js",
       ".\/web\/app\/plugins\/wwp-map\/\/public\/js\/Gmap\/GmapLayer.js",
       ".\/web\/app\/plugins\/wwp-map\/\/public\/js\/Gmap\/GmapCluster.js",
@@ -83,6 +82,9 @@
     ],
     "bootstrap": [
       ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/js\/app_init.js"
+    ],
+    "critical": [
+      ".\/web\/app\/themes\/wwp_child_theme\/assets\/raw\/js\/app_critical.js"
     ]
   }
 }

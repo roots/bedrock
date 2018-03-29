@@ -1,218 +1,332 @@
-/*scss/components/_forms.scss*/
+/*scss/components/_Form.scss*/
 
-$alert-error: 		#d32F2f !default;
-$alert-error-bg: 	#f2d0d0 !default;
+/*@import "/node_modules/pikaday/css/pikaday.css";*/
+
+/* Variables */
+/* ------------- */
+$alert-error: #d32F2f !default;
+$alert-error-bg: #f2d0d0 !default;
+
+// Components: checkboxes, radios, switches
+$checkbox-color         : $gray-600 !important;
+$checkbox-size          : 3rem;
+$checkbox-border-radius : 0;
+$switch-color           : $gray-600;
+$switch-size            : 3rem;
+$switch-border-radius   : 3em;
+/* ------------- */
+
 
 /// Styles for Atomics
-#forms + p + .component{
-	max-width: 1000px;
+#forms + p + .component {
+    max-width: 1000px;
 }
 
 // TinyMce bug (fix it!)
-form{
-	p, br{
-		display: none !important;
-	}
+form {
+    p, br {
+        display: none !important;
+    }
+}
+
+form {
+    padding: 2em;
+
+    ul, ol {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    fieldset {
+        border: 1px solid #FFFFFF;
+    }
+
+    input, textarea {
+        width: 100%;
+        height: 70px;
+        min-height: 0;
+        padding: 2rem 3rem;
+        font-size: inherit;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: .2rem;
+        color: $color-base;
+        background-color: $gray-200;
+        border: none;
+    }
+
+    input {
+        padding-right: 5rem;
+    }
+    [type="color"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="email"],
+    [type="month"],
+    [type="number"],
+    [type="password"],
+    [type="search"],
+    [type="submit"],
+    [type="tel"],
+    [type="text"],
+    [type="time"],
+    [type="url"],
+    [type="week"],
+    select,
+    textarea {
+        box-shadow: none;
+    } // reset knacss
+    input[type=file] {
+        font-size: inherit;
+    }
+
+    label {
+        font-weight: 400;
+        color: $color-base;
+    }
+
+    legend {
+        font-weight: 400;
+        color: $color-base;
+    }
+
+    ::placeholder {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        margin: 2rem 0;
+    }
+
+    @media (max-width: $medium - 1) {
+        input {
+            padding-right: 4.5rem;
+            padding-left: 2rem;
+        }
+        textarea {
+            min-height: 250px;
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+    }
+}
+
+.form-group {
+    position: relative;
 }
 
 
-form{
-	padding: 2em;
-	background: $lightgrey;
-	label{
-		font-family: $font-family-headings;
-		font-weight: 300;
-		color: $basecolor;
-	}
-	legend{
-		font-family: $font-family-headings;
-		font-weight: 400;
-		color: $basecolor;
-	}
-	.btn{
-		margin: 2rem 0;
-	}
+// Custom SELECT with Selectric
+.select-wrap {
+    display: inline-block;
+    width: auto;
 }
-.form-group{
-	position: relative;
-	margin-bottom: 2rem;
+.select-style {
+    label.error {
+        display: none;
+    }
 }
-input:not(.btn), textarea{
-	display: block;
-	width: 100%;
-	height: 46px;
-	margin-top: 3px;
-	padding: 6px 12px;
-	line-height: 1.42857143;
-	font-family: $font-family-headings;
-	font-weight: 600;
-	font-size: 1.4rem;
-	letter-spacing: .1rem;
-	background-color: #fff;
-	border: none;
-}
-input[type=file]{
-	display: block;
-}
-.select-wrap{
-	display: inline-block;
-	width: auto;
-	.select-style {
-		position: relative;
-		padding: 0;
-		background: #FFFFFF;
-		overflow: hidden;
-		&:after{
-			content: '';
-			width: 0;
-			height: 0;
-			border-left: 7px solid transparent;
-			border-right: 7px solid transparent;
-			border-top: 7px solid $mediumgrey;
-			position: absolute;
-			top: calc(50% - 3px);
-			right: 2rem;
-			pointer-events:none;
-		}
-		select {
-			width: 100%;
-			padding: 1.2rem 4rem 1.2rem 2rem;
-			border: none;
-			box-shadow: none;
-			background: transparent;
-			background-image: none;
-			appearance: none;
-		}
-	}
+.selectric-wrapper {
+    position: relative;
+
+    .selectric {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        padding: 2rem 3rem;
+        color: $gray-400;
+        background-color: $gray-200;
+        border: none;
+
+        .label {
+            margin-left: 0;
+            font-size: 1.8rem;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: .2rem;
+        }
+    }
+
+    .selectric .button {
+        height: 100%;
+        width: 70px;
+        background-color: transparent;
+    }
+
+    .selectric .button::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid $gray-400;
+        pointer-events: none;
+    }
+
+    .selectric-items {
+        display: block;
+        width: 100%;
+        border: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: .5s all 0.1s;
+        li {
+            display: flex;
+            align-items: center;
+            height: 55px;
+            margin-bottom: 0;
+            padding: 0 10px 0 27px;
+            font-size: 1.6rem;
+            line-height: 1.2;
+            background-color: $gray-100;
+            border-bottom: 2px solid #ffffff;
+            &::before {
+                content: none;
+            }
+        }
+        li:hover, li:focus, li.highlighted {
+            background-color: $gray-400;
+        }
+    }
+
+    &.selectric-open {
+        .selectric-items {
+            opacity: 1;
+            max-height: none;
+        }
+        .selectric-items li[data-index="0"] {
+            display: none;
+        }
+    }
+
+    @media (max-width: $medium - 1) {
+
+        .selectric {
+            padding-left: 2rem;
+
+            .label {
+                margin-right: 1rem;
+            }
+
+            .button {
+                width: 45px;
+            }
+        }
+    }
 }
 
-
-::placeholder{
-	font-family: $font-family-headings;
-	font-weight: 300;
-	color: $basecolor;
-}
-fieldset{
-	border: 1px solid #FFFFFF;
+// Custom RADIO + CHECKBOX + SWITCH
+.switch-wrap,
+.checkbox-wrap,
+.radio-wrap {
+    display: flex;
+    align-items: center;
 }
 
-
-// Custom radio + checkbox
-.radio-group .form-group, .checkbox-wrap{
-	display: inline-block;
-	margin-right: 1rem;
-	input {
-		display: none;
-	}
-	label {
-		display: inline-block;
-		cursor: pointer;
-		position: relative;
-		padding-left: 28px;
-		margin-right: 15px;
-		font-size: 13px;
-	}
-	label:before {
-		content: "";
-		display: inline-block;
-		width: 22px;
-		height: 22px;
-		position: absolute;
-		left: 0;
-		background-color: #FFFFFF;
-	}
-	input:checked + label:before {
-		content: "\2022";
-		font-size: 30px;
-		text-align: center;
-		line-height: 23px;
-		color: $blue;
-	}
-}
-.radio-group .form-group{
-	margin-bottom: 0;
-	label:before,{
-		border-radius: 50%;
-	}
-}
-.checkbox-wrap input:checked + label:before{
-	content: "\2714";
-	font-size: 15px;
+.switch,
+.checkbox,
+.radio {
+    box-shadow: 0 0 0 1px $gray-600 inset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    ~ label {
+        margin-bottom: 0;
+    }
 }
 
-//Submit button
-.submitFormField{
-	display: inline-block;
+.checkbox,
+.radio {
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin-right: 1rem;
+    transition: background-color .15s;
+    &:checked {
+        background-color: $checkbox-color;
+    }
 }
 
+//SUBMIT button
+button[type="submit"] {
+    @extend .btn--primary;
+    height: 70px;
+    padding: 2rem 4rem;
+}
 
 // Hidden labels
-form.no-label{
-	label{
-		@extend .visually-hidden;
-	}
+form.no-label {
+    label {
+        @extend .visually-hidden;
+    }
 }
 
 // Form inline (ie: newsletter form
-@media (min-width: 768px){
-	.form-inline{
-		.form-group{
-			display: inline-block;
-			margin-right: 2rem;
-			margin-bottom: 0;
-		}
-		label{
-			display: inline;
-			margin-right: 1rem;
-		}
-		.form-control{
-			display: inline-block;
-			width: auto;
-		}
-	}
+@media (min-width: $medium) {
+    .form-inline {
+        display: flex;
+        align-items: center;
+
+        .form-group {
+            margin-right: 2rem;
+            margin-bottom: 0;
+        }
+        label {
+            margin-right: 1rem;
+        }
+        .form-control {
+            display: inline-block;
+            width: auto;
+        }
+    }
 }
 
 // Fieldset with inline (dates…)
-fieldset.inline{
-	margin: 0;
-	padding: 0;
-	.form-group{
-		display: inline-block;
-		margin-right: 5%;
-		&:last-child{
-			margin-right: 0;
-		}
-	}
+fieldset.inline {
+    margin: 0;
+    padding: 0;
+    .form-group {
+        display: inline-block;
+        margin-right: 5%;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 
-// Error messages
-/*input:required:invalid, input:focus:invalid {
-	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAKCAYAAABi8KSDAAAABGdBTUEAALGPC/xhBQAAAQNJREFUGBl1kL1KA0EUhb9Z/MNtxDKiprHUysrKxjewszHsLgn4AoKlhYK1RQo7KysfIWLrM4gBd4JiEawMgYznThhNoZeZe+ee+Ya9Z0HhqTqe4sFzsml9igFlS/rjO+0t05zAo8DkNjbwAkv7Da770iuYdIMYrTpnfjtzhBUDLXTRhK+epzz7BeNNPmK8oFc2RnkRCKd2/iOGjrmDBt2nCBvwz4Mf0JjM0jTcczql6nCf2h+pj3Ayk8RUNdpGYNwb0Gma5vR7DiXeTV1HbKh8r30cOyXN2l9keScTuD4Lmpk1blr6/GWCVVcnjPLY1xRXNeWrp707A8h0cS7j/o1qz/RvqSpX39JguKoAAAAASUVORK5CYII=');
-	background-position: calc(100% - 1rem) center;
-	background-repeat: no-repeat;
-}*/
+// Error messages (More in styleguide/atoms/alert)
 input[type="text"]:required:valid,
-input[type="number"]:required:valid{
-	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABGdBTUEAALGPC/xhBQAAAOFJREFUKBVjZCASzJmjrPP7z9+NDIyMKzLT71czEqMPrOnvv30M//+LgtQzMjOmMBHSiK4JqP47w1/ma2CNQEmVmTOV+NENwaaJmYnJLyPjznEmoAbvP3//Xf3////puXPVpWCacWlKS7u3B6SGccYMhSf/GRikwRwGxtusrGwOf/78Fv7H8H8vzE9Aue8gm2CaQGqZGBkZqoH0PxDnP8N/1V9/fh0kpAmkFhyq02cpJzD8+zsXyEcPLAybQJpAAB4dWDTj1ISiEcRB0vwT3U8gebxgxgwl59mzlY3xKgJKAgDWBHhtFDswJQAAAABJRU5ErkJggg==');
-	background-position: calc(100% - 1rem) center;
-	background-repeat: no-repeat;
-}
-.form-errors{
-	margin-bottom: 4rem;
-	padding: 15px;
-	font-size: 2rem;
-	color: $alert-error;
-	background-color: $alert-error-bg;
-	border-bottom: 4px solid $alert-error;
-}
-.has-error{
-	input{
-		border: 1px solid #f00;
-	}
-	.label-error{
-		color: $red;
-	}
+input[type="number"]:required:valid {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABGdBTUEAALGPC/xhBQAAAOFJREFUKBVjZCASzJmjrPP7z9+NDIyMKzLT71czEqMPrOnvv30M//+LgtQzMjOmMBHSiK4JqP47w1/ma2CNQEmVmTOV+NENwaaJmYnJLyPjznEmoAbvP3//Xf3////puXPVpWCacWlKS7u3B6SGccYMhSf/GRikwRwGxtusrGwOf/78Fv7H8H8vzE9Aue8gm2CaQGqZGBkZqoH0PxDnP8N/1V9/fh0kpAmkFhyq02cpJzD8+zsXyEcPLAybQJpAAB4dWDTj1ISiEcRB0vwT3U8gebxgxgwl59mzlY3xKgJKAgDWBHhtFDswJQAAAABJRU5ErkJggg==');
+    background-position: calc(100% - 2rem) center;
+    background-repeat: no-repeat;
 }
 
+form {
+    label.error {
+        font-size: .9em;
+        font-style: italic;
+        color: $alert-error;
+    }
+    input.error {
+        background-color: $alert-error-bg;
+    }
+}
 
+.form-errors {
+    margin-bottom: 4rem;
+    padding: 15px;
+    font-size: 2rem;
+    color: $alert-error;
+    background-color: $alert-error-bg;
+    border-bottom: 4px solid $alert-error;
+}
 
+.has-error {
+    input {
+        border: 1px solid $alert-error;
+    }
+    .label-error {
+        color: $alert-error;
+    }
+}

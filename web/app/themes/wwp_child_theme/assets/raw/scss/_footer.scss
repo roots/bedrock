@@ -1,12 +1,47 @@
-@charset "UTF-8";
-/**
- *	Footer
- */
+/* ----------------------------- */
+/* ==Footer      */
+/* ----------------------------- */
+
+/* Colors */
+/* ------------- */
+$footer-bg-color: $gray-700;
+/* ------------- */
 
 .site-footer {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 20rem;
-    background-color: $gray-700;
+    background-color: $footer-bg-color;
+}
+
+.footer-content {
+    width: 100%;
+}
+
+.edit-link {
+    position: fixed;
+    left: 0;
+    bottom: 10rem;
+    z-index: 1;
+
+    a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem .5rem .5rem 1rem;
+        text-decoration: none;
+        color: #fff;
+        text-indent: -9999px;
+        background-color: $color-primary;
+    }
+
+    a::after {
+        @include svgIcon('edit');
+        transform: scale(.8);
+    }
+
+    a:hover, a:focus {
+        background-color: darken($color-primary, 10%);
+    }
 }

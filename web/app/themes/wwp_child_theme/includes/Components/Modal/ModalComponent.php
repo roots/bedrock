@@ -12,7 +12,8 @@ use WonderWp\Theme\Core\Component\TwigComponent;
 
 class ModalComponent extends TwigComponent
 {
-    protected $class;
+    protected $class; // corresponds to the domSelector from PewJS
+    protected $label;
     protected $content;
 
     public function __construct()

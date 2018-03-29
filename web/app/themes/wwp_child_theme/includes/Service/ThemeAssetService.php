@@ -39,6 +39,7 @@ class ThemeAssetService extends AbstractAssetService
                     new $assetClass('core', $themePath . '/assets/raw/js/app_bootstrap.js', [], '', true, 'core' ), // global app entry point
                     new $assetClass('styleguide', $themePath . '/assets/raw/js/app_styleguide.js', [], '', true, 'styleguide'), // global UI components loader
                     new $assetClass('bootstrap', $themePath . '/assets/raw/js/app_init.js', [], '', true, 'bootstrap'), // global plugin loader
+                    new $assetClass('critical', $themePath . '/assets/raw/js/app_critical.js', [], '', true, 'critical'), // global plugin loader
                 ]
             ];
         }
