@@ -75,9 +75,12 @@ export class Menu extends PewComponent {
 
             if ($thisLi.find('.children').length > 0) {
                 e.preventDefault();
-                this.openSubMenu($thisLi);
+                this.handleSubMenu($thisLi);
             }
         });
+    }
+    handleSubMenu($thisLi){
+        this.openSubMenu($thisLi);
     }
 
     createSubMenu($thisLi) {
@@ -111,10 +114,14 @@ export class Menu extends PewComponent {
     }
 
     checkIfSubMenuShouldBeOpened(){
-        let $activeSubMenu = this.element.find('> ul > li.current_page_ancestor');
-        if($activeSubMenu.length > 0){
-            this.createSubMenu($activeSubMenu);
-            $activeSubMenu.data('menu').open();
+        let hasAlreadyDrilled = this.element.data('already-drilled');
+        if(hasAlreadyDrilled!==1) {
+            let $activeSubMenu = this.element.find('> ul > li.current_page_ancestor');
+            if ($activeSubMenu.length > 0) {
+                this.createSubMenu($activeSubMenu);
+                $activeSubMenu.data('menu').open();
+            }
+            this.element.data('already-drilled',1);
         }
     }
 
