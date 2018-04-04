@@ -7,7 +7,7 @@ class headerComponent extends PewComponent {
         let defaultOptions = {
             'classToToggleOnBody': 'has-opened-menu'
         };
-        super(element, options);
+        super(element, Object.assign(defaultOptions, options));
         this.menu = new Menu(this.element.find('.navigation-wrapper'));
     }
 
