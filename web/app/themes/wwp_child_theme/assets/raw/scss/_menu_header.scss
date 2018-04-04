@@ -70,6 +70,11 @@ ul#menu {
             position: absolute;
         }
     }
+    .mobile-nav-links{
+        @media (min-width: $medium) {
+            display: none;
+        }
+    }
 
     li:hover > ul.children,
     li:focus > ul.children {

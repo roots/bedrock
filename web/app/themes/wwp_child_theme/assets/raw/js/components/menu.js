@@ -14,7 +14,7 @@ export class Menu extends PewComponent {
         this.opened = this.element.css('display') !== 'none' && this.element.css('visibility') !== 'hidden';
         this.registerEvents();
         if (this.options.depth > 0) {
-            this.addSubMenuNav();
+            this.addSubMenuNavTo(this.element);
         }
     }
 
@@ -50,6 +50,7 @@ export class Menu extends PewComponent {
     endOpen() {
         this.opened = true;
         this.toggleClasses();
+        this.checkIfSubMenuShouldBeOpened();
     }
 
     close() {
@@ -69,7 +70,6 @@ export class Menu extends PewComponent {
     registerSubMenuOpener() {
         //register link clicks that open sub menus
         this.element.find('> ul > li > a').on('click', (e) => {
-            e.preventDefault();
             let $thisLink = $(e.currentTarget),
                 $thisLi   = $thisLink.parent();
 
@@ -80,28 +80,42 @@ export class Menu extends PewComponent {
         });
     }
 
-    openSubMenu($thisLi) {
-        if ($thisLi.data('menu')) {
-            $thisLi.data('menu').open();
-        } else {
+    createSubMenu($thisLi) {
+        if (!$thisLi.data('menu')) {
             let subMenuOptions = {
                 'depth': this.options.depth + 1
             };
             let thisMenu       = new Menu($thisLi, subMenuOptions);
             $thisLi.data('menu', thisMenu);
-            thisMenu.open();
         }
     }
 
-    addSubMenuNav() {
-        let subMenuNav = '<ul class="mobile-nav-links">' +
-            '<li><button>Retour</button></li>' +
-            '<li><a href="' + this.element.find('> a').attr('href') + '">Voir la page</a></li>' +
-            '</ul>';
-        this.element.find('> ul').prepend(subMenuNav);
-        this.element.find('> ul button').on('click', (e) => {
-            this.close();
-        });
+    openSubMenu($thisLi) {
+        if (!$thisLi.data('menu')) {
+            this.createSubMenu($thisLi);
+        }
+        $thisLi.data('menu').open();
+    }
+
+    addSubMenuNavTo($elt) {
+        if ($elt.find('.mobile-nav-links').length <= 0) {
+            let subMenuNav = '<ul class="mobile-nav-links">' +
+                '<li class="back-btn"><button>Retour</button></li>' +
+                '<li class="parent-page"><a href="' + this.element.find('> a').attr('href') + '"><span>'+this.element.find('> a').text()+'</span> <span>(Voir la page)</span></a></li>' +
+                '</ul>';
+            $elt.find('> ul').prepend(subMenuNav);
+            $elt.find('> ul button').on('click', (e) => {
+                this.close();
+            });
+        }
+    }
+
+    checkIfSubMenuShouldBeOpened(){
+        let $activeSubMenu = this.element.find('> ul > li.current_page_ancestor');
+        if($activeSubMenu.length > 0){
+            this.createSubMenu($activeSubMenu);
+            $activeSubMenu.data('menu').open();
+        }
     }
 
 }
