@@ -4,26 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "045cf1f895948ce9d4b7e9752ac42b04",
+    "content-hash": "2c2973e8f51ad29fdc2477c8553f66d6",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
-            "version": "v1.x-dev",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wonderwp-plugin.git",
-                "reference": "9df2c90947256b68d375fca83adc828371535f7a"
+                "reference": "2dbdb5d14a922f258cc08bdabb467f3abad1adf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/9df2c90947256b68d375fca83adc828371535f7a",
-                "reference": "9df2c90947256b68d375fca83adc828371535f7a",
+                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/2dbdb5d14a922f258cc08bdabb467f3abad1adf2",
+                "reference": "2dbdb5d14a922f258cc08bdabb467f3abad1adf2",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.4",
                 "gedmo/doctrine-extensions": "2.4.*",
-                "wonderwp/framework": "^1.0.0@dev"
+                "wonderwp/filter": "dev-develop@dev",
+                "wonderwp/form": "dev-develop@dev",
+                "wonderwp/panel": "dev-develop@dev",
+                "wonderwp/template": "dev-develop@dev",
+                "wonderwp/wonderwp": "dev-develop@dev"
             },
             "type": "wordpress-muplugin",
             "autoload": {
@@ -38,24 +42,24 @@
                 }
             ],
             "description": "Wonderful Worpress plugin",
-            "time": "2018-03-23T17:16:51+00:00"
+            "time": "2018-04-02T21:50:45+00:00"
         },
         {
             "name": "agencewonderful/wonderwp-theme-core",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wonderwp-theme.git",
-                "reference": "f6f9d5a1829bbd3f4af169726e11c3dfe9298b7c"
+                "reference": "f2858147fe75532259f46c8dcd2016112cb9a24e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-theme/zipball/f6f9d5a1829bbd3f4af169726e11c3dfe9298b7c",
-                "reference": "f6f9d5a1829bbd3f4af169726e11c3dfe9298b7c",
+                "url": "https://api.github.com/repos/agencewonderful/wonderwp-theme/zipball/f2858147fe75532259f46c8dcd2016112cb9a24e",
+                "reference": "f2858147fe75532259f46c8dcd2016112cb9a24e",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wwp-translator": "dev-develop@dev",
+                "agencewonderful/wwp-translator": "dev-feature/wwp_v2@dev",
                 "wp-cli/wp-cli": "^1.1"
             },
             "type": "wordpress-theme",
@@ -74,24 +78,24 @@
                 }
             ],
             "description": "Wonderful base vendor theme",
-            "time": "2018-03-12T17:21:13+00:00"
+            "time": "2018-04-02T20:09:55+00:00"
         },
         {
             "name": "agencewonderful/wwp-actu",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-actu.git",
-                "reference": "322af2c5a77c09cb88ecc4048e5c6edc098e04c7"
+                "reference": "fdd29d36499da0f4c8267f31964c7aa2d086c413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-actu/zipball/322af2c5a77c09cb88ecc4048e5c6edc098e04c7",
-                "reference": "322af2c5a77c09cb88ecc4048e5c6edc098e04c7",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-actu/zipball/fdd29d36499da0f4c8267f31964c7aa2d086c413",
+                "reference": "fdd29d36499da0f4c8267f31964c7aa2d086c413",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -106,24 +110,24 @@
                 }
             ],
             "description": "Plugin wwp-actu",
-            "time": "2018-03-12T17:23:28+00:00"
+            "time": "2018-04-02T20:14:01+00:00"
         },
         {
             "name": "agencewonderful/wwp-branchepage",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-branchepage.git",
-                "reference": "80165a5c6217ed9c37cfb6f87956fe7553f80d0b"
+                "reference": "e6e6d9aecc0e2a95202721c570727886d6a3319e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-branchepage/zipball/80165a5c6217ed9c37cfb6f87956fe7553f80d0b",
-                "reference": "80165a5c6217ed9c37cfb6f87956fe7553f80d0b",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-branchepage/zipball/e6e6d9aecc0e2a95202721c570727886d6a3319e",
+                "reference": "e6e6d9aecc0e2a95202721c570727886d6a3319e",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -138,24 +142,24 @@
                 }
             ],
             "description": "wwp-branchepage plugin",
-            "time": "2018-02-13T16:36:46+00:00"
+            "time": "2018-04-02T20:14:23+00:00"
         },
         {
             "name": "agencewonderful/wwp-contact",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-contact.git",
-                "reference": "ab402a4cdfde84c242ef5aded5af8c8e78b2f72a"
+                "reference": "a1fe27439bfcb819af97005f8fa70229a85956fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-contact/zipball/ab402a4cdfde84c242ef5aded5af8c8e78b2f72a",
-                "reference": "ab402a4cdfde84c242ef5aded5af8c8e78b2f72a",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-contact/zipball/a1fe27439bfcb819af97005f8fa70229a85956fc",
+                "reference": "a1fe27439bfcb819af97005f8fa70229a85956fc",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -170,24 +174,24 @@
                 }
             ],
             "description": "Plugin wwp-contact",
-            "time": "2018-03-19T09:37:47+00:00"
+            "time": "2018-04-02T20:14:38+00:00"
         },
         {
             "name": "agencewonderful/wwp-download",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-download.git",
-                "reference": "dd0314700d77b2e720af283b5068e4ae98c9ddf4"
+                "reference": "d5f3c3e20e472f6f50944e8b7e5fc4951e5a7942"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-download/zipball/dd0314700d77b2e720af283b5068e4ae98c9ddf4",
-                "reference": "dd0314700d77b2e720af283b5068e4ae98c9ddf4",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-download/zipball/d5f3c3e20e472f6f50944e8b7e5fc4951e5a7942",
+                "reference": "d5f3c3e20e472f6f50944e8b7e5fc4951e5a7942",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -202,24 +206,21 @@
                 }
             ],
             "description": "Plugin wwp-download",
-            "time": "2018-02-13T16:40:17+00:00"
+            "time": "2018-04-02T20:14:58+00:00"
         },
         {
             "name": "agencewonderful/wwp-emploi",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-emploi.git",
-                "reference": "ec3e2b9b27dd466d65970ae592878d6ab2a68b14"
+                "reference": "46b4f98600ed1bae41bbbfbc1fb6e685c95b1841"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-emploi/zipball/ec3e2b9b27dd466d65970ae592878d6ab2a68b14",
-                "reference": "ec3e2b9b27dd466d65970ae592878d6ab2a68b14",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-emploi/zipball/46b4f98600ed1bae41bbbfbc1fb6e685c95b1841",
+                "reference": "46b4f98600ed1bae41bbbfbc1fb6e685c95b1841",
                 "shasum": ""
-            },
-            "require": {
-                "agencewonderful/wonderwp-theme-core": "dev-develop@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -234,24 +235,24 @@
                 }
             ],
             "description": "Plugin Emploi",
-            "time": "2018-02-22T17:25:46+00:00"
+            "time": "2018-04-02T20:06:56+00:00"
         },
         {
             "name": "agencewonderful/wwp-espace-restreint",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-espace-restreint.git",
-                "reference": "866e58c7a3b3c7a61f400a96bd5192d1232cbbca"
+                "reference": "c3522b8dc13dd31be627f00d81d35876c8ec8ce5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-espace-restreint/zipball/866e58c7a3b3c7a61f400a96bd5192d1232cbbca",
-                "reference": "866e58c7a3b3c7a61f400a96bd5192d1232cbbca",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-espace-restreint/zipball/c3522b8dc13dd31be627f00d81d35876c8ec8ce5",
+                "reference": "c3522b8dc13dd31be627f00d81d35876c8ec8ce5",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-theme-core": "dev-develop@dev"
+                "agencewonderful/wonderwp-theme-core": "dev-feature/wwp_v2@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -266,24 +267,24 @@
                 }
             ],
             "description": "Plugin Espace Restreint",
-            "time": "2018-03-23T15:30:04+00:00"
+            "time": "2018-04-02T20:08:22+00:00"
         },
         {
             "name": "agencewonderful/wwp-faq",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-faq.git",
-                "reference": "4ae9751f2125613a4385ac898ada4f628a40c2ae"
+                "reference": "41e63fdf9950d1920681ce90774c865dad45c419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-faq/zipball/4ae9751f2125613a4385ac898ada4f628a40c2ae",
-                "reference": "4ae9751f2125613a4385ac898ada4f628a40c2ae",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-faq/zipball/41e63fdf9950d1920681ce90774c865dad45c419",
+                "reference": "41e63fdf9950d1920681ce90774c865dad45c419",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -298,57 +299,24 @@
                 }
             ],
             "description": "Plugin wwp-faq",
-            "time": "2018-02-13T17:02:13+00:00"
-        },
-        {
-            "name": "agencewonderful/wwp-generator",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:agencewonderful/wwp-generator.git",
-                "reference": "da617803d7fafb4b51bcea8b950a01ef0a5762bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-generator/zipball/da617803d7fafb4b51bcea8b950a01ef0a5762bd",
-                "reference": "da617803d7fafb4b51bcea8b950a01ef0a5762bd",
-                "shasum": ""
-            },
-            "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
-                "wp-cli/wp-cli": "^1.1"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "WonderWp\\Plugin\\Generator\\": "includes"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Jeremy Desvaux",
-                    "email": "jeremy.desvaux@wonderful.fr"
-                }
-            ],
-            "description": "Generateur de plugin wonderwp",
-            "time": "2018-02-06T13:45:11+00:00"
+            "time": "2018-04-02T20:15:13+00:00"
         },
         {
             "name": "agencewonderful/wwp-jeux",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-jeux.git",
-                "reference": "8b891f4c673299431bb4413bd02b3fbb9e5246de"
+                "reference": "a1649dd26324c8fc6617c01d069360bfbe4af915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-jeux/zipball/8b891f4c673299431bb4413bd02b3fbb9e5246de",
-                "reference": "8b891f4c673299431bb4413bd02b3fbb9e5246de",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-jeux/zipball/a1649dd26324c8fc6617c01d069360bfbe4af915",
+                "reference": "a1649dd26324c8fc6617c01d069360bfbe4af915",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -363,24 +331,24 @@
                 }
             ],
             "description": "Plugin wwp-jeux",
-            "time": "2018-03-29T09:41:53+00:00"
+            "time": "2018-04-02T20:15:52+00:00"
         },
         {
             "name": "agencewonderful/wwp-lazyload",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-lazyload.git",
-                "reference": "905e3d646ded9c4033b9835c28404f85a5705454"
+                "reference": "563a6a5df4f525059d6d5715ca2da8170e35a62e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-lazyload/zipball/905e3d646ded9c4033b9835c28404f85a5705454",
-                "reference": "905e3d646ded9c4033b9835c28404f85a5705454",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-lazyload/zipball/563a6a5df4f525059d6d5715ca2da8170e35a62e",
+                "reference": "563a6a5df4f525059d6d5715ca2da8170e35a62e",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -395,24 +363,24 @@
                 }
             ],
             "description": "Plugin wwp-lazyload",
-            "time": "2018-03-13T15:49:27+00:00"
+            "time": "2018-04-02T20:21:03+00:00"
         },
         {
             "name": "agencewonderful/wwp-map",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-map.git",
-                "reference": "e625144a084008aac0835116fbc6204e4c254753"
+                "reference": "c792273a23f8f7d230545f9b2424ce233da63345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-map/zipball/e625144a084008aac0835116fbc6204e4c254753",
-                "reference": "e625144a084008aac0835116fbc6204e4c254753",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-map/zipball/c792273a23f8f7d230545f9b2424ce233da63345",
+                "reference": "c792273a23f8f7d230545f9b2424ce233da63345",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -427,24 +395,24 @@
                 }
             ],
             "description": "Plugin wwp-map",
-            "time": "2018-03-27T13:14:10+00:00"
+            "time": "2018-04-02T20:16:15+00:00"
         },
         {
             "name": "agencewonderful/wwp-meteo",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-meteo.git",
-                "reference": "37f6b4aeac6e5f94d0244135d68b7795b8ed43f5"
+                "reference": "b455263cb1ba0f533a2181e97b583c94eba3c83f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-meteo/zipball/37f6b4aeac6e5f94d0244135d68b7795b8ed43f5",
-                "reference": "37f6b4aeac6e5f94d0244135d68b7795b8ed43f5",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-meteo/zipball/b455263cb1ba0f533a2181e97b583c94eba3c83f",
+                "reference": "b455263cb1ba0f533a2181e97b583c94eba3c83f",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -459,24 +427,24 @@
                 }
             ],
             "description": "Plugin wwp-meteo",
-            "time": "2018-02-13T16:51:09+00:00"
+            "time": "2018-04-02T20:16:48+00:00"
         },
         {
             "name": "agencewonderful/wwp-newsletter",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-newsletter.git",
-                "reference": "1224a77f6585b3bc956810d667396f3b275336eb"
+                "reference": "9321785473abf1ad36a0c9e05b3668c46869a571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-newsletter/zipball/1224a77f6585b3bc956810d667396f3b275336eb",
-                "reference": "1224a77f6585b3bc956810d667396f3b275336eb",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-newsletter/zipball/9321785473abf1ad36a0c9e05b3668c46869a571",
+                "reference": "9321785473abf1ad36a0c9e05b3668c46869a571",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2",
                 "mailjet/mailjet-apiv3-php": "^1.2"
             },
             "type": "wordpress-plugin",
@@ -492,24 +460,24 @@
                 }
             ],
             "description": "Plugin wwp-newsletter",
-            "time": "2018-02-19T09:37:34+00:00"
+            "time": "2018-04-02T20:17:11+00:00"
         },
         {
             "name": "agencewonderful/wwp-social",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-social.git",
-                "reference": "3b6a5192e3bee93ae3831af2d635641f066864af"
+                "reference": "5a470b40562ab40923a092fb277e8f93891dfabd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/3b6a5192e3bee93ae3831af2d635641f066864af",
-                "reference": "3b6a5192e3bee93ae3831af2d635641f066864af",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/5a470b40562ab40923a092fb277e8f93891dfabd",
+                "reference": "5a470b40562ab40923a092fb277e8f93891dfabd",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2",
                 "wp-cli/wp-cli": "^1.1"
             },
             "type": "wordpress-plugin",
@@ -525,24 +493,24 @@
                 }
             ],
             "description": "Plugin wwp-social",
-            "time": "2018-03-14T14:49:26+00:00"
+            "time": "2018-04-02T20:17:32+00:00"
         },
         {
             "name": "agencewonderful/wwp-stats",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-stats.git",
-                "reference": "82ca49ce7be244038102a410ab08a409242d14d0"
+                "reference": "0a021bb0d21ee47ea1b71d6cd96e4ef99d699382"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-stats/zipball/82ca49ce7be244038102a410ab08a409242d14d0",
-                "reference": "82ca49ce7be244038102a410ab08a409242d14d0",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-stats/zipball/0a021bb0d21ee47ea1b71d6cd96e4ef99d699382",
+                "reference": "0a021bb0d21ee47ea1b71d6cd96e4ef99d699382",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -557,24 +525,24 @@
                 }
             ],
             "description": "wwp stats",
-            "time": "2018-02-13T17:03:45+00:00"
+            "time": "2018-04-02T20:17:49+00:00"
         },
         {
             "name": "agencewonderful/wwp-translator",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-translator.git",
-                "reference": "efb5a7326724b36796a6a4aff08d1e26fdc3c143"
+                "reference": "0f749cd7ea8f47855dd00b8ea02ba89ad893ba3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-translator/zipball/efb5a7326724b36796a6a4aff08d1e26fdc3c143",
-                "reference": "efb5a7326724b36796a6a4aff08d1e26fdc3c143",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-translator/zipball/0f749cd7ea8f47855dd00b8ea02ba89ad893ba3d",
+                "reference": "0f749cd7ea8f47855dd00b8ea02ba89ad893ba3d",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -589,24 +557,24 @@
                 }
             ],
             "description": "Plugin wwp-translator",
-            "time": "2018-03-27T13:13:33+00:00"
+            "time": "2018-04-02T20:18:05+00:00"
         },
         {
             "name": "agencewonderful/wwp-trombinoscope",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-trombinoscope.git",
-                "reference": "781e0c3ed6b443d4f563eb090379c448d0e349ee"
+                "reference": "645602e812b6f3a1fe2f250b481e1c3663c0c52c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-trombinoscope/zipball/781e0c3ed6b443d4f563eb090379c448d0e349ee",
-                "reference": "781e0c3ed6b443d4f563eb090379c448d0e349ee",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-trombinoscope/zipball/645602e812b6f3a1fe2f250b481e1c3663c0c52c",
+                "reference": "645602e812b6f3a1fe2f250b481e1c3663c0c52c",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -621,24 +589,24 @@
                 }
             ],
             "description": "wwp-trombinoscope",
-            "time": "2018-03-12T17:54:36+00:00"
+            "time": "2018-04-02T20:18:22+00:00"
         },
         {
             "name": "agencewonderful/wwp-vote",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-vote.git",
-                "reference": "c072184ea47c2ec75952f00e6765c574573a8f36"
+                "reference": "31b6ce8148d3294f6ea1d04247b93add0cdfb3a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-vote/zipball/c072184ea47c2ec75952f00e6765c574573a8f36",
-                "reference": "c072184ea47c2ec75952f00e6765c574573a8f36",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-vote/zipball/31b6ce8148d3294f6ea1d04247b93add0cdfb3a1",
+                "reference": "31b6ce8148d3294f6ea1d04247b93add0cdfb3a1",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -653,7 +621,7 @@
                 }
             ],
             "description": "wwp-vote",
-            "time": "2018-03-28T14:31:43+00:00"
+            "time": "2018-04-02T20:18:37+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -701,16 +669,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "943b2c4fcad1ef178d16a713c2468bf7e579c288"
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/943b2c4fcad1ef178d16a713c2468bf7e579c288",
-                "reference": "943b2c4fcad1ef178d16a713c2468bf7e579c288",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/d2c0a83b7533d6912e8d516756ebd34f893e9169",
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169",
                 "shasum": ""
             },
             "require": {
@@ -719,7 +687,7 @@
                 "php": "^5.3.2 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5",
                 "psr/log": "^1.0",
                 "symfony/process": "^2.5 || ^3.0 || ^4.0"
             },
@@ -753,7 +721,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2017-11-29T09:37:33+00:00"
+            "time": "2018-03-29T19:57:20+00:00"
         },
         {
             "name": "composer/composer",
@@ -2576,69 +2544,6 @@
             "time": "2015-03-20T22:07:39+00:00"
         },
         {
-            "name": "respect/validation",
-            "version": "1.1.15",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Validation.git",
-                "reference": "ee9e69776a8e875ac1b5b00d8cf2d2c801c42181"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/ee9e69776a8e875ac1b5b00d8cf2d2c801c42181",
-                "reference": "ee9e69776a8e875ac1b5b00d8cf2d2c801c42181",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "symfony/polyfill-mbstring": "^1.2"
-            },
-            "require-dev": {
-                "egulias/email-validator": "~1.2",
-                "mikey179/vfsstream": "^1.5",
-                "phpunit/phpunit": "~4.0",
-                "symfony/validator": "~2.6.9",
-                "zendframework/zend-validator": "~2.3"
-            },
-            "suggest": {
-                "egulias/email-validator": "Strict (RFC compliant) email validation",
-                "ext-bcmath": "Arbitrary Precision Mathematics",
-                "ext-mbstring": "Multibyte String Functions",
-                "fabpot/php-cs-fixer": "Fix PSR2 and other coding style issues",
-                "symfony/validator": "Use Symfony validator through Respect\\Validation",
-                "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Respect\\Validation\\": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD Style"
-            ],
-            "authors": [
-                {
-                    "name": "Respect/Validation Contributors",
-                    "homepage": "https://github.com/Respect/Validation/graphs/contributors"
-                }
-            ],
-            "description": "The most awesome validation engine ever created for PHP",
-            "homepage": "http://respect.github.io/Validation/",
-            "keywords": [
-                "respect",
-                "validation",
-                "validator"
-            ],
-            "time": "2018-01-02T21:47:22+00:00"
-        },
-        {
             "name": "rmccue/requests",
             "version": "v1.7.0",
             "source": {
@@ -3654,16 +3559,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.4.7",
+            "version": "v2.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "69aacd44dbbaa3199d5afb68605c996d577896fc"
+                "reference": "7b604c89da162034bdf4bb66310f358d313dd16d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/69aacd44dbbaa3199d5afb68605c996d577896fc",
-                "reference": "69aacd44dbbaa3199d5afb68605c996d577896fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7b604c89da162034bdf4bb66310f358d313dd16d",
+                "reference": "7b604c89da162034bdf4bb66310f358d313dd16d",
                 "shasum": ""
             },
             "require": {
@@ -3716,7 +3621,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-20T04:31:17+00:00"
+            "time": "2018-04-02T09:24:19+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3769,17 +3674,116 @@
             "time": "2016-09-01T10:05:43+00:00"
         },
         {
-            "name": "wonderwp/autoloader",
-            "version": "1.0.0",
+            "name": "wonderwp/api",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/agencewonderful/wonderwp-autoloader.git",
-                "reference": "089f26ae78ba8a6f6092c239147e153a892d7910"
+                "url": "https://github.com/wonderwp/API.git",
+                "reference": "e0c788fd440fc2a014ec4d5ec175328a15531b7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-autoloader/zipball/089f26ae78ba8a6f6092c239147e153a892d7910",
-                "reference": "089f26ae78ba8a6f6092c239147e153a892d7910",
+                "url": "https://api.github.com/repos/wonderwp/API/zipball/e0c788fd440fc2a014ec4d5ec175328a15531b7c",
+                "reference": "e0c788fd440fc2a014ec4d5ec175328a15531b7c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\API\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Api Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "api"
+            ],
+            "time": "2018-04-02T20:56:10+00:00"
+        },
+        {
+            "name": "wonderwp/asset",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Asset.git",
+                "reference": "81c9a817604fc34b9d5df3f3d8ee31ede209d359"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Asset/zipball/81c9a817604fc34b9d5df3f3d8ee31ede209d359",
+                "reference": "81c9a817604fc34b9d5df3f3d8ee31ede209d359",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/logging": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Asset\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Asset Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "log"
+            ],
+            "time": "2018-03-25T13:57:57+00:00"
+        },
+        {
+            "name": "wonderwp/autoload-wwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/AutoLoader.git",
+                "reference": "98438b4246c8e640db5b36fd955f86c71aafef69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/AutoLoader/zipball/98438b4246c8e640db5b36fd955f86c71aafef69",
+                "reference": "98438b4246c8e640db5b36fd955f86c71aafef69",
                 "shasum": ""
             },
             "type": "wordpress-muplugin",
@@ -3791,40 +3795,876 @@
                 }
             ],
             "description": "WonderWP autoloader",
-            "time": "2018-01-09T16:25:10+00:00"
+            "time": "2018-03-25T13:45:40+00:00"
         },
         {
-            "name": "wonderwp/framework",
-            "version": "v1.x-dev",
+            "name": "wonderwp/dependency-injection",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/agencewonderful/wonderwp.git",
-                "reference": "6b7b13edaebf5997db0d2d90a7783718b7906824"
+                "url": "https://github.com/wonderwp/DependencyInjection.git",
+                "reference": "77e3408ba5e8a42bb673a2f538ec583f8c13bbc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp/zipball/6b7b13edaebf5997db0d2d90a7783718b7906824",
-                "reference": "6b7b13edaebf5997db0d2d90a7783718b7906824",
+                "url": "https://api.github.com/repos/wonderwp/DependencyInjection/zipball/77e3408ba5e8a42bb673a2f538ec583f8c13bbc5",
+                "reference": "77e3408ba5e8a42bb673a2f538ec583f8c13bbc5",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress": "^4.7",
-                "pimple/pimple": "^3.0",
-                "respect/validation": "^1.1",
-                "symfony/http-foundation": "~2.8|^3.0",
-                "wonderwp/autoloader": "^1.0"
+                "php": "~5.6|~7",
+                "pimple/pimple": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\DependencyInjection\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp DependencyInjection Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "container"
+            ],
+            "time": "2018-03-25T13:52:34+00:00"
+        },
+        {
+            "name": "wonderwp/filter",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Filter.git",
+                "reference": "46eb6c65f5e27d5a4ab01446728e400c570db82e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Filter/zipball/46eb6c65f5e27d5a4ab01446728e400c570db82e",
+                "reference": "46eb6c65f5e27d5a4ab01446728e400c570db82e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
             },
             "require-dev": {
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Filter\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Filter Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-04-02T21:22:53+00:00"
+        },
+        {
+            "name": "wonderwp/form",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Form.git",
+                "reference": "b6d7efa656cca40ee784268769dc099267928ffa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Form/zipball/b6d7efa656cca40ee784268769dc099267928ffa",
+                "reference": "b6d7efa656cca40ee784268769dc099267928ffa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
+                "respect/validation": "^1.1",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Form\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Form Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "form",
+                "types",
+                "validation"
+            ],
+            "time": "2018-04-02T21:23:11+00:00"
+        },
+        {
+            "name": "wonderwp/functions",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Functions.git",
+                "reference": "60385d894a631a552b3c5b522c701d68bbf450c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Functions/zipball/60385d894a631a552b3c5b522c701d68bbf450c3",
+                "reference": "60385d894a631a552b3c5b522c701d68bbf450c3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Functions\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Functions",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-03-20T22:03:13+00:00"
+        },
+        {
+            "name": "wonderwp/generator-wwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Generator.git",
+                "reference": "a6e27a585154d1107200268ec8a68cf217f4b31d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Generator/zipball/a6e27a585154d1107200268ec8a68cf217f4b31d",
+                "reference": "a6e27a585154d1107200268ec8a68cf217f4b31d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/task": "dev-develop@dev",
+                "wp-cli/wp-cli": "^1.3"
+            },
+            "type": "wordpress-muplugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Generator\\": "includes"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "WonderWP Plugin Generator",
+            "time": "2018-04-02T21:34:46+00:00"
+        },
+        {
+            "name": "wonderwp/hook",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Hook.git",
+                "reference": "a9fcab6bb7bfba2da3f97bfa23439abe7643f2fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Hook/zipball/a9fcab6bb7bfba2da3f97bfa23439abe7643f2fd",
+                "reference": "a9fcab6bb7bfba2da3f97bfa23439abe7643f2fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Hook\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Hook Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service"
+            ],
+            "time": "2018-03-25T13:58:39+00:00"
+        },
+        {
+            "name": "wonderwp/http-foundation",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/HttpFoundation.git",
+                "reference": "e12b097a1445943f1a1e027080bca267ed5d25c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/HttpFoundation/zipball/e12b097a1445943f1a1e027080bca267ed5d25c3",
+                "reference": "e12b097a1445943f1a1e027080bca267ed5d25c3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "symfony/http-foundation": "~2.8|^3.0",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\HttpFoundation\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp HttpFoundation Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "request"
+            ],
+            "time": "2018-03-25T13:57:06+00:00"
+        },
+        {
+            "name": "wonderwp/logging",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Logging.git",
+                "reference": "c07715c261e7f1ce95807080072f30423caa3d30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Logging/zipball/c07715c261e7f1ce95807080072f30423caa3d30",
+                "reference": "c07715c261e7f1ce95807080072f30423caa3d30",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Logging\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Logging Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "log"
+            ],
+            "time": "2018-03-17T22:34:37+00:00"
+        },
+        {
+            "name": "wonderwp/media",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Media.git",
+                "reference": "cb53ca6adadc895011f3c7ccd34632668dd8c6ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Media/zipball/cb53ca6adadc895011f3c7ccd34632668dd8c6ce",
+                "reference": "cb53ca6adadc895011f3c7ccd34632668dd8c6ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Media\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Media Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "images"
+            ],
+            "time": "2018-03-25T14:01:35+00:00"
+        },
+        {
+            "name": "wonderwp/panel",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Panel.git",
+                "reference": "262c8893a004cabc79c2dd04880b0cbfeb14e14c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Panel/zipball/262c8893a004cabc79c2dd04880b0cbfeb14e14c",
+                "reference": "262c8893a004cabc79c2dd04880b0cbfeb14e14c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Panel\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Panel Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-03-19T22:55:38+00:00"
+        },
+        {
+            "name": "wonderwp/plugin-skeleton",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/PluginSkeleton.git",
+                "reference": "118893e908d4d1df195717b71c8467df34d621db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/PluginSkeleton/zipball/118893e908d4d1df195717b71c8467df34d621db",
+                "reference": "118893e908d4d1df195717b71c8467df34d621db",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/api": "dev-develop@dev",
+                "wonderwp/asset": "dev-develop@dev",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/generator-wwp": "dev-develop@dev",
+                "wonderwp/hook": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/routing": "dev-develop@dev",
+                "wonderwp/search": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev",
+                "wonderwp/shortcode": "dev-develop@dev",
+                "wonderwp/task": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\PluginSkeleton\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Plugin Skeleton Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "search"
+            ],
+            "time": "2018-03-27T20:58:06+00:00"
+        },
+        {
+            "name": "wonderwp/routing",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Routing.git",
+                "reference": "d1a522caec278051815bfbf25f35fd88019572ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Routing/zipball/d1a522caec278051815bfbf25f35fd88019572ed",
+                "reference": "d1a522caec278051815bfbf25f35fd88019572ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Routing\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Routing Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "router",
+                "routing",
+                "uri",
+                "url"
+            ],
+            "time": "2018-03-25T13:59:25+00:00"
+        },
+        {
+            "name": "wonderwp/search",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Search.git",
+                "reference": "93ba2cee79c12fd102ab5cd35ea1504bcc7ccb44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Search/zipball/93ba2cee79c12fd102ab5cd35ea1504bcc7ccb44",
+                "reference": "93ba2cee79c12fd102ab5cd35ea1504bcc7ccb44",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/media": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Search\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Search Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "search"
+            ],
+            "time": "2018-03-26T09:15:39+00:00"
+        },
+        {
+            "name": "wonderwp/service",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Service.git",
+                "reference": "0f2836789fddc8c623ee84cc11f85f3a75ec8404"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Service/zipball/0f2836789fddc8c623ee84cc11f85f3a75ec8404",
+                "reference": "0f2836789fddc8c623ee84cc11f85f3a75ec8404",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Service\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Service Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service"
+            ],
+            "time": "2018-03-25T14:00:56+00:00"
+        },
+        {
+            "name": "wonderwp/shortcode",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/ShortCode.git",
+                "reference": "11babe9f6b6f7c0cf546dd273f207f534038cdca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/ShortCode/zipball/11babe9f6b6f7c0cf546dd273f207f534038cdca",
+                "reference": "11babe9f6b6f7c0cf546dd273f207f534038cdca",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Shortcode\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp ShortCode Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service",
+                "shortcode"
+            ],
+            "time": "2018-04-02T21:12:01+00:00"
+        },
+        {
+            "name": "wonderwp/task",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Task.git",
+                "reference": "e16c84c2169b4d38ca0290483e11083430c233d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Task/zipball/e16c84c2169b4d38ca0290483e11083430c233d7",
+                "reference": "e16c84c2169b4d38ca0290483e11083430c233d7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Task\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Task Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-03-20T20:46:18+00:00"
+        },
+        {
+            "name": "wonderwp/template",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Template.git",
+                "reference": "ec744e01ee0a16a5c3a8a6f24e29c137ded2ce41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Template/zipball/ec744e01ee0a16a5c3a8a6f24e29c137ded2ce41",
+                "reference": "ec744e01ee0a16a5c3a8a6f24e29c137ded2ce41",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/form": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/notification": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Template\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Template Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-03-20T21:26:09+00:00"
+        },
+        {
+            "name": "wonderwp/wonderwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/wonderwp.git",
+                "reference": "2b9af8a6494c4dddfcdd1909993a944ad3c30aa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/wonderwp/zipball/2b9af8a6494c4dddfcdd1909993a944ad3c30aa8",
+                "reference": "2b9af8a6494c4dddfcdd1909993a944ad3c30aa8",
+                "shasum": ""
+            },
+            "require": {
+                "wonderwp/autoload-wwp": "dev-develop@dev",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/functions": "dev-develop@dev",
+                "wonderwp/plugin-skeleton": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
                 "phpunit/phpunit": "^5.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "WonderWp\\Framework\\": "src/WonderWp/Framework"
-                },
-                "files": [
-                    "src/WonderWp/Framework/functions.php"
-                ]
+                    "WonderWp\\Bundle\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3836,8 +4676,8 @@
                     "email": "jeremy.desvaux@wonderful.com"
                 }
             ],
-            "description": "WonderWP Framework part",
-            "time": "2018-03-29T12:27:44+00:00"
+            "description": "WonderWP Framework",
+            "time": "2018-04-02T21:23:59+00:00"
         },
         {
             "name": "wp-cli/autoload-splitter",
@@ -6025,7 +6865,6 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
-        "agencewonderful/wwp-generator": 20,
         "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-map": 20,
         "agencewonderful/wwp-meteo": 20,

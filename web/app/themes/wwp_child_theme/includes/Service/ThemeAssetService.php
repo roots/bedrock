@@ -2,10 +2,10 @@
 
 namespace WonderWp\Theme\Child\Service;
 
-use WonderWp\Framework\Asset\AbstractAssetService;
-use WonderWp\Framework\Asset\Asset;
-use WonderWp\Framework\Asset\AssetManager;
-use WonderWp\Framework\DependencyInjection\Container;
+use WonderWp\Component\Asset\AbstractAssetService;
+use WonderWp\Component\Asset\Asset;
+use WonderWp\Component\Asset\AssetManager;
+use WonderWp\Component\DependencyInjection\Container;
 
 class ThemeAssetService extends AbstractAssetService
 {
