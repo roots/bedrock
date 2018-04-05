@@ -1,6 +1,8 @@
 # [Bedrock](https://roots.io/bedrock/)
 [![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
 [![Build Status](https://img.shields.io/travis/roots/bedrock.svg?style=flat-square)](https://travis-ci.org/roots/bedrock)
+[![Backers on Open Collective](https://opencollective.com/bedrock/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/bedrock/sponsors/badge.svg)](#sponsors) 
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
 
@@ -89,3 +91,33 @@ Keep track of development and community news.
 
 [roots-wp-salt]:https://roots.io/salts.html
 [wp-cli-dotenv]:https://github.com/aaemnnosttv/wp-cli-dotenv-command
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](https://github.com/roots/guidelines/blob/master/CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/bedrock/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/bedrock#backer)]
+
+<a href="https://opencollective.com/bedrock#backers" target="_blank"><img src="https://opencollective.com/bedrock/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/bedrock#sponsor)]
+
+<a href="https://opencollective.com/bedrock/sponsor/0/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/1/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/2/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/3/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/4/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/5/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/6/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/7/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/8/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/bedrock/sponsor/9/website" target="_blank"><img src="https://opencollective.com/bedrock/sponsor/9/avatar.svg"></a>
+
+
