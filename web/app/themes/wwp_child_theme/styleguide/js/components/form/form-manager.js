@@ -119,8 +119,7 @@ export class FormManager extends PewComponent {
     }
 }
 
-window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.wdf-form', classDef: FormManager}); // GENERIC VERSION
-window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.contactForm', classDef: FormManager});
+window.pew.addRegistryEntry({key: 'wdf-form-manager', domSelector: '.wwpform', classDef: FormManager});
 
 /*
 Override example to use wherever you want :
