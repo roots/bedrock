@@ -10,6 +10,10 @@ export class Menu extends PewComponent {
         super(element, Object.assign(defaultOptions, options));
     }
 
+    self($thisLi, subMenuOptions) {
+        return new this($thisLi, subMenuOptions);
+    }
+
     init() {
         this.opened = this.element.css('display') !== 'none' && this.element.css('visibility') !== 'hidden';
         this.registerEvents();
@@ -68,7 +72,6 @@ export class Menu extends PewComponent {
     }
 
     registerSubMenuOpener() {
-        //register link clicks that open sub menus
         this.element.find('> ul > li > a').on('click', (e) => {
             let $thisLink = $(e.currentTarget),
                 $thisLi   = $thisLink.parent();
@@ -84,11 +87,12 @@ export class Menu extends PewComponent {
     }
 
     createSubMenu($thisLi) {
+        var self = this;
         if (!$thisLi.data('menu')) {
             let subMenuOptions = {
-                'depth': this.options.depth + 1
+                'depth': self.options.depth + 1
             };
-            let thisMenu       = new Menu($thisLi, subMenuOptions);
+            let thisMenu       = this.self($thisLi, subMenuOptions);
             $thisLi.data('menu', thisMenu);
         }
     }
@@ -126,5 +130,3 @@ export class Menu extends PewComponent {
     }
 
 }
-
-
