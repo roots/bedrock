@@ -21,13 +21,22 @@ class WPMDB extends WPMDB_Base {
 	protected $domain_replace;
 	protected $checkbox_options;
 	protected $find_replace_pairs = array();
+	protected $query_buffer = '';
+	protected $query_template = '';
+	protected $query_size = 0;
+	protected $first_select = true;
+	public $wpdb;
+	public $target_db_version = '';
+	public $compatibility_plugin_manager;
 
 	function __construct( $plugin_file_path ) {
 		parent::__construct( $plugin_file_path );
 
 		$this->plugin_version = $GLOBALS['wpmdb_meta'][ $this->core_slug ]['version'];
-
 		$this->max_insert_string_len = 50000; // 50000 is the default as defined by PhpMyAdmin
+
+		// For Firefox extend "Cache-Control" header to include 'no-store' so that refresh after migration doesn't override JS set values.
+		add_filter( 'nocache_headers', array( $this, 'nocache_headers' ) );
 
 		add_filter( 'plugin_action_links_' . $this->plugin_basename, array( $this, 'plugin_action_links' ) );
 		add_filter( 'network_admin_plugin_action_links_' . $this->plugin_basename, array( $this, 'plugin_action_links' ) );
@@ -40,11 +49,13 @@ class WPMDB extends WPMDB_Base {
 		add_action( 'wp_ajax_wpmdb_migrate_table', array( $this, 'ajax_migrate_table' ) );
 		add_action( 'wp_ajax_wpmdb_clear_log', array( $this, 'ajax_clear_log' ) );
 		add_action( 'wp_ajax_wpmdb_get_log', array( $this, 'ajax_get_log' ) );
-		add_action( 'wp_ajax_wpmdb_plugin_compatibility', array( $this, 'ajax_plugin_compatibility' ) );
-		add_action( 'wp_ajax_wpmdb_blacklist_plugins', array( $this, 'ajax_blacklist_plugins' ) );
+		add_action( 'wp_ajax_wpmdb_whitelist_plugins', array( $this, 'ajax_whitelist_plugins' ) );
 		add_action( 'wp_ajax_wpmdb_update_max_request_size', array( $this, 'ajax_update_max_request_size' ) );
 		add_action( 'wp_ajax_wpmdb_update_delay_between_requests', array( $this, 'ajax_update_delay_between_requests' ) );
 		add_action( 'wp_ajax_wpmdb_cancel_migration', array( $this, 'ajax_cancel_migration' ) );
+		add_action( 'wp_ajax_wpmdb_finalize_migration', array( $this, 'ajax_finalize_migration' ) );
+		add_action( 'wp_ajax_wpmdb_flush', array( $this, 'ajax_flush' ) );
+		add_action( 'wp_ajax_nopriv_wpmdb_flush', array( $this, 'ajax_nopriv_flush', ) );
 
 		$this->accepted_fields = array(
 			'action',
@@ -71,6 +82,7 @@ class WPMDB extends WPMDB_Base {
 			'exclude_post_revisions',
 			'compatibility_older_mysql',
 			'export_dest',
+			'import_find_replace',
 		);
 
 		$this->default_profile = array(
@@ -85,7 +97,8 @@ class WPMDB extends WPMDB_Base {
 			'select_post_types'         => array(),
 			'backup_option'             => 'backup_only_with_prefix',
 			'exclude_transients'        => '1',
-			'compatibility_older_mysql' => '1',
+			'compatibility_older_mysql' => '0',
+		    'import_find_replace'       => '1',
 		);
 
 		$this->checkbox_options = array(
@@ -98,6 +111,7 @@ class WPMDB extends WPMDB_Base {
 			'exclude_post_types'        => '0',
 			'exclude_transients'        => '0',
 			'compatibility_older_mysql' => '0',
+			'import_find_replace'       => '0',
 		);
 
 		$this->plugin_tabs = array(
@@ -128,6 +142,66 @@ class WPMDB extends WPMDB_Base {
 		} else {
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		}
+
+		if ( class_exists( 'WPMDB_Compatibility_Plugin_Manager' ) ) {
+			// Initialize the WPMDB_Compatibility_Plugin_Manager class to handle the `Compatibility Mode' MU Plugin
+			$this->compatibility_plugin_manager = new WPMDB_Compatibility_Plugin_Manager( $this );
+		}
+
+		add_action( 'wp_ajax_wpmdb_process_notice_link', array( $this, 'ajax_process_notice_link' ) );
+	}
+
+	/**
+	 * Extend Cache-Control header to include "no-store" so that Firefox doesn't override input selection after refresh.
+	 *
+	 * @param array $headers
+	 *
+	 * @return array
+	 */
+	public function nocache_headers( $headers ) {
+		if ( is_array( $headers ) &&
+		     key_exists( 'Cache-Control', $headers ) &&
+		     false === strpos( $headers['Cache-Control'], 'no-store' )
+		) {
+			$headers['Cache-Control'] .= ', no-store';
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * Handler for ajax request to process a link click in a notice, e.g. licence deactivated ... re-check.
+	 *
+	 * @return bool|null
+	 */
+	function ajax_process_notice_link() {
+		$this->check_ajax_referer( 'process-notice-link' );
+
+		$key_rules = array(
+			'action'   => 'key',
+			'nonce'    => 'key',
+			'notice'   => 'key',
+			'type'     => 'key',
+			'reminder' => 'int',
+		);
+
+		$_POST = WPMDB_Sanitize::sanitize_data( $_POST, $key_rules, __METHOD__ );
+
+		if ( false === $_POST ) {
+			exit;
+		}
+
+		global $current_user;
+		$key   = 'wpmdb_' . $_POST['type'] . '_' . $_POST['notice'];
+		$value = true;
+		if ( 'reminder' == $_POST['type'] && isset( $_POST['reminder'] ) ) {
+			$value = strtotime( 'now' ) + ( is_numeric( $_POST['reminder'] ) ? $_POST['reminder'] : 604800 );
+		}
+		update_user_meta( $current_user->ID, $key, $value );
+
+		$result = $this->end_ajax();
+
+		return $result;
 	}
 
 	/**
@@ -152,53 +226,18 @@ class WPMDB extends WPMDB_Base {
 	}
 
 	/**
-	 * Handler for ajax request to turn on or off Compatibility Mode.
-	 */
-	function ajax_plugin_compatibility() {
-		$this->check_ajax_referer( 'plugin_compatibility' );
-
-		$key_rules = array(
-			'action'  => 'key',
-			'install' => 'numeric',
-		);
-		$this->set_post_data( $key_rules );
-
-		$mu_dir = ( defined( 'WPMU_PLUGIN_DIR' ) && defined( 'WPMU_PLUGIN_URL' ) ) ? WPMU_PLUGIN_DIR : trailingslashit( WP_CONTENT_DIR ) . 'mu-plugins';
-		$source = trailingslashit( $this->plugin_dir_path ) . 'compatibility/wp-migrate-db-pro-compatibility.php';
-		$dest   = trailingslashit( $mu_dir ) . 'wp-migrate-db-pro-compatibility.php';
-		if ( '1' === trim( $this->state_data['install'] ) ) { // install MU plugin
-			if ( ! wp_mkdir_p( $mu_dir ) ) {
-				printf( esc_html__( 'The following directory could not be created: %s', 'wp-migrate-db' ), $mu_dir );
-				exit;
-			}
-
-			if ( ! @copy( $source, $dest ) ) {
-				printf( esc_html__( 'Could not copy the compatibility plugin from %1$s to %2$s', 'wp-migrate-db' ), $source, $dest );
-				exit;
-			}
-		} else { // uninstall MU plugin
-			// TODO: Use WP_Filesystem API.
-			if ( file_exists( $dest ) && ! @unlink( $dest ) ) {
-				printf( esc_html__( 'Could not remove the compatibility plugin from %s', 'wp-migrate-db' ), $dest );
-				exit;
-			}
-		}
-		exit;
-	}
-
-	/**
 	 * Handler for updating the plugins that are not to be loaded during a request (Compatibility Mode).
 	 */
-	function ajax_blacklist_plugins() {
-		$this->check_ajax_referer( 'blacklist_plugins' );
+	function ajax_whitelist_plugins() {
+		$this->check_ajax_referer( 'whitelist_plugins' );
 
 		$key_rules = array(
 			'action'            => 'key',
-			'blacklist_plugins' => 'array',
+			'whitelist_plugins' => 'array',
 		);
 		$this->set_post_data( $key_rules );
 
-		$this->settings['blacklist_plugins'] = (array) $this->state_data['blacklist_plugins'];
+		$this->settings['whitelist_plugins'] = (array) $this->state_data['whitelist_plugins'];
 		update_site_option( 'wpmdb_settings', $this->settings );
 		exit;
 	}
@@ -292,7 +331,9 @@ class WPMDB extends WPMDB_Base {
 			unset( $form_data['exclude_post_revisions'] );
 		}
 
-		return $form_data;
+		$this->form_data = $form_data;
+
+		return $this->form_data;
 	}
 
 	/**
@@ -366,6 +407,8 @@ class WPMDB extends WPMDB_Base {
 		echo esc_html( home_url() );
 		echo "\r\n";
 
+		echo "\r\n";
+
 		echo 'Database Name: ';
 		echo esc_html( $wpdb->dbname );
 		echo "\r\n";
@@ -374,11 +417,51 @@ class WPMDB extends WPMDB_Base {
 		echo esc_html( $table_prefix );
 		echo "\r\n";
 
-		echo 'WordPress: ';
-		echo bloginfo( 'version' );
+		echo "\r\n";
+
+		echo 'WordPress: ' . get_bloginfo( 'version' );
 		if ( is_multisite() ) {
-			echo ' Multisite';
+			$multisite_type = defined( 'SUBDOMAIN_INSTALL' ) && SUBDOMAIN_INSTALL ? 'Sub-domain' : 'Sub-directory';
+			echo ' Multisite (' . $multisite_type . ')';
+			echo "\r\n";
+
+			if ( defined( 'DOMAIN_CURRENT_SITE' ) ) {
+				echo 'Domain Current Site: ';
+				echo DOMAIN_CURRENT_SITE;
+				echo "\r\n";
+			}
+
+			if ( defined( 'PATH_CURRENT_SITE' ) ) {
+				echo 'Path Current Site: ';
+				echo PATH_CURRENT_SITE;
+				echo "\r\n";
+			}
+
+			if ( defined( 'SITE_ID_CURRENT_SITE' ) ) {
+				echo 'Site ID Current Site: ';
+				echo SITE_ID_CURRENT_SITE;
+				echo "\r\n";
+			}
+
+			if ( defined( 'BLOG_ID_CURRENT_SITE' ) ) {
+				echo 'Blog ID Current Site: ';
+				echo BLOG_ID_CURRENT_SITE;
+				echo "\r\n";
+			}
+		} else {
+			echo "\r\n";
 		}
+
+		echo "\r\n";
+
+		foreach ( array_reverse( $GLOBALS['wpmdb_meta'] ) as $wpmdb_plugin => $wpmdb_plugin_info ) {
+			if ( strlen( $wpmdb_plugin ) > strlen( 'wp-migrate-db-pro' ) ) {
+				$wpmdb_plugin = str_replace( 'wp-migrate-db-pro-', '', $wpmdb_plugin );
+			}
+			$wpmdb_plugin = ucwords( str_replace( array( 'wp', 'db', 'cli', '-' ), array( 'WP', 'DB', 'CLI',' '), $wpmdb_plugin ) );
+			echo $wpmdb_plugin . ": " . $wpmdb_plugin_info['version'] . "\r\n";
+		}
+
 		echo "\r\n";
 
 		echo 'Web Server: ';
@@ -391,16 +474,15 @@ class WPMDB extends WPMDB_Base {
 		}
 		echo "\r\n";
 
-		echo 'MySQL: ';
-		echo esc_html( empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh ) );
-		echo "\r\n";
-
-		echo 'ext/mysqli: ';
-		echo empty( $wpdb->use_mysqli ) ? 'no' : 'yes';
-		echo "\r\n";
 
 		echo 'WP Memory Limit: ';
 		echo esc_html( WP_MEMORY_LIMIT );
+		echo "\r\n";
+
+		echo 'PHP Time Limit: ';
+		if ( function_exists( 'ini_get' ) ) {
+			echo esc_html( ini_get( 'max_execution_time' ) );
+		}
 		echo "\r\n";
 
 		echo 'Blocked External HTTP Requests: ';
@@ -414,54 +496,6 @@ class WPMDB extends WPMDB_Base {
 			} else {
 				echo 'Partially (Accessible Hosts: ' . esc_html( $accessible_hosts ) . ')';
 			}
-		}
-		echo "\r\n";
-
-		echo 'WPMDB Bottleneck: ';
-		echo esc_html( size_format( $this->get_bottleneck() ) );
-		echo "\r\n";
-
-		echo 'WP Locale: ';
-		echo esc_html( get_locale() );
-		echo "\r\n";
-
-		echo 'DB Charset: ';
-		echo esc_html( DB_CHARSET );
-		echo "\r\n";
-
-		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.post.max_value_length' ) ) {
-			echo 'Suhosin Post Max Value Length: ';
-			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
-			echo "\r\n";
-		}
-
-		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.request.max_value_length' ) ) {
-			echo 'Suhosin Request Max Value Length: ';
-			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
-			echo "\r\n";
-		}
-
-		echo 'Debug Mode: ';
-		echo esc_html( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo 'WP Max Upload Size: ';
-		echo esc_html( size_format( wp_max_upload_size() ) );
-		echo "\r\n";
-
-		echo 'PHP Post Max Size: ';
-		echo esc_html( size_format( $this->get_post_max_size() ) );
-		echo "\r\n";
-
-		echo 'PHP Time Limit: ';
-		if ( function_exists( 'ini_get' ) ) {
-			echo esc_html( ini_get( 'max_execution_time' ) );
-		}
-		echo "\r\n";
-
-		echo 'PHP Error Log: ';
-		if ( function_exists( 'ini_get' ) ) {
-			echo esc_html( ini_get( 'error_log' ) );
 		}
 		echo "\r\n";
 
@@ -495,10 +529,85 @@ class WPMDB extends WPMDB_Base {
 		} else {
 			echo 'No';
 		}
+
+		echo "\r\n";
+		echo "\r\n";
+
+		echo 'MySQL: ';
+		echo esc_html( empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh ) );
+		echo "\r\n";
+
+		echo 'ext/mysqli: ';
+		echo empty( $wpdb->use_mysqli ) ? 'no' : 'yes';
+		echo "\r\n";
+
+		echo 'WP Locale: ';
+		echo esc_html( get_locale() );
+		echo "\r\n";
+
+		echo 'DB Charset: ';
+		echo esc_html( DB_CHARSET );
+		echo "\r\n";
+
+		echo 'WPMDB_STRIP_INVALID_TEXT: ';
+		echo esc_html( ( defined( 'WPMDB_STRIP_INVALID_TEXT' ) && WPMDB_STRIP_INVALID_TEXT ) ? 'Yes' : 'No' );
+		echo "\r\n";
+
+		echo "\r\n";
+
+		echo 'Debug Mode: ';
+		echo esc_html( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'Yes' : 'No' );
+		echo "\r\n";
+
+		echo 'Debug Log: ';
+		echo esc_html( ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) ? 'Yes' : 'No' );
+		echo "\r\n";
+
+		echo 'Debug Display: ';
+		echo esc_html( ( defined( 'WP_DEBUG_DISPLAY' ) && WP_DEBUG_DISPLAY ) ? 'Yes' : 'No' );
+		echo "\r\n";
+
+		echo 'Script Debug: ';
+		echo esc_html( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'Yes' : 'No' );
+		echo "\r\n";
+
+		echo 'PHP Error Log: ';
+		if ( function_exists( 'ini_get' ) ) {
+			echo esc_html( ini_get( 'error_log' ) );
+		}
+		echo "\r\n";
+
+
+		echo "\r\n";
+
+		echo 'WP Max Upload Size: ';
+		echo esc_html( size_format( wp_max_upload_size() ) );
+		echo "\r\n";
+
+		echo 'PHP Post Max Size: ';
+		echo esc_html( size_format( $this->get_post_max_size() ) );
+		echo "\r\n";
+
+		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.post.max_value_length' ) ) {
+			echo 'Suhosin Post Max Value Length: ';
+			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
+			echo "\r\n";
+		}
+
+		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.request.max_value_length' ) ) {
+			echo 'Suhosin Request Max Value Length: ';
+			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
+			echo "\r\n";
+		}
+
+		echo "\r\n";
+
+		echo 'WPMDB Bottleneck: ';
+		echo esc_html( size_format( $this->get_bottleneck() ) );
 		echo "\r\n";
 
 		echo 'Compatibility Mode: ';
-		if ( isset( $GLOBALS['wpmdb_compatibility'] ) ) {
+		if ( isset( $GLOBALS['wpmdb_compatibility']['active'] ) ) {
 			echo 'Yes';
 		} else {
 			echo 'No';
@@ -510,6 +619,42 @@ class WPMDB extends WPMDB_Base {
 		$delay_between_requests = $delay_between_requests > 0 ? $delay_between_requests / 1000 : $delay_between_requests;
 		echo esc_html( $delay_between_requests ) . ' s';
 		echo "\r\n\r\n";
+
+		echo 'WP_HOME: ';
+		echo esc_html( ( defined( 'WP_HOME' ) && WP_HOME ) ? WP_HOME : 'Not defined' );
+		echo "\r\n";
+
+		echo 'WP_SITEURL: ';
+		echo esc_html( ( defined( 'WP_SITEURL' ) && WP_SITEURL ) ? esc_html( WP_SITEURL ) : 'Not defined' );
+		echo "\r\n";
+
+		echo 'WP_CONTENT_URL: ';
+		echo esc_html( ( defined( 'WP_CONTENT_URL' ) && WP_CONTENT_URL ) ? WP_CONTENT_URL : 'Not defined' );
+		echo "\r\n";
+
+		echo 'WP_CONTENT_DIR: ';
+		echo esc_html( ( defined( 'WP_CONTENT_DIR' ) && WP_CONTENT_DIR ) ? WP_CONTENT_DIR : 'Not defined' );
+		echo "\r\n";
+
+		echo 'WP_PLUGIN_DIR: ';
+		echo esc_html( ( defined( 'WP_PLUGIN_DIR' ) ) ? WP_PLUGIN_DIR : 'Not defined' );
+		echo "\r\n";
+
+		echo 'WP_PLUGIN_URL: ';
+		echo esc_html( ( defined( 'WP_PLUGIN_URL' ) ) ? WP_PLUGIN_URL : 'Not defined' );
+		echo "\r\n";
+
+		if ( is_multisite() ) {
+			echo 'UPLOADS Constant: ';
+			echo esc_html( ( defined( 'UPLOADS' ) && UPLOADS ) ? UPLOADS : 'Not defined' );
+			echo "\r\n";
+
+			echo 'UPLOADBLOGSDIR Constant: ';
+			echo esc_html( ( defined( 'UPLOADBLOGSDIR' ) && UPLOADS ) ? UPLOADBLOGSDIR : 'Not defined' );
+			echo "\r\n";
+		}
+
+		echo "\r\n";
 
 		do_action( 'wpmdb_diagnostic_info' );
 		if ( has_action( 'wpmdb_diagnostic_info' ) ) {
@@ -530,12 +675,10 @@ class WPMDB extends WPMDB_Base {
 
 		echo "Active Plugins:\r\n";
 
-		if ( isset( $GLOBALS['wpmdb_compatibility'] ) ) {
-			remove_filter( 'option_active_plugins', 'wpmdbc_exclude_plugins' );
-			remove_filter( 'site_option_active_sitewide_plugins', 'wpmdbc_exclude_site_plugins' );
-			$blacklist = array_flip( (array) $this->settings['blacklist_plugins'] );
+		if ( isset( $GLOBALS['wpmdb_compatibility']['active'] ) ) {
+			$whitelist = array_flip( (array) $this->settings['whitelist_plugins'] );
 		} else {
-			$blacklist = array();
+			$whitelist = array();
 		}
 
 		$active_plugins = (array) get_option( 'active_plugins', array() );
@@ -546,13 +689,8 @@ class WPMDB extends WPMDB_Base {
 		}
 
 		foreach ( $active_plugins as $plugin ) {
-			$suffix = ( isset( $blacklist[ $plugin ] ) ) ? '*' : '';
-			$this->print_plugin_details( WP_PLUGIN_DIR . '/' . $plugin, $suffix );
-		}
-
-		if ( isset( $GLOBALS['wpmdb_compatibility'] ) ) {
-			add_filter( 'option_active_plugins', 'wpmdbc_exclude_plugins' );
-			add_filter( 'site_option_active_sitewide_plugins', 'wpmdbc_exclude_site_plugins' );
+			$prefix = ( isset( $whitelist[ $plugin ] ) ) ? '*' : '';
+			$this->print_plugin_details( WP_PLUGIN_DIR . '/' . $plugin, $prefix );
 		}
 
 		$mu_plugins = wp_get_mu_plugins();
@@ -564,16 +702,18 @@ class WPMDB extends WPMDB_Base {
 			foreach ( $mu_plugins as $mu_plugin ) {
 				$this->print_plugin_details( $mu_plugin );
 			}
+
+			echo "\r\n";
 		}
 	}
 
-	function print_plugin_details( $plugin_path, $suffix = '' ) {
+	function print_plugin_details( $plugin_path, $prefix = '' ) {
 		$plugin_data = get_plugin_data( $plugin_path );
 		if ( empty( $plugin_data['Name'] ) ) {
 			return;
 		}
 
-		printf( "%s%s (v%s) by %s\r\n", $plugin_data['Name'], $suffix, $plugin_data['Version'], $plugin_data['AuthorName'] );
+		printf( "%s%s (v%s) by %s\r\n", $prefix, $plugin_data['Name'], $plugin_data['Version'], $plugin_data['AuthorName'] );
 	}
 
 	function remove_wp_plugin_dir( $name ) {
@@ -584,11 +724,15 @@ class WPMDB extends WPMDB_Base {
 
 	function get_alter_queries() {
 		global $wpdb;
-		$alter_table_name = $this->get_alter_table_name();
-		$sql              = '';
-		$alter_queries    = $wpdb->get_results( "SELECT * FROM `{$alter_table_name}`", ARRAY_A );
 
-		$alter_queries = apply_filters( 'wpmdb_get_alter_queries', $alter_queries );
+		$alter_table_name = $this->get_alter_table_name();
+		$alter_queries    = array();
+		$sql              = '';
+
+		if ( $alter_table_name === $wpdb->get_var( "SHOW TABLES LIKE '$alter_table_name'" ) ) {
+			$alter_queries = $wpdb->get_results( "SELECT * FROM `{$alter_table_name}`", ARRAY_A );
+			$alter_queries = apply_filters( 'wpmdb_get_alter_queries', $alter_queries );
+		}
 
 		if ( ! empty( $alter_queries ) ) {
 			foreach ( $alter_queries as $alter_query ) {
@@ -620,13 +764,72 @@ class WPMDB extends WPMDB_Base {
 			if ( false === $wpdb->query( $query ) ) {
 				$return = ob_get_clean();
 				$return = array( 'wpmdb_error' => 1, 'body' => $return );
-				$result = $this->end_ajax( json_encode( $return ) );
 
-				return $result;
+				$invalid_text = $this->maybe_strip_invalid_text_and_retry( $query );
+				if ( false !== $invalid_text ) {
+					$return = $invalid_text;
+				}
+
+				if ( true !== $return ) {
+					$result = $this->end_ajax( json_encode( $return ) );
+
+					return $result;
+				}
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * Check if query failed due to invalid text and retry stripped query if WPMDB_STRIP_INVALID is defined as true
+	 *
+	 * @param string $query
+	 * @param string $context
+	 *
+	 * @return array|bool|WP_Error
+	 */
+	function maybe_strip_invalid_text_and_retry( $query, $context = 'default' ) {
+		global $wpdb;
+		$return = true;
+		// For insert/update queries, check if it's due to invalid text
+		if ( ! $wpdb->last_error && ( strstr( $query, 'INSERT' ) || strstr( $query, 'UPDATE' ) ) ) {
+			// Only instantiate WPMDB_WPDB if needed
+			if ( ! $this->wpdb ) {
+				$this->wpdb = WPMDB_Utils::make_wpmdb_wpdb_instance();
+			}
+			if ( $this->wpdb->query_has_invalid_text( $query ) ) {
+				if ( ! ( defined( 'WPMDB_STRIP_INVALID_TEXT' ) && WPMDB_STRIP_INVALID_TEXT ) ) {
+					$table = $this->wpdb->get_table_from_query( $query );
+					$table = str_replace( $this->temp_prefix, '', $table );
+
+					if ( 'import' === $context ) {
+						$message = sprintf( __( 'The imported table `%1s` contains characters which are invalid in the target schema.<br><br>If this is a WP Migrate DB Pro export file, ensure that the `Compatible with older versions of MySQL` setting under `Advanced Options` is unchecked and try exporting again.<br><br> See&nbsp;<a href="%2s">our documentation</a> for more information.', 'wp-migrate-db' ), $table, 'https://deliciousbrains.com/wp-migrate-db-pro/doc/invalid-text/#imports' );
+						$return  = new WP_Error( 'import_sql_execution_failed', $message );
+					} else {
+						$message = sprintf( __( 'The table `%1s` contains characters which are invalid in the target database. See&nbsp;<a href="%2s">our documentation</a> for more information.', 'wp-migrate-db' ), $table, 'https://deliciousbrains.com/wp-migrate-db-pro/doc/invalid-text/' );
+						$return  = array(
+							'wpmdb_error' => 1,
+							'body'        => $message,
+						);
+					}
+
+					$this->log_error( $message );
+					error_log( $message . ":\n" . $query );
+
+				} else {
+					if ( false === $wpdb->query( $this->wpdb->last_stripped_query ) ) {
+						$error = ob_get_clean();
+
+						$return = new WP_Error( 'strip_invalid_text_query_failed', 'Failed to import the stripped SQL query: ' . $error );
+					} else {
+						$return = true;
+					}
+				}
+			}
+		}
+
+		return $return;
 	}
 
 	/**
@@ -651,6 +854,7 @@ class WPMDB extends WPMDB_Base {
 			'prefix'              => 'string',
 			'path_current_site'   => 'string',
 			'domain_current_site' => 'text',
+			'import_info'         => 'array',
 		);
 		$this->set_post_data( $key_rules );
 
@@ -658,7 +862,9 @@ class WPMDB extends WPMDB_Base {
 
 		$this->form_data = $this->parse_migration_form_data( $this->state_data['form_data'] );
 
-		$result = '';
+		if ( 'import' === $this->state_data['intent'] && ! $this->table_exists( $this->state_data['table'] ) ) {
+			return $this->end_ajax( json_encode( array( 'current_row' => -1 ) ) );
+		}
 
 		// checks if we're performing a backup, if so, continue with the backup and exit immediately after
 		if ( $this->state_data['stage'] == 'backup' && $this->state_data['intent'] != 'savefile' ) {
@@ -709,32 +915,30 @@ class WPMDB extends WPMDB_Base {
 			return $result;
 		}
 
-		// Pull and push need to be handled differently for obvious reasons, trigger different code depending on the migration intent (push or pull)
-		if ( $this->state_data['intent'] == 'push' || $this->state_data['intent'] == 'savefile' ) {
+		// Pull and push need to be handled differently for obvious reasons,
+		// and trigger different code depending on the migration intent (push or pull).
+		if ( in_array( $this->state_data['intent'], array( 'push', 'savefile', 'find_replace', 'import' ) ) ) {
 			$this->maximum_chunk_size = $this->get_bottleneck();
 
 			if ( isset( $this->state_data['bottleneck'] ) ) {
 				$this->maximum_chunk_size = (int) $this->state_data['bottleneck'];
 			}
 
-			$sql_dump_file_name = $this->get_upload_info( 'path' ) . DIRECTORY_SEPARATOR;
-			$sql_dump_file_name .= $this->format_dump_name( $this->state_data['dump_filename'] );
-
-			if ( $this->state_data['intent'] == 'savefile' ) {
+			if ( 'savefile' === $this->state_data['intent'] ) {
+				$sql_dump_file_name = $this->get_upload_info( 'path' ) . DIRECTORY_SEPARATOR;
+				$sql_dump_file_name .= $this->format_dump_name( $this->state_data['dump_filename'] );
 				$this->fp = $this->open( $sql_dump_file_name );
 			}
 
-			$db_version = '';
 			if ( ! empty( $this->state_data['db_version'] ) ) {
-				$db_version = $this->state_data['db_version'];
-
+				$this->target_db_version = $this->state_data['db_version'];
 				if ( 'push' == $this->state_data['intent'] ) {
-					// $db_version has been set to remote database's version.
+					// $this->target_db_version has been set to remote database's version.
 					add_filter( 'wpmdb_create_table_query', array( $this, 'mysql_compat_filter' ), 10, 5 );
 				} elseif ( 'savefile' == $this->state_data['intent'] && ! empty( $this->form_data['compatibility_older_mysql'] ) ) {
 					// compatibility_older_mysql is currently a checkbox meaning pre-5.5 compatibility (we play safe and target 5.1),
 					// this may change in the future to be a dropdown or radiobox returning the version to be compatible with.
-					$db_version = '5.1';
+					$this->target_db_version = '5.1';
 					add_filter( 'wpmdb_create_table_query', array( $this, 'mysql_compat_filter' ), 10, 5 );
 				}
 			}
@@ -744,7 +948,7 @@ class WPMDB extends WPMDB_Base {
 			}
 
 			ob_start();
-			$result = $this->export_table( $this->state_data['table'], $db_version );
+			$result = $this->process_table( $this->state_data['table'] );
 
 			if ( $this->state_data['intent'] == 'savefile' && isset( $this->fp ) ) {
 				$this->close( $this->fp );
@@ -861,57 +1065,87 @@ class WPMDB extends WPMDB_Base {
 		$this->check_ajax_referer( 'initiate-migration' );
 
 		$key_rules = array(
-			'action'       => 'key',
-			'intent'       => 'key',
-			'url'          => 'url',
-			'key'          => 'string',
-			'form_data'    => 'string',
-			'stage'        => 'key',
-			'nonce'        => 'key',
-			'temp_prefix'  => 'string',
-			'site_details' => 'json_array',
-			'export_dest'  => 'string',
+			'action'         => 'key',
+			'intent'         => 'key',
+			'url'            => 'url',
+			'key'            => 'string',
+			'form_data'      => 'string',
+			'stage'          => 'key',
+			'nonce'          => 'key',
+			'temp_prefix'    => 'string',
+			'site_details'   => 'json_array',
+			'export_dest'    => 'string',
+		    'import_info'    => 'array',
 		);
 		$this->set_post_data( $key_rules );
 
 		$this->form_data = $this->parse_migration_form_data( $this->state_data['form_data'] );
 
+		$this->log_usage( $this->state_data['intent'] );
+
 		// A little bit of house keeping.
 		WPMDB_Migration_State::cleanup();
 
-		if ( $this->state_data['intent'] == 'savefile' ) {
+		if ( in_array( $this->state_data['intent'], array( 'find_replace', 'savefile', 'import' ) ) ) {
 			$return = array(
 				'code'    => 200,
 				'message' => 'OK',
 				'body'    => json_encode( array( 'error' => 0 ) ),
 			);
 
-			$return['dump_path']        = $this->get_sql_dump_info( 'migrate', 'path' );
-			$return['dump_filename']    = basename( $return['dump_path'] );
-			$return['dump_url']         = $this->get_sql_dump_info( 'migrate', 'url' );
-			$dump_filename_no_extension = substr( $return['dump_filename'], 0, -4 );
+			if ( 'import' === $this->state_data['intent'] ) {
+				$return['import_path']        = $this->get_sql_dump_info( 'import', 'path' );
+				$return['import_filename']    = wp_basename( $return['import_path'], '.sql' );
 
-			$create_alter_table_query = $this->get_create_alter_table_query();
-			// sets up our table to store 'ALTER' queries
-			$process_chunk_result = $this->process_chunk( $create_alter_table_query );
+				if ( $this->gzip() && isset( $this->state_data['import_info']['import_gzipped'] ) && 'true' === $this->state_data['import_info']['import_gzipped'] ) {
+					$return['import_path'] .= '.gz';
+				}
 
-			if ( true !== $process_chunk_result ) {
-				$result = $this->end_ajax( $process_chunk_result );
-
-				return $result;
+				$this->delete_temporary_tables( $this->temp_prefix );
 			}
 
-			if ( $this->gzip() && isset( $this->form_data['gzip_file'] ) && $this->form_data['gzip_file'] ) {
-				$return['dump_path'] .= '.gz';
-				$return['dump_filename'] .= '.gz';
-				$return['dump_url'] .= '.gz';
+			if ( in_array( $this->state_data['stage'], array( 'backup', 'migrate' ) ) ) {
+				$return['dump_path']        = $this->get_sql_dump_info( $this->state_data['stage'], 'path' );
+				$return['dump_filename']    = wp_basename( $return['dump_path'] );
+				$return['dump_url']         = $this->get_sql_dump_info( $this->state_data['stage'], 'url' );
+				$dump_filename_no_extension = substr( $return['dump_filename'], 0, -4 );
+
+				// sets up our table to store 'ALTER' queries
+				$create_alter_table_query = $this->get_create_alter_table_query();
+				$process_chunk_result = $this->process_chunk( $create_alter_table_query );
+
+				if ( true !== $process_chunk_result ) {
+					$result = $this->end_ajax( $process_chunk_result );
+
+					return $result;
+				}
+
+				if ( 'savefile' === $this->state_data['intent'] ) {
+					if ( $this->gzip() && isset( $this->form_data['gzip_file'] ) && $this->form_data['gzip_file'] ) {
+						$return['dump_path'] .= '.gz';
+						$return['dump_filename'] .= '.gz';
+						$return['dump_url'] .= '.gz';
+					}
+
+					$upload_path = $this->get_upload_info( 'path' );
+
+					if ( false === $this->filesystem->is_writable( $upload_path ) ) {
+						$error  = sprintf( __( '<p><strong>Export Failed</strong> — We can\'t save your export to the following folder:<br><strong>%s</strong></p><p>Please adjust the permissions on this folder. <a href="%s" target="_blank">See our documentation for more information »</a></p>', 'wp-migrate-db' ), $upload_path, 'https://deliciousbrains.com/wp-migrate-db-pro/doc/uploads-folder-permissions/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' );
+						$return = array(
+							'wpmdb_error' => 1,
+							'body'        => $error,
+						);
+						$result = $this->end_ajax( json_encode( $return ) );
+						return $result;
+					}
+
+					$this->fp = $this->open( $upload_path . DIRECTORY_SEPARATOR . $return['dump_filename'] );
+					$this->db_backup_header();
+					$this->close( $this->fp );
+				}
+
+				$return['dump_filename'] = $dump_filename_no_extension;
 			}
-
-			$this->fp = $this->open( $this->get_upload_info( 'path' ) . DIRECTORY_SEPARATOR . $return['dump_filename'] );
-			$this->db_backup_header();
-			$this->close( $this->fp );
-
-			$return['dump_filename'] = $dump_filename_no_extension;
 		} else { // does one last check that our verification string is valid
 			$data = array(
 				'action'       => 'wpmdb_remote_initiate_migration',
@@ -964,7 +1198,7 @@ class WPMDB extends WPMDB_Base {
 			}
 
 			if ( ! empty( $this->form_data['create_backup'] ) && $this->state_data['intent'] == 'pull' ) {
-				$return['dump_filename'] = basename( $this->get_sql_dump_info( 'backup', 'path' ) );
+				$return['dump_filename'] = wp_basename( $this->get_sql_dump_info( 'backup', 'path' ) );
 				$return['dump_filename'] = substr( $return['dump_filename'], 0, -4 );
 				$return['dump_url']      = $this->get_sql_dump_info( 'backup', 'url' );
 			}
@@ -992,6 +1226,439 @@ class WPMDB extends WPMDB_Base {
 		$result = $this->end_ajax( json_encode( $return ) );
 
 		return $result;
+	}
+
+	/**
+	 * After table migration, delete old tables and rename new tables removing the temporarily prefix.
+	 *
+	 * @return mixed
+	 */
+	function ajax_finalize_migration() {
+		$this->check_ajax_referer( 'finalize-migration' );
+
+		$key_rules = array(
+			'action'             => 'key',
+			'migration_state_id' => 'key',
+			'prefix'             => 'string',
+			'tables'             => 'string',
+			'nonce'              => 'key',
+		);
+		$this->set_post_data( $key_rules );
+
+		if ( 'savefile' === $this->state_data['intent'] ) {
+			return true;
+		}
+
+		$this->form_data = $this->parse_migration_form_data( $this->state_data['form_data'] );
+
+		global $wpdb;
+
+		if ( 'push' === $this->state_data['intent'] ) {
+			do_action( 'wpmdb_migration_complete', 'push', $this->state_data['url'] );
+			$data = $this->filter_post_elements(
+				$this->state_data,
+				array(
+					'remote_state_id',
+					'url',
+					'form_data',
+					'tables',
+					'temp_prefix',
+				)
+			);
+
+			$data['action']   = 'wpmdb_remote_finalize_migration';
+			$data['intent']   = 'pull';
+			$data['prefix']   = $wpdb->base_prefix;
+			$data['type']     = 'push';
+			$data['location'] = home_url();
+			$data['sig']      = $this->create_signature( $data, $this->state_data['key'] );
+			$ajax_url         = $this->ajax_url();
+			$response         = $this->remote_post( $ajax_url, $data, __FUNCTION__ );
+			ob_start();
+			echo esc_html( $response );
+			$this->display_errors();
+			$return = ob_get_clean();
+		} else {
+			$return = $this->finalize_migration();
+		}
+
+		$result = $this->end_ajax( $return );
+
+		return $result;
+	}
+
+	/**
+	 * Internal function for finalizing a migration.
+	 *
+	 * @return bool|null
+	 */
+	function finalize_migration() {
+		$this->set_post_data();
+		$tables           = explode( ',', $this->state_data['tables'] );
+		$temp_prefix      = ( isset( $this->state_data['temp_prefix'] ) ) ? $this->state_data['temp_prefix'] : $this->temp_prefix;
+		$temp_tables      = array();
+		$type             = $this->state_data['intent'];
+		$alter_table_name = $this->get_alter_table_name();
+
+		if ( isset( $this->state_data['type'] ) && 'push' === $this->state_data['type'] ) {
+			$type = 'push';
+		}
+
+		if ( 'find_replace' === $this->state_data['intent'] || 'import' === $this->state_data['intent'] ) {
+			$location = home_url();
+		} else {
+			$location = ( isset( $this->state_data['location'] ) ) ? $this->state_data['location'] : $this->state_data['url'];
+		}
+
+		if ( 'import' === $this->state_data['intent'] ) {
+			$temp_tables = $this->get_tables( 'temp' );
+			$tables      = array();
+
+			foreach ( $temp_tables as $key => $temp_table ) {
+				if ( $alter_table_name === $temp_table ) {
+					unset( $temp_tables[ $key ] );
+					continue;
+				}
+
+				$tables[] = substr( $temp_table, strlen( $temp_prefix ) );
+			}
+		} else {
+			foreach ( $tables as $table ) {
+				$temp_tables[] = $temp_prefix . apply_filters(
+					'wpmdb_finalize_target_table_name',
+					$table,
+					$type,
+					$this->state_data['site_details']
+				);
+			}
+		}
+
+		$sql = "SET FOREIGN_KEY_CHECKS=0;\n";
+
+		$sql .= $this->get_preserved_options_queries( $temp_tables, $type );
+
+		foreach ( $temp_tables as $table ) {
+			$sql .= 'DROP TABLE IF EXISTS ' . $this->backquote( substr( $table, strlen( $temp_prefix ) ) ) . ';';
+			$sql .= "\n";
+			$sql .= 'RENAME TABLE ' . $this->backquote( $table ) . ' TO ' . $this->backquote( substr( $table, strlen( $temp_prefix ) ) ) . ';';
+			$sql .= "\n";
+		}
+
+		$sql .= $this->get_alter_queries();
+		$sql .= 'DROP TABLE IF EXISTS ' . $this->backquote( $alter_table_name ) . ";\n";
+
+		$process_chunk_result = $this->process_chunk( $sql );
+		if ( true !== $process_chunk_result ) {
+			$result = $this->end_ajax( $process_chunk_result );
+
+			return $result;
+		}
+
+		if ( ! isset( $this->state_data['location'] ) && ! in_array( $this->state_data['intent'], array( 'find_replace', 'import' ) ) ) {
+			$data           = array();
+			$data['action'] = 'wpmdb_fire_migration_complete';
+			$data['url']    = home_url();
+			$data['sig']    = $this->create_signature( $data, $this->state_data['key'] );
+			$ajax_url       = $this->ajax_url();
+			$response       = $this->remote_post( $ajax_url, $data, __FUNCTION__ );
+			ob_start();
+			echo esc_html( $response );
+			$this->display_errors();
+			$maybe_errors = trim( ob_get_clean() );
+			if ( false === empty( $maybe_errors ) && '1' !== $maybe_errors ) {
+				$maybe_errors = array( 'wpmdb_error' => 1, 'body' => $maybe_errors );
+				$result       = $this->end_ajax( json_encode( $maybe_errors ) );
+
+				return $result;
+			}
+		}
+
+		do_action( 'wpmdb_migration_complete', $type, $location );
+
+		return true;
+	}
+
+	/**
+	 * Returns SQL queries used to preserve options in the
+	 * wp_options or wp_sitemeta tables during a migration.
+	 *
+	 * @param array  $temp_tables
+	 * @param string $intent
+	 *
+	 * @return string DELETE and INSERT SQL queries separated by a newline character (\n).
+	 */
+	function get_preserved_options_queries( $temp_tables, $intent = '' ) {
+		$this->set_post_data();
+		global $wpdb;
+
+		$sql                 = '';
+		$sitemeta_table_name = '';
+		$options_table_names = array();
+
+		$temp_prefix  = isset( $this->state_data['temp_prefix'] ) ? $this->state_data['temp_prefix'] : $this->temp_prefix;
+		$table_prefix = isset( $this->state_data['prefix'] ) ? $this->state_data['prefix'] : $wpdb->base_prefix;
+		$prefix       = esc_sql( $temp_prefix . $table_prefix );
+
+		foreach ( $temp_tables as $temp_table ) {
+			$table = $wpdb->base_prefix . str_replace( $prefix, '', $temp_table );
+
+			// Get sitemeta table
+			if ( is_multisite() && $this->table_is( 'sitemeta', $table ) ) {
+				$sitemeta_table_name = $temp_table;
+			}
+
+			// Get array of options tables
+			if ( $this->table_is( 'options', $table ) ) {
+				$options_table_names[] = $temp_table;
+			}
+		}
+
+		// Return if multisite but sitemeta and option tables not in migration scope
+		if ( is_multisite() && true === empty( $sitemeta_table_name ) && true === empty( $options_table_names ) ) {
+			return $sql;
+		}
+
+		// Return if options tables not in migration scope for non-multisite.
+		if ( ! is_multisite() && true === empty( $options_table_names ) ) {
+			return $sql;
+		}
+
+		$preserved_options = array(
+			'wpmdb_settings',
+			'wpmdb_error_log',
+			'wpmdb_schema_version',
+			'upload_path',
+			'upload_url_path',
+		);
+
+		$preserved_sitemeta_options = $preserved_options;
+
+		$this->form_data = $this->parse_migration_form_data( $this->state_data['form_data'] );
+
+		if ( false === empty( $this->form_data['keep_active_plugins'] ) ) {
+			$preserved_options[]          = 'active_plugins';
+			$preserved_sitemeta_options[] = 'active_sitewide_plugins';
+		}
+
+		if ( is_multisite() ) {
+			// Get preserved data in site meta table if being replaced.
+			if ( ! empty( $sitemeta_table_name ) ) {
+				$table = $wpdb->base_prefix . str_replace( $prefix, '', $sitemeta_table_name );
+
+				$preserved_migration_state_options = $wpdb->get_results(
+					"SELECT `meta_key` FROM `{$table}` WHERE `meta_key` LIKE '" . WPMDB_Migration_State::OPTION_PREFIX . "%'",
+					OBJECT_K
+				);
+
+				if ( ! empty( $preserved_migration_state_options ) ) {
+					$preserved_sitemeta_options = array_merge( $preserved_sitemeta_options, array_keys( $preserved_migration_state_options ) );
+				}
+
+				$preserved_sitemeta_options         = apply_filters( 'wpmdb_preserved_sitemeta_options', $preserved_sitemeta_options, $intent );
+				$preserved_sitemeta_options_escaped = esc_sql( $preserved_sitemeta_options );
+
+				$preserved_sitemeta_options_data = $wpdb->get_results(
+					sprintf(
+						"SELECT * FROM `{$table}` WHERE `meta_key` IN ('%s')",
+						implode( "','", $preserved_sitemeta_options_escaped )
+					),
+					ARRAY_A
+				);
+
+				$preserved_sitemeta_options_data = apply_filters( 'wpmdb_preserved_sitemeta_options_data', $preserved_sitemeta_options_data, $intent );
+
+				// Create preserved data queries for site meta table
+				foreach ( $preserved_sitemeta_options_data as $option ) {
+					$sql .= $wpdb->prepare( "DELETE FROM `{$sitemeta_table_name}` WHERE `meta_key` = %s;\n", $option['meta_key'] );
+					$sql .= $wpdb->prepare(
+						"INSERT INTO `{$sitemeta_table_name}` ( `meta_id`, `site_id`, `meta_key`, `meta_value` ) VALUES ( NULL , %s, %s, %s );\n",
+						$option['site_id'],
+						$option['meta_key'],
+						$option['meta_value']
+					);
+				}
+			}
+		} else {
+			$preserved_migration_state_options = $wpdb->get_results(
+				"SELECT `option_name` FROM `{$wpdb->options}` WHERE `option_name` LIKE '" . WPMDB_Migration_State::OPTION_PREFIX . "%'",
+				OBJECT_K
+			);
+
+			if ( ! empty( $preserved_migration_state_options ) ) {
+				$preserved_options = array_merge( $preserved_options, array_keys( $preserved_migration_state_options ) );
+			}
+		}
+
+		// Get preserved data in options tables if being replaced.
+		if ( ! empty( $options_table_names ) ) {
+			$preserved_options         = apply_filters( 'wpmdb_preserved_options', $preserved_options, $intent );
+			$preserved_options_escaped = esc_sql( $preserved_options );
+
+			$preserved_options_data = array();
+
+			// Get preserved data in options tables
+			foreach ( $options_table_names as $option_table ) {
+				$table = $wpdb->base_prefix . str_replace( $prefix, '', $option_table );
+
+				$preserved_options_data[ $option_table ] = $wpdb->get_results(
+					sprintf(
+						"SELECT * FROM `{$table}` WHERE `option_name` IN ('%s')",
+						implode( "','", $preserved_options_escaped )
+					),
+					ARRAY_A
+				);
+			}
+
+			$preserved_options_data = apply_filters( 'wpmdb_preserved_options_data', $preserved_options_data, $intent );
+
+			// Create preserved data queries for options tables
+			foreach ( $preserved_options_data as $key => $value ) {
+				if ( false === empty( $value ) ) {
+					foreach ( $value as $option ) {
+						$sql .= $wpdb->prepare(
+							"DELETE FROM `{$key}` WHERE `option_name` = %s;\n",
+							$option['option_name']
+						);
+
+						$sql .= $wpdb->prepare(
+							"INSERT INTO `{$key}` ( `option_id`, `option_name`, `option_value`, `autoload` ) VALUES ( NULL , %s, %s, %s );\n",
+							$option['option_name'],
+							$option['option_value'],
+							$option['autoload']
+						);
+					}
+				}
+			}
+		}
+
+		return $sql;
+	}
+
+	/**
+	 * Preserves the active_plugins option.
+	 *
+	 * @param array $preserved_options
+	 *
+	 * @return array
+	 */
+	function preserve_active_plugins_option( $preserved_options ) {
+		$keep_active_plugins = $this->profile_value( 'keep_active_plugins' );
+
+		if ( empty( $keep_active_plugins ) ) {
+			$preserved_options[] = 'active_plugins';
+		}
+
+		return $preserved_options;
+	}
+
+	/**
+	 * Preserves WPMDB plugins if the "Keep active plugins" option isn't checked.
+	 *
+	 * @param array $preserved_options_data
+	 *
+	 * @return array
+	 */
+	function preserve_wpmdb_plugins( $preserved_options_data ) {
+		$keep_active_plugins = $this->profile_value( 'keep_active_plugins' );
+
+		if ( ! empty( $keep_active_plugins ) || empty( $preserved_options_data ) ) {
+			return $preserved_options_data;
+		}
+
+		foreach ( $preserved_options_data as $table => $data ) {
+			foreach ( $data as $key => $option ) {
+				if ( 'active_plugins' === $option['option_name'] ) {
+					global $wpdb;
+
+					$table_name       = esc_sql( $table );
+					$option_value     = WPMDB_Utils::unserialize( $option['option_value'] );
+					$migrated_plugins = array();
+					$wpmdb_plugins    = array();
+
+					if ( $result = $wpdb->get_var( "SELECT option_value FROM $table_name WHERE option_name = 'active_plugins'" )  ) {
+						$unserialized = WPMDB_Utils::unserialize( $result );
+						if ( is_array( $unserialized ) ) {
+							$migrated_plugins = $unserialized;
+						}
+					}
+
+					foreach ( $option_value as $plugin_key => $plugin ) {
+						if ( 0 === strpos( $plugin, 'wp-migrate-db' ) ) {
+							$wpmdb_plugins[] = $plugin;
+						}
+					}
+
+					$merged_plugins                           = array_unique( array_merge( $wpmdb_plugins, $migrated_plugins ) );
+					$option['option_value']                   = serialize( $merged_plugins );
+					$preserved_options_data[ $table ][ $key ] = $option;
+					break;
+				}
+			}
+		}
+
+		return $preserved_options_data;
+	}
+
+	/**
+	 * Handles the request to flush caches and cleanup migration when pushing or not migrating user tables.
+	 *
+	 * @return bool|null
+	 */
+	function ajax_flush() {
+		$this->check_ajax_referer( 'flush' );
+
+		return $this->ajax_nopriv_flush();
+	}
+
+	/**
+	 * Handles the request to flush caches and cleanup migration when pulling with user tables being migrated.
+	 *
+	 * @return bool|null
+	 */
+	function ajax_nopriv_flush() {
+		$key_rules = array(
+			'action'             => 'key',
+			'migration_state_id' => 'key',
+		);
+		$this->set_post_data( $key_rules );
+
+
+		if ( 'push' === $this->state_data['intent'] ) {
+			$data           = array();
+			$data['action'] = 'wpmdb_remote_flush';
+			$data['sig']    = $this->create_signature( $data, $this->state_data['key'] );
+			$ajax_url       = $this->ajax_url();
+			$response       = $this->remote_post( $ajax_url, $data, __FUNCTION__ );
+			ob_start();
+			echo esc_html( $response );
+			$this->display_errors();
+			$return = ob_get_clean();
+		} else {
+			$return = $this->flush();
+		}
+
+		if ( ! $this->migration_state->delete() ) {
+			$this->log_error( 'Could not delete migration state.' );
+		}
+
+		$result = $this->end_ajax( $return );
+
+		return $result;
+	}
+
+	/**
+	 * Flushes the cache and rewrite rules.
+	 *
+	 * @return bool
+	 */
+	function flush() {
+		// flush rewrite rules to prevent 404s and other oddities
+		wp_cache_flush();
+		global $wp_rewrite;
+		$wp_rewrite->init();
+		flush_rewrite_rules( true ); // true = hard refresh, recreates the .htaccess file
+
+		return true;
 	}
 
 	/**
@@ -1100,18 +1767,21 @@ class WPMDB extends WPMDB_Base {
 
 		if ( is_multisite() ) {
 			$tables         = $this->get_tables( 'prefix' );
-			$sql            = "SELECT `post_type` FROM `{$wpdb->base_prefix}posts` ";
+			$sql            = "SELECT DISTINCT `post_type` FROM `{$wpdb->base_prefix}posts` ;";
+			$post_types     = $wpdb->get_results( $sql, ARRAY_A );
 			$prefix_escaped = preg_quote( $wpdb->base_prefix, '/' );
 
 			foreach ( $tables as $table ) {
 				if ( 0 == preg_match( '/' . $prefix_escaped . '[0-9]+_posts/', $table ) ) {
 					continue;
 				}
-				$blog_id = str_replace( array( $wpdb->base_prefix, '_posts' ), array( '', '' ), $table );
-				$sql .= "UNION SELECT `post_type` FROM `{$wpdb->base_prefix}" . $blog_id . '_posts` ';
+				$blog_id         = str_replace( array( $wpdb->base_prefix, '_posts' ), array( '', '' ), $table );
+				$sql             = "SELECT DISTINCT `post_type` FROM `{$wpdb->base_prefix}" . $blog_id . '_posts` ;';
+				$site_post_types = $wpdb->get_results( $sql, ARRAY_A );
+				if ( is_array( $site_post_types ) ) {
+					$post_types = array_merge( $post_types, $site_post_types );
+				}
 			}
-			$sql .= ';';
-			$post_types = $wpdb->get_results( $sql, ARRAY_A );
 		} else {
 			$post_types = $wpdb->get_results(
 				"SELECT DISTINCT `post_type`
@@ -1212,8 +1882,18 @@ class WPMDB extends WPMDB_Base {
 		$extension = '.sql';
 		$dump_name = sanitize_file_name( $dump_name );
 
-		if ( $this->gzip() && isset( $this->form_data['gzip_file'] ) && $this->form_data['gzip_file'] ) {
-			$extension .= '.gz';
+		if ( 'backup' === $this->state_data['stage'] ) {
+			return $dump_name . $extension;
+		}
+
+		if ( 'import' === $this->state_data['intent'] ) {
+			if ( isset( $this->state_data['import_info']['import_gzipped'] ) && 'true' === $this->state_data['import_info']['import_gzipped'] ) {
+				$extension .= '.gz';
+			}
+		} else {
+			if ( $this->gzip() && isset( $this->form_data['gzip_file'] ) && $this->form_data['gzip_file'] ) {
+				$extension .= '.gz';
+			}
 		}
 
 		return $dump_name . $extension;
@@ -1222,7 +1902,7 @@ class WPMDB extends WPMDB_Base {
 	function options_page() {
 		$this->template( 'options' );
 	}
-	
+
 	/**
 	 * Load Tools HTML template for tools menu on sites in a Network to help users find WPMDB in Multisite
 	 *
@@ -1240,19 +1920,19 @@ class WPMDB extends WPMDB_Base {
 		$this->set_post_data();
 
 		if ( ! isset( $this->domain_replace ) ) {
-			if ( is_multisite() && ! empty( $this->state_data['domain_current_site'] ) ) {
-				$this->domain_replace = $this->state_data['domain_current_site'];
-			} elseif ( is_multisite() && ! empty( $this->form_data['replace_new'][1] ) ) {
-				$url = $this->form_data['replace_new'][1];
-				$url = $this->parse_url( $url );
+			$this->domain_replace = false;
 
-				if ( isset( $url['host'] ) ) {
-					$this->domain_replace = $url['host'];
-				} else {
-					$this->domain_replace = false;
+			if ( is_multisite() && ! empty( $this->find_replace_pairs ) ) {
+				$grep = preg_grep( sprintf( '/^(\/\/|http:\/\/|https:\/\/|)%s/', $this->get_domain_current_site() ), $this->find_replace_pairs['replace_old'] );
+				if ( $grep ) {
+					$domain_find_keys = array_keys( $grep );
+					$url              = $this->parse_url( $this->find_replace_pairs['replace_new'][ $domain_find_keys[0] ] );
+					if ( isset( $url['host'] ) ) {
+						$this->domain_replace = $url['host'];
+					} elseif ( ! empty( $this->state_data['domain_current_site'] ) ) {
+						$this->domain_replace = $this->state_data['domain_current_site'];
+					}
 				}
-			} else {
-				$this->domain_replace = false;
 			}
 		}
 
@@ -1357,46 +2037,130 @@ class WPMDB extends WPMDB_Base {
 	}
 
 	/**
-	 * Taken partially from phpMyAdmin and partially from
-	 * Alain Wolf, Zurich - Switzerland
-	 * Website: http://restkultur.ch/personal/wolf/scripts/db_backup/
-	 * Modified by Scott Merrill (http://www.skippy.net/)
-	 * to use the WordPress $wpdb object
+	 * Loops over data in the provided table to perform a migration.
 	 *
 	 * @param string $table
-	 * @param string $db_version
 	 *
 	 * @return mixed
 	 */
-	function export_table( $table, $db_version = '' ) {
+	function process_table( $table ) {
 		global $wpdb;
+
+		// Setup form data
+		$this->setup_form_data();
+
+		$temp_prefix       = ( isset( $this->state_data['temp_prefix'] ) ? $this->state_data['temp_prefix'] : $this->temp_prefix );
+		$site_details      = empty( $this->state_data['site_details'] ) ? array() : $this->state_data['site_details'];
+		$target_table_name = apply_filters( 'wpmdb_target_table_name', $table, $this->form_data['action'], $this->state_data['stage'], $site_details );
+		$temp_table_name   = $temp_prefix . $target_table_name;
+		$structure_info    = $this->get_structure_info( $table );
+		$row_start         = $this->get_current_row();
+		$this->row_tracker = $row_start;
+
+		if ( ! is_array ( $structure_info ) ) {
+			return $structure_info;
+		}
+
+		$this->pre_process_data( $table, $target_table_name, $temp_table_name );
+
+		do {
+			// Build and run the query
+			$select_sql = $this->build_select_query( $table, $row_start, $structure_info );
+			$table_data = $wpdb->get_results( $select_sql );
+
+			if ( ! is_array( $table_data ) ) continue;
+
+			$to_search  = isset( $this->find_replace_pairs['replace_old'] ) ? $this->find_replace_pairs['replace_old'] : '';
+			$to_replace = isset( $this->find_replace_pairs['replace_new'] ) ? $this->find_replace_pairs['replace_new'] : '';
+			$replacer   = new WPMDB_Replace( array(
+				'table'        => ( 'find_replace' === $this->state_data['stage'] ) ? $temp_table_name : $table,
+				'search'       => $to_search,
+				'replace'      => $to_replace,
+				'intent'       => $this->state_data['intent'],
+				'base_domain'  => $this->get_domain_replace(),
+				'site_domain'  => $this->get_domain_current_site(),
+				'wpmdb'        => $this,
+				'site_details' => $site_details,
+			) );
+
+			$this->start_query_buffer( $target_table_name, $temp_table_name, $structure_info );
+
+			// Loop over the results
+			foreach ( $table_data as $row ) {
+				$result = $this->process_row( $table, $replacer, $row, $structure_info );
+				if ( ! is_bool( $result ) ) {
+					return $result;
+				}
+			}
+
+			$this->stow_query_buffer();
+			$row_start += $this->rows_per_segment;
+
+		} while ( count( $table_data ) > 0 );
+
+		// Finalize and return.
+		$this->post_process_data( $table, $target_table_name );
+		return $this->transfer_chunk();
+	}
+
+	/**
+	 * Initializes the query buffer and template.
+	 *
+	 * @param $target_table_name
+	 * @param $temp_table_name
+	 * @param $structure_info
+	 *
+	 * @return null
+	 */
+	function start_query_buffer( $target_table_name, $temp_table_name, $structure_info ) {
+		if ( 'find_replace' !== $this->state_data['stage'] ) {
+			$fields          = implode( ', ', $structure_info['field_set'] );
+			$table_to_insert = $temp_table_name;
+
+			if ( 'savefile' === $this->form_data['action'] || 'backup' === $this->state_data['stage'] ) {
+				$table_to_insert = $target_table_name;
+			}
+
+			$this->query_template = 'INSERT INTO ' . $this->backquote( $table_to_insert ) . ' ( ' . $fields . ") VALUES\n";
+		} else {
+			$this->query_template = '';
+		}
+
+		$this->query_buffer = $this->query_template;
+	}
+
+	/**
+	 * Responsible for stowing a chunk of processed data.
+	 */
+	function stow_query_buffer() {
+		if ( $this->query_buffer !== $this->query_template ) {
+			$this->query_buffer = rtrim( $this->query_buffer, "\n," );
+			$this->query_buffer .= " ;\n";
+			$this->stow( $this->query_buffer );
+			$this->query_buffer = $this->query_template;
+			$this->query_size   = 0;
+		}
+	}
+
+	/**
+	 * Sets up the form data for the migration.
+	 */
+	function setup_form_data() {
 		$this->set_time_limit();
 		$this->set_post_data();
 
 		if ( empty( $this->form_data ) ) {
 			$this->form_data = $this->parse_migration_form_data( $this->state_data['form_data'] );
 		}
+	}
 
-		$temp_prefix = ( isset( $this->state_data['temp_prefix'] ) ? $this->state_data['temp_prefix'] : $this->temp_prefix );
-
-		$table_structure = $wpdb->get_results( 'DESCRIBE ' . $this->backquote( $table ) );
-
-		if ( ! $table_structure ) {
-			$this->error = __( 'Failed to retrieve table structure, please ensure your database is online. (#125)', 'wp-migrate-db' );
-
-			return false;
-		}
-
-		$table_name        = $table;
-		$site_details      = empty( $this->state_data['site_details'] ) ? array() : $this->state_data['site_details'];
-		$target_table_name = apply_filters( 'wpmdb_target_table_name', $table_name, $this->form_data['action'], $this->state_data['stage'], $site_details );
-		$table_name        = $target_table_name;
-
-		if ( 'savefile' !== $this->form_data['action'] && 'backup' !== $this->state_data['stage'] ) {
-			$table_name = $temp_prefix . $table_name;
-		}
-
-		$current_row = -1;
+	/**
+	 * Returns the current row, checking the state data.
+	 *
+	 * @return int
+	 */
+	function get_current_row() {
+		$current_row = 0;
 
 		if ( ! empty( $this->state_data['current_row'] ) ) {
 			$temp_current_row = trim( $this->state_data['current_row'] );
@@ -1405,100 +2169,64 @@ class WPMDB extends WPMDB_Base {
 			}
 		}
 
-		if ( $current_row == -1 ) {
-			// Don't stow data until after `wpmdb_create_table_query` filter is applied as mysql_compat_filter() can return an error
-			$stow = '';
+		$current_row = ( 0 > $current_row ) ? 0 : $current_row;
 
-			// Add SQL statement to drop existing table
-			if ( $this->form_data['action'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
-				$stow .= ( "\n\n" );
-				$stow .= ( "#\n" );
-				$stow .= ( '# ' . sprintf( __( 'Delete any existing table %s', 'wp-migrate-db' ), $this->backquote( $table_name ) ) . "\n" );
-				$stow .= ( "#\n" );
-				$stow .= ( "\n" );
-			}
-			$stow .= ( 'DROP TABLE IF EXISTS ' . $this->backquote( $table_name ) . ";\n" );
+		return $current_row;
+	}
 
-			// Table structure
-			// Comment in SQL-file
-			if ( $this->form_data['action'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
-				$stow .= ( "\n\n" );
-				$stow .= ( "#\n" );
-				$stow .= ( '# ' . sprintf( __( 'Table structure of table %s', 'wp-migrate-db' ), $this->backquote( $table_name ) ) . "\n" );
-				$stow .= ( "#\n" );
-				$stow .= ( "\n" );
-			}
+	/**
+	 * Returns the table structure for the provided table.
+	 *
+	 * @param string $table
+	 *
+	 * @return array|bool
+	 */
+	function get_table_structure( $table ) {
+		global $wpdb;
 
-			$create_table = $wpdb->get_results( 'SHOW CREATE TABLE ' . $this->backquote( $table ), ARRAY_N );
+		$table_structure = false;
 
-			if ( false === $create_table ) {
-				$this->error = __( 'Failed to generate the create table query, please ensure your database is online. (#126)', 'wp-migrate-db' );
+		if ( $this->table_exists( $table ) ) {
+			$table_structure = $wpdb->get_results( 'DESCRIBE ' . $this->backquote( $table ) );
+		}
 
-				return false;
-			}
-			$create_table[0][1] = str_replace( 'CREATE TABLE `' . $table . '`', 'CREATE TABLE `' . $table_name . '`', $create_table[0][1] );
+		if ( ! $table_structure ) {
+			$this->error = sprintf( __( 'Failed to retrieve table structure for table \'%s\', please ensure your database is online. (#125)', 'wp-migrate-db' ), $table );
+			return false;
+		}
 
-			$create_table[0][1] = str_replace( 'TYPE=', 'ENGINE=', $create_table[0][1] );
+		return $table_structure;
+	}
 
-			$alter_table_query  = '';
-			$create_table[0][1] = $this->process_sql_constraint( $create_table[0][1], $target_table_name, $alter_table_query );
+	/**
+	 * Parses the provided table structure.
+	 *
+	 * @param array $table_structure
+	 *
+	 * @return array
+	 */
+	function get_structure_info( $table, $table_structure = array() ) {
+		if ( empty( $table_structure ) ) {
+			$table_structure = $this->get_table_structure( $table );
+		}
 
-			$create_table[0][1] = apply_filters( 'wpmdb_create_table_query', $create_table[0][1], $table_name, $db_version, $this->form_data['action'], $this->state_data['stage'] );
-			$stow .= ( $create_table[0][1] . ";\n" );
-
-			$this->stow( $stow );
-
-			if ( ! empty( $alter_table_query ) ) {
-				$alter_table_name = $this->get_alter_table_name();
-				$insert           = sprintf( "INSERT INTO %s ( `query` ) VALUES ( '%s' );\n", $this->backquote( $alter_table_name ), esc_sql( $alter_table_query ) );
-				if ( $this->form_data['action'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
-					$process_chunk_result = $this->process_chunk( $insert );
-					if ( true !== $process_chunk_result ) {
-						$result = $this->end_ajax( $process_chunk_result );
-
-						return $result;
-					}
-				} else {
-					$this->stow( $insert );
-				}
-			}
-
-			$alter_data_queries = array();
-			$alter_data_queries = apply_filters( 'wpmdb_alter_data_queries', $alter_data_queries, $table_name, $this->form_data['action'], $this->state_data['stage'] );
-
-			if ( ! empty( $alter_data_queries ) ) {
-				$alter_table_name = $this->get_alter_table_name();
-				$insert           = '';
-				foreach ( $alter_data_queries as $alter_data_query ) {
-					$insert .= sprintf( "INSERT INTO %s ( `query` ) VALUES ( '%s' );\n", $this->backquote( $alter_table_name ), esc_sql( $alter_data_query ) );
-				}
-				if ( 'savefile' == $this->form_data['action'] || 'backup' == $this->state_data['stage'] ) {
-					$process_chunk_result = $this->process_chunk( $insert );
-					if ( true !== $process_chunk_result ) {
-						$result = $this->end_ajax( $process_chunk_result );
-
-						return $result;
-					}
-				} else {
-					$this->stow( $insert );
-				}
-			}
-
-			// Comment in SQL-file
-			if ( $this->form_data['action'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
-				$this->stow( "\n\n" );
-				$this->stow( "#\n" );
-				$this->stow( '# ' . sprintf( __( 'Data contents of table %s', 'wp-migrate-db' ), $this->backquote( $table_name ) ) . "\n" );
-				$this->stow( "#\n" );
-			}
+		if ( ! is_array( $table_structure ) ) {
+			$this->log_error( $this->error );
+			$return = array( 'wpmdb_error' => 1, 'body' => $this->error );
+			$result = $this->end_ajax( json_encode( $return ) );
+			return $result;
 		}
 
 		// $defs = mysql defaults, looks up the default for that particular column, used later on to prevent empty inserts values for that column
 		// $ints = holds a list of the possible integer types so as to not wrap them in quotation marks later in the insert statements
-		$defs = array();
-		$ints = array();
-		$bins = array();
-		$bits = array();
+		$defs               = array();
+		$ints               = array();
+		$bins               = array();
+		$bits               = array();
+		$field_set          = array();
+		$this->primary_keys = array();
+		$use_primary_keys   = true;
+
 		foreach ( $table_structure as $struct ) {
 			if ( ( 0 === strpos( $struct->Type, 'tinyint' ) ) ||
 			     ( 0 === strpos( strtolower( $struct->Type ), 'smallint' ) ) ||
@@ -1508,387 +2236,663 @@ class WPMDB extends WPMDB_Base {
 			) {
 				$defs[ strtolower( $struct->Field ) ] = ( null === $struct->Default ) ? 'NULL' : $struct->Default;
 				$ints[ strtolower( $struct->Field ) ] = '1';
-			} elseif ( 0 === strpos( $struct->Type, 'binary' ) ) {
+			} elseif ( 0 === strpos( $struct->Type, 'binary' ) || apply_filters( 'wpmdb_process_column_as_binary', false, $struct ) ) {
 				$bins[ strtolower( $struct->Field ) ] = '1';
-			} elseif ( 0 === strpos( $struct->Type, 'bit' ) ) {
+			} elseif ( 0 === strpos( $struct->Type, 'bit' ) || apply_filters( 'wpmdb_process_column_as_bit', false, $struct ) ) {
 				$bits[ strtolower( $struct->Field ) ] = '1';
 			}
-		}
 
-		// Batch by $row_inc
+			$field_set[] = $this->backquote( $struct->Field );
 
-		$row_inc   = $this->rows_per_segment;
-		$row_start = 0;
-		if ( $current_row != -1 ) {
-			$row_start = $current_row;
-		}
-
-		$this->row_tracker = $row_start;
-
-		// \x08\\x09, not required
-		$multibyte_search  = array( "\x00", "\x0a", "\x0d", "\x1a" );
-		$multibyte_replace = array( '\0', '\n', '\r', '\Z' );
-
-		$query_size = 0;
-
-		$this->primary_keys = array();
-		$field_set          = array();
-		$use_primary_keys   = true;
-
-		foreach ( $table_structure as $col ) {
-			$field_set[] = $this->backquote( $col->Field );
-			if ( $col->Key == 'PRI' && true == $use_primary_keys ) {
-				if ( false === strpos( $col->Type, 'int' ) ) {
+			if ( 'PRI' === $struct->Key && true === $use_primary_keys ) {
+				if ( false === strpos( $struct->Type, 'int' ) ) {
 					$use_primary_keys   = false;
 					$this->primary_keys = array();
 					continue;
 				}
-				$this->primary_keys[ $col->Field ] = 0;
+				$this->primary_keys[ $struct->Field ] = 0;
 			}
 		}
 
-		$first_select = true;
 		if ( ! empty( $this->state_data['primary_keys'] ) ) {
 			$this->state_data['primary_keys'] = trim( $this->state_data['primary_keys'] );
 			$this->primary_keys = WPMDB_Utils::unserialize( stripslashes( $this->state_data['primary_keys'] ), __METHOD__ );
 			if ( false !== $this->primary_keys && ! empty( $this->state_data['primary_keys'] ) ) {
-				$first_select       = false;
+				$this->first_select = false;
 			}
 		}
 
-		$fields = implode( ', ', $field_set );
+		$return = array(
+			'defs'      => $defs,
+			'ints'      => $ints,
+			'bins'      => $bins,
+			'bits'      => $bits,
+			'field_set' => $field_set,
+		);
 
-		$insert_buffer = $insert_query_template = 'INSERT INTO ' . $this->backquote( $table_name ) . ' ( ' . $fields . ") VALUES\n";
+		return $return;
+	}
 
-		do {
-			$join     = array();
-			$where    = 'WHERE 1=1';
-			$order_by = '';
-			// We need ORDER BY here because with LIMIT, sometimes it will return
-			// the same results from the previous query and we'll have duplicate insert statements
-			if ( 'backup' != $this->state_data['stage'] && false === empty( $this->form_data['exclude_spam'] ) ) {
-				if ( $this->table_is( 'comments', $table ) ) {
-					$where .= ' AND comment_approved != "spam"';
-				} elseif ( $this->table_is( 'commentmeta', $table ) ) {
-					$tables = $this->get_ms_compat_table_names( array( 'commentmeta', 'comments' ), $table );
-					$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.comment_ID = %2$s.comment_id', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['commentmeta_table'] ) );
-					$where .= sprintf( ' AND %1$s.comment_approved != \'spam\'', $this->backquote( $tables['comments_table'] ) );
+	/**
+	 * Runs before processing the data in a table.
+	 *
+	 * @param string $table
+	 * @param string $target_table_name
+	 * @param string $temp_table_name
+	 */
+	function pre_process_data( $table, $target_table_name, $temp_table_name ) {
+		if ( 0 !== $this->row_tracker ) return;
+
+		if ( in_array( $this->form_data['action'], array( 'find_replace', 'import') ) ) {
+			if ( 'backup' === $this->state_data['stage'] ) {
+				$this->build_table_header( $table, $target_table_name, $temp_table_name );
+			} else if ( 'find_replace' === $this->form_data['action'] ) {
+				$create = $this->create_temp_table( $table );
+
+				if ( true !== $create ) {
+					$message = sprintf( __( 'Error creating temporary table. Table "%s" does not exist.', 'wp-migrate-db' ), esc_html( $table ) );
+					return $this->end_ajax( json_encode( array( 'wpmdb_error', 1, 'body' => $message ) ) );
 				}
 			}
+		} else {
+			$this->build_table_header( $table, $target_table_name, $temp_table_name );
+		}
 
-			if ( 'backup' != $this->state_data['stage'] && isset( $this->form_data['exclude_post_types'] ) && ! empty( $this->form_data['select_post_types'] ) ) {
-				$post_types = '\'' . implode( '\', \'', $this->form_data['select_post_types'] ) . '\'';
-				if ( $this->table_is( 'posts', $table ) ) {
-					$where .= ' AND `post_type` NOT IN ( ' . $post_types . ' )';
-				} elseif ( $this->table_is( 'postmeta', $table ) ) {
-					$tables = $this->get_ms_compat_table_names( array( 'postmeta', 'posts' ), $table );
-					$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.ID = %2$s.post_id', $this->backquote( $tables['posts_table'] ), $this->backquote( $tables['postmeta_table'] ) );
-					$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
-				} elseif ( $this->table_is( 'comments', $table ) ) {
-					$tables = $this->get_ms_compat_table_names( array( 'comments', 'posts' ), $table );
-					$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.ID = %2$s.comment_post_ID', $this->backquote( $tables['posts_table'] ), $this->backquote( $tables['comments_table'] ) );
-					$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
-				} elseif ( $this->table_is( 'commentmeta', $table ) ) {
-					$tables = $this->get_ms_compat_table_names( array( 'commentmeta', 'posts', 'comments' ), $table );
-					$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.comment_ID = %2$s.comment_id', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['commentmeta_table'] ) );
-					$join[] = sprintf( 'INNER JOIN %2$s ON %2$s.ID = %1$s.comment_post_ID', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['posts_table'] ) );
-					$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
-				}
-			}
+		/**
+		 * Fires just before processing the data for a table.
+		 *
+		 * @param string $table
+		 * @param string $target_table_name
+		 * @param string $temp_table_name
+		 */
+		do_action( 'wpmdb_pre_process_table_data', $table, $target_table_name, $temp_table_name );
+	}
 
-			if ( 'backup' != $this->state_data['stage'] && true === apply_filters( 'wpmdb_exclude_transients', true ) && isset( $this->form_data['exclude_transients'] ) && '1' === $this->form_data['exclude_transients'] && ( $this->table_is( 'options', $table ) || ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) ) ) {
-				$col_name = 'option_name';
+	/**
+	 * Creates a temporary table with a copy of the existing table's data.
+	 *
+	 * @param $table
+	 *
+	 * @return bool|mixed
+	 */
+	function create_temp_table( $table ) {
+		if ( $this->table_exists( $table ) ) {
+			$src_table  = $this->backquote( $table );
+			$temp_table = $this->backquote( $this->temp_prefix . $table );
+			$query      = "DROP TABLE IF EXISTS {$temp_table};\n";
+			$query     .= "CREATE TABLE {$temp_table} LIKE {$src_table};\n";
+			$query     .= "INSERT INTO {$temp_table} SELECT * FROM {$src_table};";
 
-				if ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) {
-					$col_name = 'meta_key';
-				}
+			return $this->process_chunk( $query );
+		}
 
-				$where .= " AND `{$col_name}` NOT LIKE '\_transient\_%' AND `{$col_name}` NOT LIKE '\_site\_transient\_%'";
-			}
+		return false;
+	}
 
-			// don't export/migrate wpmdb specific option rows unless we're performing a backup
-			if ( 'backup' != $this->state_data['stage'] && ( $this->table_is( 'options', $table ) || ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) ) ) {
-				$col_name = 'option_name';
+	/**
+	 * Checks if a given table exists.
+	 *
+	 * @param $table
+	 *
+	 * @return bool
+	 */
+	function table_exists( $table ) {
+		global $wpdb;
 
-				if ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) {
-					$col_name = 'meta_key';
-				}
+		$table = esc_sql( $table );
 
-				$where .= " AND `{$col_name}` != 'wpmdb_settings'";
-				$where .= " AND `{$col_name}` != 'wpmdb_error_log'";
-				$where .= " AND `{$col_name}` != 'wpmdb_schema_version'";
-				$where .= " AND `{$col_name}` NOT LIKE 'wpmdb_state_%'";
-			}
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '$table'" ) ) {
+			return true;
+		}
 
-			$limit = "LIMIT {$row_start}, {$row_inc}";
+		return false;
+	}
 
-			if ( ! empty( $this->primary_keys ) ) {
-				$primary_keys_keys = array_keys( $this->primary_keys );
-				$primary_keys_keys = array_map( array( $this, 'backquote' ), $primary_keys_keys );
-
-				$order_by = 'ORDER BY ' . implode( ',', $primary_keys_keys );
-				$limit    = "LIMIT $row_inc";
-
-				if ( false == $first_select ) {
-					$where .= ' AND ';
-
-					$temp_primary_keys = $this->primary_keys;
-					$primary_key_count = count( $temp_primary_keys );
-
-					// build a list of clauses, iteratively reducing the number of fields compared in the compound key
-					// e.g. (a = 1 AND b = 2 AND c > 3) OR (a = 1 AND b > 2) OR (a > 1)
-					$clauses = array();
-					for ( $j = 0; $j < $primary_key_count; $j++ ) {
-						// build a subclause for each field in the compound index
-						$subclauses = array();
-						$i          = 0;
-						foreach ( $temp_primary_keys as $primary_key => $value ) {
-							// only the last field in the key should be different in this subclause
-							$operator     = ( count( $temp_primary_keys ) - 1 == $i ? '>' : '=' );
-							$subclauses[] = sprintf( '%s %s %s', $this->backquote( $primary_key ), $operator, $wpdb->prepare( '%s', $value ) );
-							++$i;
-						}
-
-						// remove last field from array to reduce fields in next clause
-						array_pop( $temp_primary_keys );
-
-						// join subclauses into a single clause
-						// NB: AND needs to be wrapped in () as it has higher precedence than OR
-						$clauses[] = '( ' . implode( ' AND ', $subclauses ) . ' )';
-					}
-					// join clauses into a single clause
-					// NB: OR needs to be wrapped in () as it has lower precedence than AND
-					$where .= '( ' . implode( ' OR ', $clauses ) . ' )';
-				}
-
-				$first_select = false;
-			}
-
-			$sel = $this->backquote( $table ) . '.*';
-			if ( ! empty( $bins ) ) {
-				foreach ( $bins as $key => $bin ) {
-					$hex_key = strtolower( $key ) . '__hex';
-					$sel .= ', HEX(' . $this->backquote( $key ) . ') as ' . $this->backquote( $hex_key );
-				}
-			}
-			if ( ! empty( $bits ) ) {
-				foreach ( $bits as $key => $bit ) {
-					$bit_key = strtolower( $key ) . '__bit';
-					$sel .= ', ' . $this->backquote( $key ) . '+0 as ' . $this->backquote( $bit_key );
-				}
-			}
-			$join     = implode( ' ', array_unique( $join ) );
-			$join     = apply_filters( 'wpmdb_rows_join', $join, $table );
-			$where    = apply_filters( 'wpmdb_rows_where', $where, $table );
-			$order_by = apply_filters( 'wpmdb_rows_order_by', $order_by, $table );
-			$limit    = apply_filters( 'wpmdb_rows_limit', $limit, $table );
-
-			$sql = 'SELECT ' . $sel . ' FROM ' . $this->backquote( $table ) . " $join $where $order_by $limit";
-			$sql = apply_filters( 'wpmdb_rows_sql', $sql, $table );
-
-			$table_data = $wpdb->get_results( $sql );
-
-			if ( $table_data ) {
-				$to_search  = isset( $this->find_replace_pairs['replace_old'] ) ? $this->find_replace_pairs['replace_old'] : '';
-				$to_replace = isset( $this->find_replace_pairs['replace_new'] ) ? $this->find_replace_pairs['replace_new'] : '';
-				$replacer   = new WPMDB_Replace( array(
-					'table'       => $table,
-					'search'      => $to_search,
-					'replace'     => $to_replace,
-					'intent'      => $this->state_data['intent'],
-					'base_domain' => $this->get_domain_replace(),
-					'site_domain' => $this->get_domain_current_site(),
-					'wpmdb'       => $this,
-				) );
-
-				foreach ( $table_data as $row ) {
-					$skip_row = false;
-
-					if ( ! apply_filters( 'wpmdb_table_row', $row, $table, $this->form_data['action'], $this->state_data['stage'] ) ) {
-						$skip_row = true;
-					}
-
-					if ( ! $skip_row ) {
-						$replacer->set_row( $row );
-						$values = array();
-
-						foreach ( $row as $key => $value ) {
-							$replacer->set_column( $key );
-
-							if ( isset( $ints[ strtolower( $key ) ] ) && $ints[ strtolower( $key ) ] ) {
-								// make sure there are no blank spots in the insert syntax,
-								// yet try to avoid quotation marks around integers
-								$value    = ( null === $value || '' === $value ) ? $defs[ strtolower( $key ) ] : $value;
-								$values[] = ( '' === $value ) ? "''" : $value;
-								continue;
-							}
-
-							if ( null === $value ) {
-								$values[] = 'NULL';
-								continue;
-							}
-
-							// If we have binary data, substitute in hex encoded version and remove hex encoded version from row.
-							$hex_key = strtolower( $key ) . '__hex';
-							if ( isset( $bins[ strtolower( $key ) ] ) && $bins[ strtolower( $key ) ] && isset( $row->$hex_key ) ) {
-								$value    = "UNHEX('" . $row->$hex_key . "')";
-								$values[] = $value;
-								unset( $row->$hex_key );
-								continue;
-							}
-
-							// If we have bit data, substitute in properly bit encoded version.
-							$bit_key = strtolower( $key ) . '__bit';
-							if ( isset( $bits[ strtolower( $key ) ] ) && $bits[ strtolower( $key ) ] && isset( $row->$bit_key ) ) {
-								$value    = "b'" . $row->$bit_key . "'";
-								$values[] = $value;
-								unset( $row->$bit_key );
-								continue;
-							}
-
-							if ( is_multisite() && 'path' == $key && $this->state_data['stage'] != 'backup' && ( $wpdb->site == $table || $wpdb->blogs == $table ) ) {
-								$old_path_current_site = $this->get_path_current_site();
-								$new_path_current_site = '';
-
-								if ( ! empty( $this->state_data['path_current_site'] ) ) {
-									$new_path_current_site = $this->state_data['path_current_site'];
-								} elseif ( ! empty ( $this->form_data['replace_new'][1] ) ) {
-									$new_path_current_site = $this->get_path_from_url( $this->form_data['replace_new'][1] );
-								}
-
-								$new_path_current_site = apply_filters( 'wpmdb_new_path_current_site', $new_path_current_site );
-
-								if ( ! empty( $new_path_current_site ) && $old_path_current_site != $new_path_current_site ) {
-									$pos   = strpos( $value, $old_path_current_site );
-									$value = substr_replace( $value, $new_path_current_site, $pos, strlen( $old_path_current_site ) );
-								}
-							}
-
-							if ( is_multisite() && 'domain' == $key && $this->state_data['stage'] != 'backup' && ( $wpdb->site == $table || $wpdb->blogs == $table ) ) {
-								if ( ! empty( $this->state_data['domain_current_site'] ) ) {
-									$main_domain_replace = $this->state_data['domain_current_site'];
-								} elseif ( ! empty ( $this->form_data['replace_new'][1] ) ) {
-									$url                 = $this->parse_url( $this->form_data['replace_new'][1] );
-									$main_domain_replace = $url['host'];
-								}
-
-								$domain_replaces  = array();
-								$main_domain_find = sprintf( '/%s/', preg_quote( $this->get_domain_current_site(), '/' ) );
-								if ( isset( $main_domain_replace ) ) {
-									$domain_replaces[ $main_domain_find ] = $main_domain_replace;
-								}
-
-								$domain_replaces = apply_filters( 'wpmdb_domain_replaces', $domain_replaces );
-
-								$value = preg_replace( array_keys( $domain_replaces ), array_values( $domain_replaces ), $value );
-							}
-
-							if ( 'guid' != $key || ( false === empty( $this->form_data['replace_guids'] ) && $this->table_is( 'posts', $table ) ) ) {
-								if ( $this->state_data['stage'] != 'backup' ) {
-									$value = $replacer->recursive_unserialize_replace( $value );
-								}
-							}
-
-							$value = $this->sql_addslashes( $value );
-							$value = str_replace( $multibyte_search, $multibyte_replace, $value );
-
-							$values[] = "'" . $value . "'";
-						}
-
-						$insert_line = '(' . implode( ', ', $values ) . '),';
-						$insert_line .= "\n";
-					} else {
-						$insert_line = '';
-					}
-
-					if ( ( strlen( $this->current_chunk ) + strlen( $insert_line ) + strlen( $insert_buffer ) + 30 ) > $this->maximum_chunk_size ) {
-						if ( $insert_buffer == $insert_query_template ) {
-							$insert_buffer .= $insert_line;
-
-							++$this->row_tracker;
-
-							if ( ! empty( $this->primary_keys ) ) {
-								foreach ( $this->primary_keys as $primary_key => $value ) {
-									$this->primary_keys[ $primary_key ] = $row->$primary_key;
-								}
-							}
-						}
-
-						$insert_buffer = rtrim( $insert_buffer, "\n," );
-						$insert_buffer .= " ;\n";
-						$this->stow( $insert_buffer );
-						$insert_buffer = $insert_query_template;
-						$query_size    = 0;
-
-						return $this->transfer_chunk();
-					}
-
-					if ( ( $query_size + strlen( $insert_line ) ) > $this->max_insert_string_len && $insert_buffer != $insert_query_template ) {
-						$insert_buffer = rtrim( $insert_buffer, "\n," );
-						$insert_buffer .= " ;\n";
-						$this->stow( $insert_buffer );
-						$insert_buffer = $insert_query_template;
-						$query_size    = 0;
-					}
-
-					$insert_buffer .= $insert_line;
-					$query_size += strlen( $insert_line );
-
-					++$this->row_tracker;
-
-					if ( ! empty( $this->primary_keys ) ) {
-						foreach ( $this->primary_keys as $primary_key => $value ) {
-							$this->primary_keys[ $primary_key ] = $row->$primary_key;
-						}
-					}
-				}
-
-				$row_start += $row_inc;
-
-				if ( $insert_buffer != $insert_query_template ) {
-					$insert_buffer = rtrim( $insert_buffer, "\n," );
-					$insert_buffer .= " ;\n";
-					$this->stow( $insert_buffer );
-					$insert_buffer = $insert_query_template;
-					$query_size    = 0;
-				}
-			}
-		} while ( count( $table_data ) > 0 );
-
-		// Create footer/closing comment in SQL-file
+	/**
+	 * Runs after processing data in a table.
+	 *
+	 * @param string $table
+	 * @param string $target_table_name
+	 */
+	function post_process_data( $table, $target_table_name ) {
 		if ( 'savefile' == $this->form_data['action'] || 'backup' == $this->state_data['stage'] ) {
-			$this->stow( "\n" );
-			$this->stow( "#\n" );
-			$this->stow( '# ' . sprintf( __( 'End of data contents of table %s', 'wp-migrate-db' ), $this->backquote( $table_name ) ) . "\n" );
-			$this->stow( "# --------------------------------------------------------\n" );
-			$this->stow( "\n" );
+			$this->build_table_footer( $table, $target_table_name );
+		}
 
-			if ( $this->state_data['last_table'] == '1' ) {
-				$this->stow( "#\n" );
-				$this->stow( "# Add constraints back in and apply any alter data queries.\n" );
-				$this->stow( "#\n\n" );
-				$this->stow( $this->get_alter_queries() );
-				$alter_table_name = $this->get_alter_table_name();
+		/**
+		 * Fires just after processing the data for a table.
+		 *
+		 * @param string $table
+		 * @param string $target_table_name
+		 */
+		do_action( 'wpmdb_post_process_table_data', $table, $target_table_name );
 
-				$wpdb->query( 'DROP TABLE IF EXISTS ' . $this->backquote( $alter_table_name ) . ';' );
+		$this->row_tracker  = -1;
+	}
 
-				if ( 'backup' == $this->state_data['stage'] ) {
-					// Re-create our table to store 'ALTER' queries so we don't get duplicates.
-					$create_alter_table_query = $this->get_create_alter_table_query();
-					$process_chunk_result     = $this->process_chunk( $create_alter_table_query );
-					if ( true !== $process_chunk_result ) {
-						$result = $this->end_ajax( $process_chunk_result );
+	/**
+	 * Creates the header for a table in a SQL file.
+	 *
+	 * @param string $table
+	 * @param string $target_table_name
+	 * @param string $temp_table_name
+	 *
+	 * @return null|bool
+	 */
+	function build_table_header( $table, $target_table_name, $temp_table_name ) {
+		global $wpdb;
 
-						return $result;
-					}
+		// Don't stow data until after `wpmdb_create_table_query` filter is applied as mysql_compat_filter() can return an error
+		$stow          = '';
+		$is_backup     = false;
+		$table_to_stow = $temp_table_name;
+
+		if ( 'savefile' === $this->form_data['action'] || 'backup' === $this->state_data['stage'] ) {
+			$is_backup     = true;
+			$table_to_stow = $target_table_name;
+		}
+
+		// Add SQL statement to drop existing table
+		if ( $is_backup ) {
+			$stow .= ( "\n\n" );
+			$stow .= ( "#\n" );
+			$stow .= ( '# ' . sprintf( __( 'Delete any existing table %s', 'wp-migrate-db' ), $this->backquote( $table_to_stow ) ) . "\n" );
+			$stow .= ( "#\n" );
+			$stow .= ( "\n" );
+		}
+		$stow .= ( 'DROP TABLE IF EXISTS ' . $this->backquote( $table_to_stow ) . ";\n" );
+
+		// Table structure
+		// Comment in SQL-file
+		if ( $is_backup ) {
+			$stow .= ( "\n\n" );
+			$stow .= ( "#\n" );
+			$stow .= ( '# ' . sprintf( __( 'Table structure of table %s', 'wp-migrate-db' ), $this->backquote( $table_to_stow ) ) . "\n" );
+			$stow .= ( "#\n" );
+			$stow .= ( "\n" );
+		}
+
+		$create_table = $wpdb->get_results( 'SHOW CREATE TABLE ' . $this->backquote( $table ), ARRAY_N );
+
+		if ( false === $create_table ) {
+			$this->error = __( 'Failed to generate the create table query, please ensure your database is online. (#126)', 'wp-migrate-db' );
+
+			return false;
+		}
+		$create_table[0][1] = str_replace( 'CREATE TABLE `' . $table . '`', 'CREATE TABLE `' . $table_to_stow . '`', $create_table[0][1] );
+		$create_table[0][1] = str_replace( 'TYPE=', 'ENGINE=', $create_table[0][1] );
+
+		$alter_table_query  = '';
+		$create_table[0][1] = $this->process_sql_constraint( $create_table[0][1], $target_table_name, $alter_table_query );
+
+		$create_table[0][1] = apply_filters( 'wpmdb_create_table_query', $create_table[0][1], $table_to_stow, $this->target_db_version, $this->form_data['action'], $this->state_data['stage'] );
+		$stow .= ( $create_table[0][1] . ";\n" );
+
+		$this->stow( $stow );
+
+		if ( ! empty( $alter_table_query ) ) {
+			$alter_table_name = $this->get_alter_table_name();
+			$insert           = sprintf( "INSERT INTO %s ( `query` ) VALUES ( '%s' );\n", $this->backquote( $alter_table_name ), esc_sql( $alter_table_query ) );
+
+			if ( $is_backup ) {
+				$process_chunk_result = $this->process_chunk( $insert );
+				if ( true !== $process_chunk_result ) {
+					$result = $this->end_ajax( $process_chunk_result );
+
+					return $result;
 				}
+			} else {
+				$this->stow( $insert );
 			}
 		}
 
-		$this->row_tracker = -1;
+		$alter_data_queries = array();
+		$alter_data_queries = apply_filters( 'wpmdb_alter_data_queries', $alter_data_queries, $table_to_stow, $this->form_data['action'], $this->state_data['stage'] );
 
-		return $this->transfer_chunk();
-	} // end export_table()
+		if ( ! empty( $alter_data_queries ) ) {
+			$alter_table_name = $this->get_alter_table_name();
+			$insert           = '';
+			foreach ( $alter_data_queries as $alter_data_query ) {
+				$insert .= sprintf( "INSERT INTO %s ( `query` ) VALUES ( '%s' );\n", $this->backquote( $alter_table_name ), esc_sql( $alter_data_query ) );
+			}
+			if ( $is_backup ) {
+				$process_chunk_result = $this->process_chunk( $insert );
+				if ( true !== $process_chunk_result ) {
+					$result = $this->end_ajax( $process_chunk_result );
+
+					return $result;
+				}
+			} else {
+				$this->stow( $insert );
+			}
+		}
+
+		// Comment in SQL-file
+		if ( $is_backup ) {
+			$this->stow( "\n\n" );
+			$this->stow( "#\n" );
+			$this->stow( '# ' . sprintf( __( 'Data contents of table %s', 'wp-migrate-db' ), $this->backquote( $table_to_stow ) ) . "\n" );
+			$this->stow( "#\n" );
+		}
+	}
+
+	/**
+	 * Creates the footer for a table in a SQL file.
+	 *
+	 * @param $table
+	 * @param $target_table_name
+	 *
+	 * @return null
+	 */
+	function build_table_footer( $table, $target_table_name ) {
+		global $wpdb;
+
+		$this->stow( "\n" );
+		$this->stow( "#\n" );
+		$this->stow( '# ' . sprintf( __( 'End of data contents of table %s', 'wp-migrate-db' ), $this->backquote( $target_table_name ) ) . "\n" );
+		$this->stow( "# --------------------------------------------------------\n" );
+		$this->stow( "\n" );
+
+		if ( $this->state_data['last_table'] == '1' ) {
+			$this->stow( "#\n" );
+			$this->stow( "# Add constraints back in and apply any alter data queries.\n" );
+			$this->stow( "#\n\n" );
+			$this->stow( $this->get_alter_queries() );
+			$alter_table_name = $this->get_alter_table_name();
+
+			$wpdb->query( 'DROP TABLE IF EXISTS ' . $this->backquote( $alter_table_name ) . ';' );
+
+			if ( 'backup' == $this->state_data['stage'] ) {
+				// Re-create our table to store 'ALTER' queries so we don't get duplicates.
+				$create_alter_table_query = $this->get_create_alter_table_query();
+				$process_chunk_result     = $this->process_chunk( $create_alter_table_query );
+				if ( true !== $process_chunk_result ) {
+					$result = $this->end_ajax( $process_chunk_result );
+
+					return $result;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Builds the SELECT query to get data to migrate.
+	 *
+	 * @param string $table
+	 * @param int    $row_start
+	 * @param array  $structure_info
+	 *
+	 * @return string
+	 */
+	function build_select_query( $table, $row_start, $structure_info ) {
+		global $wpdb;
+
+		$join     = array();
+		$where    = 'WHERE 1=1';
+		$order_by = '';
+		$prefix   = ( 'import' === $this->state_data['intent'] ) ? $this->temp_prefix . $wpdb->base_prefix : '';
+
+		// We need ORDER BY here because with LIMIT, sometimes it will return
+		// the same results from the previous query and we'll have duplicate insert statements
+		if ( 'import' !== $this->state_data['intent'] && 'backup' != $this->state_data['stage'] && false === empty( $this->form_data['exclude_spam'] ) ) {
+			if ( $this->table_is( 'comments', $table, 'table', $prefix ) ) {
+				$where .= ' AND comment_approved != "spam"';
+			} elseif ( $this->table_is( 'commentmeta', $table, 'table', $prefix ) ) {
+				$tables = $this->get_ms_compat_table_names( array( 'commentmeta', 'comments' ), $table );
+				$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.comment_ID = %2$s.comment_id', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['commentmeta_table'] ) );
+				$where .= sprintf( ' AND %1$s.comment_approved != \'spam\'', $this->backquote( $tables['comments_table'] ) );
+			}
+		}
+
+		if ( 'import' !== $this->state_data['intent'] && 'backup' != $this->state_data['stage'] && isset( $this->form_data['exclude_post_types'] ) && ! empty( $this->form_data['select_post_types'] ) ) {
+			$post_types = '\'' . implode( '\', \'', $this->form_data['select_post_types'] ) . '\'';
+			if ( $this->table_is( 'posts', $table, 'table', $prefix ) ) {
+				$where .= ' AND `post_type` NOT IN ( ' . $post_types . ' )';
+			} elseif ( $this->table_is( 'postmeta', $table, 'table', $prefix ) ) {
+				$tables = $this->get_ms_compat_table_names( array( 'postmeta', 'posts' ), $table );
+				$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.ID = %2$s.post_id', $this->backquote( $tables['posts_table'] ), $this->backquote( $tables['postmeta_table'] ) );
+				$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
+			} elseif ( $this->table_is( 'comments', $table, 'table', $prefix ) ) {
+				$tables = $this->get_ms_compat_table_names( array( 'comments', 'posts' ), $table );
+				$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.ID = %2$s.comment_post_ID', $this->backquote( $tables['posts_table'] ), $this->backquote( $tables['comments_table'] ) );
+				$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
+			} elseif ( $this->table_is( 'commentmeta', $table, 'table', $prefix ) ) {
+				$tables = $this->get_ms_compat_table_names( array( 'commentmeta', 'posts', 'comments' ), $table );
+				$join[] = sprintf( 'INNER JOIN %1$s ON %1$s.comment_ID = %2$s.comment_id', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['commentmeta_table'] ) );
+				$join[] = sprintf( 'INNER JOIN %2$s ON %2$s.ID = %1$s.comment_post_ID', $this->backquote( $tables['comments_table'] ), $this->backquote( $tables['posts_table'] ) );
+				$where .= sprintf( ' AND %1$s.post_type NOT IN ( ' . $post_types . ' )', $this->backquote( $tables['posts_table'] ) );
+			}
+		}
+
+		if ( 'import' !== $this->state_data['intent'] && 'backup' != $this->state_data['stage'] && true === apply_filters( 'wpmdb_exclude_transients', true ) && isset( $this->form_data['exclude_transients'] ) && '1' === $this->form_data['exclude_transients'] && ( $this->table_is( 'options', $table, 'table', $prefix ) || ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) ) ) {
+			$col_name = 'option_name';
+
+			if ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) {
+				$col_name = 'meta_key';
+			}
+
+			$where .= " AND `{$col_name}` NOT LIKE '\_transient\_%' AND `{$col_name}` NOT LIKE '\_site\_transient\_%'";
+		}
+
+		// don't export/migrate wpmdb specific option rows unless we're performing a backup
+		if ( 'backup' != $this->state_data['stage'] && ( $this->table_is( 'options', $table, 'table', $prefix ) || ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) ) ) {
+			$col_name = 'option_name';
+
+			if ( isset( $wpdb->sitemeta ) && $wpdb->sitemeta == $table ) {
+				$col_name = 'meta_key';
+			}
+
+			$where .= " AND `{$col_name}` != 'wpmdb_settings'";
+			$where .= " AND `{$col_name}` != 'wpmdb_error_log'";
+			$where .= " AND `{$col_name}` != 'wpmdb_schema_version'";
+			$where .= " AND `{$col_name}` NOT LIKE 'wpmdb_state_%'";
+		}
+
+		$limit = "LIMIT {$row_start}, {$this->rows_per_segment}";
+
+		if ( ! empty( $this->primary_keys ) ) {
+			$primary_keys_keys = array_keys( $this->primary_keys );
+			$primary_keys_keys = array_map( array( $this, 'backquote' ), $primary_keys_keys );
+
+			$order_by = 'ORDER BY ' . implode( ',', $primary_keys_keys );
+			$limit    = "LIMIT {$this->rows_per_segment}";
+
+			if ( false === $this->first_select ) {
+				$where .= ' AND ';
+
+				$temp_primary_keys = $this->primary_keys;
+				$primary_key_count = count( $temp_primary_keys );
+
+				// build a list of clauses, iteratively reducing the number of fields compared in the compound key
+				// e.g. (a = 1 AND b = 2 AND c > 3) OR (a = 1 AND b > 2) OR (a > 1)
+				$clauses = array();
+				for ( $j = 0; $j < $primary_key_count; $j++ ) {
+					// build a subclause for each field in the compound index
+					$subclauses = array();
+					$i          = 0;
+					foreach ( $temp_primary_keys as $primary_key => $value ) {
+						// only the last field in the key should be different in this subclause
+						$operator     = ( count( $temp_primary_keys ) - 1 == $i ? '>' : '=' );
+						$subclauses[] = sprintf( '%s %s %s', $this->backquote( $primary_key ), $operator, $wpdb->prepare( '%s', $value ) );
+						++$i;
+					}
+
+					// remove last field from array to reduce fields in next clause
+					array_pop( $temp_primary_keys );
+
+					// join subclauses into a single clause
+					// NB: AND needs to be wrapped in () as it has higher precedence than OR
+					$clauses[] = '( ' . implode( ' AND ', $subclauses ) . ' )';
+				}
+				// join clauses into a single clause
+				// NB: OR needs to be wrapped in () as it has lower precedence than AND
+				$where .= '( ' . implode( ' OR ', $clauses ) . ' )';
+			}
+
+			$this->first_select = false;
+		}
+
+		$sel = $this->backquote( $table ) . '.*';
+		if ( ! empty( $structure_info['bins'] ) ) {
+			foreach ( $structure_info['bins'] as $key => $bin ) {
+				$hex_key = strtolower( $key ) . '__hex';
+				$sel .= ', HEX(' . $this->backquote( $key ) . ') as ' . $this->backquote( $hex_key );
+			}
+		}
+		if ( ! empty( $structure_info['bits'] ) ) {
+			foreach ( $structure_info['bits'] as $key => $bit ) {
+				$bit_key = strtolower( $key ) . '__bit';
+				$sel .= ', ' . $this->backquote( $key ) . '+0 as ' . $this->backquote( $bit_key );
+			}
+		}
+		$join     = implode( ' ', array_unique( $join ) );
+		$join     = apply_filters( 'wpmdb_rows_join', $join, $table );
+		$where    = apply_filters( 'wpmdb_rows_where', $where, $table );
+		$order_by = apply_filters( 'wpmdb_rows_order_by', $order_by, $table );
+		$limit    = apply_filters( 'wpmdb_rows_limit', $limit, $table );
+
+		$sql = 'SELECT ' . $sel . ' FROM ' . $this->backquote( $table ) . " $join $where $order_by $limit";
+		$sql = apply_filters( 'wpmdb_rows_sql', $sql, $table );
+
+		return $sql;
+	}
+
+	/**
+	 * Processes the data in a given row.
+	 *
+	 * @param string $table
+	 * @param object $replacer
+	 * @param array  $row
+	 * @param array  $structure_info
+	 *
+	 * @return array|void
+	 */
+	function process_row( $table, $replacer, $row, $structure_info ) {
+		global $wpdb;
+
+		$skip_row        = false;
+		$updates_pending = false;
+		$update_sql      = array();
+		$where_sql       = array();
+		$values          = array();
+		$query           = '';
+
+		if ( ! apply_filters( 'wpmdb_table_row', $row, $table, $this->form_data['action'], $this->state_data['stage'] ) ) {
+			$skip_row = true;
+		}
+
+		if ( ! $skip_row ) {
+
+			$replacer->set_row( $row );
+
+			foreach ( $row as $key => $value ) {
+				$data_to_fix = $value;
+
+				if ( 'find_replace' === $this->state_data['stage'] && in_array( $key, array_keys( $this->primary_keys ) ) ) {
+					$where_sql[] = $this->backquote( $key ) . ' = "' . $this->mysql_escape_mimic( $data_to_fix ) . '"';
+					continue;
+				}
+
+				$replacer->set_column( $key );
+
+				if ( isset( $structure_info['ints'][ strtolower( $key ) ] ) && $structure_info['ints'][ strtolower( $key ) ] ) {
+					// make sure there are no blank spots in the insert syntax,
+					// yet try to avoid quotation marks around integers
+					$value    = ( null === $value || '' === $value ) ? $structure_info['defs'][ strtolower( $key ) ] : $value;
+					$values[] = ( '' === $value ) ? "''" : $value;
+					continue;
+				}
+
+				if ( null === $value ) {
+					$values[] = 'NULL';
+					continue;
+				}
+
+				// If we have binary data, substitute in hex encoded version and remove hex encoded version from row.
+				$hex_key = strtolower( $key ) . '__hex';
+				if ( isset( $structure_info['bins'][ strtolower( $key ) ] ) && $structure_info['bins'][ strtolower( $key ) ] && isset( $row->$hex_key ) ) {
+					$value    = "UNHEX('" . $row->$hex_key . "')";
+					$values[] = $value;
+					unset( $row->$hex_key );
+					continue;
+				}
+
+				// If we have bit data, substitute in properly bit encoded version.
+				$bit_key = strtolower( $key ) . '__bit';
+				if ( isset( $structure_info['bits'][ strtolower( $key ) ] ) && $structure_info['bits'][ strtolower( $key ) ] && isset( $row->$bit_key ) ) {
+					$value    = "b'" . $row->$bit_key . "'";
+					$values[] = $value;
+					unset( $row->$bit_key );
+					continue;
+				}
+
+				if ( is_multisite() && in_array( $table, array( $wpdb->site, $wpdb->blogs, $this->temp_prefix . $wpdb->blogs, $this->temp_prefix . $wpdb->site ) ) ) {
+
+					if ( 'backup' !== $this->state_data['stage'] ) {
+
+						if ( 'path' == $key ) {
+							$old_path_current_site = $this->get_path_current_site();
+							$new_path_current_site = '';
+
+							if ( ! empty( $this->state_data['path_current_site'] ) ) {
+								$new_path_current_site = $this->state_data['path_current_site'];
+							} elseif ( 'find_replace' === $this->state_data['stage'] ) {
+								$new_path_current_site = $this->get_path_current_site();
+							} elseif ( ! empty ( $this->form_data['replace_new'][1] ) ) {
+								$new_path_current_site = $this->get_path_from_url( $this->form_data['replace_new'][1] );
+							}
+
+							$new_path_current_site = apply_filters( 'wpmdb_new_path_current_site', $new_path_current_site );
+
+							if ( ! empty( $new_path_current_site ) && $old_path_current_site != $new_path_current_site ) {
+								$pos   = strpos( $value, $old_path_current_site );
+								$value = substr_replace( $value, $new_path_current_site, $pos, strlen( $old_path_current_site ) );
+							}
+						}
+
+						if ( 'domain' == $key ) { // wp_blogs and wp_sites tables
+							if ( ! empty( $this->state_data['domain_current_site'] ) ) {
+								$main_domain_replace = $this->state_data['domain_current_site'];
+							} elseif( 'find_replace' === $this->state_data['stage'] || 'savefile' === $this->state_data['intent'] ) {
+								$main_domain_replace = $this->get_domain_replace() ? $this->get_domain_replace() : $this->get_domain_current_site();
+							} elseif ( ! empty ( $this->form_data['replace_new'][1] ) ) {
+								$url                 = $this->parse_url( $this->form_data['replace_new'][1] );
+								$main_domain_replace = $url['host'];
+							}
+
+							$domain_replaces  = array();
+							$main_domain_find = $this->get_domain_current_site();
+
+							if ( 'find_replace' === $this->state_data['stage'] ) {
+								// Check if the domain field in the DB is being searched for in the find & replace
+								$old_domain_find = sprintf( '/^(\/\/|http:\/\/|https:\/\/|)%s/', $data_to_fix );
+
+								if ( preg_grep( $old_domain_find, $this->find_replace_pairs['replace_old'] ) ) {
+									$main_domain_find = $data_to_fix;
+								}
+							}
+
+							$main_domain_find = sprintf( '/%s/', preg_quote( $main_domain_find, '/' ) );
+							if ( isset( $main_domain_replace ) ) {
+								$domain_replaces[ $main_domain_find ] = $main_domain_replace;
+							}
+
+							$domain_replaces = apply_filters( 'wpmdb_domain_replaces', $domain_replaces );
+
+							$value = preg_replace( array_keys( $domain_replaces ), array_values( $domain_replaces ), $value );
+						}
+					}
+				}
+
+				if ( 'guid' != $key || ( false === empty( $this->form_data['replace_guids'] ) && $this->table_is( 'posts', $table ) ) ) {
+					if ( $this->state_data['stage'] != 'backup' ) {
+						$value = $replacer->recursive_unserialize_replace( $value );
+					}
+				}
+
+				if ( 'find_replace' === $this->state_data['stage'] ) {
+					$value       = $this->mysql_escape_mimic( $value );
+					$data_to_fix = $this->mysql_escape_mimic( $data_to_fix );
+
+					if ( $value !== $data_to_fix ) {
+						$update_sql[]    = $this->backquote( $key ) . ' = "' . $value . '"';
+						$updates_pending = true;
+					}
+				} else {
+					// \x08\\x09, not required
+					$multibyte_search  = array( "\x00", "\x0a", "\x0d", "\x1a" );
+					$multibyte_replace = array( '\0', '\n', '\r', '\Z' );
+
+					$value = $this->sql_addslashes( $value );
+					$value = str_replace( $multibyte_search, $multibyte_replace, $value );
+				}
+
+				$values[] = "'" . $value . "'";
+			}
+
+			// Determine what to do with updates.
+			if ( 'find_replace' === $this->state_data['stage'] ) {
+				if ( $updates_pending && ! empty( $where_sql ) ) {
+					$table_to_update = $table;
+
+					if ( 'import' !== $this->form_data['action'] ) {
+						$table_to_update = $this->backquote( $this->temp_prefix . $table );
+					}
+
+					$query .= 'UPDATE ' . $table_to_update . ' SET ' . implode( ', ', $update_sql ) . ' WHERE ' . implode( ' AND ', array_filter( $where_sql ) ) . ";\n";
+				}
+			} else {
+				$query .= '(' . implode( ', ', $values ) . '),' . "\n";
+			}
+		}
+
+		if ( ( strlen( $this->current_chunk ) + strlen( $query ) + strlen( $this->query_buffer ) + 30 ) > $this->maximum_chunk_size ) {
+			if ( $this->query_buffer == $this->query_template ) {
+				$this->query_buffer .= $query;
+
+				++$this->row_tracker;
+
+				if ( ! empty( $this->primary_keys ) ) {
+					foreach ( $this->primary_keys as $primary_key => $value ) {
+						$this->primary_keys[ $primary_key ] = $row->$primary_key;
+					}
+				}
+			}
+
+			$this->stow_query_buffer();
+			return $this->transfer_chunk();
+		}
+
+		if ( ( $this->query_size + strlen( $query ) ) > $this->max_insert_string_len ) {
+			$this->stow_query_buffer();
+		}
+
+		$this->query_buffer .= $query;
+		$this->query_size += strlen( $query );
+
+		++$this->row_tracker;
+
+		if ( ! empty( $this->primary_keys ) ) {
+			foreach ( $this->primary_keys as $primary_key => $value ) {
+				$this->primary_keys[ $primary_key ] = $row->$primary_key;
+			}
+		}
+
+		return true;
+	}
+
+	function delete_temporary_tables( $prefix ) {
+		$tables         = $this->get_tables();
+		$delete_queries = '';
+
+		foreach ( $tables as $table ) {
+			if ( 0 !== strpos( $table, $prefix ) ) {
+				continue;
+			}
+			$delete_queries .= sprintf( "DROP TABLE %s;\n", $this->backquote( $table ) );
+		}
+
+		$this->process_chunk( $delete_queries );
+	}
+
+	/**
+	 * Mimics the mysql_real_escape_string function. Adapted from a post by 'feedr' on php.net.
+	 *
+	 * @link   http://php.net/manual/en/function.mysql-real-escape-string.php#101248
+	 * @param  string $input The string to escape.
+	 *
+	 * @return string
+	 */
+	 function mysql_escape_mimic( $input ) {
+		if ( is_array( $input ) ) {
+			return array_map( __METHOD__, $input );
+		}
+		if ( ! empty( $input ) && is_string( $input ) ) {
+			return str_replace( array( '\\', "\0", "\n", "\r", "'", '"', "\x1a" ), array( '\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z' ), $input );
+		}
+
+		return $input;
+	}
 
 	/**
 	 * Check that the given table is of the desired type,
@@ -1976,8 +2980,8 @@ class WPMDB extends WPMDB_Base {
 	function get_ms_compat_table_names( $tables, $queried_table ) {
 		global $wpdb;
 
-		// default table prefix
-		$prefix         = $wpdb->base_prefix;
+		$temp_prefix    = ( 'import' === $this->state_data['intent'] ) ? $this->temp_prefix : '';
+		$prefix         = $temp_prefix . $wpdb->base_prefix;
 		$prefix_escaped = preg_quote( $prefix, '/' );
 
 		// if multisite, extract blog ID from queried table name and add to prefix
@@ -1998,12 +3002,66 @@ class WPMDB extends WPMDB_Base {
 	}
 
 	function db_backup_header() {
+	    global $wpdb;
+
 		$charset = ( defined( 'DB_CHARSET' ) ? DB_CHARSET : 'utf8' );
 		$this->stow( '# ' . __( 'WordPress MySQL database migration', 'wp-migrate-db' ) . "\n", false );
 		$this->stow( "#\n", false );
 		$this->stow( '# ' . sprintf( __( 'Generated: %s', 'wp-migrate-db' ), date( 'l j. F Y H:i T' ) ) . "\n", false );
 		$this->stow( '# ' . sprintf( __( 'Hostname: %s', 'wp-migrate-db' ), DB_HOST ) . "\n", false );
 		$this->stow( '# ' . sprintf( __( 'Database: %s', 'wp-migrate-db' ), $this->backquote( DB_NAME ) ) . "\n", false );
+
+		$home_url = apply_filters( 'wpmdb_backup_header_url', home_url() );
+		$url      = preg_replace( '(^https?:)', '', $home_url, 1 );
+		$key      = array_search( $url, $this->form_data['replace_old'] );
+
+		if ( false !== $key ) {
+			$url = $this->form_data['replace_new'][ $key ];
+		} else {
+			// Protocol might have been added in
+			$key = array_search( $home_url, $this->form_data['replace_old'] );
+
+			if ( false !== $key ) {
+				$url = $this->form_data['replace_new'][ $key ];
+			}
+		}
+
+		$this->stow( '# URL: ' . esc_html( addslashes( $url ) ) . "\n", false );
+
+		$path = $this->get_absolute_root_file_path();
+		$key  = array_search( $path, $this->form_data['replace_old'] );
+
+		if ( false !== $key ) {
+			$path = $this->form_data['replace_new'][ $key ];
+		}
+
+		$this->stow( '# Path: ' . esc_html( addslashes( $path ) ) . "\n", false );
+
+		$included_tables = $this->get_tables( 'prefix' );
+
+		if ( 'savefile' === $this->state_data['intent'] && isset( $this->form_data['table_migrate_option'] ) && 'migrate_select' === $this->form_data['table_migrate_option'] ) {
+			$included_tables = $this->form_data['select_tables'];
+		}
+
+		$included_tables = apply_filters( 'wpmdb_backup_header_included_tables', $included_tables );
+
+		$this->stow( '# Tables: ' . implode( ', ', $included_tables ) . "\n", false );
+		$this->stow( '# Table Prefix: ' . $wpdb->base_prefix . "\n" );
+		$this->stow( '# Post Types: ' . implode( ', ', $this->get_post_types() ) . "\n", false );
+
+		$protocol = 'http';
+		if ( 'https' === substr( $home_url, 0, 5 ) ) {
+			$protocol = 'https';
+		}
+
+		$this->stow( '# Protocol: ' . $protocol . "\n", false );
+
+		$is_multisite = is_multisite() ? 'true' : 'false';
+		$this->stow( '# Multisite: ' . $is_multisite . "\n", false );
+
+		$is_subsite_export = apply_filters( 'wpmdb_backup_header_is_subsite_export', 'false' );
+		$this->stow ( '# Subsite Export: ' . $is_subsite_export . "\n", false );
+
 		$this->stow( "# --------------------------------------------------------\n\n", false );
 		$this->stow( "/*!40101 SET NAMES $charset */;\n\n", false );
 		$this->stow( "SET sql_mode='NO_AUTO_VALUE_ON_ZERO';\n\n", false );
@@ -2053,7 +3111,7 @@ class WPMDB extends WPMDB_Base {
 			return true;
 		}
 
-		if ( $this->form_data['action'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
+		if ( 'savefile' === $this->form_data['action'] || in_array( $this->state_data['stage'], array( 'backup', 'import' ) ) ) {
 			if ( $this->gzip() && isset( $this->form_data['gzip_file'] ) && $this->form_data['gzip_file'] ) {
 				if ( ! @gzwrite( $this->fp, $query_line ) ) {
 					$this->error = __( 'Failed to write the gzipped SQL data to the file. (#127)', 'wp-migrate-db' );
@@ -2070,6 +3128,8 @@ class WPMDB extends WPMDB_Base {
 			}
 		} elseif ( $this->state_data['intent'] == 'pull' ) {
 			echo apply_filters( 'wpmdb_before_response', $query_line );
+		} elseif ( 'find_replace' === $this->state_data['stage'] ) {
+			return $this->process_chunk( $query_line );
 		}
 	}
 
@@ -2081,8 +3141,13 @@ class WPMDB extends WPMDB_Base {
 	function transfer_chunk() {
 		$this->set_post_data();
 
-		if ( $this->state_data['intent'] == 'savefile' || $this->state_data['stage'] == 'backup' ) {
-			$this->close( $this->fp );
+		if ( in_array( $this->state_data['intent'], array( 'savefile', 'find_replace', 'import' ) ) || 'backup' == $this->state_data['stage'] ) {
+
+			if ( 'find_replace' === $this->state_data['stage'] ) {
+				$this->process_chunk( $this->query_buffer );
+			} else {
+				$this->close( $this->fp );
+			}
 
 			$result = array(
 				'current_row'  => $this->row_tracker,
@@ -2137,10 +3202,16 @@ class WPMDB extends WPMDB_Base {
 		}
 
 		if ( '1' !== $response ) {
-			$return = array( 'wpmdb_error' => 1, 'body' => $response );
-			$result = $this->end_ajax( json_encode( $return ) );
+			$decoded_response = json_decode( $response, 1 );
+			if ( $decoded_response && isset( $decoded_response['wpmdb_error'] ) && isset( $decoded_response['body'] ) ) {
+				// $response is already json_encoded wpmdb_error object
+				$this->log_error( 'transfer_chunk received error response: ' . $decoded_response['body'] );
 
-			return $result;
+				return $this->end_ajax( $response );
+			}
+			$return = array( 'wpmdb_error' => 1, 'body' => $response );
+
+			return $this->end_ajax( json_encode( $return ) );
 		}
 
 		$result = $this->end_ajax( json_encode(
@@ -2208,18 +3279,18 @@ class WPMDB extends WPMDB_Base {
 			array( $this, 'options_page' ) );
 		$this->after_admin_menu( $hook_suffix );
 	}
-	
+
 	/**
 	 * Add a tools menu item to sites on a Multisite network
 	 *
 	 */
 	function network_tools_admin_menu() {
-		add_management_page( 
+		add_management_page(
 			$this->get_plugin_title(),
 			$this->get_plugin_title(),
 			'manage_network_options',
 			$this->core_slug,
-			array( $this, 'subsite_tools_options_page' ) 
+			array( $this, 'subsite_tools_options_page' )
 		);
 	}
 
@@ -2384,18 +3455,9 @@ class WPMDB extends WPMDB_Base {
 		$src = $plugins_url . 'asset/dist/css/styles.css';
 		wp_enqueue_style( 'wp-migrate-db-pro-styles', $src, array(), $version );
 
-		$src = $plugins_url . "asset/dist/js/common{$ver_string}{$min}.js";
-		wp_enqueue_script( 'wp-migrate-db-pro-common', $src, null, $version, true );
-
-		$src = $plugins_url . "asset/dist/js/hook{$ver_string}{$min}.js";
-		wp_enqueue_script( 'wp-migrate-db-pro-hook', $src, null, $version, true );
-
-		$src = $plugins_url . "asset/dist/js/multisite{$ver_string}{$min}.js";
-		wp_enqueue_script( 'wp-migrate-db-pro-multisite', $src, array( 'jquery' ), $version, true );
-
 		do_action( 'wpmdb_load_assets' );
 
-		$src = $plugins_url . "asset/dist/js/script{$ver_string}{$min}.js";
+		$src = $plugins_url . "asset/dist/js/script{$ver_string}.js";
 		wp_enqueue_script( 'wp-migrate-db-pro-script', $src, array( 'jquery', 'backbone' ), $version, true );
 
 		wp_localize_script( 'wp-migrate-db-pro-script',
@@ -2413,6 +3475,7 @@ class WPMDB extends WPMDB_Base {
 				'update_log_problem'                    => __( 'An error occurred when trying to update the debug log. Please contact support. (#133)', 'wp-migrate-db' ),
 				'please_select_one_table'               => __( 'Please select at least one table to migrate.', 'wp-migrate-db' ),
 				'please_select_one_table_backup'        => __( 'Please select at least one table for backup.', 'wp-migrate-db' ),
+				'please_select_one_table_import'        => __( 'Please select at least one table for the find & replace', 'wp-migrate-db' ),
 				'enter_name_for_profile'                => __( 'Please enter a name for your migration profile.', 'wp-migrate-db' ),
 				'save_profile_problem'                  => __( 'An error occurred when attempting to save the migration profile. Please see the Help tab for details on how to request support. (#118)', 'wp-migrate-db' ),
 				'exporting_complete'                    => _x( 'Export complete', 'Data has been successfully exported', 'wp-migrate-db' ),
@@ -2449,11 +3512,15 @@ class WPMDB extends WPMDB_Base {
 				'time_elapsed'                          => __( 'Time Elapsed:', 'wp-migrate-db' ),
 				'pause'                                 => _x( 'Pause', 'Temporarily stop migrating', 'wp-migrate-db' ),
 				'migration_paused'                      => _x( 'Migration Paused', 'The migration has been temporarily stopped', 'wp-migrate-db' ),
+				'find_replace_paused'                   => _x( 'Find &amp; Replace Paused', 'The find & replace has been temporarily stopped', 'wp-migrate-db' ),
 				'resume'                                => _x( 'Resume', 'Restart migrating after it was paused', 'wp-migrate-db' ),
 				'completing_current_request'            => __( 'Completing current request', 'wp-migrate-db' ),
 				'cancelling_migration'                  => _x( 'Cancelling migration', 'The migration is being cancelled', 'wp-migrate-db' ),
+				'cancelling_find_replace'               => _x( 'Cancelling find &amp; replace', 'The find & replace is being cancelled', 'wp-migrate-db' ),
 				'paused'                                => _x( 'Paused', 'The migration has been temporarily stopped', 'wp-migrate-db' ),
+				'pause_before_finalize_find_replace'    => __( 'Pause before finalizing the updates', 'wp-migrate-db' ),
 				'paused_before_finalize'                => __( 'Automatically paused before migrated tables are replaced. Click "Resume" or "Cancel" when ready.', 'wp-migrate-db' ),
+				'find_replace_paused_before_finalize'   => __( 'Automatically paused before the find &amp; replace was finalized. Click "Resume" or "Cancel" when ready.', 'wp-migrate-db-pro' ),
 				'removing_local_sql'                    => __( 'Removing the local MySQL export file', 'wp-migrate-db' ),
 				'removing_local_backup'                 => __( 'Removing the local backup MySQL export file', 'wp-migrate-db' ),
 				'removing_local_temp_tables'            => __( 'Removing the local temporary tables', 'wp-migrate-db' ),
@@ -2463,6 +3530,8 @@ class WPMDB extends WPMDB_Base {
 				'manually_remove_temp_files'            => __( 'A problem occurred while cancelling the migration, you may have to manually delete some temporary files / tables.', 'wp-migrate-db' ),
 				'migration_cancelled'                   => _x( 'Migration cancelled', 'The migration has been cancelled', 'wp-migrate-db' ),
 				'migration_cancelled_success'           => __( 'The migration has been stopped and all temporary files and data have been cleaned up.', 'wp-migrate-db' ),
+				'find_replace_cancelled'                => _x( 'Find &amp; replace cancelled', 'The migration has been cancelled', 'wp-migrate-db' ),
+				'find_replace_cancelled_success'        => __( 'The find &amp; replace has been cancelled and all temporary data has been cleaned up.', 'wp-migrate-db' ),
 				'migration_complete'                    => _x( 'Migration complete', 'The migration completed successfully', 'wp-migrate-db' ),
 				'finalizing_migration'                  => _x( 'Finalizing migration', 'The migration is in the last stages', 'wp-migrate-db' ),
 				'flushing'                              => _x( 'Flushing caches and rewrite rules', 'The caches and rewrite rules for the target are being flushed', 'wp-migrate-db' ),
@@ -2474,6 +3543,10 @@ class WPMDB extends WPMDB_Base {
 				'pull_migration_label_completed'        => __( 'Pull from %s complete', 'wp-migrate-db' ),
 				'push_migration_label_migrating'        => __( 'Pushing to %s…', 'wp-migrate-db' ),
 				'push_migration_label_completed'        => __( 'Push to %s complete', 'wp-migrate-db' ),
+				'find_replace_label_migrating'          => __( 'Running Find & Replace…', 'wp-migrate-db' ),
+				'find_replace_label_completed'          => __( 'Find & Replace complete', 'wp-migrate-db' ),
+				'import_label_migrating'                => __( 'Importing…', 'wp-migrate-db' ),
+				'import_label_completed'                => __( 'Import complete', 'wp-migrate-db' ),
 				'copying_license'                       => __( 'Copying license to the remote site, please wait', 'wp-migrate-db' ),
 				'attempting_to_activate_licence'        => __( 'Attempting to activate your license, please wait…', 'wp-migrate-db' ),
 				'licence_reactivated'                   => __( 'License successfully activated, please wait…', 'wp-migrate-db' ),
@@ -2491,10 +3564,15 @@ class WPMDB extends WPMDB_Base {
 				'migrate_button_pull_save'              => _x( 'Pull &amp; Save', 'Transfer the remote database to this site and save migration profile', 'wp-migrate-db' ),
 				'migrate_button_export'                 => _x( 'Export', 'Download a copy of the database', 'wp-migrate-db' ),
 				'migrate_button_export_save'            => _x( 'Export &amp; Save', 'Download a copy of the database and save migration profile', 'wp-migrate-db' ),
+				'migrate_button_import'                 => _x( 'Import', 'Import an SQL file into the database', 'wp-migrate-db' ),
+				'migrate_button_import_save'            => _x( 'Import &amp; Save', 'Import an SQL file and save migration profile', 'wp-migrate-db' ),
+				'migrate_button_find_replace'           => _x( 'Find &amp; Replace', 'Run a find and replace on the database', 'wp-migrate-db' ),
+				'migrate_button_find_replace_save'      => _x( 'Find &amp; Replace &amp; Save', 'Run a find and replace and save migration profile', 'wp-migrate-db' ),
 				'tables'                                => _x( 'Tables', 'database tables', 'wp-migrate-db'),
 				'files'                                 => __( 'Files', 'wp-migrate-db'),
 				'migrated'                              => _x( 'Migrated', 'Transferred', 'wp-migrate-db' ),
 				'backed_up'                             => __( 'Backed Up', 'wp-migrate-db' ),
+				'searched'                              => __( 'Searched', 'wp-migrate-db' ),
 				'hide'                                  => _x( 'Hide', 'Obscure from view', 'wp-migrate-db' ),
 				'show'                                  => _x( 'Show', 'Reveal', 'wp-migrate-db' ),
 				'welcome_title'                         => __( 'Welcome to WP Migrate DB Pro! &#127881;', 'wp-migrate-db' ),
@@ -2507,6 +3585,14 @@ class WPMDB extends WPMDB_Base {
 				'title_complete'                        => __( 'Complete', 'wp-migrate-db' ),
 				'title_error'                           => __( 'Failed', 'wp-migrate-db' ),
 				'progress_items_truncated_msg'          => __( '%1$s items are not shown to maintain browser performance', 'wp-migrate-db' ),
+				'clear_error_log'                       => _x( 'Cleared', 'Error log emptied', 'wp-migrate-db' ),
+				'parsing_sql_file'                      => __( 'Parsing SQL file, please wait', 'wp-migrate-db' ),
+				'invalid_sql_file'                      => __( 'The selected file does not have a recognized file type. Please upload a valid SQL file to continue.', 'wp-migrate-db' ),
+				'please_select_sql_file'                => __( 'Please select an SQL export file above to continue.', 'wp-migrate-db' ),
+				'import_profile_loaded'                 => sprintf( '<strong>%s</strong> &mdash; %s', __( 'Profile Loaded', 'wp-migrate-db' ), __( 'The selected profile has been loaded, please select an SQL export file above to continue.', 'wp-migrate-db' ) ),
+				'uploading_file_to_server'              => __( 'Uploading file to the server', 'wp-migrate-db' ),
+				'importing_file_to_db'                  => __( 'Importing data from %s', 'wp-migrate-db' ),
+				'upload'                                => __( 'Upload', 'wp-migrate-db' ),
 			)
 		);
 
@@ -2532,17 +3618,23 @@ class WPMDB extends WPMDB_Base {
 		$salt             = substr( $filename, $last_dash, 6 );
 		$filename_no_salt = str_replace( $salt, '', $filename );
 
+
 		if ( file_exists( $diskfile ) ) {
-			header( 'Content-Description: File Transfer' );
-			header( 'Content-Type: application/octet-stream' );
-			header( 'Content-Length: ' . filesize( $diskfile ) );
-			header( 'Content-Disposition: attachment; filename=' . $filename_no_salt );
-			$success = readfile( $diskfile );
-			// TODO: Use WP_Filesystem API.
-			unlink( $diskfile );
-			exit;
+			if ( ! headers_sent() ) {
+				header( 'Content-Description: File Transfer' );
+				header( 'Content-Type: application/octet-stream' );
+				header( 'Content-Length: ' . $this->filesystem->filesize( $diskfile ) );
+				header( 'Content-Disposition: attachment; filename=' . $filename_no_salt );
+				readfile( $diskfile );
+				$this->filesystem->unlink( $diskfile );
+				exit;
+			} else {
+				$last_error = error_get_last();
+				$msg        = isset( $last_error['message'] ) ? '<p>Error: ' . $last_error['message'] . '</p>' : '';
+				wp_die( sprintf( __( '<h3>Output prevented download. </h3> %s', 'wp-migrate-db' ), $msg ) );
+			}
 		} else {
-			wp_die( __( 'Could not find the file to download:', 'wp-migrate-db' ) . '<br />' . esc_html( $diskfile ) );
+			wp_die( __( 'Could not find the file to download:', 'wp-migrate-db' ) . '<br>' . esc_html( $diskfile ) );
 		}
 	}
 
@@ -2555,27 +3647,28 @@ class WPMDB extends WPMDB_Base {
 		$site_details = $this->site_details();
 
 		$nonces = apply_filters( 'wpmdb_nonces', array(
-			'update_max_request_size'          => wp_create_nonce( 'update-max-request-size' ),
-			'update_delay_between_requests'    => wp_create_nonce( 'update-delay-between-requests' ),
-			'check_licence'                    => wp_create_nonce( 'check-licence' ),
-			'verify_connection_to_remote_site' => wp_create_nonce( 'verify-connection-to-remote-site' ),
-			'activate_licence'                 => wp_create_nonce( 'activate-licence' ),
-			'clear_log'                        => wp_create_nonce( 'clear-log' ),
-			'get_log'                          => wp_create_nonce( 'get-log' ),
-			'save_profile'                     => wp_create_nonce( 'save-profile' ),
-			'initiate_migration'               => wp_create_nonce( 'initiate-migration' ),
-			'migrate_table'                    => wp_create_nonce( 'migrate-table' ),
-			'finalize_migration'               => wp_create_nonce( 'finalize-migration' ),
-			'reset_api_key'                    => wp_create_nonce( 'reset-api-key' ),
-			'delete_migration_profile'         => wp_create_nonce( 'delete-migration-profile' ),
-			'save_setting'                     => wp_create_nonce( 'save-setting' ),
-			'copy_licence_to_remote_site'      => wp_create_nonce( 'copy-licence-to-remote-site' ),
-			'reactivate_licence'               => wp_create_nonce( 'reactivate-licence' ),
-			'process_notice_link'              => wp_create_nonce( 'process-notice-link' ),
-			'flush'                            => wp_create_nonce( 'flush' ),
-			'plugin_compatibility'             => wp_create_nonce( 'plugin_compatibility' ),
-			'blacklist_plugins'                => wp_create_nonce( 'blacklist_plugins' ),
-			'cancel_migration'                 => wp_create_nonce( 'cancel_migration' )
+			'update_max_request_size'          => WPMDB_Utils::create_nonce( 'update-max-request-size' ),
+			'update_delay_between_requests'    => WPMDB_Utils::create_nonce( 'update-delay-between-requests' ),
+			'check_licence'                    => WPMDB_Utils::create_nonce( 'check-licence' ),
+			'verify_connection_to_remote_site' => WPMDB_Utils::create_nonce( 'verify-connection-to-remote-site' ),
+			'activate_licence'                 => WPMDB_Utils::create_nonce( 'activate-licence' ),
+			'clear_log'                        => WPMDB_Utils::create_nonce( 'clear-log' ),
+			'get_log'                          => WPMDB_Utils::create_nonce( 'get-log' ),
+			'save_profile'                     => WPMDB_Utils::create_nonce( 'save-profile' ),
+			'initiate_migration'               => WPMDB_Utils::create_nonce( 'initiate-migration' ),
+			'migrate_table'                    => WPMDB_Utils::create_nonce( 'migrate-table' ),
+			'finalize_migration'               => WPMDB_Utils::create_nonce( 'finalize-migration' ),
+			'reset_api_key'                    => WPMDB_Utils::create_nonce( 'reset-api-key' ),
+			'delete_migration_profile'         => WPMDB_Utils::create_nonce( 'delete-migration-profile' ),
+			'save_setting'                     => WPMDB_Utils::create_nonce( 'save-setting' ),
+			'copy_licence_to_remote_site'      => WPMDB_Utils::create_nonce( 'copy-licence-to-remote-site' ),
+			'reactivate_licence'               => WPMDB_Utils::create_nonce( 'reactivate-licence' ),
+			'process_notice_link'              => WPMDB_Utils::create_nonce( 'process-notice-link' ),
+			'flush'                            => WPMDB_Utils::create_nonce( 'flush' ),
+			'plugin_compatibility'             => WPMDB_Utils::create_nonce( 'plugin_compatibility' ),
+			'import_file'                      => WPMDB_Utils::create_nonce( 'import-file' ),
+			'whitelist_plugins'                => WPMDB_Utils::create_nonce( 'whitelist_plugins' ),
+			'cancel_migration'                 => WPMDB_Utils::create_nonce( 'cancel_migration' ),
 		) );
 
 		$data = apply_filters( 'wpmdb_data', array(
@@ -2614,6 +3707,7 @@ class WPMDB extends WPMDB_Base {
 			'lower_case_table_names' => esc_html( $this->get_lower_case_table_names_setting() ),
 			'subsites'               => $site_details['subsites'], // TODO: Remove backwards compatibility.
 			'site_details'           => $this->site_details(),
+		    'alter_table_name'       => $this->get_alter_table_name(),
 		) );
 
 		wp_localize_script( 'wp-migrate-db-pro-script', 'wpmdb_data', $data );
@@ -2725,6 +3819,29 @@ class WPMDB extends WPMDB_Base {
 					$this->delete_temporary_tables( $this->state_data['temp_prefix'] );
 				}
 				break;
+			case 'find_replace' :
+				$this->delete_temporary_tables( $this->temp_prefix );
+				break;
+			case 'import' :
+				if ( 'backup' === $this->state_data['stage'] && ! empty( $this->state_data['dumpfile_created'] ) ) {
+					$this->delete_export_file( $this->state_data['dump_filename'], true );
+				} else {
+					// Import might have been deleted already
+					if ( $this->filesystem->file_exists( $this->state_data['import_path'] ) ) {
+						if ( 'true' === $this->state_data['import_info']['import_gzipped'] ) {
+							$this->delete_export_file( $this->state_data['import_filename'], false );
+
+							// File might not be decompressed yet
+							if ( $this->filesystem->file_exists( substr( $this->state_data['import_path'], 0, -3 ) ) ) {
+								$this->delete_export_file( $this->state_data['import_filename'], true );
+							}
+						} else {
+							$this->delete_export_file( $this->state_data['import_filename'], true );
+						}
+					}
+					$this->delete_temporary_tables( $this->temp_prefix );
+				}
+				break;
 			default:
 				break;
 		}
@@ -2745,15 +3862,14 @@ class WPMDB extends WPMDB_Base {
 
 		$dump_file = $this->get_upload_info( 'path' ) . DIRECTORY_SEPARATOR . $dump_file;
 
-		if ( empty( $dump_file ) || false == file_exists( $dump_file ) ) {
-			_e( 'MySQL export file not found.', 'wp-migrate-db' );
-			exit;
+		if ( empty( $dump_file ) || false === $this->filesystem->file_exists( $dump_file ) ) {
+			$return = array( 'wpmdb_error' => 1, 'body' => __( 'MySQL export file not found.', 'wp-migrate-db' ) );
+			return $this->end_ajax( json_encode( $return ) );
 		}
 
-		// TODO: Use WP_Filesystem API.
-		if ( false === @unlink( $dump_file ) ) {
-			_e( 'Could not delete the MySQL export file.', 'wp-migrate-db' );
-			exit;
+		if ( false === $this->filesystem->unlink( $dump_file ) ) {
+			$return = array( 'wpmdb_error' => 1, 'body' => __( 'Could not delete the MySQL export file.', 'wp-migrate-db' ) );
+			return $this->end_ajax( json_encode( $return ) );
 		}
 	}
 
@@ -2763,7 +3879,7 @@ class WPMDB extends WPMDB_Base {
 
 	function template_compatibility() {
 		$args = array(
-			'plugin_compatibility_checked' => ( isset( $GLOBALS['wpmdb_compatibility'] ) ? true : false ),
+			'plugin_compatibility_checked' => ( $this->compatibility_plugin_manager->is_muplugin_installed() ? true : false ),
 		);
 		$this->template( 'compatibility', 'common', $args );
 	}
@@ -2871,6 +3987,15 @@ class WPMDB extends WPMDB_Base {
 			return $create_table;
 		}
 
+		if ( version_compare( $db_version, '5.6', '<' ) ) {
+			// Convert utf8m4_unicode_520_ci collation to utf8mb4_unicode_ci if less than mysql 5.6
+			$create_table = str_replace( 'utf8mb4_unicode_520_ci', 'utf8mb4_unicode_ci', $create_table );
+			$create_table = str_replace( 'utf8_unicode_520_ci', 'utf8_unicode_ci', $create_table );
+		} elseif ( apply_filters( 'wpmdb_convert_to_520', true ) ) {
+			$create_table = str_replace( 'utf8mb4_unicode_ci', 'utf8mb4_unicode_520_ci', $create_table );
+			$create_table = str_replace( 'utf8_unicode_ci', 'utf8_unicode_520_ci', $create_table );
+		}
+
 		if ( version_compare( $db_version, '5.5.3', '<' ) ) {
 			// Remove index comments introduced in MySQL 5.5.3.
 			// Following regex matches any PRIMARY KEY or KEY statement on a table definition that has a COMMENT statement attached.
@@ -2898,7 +4023,7 @@ class WPMDB extends WPMDB_Base {
 			}
 
 			if ( true === $abort_utf8mb4 && 0 !== $replace_count ) {
-				$return = sprintf( __( 'The source site supports utf8mb4 data but the target does not, aborting migration to avoid possible data corruption. Please see %1$s for more information. (#148)', 'wp-migrate-db-pro' ), sprintf( '<a href="https://deliciousbrains.com/wp-migrate-db-pro/doc/source-site-supports-utf8mb4/">%1$s</a>', __( 'our documentation', 'wp-migrate-db-pro' ) ) );
+				$return = sprintf( __( 'The source site supports utf8mb4 data but the target does not, aborting migration to avoid possible data corruption. Please see %1$s for more information. (#148)', 'wp-migrate-db-pro' ), sprintf( '<a href="https://deliciousbrains.com/wp-migrate-db-pro/doc/source-site-supports-utf8mb4/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin">%1$s</a>', __( 'our documentation', 'wp-migrate-db-pro' ) ) );
 				$return = array( 'wpmdb_error' => 1, 'body' => $return );
 				$result = $this->end_ajax( json_encode( $return ) );
 
@@ -2959,7 +4084,7 @@ class WPMDB extends WPMDB_Base {
 
 		<p><?php _e( "As a result, uppercase characters in table names will be converted to lowercase during the migration.", 'wp-migrate-db' ); ?></p>
 
-		<p><?php printf( __( 'You can read more about this in <a href="%s">our documentation</a>, proceed with caution.', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/mixed-case-table-names/' ); ?></p>
+		<p><?php printf( __( 'You can read more about this in <a href="%s">our documentation</a>, proceed with caution.', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/mixed-case-table-names/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' ); ?></p>
 		<?php
 		return wptexturize( ob_get_clean() );
 	}

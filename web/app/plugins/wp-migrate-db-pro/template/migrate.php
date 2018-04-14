@@ -7,8 +7,9 @@ if ( isset( $_GET['wpmdb-profile'] ) ) {
 } else {
 	$loaded_profile = $this->default_profile;
 }
-
 $is_default_profile = isset( $loaded_profile['default_profile'] );
+
+$tracking_base = $this->is_pro ? 'MDB%2BPaid' : 'MDB%2BFree';
 
 $convert_exclude_revisions   = false;
 $convert_post_type_selection = false;
@@ -66,8 +67,7 @@ $breadcrumbs_params = array(
 
 		<ul class="option-group migrate-selection">
 			<li>
-				<?php $savefile_style = ( true == $this->is_pro ) ? '' : ' style="display: none;"'; ?>
-				<label for="savefile"<?php echo $savefile_style; ?>>
+				<label for="savefile">
 					<input id="savefile" type="radio" value="savefile" name="action"<?php echo ( $loaded_profile['action'] == 'savefile' || ! $this->is_pro ) ? ' checked="checked"' : ''; ?> />
 					<?php _e( 'Export File', 'wp-migrate-db' ); ?>
 				</label>
@@ -88,7 +88,13 @@ $breadcrumbs_params = array(
 					<?php endif; ?>
 				</ul>
 			</li>
-			<?php $this->template_part( array( 'pull_push_radio_buttons' ), $loaded_profile ); ?>
+			<?php $this->template_part( array( 'import_radio_button', 'pull_push_radio_buttons' ), $loaded_profile ); ?>
+			<li>
+				<label for="find_replace">
+					<input id="find_replace" type="radio" value="find_replace" name="action"<?php echo ( 'find_replace' === $loaded_profile['action'] ) ? ' checked="checked"' : ''; ?> />
+					<?php _e( 'Find & Replace', 'wp-migrate-db' ); ?><span class="option-description"><?php _e( 'Run a find & replace on this site\'s db', 'wp-migrate-db' ); ?></span>
+				</label>
+			</li>
 		</ul>
 
 		<div class="connection-info-wrapper clearfix">
@@ -103,28 +109,41 @@ $breadcrumbs_params = array(
 		</div>
 
 		<div class="notification-message warning-notice ssl-notice inline-message">
-			<strong><?php _e( 'SSL Disabled', 'wp-migrate-db' ); ?></strong> &mdash; <?php _e( 'We couldn\'t connect over SSL but regular http (no SSL) appears to be working so we\'ve switched to that. If you run a push or pull, your data will be transmitted unencrypted. Most people are fine with this, but just a heads up.', 'wp-migrate-db' ); ?>
+			<strong><?php _e( 'HTTPS Disabled', 'wp-migrate-db' ); ?></strong> &mdash; <?php _e( 'We couldn\'t connect over HTTPS but regular HTTP appears to be working so we\'ve switched to that. If you run a push or pull, your data will be transmitted unencrypted. Most people are fine with this, but just a heads up.', 'wp-migrate-db' ); ?>
 		</div>
 
-		<?php $this->template_part( array( 'invalid_licence_warning' ) ); ?>
+		<?php $this->template_part( array( 'invalid_licence_warning', 'unrecognized_import_file' ) ); ?>
 
 	</div>
 
 	<p class="connection-status"><?php _e( 'Please enter the connection information above to continue.', 'wp-migrate-db' ); ?></p>
 
+	<?php $this->template_part( array( 'import_file_status', 'mst_required' ) ); ?>
+
 	<div class="notification-message error-notice directory-permission-notice inline-message" style="display: none;">
-		<strong><?php _e( 'Cannot Access Uploads Directory', 'wp-migrate-db' ); ?></strong> &mdash;
-		<?php
-		_e( 'We require write permissions to the standard WordPress uploads directory. Without this permission exports are unavailable. Please grant 755 permissions on the following directory:', 'wp-migrate-db' );
-		echo esc_html( $this->get_upload_info( 'path' ) );
-		?>
+		<p>
+			<strong><?php _e( 'Uploads Directory Not Writable', 'wp-migrate-db' ); ?></strong> &mdash;
+			<span class="action-text savefile"><?php _e( 'The Export feature is unavailable because the following directory is not writable:', 'wp-migrate-db' ); ?></span>
+			<span class="action-text import"><?php _e( 'The Import feature is unavailable because the following directory is not writable:', 'wp-migrate-db' ); ?></span>
+		</p>
+
+		<p><?php echo esc_html( $this->get_upload_info( 'path' ) ); ?></p>
+
+		<p>
+			<?php printf( '%s <a href="%s">%s »</a>',
+				__( 'Please adjust the permissions on this directory.', 'wp-migrate-db' ),
+				'https://deliciousbrains.com/wp-migrate-db-pro/doc/uploads-folder-permissions/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin',
+				__( 'More info', 'wp-migrate-db' ) ); ?>
+		</p>
 	</div>
 
 	<div class="step-two">
 
 		<?php do_action( 'wpmdb_before_migration_options' ); ?>
 
-		<div class="option-section">
+		<?php $this->template_part( array( 'import_find_replace_option' ) ); ?>
+
+		<div class="option-section find-replace-rows">
 			<div class="header-wrapper clearfix">
 				<div class="option-heading find-heading"><?php _ex( 'Find', 'Source text to be replaced', 'wp-migrate-db' ); ?></div>
 				<div class="option-heading replace-heading"><?php _ex( 'Replace', 'Text to replace in source', 'wp-migrate-db' ); ?></div>
@@ -144,6 +163,9 @@ $breadcrumbs_params = array(
 					</td>
 					<td class="replace-right-col">
 						<input type="text" size="40" name="replace_new[]" class="code" placeholder="New value" autocomplete="off" />
+
+					</td>
+					<td class="row-action-buttons">
 						<span class="replace-remove-row" data-profile-id="0"></span>
 					</td>
 				</tr>
@@ -160,9 +182,14 @@ $breadcrumbs_params = array(
 						</td>
 						<td class="replace-right-col">
 							<input type="text" size="40" name="replace_new[]" class="code" id="new-url" placeholder="New URL" autocomplete="off" />
-							<?php if ( ! $this->lock_url_find_replace_row ) : ?>
-							<span class="replace-remove-row" data-profile-id="0"></span>
-							<?php endif; ?>
+						</td>
+						<td class="row-action-buttons">
+							<?php $style = $this->lock_url_find_replace_row ? 'display: none;' : ''; ?>
+							<span class="replace-remove-row" data-profile-id="0" style="<?php echo $style; ?>"></span>
+							<a href="#" class="general-helper domain-replace-helper js-action-link"></a>
+							<div class="domain-replace-info helper-message bottom">
+								<?php printf( __( 'This find & replace will find the domain name of your remote site and replace it with the domain name of this site. We\'ve left out the protocol so that both http:// and https:// will be found and replaced. <a href="%s" target="_blank">Find & Replace Documentation</a>', 'wp-migrate-db' ), "https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/?utm_campaign=support%2Bdocs&utm_source={$tracking_base}&utm_medium=insideplugin&utm_content=new%2Burl%2Bhelp%2Bbubble" ); ?>
+							</div>
 						</td>
 					</tr>
 					<tr class="replace-row">
@@ -177,7 +204,13 @@ $breadcrumbs_params = array(
 						</td>
 						<td class="replace-right-col">
 							<input type="text" size="40" name="replace_new[]" class="code" id="new-path" placeholder="New file path" autocomplete="off" />
+						</td>
+						<td class="row-action-buttons">
 							<span class="replace-remove-row" data-profile-id="0"></span>
+							<a href="#" class="general-helper path-replace-helper js-action-link"></a>
+							<div class="path-replace-info helper-message bottom">
+								<?php printf( __( 'This find and replace is mostly for 3rd party plugins that store the website’s root file path in the database. This set of fields will ensure that these values are updated to the correct root file path during the migration. <a href="%s" target="_blank">Find & Replace Documentation</a>', 'wp-migrate-db' ), "https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/?utm_campaign=support%2Bdocs&utm_source={$tracking_base}&utm_medium=insideplugin&utm_content=new%2Bfile%2Bpath%2Bhelp%2Bbubble" ); ?>
+							</div>
 						</td>
 					</tr>
 				<?php else :
@@ -198,8 +231,10 @@ $breadcrumbs_params = array(
 							</td>
 							<td class="replace-right-col">
 								<input type="text" size="40" name="replace_new[]" class="code" placeholder="New value" value="<?php echo esc_attr( $replace_new ); ?>" autocomplete="off" />
+							</td>
+							<td class="row-action-buttons">
 								<?php if ( ! $this->lock_url_find_replace_row || ( $this->lock_url_find_replace_row && $i != 1 ) ) : ?>
-								<span class="replace-remove-row" data-profile-id="0"></span>
+									<span class="replace-remove-row" data-profile-id="0"></span>
 								<?php endif; ?>
 							</td>
 						</tr>
@@ -219,14 +254,14 @@ $breadcrumbs_params = array(
 				$new_url_missing_warning = __( '<strong>New URL Missing</strong> &mdash; Please enter the protocol-relative URL of the remote website in the "New URL" field. If you are unsure of what this URL should be, please consult <a href="%s" target="_blank">our documentation</a> on find and replace fields.', 'wp-migrate-db' );
 			}
 			?>
-			<div id="new-url-missing-warning" class="warning inline-message missing-replace"><?php printf( $new_url_missing_warning, 'https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/' ); ?></div>
-			<div id="new-path-missing-warning" class="warning inline-message missing-replace"><?php printf( __( '<strong>New File Path Missing</strong> &mdash; Please enter the root file path of the remote website in the "New file path" field or remove the whole row entirely. If you are unsure of what the file path should be, please consult <a href="%s" target="_blank">our documentation</a> on find and replace fields.', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/' ); ?></div>
+			<div id="new-url-missing-warning" class="warning inline-message missing-replace"><?php printf( $new_url_missing_warning, "https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/?utm_campaign=support%2Bdocs&utm_source={$tracking_base}&utm_medium=insideplugin&utm_content=new%2Burl%2Bvalidation" ); ?></div>
+			<div id="new-path-missing-warning" class="warning inline-message missing-replace"><?php printf( __( '<strong>New File Path Missing</strong> &mdash; Please enter the root file path of the remote website in the "New file path" field or remove the whole row entirely. If you are unsure of what the file path should be, please consult <a href="%s" target="_blank">our documentation</a> on find and replace fields.', 'wp-migrate-db' ), "https://deliciousbrains.com/wp-migrate-db-pro/doc/find-and-replace/?utm_campaign=support%2Bdocs&utm_source={$tracking_base}&utm_medium=insideplugin&utm_content=new%2Bfile%2Bpath%2Bvalidation" ); ?></div>
 
 		</div>
 
-		<?php $this->template_part( array( 'select_tables', 'exclude_post_types' ), $loaded_profile ); ?>
+		<?php $this->template_part( array( 'find_replace_options', 'select_tables', 'exclude_post_types' ), $loaded_profile ); ?>
 
-		<div class="option-section">
+		<div class="option-section advanced-options">
 			<div class="header-expand-collapse clearfix">
 				<div class="expand-collapse-arrow collapsed">&#x25BC;</div>
 				<div class="option-heading tables-header"><?php _e( 'Advanced Options', 'wp-migrate-db' ); ?></div>
@@ -279,6 +314,8 @@ $breadcrumbs_params = array(
 
 		<?php $this->template_part( array( 'backup' ), $loaded_profile ); ?>
 
+		<?php $this->template_part( array( 'import_active_plugins_option' ), $loaded_profile ); ?>
+
 		<?php do_action( 'wpmdb_after_advanced_options' ); ?>
 
 		<div class="option-section save-migration-profile-wrap">
@@ -314,24 +351,20 @@ $breadcrumbs_params = array(
 			</div>
 		</div>
 
-		<div class="notification-message warning-notice prefix-notice pull">
+		<div class="notification-message warning-notice prefix-notice">
 			<h4><?php _e( 'Warning: Different Table Prefixes', 'wp-migrate-db' ); ?></h4>
 
-			<p><?php _e( 'Whoa! We\'ve detected that the database table prefix differs between installations. Clicking the Migrate button below will create new database tables in your local database with prefix "<span class="remote-prefix"></span>".', 'wp-migrate-db' ); ?></p>
+			<p class="action-text pull"><?php _e( 'Whoa! We\'ve detected that the database table prefix differs between installations. Clicking the Migrate button below will create new database tables in your local database with prefix "<span class="remote-prefix"></span>".', 'wp-migrate-db' ); ?></p>
+			<p class="action-text push"><?php printf( __( 'Whoa! We\'ve detected that the database table prefix differs between installations. Clicking the Migrate button below will create new database tables in the remote database with prefix "%s".', 'wp-migrate-db' ), $wpdb->base_prefix ); ?></p>
+			<p class="action-text import"><?php printf( __( 'Whoa! We\'ve detected that the database table prefix in the import file does not match the database prefix of this install. Clicking the Import button below will create new database tables with the prefix "%s".', 'wp-migrate-db' ),  '<span class="remote-prefix"></span>' ); ?></p>
 
-			<p><?php printf( __( 'However, your local install is configured to use table prefix "%1$s" and will ignore the migrated tables. So, <b>AFTER</b> migration is complete, you will need to edit your local install\'s wp-config.php and change the "%1$s" variable to "<span class="remote-prefix"></span>".', 'wp-migrate-db' ), $wpdb->base_prefix, $wpdb->base_prefix ); ?></p>
+			<p class="action-text pull"><?php printf( __( 'However, your local install is configured to use table prefix "%1$s" and will ignore the migrated tables. So, <b>AFTER</b> migration is complete, you will need to edit your local install\'s wp-config.php and change the "%1$s" variable to "<span class="remote-prefix"></span>".', 'wp-migrate-db' ), $wpdb->base_prefix, $wpdb->base_prefix ); ?></p>
+			<p class="action-text push"><?php printf( __( 'However, your remote install is configured to use table prefix "<span class="remote-prefix"></span>" and will ignore the migrated tables. So, <b>AFTER</b> migration is complete, you will need to edit your remote install\'s wp-config.php and change the "<span class="remote-prefix"></span>" variable to "%s".', 'wp-migrate-db' ), $wpdb->base_prefix ); ?></p>
+			<p class="action-text import"><?php printf( __( 'However, this install is configured to use the table prefix "%1$s" and will ignore the imported tables. So, <b>AFTER</b> the import is complete, you will need to edit this install\'s wp-config.php file and change the value of the "$table_prefix" variable to "%2$s".', 'wp-migrate-db' ), $wpdb->base_prefix, '<span class="remote-prefix"></span>' ); ?></p>
 
-			<p><?php _e( 'This will allow your local install the use the migrated tables. Once you do this, you shouldn\'t have to do it again.', 'wp-migrate-db' ); ?></p>
-		</div>
-
-		<div class="notification-message warning-notice prefix-notice push">
-			<h4><?php _e( 'Warning: Different Table Prefixes', 'wp-migrate-db' ); ?></h4>
-
-			<p><?php printf( __( 'Whoa! We\'ve detected that the database table prefix differs between installations. Clicking the Migrate button below will create new database tables in the remote database with prefix "%s".', 'wp-migrate-db' ), $wpdb->base_prefix ); ?></p>
-
-			<p><?php printf( __( 'However, your remote install is configured to use table prefix "<span class="remote-prefix"></span>" and will ignore the migrated tables. So, <b>AFTER</b> migration is complete, you will need to edit your remote install\'s wp-config.php and change the "<span class="remote-prefix"></span>" variable to "%s".', 'wp-migrate-db' ), $wpdb->base_prefix ); ?></p>
-
-			<p><?php _e( 'This will allow your remote install the use the migrated tables. Once you do this, you shouldn\'t have to do it again.', 'wp-migrate-db' ); ?></p>
+			<p class="action-text pull"><?php _e( 'This will allow your local install to use the migrated tables. Once you do this, you shouldn\'t have to do it again.', 'wp-migrate-db' ); ?></p>
+			<p class="action-text push"><?php _e( 'This will allow your remote install to use the migrated tables. Once you do this, you shouldn\'t have to do it again.', 'wp-migrate-db' ); ?></p>
+			<p class="action-text import"><?php _e ( 'That will allow this install to use the imported tables. Once you do this, you shouldn\'t have to do it again.', 'wp-migrate-db' ); ?></p>
 		</div>
 
 		<div class="notification-message warning-notice mixed-case-table-name-notice pull">

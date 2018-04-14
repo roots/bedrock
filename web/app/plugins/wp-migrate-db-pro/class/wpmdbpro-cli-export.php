@@ -86,11 +86,10 @@ class WPMDBPro_CLI_Export extends WPMDB_CLI {
 	 * @return array
 	 */
 	function tables_to_migrate_include_select( $tables_to_migrate ) {
-		if ( 'savefile' === $this->profile['action'] &&
-		     'migrate_select' === $this->profile['table_migrate_option'] &&
-		     ! empty( $this->profile['select_tables'] )
-		) {
-			$tables_to_migrate = array_intersect( $this->profile['select_tables'], $this->get_tables() );
+		if ( in_array( $this->profile['action'], array( 'find_replace', 'savefile' ) ) ) {
+			if ( 'migrate_select' === $this->profile['table_migrate_option'] && ! empty( $this->profile['select_tables'] ) ) {
+				$tables_to_migrate = array_intersect( $this->profile['select_tables'], $this->get_tables() );
+			}
 		}
 
 		return $tables_to_migrate;

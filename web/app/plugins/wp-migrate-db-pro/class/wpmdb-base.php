@@ -19,7 +19,6 @@ class WPMDB_Base {
 	protected $multipart_boundary = 'bWH4JVmYCnf6GfXacrcc';
 	protected $attempting_to_connect_to;
 	protected $error;
-	protected $temp_prefix = '_mig_';
 	protected $invalid_content_verification_error;
 	protected $addons;
 	protected $doing_cli_migration = false;
@@ -30,7 +29,13 @@ class WPMDB_Base {
 	protected $state_data;
 	protected $form_data;
 	protected $migration_state;
-	protected $filesystem;
+	protected $license_response_messages = array();
+	protected $gettable_properties = array();
+	protected $temp_prefix = '_mig_';
+	public $mu_plugin_dir;
+	public $mu_plugin_source;
+	public $mu_plugin_dest;
+	public $filesystem;
 
 	function __construct( $plugin_file_path ) {
 		$this->load_settings();
@@ -43,6 +48,9 @@ class WPMDB_Base {
 		$this->template_dir       = $this->plugin_dir_path . 'template' . DIRECTORY_SEPARATOR;
 		$this->plugin_title       = ucwords( str_ireplace( '-', ' ', basename( $plugin_file_path ) ) );
 		$this->plugin_title       = str_ireplace( array( 'db', 'wp', '.php' ), array( 'DB', 'WP', '' ), $this->plugin_title );
+		$this->mu_plugin_dir      = ( defined( 'WPMU_PLUGIN_DIR' ) && defined( 'WPMU_PLUGIN_URL' ) ) ? WPMU_PLUGIN_DIR : trailingslashit( WP_CONTENT_DIR ) . 'mu-plugins';
+		$this->mu_plugin_source   = trailingslashit( $this->plugin_dir_path ) . 'compatibility/wp-migrate-db-pro-compatibility.php';
+		$this->mu_plugin_dest     = trailingslashit( $this->mu_plugin_dir ) . 'wp-migrate-db-pro-compatibility.php';
 
 		// We need to set $this->plugin_slug here because it was set here
 		// in Media Files prior to version 1.1.2. If we remove it the customer
@@ -71,6 +79,69 @@ class WPMDB_Base {
 			add_action( 'admin_init', array( $this, 'init_wpmdb_filesystem' ) );
 		}
 
+		// List of properties that can be accessed by the get() method
+		$this->gettable_properties = array(
+			'settings',
+			'plugin_base',
+			'temp_prefix',
+			'plugin_version',
+			'error',
+			'state_data',
+			'is_pro',
+		);
+
+		//Setup strings for license responses
+		$this->setup_license_responses();
+	}
+
+	public function setup_license_responses() {
+
+		$disable_ssl_url         = network_admin_url( $this->plugin_base . '&nonce=' . WPMDB_Utils::create_nonce( 'wpmdb-disable-ssl' ) . '&wpmdb-disable-ssl=1' );
+		$check_licence_again_url = network_admin_url( $this->plugin_base . '&nonce=' . WPMDB_Utils::create_nonce( 'wpmdb-check-licence' ) . '&wpmdb-check-licence=1' );
+
+		// List of potential license responses. Keys must must exist in both arrays, otherwise the default error message will be shown.
+		$this->license_response_messages = array(
+			'connection_failed' => array(
+				'ui'  => sprintf( __( '<strong>Could not connect to api.deliciousbrains.com</strong> &mdash; You will not receive update notifications or be able to activate your license until this is fixed. This issue is often caused by an improperly configured SSL server (https). We recommend <a href="%1$s" target="_blank">fixing the SSL configuration on your server</a>, but if you need a quick fix you can:%2$s', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/could-not-connect-deliciousbrains-com/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin', sprintf( '<p><a href="%1$s" class="temporarily-disable-ssl button">%2$s</a></p>', $disable_ssl_url, __( 'Temporarily disable SSL for connections to api.deliciousbrains.com', 'wp-migrate-db' ) ) ),
+				'cli' => __( 'Could not connect to api.deliciousbrains.com - You will not receive update notifications or be able to activate your license until this is fixed. This issue is often caused by an improperly configured SSL server (https). We recommend fixing the SSL configuration on your server, but if you need a quick fix you can temporarily disable SSL for connections to api.deliciousbrains.com by adding `define( \'DBRAINS_API_BASE\', \'http://api.deliciousbrains.com\' );` to your wp-config.php file.', 'wp-migrate-db' ),
+			),
+			'http_block_external' => array(
+				'ui'  => __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>.', 'wp-migrate-db' ),
+				'cli' => __( 'We\'ve detected that WP_HTTP_BLOCK_EXTERNAL is enabled and the host %1$s has not been added to WP_ACCESSIBLE_HOSTS. Please disable WP_HTTP_BLOCK_EXTERNAL or add %1$s to WP_ACCESSIBLE_HOSTS to continue.', 'wp-migrate-db' ),
+			),
+			'subscription_cancelled' => array(
+				'ui'  => sprintf( __( '<strong>Your License Was Cancelled</strong> &mdash; Please visit <a href="%s" target="_blank">My Account</a> to renew or upgrade your license and enable push and pull. <br /><a href="%s" class="check-my-licence-again" >%s</a>', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=support%2Bdocs&utm_source=MDB%2BPaid&utm_medium=insideplugin', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) ),
+				'cli' => sprintf( __( 'Your License Was Cancelled - Please login to your account (%s) to renew or upgrade your license and enable push and pull.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=support%2Bdocs&utm_source=MDB%2BPaid&utm_medium=insideplugin' ),
+			),
+			'subscription_expired_base' => array(
+				'ui'  => sprintf( '<strong>%s</strong> &mdash; ', __( 'Your License Has Expired', 'wp-migrate-db' ) ),
+				'cli' => sprintf( '%s - ', __( 'Your License Has Expired', 'wp-migrate-db' ) ),
+			),
+			'subscription_expired_end' => array(
+				'ui'  => sprintf( __( 'Login to <a href="%s">My Account</a> to renew. <a href="%s" class="check-my-licence-again">%s</a>', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=support%2Bdocs&utm_source=MDB%2BPaid&utm_medium=insideplugin', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) ),
+				'cli' => sprintf( __( 'Login to your account to renew (%s)', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' ),
+			),
+			'no_activations_left' => array(
+				'ui'  => sprintf( __( '<strong>No Activations Left</strong> &mdash; Please visit <a href="%s" target="_blank">My Account</a> to upgrade your license or deactivate a previous activation and enable push and pull.  <a href="%s" class="check-my-licence-again">%s</a>', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=support%2Bdocs&utm_source=MDB%2BPaid&utm_medium=insideplugin', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) ),
+				'cli' => sprintf( __( 'No Activations Left - Please visit your account (%s) to upgrade your license or deactivate a previous activation and enable push and pull.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=support%2Bdocs&utm_source=MDB%2BPaid&utm_medium=insideplugin' ),
+			),
+			'licence_not_found_api_failed' => array(
+				'ui'  => sprintf( __( '<strong>Your License Was Not Found</strong> &mdash; Perhaps you made a typo when defining your WPMDB_LICENCE constant in your wp-config.php? Please visit <a href="%s" target="_blank">My Account</a> to double check your license key. <a href="%s" class="check-my-licence-again">%s</a>', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) ),
+				'cli' => sprintf( __( 'Your License Was Not Found - Perhaps you made a typo when defining your WPMDB_LICENCE constant in your wp-config.php? Please visit your account (%s) to double check your license key.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' ),
+			),
+			'licence_not_found_api' => array(
+				'ui'  => __( '<strong>Your License Was Not Found</strong> &mdash; %s', 'wp-migrate-db' ),
+				'cli' => __( 'Your License Was Not Found - %s', 'wp-migrate-db' ),
+			),
+			'activation_deactivated' => array(
+				'ui'  => sprintf( '<strong>%s</strong> &mdash; %s <a href="#" class="js-action-link reactivate-licence">%s</a>', __( 'Your License Is Inactive', 'wp-migrate-db' ), __( 'Your license has been deactivated for this install.', 'wp-migrate-db' ), __( 'Reactivate your license', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account' ),
+				'cli' => sprintf( '%s - %s %s at %s', __( 'Your License Is Inactive', 'wp-migrate-db' ), __( 'Your license has been deactivated for this install.', 'wp-migrate-db' ), __( 'Reactivate your license', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account' ),
+			),
+			'default' => array(
+				'ui'  => __( '<strong>An Unexpected Error Occurred</strong> &mdash; Please contact us at <a href="%1$s">%2$s</a> and quote the following: <p>%3$s</p>', 'wp-migrate-db' ),
+				'cli' => __( 'An Unexpected Error Occurred - Please contact us at %2$s and quote the following: %3$s', 'wp-migrate-db' ),
+			),
+		);
 	}
 
 	/**
@@ -143,6 +214,23 @@ class WPMDB_Base {
 		return $this->state_data;
 	}
 
+	/**
+	 *  Utility method to access private and protected properties
+	 *
+	 * @param $property
+	 *
+	 * @return mixed
+	 * @throws Exception
+	 *
+	 */
+	public function get( $property ) {
+		if ( ! in_array( $property, $this->gettable_properties ) ) {
+			throw new Exception( $property . ' property not gettable' );
+		}
+
+		return $this->{$property};
+	}
+
 	function load_plugin_textdomain() {
 		load_plugin_textdomain( 'wp-migrate-db', false, dirname( plugin_basename( $this->plugin_file_path ) ) . '/languages/' );
 	}
@@ -157,19 +245,19 @@ class WPMDB_Base {
 		$this->addons = array(
 			'wp-migrate-db-pro-media-files/wp-migrate-db-pro-media-files.php'         => array(
 				'name'             => 'Media Files',
-				'required_version' => '1.4.5',
+				'required_version' => '1.4.9',
 			),
 			'wp-migrate-db-pro-cli/wp-migrate-db-pro-cli.php'                         => array(
 				'name'             => 'CLI',
-				'required_version' => '1.2.5',
+				'required_version' => '1.3.2',
 			),
 			'wp-migrate-db-pro-multisite-tools/wp-migrate-db-pro-multisite-tools.php' => array(
 				'name'             => 'Multisite Tools',
-				'required_version' => '1.1.3',
+				'required_version' => '1.2',
 			),
 		);
 
-		$this->invalid_content_verification_error = __( 'Invalid content verification signature, please verify the connection information on the remote site and try again.', 'wp-migrate-db' );
+		$this->invalid_content_verification_error = __( 'Invalid content verification signature, please verify the connection information on the remote site and try again.', 'wp-migrate-db' ) . sprintf( _x( ' Remote URL: %s ', 'Ex. Remote URL: http://wp.dev',  'wp-migrate-db' ), home_url() );
 
 		$this->transient_timeout       = 60 * 60 * 12;
 		$this->transient_retry_timeout = 60 * 60 * 2;
@@ -223,7 +311,7 @@ class WPMDB_Base {
 			'profiles'               => array(),
 			'licence'                => '',
 			'verify_ssl'             => false,
-			'blacklist_plugins'      => array(),
+			'whitelist_plugins'      => array(),
 			'max_request'            => min( 1024 * 1024, $this->get_bottleneck( 'max' ) ),
 			'delay_between_requests' => 0,
 			'prog_tables_hidden'     => true,
@@ -357,76 +445,12 @@ class WPMDB_Base {
 			remove_filter( 'wpmdb_after_response', array( $this, 'unscramble' ) );
 		}
 
-		if ( is_wp_error( $response ) ) {
-			if ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
-				return $this->retry_remote_post( $url, $data, $scope, $args, $expecting_serial );
-			} elseif ( isset( $response->errors['http_request_failed'][0] ) && strstr( $response->errors['http_request_failed'][0], 'timed out' ) ) {
-				$this->error = sprintf( __( 'The connection to the remote server has timed out, no changes have been committed. (#134 - scope: %s)', 'wp-migrate-db' ), $scope );
-			} elseif ( isset( $response->errors['http_request_failed'][0] ) && ( strstr( $response->errors['http_request_failed'][0], 'Could not resolve host' ) || strstr( $response->errors['http_request_failed'][0], "Couldn't resolve host" ) || strstr( $response->errors['http_request_failed'][0], "couldn't connect to host" ) ) ) {
-				$this->error = sprintf( __( 'We could not find: %s. Are you sure this is the correct URL?', 'wp-migrate-db' ), $this->state_data['url'] );
-				$url_bits    = $this->parse_url( $this->state_data['url'] );
-				if ( strstr( $this->state_data['url'], 'dev.' ) || strstr( $this->state_data['url'], '.dev' ) || ! strstr( $url_bits['host'], '.' ) ) {
-					$this->error .= '<br />';
-					if ( 'pull' == $this->state_data['intent'] ) {
-						$this->error .= __( 'It appears that you might be trying to pull from a local environment. This will not work if <u>this</u> website happens to be located on a remote server, it would be impossible for this server to contact your local environment.', 'wp-migrate-db' );
-					} else {
-						$this->error .= __( 'It appears that you might be trying to push to a local environment. This will not work if <u>this</u> website happens to be located on a remote server, it would be impossible for this server to contact your local environment.', 'wp-migrate-db' );
-					}
-				}
-			} else {
-				if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
-					$url_parts = $this->parse_url( $url );
-					$host      = $url_parts['host'];
-					if ( ! defined( 'WP_ACCESSIBLE_HOSTS' ) || ( defined( 'WP_ACCESSIBLE_HOSTS' ) && ! in_array( $host, explode( ',', WP_ACCESSIBLE_HOSTS ) ) ) ) {
-						$this->error = sprintf( __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>. (#147 - scope: %3$s)', 'wp-migrate-db' ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/', $scope );
-					}
-				} else {
-					$this->error = sprintf( __( 'The connection failed, an unexpected error occurred, please contact support. (#121 - scope: %s)', 'wp-migrate-db' ), $scope );
-				}
-			}
-			$this->log_error( $this->error, $response );
+		$response_status = $this->handle_remote_post_response( $response, $url, $scope, $expecting_serial, $this->state_data );
 
+		if ( false === $response_status ) {
 			return false;
-		} elseif ( 200 > (int) $response['response']['code'] || 399 < (int) $response['response']['code'] ) {
-			if ( 401 === (int) $response['response']['code'] ) {
-				$this->error = __( 'The remote site is protected with Basic Authentication. Please enter the username and password above to continue. (401 Unauthorized)', 'wp-migrate-db' );
-				$this->log_error( $this->error, $response );
-
-				return false;
-			} elseif ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
-				return $this->retry_remote_post( $url, $data, $scope, $args, $expecting_serial );
-			} else {
-				$this->error = sprintf( __( 'Unable to connect to the remote server, please check the connection details - %1$s %2$s (#129 - scope: %3$s)', 'wp-migrate-db' ), $response['response']['code'], $response['response']['message'], $scope );
-				$this->log_error( $this->error, $response );
-
-				return false;
-			}
-		} elseif ( empty( $response['body'] ) ) {
-			if ( '0' === $response['body'] && 'ajax_verify_connection_to_remote_site' == $scope ) {
-				if ( 0 === strpos( $url, 'https://' ) ) {
-					return $this->retry_remote_post( $url, $data, $scope, $args, $expecting_serial );
-				} else {
-					$this->error = sprintf( __( 'WP Migrate DB Pro does not seem to be installed or active on the remote site. (#131 - scope: %s)', 'wp-migrate-db' ), $scope );
-				}
-			} else {
-				$this->error = sprintf( __( 'A response was expected from the remote, instead we got nothing. (#146 - scope: %1$s) Please review %2$s for possible solutions.', 'wp-migrate-db' ), $scope, sprintf( '<a href="https://deliciousbrains.com/wp-migrate-db-pro/doc/a-response-was-expected-from-the-remote/" target="_blank">%1$s</a>', __( 'our documentation', 'wp-migrate-db' ) ) );
-			}
-			$this->log_error( $this->error, $response );
-
-			return false;
-		} elseif ( $expecting_serial && false == is_serialized( $response['body'] ) ) {
-			if ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
-				return $this->retry_remote_post( $url, $data, $scope, $args, $expecting_serial );
-			}
-			$this->error = __( 'There was a problem with the AJAX request, we were expecting a serialized response, instead we received:<br />', 'wp-migrate-db' ) . esc_html( $response['body'] );
-			$this->log_error( $this->error, $response );
-
-			return false;
-		} elseif ( $expecting_serial && 'ajax_verify_connection_to_remote_site' == $scope ) {
-			$unserialized_response = WPMDB_Utils::unserialize( $response['body'], __METHOD__ );
-			if ( false !== $unserialized_response && isset( $unserialized_response['error'] ) && '1' == $unserialized_response['error'] && 0 === strpos( $url, 'https://' ) ) {
-				return $this->retry_remote_post( $url, $data, $scope, $args, $expecting_serial );
-			}
+		} else if ( true === $response_status ) {
+			return $this->retry_remote_post( $url, $data, $scope, $expecting_serial );
 		}
 
 		return trim( $response['body'] );
@@ -439,6 +463,141 @@ class WPMDB_Base {
 		}
 
 		return false;
+	}
+
+	/**
+	 *
+	 *
+	 * Returns true, false or null
+	 *
+	 * False is an error, true triggers retry_remote_post() which tries the request on plain HTTP, and null is a successful response
+	 *
+	 * @param       $response
+	 * @param       $url
+	 * @param       $scope
+	 * @param       $expecting_serial
+	 * @param array $state_data
+	 *
+	 * @return bool|null
+	 */
+	public function handle_remote_post_response( $response, $url, $scope, $expecting_serial, $state_data = array() ) {
+
+		if ( is_wp_error( $response ) ) {
+			if ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
+				return true;
+			} elseif ( isset( $response->errors['http_request_failed'][0] ) && strstr( $response->errors['http_request_failed'][0], 'timed out' ) ) {
+				$this->error = sprintf( __( 'The connection to the remote server has timed out, no changes have been committed. (#134 - scope: %s)', 'wp-migrate-db' ), $scope );
+			} elseif ( isset( $response->errors['http_request_failed'][0] ) && ( strstr( $response->errors['http_request_failed'][0], 'Could not resolve host' ) || strstr( $response->errors['http_request_failed'][0], "Couldn't resolve host" ) || strstr( $response->errors['http_request_failed'][0], "couldn't connect to host" ) ) ) {
+				$this->error = sprintf( __( 'We could not find: %s. Are you sure this is the correct URL?', 'wp-migrate-db' ), $state_data['url'] );
+				$url_bits    = $this->parse_url( $state_data['url'] );
+
+				if ( strstr( $state_data['url'], 'dev.' ) || strstr( $state_data['url'], '.dev' ) || ! strstr( $url_bits['host'], '.' ) ) {
+					$this->error .= '<br />';
+					if ( 'pull' == $state_data['intent'] ) {
+						$this->error .= __( 'It appears that you might be trying to pull from a local environment. This will not work if <u>this</u> website happens to be located on a remote server, it would be impossible for this server to contact your local environment.', 'wp-migrate-db' );
+					} else {
+						$this->error .= __( 'It appears that you might be trying to push to a local environment. This will not work if <u>this</u> website happens to be located on a remote server, it would be impossible for this server to contact your local environment.', 'wp-migrate-db' );
+					}
+				}
+			} else {
+				if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
+					$url_parts = $this->parse_url( $url );
+					$host      = $url_parts['host'];
+					if ( ! defined( 'WP_ACCESSIBLE_HOSTS' ) || ( defined( 'WP_ACCESSIBLE_HOSTS' ) && ! in_array( $host, explode( ',', WP_ACCESSIBLE_HOSTS ) ) ) ) {
+						$this->error = sprintf( __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>. (#147 - scope: %3$s)', 'wp-migrate-db' ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin', $scope );
+					}
+				} elseif ( isset( $response->errors['http_request_failed'][0] ) && strstr( $response->errors['http_request_failed'][0], 'port 443: Connection refused' ) ) {
+					$this->error = sprintf( __( 'Couldn\'t connect over HTTPS. You might want to try regular HTTP instead. (#121 - scope: %s)', 'wp-migrate-db' ), $scope );
+				} elseif ( isset( $response->errors['http_request_failed'][0] ) && strstr( $response->errors['http_request_failed'][0], 'SSL' ) ) { // OpenSSL/cURL/MAMP Error
+					$this->error = sprintf( __( '<strong>HTTPS Connection Error:</strong>  (#121 - scope: %s) This typically means that the version of OpenSSL that your local site is using to connect to the remote is incompatible or, more likely, being rejected by the remote server because it\'s insecure. <a href="%s" target="_blank">See our documentation</a> for possible solutions.', 'wp-migrate-db' ), $scope, 'https://deliciousbrains.com/wp-migrate-db-pro/doc/ssl-errors/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' );
+				} else {
+					$this->error = sprintf( __( 'The connection failed, an unexpected error occurred, please contact support. (#121 - scope: %s)', 'wp-migrate-db' ), $scope );
+				}
+			}
+			$this->log_error( $this->error, $response );
+
+			return false;
+
+		//Check response codes and respond accordingly
+		} elseif ( 200 > (int) $response['response']['code'] || 399 < (int) $response['response']['code'] ) {
+
+			$return = null;
+			switch ( (int) $response['response']['code'] ) {
+				case 401:
+					$this->error = __( 'The remote site is protected with Basic Authentication. Please enter the username and password above to continue. (401 Unauthorized)', 'wp-migrate-db' );
+					$this->log_error( $this->error, $response );
+
+					$return = false;
+					break;
+
+				//Explicitly do no retry http URL if remote returns 500 error
+				case 500:
+					$this->error = $this->error = sprintf( __( 'Unable to connect to the remote server, the remote server responded with: %1$s %2$s (scope: %3$s)', 'wp-migrate-db' ), $response['response']['code'], $response['response']['message'], $scope );;
+					$this->log_error( $this->error, $response );
+
+					$return = false;
+					break;
+
+				case 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope:
+					$return = true;
+					break;
+
+				default:
+					//other status codes less than 200 or over 400
+					$this->error = sprintf( __( 'Unable to connect to the remote server, please check the connection details - %1$s %2$s (#129 - scope: %3$s)', 'wp-migrate-db' ), $response['response']['code'], $response['response']['message'], $scope );
+					$this->log_error( $this->error, $response );
+
+					$return = false;
+					break;
+			}
+
+			if ( ! is_null( $return ) ) {
+				return $return;
+			}
+
+		} elseif ( empty( $response['body'] ) ) {
+			if ( '0' === $response['body'] && 'ajax_verify_connection_to_remote_site' == $scope ) {
+				if ( 0 === strpos( $url, 'https://' ) ) {
+					return true;
+				} else {
+					$this->error = sprintf( __( 'WP Migrate DB Pro does not seem to be installed or active on the remote site. (#131 - scope: %s)', 'wp-migrate-db' ), $scope );
+				}
+			} else {
+
+				$url = urlencode( 'https://deliciousbrains.com/wp-migrate-db-pro/doc/a-response-was-expected-from-the-remote/?utm_campaign=error+messages&utm_source=MDB+Paid&utm_medium=insideplugin' );
+
+				$this->error = sprintf( __( 'A response was expected from the remote, instead we got nothing. (#146 - scope: %1$s) Please review %2$s for possible solutions.', 'wp-migrate-db' ), $scope, sprintf( '<a href="%s" target="_blank">%s</a>', $url, __( 'our documentation', 'wp-migrate-db' ) ) );
+			}
+			$this->log_error( $this->error, $response );
+
+			return false;
+
+		} elseif ( $expecting_serial && false == is_serialized( $response['body'] ) ) {
+			if ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
+				return true;
+			}
+			$this->error = __( 'There was a problem with the AJAX request, we were expecting a serialized response, instead we received:<br />', 'wp-migrate-db' ) . esc_html( $response['body'] );
+			$this->log_error( $this->error, $response );
+
+			return false;
+
+		} elseif ( $expecting_serial && ( 'ajax_verify_connection_to_remote_site' == $scope || 'ajax_copy_licence_to_remote_site' == $scope ) ) {
+
+			$unserialized_response = WPMDB_Utils::unserialize( $response['body'], __METHOD__ );
+
+			if ( false !== $unserialized_response && isset( $unserialized_response['error'] ) && '1' == $unserialized_response['error'] && 0 === strpos( $url, 'https://' ) ) {
+
+				if ( stristr( $unserialized_response['message'], 'Invalid content verification signature' ) ) {
+
+					//Check if remote address returned is the same as what was requested. Apache sometimes returns a random HTTPS site.
+					if ( false === strpos( $unserialized_response['message'], sprintf( 'Remote URL: %s', $state_data['url'] ) ) ) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return null;
 	}
 
 	function array_to_multipart( $data ) {
@@ -489,7 +648,20 @@ class WPMDB_Base {
 
 	function log_error( $wpmdb_error, $additional_error_var = false ) {
 		$error_header = "********************************************\n******  Log date: " . date( 'Y/m/d H:i:s' ) . " ******\n********************************************\n\n";
-		$error        = $error_header . 'WPMDB Error: ' . $wpmdb_error . "\n\n";
+		$error        = $error_header;
+		if ( isset( $this->state_data['intent'] ) ) {
+			$error .= 'Intent: ' . $this->state_data['intent'] . "\n";
+		}
+		if ( isset( $this->state_data['action'] ) ) {
+			$error .= 'Action: ' . $this->state_data['action'] . "\n";
+		}
+		if ( isset( $this->state_data['local'] ) && isset( $this->state_data['local']['site_url'] ) ) {
+			$error .= 'Local: ' . $this->state_data['site_details']['local']['site_url'] . "\n";
+		}
+		if ( isset( $this->state_data['remote'] ) && isset( $this->state_data['remote']['site_url'] ) ) {
+			$error .= 'Remote: ' . $this->state_data['site_details']['remote']['site_url'] . "\n\n";
+		}
+		$error .= 'WPMDB Error: ' . $wpmdb_error . "\n\n";
 
 		if ( ! empty( $this->attempting_to_connect_to ) ) {
 			$error .= 'Attempted to connect to: ' . $this->attempting_to_connect_to . "\n\n";
@@ -500,6 +672,29 @@ class WPMDB_Base {
 		}
 
 		$this->load_error_log();
+
+		// Error log length in bytes (default 1Mb)
+		$max_log_length = apply_filters( 'wpmdb_max_error_log_length', 1000000 );
+		$max_individual_log_length = apply_filters( 'wpmdb_max_individual_error_log_length', $max_log_length / 2.2 );
+
+		// If error is longer than max individual log length, trim and add notice of doing so
+		if ( strlen( $error ) > $max_individual_log_length ) {
+			$length_trimmed = strlen( $error ) - $max_individual_log_length;
+			$error = substr( $error, 0, $max_individual_log_length );
+			$error .= "\n[$length_trimmed bytes were truncated from this error]\n\n";
+		}
+
+		// Trim existing log to accommodate new error if needed
+		$existing_log_max_length = $max_log_length - strlen( $error );
+		if ( strlen( $this->error_log ) > $existing_log_max_length ) {
+			$this->error_log = substr( $this->error_log, -( $existing_log_max_length ) );
+
+			// Crop at first log header
+			$first_header_pos = strpos( $this->error_log, substr( $error_header, 0, strpos( $error_header, ' ' ) ) );
+			if ( $first_header_pos ) {
+				$this->error_log = substr( $this->error_log, $first_header_pos );
+			}
+		}
 
 		if ( isset( $this->error_log ) ) {
 			$this->error_log .= $error;
@@ -570,15 +765,21 @@ class WPMDB_Base {
 	}
 
 	function get_dbrains_api_url( $request, $args = array() ) {
-		$url             = $this->dbrains_api_url;
-		$args['request'] = $request;
-		$args['version'] = $GLOBALS['wpmdb_meta'][ $this->core_slug ]['version'];
-		$url             = add_query_arg( $args, $url );
+		$url                       = $this->dbrains_api_url;
+		$args['request']           = $request;
+		$args['version']           = $GLOBALS['wpmdb_meta'][ $this->core_slug ]['version'];
+		$args['php_version']       = urlencode( phpversion() );
+		$args['locale']            = urlencode( get_locale() );
+		$args['wordpress_version'] = urlencode( get_bloginfo( 'version' ) );
+
+		if ( 'check_support_access' == $request || 'activate_licence' == $request ) {
+			$args['last_used'] = urlencode( $this->get_last_usage_time() );
+		}
+
+		$url                 = add_query_arg( $args, $url );
 		if ( false !== get_site_transient( 'wpmdb_temporarily_disable_ssl' ) && 0 === strpos( $this->dbrains_api_url, 'https://' ) ) {
 			$url = substr_replace( $url, 'http', 0, 5 );
 		}
-
-		$url .= '&locale=' . urlencode( get_locale() );
 
 		return $url;
 	}
@@ -672,6 +873,26 @@ class WPMDB_Base {
 	}
 
 	/**
+	 * Adds/updates the `wpmdb_usage` option with most recent 'qualified' plugin use,
+	 * stores time as well as the action (push/pull/export/find-replace)
+	 *
+	 * @param string $action
+	 */
+	function log_usage( $action = '' ) {
+		update_site_option( 'wpmdb_usage', array( 'action' => $action, 'time' => time() ) );
+	}
+
+	/**
+	 * Gets just the timestamp of the latest usage to send with the API requests
+	 *
+	 * @return int
+	 */
+	function get_last_usage_time() {
+		$option = get_site_option( 'wpmdb_usage' );
+		return ( $option && $option['time'] ) ? $option['time'] : 0;
+	}
+
+	/**
 	 * Main function for communicating with the Delicious Brains API.
 	 *
 	 * @param string $request
@@ -713,9 +934,9 @@ class WPMDB_Base {
 				}
 			}
 
-			$disable_ssl_url           = network_admin_url( $this->plugin_base . '&nonce=' . wp_create_nonce( 'wpmdb-disable-ssl' ) . '&wpmdb-disable-ssl=1' );
+			$disable_ssl_url           = network_admin_url( $this->plugin_base . '&nonce=' . WPMDB_Utils::create_nonce( 'wpmdb-disable-ssl' ) . '&wpmdb-disable-ssl=1' );
 			$connection_failed_message = '<div class="updated warning inline-message">';
-			$connection_failed_message .= sprintf( __( '<strong>Could not connect to api.deliciousbrains.com</strong> &mdash; You will not receive update notifications or be able to activate your license until this is fixed. This issue is often caused by an improperly configured SSL server (https). We recommend <a href="%1$s" target="_blank">fixing the SSL configuration on your server</a>, but if you need a quick fix you can:%2$s', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/could-not-connect-deliciousbrains-com/', sprintf( '<p><a href="%1$s" class="temporarily-disable-ssl button">%2$s</a></p>', $disable_ssl_url, __( 'Temporarily disable SSL for connections to api.deliciousbrains.com', 'wp-migrate-db' ) ) );
+			$connection_failed_message .= sprintf( __( '<strong>Could not connect to api.deliciousbrains.com</strong> &mdash; You will not receive update notifications or be able to activate your license until this is fixed. This issue is often caused by an improperly configured SSL server (https). We recommend <a href="%1$s" target="_blank">fixing the SSL configuration on your server</a>, but if you need a quick fix you can:%2$s', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/could-not-connect-deliciousbrains-com/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin', sprintf( '<p><a href="%1$s" class="temporarily-disable-ssl button">%2$s</a></p>', $disable_ssl_url, __( 'Temporarily disable SSL for connections to api.deliciousbrains.com', 'wp-migrate-db' ) ) );
 			$connection_failed_message .= '</div>';
 
 			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
@@ -723,7 +944,7 @@ class WPMDB_Base {
 				$host      = $url_parts['host'];
 				if ( ! defined( 'WP_ACCESSIBLE_HOSTS' ) || strpos( WP_ACCESSIBLE_HOSTS, $host ) === false ) {
 					$connection_failed_message = '<div class="updated warning inline-message">';
-					$connection_failed_message .= sprintf( __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>.', 'wp-migrate-db' ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/' );
+					$connection_failed_message .= sprintf( __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>.', 'wp-migrate-db' ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' );
 					$connection_failed_message .= '</div>';
 				}
 			}
@@ -796,7 +1017,7 @@ class WPMDB_Base {
 
 		$download_url = $this->get_plugin_update_download_url( $this->plugin_slug );
 
-		if ( 0 === strpos( $url, $download_url ) || 402 != $response['response']['code'] ) {
+		if ( false === strpos( $url, $download_url ) || 402 != $response['response']['code'] ) {
 			return $response;
 		}
 
@@ -804,7 +1025,7 @@ class WPMDB_Base {
 		$data = @file_get_contents( $response['filename'] );
 
 		if ( ! $data ) {
-			return new WP_Error( 'wpmdbpro_download_error_empty', sprintf( __( 'Error retrieving download from deliciousbrain.com. Please try again or download manually from <a href="%1$s">%2$s</a>.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/', _x( 'My Account', 'Delicious Brains account', 'wp-migrate-db' ) ) );
+			return new WP_Error( 'wpmdbpro_download_error_empty', sprintf( __( 'Error retrieving download from deliciousbrain.com. Please try again or download manually from <a href="%1$s">%2$s</a>.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin', _x( 'My Account', 'Delicious Brains account', 'wp-migrate-db' ) ) );
 		}
 
 		$decoded_data = json_decode( $data, true );
@@ -885,8 +1106,8 @@ class WPMDB_Base {
 		}
 
 		$args = array(
-			'licence_key' => $licence_key,
-			'site_url'    => home_url( '', 'http' ),
+			'licence_key' => urlencode( $licence_key ),
+			'site_url'    => urlencode( untrailingslashit( network_home_url( '', 'http' ) ) ),
 		);
 
 		$response = $this->dbrains_api_request( 'check_support_access', $args );
@@ -1138,16 +1359,71 @@ class WPMDB_Base {
 	}
 
 	/**
+	 *
+	 * Get a message from the $messages array parameter based on a context
+	 *
+	 * Assumes the $messages array exists in the format of a nested array.
+	 *
+	 * Also assumes the nested array of strings has a key of 'default'
+	 *
+	 *  Ex:
+	 *
+	 *  array(
+	 *      'key1' => array(
+	 *          'ui'   => 'Some message',
+	 *          'cli'   => 'Another message',
+	 *          ...
+	 *       ),
+	 *
+	 *      'key2' => array(
+	 *          'ui'   => 'Some message',
+	 *          'cli'   => 'Another message',
+	 *          ...
+	 *       ),
+	 *
+	 *      'default' => array(
+	 *          'ui'   => 'Some message',
+	 *          'cli'   => 'Another message',
+	 *          ...
+	 *       ),
+	 *  )
+	 *
+	 * @param array  $messages
+	 * @param        $key
+	 * @param string $context
+	 *
+	 * @return mixed
+	 */
+	function get_contextual_message_string( $messages, $key, $context = 'ui' ) {
+		$message = $messages[ $key ];
+
+		if ( isset( $message[ $context ] ) ) {
+			return $message[ $context ];
+		} else if ( isset( $message['default'] ) ) {
+			return $message['default'];
+		}
+
+		return '';
+	}
+
+	/**
 	 * Returns a formatted message dependant on the status of the licence.
 	 *
 	 * @param bool $trans
 	 * @param string $context
 	 *
-	 * @return array|string|void
+	 * @return array|mixed|string
 	 */
 	function get_licence_status_message( $trans = false, $context = null ) {
 		$licence               = $this->get_licence_key();
 		$api_response_provided = true;
+		$message_context       = 'ui';
+		$messages              = $this->license_response_messages;
+		$message               = '';
+
+		if ( $this->doing_cli_migration ) {
+			$message_context = 'cli';
+		}
 
 		if ( empty( $licence ) && ! $trans ) {
 			$message = sprintf( __( '<strong>Activate Your License</strong> &mdash; Please <a href="%s" class="%s">enter your license key</a> to enable push and pull functionality, priority support and plugin updates.', 'wp-migrate-db' ), network_admin_url( $this->plugin_base . '#settings' ), 'js-action-link enter-licence' );
@@ -1172,30 +1448,27 @@ class WPMDB_Base {
 
 		$errors = $trans['errors'];
 
-		$check_licence_again_url = network_admin_url( $this->plugin_base . '&nonce=' . wp_create_nonce( 'wpmdb-check-licence' ) . '&wpmdb-check-licence=1' );
-
 		if ( isset( $errors['connection_failed'] ) ) {
-			$disable_ssl_url = network_admin_url( $this->plugin_base . '&nonce=' . wp_create_nonce( 'wpmdb-disable-ssl' ) . '&wpmdb-disable-ssl=1' );
-			$message         = sprintf( __( '<strong>Could not connect to api.deliciousbrains.com</strong> &mdash; You will not receive update notifications or be able to activate your license until this is fixed. This issue is often caused by an improperly configured SSL server (https). We recommend <a href="%1$s" target="_blank">fixing the SSL configuration on your server</a>, but if you need a quick fix you can:%2$s', 'wp-migrate-db' ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/could-not-connect-deliciousbrains-com/', sprintf( '<p><a href="%1$s" class="temporarily-disable-ssl button">%2$s</a></p>', $disable_ssl_url, __( 'Temporarily disable SSL for connections to api.deliciousbrains.com', 'wp-migrate-db' ) ) );
+			$message = $this->get_contextual_message_string( $messages, 'connection_failed', $message_context );
 
 			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
 				$url_parts = $this->parse_url( $this->dbrains_api_base );
 				$host      = $url_parts['host'];
 				if ( ! defined( 'WP_ACCESSIBLE_HOSTS' ) || strpos( WP_ACCESSIBLE_HOSTS, $host ) === false ) {
-					$message = sprintf( __( 'We\'ve detected that <code>WP_HTTP_BLOCK_EXTERNAL</code> is enabled and the host <strong>%1$s</strong> has not been added to <code>WP_ACCESSIBLE_HOSTS</code>. Please disable <code>WP_HTTP_BLOCK_EXTERNAL</code> or add <strong>%1$s</strong> to <code>WP_ACCESSIBLE_HOSTS</code> to continue. <a href="%2$s" target="_blank">More information</a>.', 'wp-migrate-db' ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/' );
+					$message = sprintf( $this->get_contextual_message_string( $messages, 'http_block_external', $message_context ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' );
 				}
 			}
 
 			// Don't cache the license response so we can try again
 			delete_site_transient( 'wpmdb_licence_response' );
 		} elseif ( isset( $errors['subscription_cancelled'] ) ) {
-			$message = sprintf( __( '<strong>Your License Was Cancelled</strong> &mdash; Please visit <a href="%s" target="_blank">My Account</a> to renew or upgrade your license and enable push and pull.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' );
-			$message .= sprintf( '<br /><a href="%s" class="check-my-licence-again" >%s</a>', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) );
+
+			$message = $this->get_contextual_message_string( $messages, 'subscription_cancelled', $message_context );
+
 		} elseif ( isset( $errors['subscription_expired'] ) ) {
 
-			$message_base = sprintf( '<strong>%s</strong> &mdash; ', __( 'Your License Has Expired', 'wp-migrate-db' ) );
-			$message_end  = sprintf( __( 'Login to <a href="%s">My Account</a> to renew. ', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' );
-			$message_end .= sprintf( ' <a href="%s" class="check-my-licence-again">%s</a>', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) );
+			$message_base = $this->get_contextual_message_string( $messages, 'subscription_expired_base', $message_context );
+			$message_end  = $this->get_contextual_message_string( $messages, 'subscription_expired_end', $message_context );
 
 			$contextual_messages = array(
 				'default' => $message_base . $message_end,
@@ -1213,25 +1486,26 @@ class WPMDB_Base {
 			} elseif ( 'all' === $context ) {
 				$message = $contextual_messages;
 			}
+
 		} elseif ( isset( $errors['no_activations_left'] ) ) {
-			$message = sprintf( __( '<strong>No Activations Left</strong> &mdash; Please visit <a href="%s" target="_blank">My Account</a> to upgrade your license or deactivate a previous activation and enable push and pull.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' );
-			$message .= sprintf( ' <a href="%s" class="check-my-licence-again">%s</a>', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) );
+
+			$message = $this->get_contextual_message_string( $messages, 'no_activations_left', $message_context );
+
 		} elseif ( isset( $errors['licence_not_found'] ) ) {
+
 			if ( ! $api_response_provided ) {
-				$message = sprintf( __( '<strong>Your License Was Not Found</strong> &mdash; Perhaps you made a typo when defining your WPMDB_LICENCE constant in your wp-config.php? Please visit <a href="%s" target="_blank">My Account</a> to double check your license key.', 'wp-migrate-db' ), 'https://deliciousbrains.com/my-account/' );
-				$message .= sprintf( ' <a href="%s" class="check-my-licence-again">%s</a>', $check_licence_again_url, __( 'Check my license again', 'wp-migrate-db' ) );
+				$message = $this->get_contextual_message_string( $messages, 'licence_not_found_api_failed', $message_context );
 			} else {
 				$error   = reset( $errors );
-				$message = __( '<strong>Your License Was Not Found</strong> &mdash; ', 'wp-migrate-db' );
-				$message .= $error;
+				$message = sprintf( $this->get_contextual_message_string( $messages, 'licence_not_found_api', $message_context ), $error );
 			}
+
 		} elseif ( isset( $errors['activation_deactivated'] ) ) {
-			$message = sprintf( '<strong>%s</strong> &mdash; ', __( 'Your License Is Inactive', 'wp-migrate-db' ) );
-			$message .= sprintf( '%s <a href="#" class="js-action-link reactivate-licence">%s</a>', __( 'Your license has been deactivated for this install.', 'wp-migrate-db' ), __( 'Reactivate License', 'wp-migrate-db' ) );
+			$message = $this->get_contextual_message_string( $messages, 'activation_deactivated', $message_context );
+
 		} else {
 			$error   = reset( $errors );
-			$message = sprintf( __( '<strong>An Unexpected Error Occurred</strong> &mdash; Please contact us at <a href="%1$s">%2$s</a> and quote the following:', 'wp-migrate-db' ), 'mailto:nom@deliciousbrains.com', 'nom@deliciousbrains.com' );
-			$message .= sprintf( '<p>%s</p>', $error );
+			$message = sprintf( $this->get_contextual_message_string( $messages, 'default', $message_context ), 'mailto:nom@deliciousbrains.com', 'nom@deliciousbrains.com', $error );
 		}
 
 		return $message;
@@ -1266,7 +1540,7 @@ class WPMDB_Base {
 			return;
 		}
 
-		$result = check_ajax_referer( $action, 'nonce', false );
+		$result = WPMDB_Utils::check_ajax_referer( $action, 'nonce', false );
 
 		if ( false === $result ) {
 			$return = array( 'wpmdb_error' => 1, 'body' => sprintf( __( 'Invalid nonce for: %s', 'wp-migrate-db' ), $action ) );
@@ -1307,12 +1581,12 @@ class WPMDB_Base {
 		$suhosin_post_limit    = false;
 
 		if ( function_exists( 'ini_get' ) ) {
-			$suhosin_request_limit = $this->return_bytes( ini_get( 'suhosin.request.max_value_length' ) );
-			$suhosin_post_limit    = $this->return_bytes( ini_get( 'suhosin.post.max_value_length' ) );
+			$suhosin_request_limit = trim( ini_get( 'suhosin.request.max_value_length' ) );
+			$suhosin_post_limit    = trim( ini_get( 'suhosin.post.max_value_length' ) );
 		}
 
 		if ( $suhosin_request_limit && $suhosin_post_limit ) {
-			$suhosin_limit = min( $suhosin_request_limit, $suhosin_post_limit );
+			$suhosin_limit = min( wp_convert_hr_to_bytes( $suhosin_request_limit ),  wp_convert_hr_to_bytes( $suhosin_post_limit ) );
 		}
 
 		// we have to account for HTTP headers and other bloating, here we minus 1kb for bloat
@@ -1333,35 +1607,6 @@ class WPMDB_Base {
 		}
 
 		return apply_filters( 'wpmdb_bottleneck', $calculated_bottleneck );
-	}
-
-	function return_bytes( $val ) {
-		if ( is_numeric( $val ) ) {
-			return $val;
-		}
-
-		if ( empty( $val ) ) {
-			return false;
-		}
-
-		$val  = trim( $val );
-		$last = strtolower( $val[ strlen( $val ) - 1 ] );
-
-		switch ( $last ) {
-			// The 'G' modifier is available since PHP 5.1.0
-			case 'g':
-				$val *= 1024;
-			case 'm':
-				$val *= 1024;
-			case 'k':
-				$val *= 1024;
-				break;
-			default :
-				$val = false;
-				break;
-		}
-
-		return $val;
 	}
 
 	/**
@@ -1466,13 +1711,13 @@ class WPMDB_Base {
 	 * Standard notice display check
 	 * Returns dismiss and reminder links html for templates where necessary
 	 *
-	 * @param string $notice The name of the notice e.g. license-key-warning
-	 * @param bool $dismiss If the notice has a dismiss link
-	 * @param bool|int $reminder If the notice has a reminder link, this will be the number of seconds
+	 * @param string      $notice   The name of the notice e.g. license-key-warning
+	 * @param bool|string $dismiss  If the notice has a dismiss link. Pass "SHOW_ONCE" to auto-dismiss after first presentation.
+	 * @param bool|int    $reminder If the notice has a reminder link, this will be the number of seconds
 	 *
 	 * @return array|bool
 	 */
-	function check_notice( $notice, $dismiss = false, $reminder = false ) {
+	function check_notice( $notice, $dismiss = false, $reminder = false, $css_class = 'notice-link' ) {
 		if ( true === apply_filters( 'wpmdb_hide_' . $notice, false ) ) {
 			return false;
 		}
@@ -1483,7 +1728,11 @@ class WPMDB_Base {
 			if ( get_user_meta( $current_user->ID, 'wpmdb_dismiss_' . $notice ) ) {
 				return false;
 			}
-			$notice_links['dismiss'] = '<a href="#" class="notice-link" data-notice="' . $notice . '" data-type="dismiss">' . _x( 'Dismiss', 'dismiss notice permanently', 'wp-migrate-db' ) . '</a>';
+			$notice_links['dismiss'] = '<a href="#" class="' . esc_attr( $css_class ) . '" data-notice="' . $notice . '" data-type="dismiss">' . _x( 'Dismiss', 'dismiss notice permanently', 'wp-migrate-db' ) . '</a>';
+
+			if ( 'SHOW_ONCE' === $dismiss ) {
+				update_user_meta( $current_user->ID, 'wpmdb_dismiss_' . $notice, true );
+			}
 		}
 
 		if ( $reminder ) {
@@ -1492,7 +1741,7 @@ class WPMDB_Base {
 					return false;
 				}
 			}
-			$notice_links['reminder'] = '<a href="#"  class="notice-link" data-notice="' . $notice . '" data-type="reminder" data-reminder="' . $reminder . '">' . __( 'Remind Me Later', 'wp-migrate-db' ) . '</a>';
+			$notice_links['reminder'] = '<a href="#"  class="' . esc_attr( $css_class ) . '" data-notice="' . $notice . '" data-type="reminder" data-reminder="' . $reminder . '">' . __( 'Remind Me Later', 'wp-migrate-db' ) . '</a>';
 		}
 
 		return ( count( $notice_links ) > 0 ) ? $notice_links : true;
@@ -1744,10 +1993,16 @@ class WPMDB_Base {
 			return $subsites;
 		}
 
-		$sites = wp_get_sites( array( 'limit' => 0 ) );
+
+		if ( version_compare( $GLOBALS['wp_version'], '4.6', '>=' ) ) {
+			$sites = get_sites( array( 'number' => false ) );
+		} else {
+			$sites = wp_get_sites( array( 'limit' => 0 ) );
+		}
 
 		if ( ! empty( $sites ) ) {
-			foreach ( $sites as $subsite ) {
+			foreach ( (array) $sites as $subsite ) {
+				$subsite                         = (array) $subsite;
 				$subsites[ $subsite['blog_id'] ] = $this->simple_site_url( get_blogaddress_by_id( $subsite['blog_id'] ) );
 			}
 		}
@@ -1797,14 +2052,20 @@ class WPMDB_Base {
 			return $subsites;
 		}
 
-		$sites = wp_get_sites( array( 'limit' => 0 ) );
+		if ( version_compare( $GLOBALS['wp_version'], '4.6', '>=' ) ) {
+			$sites = get_sites( array( 'number' => false ) );
+		} else {
+			$sites = wp_get_sites( array( 'limit' => 0 ) );
+		}
 
 		if ( ! empty( $sites ) ) {
 			// We to fix up the urls in uploads as they all use primary site's base!
 			$primary_url = site_url();
 
 			foreach ( $sites as $subsite ) {
+				$subsite                                     = (array) $subsite;
 				$subsites[ $subsite['blog_id'] ]['site_url'] = get_site_url( $subsite['blog_id'] );
+				$subsites[ $subsite['blog_id'] ]['home_url'] = get_home_url( $subsite['blog_id'] );
 				$subsites[ $subsite['blog_id'] ]['uploads']  = $this->uploads_info( $subsite['blog_id'] );
 
 				$subsites[ $subsite['blog_id'] ]['uploads']['url']     = substr_replace( $subsites[ $subsite['blog_id'] ]['uploads']['url'], $subsites[ $subsite['blog_id'] ]['site_url'], 0, strlen( $primary_url ) );
@@ -1930,14 +2191,16 @@ class WPMDB_Base {
 		$uploads      = wp_upload_dir();
 
 		$site_details = array(
-			'is_multisite'    => esc_html( is_multisite() ? 'true' : 'false' ),
-			'site_url'        => esc_html( addslashes( site_url() ) ),
-			'prefix'          => esc_html( $table_prefix ),
-			'uploads_baseurl' => esc_html( addslashes( trailingslashit( $uploads['baseurl'] ) ) ),
-			'uploads'         => $this->uploads_info(),
-			'uploads_dir'     => esc_html( addslashes( $this->get_short_uploads_dir() ) ),
-			'subsites'        => $this->subsites_list(),
-			'subsites_info'   => $this->subsites_info(),
+			'is_multisite'         => esc_html( is_multisite() ? 'true' : 'false' ),
+			'site_url'             => esc_html( addslashes( site_url() ) ),
+			'home_url'             => esc_html( addslashes( home_url() ) ),
+			'prefix'               => esc_html( $table_prefix ),
+			'uploads_baseurl'      => esc_html( addslashes( trailingslashit( $uploads['baseurl'] ) ) ),
+			'uploads'              => $this->uploads_info(),
+			'uploads_dir'          => esc_html( addslashes( $this->get_short_uploads_dir() ) ),
+			'subsites'             => $this->subsites_list(),
+			'subsites_info'        => $this->subsites_info(),
+			'is_subdomain_install' => esc_html( ( is_multisite() && is_subdomain_install() ) ? 'true' : 'false' ),
 		);
 
 		return $site_details;
