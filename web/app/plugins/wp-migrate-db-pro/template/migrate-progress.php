@@ -16,6 +16,11 @@
 	<div class="migration-controls">
 		<span class="pause-resume button"><?php _ex( 'Pause', 'Temporarily stop migrating', 'wp-migrate-db' ); ?></span>
 		<span class="cancel button"><?php _ex( 'Cancel', 'Stop the migration', 'wp-migrate-db' ); ?></span>
-		<span class="pause-before-finalize"><label><input id="pause-before-finalize" type="checkbox" name="pause_before_finalize" value="1" /> <?php _e( 'Pause before replacing migrated tables', 'wp-migrate-db' ); ?></label></span>
+		<span class="pause-before-finalize">
+			<input id="pause-before-finalize" type="checkbox" name="pause_before_finalize" value="1" />
+			<label id="pause-before-finalize-label" for="pause-before-finalize">
+				<?php _e( 'Pause before replacing migrated tables', 'wp-migrate-db' ); ?>
+			</label>
+		</span>
 	</div>
 </div> <!-- end .progress-content -->

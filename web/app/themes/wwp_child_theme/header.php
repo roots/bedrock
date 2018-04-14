@@ -60,7 +60,7 @@
 
         <div class="inner-header">
 
-            <button class="wdf-burger nav-button" type="button" role="button" aria-label="open/close navigation"><i></i></button>
+            <button class="wdf-burger nav-button" data-menu-toggler type="button" role="button" aria-label="open/close navigation"><i></i></button>
 
             <?php
             echo '<a href="/" class="logo">

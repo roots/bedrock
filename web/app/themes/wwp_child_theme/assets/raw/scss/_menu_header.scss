@@ -35,13 +35,17 @@ ul#menu {
     }
 
     li > a {
-        justify-content: center;
-        display: inline-flex;
+        //Ne pas faire en menu mobile
+        @media (min-width: $medium) {
+            justify-content: center;
+            display: inline-flex;
+        }
         color: $white;
         text-decoration: none;
         padding: 20px;
         position: relative;
         cursor: pointer;
+
     }
 
     li.m0 {
@@ -61,20 +65,32 @@ ul#menu {
         display: none;
         padding-left: 0;
         list-style: none;
-        position: absolute;
         background-color: $list-item-bgcolor;
+        @media (min-width: $medium) {
+            position: absolute;
+        }
+    }
+    .mobile-nav-links{
+        @media (min-width: $medium) {
+            display: none;
+        }
     }
 
     li:hover > ul.children,
     li:focus > ul.children {
-        display: flex;
-        flex-wrap: wrap;
+        //Ne pas faire en menu mobile
+        @media (min-width: $medium) {
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
 
     ul.level1 {
-        top: 64px;
-        left: 0;
-        right: 0;
+        @media (min-width: $medium) {
+            top: 64px;
+            left: 0;
+            right: 0;
+        }
         background-color: $list-item-bgcolor;
         text-align: left;
     }
@@ -91,7 +107,9 @@ ul#menu {
             }
 
             > ul.children {
-                display: flex;
+                @media (min-width: $medium) {
+                    display: flex;
+                }
             }
         }
 
@@ -106,33 +124,5 @@ ul#menu {
     li.current_page_item > a {
         color: $list-item-color-active !important;
         background-color: $list-item-bgcolor-active;
-    }
-
-    @media (max-width: $medium - 1) {
-
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        flex-wrap: wrap;
-        width: 100%;
-        margin: 0;
-
-        li > a {
-            width: 100%;
-        }
-
-        li.m0 > ul li > a {
-            border-bottom: 1px solid $list-item-bgcolor-active;
-        }
-
-        li.m0:hover > ul.children,
-        li.m0 > ul li:hover > ul.children,
-        li.m0:focus > ul.children,
-        li.m0 > ul li:focus > ul.children {
-            flex-direction: column;
-            position: relative;
-            top: 0;
-        }
-
     }
 }

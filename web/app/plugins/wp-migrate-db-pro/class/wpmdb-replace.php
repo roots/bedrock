@@ -1,6 +1,7 @@
 <?php
 
 final class WPMDB_Replace {
+
 	protected $search;
 	protected $replace;
 	protected $subdomain_replaces_on;
@@ -8,13 +9,27 @@ final class WPMDB_Replace {
 	protected $intent;
 	protected $base_domain;
 	protected $site_domain;
+	protected $site_details;
+	protected $source_protocol;
+	protected $destination_protocol;
+	protected $destination_url;
+	protected $is_protocol_mismatch = false;
 
 	private $table;
 	private $column;
 	private $row;
 
 	function __construct( $args ) {
-		$keys = array( 'table', 'search', 'replace', 'intent', 'base_domain', 'site_domain', 'wpmdb' );
+		$keys = array(
+			'table',
+			'search',
+			'replace',
+			'intent',
+			'base_domain',
+			'site_domain',
+			'wpmdb',
+			'site_details',
+		);
 
 		if ( ! is_array( $args ) ) {
 			throw new InvalidArgumentException( 'WPMDB_Replace constructor expects the argument to be an array' );
@@ -26,13 +41,17 @@ final class WPMDB_Replace {
 			}
 		}
 
-		$this->table       = $args['table'];
-		$this->search      = $args['search'];
-		$this->replace     = $args['replace'];
-		$this->intent      = $args['intent'];
-		$this->base_domain = $args['base_domain'];
-		$this->site_domain = $args['site_domain'];
-		$this->wpmdb       = $args['wpmdb'];
+		$this->table        = $args['table'];
+		$this->search       = $args['search'];
+		$this->replace      = $args['replace'];
+		$this->intent       = $args['intent'];
+		$this->base_domain  = $args['base_domain'];
+		$this->site_domain  = $args['site_domain'];
+		$this->wpmdb        = $args['wpmdb'];
+		$this->site_details = $args['site_details'];
+
+		// Detect a protocol mismatch between the remote and local sites involved in the migration
+		$this->detect_protocol_mismatch();
 	}
 
 	/**
@@ -56,12 +75,13 @@ final class WPMDB_Replace {
 	 * @return bool
 	 */
 	function has_same_base_domain() {
-
-		if ( ! isset( $this->replace[1] ) ) {
-			return false;
+		if( 'push' !== $this->intent || 'pull' !== $this->intent ) {
+			$destination_url = $this->base_domain;
+		} else {
+			$destination_url = isset( $this->destination_url ) ? $this->destination_url : $this->site_details['local']['site_url'];
 		}
 
-		if ( stripos( $this->replace[1], $this->site_domain ) ) {
+		if ( stripos( $destination_url, $this->site_domain ) ) {
 			return true;
 		}
 
@@ -91,6 +111,96 @@ final class WPMDB_Replace {
 	}
 
 	/**
+	 * Detect a protocol mismatch between the remote and local sites involved in the migration
+	 *
+	 * @return bool
+	 */
+	function detect_protocol_mismatch() {
+		if ( ! isset( $this->site_details['remote'] ) && 'import' !== $this->intent ) {
+			return false;
+		}
+
+		$wpmdb_home_urls = array(
+			// TODO: rewrite unit tests that only pass site_url so that we can rely on home_url's existence
+			'local'  => isset( $this->site_details['local']['home_url'] ) ? $this->site_details['local']['home_url'] : $this->site_details['local']['site_url'],
+		);
+
+		if ( 'import' !== $this->intent ) {
+			$wpmdb_home_urls['remote'] = isset( $this->site_details['remote']['home_url'] ) ? $this->site_details['remote']['home_url'] : $this->site_details['remote']['site_url'];
+		} else {
+			$this->state_data = $this->wpmdb->set_post_data();
+
+			if ( ! isset( $this->state_data['import_info'] ) || ! isset( $this->state_data['import_info']['protocol'] ) ) {
+				return false;
+			}
+			$wpmdb_home_urls['remote'] = $this->state_data['import_info']['protocol'] . ':' . $this->state_data['import_info']['URL'];
+		}
+
+		/**
+		 * Filters the site_urls used to check if there is a protocol mismatch.
+		 *
+		 * @param array
+		 */
+		$wpmdb_home_urls = apply_filters( 'wpmdb_replace_site_urls', $wpmdb_home_urls );
+
+		$local_url_is_https  = false === stripos( $wpmdb_home_urls['local'], 'https' ) ? false : true;
+		$remote_url_is_https = false === stripos( $wpmdb_home_urls['remote'], 'https' ) ? false : true;
+		$local_protocol      = $local_url_is_https ? 'https' : 'http';
+		$remote_protocol     = $remote_url_is_https ? 'https' : 'http';
+
+		if ( ( $local_url_is_https && ! $remote_url_is_https ) || ( ! $local_url_is_https && $remote_url_is_https ) ) {
+			$this->is_protocol_mismatch = true;
+		}
+
+		if ( 'push' === $this->intent ) {
+			$this->destination_protocol = $remote_protocol;
+			$this->source_protocol      = $local_protocol;
+			$this->destination_url      = $wpmdb_home_urls['remote'];
+		} else {
+			$this->destination_protocol = $local_protocol;
+			$this->source_protocol      = $remote_protocol;
+			$this->destination_url      = $wpmdb_home_urls['local'];
+		}
+
+		return $this->is_protocol_mismatch;
+	}
+
+	/**
+	 *
+	 * Handles replacing the protocol if the local and destination don't have matching protocols (http > https and
+	 * vice-versa).
+	 *
+	 * Can be filtered to disable entirely.
+	 *
+	 * @param string $new
+	 * @param string $destination_url
+	 *
+	 * @return mixed
+	 */
+	function do_protocol_replace( $new, $destination_url ) {
+		/**
+		 * Filters $do_protocol_replace, return false to prevent protocol replacement.
+		 *
+		 * @param bool true                   If the replace should be skipped.
+		 * @param string $destination_url The URL of the target site.
+		 */
+		$do_protocol_replace = apply_filters( 'wpmdb_replace_destination_protocol', true, $destination_url );
+
+		if ( true !== $do_protocol_replace ) {
+			return $new;
+		}
+
+		$parsed_destination = wp_parse_url( $destination_url );
+		unset( $parsed_destination['scheme'] );
+
+		$protocol_search  = $this->source_protocol . '://' . implode( '', $parsed_destination );
+		$protocol_replace = $destination_url;
+		$new              = str_ireplace( $protocol_search, $protocol_replace, $new, $count );
+
+		return $new;
+	}
+
+	/**
 	 * Applies find/replace pairs to a given string.
 	 *
 	 * @param string $subject
@@ -103,6 +213,10 @@ final class WPMDB_Replace {
 			$new = $this->subdomain_replaces( $new );
 		}
 
+		if ( true === $this->is_protocol_mismatch ) {
+			$new = $this->do_protocol_replace( $new, $this->destination_url );
+		}
+
 		return $new;
 	}
 
@@ -112,10 +226,10 @@ final class WPMDB_Replace {
 	 *
 	 * Mostly from https://github.com/interconnectit/Search-Replace-DB
 	 *
-	 * @param mixed $data Used to pass any subordinate arrays back to in.
-	 * @param bool $serialized Does the array passed via $data need serialising.
-	 * @param bool $parent_serialized Passes whether the original data passed in was serialized
-	 * @param bool $filtered Should we apply before and after filters successively
+	 * @param mixed $data              Used to pass any subordinate arrays back to in.
+	 * @param bool  $serialized        Does the array passed via $data need serialising.
+	 * @param bool  $parent_serialized Passes whether the original data passed in was serialized
+	 * @param bool  $filtered          Should we apply before and after filters successively
 	 *
 	 * @return mixed    The original array with all elements replaced as needed.
 	 */
@@ -130,7 +244,11 @@ final class WPMDB_Replace {
 		$successive_filter = $filtered;
 
 		if ( true === $filtered ) {
-			list( $data, $before_fired, $successive_filter ) = apply_filters( 'wpmdb_before_replace_custom_data', array( $data, $before_fired, $successive_filter ), $this );
+			list( $data, $before_fired, $successive_filter ) = apply_filters( 'wpmdb_before_replace_custom_data', array(
+				$data,
+				$before_fired,
+				$successive_filter,
+			), $this );
 		}
 
 		// some unserialized data cannot be re-serialized eg. SimpleXMLElements
@@ -138,8 +256,16 @@ final class WPMDB_Replace {
 			if ( is_string( $data ) && ( $unserialized = WPMDB_Utils::unserialize( $data, __METHOD__ ) ) !== false ) {
 				// PHP currently has a bug that doesn't allow you to clone the DateInterval / DatePeriod classes.
 				// We skip them here as they probably won't need data to be replaced anyway
-				if ( is_object( $unserialized ) ) {
+				if ( 'object' == gettype( $unserialized ) ) {
 					if ( $unserialized instanceof DateInterval || $unserialized instanceof DatePeriod ) {
+						return $data;
+					}
+					if ( $unserialized instanceof __PHP_Incomplete_Class && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+						$objectName = array();
+						preg_match( '/O:\d+:\"([^\"]+)\"/', $data, $objectName );
+						$objectName = $objectName[1] ? $objectName[1] : $data;
+						$error      = sprintf( __( "WP Migrate DB - Failed to instantiate object for replacement. If the serialized object's class is defined by a plugin, you should enable that plugin for migration requests. \nClass Name: %s", 'wp-migrate-db' ), $objectName );
+						error_log( $error );
 						return $data;
 					}
 				}

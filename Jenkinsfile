@@ -71,13 +71,7 @@ pipeline {
         }
       }
     }
-    stage('Test') {
-      steps {
-        echo 'Starting Tests'
-        echo 'Maybe one day';
-      }
-    }
-    stage('deploy develop branch') {
+    stage('Deploy preprod') {
         when { branch 'develop' }
         steps {
             script {
@@ -87,6 +81,13 @@ pipeline {
                 deployDbChanges(creds);
                 execDbChanges(creds,'preprod');
             }
+        }
+    }
+    stage('Test preprod') {
+        when { branch 'develop' }
+        steps {
+            echo 'Starting Smoke Tests'
+            sh 'node_modules/.bin/cypress run --spec cypress/integration/smoke_test.js --env host=http://www.wonderwp.com.wdf-02.ovea.com'
         }
     }
     stage('notify'){

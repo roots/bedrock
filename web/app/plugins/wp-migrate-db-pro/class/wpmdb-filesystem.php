@@ -239,7 +239,7 @@ class WPMDB_Filesystem {
 	}
 
 	/**
-	 * Is the specified pat a directory?
+	 * Is the specified path a directory?
 	 *
 	 * @param string $abs_path
 	 *
@@ -486,7 +486,7 @@ class WPMDB_Filesystem {
 	 * @param string $source_abs_path
 	 * @param string $destination_abs_path
 	 * @param bool   $overwrite
-	 * @param int    $perms
+	 * @param mixed    $perms
 	 *
 	 * @return bool
 	 *
@@ -503,7 +503,7 @@ class WPMDB_Filesystem {
 			return false;
 		}
 
-		$return = copy( $source_abs_path, $destination_abs_path );
+		$return = @copy( $source_abs_path, $destination_abs_path );
 		if ( $perms && $return ) {
 			$this->chmod( $destination_abs_path, $perms );
 		}

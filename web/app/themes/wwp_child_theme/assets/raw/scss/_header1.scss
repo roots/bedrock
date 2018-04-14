@@ -50,34 +50,7 @@ $header-bg-color: $gray-700;
             margin-right: 3vw;
         }
     }
-    @media (max-width: $medium - 1) {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 0;
-        background-color: #ffffff;
 
-        .inner-header {
-            height: 85px;
-            padding-right: 0;
-            padding-left: 0;
-        }
-
-        a.logo {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-            margin: 0 !important;
-            img {
-                height: 70%;
-                margin-left: -27px;
-            }
-        }
-    }
 }
 
 .navigation-wrapper {
@@ -85,32 +58,13 @@ $header-bg-color: $gray-700;
     display: flex;
     align-items: center;
     position: relative;
-
-    @media (max-width: $medium - 1) {
-        position: fixed;
-        top: 0;
-        z-index: 3;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        width: calc(100% - 13px);
-        background-color: #ffffff;
-        overflow: hidden;
-        will-change: transform;
-        transform: translateX(-100%);
-        transition: all .4s;
-    }
-
-    @media (max-width: $verytiny) {
-        padding-top: 0;
-    }
 }
 
 // Burger button
 .nav-button {
 
     @media (min-width: $medium) {
-        display: none;
+        //display: none;
     }
 
     display: flex;
