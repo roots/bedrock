@@ -12,7 +12,7 @@ class ThemeRouteService extends AbstractRouteService
     public function getRoutes()
     {
         if (empty($this->_routes)) {
-            $manager       = Container::getInstance()->offsetGet('wwp.theme.Manager');
+            $manager       = $this->manager;
             $this->_routes = [
                 ['styleguide', [$manager->getController(AbstractManager::PUBLIC_CONTROLLER_TYPE), 'styleGuide']],
                 ['sitemap', [$manager->getController(AbstractManager::PUBLIC_CONTROLLER_TYPE), 'sitemap']],

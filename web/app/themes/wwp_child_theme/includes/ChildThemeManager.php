@@ -36,7 +36,7 @@ class ChildThemeManager extends ThemeManager
         });
         //Routes
         $this->addService(ServiceInterface::ROUTE_SERVICE_NAME,function(){
-            return new ThemeRouteService();
+            return new ThemeRouteService($this);
         });
         //Assets
         $this->addService(ServiceInterface::ASSETS_SERVICE_NAME,function(){

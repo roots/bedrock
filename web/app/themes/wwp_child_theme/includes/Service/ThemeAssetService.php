@@ -29,7 +29,7 @@ class ThemeAssetService extends AbstractAssetService
             $manager    = $container->offsetGet('wwp.theme.Manager');
             $themePath  = $manager->getConfig('path.url');
             /** @var Asset $assetClass */
-            $assetClass = $container->offsetGet('wwp.assets.assetClass');
+            $assetClass = self::$assetClassName;
 
             $this->_assets = [
                 'css' => [
