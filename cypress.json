@@ -1,9 +1,38 @@
 {
-    "host" : "http://local.wonderwp.com",
-    "smoke-pages" : [
+    "host": "http://local.wonderwp.com",
+    "videoRecording": false,
+    "smoke-pages": [
         "/?locale=fr_FR",
         "/fr/plugins/actualites/",
         "/fr/plugins/plugins-listings/",
         "/fr/plugins/branchement-de-page/"
-    ]
+    ],
+    "wwp-actu": {
+        "list": {
+            "url": "/fr/plugins/actualites/",
+            "filters": {
+                "selector": ".actu-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".actu-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-bp": {
+        "list": {
+            "url": "/fr/plugins/branchement-de-page/",
+            "list": {
+                "selector": ".bp-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-contact" : {
+        "form": {
+            "url" : "/fr/plugins/contact/",
+            "formSelector" : ".contactForm"
+        }
+    }
 }
