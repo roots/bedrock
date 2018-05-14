@@ -7,6 +7,11 @@
         "/fr/plugins/plugins-listings/",
         "/fr/plugins/branchement-de-page/"
     ],
+    "wp-admin": {
+        "url": "/wp/wp-login",
+        "login": "jeremy.desvaux@wonderful.fr",
+        "pwd": "wonderwp"
+    },
     "wwp-actu": {
         "list": {
             "url": "/fr/plugins/actualites/",
@@ -17,6 +22,11 @@
             "list": {
                 "selector": ".actu-list",
                 "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url" : "/wp/wp-admin/edit.php?post_type=wwp-actu"
             }
         }
     },
@@ -29,10 +39,84 @@
             }
         }
     },
-    "wwp-contact" : {
+    "wwp-contact": {
         "form": {
-            "url" : "/fr/plugins/contact/",
-            "formSelector" : ".contactForm"
+            "url": "/fr/plugins/contact/",
+            "formSelector": ".contactForm"
+        }
+    },
+    "wwp-emploi": {
+        "list": {
+            "url": "/fr/plugins/emploi/",
+            "filters": {
+                "selector": ".emploi-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".emploi-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-faq": {
+        "list": {
+            "url": "/fr/plugins/faq/",
+            "filters": {
+                "selector": ".faq-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".faq-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-map": {
+        "map": {
+            "url": "/fr/plugins/map/",
+            "mapWrapSelector": ".module-map",
+            "mapSelector": ".map-wrap",
+            "optsSelector": ".map-opts",
+            "contentSelector": ".map-contents"
+        }
+    },
+    "wwp-meteo": {
+        "list": {
+            "url": "/fr/plugins/meteo/",
+            "list": {
+                "selector": ".bulletins-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-newsletter": {
+        "form": {
+            "url": "/fr/plugins/newsletter/",
+            "formSelector": ".nlForm"
+        }
+    },
+    "wwp-social": {
+        "list": {
+            "url": "/fr/plugins/remontees-sociales/",
+            "list": {
+                "selector": ".posts-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-trombi": {
+        "list": {
+            "url": "/fr/plugins/trombinoscope/",
+            "list": {
+                "selector": ".trombi-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-vote": {
+        "form": {
+            "url": "/fr/plugins/vote/",
+            "formSelector": ".voteForm"
         }
     }
 }
