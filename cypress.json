@@ -3,9 +3,7 @@
     "videoRecording": false,
     "smoke-pages": [
         "/?locale=fr_FR",
-        "/fr/plugins/actualites/",
-        "/fr/plugins/plugins-listings/",
-        "/fr/plugins/branchement-de-page/"
+        "/fr/plugins/plugins-listings/"
     ],
     "wp-admin": {
         "url": "/wp/wp-login",
@@ -26,7 +24,7 @@
         },
         "admin": {
             "list": {
-                "url" : "/wp/wp-admin/edit.php?post_type=wwp-actu"
+                "url": "/wp/wp-admin/edit.php?post_type=wwp-actu"
             }
         }
     },
@@ -43,6 +41,11 @@
         "form": {
             "url": "/fr/plugins/contact/",
             "formSelector": ".contactForm"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-contact"
+            }
         }
     },
     "wwp-emploi": {
@@ -55,6 +58,18 @@
             "list": {
                 "selector": ".emploi-list",
                 "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-emploi"
+            }
+        }
+    },
+    "wwp-espace-restreint": {
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-espace-restreint"
             }
         }
     },
@@ -69,6 +84,25 @@
                 "selector": ".faq-list",
                 "class": "items-list"
             }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/edit.php?post_type=wwp-faq"
+            }
+        }
+    },
+    "wwp-jeux": {
+        "list": {
+            "url": "/fr/plugins/jeux/",
+            "list": {
+                "selector": ".jeux-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-jeux"
+            }
         }
     },
     "wwp-map": {
@@ -78,6 +112,11 @@
             "mapSelector": ".map-wrap",
             "optsSelector": ".map-opts",
             "contentSelector": ".map-contents"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-map"
+            }
         }
     },
     "wwp-meteo": {
@@ -87,12 +126,22 @@
                 "selector": ".bulletins-list",
                 "class": "items-list"
             }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-meteo"
+            }
         }
     },
     "wwp-newsletter": {
         "form": {
             "url": "/fr/plugins/newsletter/",
             "formSelector": ".nlForm"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-newsletter"
+            }
         }
     },
     "wwp-social": {
@@ -110,6 +159,11 @@
             "list": {
                 "selector": ".trombi-list",
                 "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-trombinoscope"
             }
         }
     },
