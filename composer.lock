@@ -1,74 +1,42 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ad87261c66b277a2ecf5a2d9ccfaaaec",
+    "content-hash": "6b1518201e12e5cd7c1e9e3733055736",
     "packages": [
         {
-            "name": "anttiviljami/wp-server-log-viewer",
-            "version": "1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/anttiviljami/wp-server-log-viewer.git",
-                "reference": "184280268f0f35688a5c3441fc773ba37f2b2fe4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/anttiviljami/wp-server-log-viewer/zipball/184280268f0f35688a5c3441fc773ba37f2b2fe4",
-                "reference": "184280268f0f35688a5c3441fc773ba37f2b2fe4",
-                "shasum": ""
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPLv3"
-            ],
-            "authors": [
-                {
-                    "name": "Antti Kuosmanen",
-                    "email": "antti@seravo.fi"
-                }
-            ],
-            "description": "View and analyse your server logs from within the WordPress admin dashboard",
-            "time": "2016-08-28 21:49:44"
-        },
-        {
             "name": "composer/installers",
-            "version": "v1.0.25",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
+                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
-                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+                "url": "https://api.github.com/repos/composer/installers/zipball/4127333b03e8b4c08d081958548aae5419d1a2fa",
+                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa",
                 "shasum": ""
             },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
             "replace": {
-                "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "4.1.*"
+                "phpunit/phpunit": "3.7.*"
             },
-            "type": "composer-plugin",
+            "type": "composer-installer",
             "extra": {
-                "class": "Composer\\Installers\\Plugin",
+                "class": "Composer\\Installers\\Installer",
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Composer\\Installers\\": "src/Composer/Installers"
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -79,36 +47,27 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
+                    "homepage": "https://github.com/shama",
+                    "role": "Developer"
                 }
             ],
             "description": "A multi-framework Composer library installer",
-            "homepage": "https://composer.github.io/installers/",
+            "homepage": "http://composer.github.com/installers/",
             "keywords": [
                 "Craft",
-                "Dolibarr",
                 "Hurad",
-                "ImageCMS",
                 "MODX Evo",
-                "Mautic",
                 "OXID",
-                "SMF",
-                "Thelia",
                 "WolfCMS",
                 "agl",
-                "aimeos",
                 "annotatecms",
-                "bitrix",
                 "cakephp",
-                "chef",
                 "codeigniter",
                 "concrete5",
                 "croogo",
-                "dokuwiki",
                 "drupal",
                 "elgg",
                 "fuelphp",
-                "grav",
                 "installer",
                 "joomla",
                 "kohana",
@@ -118,12 +77,9 @@
                 "mako",
                 "mediawiki",
                 "modulework",
-                "moodle",
                 "phpbb",
                 "piwik",
                 "ppi",
-                "puppet",
-                "roundcube",
                 "shopware",
                 "silverstripe",
                 "symfony",
@@ -132,7 +88,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-04-13 19:46:30"
+            "time": "2014-02-24T04:21:34+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -171,7 +127,7 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2017-08-02 21:47:41"
+            "time": "2017-08-02T21:47:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
@@ -208,7 +164,7 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2017-08-02 21:47:36"
+            "time": "2017-08-02T21:47:36+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -257,7 +213,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2018-01-29 14:49:29"
+            "time": "2018-01-29T14:49:29+00:00"
         },
         {
             "name": "oscarotero/env",
@@ -299,7 +255,7 @@
             "keywords": [
                 "env"
             ],
-            "time": "2017-07-17 20:41:59"
+            "time": "2017-07-17T20:41:59+00:00"
         },
         {
             "name": "roots/soil",
@@ -344,7 +300,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2017-08-14 01:36:41"
+            "time": "2017-08-14T01:36:41+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -401,7 +357,55 @@
             "keywords": [
                 "wordpress wp bcrypt password"
             ],
-            "time": "2016-03-01 16:27:06"
+            "time": "2016-03-01T16:27:06+00:00"
+        },
+        {
+            "name": "seravo/seravo-plugin",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seravo/seravo-plugin.git",
+                "reference": "2e4b4b11b948802a6d28b2f28ea1fd7fcfa5e5ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seravo/seravo-plugin/zipball/2e4b4b11b948802a6d28b2f28ea1fd7fcfa5e5ba",
+                "reference": "2e4b4b11b948802a6d28b2f28ea1fd7fcfa5e5ba",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "v1.0.12"
+            },
+            "type": "wordpress-muplugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Otto Kekäläinen",
+                    "email": "otto@seravo.com",
+                    "homepage": "https://github.com/ottok"
+                },
+                {
+                    "name": "Leo Toikka",
+                    "email": "leo@seravo.com"
+                },
+                {
+                    "name": "Simo Kemppainen",
+                    "email": "simo@seravo.com"
+                }
+            ],
+            "description": "Enhances WordPress with Seravo.com specific features and integrations",
+            "homepage": "http://seravo.com",
+            "keywords": [
+                "seravo",
+                "seravo.com",
+                "wordpress",
+                "wp",
+                "wp-palvelu"
+            ],
+            "time": "2018-03-23T07:22:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -451,7 +455,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01 10:05:43"
+            "time": "2016-09-01T10:05:43+00:00"
         },
         {
             "name": "wp-sync-db/wp-sync-db",
@@ -483,7 +487,7 @@
                 "wordpress",
                 "wp-sync-db"
             ],
-            "time": "2016-04-24 08:56:12"
+            "time": "2016-04-24T08:56:12+00:00"
         },
         {
             "name": "wp-sync-db/wp-sync-db-cli",
@@ -515,7 +519,7 @@
                 "wordpress",
                 "wp-sync-db"
             ],
-            "time": "2016-03-07 16:34:49"
+            "time": "2016-03-07T16:34:49+00:00"
         },
         {
             "name": "wp-sync-db/wp-sync-db-media-files",
@@ -547,19 +551,19 @@
                 "wordpress",
                 "wp-sync-db"
             ],
-            "time": "2016-03-07 16:34:12"
+            "time": "2016-03-07T16:34:12+00:00"
         },
         {
             "name": "wpackagist-plugin/autodescription",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/autodescription/",
-                "reference": "tags/3.0.5"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/autodescription.3.0.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/autodescription.zip?timestamp=1525625897",
                 "reference": null,
                 "shasum": null
             },
@@ -611,15 +615,15 @@
         },
         {
             "name": "wpackagist-plugin/cookie-notice",
-            "version": "1.2.42",
+            "version": "1.2.43",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cookie-notice/",
-                "reference": "tags/1.2.42"
+                "reference": "tags/1.2.43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cookie-notice.1.2.42.zip",
+                "url": "https://downloads.wordpress.org/plugin/cookie-notice.1.2.43.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -631,15 +635,15 @@
         },
         {
             "name": "wpackagist-plugin/google-analytics-dashboard-for-wp",
-            "version": "5.3.2",
+            "version": "5.3.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/google-analytics-dashboard-for-wp/",
-                "reference": "tags/5.3.2"
+                "reference": "tags/5.3.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/google-analytics-dashboard-for-wp.5.3.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/google-analytics-dashboard-for-wp.5.3.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -691,15 +695,15 @@
         },
         {
             "name": "wpackagist-plugin/password-protected",
-            "version": "2.1",
+            "version": "2.2.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/password-protected/",
-                "reference": "tags/2.1"
+                "reference": "tags/2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/password-protected.2.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/password-protected.2.2.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -731,15 +735,15 @@
         },
         {
             "name": "wpackagist-plugin/timber-library",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/timber-library/",
-                "reference": "tags/1.7.0"
+                "reference": "tags/1.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/timber-library.1.7.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/timber-library.1.7.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -800,7 +804,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-20 21:35:23"
+            "time": "2018-02-20T21:35:23+00:00"
         }
     ],
     "aliases": [],
