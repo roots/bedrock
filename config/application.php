@@ -71,9 +71,9 @@ define('NONCE_SALT', env('NONCE_SALT'));
 /**
  * Custom Settings
  */
-define('AUTOMATIC_UPDATER_DISABLED', true);
-define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
-define('DISALLOW_FILE_EDIT', true);
+define('AUTOMATIC_UPDATER_DISABLED', is_null(env('AUTOMATIC_UPDATER_DISABLED')) ? true : filter_var(env('AUTOMATIC_UPDATER_DISABLED'), FILTER_VALIDATE_BOOLEAN));
+define('DISABLE_WP_CRON', filter_var(env('DISABLE_WP_CRON'), FILTER_VALIDATE_BOOLEAN) ?: false);
+define('DISALLOW_FILE_EDIT', is_null(env('DISALLOW_FILE_EDIT')) ? true : filter_var(env('DISALLOW_FILE_EDIT'), FILTER_VALIDATE_BOOLEAN));
 
 /**
  * Bootstrap WordPress
