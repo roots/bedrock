@@ -1,3 +1,7 @@
+### 1.8.11: 2018-07-09
+
+* Update to WordPress 4.9.7
+
 ### 1.8.10: 2018-05-18
 
 * Update to WordPress 4.9.6
