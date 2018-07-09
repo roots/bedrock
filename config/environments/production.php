@@ -5,3 +5,5 @@ define('WP_DEBUG_DISPLAY', false);
 define('SCRIPT_DEBUG', false);
 /** Disable all file modifications including updates and update notifications */
 define('DISALLOW_FILE_MODS', true);
+/** Limit number of revisions saved */
+define('WP_POST_REVISIONS', 10);
