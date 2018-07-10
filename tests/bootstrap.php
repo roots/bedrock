@@ -15,4 +15,5 @@ tests_add_filter('muplugins_loaded', function () {
 });
 
 // Start up the WP testing environment.
+putenv(sprintf('WP_PHPUNIT__TESTS_CONFIG=%s/wp-config.php', __DIR__));
 require(getenv('WP_PHPUNIT__DIR') . '/includes/bootstrap.php');
