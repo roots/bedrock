@@ -30,7 +30,6 @@ node_modules/
 web/app/themes/wwp_child_theme/assets/final/css/*
 web/app/themes/wwp_child_theme/assets/final/js/*
 web/app/themes/wwp_child_theme/assets/final/svg/*
-styleguide.js
 web/app/themes/wwp_child_theme/assets/final/version.php
 
 # Documentation
@@ -47,20 +46,22 @@ web/documentation/wonderwp
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 
+# Tests
+cypress/screenshots
+cypress/videos
+!/cypress/screenshots/.gitkeep
+!/cypress/videos/.gitkeep
+/tests/reports/
+!/tests/reports/.gitkeep
+/tests/suites/
+!/tests/suites/.gitkeep
+
 # Other
 pimple.json
 wonderwp-theme-core
 wonderwp-plugin-core
 npm-debug.log
-
-# SSL
 wonderwp-base.dev.crt
 wonderwp-base.dev.key
-wonderwp_credentials.json
-cypress/screenshots
-cypress/videos
-!/cypress/screenshots/.gitkeep
-!/cypress/videos/.gitkeep
-/tests/
-!/tests/reports/.gitkeep
 main.css
+wonderwp_credentials.json
