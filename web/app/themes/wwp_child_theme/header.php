@@ -50,6 +50,16 @@
         ?></title>
 
     <?php wp_head(); ?>
+
+    <script>
+        var domElt = window.document.documentElement;
+        if (domElt.classList.contains('no-js')) {
+            // The box that we clicked has a class of bad so let's remove it and add the good class
+            domElt.classList.remove('no-js');
+        }
+        domElt.className += ' js';
+    </script>
+
 </head>
 
 <body <?php body_class(); ?>>
