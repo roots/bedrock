@@ -1,1 +1,0 @@
-/Users/wilfredk/Sites/datagov-wp/wordpress/web/app/plugins/query-monitor/wp-content/db.php
