@@ -6,6 +6,7 @@ Description:  Disallow indexing of your site on non-production environments.
 Version:      2.0.0
 Author:       Roots
 Author URI:   https://roots.io/
+Text Domain:  roots
 License:      MIT License
 */
 
@@ -18,6 +19,6 @@ if (!is_admin()) {
 } else {
     add_action('admin_notices', function () {
         $message = __('Search engine indexing is currently discouraged.', 'roots');
-        echo sprintf('<div class="error"><p>%s</p></div>', $message);
+        echo sprintf('<div class="notice notice-warning"><p>%s</p></div>', $message);
     });
 }
