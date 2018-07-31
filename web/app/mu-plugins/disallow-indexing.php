@@ -9,6 +9,13 @@ Author URI:   https://roots.io/
 License:      MIT License
 */
 
-if (defined('WP_ENV') && WP_ENV !== 'production' && !is_admin()) {
+if (defined('DISALLOW_INDEXING') && DISALLOW_INDEXING && !is_admin()) {
     add_action('pre_option_blog_public', '__return_zero');
 }
+
+function disallow_indexing_notice() {
+    echo '<div class="error">
+            <p>This site is set to disallow indexing. It will not show up in search engines!</p>
+        </div>';
+}
+add_action('admin_notices', 'disallow_indexing_notice');
