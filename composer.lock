@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10a5881e7296779565eaaab0070f4cb8",
+    "content-hash": "e4ce58d3f55c6486c5876669309d9540",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -304,39 +304,6 @@
             "time": "2018-07-23T14:04:04+00:00"
         },
         {
-            "name": "agencewonderful/wwp-generator",
-            "version": "dev-feature/wwp_v2",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:agencewonderful/wwp-generator.git",
-                "reference": "4a9ee2a9eab8d221607b9c5cd8b815dd2226e924"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-generator/zipball/4a9ee2a9eab8d221607b9c5cd8b815dd2226e924",
-                "reference": "4a9ee2a9eab8d221607b9c5cd8b815dd2226e924",
-                "shasum": ""
-            },
-            "require": {
-                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2",
-                "wp-cli/wp-cli": "^1.1"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "WonderWp\\Plugin\\Generator\\": "includes"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Jeremy Desvaux",
-                    "email": "jeremy.desvaux@wonderful.fr"
-                }
-            ],
-            "description": "Generateur de plugin wonderwp",
-            "time": "2018-04-02T20:15:35+00:00"
-        },
-        {
             "name": "agencewonderful/wwp-jeux",
             "version": "dev-feature/wwp_v2",
             "source": {
@@ -498,6 +465,70 @@
             "time": "2018-07-23T14:02:15+00:00"
         },
         {
+            "name": "agencewonderful/wwp-rgpd",
+            "version": "dev-feature/wwp_v2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-rgpd.git",
+                "reference": "124ba108933a0dc1eda679e3c18daa34f6423631"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-rgpd/zipball/124ba108933a0dc1eda679e3c18daa34f6423631",
+                "reference": "124ba108933a0dc1eda679e3c18daa34f6423631",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\RGPD\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "Plugin wwp-rgpd",
+            "time": "2018-07-31T12:35:45+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-search",
+            "version": "dev-feature/wwp_v2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-search.git",
+                "reference": "8ac0d7fca25e98f88e63e8c501feaf0bab930bda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-search/zipball/8ac0d7fca25e98f88e63e8c501feaf0bab930bda",
+                "reference": "8ac0d7fca25e98f88e63e8c501feaf0bab930bda",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Search\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "wwp-search",
+            "time": "2018-07-31T12:37:18+00:00"
+        },
+        {
             "name": "agencewonderful/wwp-social",
             "version": "dev-feature/wwp_v2",
             "source": {
@@ -625,6 +656,38 @@
             ],
             "description": "wwp-trombinoscope",
             "time": "2018-07-23T14:06:07+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-video",
+            "version": "dev-feature/wwp_v2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-video.git",
+                "reference": "8c6d9b5cab6ef3250cb9b2a1254a9db482ae7adc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-video/zipball/8c6d9b5cab6ef3250cb9b2a1254a9db482ae7adc",
+                "reference": "8c6d9b5cab6ef3250cb9b2a1254a9db482ae7adc",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Video\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "Plugin Video",
+            "time": "2018-07-31T12:33:38+00:00"
         },
         {
             "name": "agencewonderful/wwp-vote",
@@ -3844,16 +3907,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wonderwp/API.git",
-                "reference": "e0c788fd440fc2a014ec4d5ec175328a15531b7c"
+                "reference": "5d14c394100518239bf7683fc1605752f5c7437e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wonderwp/API/zipball/e0c788fd440fc2a014ec4d5ec175328a15531b7c",
-                "reference": "e0c788fd440fc2a014ec4d5ec175328a15531b7c",
+                "url": "https://api.github.com/repos/wonderwp/API/zipball/5d14c394100518239bf7683fc1605752f5c7437e",
+                "reference": "5d14c394100518239bf7683fc1605752f5c7437e",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.6|~7"
+                "php": "~5.6|~7",
+                "wonderwp/service": "dev-develop@dev"
             },
             "require-dev": {
                 "johnpbloch/wordpress": "^4.7",
@@ -3887,7 +3951,7 @@
             "keywords": [
                 "api"
             ],
-            "time": "2018-04-02T20:56:10+00:00"
+            "time": "2018-07-31T12:20:20+00:00"
         },
         {
             "name": "wonderwp/asset",
@@ -6791,7 +6855,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2018-04-14T14:35:48+00:00"
+            "time": "2018-05-31T11:04:05+00:00"
         },
         {
             "name": "wp-cli/wp-config-transformer",
@@ -8633,17 +8697,19 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
-        "agencewonderful/wwp-generator": 20,
         "agencewonderful/wwp-jeux": 20,
+        "agencewonderful/wwp-lazyload": 20,
         "agencewonderful/wwp-map": 20,
         "agencewonderful/wwp-meteo": 20,
         "agencewonderful/wwp-newsletter": 20,
+        "agencewonderful/wwp-rgpd": 20,
+        "agencewonderful/wwp-search": 20,
         "agencewonderful/wwp-social": 20,
         "agencewonderful/wwp-stats": 20,
         "agencewonderful/wwp-trombinoscope": 20,
         "agencewonderful/wwp-translator": 20,
+        "agencewonderful/wwp-video": 20,
         "agencewonderful/wwp-vote": 20,
-        "agencewonderful/wwp-lazyload": 20,
         "wpackagist-plugin/debug-bar": 20
     },
     "prefer-stable": true,
