@@ -57,7 +57,7 @@
             // The box that we clicked has a class of bad so let's remove it and add the good class
             domElt.classList.remove('no-js');
         }
-        domElt.className += ' js';
+        domElt.className += ' js-enabled';
     </script>
 
 </head>
