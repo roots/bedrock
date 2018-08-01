@@ -18,6 +18,12 @@ cache:
     - $HOME/.composer/cache
     - vendor
 
+env:
+  global:
+    - DB_USER=wp
+    - DB_PASSWORD=password
+    - DB_NAME=wp_tests
+
 before_install:
   - phpenv config-rm xdebug.ini || true
   - composer self-update
@@ -25,5 +31,10 @@ before_install:
 install:
   - composer install -o --prefer-dist --no-interaction
 
+before_script:
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO ${DB_USER} IDENTIFIED BY '${DB_PASSWORD}';"
+  - mysql -u root -e "CREATE DATABASE ${DB_NAME};"
+
 script:
+  - composer lint
   - composer test

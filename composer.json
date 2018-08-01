@@ -24,7 +24,10 @@
     "forum": "https://discourse.roots.io/category/bedrock"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "platform": {
+      "php": "5.6.32"
+    }
   },
   "repositories": [
     {
@@ -41,7 +44,9 @@
     "roots/wp-password-bcrypt": "1.0.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.0.2"
+    "phpunit/phpunit": "^5.0",
+    "squizlabs/php_codesniffer": "^3.0.2",
+    "wp-phpunit/wp-phpunit": "4.9.7"
   },
   "extra": {
     "installer-paths": {
@@ -55,8 +60,12 @@
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ],
-    "test": [
-      "phpcs"
-    ]
+    "test": "phpunit",
+    "lint": "phpcs"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/src"
+    }
   }
 }

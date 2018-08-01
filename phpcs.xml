@@ -20,4 +20,12 @@
 
   <!-- Use PSR-2 as a base -->
   <rule ref="PSR2"/>
+
+  <!-- Test Exclusions -->
+  <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
+  <rule ref="Squiz.Scope.MethodScope.Missing">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
 </ruleset>
