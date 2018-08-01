@@ -14,11 +14,9 @@ if (!defined('WP_ENV') || WP_ENV === 'production') {
     return;
 }
 
-if (!is_admin()) {
-    add_action('pre_option_blog_public', '__return_zero');
-} else {
-    add_action('admin_notices', function () {
-        $message = __('Search engine indexing is currently discouraged.', 'roots');
-        echo sprintf('<div class="notice notice-warning"><p>%s</p></div>', $message);
-    });
-}
+add_action('pre_option_blog_public', '__return_zero');
+
+add_action('admin_notices', function () {
+    $message = __('Search engine indexing has been discouraged because the current environment is', 'roots');
+    echo "<div class='notice notice-warning'><p><strong>Bedrock:</strong> {$message} <code>".env('WP_ENV')."</code>.</p></div>";
+});
