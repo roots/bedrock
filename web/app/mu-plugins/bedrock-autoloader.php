@@ -81,7 +81,7 @@ class Autoloader
 
     /**
      * Filter show_advanced_plugins to display the autoloaded plugins.
-     * @param $bool bool Whether to show the advanced plugins for the specified plugin type.
+     * @param $show bool Whether to show the advanced plugins for the specified plugin type.
      * @param $type string The plugin type, i.e., `mustuse` or `dropins`
      * @return bool We return `false` to prevent WordPress from overriding our work
      * {@internal We add the plugin details ourselves, so we return false to disable the filter.}
