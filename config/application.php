@@ -26,12 +26,6 @@ if (file_exists($root_dir . '/.env')) {
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
-$env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
-
-if (file_exists($env_config)) {
-    require_once $env_config;
-}
-
 /**
  * URLs
  */
@@ -73,7 +67,26 @@ define('NONCE_SALT', env('NONCE_SALT'));
  */
 define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+// Disable the plugin and theme file editor in the admin
 define('DISALLOW_FILE_EDIT', true);
+// Disable plugin and theme updates and installation from the admin
+define('DISALLOW_FILE_MODS', true);
+
+/**
+ * Safe Debugging Settings
+ * Override these in config/{WP_ENV}.php
+ */
+ini_set('display_errors', 0);
+define('WP_DEBUG_DISPLAY', false);
+define('SCRIPT_DEBUG', false);
+
+/**
+ * Load WP_ENV specific configuration overrides
+ */
+$env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
+if (file_exists($env_config)) {
+    require_once $env_config;
+}
 
 /**
  * Bootstrap WordPress
