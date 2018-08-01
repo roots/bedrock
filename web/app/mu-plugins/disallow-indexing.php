@@ -17,6 +17,10 @@ if (!defined('WP_ENV') || WP_ENV === 'production') {
 add_action('pre_option_blog_public', '__return_zero');
 
 add_action('admin_notices', function () {
-    $message = __('Search engine indexing has been discouraged because the current environment is', 'roots');
-    echo "<div class='notice notice-warning'><p><strong>Bedrock:</strong> {$message} <code>".WP_ENV."</code>.</p></div>";
+    $message = sprintf(
+        __('%1$s Search engine indexing has been discouraged because the current environment is %2$s.', 'roots'),
+        '<strong>Bedrock:</strong>',
+        '<code>'.WP_ENV.'</code>'
+    );
+    echo "<div class='notice notice-warning'><p>{$message}</p></div>";
 });
