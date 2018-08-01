@@ -73,7 +73,7 @@ class Autoloader
         $this->countPlugins();
 
         array_map(static function () {
-            include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
+            include_once WPMU_PLUGIN_DIR . '/' . func_get_args()[0];
         }, array_keys(self::$cache['plugins']));
 
         $this->pluginHooks();
@@ -129,7 +129,7 @@ class Autoloader
      */
     private function updateCache()
     {
-        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
         self::$auto_plugins = get_plugins(self::$relative_path);
         self::$mu_plugins   = get_mu_plugins();
