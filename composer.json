@@ -34,6 +34,9 @@
     "preferred-install": {
       "pressbooks/*": "source",
       "*": "dist"
+    },
+    "platform": {
+      "php": "7.1"
     }
   },
   "minimum-stability": "dev",
@@ -45,17 +48,18 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
+    "php": ">=7.1",
     "composer/installers": "^1.4",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "4.9.5",
+    "johnpbloch/wordpress": "4.9.8",
     "oscarotero/env": "^1.1.0",
     "roots/multisite-url-fixer": "^1.1",
     "roots/wp-password-bcrypt": "1.0.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.5",
-    "humanmade/coding-standards": "^0.2"
+    "phpunit/phpunit": "~6.5",
+    "pressbooks/coding-standards": "dev-master",
+    "wpreadme2markdown/wp2md": "^3.0"
   },
   "extra": {
     "installer-paths": {
@@ -68,11 +72,14 @@
   "scripts": {
     "post-root-package-install": ["php -r \"copy('.env.example', '.env');\""],
     "test": [
-      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpunit --configuration web/app/plugins/$PB_PLUGIN/phpunit.xml --coverage-clover web/app/plugins/$PB_PLUGIN/coverage.xml",
+      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpunit --configuration web/app/plugins/$PB_PLUGIN/phpunit.xml",
       "@standards"
     ],
     "standards": [
       "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpcs --standard=web/app/plugins/$PB_PLUGIN/phpcs.ruleset.xml web/app/plugins/$PB_PLUGIN/*.php web/app/plugins/$PB_PLUGIN/inc/ web/app/plugins/$PB_PLUGIN/bin/"
+    ],
+    "fix": [
+      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpcbf --standard=web/app/plugins/$PB_PLUGIN/phpcs.ruleset.xml web/app/plugins/$PB_PLUGIN/*.php web/app/plugins/$PB_PLUGIN/inc/ web/app/plugins/$PB_PLUGIN/bin/"
     ]
   }
 }
