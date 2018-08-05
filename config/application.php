@@ -88,7 +88,7 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
-Roots\Bedrock\Config::apply();
+Config::apply();
 
 /**
  * Bootstrap WordPress
