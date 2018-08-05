@@ -16,21 +16,28 @@ class Config
     /**
      * @param string $key
      * @param $value
+     * @throws ConstantAlreadyDefinedException
      */
     public static function define($key, $value)
     {
-        self::$configMap[$key] = $value;
+        self::defined($key) or self::$configMap[$key] = $value;
     }
 
     /**
      * @param string $key
      * @return mixed
+     * @throws UndefinedConfigKeyException
      */
     public static function get($key)
     {
+        if (!array_key_exists($key, self::$configMap)) {
+            $class = self::class;
+            throw new UndefinedConfigKeyException("'$key' has not been set by $class::define('$key', ...)");
+        }
+        
         return self::$configMap[$key];
     }
-
+    
     /**
      * @param string $key
      */
@@ -66,12 +73,28 @@ class Config
     public static function apply()
     {
         foreach (self::$configMap as $key => $value) {
-            if (defined($key)) {
-                $previous = constant($key);
-                $message = "Bedrock is trying to define '$key' as '$value' but it is already set to '$previous'.";
-                throw new ConstantAlreadyDefinedException($message);
+            try {
+                self::defined($key) or define($key, $value);
+            } catch (ConstantAlreadyDefinedException $e) {
+                if (constant($key) !== $value) {
+                    throw $e;
+                }
             }
-            define($key, $value);
         }
+    }
+    
+    /**
+     * @param $key
+     * @return bool
+     * @throws ConstantAlreadyDefinedException
+     */
+    private static function defined($key)
+    {
+        if (defined($key)) {
+            $message = "Bedrock aborted trying to redefine constant '$key'";
+            throw new ConstantAlreadyDefinedException($message);
+        }
+        
+        return false;
     }
 }
