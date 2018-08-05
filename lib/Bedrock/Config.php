@@ -72,19 +72,27 @@ class Config
      */
     public static function apply()
     {
+        // Scan configMap to see if user is trying to redefine any constants.
+        // We do this because we don't want to 'half apply' the configMap. The user should be able to catch the
+        // exception, repair their config, and run apply() again
         foreach (self::$configMap as $key => $value) {
             try {
-                self::defined($key) or define($key, $value);
+                self::defined($key);
             } catch (ConstantAlreadyDefinedException $e) {
                 if (constant($key) !== $value) {
                     throw $e;
                 }
             }
         }
+
+        // If all is well, apply the configMap ignoring entries that have already been applied
+        foreach (self::$configMap as $key => $value) {
+            defined($key) or define($key, $value);
+        }
     }
     
     /**
-     * @param $key
+     * @param string $key
      * @return bool
      * @throws ConstantAlreadyDefinedException
      */
