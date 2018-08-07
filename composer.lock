@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "718ce52178ac33df2abbfdfb174d2b74",
+    "content-hash": "71f7c19c5bb3dbca29d1dfc2d60ca642",
     "packages": [
         {
             "name": "composer/installers",
@@ -297,6 +297,48 @@
             "time": "2017-07-17T20:41:59+00:00"
         },
         {
+            "name": "roots/wp-config",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roots/wp-config.git",
+                "reference": "6e863699ec80d749a9d9deb766abb65ef621a6b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/roots/wp-config/zipball/6e863699ec80d749a9d9deb766abb65ef621a6b9",
+                "reference": "6e863699ec80d749a9d9deb766abb65ef621a6b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.7",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Roots\\WPConfig\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Austin Pray",
+                    "email": "austin@austinpray.com"
+                }
+            ],
+            "description": "Collect configuration values and safely define() them",
+            "time": "2018-08-07T06:11:42+00:00"
+        },
+        {
             "name": "roots/wp-password-bcrypt",
             "version": "1.0.0",
             "source": {
@@ -459,7 +501,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "roots/wp-config": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

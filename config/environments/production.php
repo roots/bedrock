@@ -1,4 +1,4 @@
 <?php
 /** Configuration Overrides for Production */
 
-use Roots\Bedrock\Config;
+use Roots\WPConfig\Config;

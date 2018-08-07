@@ -1,7 +1,7 @@
 <?php
 /** Configuration Overrides for Development */
 
-use Roots\Bedrock\Config;
+use Roots\WPConfig\Config;
 
 Config::define('SAVEQUERIES', true);
 Config::define('WP_DEBUG', true);
