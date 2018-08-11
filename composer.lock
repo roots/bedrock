@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c9c215533cfa665421356abe784cf4d",
+    "content-hash": "01a9da7555b27b63a86fafda2eba0f15",
     "packages": [
         {
             "name": "composer/installers",
@@ -297,6 +297,48 @@
             "time": "2017-07-17T20:41:59+00:00"
         },
         {
+            "name": "roots/wp-config",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roots/wp-config.git",
+                "reference": "37c38230796119fb487fa03346ab0706ce6d4962"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/roots/wp-config/zipball/37c38230796119fb487fa03346ab0706ce6d4962",
+                "reference": "37c38230796119fb487fa03346ab0706ce6d4962",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.7",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Roots\\WPConfig\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Austin Pray",
+                    "email": "austin@austinpray.com"
+                }
+            ],
+            "description": "Collect configuration values and safely define() them",
+            "time": "2018-08-10T14:18:38+00:00"
+        },
+        {
             "name": "roots/wp-password-bcrypt",
             "version": "1.0.0",
             "source": {
@@ -509,7 +551,7 @@
                 "symfony/web-profiler-bundle": ">=2,<2.3.19|>=2.4,<2.4.9|>=2.5,<2.5.4",
                 "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
                 "thelia/backoffice-default-template": ">=2.1,<2.1.2",
-                "thelia/thelia": ">=2.1,<2.1.2|>=2.1.0-beta1,<2.1.3",
+                "thelia/thelia": ">=2.1.0-beta1,<2.1.3|>=2.1,<2.1.2",
                 "titon/framework": ">=0,<9.9.99",
                 "twig/twig": "<1.20",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.30|>=8,<8.7.17|>=9,<9.3.2",
@@ -563,7 +605,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-08-02T11:57:59+00:00"
+            "time": "2018-08-07T14:47:17+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
