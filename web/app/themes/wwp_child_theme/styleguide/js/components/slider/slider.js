@@ -1,4 +1,4 @@
-import "bxslider"
+import "../../../../../../../../node_modules/bxslider/dist/jquery.bxslider.js";
 import {PewComponent} from "../pew-component";
 
 // see https://bxslider.com/options/
