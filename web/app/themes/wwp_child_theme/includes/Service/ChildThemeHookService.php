@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jeremydesvaux
- * Date: 22/09/2016
- * Time: 11:42
- */
 
 namespace WonderWp\Theme\Child\Service;
 
-
 use Symfony\Component\HttpFoundation\Cookie;
-use WonderWp\Component\HttpFoundation\Request;
+use WonderWp\Framework\HttpFoundation\Request;
 use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\Service\ThemeHookService;
