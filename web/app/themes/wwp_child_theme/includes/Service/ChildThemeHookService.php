@@ -3,7 +3,7 @@
 namespace WonderWp\Theme\Child\Service;
 
 use Symfony\Component\HttpFoundation\Cookie;
-use WonderWp\Framework\HttpFoundation\Request;
+use WonderWp\Component\HttpFoundation\Request;
 use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\Service\ThemeHookService;
