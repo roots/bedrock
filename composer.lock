@@ -4,26 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ce78c74df8eecf4bf5869c184f061f8",
+    "content-hash": "e4ce58d3f55c6486c5876669309d9540",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
-            "version": "v1.x-dev",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wonderwp-plugin.git",
-                "reference": "ea1bfe646250c8c54fcf5a773454359d0e6311e4"
+                "reference": "3d4bf64ab30f5721a1bde19467c21012165125ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/ea1bfe646250c8c54fcf5a773454359d0e6311e4",
-                "reference": "ea1bfe646250c8c54fcf5a773454359d0e6311e4",
+                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/3d4bf64ab30f5721a1bde19467c21012165125ee",
+                "reference": "3d4bf64ab30f5721a1bde19467c21012165125ee",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.4",
                 "gedmo/doctrine-extensions": "2.4.*",
-                "wonderwp/framework": "^1.0.0@dev"
+                "wonderwp/filter": "dev-develop@dev",
+                "wonderwp/form": "dev-develop@dev",
+                "wonderwp/notification": "dev-develop@dev",
+                "wonderwp/panel": "dev-develop@dev",
+                "wonderwp/repository": "dev-develop@dev",
+                "wonderwp/template": "dev-develop@dev",
+                "wonderwp/wonderwp": "dev-develop@dev"
             },
             "type": "wordpress-muplugin",
             "autoload": {
@@ -38,33 +44,24 @@
                 }
             ],
             "description": "Wonderful Worpress plugin",
-            "time": "2018-07-05T09:54:19+00:00"
+            "time": "2018-07-31T16:34:47+00:00"
         },
         {
             "name": "agencewonderful/wonderwp-theme-core",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wonderwp-theme.git",
-<<<<<<< HEAD
-                "reference": "a7cee1d7378125e3260dfdc8eaf543a337baad09"
+                "reference": "6ee5adf04914af89a0b6ca2b8b4bc6230d29d701"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-theme/zipball/a7cee1d7378125e3260dfdc8eaf543a337baad09",
-                "reference": "a7cee1d7378125e3260dfdc8eaf543a337baad09",
-=======
-                "reference": "77ccf73815d233e1d7017bd927ce3a02b56a2378"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-theme/zipball/77ccf73815d233e1d7017bd927ce3a02b56a2378",
-                "reference": "77ccf73815d233e1d7017bd927ce3a02b56a2378",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wonderwp-theme/zipball/6ee5adf04914af89a0b6ca2b8b4bc6230d29d701",
+                "reference": "6ee5adf04914af89a0b6ca2b8b4bc6230d29d701",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wwp-translator": "dev-develop@dev",
+                "agencewonderful/wwp-translator": "dev-feature/wwp_v2@dev",
                 "wp-cli/wp-cli": "^1.1"
             },
             "type": "wordpress-theme",
@@ -83,37 +80,24 @@
                 }
             ],
             "description": "Wonderful base vendor theme",
-<<<<<<< HEAD
-            "time": "2018-06-29T09:04:47+00:00"
-=======
-            "time": "2018-08-20T12:22:11+00:00"
->>>>>>> develop
+            "time": "2018-07-23T13:01:09+00:00"
         },
         {
             "name": "agencewonderful/wwp-actu",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-actu.git",
-<<<<<<< HEAD
-                "reference": "b4231ed80517800d6befa0c049f5f0e239c8ff09"
+                "reference": "7bbfde407b73ce1d017230f37e290824a1b2ab8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-actu/zipball/b4231ed80517800d6befa0c049f5f0e239c8ff09",
-                "reference": "b4231ed80517800d6befa0c049f5f0e239c8ff09",
-=======
-                "reference": "6ed4d6a84ed36f4ac3a2c7c95b8cc1e4d92e3cb7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-actu/zipball/6ed4d6a84ed36f4ac3a2c7c95b8cc1e4d92e3cb7",
-                "reference": "6ed4d6a84ed36f4ac3a2c7c95b8cc1e4d92e3cb7",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wwp-actu/zipball/7bbfde407b73ce1d017230f37e290824a1b2ab8e",
+                "reference": "7bbfde407b73ce1d017230f37e290824a1b2ab8e",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -128,28 +112,24 @@
                 }
             ],
             "description": "Plugin wwp-actu",
-<<<<<<< HEAD
-            "time": "2018-07-09T08:00:49+00:00"
-=======
-            "time": "2018-07-13T13:35:56+00:00"
->>>>>>> develop
+            "time": "2018-07-31T16:36:50+00:00"
         },
         {
             "name": "agencewonderful/wwp-branchepage",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-branchepage.git",
-                "reference": "f0cd918a1c0570bc842d0d59c9ecf0ec158a083b"
+                "reference": "568bfed2cb8694f3ff815e7237f48afcd6c47256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-branchepage/zipball/f0cd918a1c0570bc842d0d59c9ecf0ec158a083b",
-                "reference": "f0cd918a1c0570bc842d0d59c9ecf0ec158a083b",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-branchepage/zipball/568bfed2cb8694f3ff815e7237f48afcd6c47256",
+                "reference": "568bfed2cb8694f3ff815e7237f48afcd6c47256",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -164,33 +144,24 @@
                 }
             ],
             "description": "wwp-branchepage plugin",
-            "time": "2018-06-05T15:35:24+00:00"
+            "time": "2018-07-23T14:02:45+00:00"
         },
         {
             "name": "agencewonderful/wwp-contact",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-contact.git",
-<<<<<<< HEAD
-                "reference": "14b19d711022964103abec793e3f55a3b5348078"
+                "reference": "d9e999589c94c417312733f1b5b747a6e97fcbf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-contact/zipball/14b19d711022964103abec793e3f55a3b5348078",
-                "reference": "14b19d711022964103abec793e3f55a3b5348078",
-=======
-                "reference": "0ad1f7e029ab7bbf6cab79acfbcc893ca43f75e3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-contact/zipball/0ad1f7e029ab7bbf6cab79acfbcc893ca43f75e3",
-                "reference": "0ad1f7e029ab7bbf6cab79acfbcc893ca43f75e3",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wwp-contact/zipball/d9e999589c94c417312733f1b5b747a6e97fcbf1",
+                "reference": "d9e999589c94c417312733f1b5b747a6e97fcbf1",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -205,28 +176,24 @@
                 }
             ],
             "description": "Plugin wwp-contact",
-<<<<<<< HEAD
-            "time": "2018-06-29T09:31:15+00:00"
-=======
-            "time": "2018-07-20T12:46:08+00:00"
->>>>>>> develop
+            "time": "2018-07-31T16:39:07+00:00"
         },
         {
             "name": "agencewonderful/wwp-download",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-download.git",
-                "reference": "77cb912fa5d381b7514db3cda2a10e50b9c03747"
+                "reference": "b6f81144b8e5067af3d9dcb1fe25627f2b9cecef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-download/zipball/77cb912fa5d381b7514db3cda2a10e50b9c03747",
-                "reference": "77cb912fa5d381b7514db3cda2a10e50b9c03747",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-download/zipball/b6f81144b8e5067af3d9dcb1fe25627f2b9cecef",
+                "reference": "b6f81144b8e5067af3d9dcb1fe25627f2b9cecef",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -241,24 +208,21 @@
                 }
             ],
             "description": "Plugin wwp-download",
-            "time": "2018-05-28T07:58:21+00:00"
+            "time": "2018-07-23T14:03:17+00:00"
         },
         {
             "name": "agencewonderful/wwp-emploi",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-emploi.git",
-                "reference": "68a44e1cbfd412e368862fb77f487c36d88de638"
+                "reference": "4d41532da38ffd4b438672891fdb263d9d27f0ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-emploi/zipball/68a44e1cbfd412e368862fb77f487c36d88de638",
-                "reference": "68a44e1cbfd412e368862fb77f487c36d88de638",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-emploi/zipball/4d41532da38ffd4b438672891fdb263d9d27f0ca",
+                "reference": "4d41532da38ffd4b438672891fdb263d9d27f0ca",
                 "shasum": ""
-            },
-            "require": {
-                "agencewonderful/wonderwp-theme-core": "dev-develop@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -273,24 +237,24 @@
                 }
             ],
             "description": "Plugin Emploi",
-            "time": "2018-07-27T08:52:02+00:00"
+            "time": "2018-07-31T16:39:40+00:00"
         },
         {
             "name": "agencewonderful/wwp-espace-restreint",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-espace-restreint.git",
-                "reference": "ff6ecda3affd17577b8ac556c9d328033635ac3d"
+                "reference": "b0c14eb2dd4f5f85c62644a3e5951ece65a25e3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-espace-restreint/zipball/ff6ecda3affd17577b8ac556c9d328033635ac3d",
-                "reference": "ff6ecda3affd17577b8ac556c9d328033635ac3d",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-espace-restreint/zipball/b0c14eb2dd4f5f85c62644a3e5951ece65a25e3b",
+                "reference": "b0c14eb2dd4f5f85c62644a3e5951ece65a25e3b",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-theme-core": "dev-develop@dev"
+                "agencewonderful/wonderwp-theme-core": "dev-feature/wwp_v2@dev"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -305,24 +269,24 @@
                 }
             ],
             "description": "Plugin Espace Restreint",
-            "time": "2018-06-13T16:58:36+00:00"
+            "time": "2018-07-31T16:40:09+00:00"
         },
         {
             "name": "agencewonderful/wwp-faq",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-faq.git",
-                "reference": "4ae9751f2125613a4385ac898ada4f628a40c2ae"
+                "reference": "e8ccdcf80912c5f661a5c2e2c037e6601b8b72af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-faq/zipball/4ae9751f2125613a4385ac898ada4f628a40c2ae",
-                "reference": "4ae9751f2125613a4385ac898ada4f628a40c2ae",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-faq/zipball/e8ccdcf80912c5f661a5c2e2c037e6601b8b72af",
+                "reference": "e8ccdcf80912c5f661a5c2e2c037e6601b8b72af",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -337,66 +301,24 @@
                 }
             ],
             "description": "Plugin wwp-faq",
-            "time": "2018-02-13T17:02:13+00:00"
-        },
-        {
-            "name": "agencewonderful/wwp-generator",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:agencewonderful/wwp-generator.git",
-                "reference": "da617803d7fafb4b51bcea8b950a01ef0a5762bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-generator/zipball/da617803d7fafb4b51bcea8b950a01ef0a5762bd",
-                "reference": "da617803d7fafb4b51bcea8b950a01ef0a5762bd",
-                "shasum": ""
-            },
-            "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
-                "wp-cli/wp-cli": "^1.1"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "WonderWp\\Plugin\\Generator\\": "includes"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Jeremy Desvaux",
-                    "email": "jeremy.desvaux@wonderful.fr"
-                }
-            ],
-            "description": "Generateur de plugin wonderwp",
-            "time": "2018-02-06T13:45:11+00:00"
+            "time": "2018-07-23T14:04:04+00:00"
         },
         {
             "name": "agencewonderful/wwp-jeux",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-jeux.git",
-<<<<<<< HEAD
-                "reference": "cebd5db3de92337dbb144e87abfae6ca374407f1"
+                "reference": "3516b6a3760f50df4c6ba844e49d5379b1e26989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-jeux/zipball/cebd5db3de92337dbb144e87abfae6ca374407f1",
-                "reference": "cebd5db3de92337dbb144e87abfae6ca374407f1",
-=======
-                "reference": "3735412b4775c917fc2c25cee0e6d384a2df04a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-jeux/zipball/3735412b4775c917fc2c25cee0e6d384a2df04a6",
-                "reference": "3735412b4775c917fc2c25cee0e6d384a2df04a6",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wwp-jeux/zipball/3516b6a3760f50df4c6ba844e49d5379b1e26989",
+                "reference": "3516b6a3760f50df4c6ba844e49d5379b1e26989",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -411,28 +333,24 @@
                 }
             ],
             "description": "Plugin wwp-jeux",
-<<<<<<< HEAD
-            "time": "2018-07-11T09:37:15+00:00"
-=======
-            "time": "2018-08-09T16:37:17+00:00"
->>>>>>> develop
+            "time": "2018-07-31T16:40:41+00:00"
         },
         {
             "name": "agencewonderful/wwp-lazyload",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-lazyload.git",
-                "reference": "aff825a6b04fe23e1cabcb67b3660d685a63c99c"
+                "reference": "ddfa7ebac0016a5a6fbd13d06315a969444c0ee3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-lazyload/zipball/aff825a6b04fe23e1cabcb67b3660d685a63c99c",
-                "reference": "aff825a6b04fe23e1cabcb67b3660d685a63c99c",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-lazyload/zipball/ddfa7ebac0016a5a6fbd13d06315a969444c0ee3",
+                "reference": "ddfa7ebac0016a5a6fbd13d06315a969444c0ee3",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -447,33 +365,24 @@
                 }
             ],
             "description": "Plugin wwp-lazyload",
-            "time": "2018-07-18T17:08:55+00:00"
+            "time": "2018-07-23T14:04:41+00:00"
         },
         {
             "name": "agencewonderful/wwp-map",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-map.git",
-<<<<<<< HEAD
-                "reference": "8e1049459785b61664802e769fa01723187e7bed"
+                "reference": "dced0f12ce77b6413e87cb1f997cf95a102cb6e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-map/zipball/8e1049459785b61664802e769fa01723187e7bed",
-                "reference": "8e1049459785b61664802e769fa01723187e7bed",
-=======
-                "reference": "fc382db39313a1c6e26e489dbed66712111c11da"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-map/zipball/fc382db39313a1c6e26e489dbed66712111c11da",
-                "reference": "fc382db39313a1c6e26e489dbed66712111c11da",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wwp-map/zipball/dced0f12ce77b6413e87cb1f997cf95a102cb6e1",
+                "reference": "dced0f12ce77b6413e87cb1f997cf95a102cb6e1",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -488,28 +397,24 @@
                 }
             ],
             "description": "Plugin wwp-map",
-<<<<<<< HEAD
-            "time": "2018-07-02T08:54:19+00:00"
-=======
-            "time": "2018-08-01T16:14:38+00:00"
->>>>>>> develop
+            "time": "2018-07-31T16:41:11+00:00"
         },
         {
             "name": "agencewonderful/wwp-meteo",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-meteo.git",
-                "reference": "37f6b4aeac6e5f94d0244135d68b7795b8ed43f5"
+                "reference": "dd28c2234e600fbb006b36f075a7dccb74fddd15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-meteo/zipball/37f6b4aeac6e5f94d0244135d68b7795b8ed43f5",
-                "reference": "37f6b4aeac6e5f94d0244135d68b7795b8ed43f5",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-meteo/zipball/dd28c2234e600fbb006b36f075a7dccb74fddd15",
+                "reference": "dd28c2234e600fbb006b36f075a7dccb74fddd15",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -524,33 +429,24 @@
                 }
             ],
             "description": "Plugin wwp-meteo",
-            "time": "2018-02-13T16:51:09+00:00"
+            "time": "2018-07-23T14:05:10+00:00"
         },
         {
             "name": "agencewonderful/wwp-newsletter",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-newsletter.git",
-<<<<<<< HEAD
-                "reference": "b377b36d864b540b6a017d070dd7c91d241eda89"
+                "reference": "655ac4529e6f399a1a9cbafcf718388a3bab3df5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-newsletter/zipball/b377b36d864b540b6a017d070dd7c91d241eda89",
-                "reference": "b377b36d864b540b6a017d070dd7c91d241eda89",
-=======
-                "reference": "ebb84369117a9a3acb9848eb18478ff2bae07439"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-newsletter/zipball/ebb84369117a9a3acb9848eb18478ff2bae07439",
-                "reference": "ebb84369117a9a3acb9848eb18478ff2bae07439",
->>>>>>> develop
+                "url": "https://api.github.com/repos/agencewonderful/wwp-newsletter/zipball/655ac4529e6f399a1a9cbafcf718388a3bab3df5",
+                "reference": "655ac4529e6f399a1a9cbafcf718388a3bab3df5",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2",
                 "mailjet/mailjet-apiv3-php": "^1.2"
             },
             "type": "wordpress-plugin",
@@ -566,27 +462,24 @@
                 }
             ],
             "description": "Plugin wwp-newsletter",
-<<<<<<< HEAD
-            "time": "2018-06-28T12:43:16+00:00"
-=======
-            "time": "2018-08-10T09:18:21+00:00"
+            "time": "2018-07-31T16:41:42+00:00"
         },
         {
             "name": "agencewonderful/wwp-rgpd",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-rgpd.git",
-                "reference": "e57f462e50c9cff7b202131f0f523e733ac606c1"
+                "reference": "25ee54107e8b4ba57ee77a4fc99a0bbe9cbf9382"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-rgpd/zipball/e57f462e50c9cff7b202131f0f523e733ac606c1",
-                "reference": "e57f462e50c9cff7b202131f0f523e733ac606c1",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-rgpd/zipball/25ee54107e8b4ba57ee77a4fc99a0bbe9cbf9382",
+                "reference": "25ee54107e8b4ba57ee77a4fc99a0bbe9cbf9382",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -601,24 +494,24 @@
                 }
             ],
             "description": "Plugin wwp-rgpd",
-            "time": "2018-06-29T09:15:40+00:00"
+            "time": "2018-07-31T14:15:17+00:00"
         },
         {
             "name": "agencewonderful/wwp-search",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-search.git",
-                "reference": "8c610c2a30b10b0d67e8b5f54741835c8ec902ef"
+                "reference": "b46b824274893445db60c4271310d1032b357273"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-search/zipball/8c610c2a30b10b0d67e8b5f54741835c8ec902ef",
-                "reference": "8c610c2a30b10b0d67e8b5f54741835c8ec902ef",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-search/zipball/b46b824274893445db60c4271310d1032b357273",
+                "reference": "b46b824274893445db60c4271310d1032b357273",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -633,25 +526,24 @@
                 }
             ],
             "description": "wwp-search",
-            "time": "2018-07-04T12:53:30+00:00"
->>>>>>> develop
+            "time": "2018-07-31T14:15:31+00:00"
         },
         {
             "name": "agencewonderful/wwp-social",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-social.git",
-                "reference": "5ccc9f51953a1cac08d741ee103a7e568b3d3ca5"
+                "reference": "e8213c4bef20ec871eb0de78d6afd51e1870906d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/5ccc9f51953a1cac08d741ee103a7e568b3d3ca5",
-                "reference": "5ccc9f51953a1cac08d741ee103a7e568b3d3ca5",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/e8213c4bef20ec871eb0de78d6afd51e1870906d",
+                "reference": "e8213c4bef20ec871eb0de78d6afd51e1870906d",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev",
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2",
                 "wp-cli/wp-cli": "^1.1"
             },
             "type": "wordpress-plugin",
@@ -667,24 +559,24 @@
                 }
             ],
             "description": "Plugin wwp-social",
-            "time": "2018-05-04T07:33:28+00:00"
+            "time": "2018-07-23T14:05:27+00:00"
         },
         {
             "name": "agencewonderful/wwp-stats",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-stats.git",
-                "reference": "82ca49ce7be244038102a410ab08a409242d14d0"
+                "reference": "3881b25b4c3caf6ecef2435172881d916e92575a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-stats/zipball/82ca49ce7be244038102a410ab08a409242d14d0",
-                "reference": "82ca49ce7be244038102a410ab08a409242d14d0",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-stats/zipball/3881b25b4c3caf6ecef2435172881d916e92575a",
+                "reference": "3881b25b4c3caf6ecef2435172881d916e92575a",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -699,24 +591,24 @@
                 }
             ],
             "description": "wwp stats",
-            "time": "2018-02-13T17:03:45+00:00"
+            "time": "2018-07-23T14:05:40+00:00"
         },
         {
             "name": "agencewonderful/wwp-translator",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-translator.git",
-                "reference": "5e8956d56b25131e16b1ca13ae0e96c7bfd7e60e"
+                "reference": "1b94453279847eb5c6c5e16d2a72de312e3837da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-translator/zipball/5e8956d56b25131e16b1ca13ae0e96c7bfd7e60e",
-                "reference": "5e8956d56b25131e16b1ca13ae0e96c7bfd7e60e",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-translator/zipball/1b94453279847eb5c6c5e16d2a72de312e3837da",
+                "reference": "1b94453279847eb5c6c5e16d2a72de312e3837da",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -731,24 +623,24 @@
                 }
             ],
             "description": "Plugin wwp-translator",
-            "time": "2018-07-27T08:24:11+00:00"
+            "time": "2018-07-31T16:43:10+00:00"
         },
         {
             "name": "agencewonderful/wwp-trombinoscope",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-trombinoscope.git",
-                "reference": "314fbedac41ba3e8e5a94bd765d87f686b0bf0a1"
+                "reference": "44a2271d53b9e1c61f6d4d069ed30bc8fb30c78f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-trombinoscope/zipball/314fbedac41ba3e8e5a94bd765d87f686b0bf0a1",
-                "reference": "314fbedac41ba3e8e5a94bd765d87f686b0bf0a1",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-trombinoscope/zipball/44a2271d53b9e1c61f6d4d069ed30bc8fb30c78f",
+                "reference": "44a2271d53b9e1c61f6d4d069ed30bc8fb30c78f",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -763,26 +655,24 @@
                 }
             ],
             "description": "wwp-trombinoscope",
-            "time": "2018-06-04T14:12:47+00:00"
-<<<<<<< HEAD
-=======
+            "time": "2018-07-23T14:06:07+00:00"
         },
         {
             "name": "agencewonderful/wwp-video",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-video.git",
-                "reference": "993a174b5997b0e8b097d45a664b829fcc6fac81"
+                "reference": "8166abbf47c165670ba2ac0a174fcef385a22c40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-video/zipball/993a174b5997b0e8b097d45a664b829fcc6fac81",
-                "reference": "993a174b5997b0e8b097d45a664b829fcc6fac81",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-video/zipball/8166abbf47c165670ba2ac0a174fcef385a22c40",
+                "reference": "8166abbf47c165670ba2ac0a174fcef385a22c40",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-theme-core": "dev-develop@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -797,25 +687,24 @@
                 }
             ],
             "description": "Plugin Video",
-            "time": "2018-07-17T14:13:59+00:00"
->>>>>>> develop
+            "time": "2018-07-31T14:15:49+00:00"
         },
         {
             "name": "agencewonderful/wwp-vote",
-            "version": "dev-develop",
+            "version": "dev-feature/wwp_v2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-vote.git",
-                "reference": "f571db14db4021d6208c867992dba04cca75f34a"
+                "reference": "cf958cae18b3b2340bdb7e7c75b85cfff5d33465"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-vote/zipball/f571db14db4021d6208c867992dba04cca75f34a",
-                "reference": "f571db14db4021d6208c867992dba04cca75f34a",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-vote/zipball/cf958cae18b3b2340bdb7e7c75b85cfff5d33465",
+                "reference": "cf958cae18b3b2340bdb7e7c75b85cfff5d33465",
                 "shasum": ""
             },
             "require": {
-                "agencewonderful/wonderwp-plugin-core": "^1.0.0@dev"
+                "agencewonderful/wonderwp-plugin-core": "dev-feature/wwp_v2"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -830,7 +719,7 @@
                 }
             ],
             "description": "wwp-vote",
-            "time": "2018-04-05T16:34:59+00:00"
+            "time": "2018-06-06T21:05:44+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -878,16 +767,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.2",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "46afded9720f40b9dc63542af4e3e43a1177acb0"
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/46afded9720f40b9dc63542af4e3e43a1177acb0",
-                "reference": "46afded9720f40b9dc63542af4e3e43a1177acb0",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/d2c0a83b7533d6912e8d516756ebd34f893e9169",
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169",
                 "shasum": ""
             },
             "require": {
@@ -930,11 +819,10 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2018-08-08T08:57:40+00:00"
+            "time": "2018-03-29T19:57:20+00:00"
         },
         {
             "name": "composer/composer",
-<<<<<<< HEAD
             "version": "1.6.5",
             "source": {
                 "type": "git",
@@ -945,28 +833,16 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/composer/composer/zipball/b184a92419cc9a9c4c6a09db555a94d441cb11c9",
                 "reference": "b184a92419cc9a9c4c6a09db555a94d441cb11c9",
-=======
-            "version": "1.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/composer.git",
-                "reference": "576aab9b5abb2ed11a1c52353a759363216a4ad2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/576aab9b5abb2ed11a1c52353a759363216a4ad2",
-                "reference": "576aab9b5abb2ed11a1c52353a759363216a4ad2",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
                 "composer/ca-bundle": "^1.0",
                 "composer/semver": "^1.0",
                 "composer/spdx-licenses": "^1.2",
-                "composer/xdebug-handler": "^1.1",
                 "justinrainbow/json-schema": "^3.0 || ^4.0 || ^5.0",
                 "php": "^5.3.2 || ^7.0",
                 "psr/log": "^1.0",
+                "seld/cli-prompt": "^1.0",
                 "seld/jsonlint": "^1.4",
                 "seld/phar-utils": "^1.0",
                 "symfony/console": "^2.7 || ^3.0 || ^4.0",
@@ -992,7 +868,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -1023,11 +899,7 @@
                 "dependency",
                 "package"
             ],
-<<<<<<< HEAD
             "time": "2018-05-04T09:44:59+00:00"
-=======
-            "time": "2018-08-16T14:57:12+00:00"
->>>>>>> develop
         },
         {
             "name": "composer/installers",
@@ -1251,53 +1123,6 @@
                 "validator"
             ],
             "time": "2018-04-30T10:33:04+00:00"
-<<<<<<< HEAD
-=======
-        },
-        {
-            "name": "composer/xdebug-handler",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "e37cbd80da64afe314c72de8d2d2fec0e40d9373"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/e37cbd80da64afe314c72de8d2d2fec0e40d9373",
-                "reference": "e37cbd80da64afe314c72de8d2d2fec0e40d9373",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.2 || ^7.0",
-                "psr/log": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Composer\\XdebugHandler\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "John Stevenson",
-                    "email": "john-stevenson@blueyonder.co.uk"
-                }
-            ],
-            "description": "Restarts a process without xdebug.",
-            "keywords": [
-                "Xdebug",
-                "performance"
-            ],
-            "time": "2018-08-23T12:00:19+00:00"
->>>>>>> develop
         },
         {
             "name": "doctrine/annotations",
@@ -1901,18 +1726,6 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-<<<<<<< HEAD
-            "version": "v2.4.35",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "1e400fbd05b7e5f912f55fe95805450f7d3bed60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/1e400fbd05b7e5f912f55fe95805450f7d3bed60",
-                "reference": "1e400fbd05b7e5f912f55fe95805450f7d3bed60",
-=======
             "version": "v2.4.36",
             "source": {
                 "type": "git",
@@ -1923,7 +1736,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/87c78ff9fd4b90460386f753d95622f6fbbfcb27",
                 "reference": "87c78ff9fd4b90460386f753d95622f6fbbfcb27",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -1991,11 +1803,7 @@
                 "tree",
                 "uploadable"
             ],
-<<<<<<< HEAD
-            "time": "2018-05-08T12:28:40+00:00"
-=======
             "time": "2018-07-26T12:16:35+00:00"
->>>>>>> develop
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2180,7 +1988,6 @@
         },
         {
             "name": "johnpbloch/wordpress",
-<<<<<<< HEAD
             "version": "4.9.7",
             "source": {
                 "type": "git",
@@ -2195,22 +2002,6 @@
             },
             "require": {
                 "johnpbloch/wordpress-core": "4.9.7",
-=======
-            "version": "4.9.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "de02cd79a41e06f36558040724414197cb7f6246"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/de02cd79a41e06f36558040724414197cb7f6246",
-                "reference": "de02cd79a41e06f36558040724414197cb7f6246",
-                "shasum": ""
-            },
-            "require": {
-                "johnpbloch/wordpress-core": "4.9.8",
->>>>>>> develop
                 "johnpbloch/wordpress-core-installer": "^1.0",
                 "php": ">=5.3.2"
             },
@@ -2232,7 +2023,6 @@
                 "cms",
                 "wordpress"
             ],
-<<<<<<< HEAD
             "time": "2018-07-05T18:12:19+00:00"
         },
         {
@@ -2247,33 +2037,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/1116e10f71f8fb811856df212af652c427bc6bd1",
                 "reference": "1116e10f71f8fb811856df212af652c427bc6bd1",
-=======
-            "time": "2018-08-02T21:48:39+00:00"
-        },
-        {
-            "name": "johnpbloch/wordpress-core",
-            "version": "4.9.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/50323f9b91d7689d615b4af02caf9d80584b1cfc",
-                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "provide": {
-<<<<<<< HEAD
                 "wordpress/core-implementation": "4.9.7"
-=======
-                "wordpress/core-implementation": "4.9.8"
->>>>>>> develop
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -2293,11 +2063,7 @@
                 "cms",
                 "wordpress"
             ],
-<<<<<<< HEAD
             "time": "2018-07-05T18:12:13+00:00"
-=======
-            "time": "2018-08-02T21:48:32+00:00"
->>>>>>> develop
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -2595,7 +2361,6 @@
         },
         {
             "name": "paragonie/random_compat",
-<<<<<<< HEAD
             "version": "v2.0.17",
             "source": {
                 "type": "git",
@@ -2606,31 +2371,23 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
                 "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
-=======
-            "version": "v9.99.99",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
-                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
-                "php": "^7"
+                "php": ">=5.2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*|5.*",
-                "vimeo/psalm": "^1"
+                "phpunit/phpunit": "4.*|5.*"
             },
             "suggest": {
                 "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
             },
             "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/random.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -2649,11 +2406,7 @@
                 "pseudorandom",
                 "random"
             ],
-<<<<<<< HEAD
             "time": "2018-07-04T16:31:37+00:00"
-=======
-            "time": "2018-07-02T15:55:56+00:00"
->>>>>>> develop
         },
         {
             "name": "pimple/pimple",
@@ -2898,29 +2651,16 @@
         },
         {
             "name": "respect/validation",
-<<<<<<< HEAD
-            "version": "1.1.19",
+            "version": "1.1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Respect/Validation.git",
-                "reference": "667ed36b4868e785d52d815181ff00c798a61be7"
+                "reference": "47f21596a5accd73e53f8b34bdc8d14abb2849fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/667ed36b4868e785d52d815181ff00c798a61be7",
-                "reference": "667ed36b4868e785d52d815181ff00c798a61be7",
-=======
-            "version": "1.1.23",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Validation.git",
-                "reference": "add542ea48be874ca8ab82208367430488a01e77"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/add542ea48be874ca8ab82208367430488a01e77",
-                "reference": "add542ea48be874ca8ab82208367430488a01e77",
->>>>>>> develop
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/47f21596a5accd73e53f8b34bdc8d14abb2849fd",
+                "reference": "47f21596a5accd73e53f8b34bdc8d14abb2849fd",
                 "shasum": ""
             },
             "require": {
@@ -2970,11 +2710,7 @@
                 "validation",
                 "validator"
             ],
-<<<<<<< HEAD
-            "time": "2018-07-02T06:22:41+00:00"
-=======
-            "time": "2018-08-18T13:10:37+00:00"
->>>>>>> develop
+            "time": "2018-07-28T03:01:58+00:00"
         },
         {
             "name": "rmccue/requests",
@@ -3083,6 +2819,54 @@
             "time": "2016-03-01T16:27:06+00:00"
         },
         {
+            "name": "seld/cli-prompt",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/cli-prompt.git",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seld\\CliPrompt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be"
+                }
+            ],
+            "description": "Allows you to prompt for user input on the command line, and optionally hide the characters they type",
+            "keywords": [
+                "cli",
+                "console",
+                "hidden",
+                "input",
+                "prompt"
+            ],
+            "time": "2017-03-18T11:32:45+00:00"
+        },
+        {
             "name": "seld/jsonlint",
             "version": "1.7.1",
             "source": {
@@ -3177,8 +2961,7 @@
         },
         {
             "name": "symfony/config",
-<<<<<<< HEAD
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -3188,18 +2971,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/config/zipball/1fffdeb349ff36a25184e5564c25289b1dbfc402",
                 "reference": "1fffdeb349ff36a25184e5564c25289b1dbfc402",
-=======
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "7b08223b7f6abd859651c56bcabf900d1627d085"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/7b08223b7f6abd859651c56bcabf900d1627d085",
-                "reference": "7b08223b7f6abd859651c56bcabf900d1627d085",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -3250,37 +3021,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2018-06-19T14:02:58+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00"
+                "reference": "e54f84c50e3b12972e7750edfc5ca84b2284c44e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1b97071a26d028c9bd4588264e101e14f6e7cd00",
-                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/console",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "6b217594552b9323bcdcfc14f8a0ce126e84cd73"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6b217594552b9323bcdcfc14f8a0ce126e84cd73",
-                "reference": "6b217594552b9323bcdcfc14f8a0ce126e84cd73",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/console/zipball/e54f84c50e3b12972e7750edfc5ca84b2284c44e",
+                "reference": "e54f84c50e3b12972e7750edfc5ca84b2284c44e",
                 "shasum": ""
             },
             "require": {
@@ -3336,37 +3090,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-05-23T05:02:55+00:00"
+            "time": "2018-07-10T14:02:11+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "47e6788c5b151cf0cfdf3329116bf33800632d75"
+                "reference": "0e3ca9cbde90fffec8038f4d4e16fd4046bbd018"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/47e6788c5b151cf0cfdf3329116bf33800632d75",
-                "reference": "47e6788c5b151cf0cfdf3329116bf33800632d75",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/debug",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/debug.git",
-                "reference": "d5a058ff6ecad26b30c1ba452241306ea34c65cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/d5a058ff6ecad26b30c1ba452241306ea34c65cc",
-                "reference": "d5a058ff6ecad26b30c1ba452241306ea34c65cc",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/debug/zipball/0e3ca9cbde90fffec8038f4d4e16fd4046bbd018",
+                "reference": "0e3ca9cbde90fffec8038f4d4e16fd4046bbd018",
                 "shasum": ""
             },
             "require": {
@@ -3409,37 +3146,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-06-25T11:10:40+00:00"
+            "time": "2018-06-26T08:45:54+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10"
+                "reference": "3f115cc3aae4d320b26db05e9531f4e32da29b89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/a0be80e3f8c11aca506e250c00bb100c04c35d10",
-                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/dependency-injection",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "1c0e679e522591fd744fdf242fec41a43d62b2b1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/1c0e679e522591fd744fdf242fec41a43d62b2b1",
-                "reference": "1c0e679e522591fd744fdf242fec41a43d62b2b1",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/3f115cc3aae4d320b26db05e9531f4e32da29b89",
+                "reference": "3f115cc3aae4d320b26db05e9531f4e32da29b89",
                 "shasum": ""
             },
             "require": {
@@ -3497,12 +3217,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-06-25T08:36:56+00:00"
+            "time": "2018-07-16T13:57:19+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3512,22 +3231,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/fdd5abcebd1061ec647089c6c41a07ed60af09f8",
                 "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8",
-=======
-            "time": "2018-07-29T15:19:31+00:00"
-        },
-        {
-            "name": "symfony/event-dispatcher",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "b2e1f19280c09a42dc64c0b72b80fe44dd6e88fb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b2e1f19280c09a42dc64c0b72b80fe44dd6e88fb",
-                "reference": "b2e1f19280c09a42dc64c0b72b80fe44dd6e88fb",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -3577,37 +3280,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2018-04-06T07:35:25+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "8a721a5f2553c6c3482b1c5b22ed60fe94dd63ed"
+                "reference": "8dab220fec8fc904821485326b29a6c670286124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/8a721a5f2553c6c3482b1c5b22ed60fe94dd63ed",
-                "reference": "8a721a5f2553c6c3482b1c5b22ed60fe94dd63ed",
-=======
-            "time": "2018-07-26T09:06:28+00:00"
-        },
-        {
-            "name": "symfony/filesystem",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a59f917e3c5d82332514cb4538387638f5bde2d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a59f917e3c5d82332514cb4538387638f5bde2d6",
-                "reference": "a59f917e3c5d82332514cb4538387638f5bde2d6",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/8dab220fec8fc904821485326b29a6c670286124",
+                "reference": "8dab220fec8fc904821485326b29a6c670286124",
                 "shasum": ""
             },
             "require": {
@@ -3644,12 +3330,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-06-21T11:10:19+00:00"
+            "time": "2018-07-09T13:25:43+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -3659,22 +3344,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/finder/zipball/3a8c3de91d2b2c68cd2d665cf9d00f7ef9eaa394",
                 "reference": "3a8c3de91d2b2c68cd2d665cf9d00f7ef9eaa394",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/finder",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/finder.git",
-                "reference": "8a84fcb207451df0013b2c74cbbf1b62d47b999a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/8a84fcb207451df0013b2c74cbbf1b62d47b999a",
-                "reference": "8a84fcb207451df0013b2c74cbbf1b62d47b999a",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -3710,37 +3379,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2018-06-19T20:52:10+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "1c28679fcbb0d9b35e4fd49fbb74d2ca4ea17bce"
+                "reference": "2b8e08c085e2dc7449ee6d55a238be87d3727c96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/1c28679fcbb0d9b35e4fd49fbb74d2ca4ea17bce",
-                "reference": "1c28679fcbb0d9b35e4fd49fbb74d2ca4ea17bce",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/http-foundation",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "19a3267828046a2a4a05e3dc2954bbd2e0ad9fa6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/19a3267828046a2a4a05e3dc2954bbd2e0ad9fa6",
-                "reference": "19a3267828046a2a4a05e3dc2954bbd2e0ad9fa6",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/2b8e08c085e2dc7449ee6d55a238be87d3727c96",
+                "reference": "2b8e08c085e2dc7449ee6d55a238be87d3727c96",
                 "shasum": ""
             },
             "require": {
@@ -3781,8 +3433,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-06-21T11:10:19+00:00"
+            "time": "2018-07-19T07:08:28+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3796,41 +3447,15 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
                 "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
-=======
-            "time": "2018-08-01T14:04:26+00:00"
-        },
-        {
-            "name": "symfony/polyfill-ctype",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
-                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-<<<<<<< HEAD
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.8-dev"
-=======
-            "suggest": {
-                "ext-ctype": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
->>>>>>> develop
                 }
             },
             "autoload": {
@@ -3863,7 +3488,6 @@
                 "polyfill",
                 "portable"
             ],
-<<<<<<< HEAD
             "time": "2018-04-30T19:57:29+00:00"
         },
         {
@@ -3878,22 +3502,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
                 "reference": "3296adf6a6454a050679cde90f95350ad604b171",
-=======
-            "time": "2018-08-06T14:22:27+00:00"
-        },
-        {
-            "name": "symfony/polyfill-mbstring",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -3905,11 +3513,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
                     "dev-master": "1.8-dev"
-=======
-                    "dev-master": "1.9-dev"
->>>>>>> develop
                 }
             },
             "autoload": {
@@ -3943,7 +3547,6 @@
                 "portable",
                 "shim"
             ],
-<<<<<<< HEAD
             "time": "2018-04-26T10:06:28+00:00"
         },
         {
@@ -3958,36 +3561,16 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/77454693d8f10dd23bb24955cffd2d82db1007a6",
                 "reference": "77454693d8f10dd23bb24955cffd2d82db1007a6",
-=======
-            "time": "2018-08-06T14:22:27+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php70",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php70.git",
-                "reference": "1e24b0c4a56d55aaf368763a06c6d1c7d3194934"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/1e24b0c4a56d55aaf368763a06c6d1c7d3194934",
-                "reference": "1e24b0c4a56d55aaf368763a06c6d1c7d3194934",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
-                "paragonie/random_compat": "~1.0|~2.0|~9.99",
+                "paragonie/random_compat": "~1.0|~2.0",
                 "php": ">=5.3.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
                     "dev-master": "1.8-dev"
-=======
-                    "dev-master": "1.9-dev"
->>>>>>> develop
                 }
             },
             "autoload": {
@@ -4023,37 +3606,20 @@
                 "portable",
                 "shim"
             ],
-<<<<<<< HEAD
             "time": "2018-04-26T10:06:28+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "acc5a37c706ace827962851b69705b24e71ca17c"
+                "reference": "f741672edfcfe3a2ea77569d419006f23281d909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/acc5a37c706ace827962851b69705b24e71ca17c",
-                "reference": "acc5a37c706ace827962851b69705b24e71ca17c",
-=======
-            "time": "2018-08-06T14:22:27+00:00"
-        },
-        {
-            "name": "symfony/process",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/process.git",
-                "reference": "0414db29bd770ec5a4152683e655f55efd4fa60f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/0414db29bd770ec5a4152683e655f55efd4fa60f",
-                "reference": "0414db29bd770ec5a4152683e655f55efd4fa60f",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/process/zipball/f741672edfcfe3a2ea77569d419006f23281d909",
+                "reference": "f741672edfcfe3a2ea77569d419006f23281d909",
                 "shasum": ""
             },
             "require": {
@@ -4089,37 +3655,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-05-30T04:24:30+00:00"
+            "time": "2018-07-09T09:01:07+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "7047f725e35eab768137c677f8c38e4a2a8e38fb"
+                "reference": "0d1c0965c3e82250b9786909cf584fd4a50c9c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/7047f725e35eab768137c677f8c38e4a2a8e38fb",
-                "reference": "7047f725e35eab768137c677f8c38e4a2a8e38fb",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/translation",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/translation.git",
-                "reference": "9749930bfc825139aadd2d28461ddbaed6577862"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/9749930bfc825139aadd2d28461ddbaed6577862",
-                "reference": "9749930bfc825139aadd2d28461ddbaed6577862",
->>>>>>> develop
+                "url": "https://api.github.com/repos/symfony/translation/zipball/0d1c0965c3e82250b9786909cf584fd4a50c9c5b",
+                "reference": "0d1c0965c3e82250b9786909cf584fd4a50c9c5b",
                 "shasum": ""
             },
             "require": {
@@ -4174,12 +3723,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
-            "time": "2018-05-21T10:06:52+00:00"
+            "time": "2018-07-23T08:18:36+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4189,22 +3737,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
                 "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
-=======
-            "time": "2018-07-26T11:19:56+00:00"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v3.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/810af2d35fc72b6cf5c01116806d2b65ccaaf2e2",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -4250,11 +3782,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2018-05-03T23:18:14+00:00"
-=======
-            "time": "2018-07-26T11:19:56+00:00"
->>>>>>> develop
         },
         {
             "name": "twig/twig",
@@ -4325,18 +3853,6 @@
         },
         {
             "name": "vlucas/phpdotenv",
-<<<<<<< HEAD
-            "version": "v2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "6ae3e2e6494bb5e58c2decadafc3de7f1453f70a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/6ae3e2e6494bb5e58c2decadafc3de7f1453f70a",
-                "reference": "6ae3e2e6494bb5e58c2decadafc3de7f1453f70a",
-=======
             "version": "v2.5.1",
             "source": {
                 "type": "git",
@@ -4347,7 +3863,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
                 "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -4384,24 +3899,121 @@
                 "env",
                 "environment"
             ],
-<<<<<<< HEAD
-            "time": "2018-07-01T10:25:50+00:00"
-=======
             "time": "2018-07-29T20:33:41+00:00"
->>>>>>> develop
         },
         {
-            "name": "wonderwp/autoloader",
-            "version": "1.0.0",
+            "name": "wonderwp/api",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/agencewonderful/wonderwp-autoloader.git",
-                "reference": "089f26ae78ba8a6f6092c239147e153a892d7910"
+                "url": "https://github.com/wonderwp/API.git",
+                "reference": "5d14c394100518239bf7683fc1605752f5c7437e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-autoloader/zipball/089f26ae78ba8a6f6092c239147e153a892d7910",
-                "reference": "089f26ae78ba8a6f6092c239147e153a892d7910",
+                "url": "https://api.github.com/repos/wonderwp/API/zipball/5d14c394100518239bf7683fc1605752f5c7437e",
+                "reference": "5d14c394100518239bf7683fc1605752f5c7437e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/service": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\API\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Api Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "api"
+            ],
+            "time": "2018-07-31T12:20:20+00:00"
+        },
+        {
+            "name": "wonderwp/asset",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Asset.git",
+                "reference": "dfc6ce02fc0b693ded6470996f88de0effa86f52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Asset/zipball/dfc6ce02fc0b693ded6470996f88de0effa86f52",
+                "reference": "dfc6ce02fc0b693ded6470996f88de0effa86f52",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/logging": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Asset\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Asset Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "log"
+            ],
+            "time": "2018-07-31T11:44:36+00:00"
+        },
+        {
+            "name": "wonderwp/autoload-wwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/AutoLoader.git",
+                "reference": "98438b4246c8e640db5b36fd955f86c71aafef69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/AutoLoader/zipball/98438b4246c8e640db5b36fd955f86c71aafef69",
+                "reference": "98438b4246c8e640db5b36fd955f86c71aafef69",
                 "shasum": ""
             },
             "type": "wordpress-muplugin",
@@ -4413,49 +4025,1095 @@
                 }
             ],
             "description": "WonderWP autoloader",
-            "time": "2018-01-09T16:25:10+00:00"
+            "time": "2018-03-25T13:45:40+00:00"
         },
         {
-            "name": "wonderwp/framework",
-            "version": "v1.x-dev",
+            "name": "wonderwp/cache",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/agencewonderful/wonderwp.git",
-<<<<<<< HEAD
-                "reference": "a7fecee7d94f52aced8647e180dc967e239e85ee"
+                "url": "https://github.com/wonderwp/Cache.git",
+                "reference": "e87f814bed5cd27429337115dec614a0670e6137"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp/zipball/a7fecee7d94f52aced8647e180dc967e239e85ee",
-                "reference": "a7fecee7d94f52aced8647e180dc967e239e85ee",
-=======
-                "reference": "d37a8b016fb5babd4fd0e48f38e257ca8c45b181"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp/zipball/d37a8b016fb5babd4fd0e48f38e257ca8c45b181",
-                "reference": "d37a8b016fb5babd4fd0e48f38e257ca8c45b181",
->>>>>>> develop
+                "url": "https://api.github.com/repos/wonderwp/Cache/zipball/e87f814bed5cd27429337115dec614a0670e6137",
+                "reference": "e87f814bed5cd27429337115dec614a0670e6137",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress": "^4.7",
-                "pimple/pimple": "^3.0",
-                "respect/validation": "^1.1",
-                "symfony/http-foundation": "~2.8|^3.0",
-                "wonderwp/autoloader": "^1.0"
+                "php": "~5.6|~7"
             },
             "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Cache\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Cache Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "cache"
+            ],
+            "time": "2018-03-19T22:24:18+00:00"
+        },
+        {
+            "name": "wonderwp/dependency-injection",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/DependencyInjection.git",
+                "reference": "9f9ea1ee46acbbbabab9153e7ba5fe5402056a57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/DependencyInjection/zipball/9f9ea1ee46acbbbabab9153e7ba5fe5402056a57",
+                "reference": "9f9ea1ee46acbbbabab9153e7ba5fe5402056a57",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "pimple/pimple": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\DependencyInjection\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp DependencyInjection Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "container"
+            ],
+            "time": "2018-07-31T11:46:32+00:00"
+        },
+        {
+            "name": "wonderwp/filter",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Filter.git",
+                "reference": "942fd40e21368b1c5116dca5e34d4dad02db6641"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Filter/zipball/942fd40e21368b1c5116dca5e34d4dad02db6641",
+                "reference": "942fd40e21368b1c5116dca5e34d4dad02db6641",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Filter\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Filter Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-07-31T11:47:09+00:00"
+        },
+        {
+            "name": "wonderwp/form",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Form.git",
+                "reference": "5a67c56f7d1cb15bcded105a50a7a6ba67f8bbfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Form/zipball/5a67c56f7d1cb15bcded105a50a7a6ba67f8bbfd",
+                "reference": "5a67c56f7d1cb15bcded105a50a7a6ba67f8bbfd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "respect/validation": "^1.1",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Form\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Form Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "form",
+                "types",
+                "validation"
+            ],
+            "time": "2018-07-04T20:18:57+00:00"
+        },
+        {
+            "name": "wonderwp/functions",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Functions.git",
+                "reference": "f681c8f3bf569c6a191fb1a5d36a6ef16379feed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Functions/zipball/f681c8f3bf569c6a191fb1a5d36a6ef16379feed",
+                "reference": "f681c8f3bf569c6a191fb1a5d36a6ef16379feed",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Functions\\": "src"
+                },
+                "files": [
+                    "src/functions.php"
+                ],
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Functions",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-05-09T13:43:55+00:00"
+        },
+        {
+            "name": "wonderwp/generator-wwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Generator.git",
+                "reference": "a6e27a585154d1107200268ec8a68cf217f4b31d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Generator/zipball/a6e27a585154d1107200268ec8a68cf217f4b31d",
+                "reference": "a6e27a585154d1107200268ec8a68cf217f4b31d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/task": "dev-develop@dev",
+                "wp-cli/wp-cli": "^1.3"
+            },
+            "type": "wordpress-muplugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Generator\\": "includes"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "WonderWP Plugin Generator",
+            "time": "2018-04-02T21:34:46+00:00"
+        },
+        {
+            "name": "wonderwp/hook",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Hook.git",
+                "reference": "ecc560b4249410182ddbb732e2f3721102f883b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Hook/zipball/ecc560b4249410182ddbb732e2f3721102f883b6",
+                "reference": "ecc560b4249410182ddbb732e2f3721102f883b6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Hook\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Hook Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service"
+            ],
+            "time": "2018-07-31T11:48:21+00:00"
+        },
+        {
+            "name": "wonderwp/http-foundation",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/HttpFoundation.git",
+                "reference": "4c25518e7f50b7831f3b3c8de793261ba3ac50f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/HttpFoundation/zipball/4c25518e7f50b7831f3b3c8de793261ba3ac50f4",
+                "reference": "4c25518e7f50b7831f3b3c8de793261ba3ac50f4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "symfony/http-foundation": "~2.8|^3.0",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\HttpFoundation\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp HttpFoundation Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "request"
+            ],
+            "time": "2018-07-31T11:48:56+00:00"
+        },
+        {
+            "name": "wonderwp/logging",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Logging.git",
+                "reference": "c07715c261e7f1ce95807080072f30423caa3d30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Logging/zipball/c07715c261e7f1ce95807080072f30423caa3d30",
+                "reference": "c07715c261e7f1ce95807080072f30423caa3d30",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Logging\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Logging Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "log"
+            ],
+            "time": "2018-03-17T22:34:37+00:00"
+        },
+        {
+            "name": "wonderwp/mailing",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Mailing.git",
+                "reference": "885c7475ebafec60bb4da0d3d8328498c5de2da3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Mailing/zipball/885c7475ebafec60bb4da0d3d8328498c5de2da3",
+                "reference": "885c7475ebafec60bb4da0d3d8328498c5de2da3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Mailing\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Mailing Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "request"
+            ],
+            "time": "2018-07-31T11:49:33+00:00"
+        },
+        {
+            "name": "wonderwp/media",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Media.git",
+                "reference": "d1d68b66edc97b3a5840e8c817eca8c480d97299"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Media/zipball/d1d68b66edc97b3a5840e8c817eca8c480d97299",
+                "reference": "d1d68b66edc97b3a5840e8c817eca8c480d97299",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Media\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Media Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "images"
+            ],
+            "time": "2018-07-31T11:49:58+00:00"
+        },
+        {
+            "name": "wonderwp/notification",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Notification.git",
+                "reference": "802296b05094364b224eaff9a89b24dafe3599a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Notification/zipball/802296b05094364b224eaff9a89b24dafe3599a1",
+                "reference": "802296b05094364b224eaff9a89b24dafe3599a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Notification\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Notification Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-07-31T11:50:17+00:00"
+        },
+        {
+            "name": "wonderwp/panel",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Panel.git",
+                "reference": "7858eb53b7a66e8f344d93498fd6df40bb2988df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Panel/zipball/7858eb53b7a66e8f344d93498fd6df40bb2988df",
+                "reference": "7858eb53b7a66e8f344d93498fd6df40bb2988df",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Panel\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Panel Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-07-31T11:50:40+00:00"
+        },
+        {
+            "name": "wonderwp/plugin-skeleton",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/PluginSkeleton.git",
+                "reference": "f85ae43e5f89172727ac0b16a22d01ee60aa7871"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/PluginSkeleton/zipball/f85ae43e5f89172727ac0b16a22d01ee60aa7871",
+                "reference": "f85ae43e5f89172727ac0b16a22d01ee60aa7871",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/api": "dev-develop@dev",
+                "wonderwp/asset": "dev-develop@dev",
+                "wonderwp/cache": "dev-develop@dev",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/generator-wwp": "dev-develop@dev",
+                "wonderwp/hook": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/mailing": "dev-develop@dev",
+                "wonderwp/notification": "dev-develop@dev",
+                "wonderwp/routing": "dev-develop@dev",
+                "wonderwp/search": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev",
+                "wonderwp/shortcode": "dev-develop@dev",
+                "wonderwp/task": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\PluginSkeleton\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Plugin Skeleton Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "search"
+            ],
+            "time": "2018-07-31T11:42:27+00:00"
+        },
+        {
+            "name": "wonderwp/repository",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Repository.git",
+                "reference": "1e76b74c956da2aa1ed3c15529807309d78e259b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Repository/zipball/1e76b74c956da2aa1ed3c15529807309d78e259b",
+                "reference": "1e76b74c956da2aa1ed3c15529807309d78e259b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Repository\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Repository Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service"
+            ],
+            "time": "2018-07-31T11:45:21+00:00"
+        },
+        {
+            "name": "wonderwp/routing",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Routing.git",
+                "reference": "6090b160553bcbad047f8c7f6d029c1418409d8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Routing/zipball/6090b160553bcbad047f8c7f6d029c1418409d8b",
+                "reference": "6090b160553bcbad047f8c7f6d029c1418409d8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Routing\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Routing Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "router",
+                "routing",
+                "uri",
+                "url"
+            ],
+            "time": "2018-07-31T12:10:58+00:00"
+        },
+        {
+            "name": "wonderwp/search",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Search.git",
+                "reference": "9a1d04b05883161716e1c6abfe0fcd4ac7b4d422"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Search/zipball/9a1d04b05883161716e1c6abfe0fcd4ac7b4d422",
+                "reference": "9a1d04b05883161716e1c6abfe0fcd4ac7b4d422",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/media": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Search\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Search Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "search"
+            ],
+            "time": "2018-07-04T20:21:15+00:00"
+        },
+        {
+            "name": "wonderwp/service",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Service.git",
+                "reference": "7f60244864df9e2cfae4e0f66262b827f7562b28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Service/zipball/7f60244864df9e2cfae4e0f66262b827f7562b28",
+                "reference": "7f60244864df9e2cfae4e0f66262b827f7562b28",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7",
+                "wonderwp/dependency-injection": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Service\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Service Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service"
+            ],
+            "time": "2018-07-31T12:12:04+00:00"
+        },
+        {
+            "name": "wonderwp/shortcode",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/ShortCode.git",
+                "reference": "766c824714782d8b93750922caf0d081b76d0d98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/ShortCode/zipball/766c824714782d8b93750922caf0d081b76d0d98",
+                "reference": "766c824714782d8b93750922caf0d081b76d0d98",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Shortcode\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp ShortCode Component",
+            "homepage": "https://wonderwp.com",
+            "keywords": [
+                "service",
+                "shortcode"
+            ],
+            "time": "2018-07-31T12:12:49+00:00"
+        },
+        {
+            "name": "wonderwp/task",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Task.git",
+                "reference": "e16c84c2169b4d38ca0290483e11083430c233d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Task/zipball/e16c84c2169b4d38ca0290483e11083430c233d7",
+                "reference": "e16c84c2169b4d38ca0290483e11083430c233d7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Task\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Task Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-03-20T20:46:18+00:00"
+        },
+        {
+            "name": "wonderwp/template",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/Template.git",
+                "reference": "2b64b3b5859367c33097ae74e448e4900c3a9d2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/Template/zipball/2b64b3b5859367c33097ae74e448e4900c3a9d2c",
+                "reference": "2b64b3b5859367c33097ae74e448e4900c3a9d2c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7"
+            },
+            "require-dev": {
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/form": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/notification": "dev-develop@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Component\\Template\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "homepage": "http://jdmweb.com"
+                },
+                {
+                    "name": "WonderWp Community",
+                    "homepage": "https://wonderwp.com/contributors"
+                }
+            ],
+            "description": "WonderWp Template Component",
+            "homepage": "https://wonderwp.com",
+            "time": "2018-07-31T12:13:20+00:00"
+        },
+        {
+            "name": "wonderwp/wonderwp",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wonderwp/wonderwp.git",
+                "reference": "7de3c5c7e9874cf606d39a3d45e9dc98413f0e4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wonderwp/wonderwp/zipball/7de3c5c7e9874cf606d39a3d45e9dc98413f0e4e",
+                "reference": "7de3c5c7e9874cf606d39a3d45e9dc98413f0e4e",
+                "shasum": ""
+            },
+            "require": {
+                "wonderwp/api": "dev-develop@dev",
+                "wonderwp/autoload-wwp": "dev-develop@dev",
+                "wonderwp/cache": "dev-develop@dev",
+                "wonderwp/dependency-injection": "dev-develop@dev",
+                "wonderwp/filter": "dev-develop@dev",
+                "wonderwp/form": "dev-develop@dev",
+                "wonderwp/functions": "dev-develop@dev",
+                "wonderwp/generator-wwp": "dev-develop@dev",
+                "wonderwp/hook": "dev-develop@dev",
+                "wonderwp/http-foundation": "dev-develop@dev",
+                "wonderwp/mailing": "dev-develop@dev",
+                "wonderwp/media": "dev-develop@dev",
+                "wonderwp/notification": "dev-develop@dev",
+                "wonderwp/plugin-skeleton": "dev-develop@dev",
+                "wonderwp/repository": "dev-develop@dev",
+                "wonderwp/routing": "dev-develop@dev",
+                "wonderwp/search": "dev-develop@dev",
+                "wonderwp/service": "dev-develop@dev",
+                "wonderwp/shortcode": "dev-develop@dev",
+                "wonderwp/task": "dev-develop@dev"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": "^4.7",
                 "phpunit/phpunit": "^5.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "WonderWp\\Framework\\": "src/WonderWp/Framework"
-                },
-                "files": [
-                    "src/WonderWp/Framework/functions.php"
-                ]
+                    "WonderWp\\Bundle\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4467,12 +5125,8 @@
                     "email": "jeremy.desvaux@wonderful.com"
                 }
             ],
-            "description": "WonderWP Framework part",
-<<<<<<< HEAD
-            "time": "2018-07-10T09:44:39+00:00"
-=======
-            "time": "2018-07-20T14:47:35+00:00"
->>>>>>> develop
+            "description": "WonderWP Framework",
+            "time": "2018-06-07T20:23:40+00:00"
         },
         {
             "name": "wp-cli/autoload-splitter",
@@ -4820,18 +5474,6 @@
         },
         {
             "name": "wp-cli/db-command",
-<<<<<<< HEAD
-            "version": "v1.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wp-cli/db-command.git",
-                "reference": "c9b7a5ef80f08a16cb7710ac8e63fc57a419bb9f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/db-command/zipball/c9b7a5ef80f08a16cb7710ac8e63fc57a419bb9f",
-                "reference": "c9b7a5ef80f08a16cb7710ac8e63fc57a419bb9f",
-=======
             "version": "v1.3.5",
             "source": {
                 "type": "git",
@@ -4842,7 +5484,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/wp-cli/db-command/zipball/c260be59d9ac4c0012b016405e17d0251137fb89",
                 "reference": "c260be59d9ac4c0012b016405e17d0251137fb89",
->>>>>>> develop
                 "shasum": ""
             },
             "require-dev": {
@@ -4895,11 +5536,7 @@
             ],
             "description": "Performs basic database operations using credentials stored in wp-config.php.",
             "homepage": "https://github.com/wp-cli/db-command",
-<<<<<<< HEAD
-            "time": "2018-05-15T15:36:55+00:00"
-=======
             "time": "2018-07-31T02:06:59+00:00"
->>>>>>> develop
         },
         {
             "name": "wp-cli/embed-command",
@@ -4960,18 +5597,6 @@
         },
         {
             "name": "wp-cli/entity-command",
-<<<<<<< HEAD
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wp-cli/entity-command.git",
-                "reference": "bf540e238bffc8c39286b1d16708c9d52866c4a5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/entity-command/zipball/bf540e238bffc8c39286b1d16708c9d52866c4a5",
-                "reference": "bf540e238bffc8c39286b1d16708c9d52866c4a5",
-=======
             "version": "v1.3.1",
             "source": {
                 "type": "git",
@@ -4982,7 +5607,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/wp-cli/entity-command/zipball/7b000645684b6acbb1d55ab47b77eb08f35cd229",
                 "reference": "7b000645684b6acbb1d55ab47b77eb08f35cd229",
->>>>>>> develop
                 "shasum": ""
             },
             "require-dev": {
@@ -5169,11 +5793,7 @@
             ],
             "description": "Manage WordPress core entities.",
             "homepage": "https://github.com/wp-cli/entity-command",
-<<<<<<< HEAD
-            "time": "2018-05-28T19:07:39+00:00"
-=======
             "time": "2018-07-13T12:21:06+00:00"
->>>>>>> develop
         },
         {
             "name": "wp-cli/eval-command",
@@ -5285,16 +5905,16 @@
         },
         {
             "name": "wp-cli/extension-command",
-            "version": "v1.2.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/extension-command.git",
-                "reference": "18f1036bad42f481f178c2f4139039e9424b6e14"
+                "reference": "5609057ff728712954f0ec2ab00f5295c94a0be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/extension-command/zipball/18f1036bad42f481f178c2f4139039e9424b6e14",
-                "reference": "18f1036bad42f481f178c2f4139039e9424b6e14",
+                "url": "https://api.github.com/repos/wp-cli/extension-command/zipball/5609057ff728712954f0ec2ab00f5295c94a0be5",
+                "reference": "5609057ff728712954f0ec2ab00f5295c94a0be5",
                 "shasum": ""
             },
             "require-dev": {
@@ -5363,7 +5983,7 @@
             ],
             "description": "Manages plugins and themes, including installs, activations, and updates.",
             "homepage": "https://github.com/wp-cli/extension-command",
-            "time": "2018-07-31T17:46:49+00:00"
+            "time": "2018-07-20T12:42:38+00:00"
         },
         {
             "name": "wp-cli/import-command",
@@ -5802,18 +6422,6 @@
         },
         {
             "name": "wp-cli/scaffold-command",
-<<<<<<< HEAD
-            "version": "v1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wp-cli/scaffold-command.git",
-                "reference": "659348f05ebb47e70d7286b2e989146893a3c588"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/scaffold-command/zipball/659348f05ebb47e70d7286b2e989146893a3c588",
-                "reference": "659348f05ebb47e70d7286b2e989146893a3c588",
-=======
             "version": "v1.2.0",
             "source": {
                 "type": "git",
@@ -5824,7 +6432,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/wp-cli/scaffold-command/zipball/a897a54ba0a8199743d90204ff773b302fc77572",
                 "reference": "a897a54ba0a8199743d90204ff773b302fc77572",
->>>>>>> develop
                 "shasum": ""
             },
             "require-dev": {
@@ -5870,11 +6477,7 @@
             ],
             "description": "Generates code for post types, taxonomies, blocks, plugins, child themes, etc.",
             "homepage": "https://github.com/wp-cli/scaffold-command",
-<<<<<<< HEAD
-            "time": "2018-04-20T18:37:18+00:00"
-=======
             "time": "2018-07-29T15:02:24+00:00"
->>>>>>> develop
         },
         {
             "name": "wp-cli/search-replace-command",
@@ -6575,6 +7178,1364 @@
             "time": "2017-10-19T19:58:43+00:00"
         },
         {
+            "name": "phar-io/manifest",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phar-io/manifest.git",
+                "reference": "2df402786ab5368a0169091f61a7c1e0eb6852d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/2df402786ab5368a0169091f61a7c1e0eb6852d0",
+                "reference": "2df402786ab5368a0169091f61a7c1e0eb6852d0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-phar": "*",
+                "phar-io/version": "^1.0.1",
+                "php": "^5.6 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Arne Blankerts",
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian Heuer",
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
+            "time": "2017-03-05T18:14:27+00:00"
+        },
+        {
+            "name": "phar-io/version",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phar-io/version.git",
+                "reference": "a70c0ced4be299a63d32fa96d9281d03e94041df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/a70c0ced4be299a63d32fa96d9281d03e94041df",
+                "reference": "a70c0ced4be299a63d32fa96d9281d03e94041df",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Arne Blankerts",
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian Heuer",
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library for handling version information and constraints",
+            "time": "2017-03-05T17:38:23+00:00"
+        },
+        {
+            "name": "phpdocumentor/reflection-common",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
+                "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
+                "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "opensource@ijaap.nl"
+                }
+            ],
+            "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
+            "homepage": "http://www.phpdoc.org",
+            "keywords": [
+                "FQSEN",
+                "phpDocumentor",
+                "phpdoc",
+                "reflection",
+                "static analysis"
+            ],
+            "time": "2017-09-11T18:02:19+00:00"
+        },
+        {
+            "name": "phpdocumentor/reflection-docblock",
+            "version": "4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "phpdocumentor/reflection-common": "^1.0.0",
+                "phpdocumentor/type-resolver": "^0.4.0",
+                "webmozart/assert": "^1.0"
+            },
+            "require-dev": {
+                "doctrine/instantiator": "~1.0.5",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "me@mikevanriel.com"
+                }
+            ],
+            "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
+            "time": "2017-11-30T07:14:17+00:00"
+        },
+        {
+            "name": "phpdocumentor/type-resolver",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/TypeResolver.git",
+                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
+                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5 || ^7.0",
+                "phpdocumentor/reflection-common": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.2||^4.8.24"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "me@mikevanriel.com"
+                }
+            ],
+            "time": "2017-07-14T14:27:02+00:00"
+        },
+        {
+            "name": "phpspec/prophecy",
+            "version": "1.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/prophecy.git",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/instantiator": "^1.0.2",
+                "php": "^5.3|^7.0",
+                "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
+                "sebastian/recursion-context": "^1.0|^2.0|^3.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^2.5|^3.2",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Prophecy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Marcello Duarte",
+                    "email": "marcello.duarte@gmail.com"
+                }
+            ],
+            "description": "Highly opinionated mocking framework for PHP 5.3+",
+            "homepage": "https://github.com/phpspec/prophecy",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "spy",
+                "stub"
+            ],
+            "time": "2018-04-18T13:57:24+00:00"
+        },
+        {
+            "name": "phpunit/php-code-coverage",
+            "version": "5.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "c89677919c5dd6d3b3852f230a663118762218ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c89677919c5dd6d3b3852f230a663118762218ac",
+                "reference": "c89677919c5dd6d3b3852f230a663118762218ac",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xmlwriter": "*",
+                "php": "^7.0",
+                "phpunit/php-file-iterator": "^1.4.2",
+                "phpunit/php-text-template": "^1.2.1",
+                "phpunit/php-token-stream": "^2.0.1",
+                "sebastian/code-unit-reverse-lookup": "^1.0.1",
+                "sebastian/environment": "^3.0",
+                "sebastian/version": "^2.0.1",
+                "theseer/tokenizer": "^1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "suggest": {
+                "ext-xdebug": "^2.5.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.3.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
+            "homepage": "https://github.com/sebastianbergmann/php-code-coverage",
+            "keywords": [
+                "coverage",
+                "testing",
+                "xunit"
+            ],
+            "time": "2018-04-06T15:36:58+00:00"
+        },
+        {
+            "name": "phpunit/php-file-iterator",
+            "version": "1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
+                "reference": "730b01bc3e867237eaac355e06a36b85dd93a8b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/730b01bc3e867237eaac355e06a36b85dd93a8b4",
+                "reference": "730b01bc3e867237eaac355e06a36b85dd93a8b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sb@sebastian-bergmann.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "FilterIterator implementation that filters files based on a list of suffixes.",
+            "homepage": "https://github.com/sebastianbergmann/php-file-iterator/",
+            "keywords": [
+                "filesystem",
+                "iterator"
+            ],
+            "time": "2017-11-27T13:52:08+00:00"
+        },
+        {
+            "name": "phpunit/php-text-template",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-text-template.git",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Simple template engine.",
+            "homepage": "https://github.com/sebastianbergmann/php-text-template/",
+            "keywords": [
+                "template"
+            ],
+            "time": "2015-06-21T13:50:34+00:00"
+        },
+        {
+            "name": "phpunit/php-timer",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-timer.git",
+                "reference": "3dcf38ca72b158baf0bc245e9184d3fdffa9c46f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3dcf38ca72b158baf0bc245e9184d3fdffa9c46f",
+                "reference": "3dcf38ca72b158baf0bc245e9184d3fdffa9c46f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sb@sebastian-bergmann.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Utility class for timing",
+            "homepage": "https://github.com/sebastianbergmann/php-timer/",
+            "keywords": [
+                "timer"
+            ],
+            "time": "2017-02-26T11:10:40+00:00"
+        },
+        {
+            "name": "phpunit/php-token-stream",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
+                "reference": "791198a2c6254db10131eecfe8c06670700904db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/791198a2c6254db10131eecfe8c06670700904db",
+                "reference": "791198a2c6254db10131eecfe8c06670700904db",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Wrapper around PHP's tokenizer extension.",
+            "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
+            "keywords": [
+                "tokenizer"
+            ],
+            "time": "2017-11-27T05:48:46+00:00"
+        },
+        {
+            "name": "phpunit/phpunit",
+            "version": "6.5.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "093ca5508174cd8ab8efe44fd1dde447adfdec8f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/093ca5508174cd8ab8efe44fd1dde447adfdec8f",
+                "reference": "093ca5508174cd8ab8efe44fd1dde447adfdec8f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-xml": "*",
+                "myclabs/deep-copy": "^1.6.1",
+                "phar-io/manifest": "^1.0.1",
+                "phar-io/version": "^1.0",
+                "php": "^7.0",
+                "phpspec/prophecy": "^1.7",
+                "phpunit/php-code-coverage": "^5.3",
+                "phpunit/php-file-iterator": "^1.4.3",
+                "phpunit/php-text-template": "^1.2.1",
+                "phpunit/php-timer": "^1.0.9",
+                "phpunit/phpunit-mock-objects": "^5.0.5",
+                "sebastian/comparator": "^2.1",
+                "sebastian/diff": "^2.0",
+                "sebastian/environment": "^3.1",
+                "sebastian/exporter": "^3.1",
+                "sebastian/global-state": "^2.0",
+                "sebastian/object-enumerator": "^3.0.3",
+                "sebastian/resource-operations": "^1.0",
+                "sebastian/version": "^2.0.1"
+            },
+            "conflict": {
+                "phpdocumentor/reflection-docblock": "3.0.2",
+                "phpunit/dbunit": "<3.0"
+            },
+            "require-dev": {
+                "ext-pdo": "*"
+            },
+            "suggest": {
+                "ext-xdebug": "*",
+                "phpunit/php-invoker": "^1.1"
+            },
+            "bin": [
+                "phpunit"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.5.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "The PHP Unit Testing framework.",
+            "homepage": "https://phpunit.de/",
+            "keywords": [
+                "phpunit",
+                "testing",
+                "xunit"
+            ],
+            "time": "2018-07-03T06:40:40+00:00"
+        },
+        {
+            "name": "phpunit/phpunit-mock-objects",
+            "version": "5.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
+                "reference": "6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f",
+                "reference": "6f9a3c8bf34188a2b53ce2ae7a126089c53e0a9f",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/instantiator": "^1.0.5",
+                "php": "^7.0",
+                "phpunit/php-text-template": "^1.2.1",
+                "sebastian/exporter": "^3.1"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "suggest": {
+                "ext-soap": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Mock Object library for PHPUnit",
+            "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
+            "keywords": [
+                "mock",
+                "xunit"
+            ],
+            "time": "2018-07-13T03:27:23+00:00"
+        },
+        {
+            "name": "sebastian/code-unit-reverse-lookup",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Looks up which function or method a line of code belongs to",
+            "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
+            "time": "2017-03-04T06:30:41+00:00"
+        },
+        {
+            "name": "sebastian/comparator",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/comparator.git",
+                "reference": "34369daee48eafb2651bea869b4b15d75ccc35f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/34369daee48eafb2651bea869b4b15d75ccc35f9",
+                "reference": "34369daee48eafb2651bea869b4b15d75ccc35f9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "sebastian/diff": "^2.0 || ^3.0",
+                "sebastian/exporter": "^3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Welch",
+                    "email": "whatthejeff@gmail.com"
+                },
+                {
+                    "name": "Volker Dusch",
+                    "email": "github@wallbash.com"
+                },
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@2bepublished.at"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Provides the functionality to compare PHP values for equality",
+            "homepage": "https://github.com/sebastianbergmann/comparator",
+            "keywords": [
+                "comparator",
+                "compare",
+                "equality"
+            ],
+            "time": "2018-02-01T13:46:46+00:00"
+        },
+        {
+            "name": "sebastian/diff",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/diff.git",
+                "reference": "347c1d8b49c5c3ee30c7040ea6fc446790e6bddd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/347c1d8b49c5c3ee30c7040ea6fc446790e6bddd",
+                "reference": "347c1d8b49c5c3ee30c7040ea6fc446790e6bddd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Diff implementation",
+            "homepage": "https://github.com/sebastianbergmann/diff",
+            "keywords": [
+                "diff"
+            ],
+            "time": "2017-08-03T08:09:46+00:00"
+        },
+        {
+            "name": "sebastian/environment",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/environment.git",
+                "reference": "cd0871b3975fb7fc44d11314fd1ee20925fce4f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/cd0871b3975fb7fc44d11314fd1ee20925fce4f5",
+                "reference": "cd0871b3975fb7fc44d11314fd1ee20925fce4f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Provides functionality to handle HHVM/PHP environments",
+            "homepage": "http://www.github.com/sebastianbergmann/environment",
+            "keywords": [
+                "Xdebug",
+                "environment",
+                "hhvm"
+            ],
+            "time": "2017-07-01T08:51:00+00:00"
+        },
+        {
+            "name": "sebastian/exporter",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/exporter.git",
+                "reference": "234199f4528de6d12aaa58b612e98f7d36adb937"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/234199f4528de6d12aaa58b612e98f7d36adb937",
+                "reference": "234199f4528de6d12aaa58b612e98f7d36adb937",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "sebastian/recursion-context": "^3.0"
+            },
+            "require-dev": {
+                "ext-mbstring": "*",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Welch",
+                    "email": "whatthejeff@gmail.com"
+                },
+                {
+                    "name": "Volker Dusch",
+                    "email": "github@wallbash.com"
+                },
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@2bepublished.at"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "Adam Harvey",
+                    "email": "aharvey@php.net"
+                }
+            ],
+            "description": "Provides the functionality to export PHP variables for visualization",
+            "homepage": "http://www.github.com/sebastianbergmann/exporter",
+            "keywords": [
+                "export",
+                "exporter"
+            ],
+            "time": "2017-04-03T13:19:02+00:00"
+        },
+        {
+            "name": "sebastian/global-state",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/global-state.git",
+                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
+                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "suggest": {
+                "ext-uopz": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Snapshotting of global state",
+            "homepage": "http://www.github.com/sebastianbergmann/global-state",
+            "keywords": [
+                "global state"
+            ],
+            "time": "2017-04-27T15:39:26+00:00"
+        },
+        {
+            "name": "sebastian/object-enumerator",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/object-enumerator.git",
+                "reference": "7cfd9e65d11ffb5af41198476395774d4c8a84c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/7cfd9e65d11ffb5af41198476395774d4c8a84c5",
+                "reference": "7cfd9e65d11ffb5af41198476395774d4c8a84c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "sebastian/object-reflector": "^1.1.1",
+                "sebastian/recursion-context": "^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Traverses array structures and object graphs to enumerate all referenced objects",
+            "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+            "time": "2017-08-03T12:35:26+00:00"
+        },
+        {
+            "name": "sebastian/object-reflector",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/object-reflector.git",
+                "reference": "773f97c67f28de00d397be301821b06708fca0be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/773f97c67f28de00d397be301821b06708fca0be",
+                "reference": "773f97c67f28de00d397be301821b06708fca0be",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Allows reflection of object attributes, including inherited and non-public ones",
+            "homepage": "https://github.com/sebastianbergmann/object-reflector/",
+            "time": "2017-03-29T09:07:27+00:00"
+        },
+        {
+            "name": "sebastian/recursion-context",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/recursion-context.git",
+                "reference": "5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8",
+                "reference": "5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Welch",
+                    "email": "whatthejeff@gmail.com"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "Adam Harvey",
+                    "email": "aharvey@php.net"
+                }
+            ],
+            "description": "Provides functionality to recursively process PHP variables",
+            "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
+            "time": "2017-03-03T06:23:57+00:00"
+        },
+        {
+            "name": "sebastian/resource-operations",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/resource-operations.git",
+                "reference": "ce990bb21759f94aeafd30209e8cfcdfa8bc3f52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/resource-operations/zipball/ce990bb21759f94aeafd30209e8cfcdfa8bc3f52",
+                "reference": "ce990bb21759f94aeafd30209e8cfcdfa8bc3f52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Provides a list of PHP built-in functions that operate on resources",
+            "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
+            "time": "2015-07-28T20:34:47+00:00"
+        },
+        {
+            "name": "sebastian/version",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/version.git",
+                "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/99732be0ddb3361e16ad77b68ba41efc8e979019",
+                "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Library that helps with managing the version number of Git-hosted PHP projects",
+            "homepage": "https://github.com/sebastianbergmann/version",
+            "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "theseer/tokenizer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/theseer/tokenizer.git",
+                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Arne Blankerts",
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
+            "time": "2017-04-07T12:08:54+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "time": "2018-01-29T19:49:41+00:00"
+        },
+        {
             "name": "webuni/commonmark-table-extension",
             "version": "0.6.1",
             "source": {
@@ -6736,7 +8697,6 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
-        "agencewonderful/wwp-generator": 20,
         "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-lazyload": 20,
         "agencewonderful/wwp-map": 20,

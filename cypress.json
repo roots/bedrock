@@ -1,9 +1,190 @@
 {
-    "host" : "http://local.wonderwp.com",
-    "smoke-pages" : [
+    "host": "http://local.wonderwp.com",
+    "videoRecording": false,
+    "smoke-pages": [
         "/?locale=fr_FR",
-        "/fr/plugins/actualites/",
-        "/fr/plugins/plugins-listings/",
-        "/fr/plugins/branchement-de-page/"
-    ]
+        "/fr/plugins/plugins-listings/"
+    ],
+    "wp-admin": {
+        "url": "/wp/wp-login",
+        "login": "jeremy.desvaux@wonderful.fr",
+        "pwd": "wonderwp"
+    },
+    "wwp-actu": {
+        "list": {
+            "url": "/fr/plugins/actualites/",
+            "filters": {
+                "selector": ".actu-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".actu-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/edit.php?post_type=wwp-actu"
+            }
+        }
+    },
+    "wwp-bp": {
+        "list": {
+            "url": "/fr/plugins/branchement-de-page/",
+            "list": {
+                "selector": ".bp-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-contact": {
+        "form": {
+            "url": "/fr/plugins/contact/",
+            "formSelector": ".contactForm"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-contact"
+            }
+        }
+    },
+    "wwp-emploi": {
+        "list": {
+            "url": "/fr/plugins/emploi/",
+            "filters": {
+                "selector": ".emploi-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".emploi-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-emploi"
+            }
+        }
+    },
+    "wwp-espace-restreint": {
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-espace-restreint"
+            }
+        }
+    },
+    "wwp-faq": {
+        "list": {
+            "url": "/fr/plugins/faq/",
+            "filters": {
+                "selector": ".faq-filters",
+                "class": "items-filters"
+            },
+            "list": {
+                "selector": ".faq-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/edit.php?post_type=wwp-faq"
+            }
+        }
+    },
+    "wwp-jeux": {
+        "list": {
+            "url": "/fr/plugins/jeux/",
+            "list": {
+                "selector": ".jeux-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-jeux"
+            }
+        }
+    },
+    "wwp-map": {
+        "map": {
+            "url": "/fr/plugins/map/",
+            "mapWrapSelector": ".module-map",
+            "mapSelector": ".map-wrap",
+            "optsSelector": ".map-opts",
+            "contentSelector": ".map-contents"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-map"
+            }
+        }
+    },
+    "wwp-meteo": {
+        "list": {
+            "url": "/fr/plugins/meteo/",
+            "list": {
+                "selector": ".bulletins-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-meteo"
+            }
+        }
+    },
+    "wwp-newsletter": {
+        "form": {
+            "url": "/fr/plugins/newsletter/",
+            "formSelector": ".nlForm"
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-newsletter"
+            }
+        }
+    },
+    "wwp-social": {
+        "list": {
+            "url": "/fr/plugins/remontees-sociales/",
+            "list": {
+                "selector": ".posts-list",
+                "class": "items-list"
+            }
+        }
+    },
+    "wwp-trombi": {
+        "list": {
+            "url": "/fr/plugins/trombinoscope/",
+            "list": {
+                "selector": ".trombi-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url": "/wp/wp-admin/admin.php?page=wwp-trombinoscope"
+            }
+        }
+    },
+    "wwp-video": {
+        "list": {
+            "url": "/fr/plugins/videos/",
+            "list": {
+                "selector": ".video-list",
+                "class": "items-list"
+            }
+        },
+        "admin": {
+            "list": {
+                "url" : "/wp/wp-admin/admin.php?page=wwp-video"
+            }
+        }
+    },
+    "wwp-vote": {
+        "form": {
+            "url": "/fr/plugins/vote/",
+            "formSelector": ".voteForm"
+        }
+    }
 }

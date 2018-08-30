@@ -8,9 +8,9 @@
 
 namespace WonderWp\Theme\Child;
 
-use WonderWp\Framework\AbstractPlugin\AbstractManager;
-use WonderWp\Framework\DependencyInjection\Container;
-use WonderWp\Framework\Service\ServiceInterface;
+use WonderWp\Component\PluginSkeleton\AbstractManager;
+use WonderWp\Component\DependencyInjection\Container;
+use WonderWp\Component\Service\ServiceInterface;
 use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Service\ChildThemeHookService;
 use WonderWp\Theme\Child\Service\ChildThemeShortcodeService;
@@ -36,7 +36,7 @@ class ChildThemeManager extends ThemeManager
         });
         //Routes
         $this->addService(ServiceInterface::ROUTE_SERVICE_NAME,function(){
-            return new ThemeRouteService();
+            return new ThemeRouteService($this);
         });
         //Assets
         $this->addService(ServiceInterface::ASSETS_SERVICE_NAME,function(){
