@@ -7,7 +7,7 @@
  */
 function wwp_theme_setup()
 {
-    $request = \WonderWp\Framework\HttpFoundation\Request::getInstance();
+    $request = \WonderWp\Component\HttpFoundation\Request::getInstance();
     if(!$request->getSession()->isStarted() && session_status() === PHP_SESSION_NONE) {
         $request->getSession()->start();
     }

@@ -71,6 +71,13 @@ pipeline {
         }
       }
     }
+    stage('phpunit') {
+      steps {
+        script{
+            sh 'CI/run-phpunit-tests.sh';
+        }
+      }
+    }
     stage('Deploy preprod') {
         when { branch 'develop' }
         steps {

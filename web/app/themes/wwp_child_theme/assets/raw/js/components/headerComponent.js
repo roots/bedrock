@@ -18,6 +18,7 @@ class headerComponent extends PewComponent {
 
     registerMenuToggler(){
         this.element.find('[data-menu-toggler]').on('click',(e)=>{
+            e.preventDefault();
             $(e.currentTarget).toggleClass('is-active');
             $('body').toggleClass(this.options.classToToggleOnBody);
             this.menu.toggle();

@@ -11,7 +11,7 @@ export class Menu extends PewComponent {
     }
 
     self($thisLi, subMenuOptions) {
-        return new this($thisLi, subMenuOptions);
+        return new this.constructor($thisLi, subMenuOptions);
     }
 
     init() {
