@@ -1,0 +1,117 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Header mobile (<768px)      */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$mobileheaderHeight: 85px;
+$header-bg-color: $gray-700;
+$menu-item-color: $white;
+$menu-item-bgcolor: $gray-600;
+$menu-item-color-active: $gray-700;
+$menu-item-bgcolor-active: $gray-400;
+$menu-item-m0-color: $gray-600;
+/* ------------- */
+
+@media (max-width: $medium - 1) {
+
+    .navigation-wrapper,
+    ul#menu .children {
+        position: fixed;
+        top: $mobileheaderHeight;
+        left: 0;
+        bottom: 0;
+        background-color: $header-bg-color;
+        width: 100vw;
+        max-width: 500px;
+        z-index: 10;
+        display: block;
+        height: calc(100vh - #{$mobileheaderHeight});
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        transform: translateX(-100%);
+        transition: all .3s ease;
+
+        &.is-opened {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+    }
+
+    ul#menu {
+
+        .mobile-nav-links,
+        li {
+            border-bottom: 1px solid #ffffff;
+        }
+
+        li {
+            background-color: $menu-item-bgcolor;
+            > a {
+                color: $menu-item-color;
+            }
+        }
+
+        li.current_page_ancestor,
+        li.current_page_item {
+            background-color: $menu-item-bgcolor-active;
+            > a {
+                color: $menu-item-color-active;
+            }
+        }
+
+        li > a {
+            padding: 20px;
+        }
+
+        ul.children {
+            top: 0;
+            transform: translateX(-33%);
+            display: block;
+        }
+
+        li.is-opened > .children {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        ul.mobile-nav-links {
+            display: grid;
+            grid-template-columns: 85px 1fr;
+        }
+
+        .back-btn {
+
+            button {
+                display: block;
+                height: 100%;
+                width: 100%;
+                background-color: #ffffff;
+                position: relative;
+                text-indent: -999px;
+                &::after {
+                    content: "<";
+                    display: block;
+                    font-size: 4rem;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    text-indent: 0;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+        .parent-page {
+            a span {
+                color: #ffffff;
+            }
+        }
+    }
+}

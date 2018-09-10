@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Header menu commons    */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$menu-item-color: $white;
+$menu-item-bgcolor: $gray-400;
+$menu-item-color-active: $white;
+$menu-item-bgcolor-active: $gray-600;
+$menu-item-m0-color: $gray-600;
+/* ------------- */
+
+ul#menu {
+    display: block;
+    text-align: left;
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+
+    &, ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    li > a {
+        display: block;
+        text-decoration: none;
+        position: relative;
+        cursor: pointer;
+    }
+
+    ul.children {
+        display: none;
+        padding-left: 0;
+        list-style: none;
+        background-color: $menu-item-bgcolor;
+
+    }
+
+}

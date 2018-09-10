@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Header menu desktop + tablet (<=768px)      */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$menu-item-color: $white;
+$menu-item-bgcolor: $gray-400;
+$menu-item-color-active: $white;
+$menu-item-bgcolor-active: $gray-600;
+$menu-item-m0-color: $gray-600;
+/* ------------- */
+
+@media (min-width: $medium) {
+
+    ul#menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+
+        li > a {
+            padding: 20px;
+            color: $white;
+        }
+
+        li.page_item_has_children > a::after {
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 0;
+            width: 0;
+            border: 8px solid transparent;
+            z-index: 2;
+        }
+
+        li.m0 {
+            &:hover,
+            &:focus {
+                background-color: $menu-item-bgcolor-active;
+            }
+
+            &.page_item_has_children:hover > a::after,
+            &.page_item_has_children:focus > a::after {
+                content: '';
+                border-top-color: $menu-item-bgcolor-active;
+            }
+        }
+
+        ul.children {
+            position: absolute;
+        }
+
+        .mobile-nav-links {
+            display: none;
+        }
+
+        li:hover > ul.children,
+        li:focus > ul.children {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul.level1 {
+            top: 64px;
+            left: 0;
+            right: 0;
+            background-color: $menu-item-bgcolor;
+            text-align: left;
+        }
+        li.m1, li.m2 {
+            > a {
+                color: $menu-item-m0-color;
+            }
+
+            &:hover,
+            &:focus {
+                > a {
+                    color: $menu-item-color-active;
+                    background-color: $menu-item-bgcolor-active;
+                }
+
+                > ul.children {
+                    display: flex;
+                }
+            }
+
+            &.page_item_has_children:hover a::after,
+            &.page_item_has_children:focus a::after {
+                content: '';
+                border-top-color: $menu-item-bgcolor-active;
+            }
+        }
+
+        li.current_page_ancestor > a,
+        li.current_page_item > a {
+            color: $menu-item-color-active !important;
+            background-color: $menu-item-bgcolor-active;
+        }
+    }
+
+}

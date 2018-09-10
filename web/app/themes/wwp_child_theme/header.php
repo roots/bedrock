@@ -74,7 +74,7 @@
 
             <?php
             echo '<a href="/" class="logo">
-                <!--<img src="/app/themes/wwp_child_theme/assets/raw/svg/logo.svg" alt="Mon site - accueil">--> LOGO
+                <!--<img src="/app/themes/wwp_child_theme/assets/raw/svg/logo.svg" alt="Mon site - accueil">--> <span>LOGO</span>
               </a>'
             ?>
 
