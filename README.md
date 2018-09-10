@@ -35,6 +35,9 @@ See a complete working example in the [roots-example-project.com repo](https://g
   `composer create-project roots/bedrock your-project-folder-name`
 
 2. Update environment variables in `.env`  file:
+
+**NOTE:** When working with [Trellis](https://github.com/roots/trellis), it is easier to manage all env variables in Trellis, and therefore recommended to not have an `.env` file.
+
   * `DB_NAME` - Database name
   * `DB_USER` - Database user
   * `DB_PASSWORD` - Database password
