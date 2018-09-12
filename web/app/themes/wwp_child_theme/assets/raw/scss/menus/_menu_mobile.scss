@@ -6,12 +6,7 @@
 /* Variables */
 /* ------------- */
 $mobileheaderHeight: 85px;
-$header-bg-color: $gray-700;
-$menu-item-color: $white;
-$menu-item-bgcolor: $gray-600;
-$menu-item-color-active: $gray-700;
-$menu-item-bgcolor-active: $gray-400;
-$menu-item-m0-color: $gray-600;
+$menu-item-border-color: $gray-400;
 /* ------------- */
 
 @media (max-width: $medium - 1) {
@@ -19,16 +14,17 @@ $menu-item-m0-color: $gray-600;
     .navigation-wrapper,
     ul.header-menu .children {
         display: block;
-        position: absolute;
+        position: fixed;
         top: $mobileheaderHeight;
         left: 0;
+        right: 0;
         bottom: 0;
-        background-color: $header-bg-color !important;
-        height: 100%;
-        min-height: 100vh;
+        height: 100vh;
         width: 100vw;
         max-width: 500px;
         z-index: 10;
+        overflow-y: auto;
+
         opacity: 0;
         pointer-events: none;
         visibility: hidden;
@@ -44,7 +40,9 @@ $menu-item-m0-color: $gray-600;
     }
 
     .navigation-wrapper {
-        border-top: 1px solid $gray-400 !important;
+        padding-bottom: 100vh;
+        border-top: 1px solid $menu-item-border-color;
+        background-color: $menu-item-bgcolor;
     }
 
     .navigation-wrapper ul.header-menu {
@@ -54,30 +52,20 @@ $menu-item-m0-color: $gray-600;
             margin-left: 0;
             font-size: 1.5rem;
             line-height: 2rem;
-            background-color: $menu-item-bgcolor;
 
             > a {
                 display: block;
                 height: 100%;
                 padding: 20px;
-                color: $menu-item-color !important;
             }
         }
 
         li, li:first-child {
-            border-bottom: 1px solid $gray-400 !important;
+            border-bottom: 1px solid $menu-item-border-color;
         }
 
         ul.level1 li {
             min-width: auto;
-        }
-
-        li.current_page_ancestor,
-        li.current_page_item {
-            background-color: $menu-item-bgcolor-active;
-            > a {
-                color: $menu-item-color-active;
-            }
         }
 
         li.page_item_has_children {
@@ -148,10 +136,12 @@ $menu-item-m0-color: $gray-600;
                 display: grid;
                 grid-template-columns: 1fr 60px;
             }
+
             span:first-of-type {
                 justify-self: center;
                 font-family: $font-family-headings;
             }
+
             span:last-of-type {
                 display: block;
                 width: 60px;

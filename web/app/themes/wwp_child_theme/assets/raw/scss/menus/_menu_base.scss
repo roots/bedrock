@@ -5,10 +5,11 @@
 
 /* Variables */
 /* ------------- */
+$header-bg-color: $gray-700;
 $menu-item-color: $white;
-$menu-item-bgcolor: $gray-400;
-$menu-item-color-active: $white;
-$menu-item-bgcolor-active: $gray-600;
+$menu-item-bgcolor: $gray-600;
+$menu-item-color-active: $gray-700;
+$menu-item-bgcolor-active: $gray-400;
 $menu-item-m0-color: $gray-600;
 /* ------------- */
 
@@ -26,6 +27,9 @@ ul.header-menu {
 
     li > a {
         display: block;
+        padding: 20px;
+        color: $menu-item-color;
+        background-color: $menu-item-bgcolor;
         text-decoration: none;
         position: relative;
         cursor: pointer;
@@ -34,6 +38,14 @@ ul.header-menu {
     ul.children {
         display: none;
         background-color: $menu-item-bgcolor;
+    }
+
+    li.current_page_ancestor,
+    li.current_page_item {
+        > a {
+            color: $menu-item-color-active;
+            background-color: $menu-item-bgcolor-active;
+        }
     }
 
 }

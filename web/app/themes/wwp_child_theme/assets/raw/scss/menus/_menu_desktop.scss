@@ -5,24 +5,26 @@
 
 /* Variables */
 /* ------------- */
-$menu-item-color: $white;
-$menu-item-bgcolor: $gray-400;
-$menu-item-color-active: $white;
-$menu-item-bgcolor-active: $gray-600;
-$menu-item-m0-color: $gray-600;
+$headerHeight: 64px;
+$menu-item-border-color: $gray-400;
 /* ------------- */
 
 @media (min-width: $medium) {
 
-    ul#menu {
+    ul.header-menu {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
 
-        li > a {
-            padding: 20px;
-            color: $white;
+        li {
+            &:hover,
+            &:focus {
+                > a {
+                    color: $menu-item-color-active;
+                    background-color: $menu-item-bgcolor-active;
+                }
+            }
         }
 
         li.page_item_has_children > a::after {
@@ -34,19 +36,14 @@ $menu-item-m0-color: $gray-600;
             width: 0;
             border: 8px solid transparent;
             z-index: 2;
-        }
+        } // Add bottom arrow when child items
 
-        li.m0 {
-            &:hover,
-            &:focus {
-                background-color: $menu-item-bgcolor-active;
-            }
-
+        li {
             &.page_item_has_children:hover > a::after,
             &.page_item_has_children:focus > a::after {
                 content: '';
-                border-top-color: $menu-item-bgcolor-active;
-            }
+                border-top-color: $menu-item-border-color;
+            } // Add bottom arrow when child items
         }
 
         ul.children {
@@ -55,7 +52,7 @@ $menu-item-m0-color: $gray-600;
 
         .mobile-nav-links {
             display: none;
-        }
+        } // For mobile only
 
         li:hover > ul.children,
         li:focus > ul.children {
@@ -64,41 +61,13 @@ $menu-item-m0-color: $gray-600;
         }
 
         ul.level1 {
-            top: 64px;
+            top: $headerHeight;
             left: 0;
             right: 0;
             background-color: $menu-item-bgcolor;
             text-align: left;
         }
-        li.m1, li.m2 {
-            > a {
-                color: $menu-item-m0-color;
-            }
 
-            &:hover,
-            &:focus {
-                > a {
-                    color: $menu-item-color-active;
-                    background-color: $menu-item-bgcolor-active;
-                }
-
-                > ul.children {
-                    display: flex;
-                }
-            }
-
-            &.page_item_has_children:hover a::after,
-            &.page_item_has_children:focus a::after {
-                content: '';
-                border-top-color: $menu-item-bgcolor-active;
-            }
-        }
-
-        li.current_page_ancestor > a,
-        li.current_page_item > a {
-            color: $menu-item-color-active !important;
-            background-color: $menu-item-bgcolor-active;
-        }
     }
 
 }
