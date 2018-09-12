@@ -59,6 +59,10 @@ $header-bg-color: $gray-700;
         left: 0;
         right: 0;
 
+        .has-opened-menu & {
+            position: fixed;
+        }
+
         .inner-header {
             display: grid;
             grid-template-columns: 1fr 85px;

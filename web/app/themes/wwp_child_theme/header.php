@@ -80,7 +80,7 @@
 
             <div class="navigation-wrapper">
 
-                <ul id="menu">
+                <ul class="header-menu" id="menu">
                     <?php
                     /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
                     $viewService = wwp_get_theme_service('view');

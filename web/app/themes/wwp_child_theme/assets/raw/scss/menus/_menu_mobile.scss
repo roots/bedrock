@@ -17,17 +17,18 @@ $menu-item-m0-color: $gray-600;
 @media (max-width: $medium - 1) {
 
     .navigation-wrapper,
-    ul#menu .children {
-        position: fixed;
+    ul.header-menu .children {
+        display: block;
+        position: absolute;
         top: $mobileheaderHeight;
         left: 0;
         bottom: 0;
-        background-color: $header-bg-color;
+        background-color: $header-bg-color !important;
+        height: 100%;
+        min-height: 100vh;
         width: 100vw;
         max-width: 500px;
         z-index: 10;
-        display: block;
-        height: calc(100vh - #{$mobileheaderHeight});
         opacity: 0;
         pointer-events: none;
         visibility: hidden;
@@ -42,18 +43,33 @@ $menu-item-m0-color: $gray-600;
         }
     }
 
-    ul#menu {
+    .navigation-wrapper {
+        border-top: 1px solid $gray-400 !important;
+    }
 
-        .mobile-nav-links,
+    .navigation-wrapper ul.header-menu {
+
         li {
-            border-bottom: 1px solid #ffffff;
+            height: 60px;
+            margin-left: 0;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            background-color: $menu-item-bgcolor;
+
+            > a {
+                display: block;
+                height: 100%;
+                padding: 20px;
+                color: $menu-item-color !important;
+            }
         }
 
-        li {
-            background-color: $menu-item-bgcolor;
-            > a {
-                color: $menu-item-color;
-            }
+        li, li:first-child {
+            border-bottom: 1px solid $gray-400 !important;
+        }
+
+        ul.level1 li {
+            min-width: auto;
         }
 
         li.current_page_ancestor,
@@ -64,8 +80,20 @@ $menu-item-m0-color: $gray-600;
             }
         }
 
-        li > a {
-            padding: 20px;
+        li.page_item_has_children {
+
+            > a::after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                background-image: url("#{$get-path-to-assets}/raw/svg/chevron-r-small-white.svg");
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 25px;
+                transform: translateY(-60%);
+            }
         }
 
         ul.children {
@@ -83,7 +111,9 @@ $menu-item-m0-color: $gray-600;
 
         ul.mobile-nav-links {
             display: grid;
-            grid-template-columns: 85px 1fr;
+            grid-template-columns: 60px 1fr;
+            margin-left: 0;
+            background-color: $menu-item-bgcolor-active;
         }
 
         .back-btn {
@@ -92,26 +122,42 @@ $menu-item-m0-color: $gray-600;
                 display: block;
                 height: 100%;
                 width: 100%;
-                background-color: #ffffff;
                 position: relative;
                 text-indent: -999px;
+                background-color: transparent;
                 &::after {
-                    content: "<";
+                    content: "";
                     display: block;
-                    font-size: 4rem;
                     position: absolute;
-                    top: 50%;
                     left: 50%;
-                    text-indent: 0;
-                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    transform: translate(-60%, -53%);
+                    background-image: url("#{$get-path-to-assets}/raw/svg/chevron-l-small-white.svg");
+                    background-repeat: no-repeat;
+                    width: 20px;
+                    height: 25px;
                 }
             }
         }
 
         .parent-page {
-            a span {
-                color: #ffffff;
+            font-size: 1.6rem;
+            font-weight: bold;
+
+            a {
+                display: grid;
+                grid-template-columns: 1fr 60px;
+            }
+            span:first-of-type {
+                justify-self: center;
+                font-family: $font-family-headings;
+            }
+            span:last-of-type {
+                display: block;
+                width: 60px;
+                text-indent: -9999px;
             }
         }
     }
+
 }
