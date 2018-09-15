@@ -1,0 +1,623 @@
+/**
+ * Plugin Name: Ultimate Addons for Visual Composer
+ * Plugin URI: http://codecanyon.net/item/ultimate-addons-for-visual-composer/6892199
+ * Description: All in one plugin for your Visual Composer needs!
+ * Version: 3.16.6
+ * Author: BrainstormForce
+ * Author URI: http://codecanyon.net/user/BrainstormForce
+ */
+
+.aio-icon-component i,
+.align-icon i,
+.ult-banner-block i,
+.flip-box-wrap i,
+.info-circle-wrapper i,
+.smile-icon-timeline-wrap i,
+.smile_icon_list_wrap i,
+.stats-block i,
+.uavc-icons i,
+.uavc-list-icon i,
+.ubtn i,
+.ult-animation i,
+.ult-new-ib i,
+.ult-overlay i,
+.ult-vc-seperator i,
+.ult_countdown i,
+.ult_pricing_table_wrap i,
+.ultb3-box i,
+.ultimate-call-to-action i,
+.ultimate-google-trends i,
+.ultimate-map-wrapper i,
+.uvc-heading i,
+.uvc-type-wrap i {
+    font-size: inherit;
+    line-height: inherit
+}
+.smile_icon_list_wrap,
+.smile_icon_list_wrap *,
+.aio-icon-component,
+.aio-icon-component *,
+.ult_pricing_table_wrap,
+.ult_pricing_table_wrap *,
+.ult-new-ib,
+.ult-new-ib *,
+.align-icon,
+.align-icon *,
+.flip-box-wrap,
+.flip-box-wrap *,
+.ult-banner-block,
+.ult-banner-block *,
+.uvc-heading,
+.uvc-heading *,
+.ult-animation,
+.ult-animation *,
+.ubtn,
+.ubtn *,
+.ubtn-link,
+.ubtn-ctn-center,
+.stats-block,
+.stats-block *,
+.smile-icon-timeline-wrap,
+.smile-icon-timeline-wrap *,
+.ult-overlay,
+.ult-overlay *,
+.ultimate-map-wrapper,
+.ultimate-map-wrapper *,
+.ultimate-google-trends,
+.ultimate-google-trends *,
+.ult_countdown,
+.ult_countdown *,
+.info-circle-wrapper,
+.info-circle-wrapper *,
+.uavc-icons,
+.uavc-icons *,
+.uavc-list-icon,
+.uavc-list-icon * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+.upb_video_class,
+.wpb_column,
+.wpb_row,
+.vc_row {
+    position: relative
+}
+.aio-icon,
+.vc_row .aio-icon {
+    display: inline-block;
+    font-size: 32px;
+    height: 2em;
+    width: 2em;
+    text-align: center;
+    line-height: 2em;
+    -moz-box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    box-sizing: content-box !important
+}
+.aio-icon.none {
+    display: inline-block;
+    font-size: 32px;
+    height: 1em;
+    width: 1em;
+    text-align: center;
+    line-height: 1em
+}
+.aio-icon.circle {
+    -webkit-border-radius: 50%;
+    border-radius: 50%
+}
+.aio-icon-img {
+    display: inline-block;
+    font-size: 48px;
+    width: 1em;
+    max-width: 100%;
+    -moz-box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    box-sizing: content-box !important
+}
+.aio-icon-img.uavc-circle {
+    width: 1em;
+    min-height: 1em;
+    background: rgba(214, 214, 214, 0.44);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    padding: .5em
+}
+.aio-icon-img.uavc-square {
+    width: 1em;
+    min-height: 1em;
+    background: rgba(214, 214, 214, 0.44);
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    padding: .5em
+}
+.aio-icon-img .img-icon {
+    width: 1em;
+    max-width: 100% !important;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    display: block;
+    font-size: inherit
+}
+.aio-tooltip {
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    max-width: 100%
+}
+.smile_icon_list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+}
+.smile_icon_list li.icon_list_item {
+    padding: 0 !important;
+    list-style: none !important;
+    clear: both !important;
+    position: relative !important;
+    min-height: 1em !important;
+    margin: 0 0 30px !important;
+    line-height: 100%;
+    overflow: visible
+}
+.smile_icon_list li.icon_list_item:last-child {
+    margin: 0 !important
+}
+a.ulimate-info-list-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 9;
+    width: 100%;
+    height: 100%
+}
+.smile_icon_list li .icon_list_icon {
+    font-size: 24px;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    float: left;
+    background: #FFF;
+    z-index: 9;
+    position: relative;
+    -moz-box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    box-sizing: content-box !important
+}
+.smile_icon_list .list-img-icon {
+    display: block;
+    margin: 0 auto;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important
+}
+.smile_icon_list li .icon_description h3 {
+    font-size: 17px;
+    line-height: 1.846153846;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+    clear: none !important
+}
+.smile_icon_list li .icon_description h3 a {
+    text-decoration: none
+}
+.smile_icon_list li .icon_description p {
+    font-size: inherit ;
+    font-weight: inherit;
+    font-style: inherit !important;
+    line-height: inherit ;
+    color: inherit !important
+}
+.smile_icon_list li .icon_description p:last-child {
+    margin-bottom: 0
+}
+.smile_icon_list li .icon_description div.icon_description_text {
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    font-size: 13px;
+    line-height: 18px;
+}
+.smile_icon_list li .icon_description span.icon_description_text {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-size: 14px;
+    line-height: 1.714285714;
+    display: block
+}
+.smile_icon_list li .icon_list_connector {
+    height: 100%;
+    position: absolute;
+    top: .5em;
+    z-index: 1
+}
+.info-circle-wrapper.info-circle-responsive .smile_icon_list li .icon_list_connector {
+    top:1em;
+}
+.smile_icon_list li:last-child .icon_list_connector {
+    display: none
+}
+.smile_icon_list.no_bg .icon_list_icon {
+    border: 2px solid #0183cc;
+    color: #0183cc
+}
+.smile_icon_list.square .icon_list_icon {
+    border-color: inherit
+}
+.smile_icon_list.circle .icon_list_icon {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border-color: inherit;
+    overflow: hidden
+}
+.smile_icon_list.with_bg .icon_list_icon {
+    background: #0183cc;
+    color: #fff
+}
+.smile_icon_list.left li .icon_list_connector {
+    left: .5em;
+    border-right-width: 1px;
+    border-right-style: dashed
+}
+.smile_icon_list.left li.ult-info-circle-img .icon_list_connector {
+    left: 0.34em;
+    top: 0.5em;
+}
+.smile_icon_list.left li .icon_description {
+    margin-left: 3em;
+    padding-left: 25px;
+    height: 3em;
+    vertical-align: middle;
+    display: table-cell;
+}
+.smile_icon_list.right {
+    text-align: right
+}
+.smile_icon_list.right li .icon_list_icon {
+    float: right;
+    position: relative
+}
+.smile_icon_list.right li .icon_list_connector {
+    right: .5em;
+    border-left-width: 1px;
+    border-left-style: dashed
+}
+.smile_icon_list.right li .icon_description {
+    margin-right: 3em;
+    padding-right: 25px
+}
+.smile_icon_list.top,
+.smile_icon_list.top:before,
+.smile_icon_list.top:after {
+    content: " ";
+    display: table;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+.smile_icon_list.top {
+    display: block
+}
+.smile_icon_list.top li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+.smile_icon_list.top li .icon_list_icon {
+    margin: 0 auto;
+    float: none
+}
+.smile_icon_list.top li .icon_description {
+    text-align: center;
+    margin: 15px;
+    padding-bottom: 0
+}
+.smile_icon_list.top li .icon_list_connector {
+    position: absolute;
+    top: .5em;
+    left: 50%;
+    width: 100%;
+    height: 10px;
+    border-top-width: 1px;
+    border-top-style: dashed;
+    margin-left: 0
+}
+.rtl .smile_icon_list.top li .icon_list_connector {
+    right: 50%;
+    left: auto
+}
+.info-wrapper .smile_icon_list li .icon_description .responsive-font-class * {
+    font-size: 13px;
+    line-height: 1.64em;
+    color: inherit;
+}
+@media only screen and (max-width: 768px) {
+    .smile_icon_list_wrap .smile_icon_list.top {
+        display: inline-block;
+        width: 100%
+    }
+    .smile_icon_list.top li.icon_list_item {
+        display: block;
+        width: 100%;
+        float: left
+    }
+    .smile_icon_list.top li .icon_list_connector {
+        display: none
+    }
+}
+.hexagon li .icon_list_icon:before {
+    content: "";
+    position: absolute;
+    top: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-bottom: 1em solid;
+    border-bottom-color: inherit !important
+}
+.hexagon li .icon_list_icon {
+    width: 3em !important;
+    height: 1.5em !important;
+    line-height: 1.5em !important;
+    background: #0183cc;
+    border-color: #0183cc;
+    color: #FFF;
+    position: relative;
+    top: 1em;
+    overflow: inherit
+}
+.hexagon li .icon_list_icon:after {
+    content: "";
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    border-left: 1.5em solid rgba(0, 0, 0, 0);
+    border-right: 1.5em solid rgba(0, 0, 0, 0);
+    border-top: 1em solid;
+    border-top-color: inherit !important
+}
+.smile_icon_list.top.hexagon .icon_list_icon {
+    position: relative;
+    margin-bottom: 2em
+}
+.smile_icon_list.top.hexagon .icon_list_connector {
+    top: .55em
+}
+.full-width-content.wpb-js-composer .site-inner {
+    overflow: visible !important
+}
+.smile_icon_list.circle {
+    float: none;
+    border: 0;
+    width: auto;
+    margin: 0;
+    cursor: inherit
+}
+.ult-animation * {
+	-webkit-backface-visibility: hidden;
+}
+.ult-animation.ult-animate-viewport {
+    -webkit-transition: opacity 900ms linear;
+    transition: opacity 900ms linear
+}
+.uavc-list-icon ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 30px !important;
+    position: relative !important
+}
+.uavc-list-icon ul:last-child {
+    margin: 0 !important
+}
+.uavc-list-icon li {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    clear: both !important;
+    line-height: 1.6em;
+    overflow: visible
+}
+.uavc-list-content {
+    display: table;
+    width: 100%;
+    margin-bottom: 7px
+}
+.uavc-list-content .aio-icon {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.uavc-list-content span.uavc-list-desc {
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    width: 100%;
+}
+.uavc-icons,
+.wpb_column .wpb_wrapper .uavc-icons {
+    display: block;
+    margin-bottom: 35px;
+    line-height: 1
+}
+.uavc-icons-left.uavc-icons {
+    text-align: left
+}
+.uavc-icons-center.uavc-icons {
+    text-align: center
+}
+.uavc-icons-right.uavc-icons {
+    text-align: right
+}
+.aio-icon i {
+    line-height: inherit
+}
+.ultimate_google_map img {
+    max-width: initial !important
+}
+/*---front end----*/
+
+.vc_element.element-ultimate_icons {
+    float: left;
+    padding-left: 75%;
+}
+.vc_ultimate_icons a.vc_control-btn.vc_control-btn-append {
+    /*margin-bottom: 10px;*/
+
+    margin-top: 20px;
+    margin-left: 50%;
+    z-index: 33000000;
+}
+.smile_icon_list.left li .icon_description {
+    line-height: 1em;
+}
+.vc_element.element-info_list {
+    padding-top: 20%;
+    float: left;
+    padding-left: 20%;
+}
+.vc_element.element-ultimate_icon_list {
+    margin-top: 20%;
+    margin-left: 50%;
+}
+.vc_ultimate_icon_list a.vc_control-btn.vc_control-btn-append {
+    margin-left: 85%;
+}
+.vc_element.element-icon_timeline {
+    display: block;
+    float: left;
+    padding-left: 50%;
+}
+.vc_element.element-ultimate_carousel {
+    padding-top: 20%;
+}
+.vc_element.element-ult_ihover {
+    margin-top: 20%;
+}
+.vc_element.element-ult_hotspot {
+    margin-top: 20%;
+}
+.aio-icon-description p,
+.aio-icon-description div,
+.ifb-flip-box-section-content p,
+.ifb-flip-box-section-content div,
+.info-circle-text p,
+.info-circle-text div,
+.timeline-header>div p,
+.timeline-header>div div,
+.uavc-list-desc p,
+.uavc-list-desc div,
+.ult-tooltipster-content p,
+.ult-tooltipster-content div,
+.ult_price_features p,
+.ult_price_features div,
+.uvc-ctaction-data,
+.uvc-ctaction-data p,
+.uvc-ctaction-data div,
+.uvc-sub-heading p,
+.uvc-sub-heading div,
+.ultimate-vticker p,
+.ultimate-vticker div,
+.ult_modal-body p,
+.ult_modal-body div {
+    font-family: inherit!important;
+    font-weight: inherit !important;
+    font-size: inherit!important;
+    font-style: inherit !important;
+    color: inherit !important;
+    line-height: inherit !important;
+}
+.ultimate-ticker-prefix,
+.ultimate-ticker-suffix{
+    font-size: inherit;
+    line-height: inherit;
+}
+.ubtn-text,
+span.middle-text p,
+span.middle-text div,
+.strip_main_text p,
+.strip_main_text div,
+.strip_highlight_text p,
+.strip_highlight_text div,
+.ulsb-strip > h4 p,
+.ulsb-strip > h4 div {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+/* Creative  Link Style-10*/
+a.ult_colorlink p,
+a.ult_colorlink div {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    line-height: inherit;
+}
+/* Advanced Tab */
+li.ult_tab_li > a.ult_a span {
+    color: inherit;
+}
+
+/** = Theme Compatibilities
+ *-----------------------------------------------------------*/
+
+/* Theme - X */
+[data-x-icon],
+[class*="x-icon-"] {
+    line-height: inherit;
+}
+/* vc 4.9 compatible */
+.ubtn-img-container,
+.ubtn-ctn-center,
+.ubtn-ctn-left,
+.ubtn-ctn-right,
+.ult_dual_button.ult-adjust-bottom-margin,
+html .ult_exp_section_layer.ult-adjust-bottom-margin,
+.uvc-type-wrap.ult-adjust-bottom-margin,
+.ultimate-map-wrapper.ult-adjust-bottom-margin,
+.ultimate-google-trends.ult-adjust-bottom-margin,
+.ultimate-call-to-action.ult-adjust-bottom-margin,
+.ultb3-box.ult-adjust-bottom-margin,
+.info-wrapper.ult-adjust-bottom-margin,
+.smile_icon_list_wrap.ult-adjust-bottom-margin,
+.ult-banner-block.ult-adjust-bottom-margin,
+.uavc-list-icon-wrapper.ult-adjust-bottom-margin,
+.ult-modal-input-wrapper.ult-adjust-bottom-margin,
+html .ult-ih-container.ult-adjust-bottom-margin,
+html .ult_main_cl.ult-adjust-bottom-margin,
+html .ult_hotspot_container.ult-adjust-bottom-margin {
+    margin-bottom: 35px;
+}
+.ultimate-map-wrapper{
+    -webkit-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box;
+}
+/*html .vc_col-has-fill a.ubtn-link.ult-adjust-bottom-margin {
+    margin-bottom: 50px;
+}
+*/
+html .vc_col-has-fill a.ubtn-link.ult-adjust-bottom-margin .ubtn.ult-adjust-bottom-margin {
+    margin-bottom: 0;
+}

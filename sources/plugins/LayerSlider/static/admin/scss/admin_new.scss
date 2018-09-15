@@ -1,0 +1,81 @@
+//  BASE CSS
+//----------------------------------------------------------------
+
+html, body {
+	background: white;
+}
+
+.clear {
+	clear: both;
+	float: none !important;
+}
+
+.wrap {
+	position: relative;
+}
+
+#wpbody-content * {
+	direction: ltr !important;
+}
+
+.wrap a {
+	outline: none;
+}
+
+.wrap a:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+#screen-meta-links {
+	position: relative;
+	z-index: 10;
+}
+
+.ls-hidden {
+	display: none !important;
+}
+
+.wrap .ls-preview *,
+.wrap .ls-layer * {
+	text-shadow: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+
+
+//  BASE VARS
+//----------------------------------------------------------------
+$fontHelvetica: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+$boxHeaderGradient: 3% 10%;
+$boxHeaderGradientDark: 10% 20%;
+$boxHeaderGradientBlue: #2a95c5 #21759b;
+
+//  SCSS MIXINS
+//----------------------------------------------------------------
+@import "mixins";
+
+//  INTERFACE
+//----------------------------------------------------------------
+@import "layout";
+@import "interface";
+
+
+//  PAGE SPECIFIC
+//----------------------------------------------------------------
+@import "sliders_list";
+@import "slider_settings";
+@import "slide_settings";
+@import "layer_settings";
+@import "transition_gallery";
+@import "transition_builder";

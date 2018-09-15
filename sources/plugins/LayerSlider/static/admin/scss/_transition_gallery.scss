@@ -1,0 +1,139 @@
+#ls-transition-window {
+	display: none;
+	padding-top: 31px;
+	box-sizing: border-box;
+}
+
+#ls-transition-window .inner {
+	height: 100%;
+	padding: 0;
+	overflow-y: auto;
+	font-family: 'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+#ls-transition-window header {
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid #ddd;
+	line-height: 30px;
+	background: #F1F1F1;
+}
+
+#ls-transition-window header h2 {
+	margin: 0 0 0 10px;
+	float: left;
+	font-size: 14px;
+}
+
+#ls-transition-window header .filters {
+	border-left: 0;
+	margin-left: 20px;
+}
+
+#ls-transition-window header b {
+	float: right;
+	line-height: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+#ls-transition-window header a,
+#ls-transition-window header i {
+	margin-right: 20px;
+	float: right;
+	font-style: normal;
+	cursor: pointer;
+}
+
+#ls-transition-window .ls-checkbox {
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+#ls-transition-window table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+#ls-transition-window th {
+	height: 20px;
+	margin: 10px 0;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666;
+	background: #f7f7f7;
+	font-weight: normal;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+#ls-transition-window tbody:last-child th {
+	border-top: 1px solid #dfdfdf;
+}
+
+
+#ls-transition-window tbody {
+	display: none;
+}
+
+#ls-transition-window tbody.active {
+	display: table-row-group;
+}
+
+#ls-transition-window tbody td {
+	line-height: 32px;
+	padding: 0 10px;
+	background: white !important;
+	border-right: 1px solid #ddd;
+}
+
+#ls-transition-window tbody td:last-child {
+	border-right: 0;
+}
+
+#ls-transition-window tbody a {
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	outline: none;
+	transition: none !important;
+}
+
+#ls-transition-window tbody td.c {
+	width: 31px;
+	padding: 0;
+	text-align: center;
+	color: #444;
+}
+
+#ls-transition-window tbody td i {
+	font-style: normal;
+}
+
+#ls-transition-window tbody td i:last-child {
+	display: none;
+}
+
+#ls-transition-window tbody td.added i:first-child {
+	display: none;
+}
+
+#ls-transition-window tbody td.added i:last-child {
+	display: inline-block;
+	color: #92BD67;
+	line-height: inherit;
+	font-size: 25px;
+	margin-left: -7px;
+}
+
+.ls-icon-star {
+	width: 16px;
+	height: 16px;
+	display: block;
+	float: right;
+	margin: 2px 8px 0px 10px;
+	background: transparent url(../img/sprite.png) 0px -810px no-repeat;
+}

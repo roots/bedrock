@@ -1,0 +1,141 @@
+.ult_hotspot_container,
+.ult_hotspot_container * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box
+}
+.ult_hotspot_container img {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: auto;
+    width: 100%;
+    max-width: 100%
+}
+.ultimate-hotspot-base {
+    max-width: 100%
+}
+.ult_hotspot_container {
+    position: relative;
+    clear: both;
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 0
+}
+.ult_hotspot_container .utl-hotspot-items {
+    overflow: hidden
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item {
+    position: absolute;
+    text-align: center
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item a {
+    text-decoration: none;
+    border: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background: 0 0;
+    text-align: center;
+    line-height: 0
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item a:hover {
+    -webkit-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+    -webkit-animation: none;
+    animation: none
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item a:focus {
+    outline: 0
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item a span {
+    color: inherit;
+    font-size: 16px;
+    line-height: 32px;
+    height: 32px;
+    width: 32px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%)
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item.ult-glow .aio-icon i:before {
+    z-index: 50
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item .ult-glow {
+    background: #fff;
+    position: absolute;
+    height: 200%;
+    width: 200%;
+    top: -50%;
+    left: -50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    line-height: normal;
+    -webkit-animation: Hotspot_Glow 2s ease-out infinite;
+    animation: Hotspot_Glow 2s ease-out infinite
+}
+@-webkit-keyframes Hotspot_Glow {
+    0% {
+        -webkit-transform: scale(0.1);
+        opacity: 0
+    }
+    50% {
+        opacity: .7
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 0
+    }
+}
+@keyframes Hotspot_Glow {
+    0% {
+        -webkit-transform: scale(0.1);
+        transform: scale(0.1);
+        opacity: 0
+    }
+    50% {
+        opacity: .7
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0
+    }
+}
+.ult_hotspot_container .utl-hotspot-items .ult-hotspot-item.ult-pulse {
+    border: none;
+    -webkit-animation: Hotspot_Pulse 2s ease-out infinite;
+    animation: Hotspot_Pulse 2s ease-out infinite
+}
+@-webkit-keyframes Hotspot_Pulse {
+    0%, 100% {
+        -webkit-transform: scale(1);
+        text-shadow: 0 0 15px #4F4F4F
+    }
+    50% {
+        -webkit-transform: scale(0.8);
+        text-shadow: 0 0 10px #4F4F4F
+    }
+}
+@keyframes Hotspot_Pulse {
+    0%, 100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        text-shadow: 0 0 15px #4F4F4F
+    }
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        text-shadow: 0 0 10px #4F4F4F
+    }
+}
+.hotspot-tooltip-content {
+    display: none!important
+}

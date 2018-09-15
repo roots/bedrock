@@ -1,0 +1,429 @@
+
+/*
+	* LayerSlider Plugin: Create Timeline Styles
+	*
+	* (c) 2011-2016 George Krupa, John Gera & Kreatura Media
+	*
+	* Plugin web:			https://layerslider.kreaturamedia.com/
+	* licenses:				http://codecanyon.net/licenses/standard
+*/
+
+
+
+.ls-slide-timeline {
+	position: relative;
+	background-color: white;
+	z-index: 1000000;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin-top: 20px !important;
+	font-family: "Open Sans", Lato, HelveticaNeue, Helvetica, Arial !important;
+	margin: 0 auto;
+}
+
+	.ls-timeline-streched {
+		position: relative;
+		min-height: 30px;
+	}
+
+		.ls-timeline-streched .ls-slidebar-container {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			margin: 0;
+		}
+
+		.ls-timeline-streched .ls-slidebar-container * {
+			cursor: col-resize;
+		}
+
+		.ls-timeline-streched .ls-slidebar {
+			height: 100%;
+			border-radius: 0;
+			background-color: transparent;
+		}
+
+		.ls-timeline-streched .ls-progressbar {
+			border-radius: 0;
+			background-color: rgba(255,255,255,0.45);
+		}
+
+		.ls-timeline-streched .ls-slidebar-slider-container {
+			top: 0;
+			height: 100%;
+			margin-top: 0 !important;
+		}
+
+		.ls-timeline-streched .ls-slidebar-slider {
+			width: 1px;
+			height: 100%;
+			border-radius: 0;
+			background-color: rgba(255,0,0,0.5);
+			position: relative !important;
+			border: none;
+		}
+
+		.ls-timeline-streched .ls-slidebar-slider:before {
+			content:'';
+			position: absolute;
+			left: -6px;
+			top: -6px;
+			width: 1px;
+			border: 6px solid rgba(255,0,0,0.5);
+			border-left-color: transparent;
+			border-right-color: transparent;
+			border-bottom-color: transparent;
+		}
+
+		.ls-timeline-streched .ls-slidebar-slider:after {
+			content:'';
+			position: absolute;
+			left: -6px;
+			top: -16px;
+			width: 13px;
+			height: 10px;
+			background-color: rgba(255,0,0,0.5);
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.ls-timeline-streched .ls-slidebar-slider .ls-current-time {
+			position: absolute;
+			right: 10px;
+			top: -17px;
+			color: red;
+			text-align: right;
+			font-size: 11px;
+			font-weight: 400;
+			white-space: nowrap;
+		}
+
+	.ls-show-layer-info .ls-timeline-streched {
+		margin-left: 150px;
+	}
+
+		.ls-timings-wrapper {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+		}
+
+			.ls-timeline-seconds {
+				position: absolute;
+				width: 0px;
+				font-size: 0px;
+				height: 100%;
+				border-right: 1px dashed #aaa;
+				margin-left: -1px;
+			}
+
+			.ls-timeline-seconds-last {
+				border-right: none !important;
+			}
+
+			.ls-timeline-seconds:first-child {
+				margin-left: 0px;
+				border-right: none !important;
+			}
+
+				.ls-timeline-sec {
+					width: 30px;
+					font-size: 11px;
+					color: #555;
+					position: absolute;
+					left: -15px;
+					top: -17px;
+					text-align: center;
+					white-space: nowrap;
+				}
+
+			.ls-timeline-seconds:last-child .ls-timeline-sec {
+					left: -30px;
+					right: 0px;
+					text-align: right;
+			}
+
+			.ls-timeline-dsecond {
+				position: absolute;
+				top: -5px;
+				width: 1px;
+				font-size: 0px;
+				height: 100%;
+				/*background-color: rgba(0,0,0,0.08);*/
+				border-top: 5px solid #bbb;
+			}
+
+		.ls-layer-tweens {
+			border-bottom: 1px solid #ddd;
+			position: relative;
+			padding: 10px 0px;
+			overflow: hidden;
+		}
+
+		.ls-layer-tweens:last-child {
+			border: none;
+		}
+
+			.ls-layer-tweens-inner {
+				height: 15px;
+				position: relative;
+			}
+
+				.ls-layer-tween {
+					top: 0;
+					height: 5px;
+					position: absolute;
+					border-bottom-left-radius: 4px;
+					border-top-right-radius: 4px;
+					background-color: rgba(0,0,0,0.25);
+				}
+
+				.ls-layer-transition-in {
+					background-color: rgba( 69, 195, 0, 0.35 );
+				}
+
+				.ls-layer-transition-out {
+					background-color: rgba( 69, 195, 0, 0.75 );
+				}
+
+				.ls-layer-delay-in,
+				.ls-layer-showuntil {
+					background-color: rgba( 0, 0, 0, 0.15 );
+				}
+
+				.ls-layer-static {
+					height: 3px;
+					border-top: 1px dotted #999;
+					border-bottom: 1px dotted #999;
+					background: rgba( 255, 255, 255, 0.5 );
+				}
+
+				.ls-layer-text-in,
+				.ls-layer-text-out {
+					top: 5px;
+				}
+
+				.ls-layer-text-in {
+					background-color: rgba( 255, 0, 0, 0.35 );
+				}
+
+				.ls-layer-text-out {
+					background-color: rgba( 255, 0, 0, 0.65 );
+				}
+
+				.ls-layer-loop {
+					background-color: rgba( 0, 132, 255, 0.5 );
+					top: 10px;
+				}
+
+	.ls-timeline-layer-info {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		height: 100%;
+		width: 0px;
+		display: none;
+	}
+
+	.ls-show-layer-info .ls-timeline-layer-info {
+		display: block;
+		width: 149px;
+		border-right: 1px solid #ddd;
+	}
+
+		.ls-layer-info {
+			border-bottom: 1px solid #ddd;
+			position: relative;
+			height: 35px;
+		}
+
+			.ls-layer-info h1 {
+				line-height: 35px !important;
+				height: 35px !important;
+				font-family: "Open Sans", Lato, HelveticaNeue, Helvetica, Arial !important;
+				font-weight: bold !important;
+				font-size: 12px !important;
+				white-space: nowrap !important;
+				color: #555 !important;
+				overflow: hidden !important;
+				padding: 0px !important;
+				margin: 0px 5px !important;
+				text-transform: uppercase !important;
+			}
+
+			.ls-layer-info h1 span {
+				display: inline-block !important;
+				padding-left: 5px !important;
+				font-weight: 300 !important;
+				white-space: nowrap !important;
+				color: #333 !important;
+			}
+
+			.ls-layer-info div {
+				right: 0;
+				top: 0;
+				width: 110px;
+				height: 100%;
+				background-color: #f3f3f3;
+				position: absolute;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center center;
+				border-left: 1px solid #ddd;
+			}
+
+				.ls-layer-info div a {
+					display: block;
+					position: absolute;
+					cursor: pointer;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+				}
+
+			.ls-layer-info address {
+				position: absolute;
+				display: none;
+				line-height: normal;
+				padding: 10px 15px;
+				border-radius: 3px;
+				background: rgba(0,0,0,.75);
+				color: white;
+				left: 10px;
+				bottom: 125%;
+				font-style: normal;
+				font-weight: 400;
+				z-index: 2;
+				box-shadow: 0px 2px 10px rgba(0,0,0,.4);
+			}
+
+			.ls-layer-info:hover address {
+				display: block;
+			}
+
+			.no-layers h1 {
+				text-align: center !important;
+				line-height: 30px !important;
+			}
+
+		.ls-layer-info:last-child {
+			border: none;
+		}
+
+	.ls-tooltip-layer-preview {
+		position: absolute;
+		left: 50%;
+		bottom: 100%;
+		width: 160px;
+		height: 100px;
+		border-radius: 5px;
+		background-color: rgba(0,0,0,.75);
+		z-index: 1;
+		padding: 5px;
+		display: none;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center center;
+		margin-left: -80px;
+		margin-bottom: 10px;
+	}
+
+	.ls-tooltip-layer-info {
+		color: white;
+		font-size: 20px;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		line-height: 50px;
+		zIndex: 2;
+		whit-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+.ls-timeline-legend {
+	width: 100%;
+	border-top: 1px solid #ddd;
+	box-sizing: border-box;
+	height: 31px;
+}
+
+	.ls-timeline-legend span {
+		margin: 6px 5px 6px 0 !important;
+		border-radius: 3px;
+		text-transform: uppercase;
+		font-size: 11px;
+		font-family: sans-serif !important;
+		font-weight: bold !important;
+		color: white;
+		text-align: center !important;
+		padding: 0 4px !important;
+		height: 18px !important;
+		line-height: 19px !important;
+		display: inline-block;
+		box-sizing: border-box;
+	}
+
+	.ls-timeline-legend span.ls-tl-leg {
+		width: 150px;
+		color: #555 !important;
+		font-weight: normal !important;
+	}
+
+	.ls-tl-leg-delay {
+		background-color: rgba( 0, 0, 0, 0.15 );
+	}
+
+	.ls-tl-leg-in {
+		background-color: rgba( 69, 195, 0, 0.35 );
+	}
+
+	.ls-tl-leg-out {
+		background-color: rgba( 69, 195, 0, 0.75 );
+	}
+
+	.ls-tl-leg-textin {
+		background-color: rgba( 255, 0, 0, 0.35 );
+	}
+
+	.ls-tl-leg-textout {
+		background-color: rgba( 255, 0, 0, 0.65 );
+	}
+
+	.ls-tl-leg-loop {
+		background-color: rgba( 0, 132, 255, 0.5 );
+	}
+
+	.ls-timeline-legend span.ls-tl-leg-static {
+		border: 1px dotted #999 !important;
+		color: #aaa !important;
+		height: 20px !important;
+		margin: 5px 5px 5px 0 !important;
+	}
+
+#ls-wrapper-highlighted {
+	z-index: 1000 !important;
+	outline: 1px solid white;
+	transition: all .1s ease-out !important;
+	transform: scale(1.25) !important;
+}
+
+#ls-wrapper-highlighted img.ls-layer {
+	background-color: rgba(0,0,0,.25) !important;
+}
+
+#ls-wrapper-highlighted:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	outline: 1px dashed black;
+}

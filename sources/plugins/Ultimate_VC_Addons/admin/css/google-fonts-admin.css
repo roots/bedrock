@@ -1,0 +1,382 @@
+.gfont span.variants, .gfont span.subsets
+{
+	display:none;
+}
+.font-delete
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	padding: 8px 5px;
+}
+.font-delete:hover
+{
+	color: #e14d43;
+}
+.font-delete i
+{
+	height: 100%;
+}
+.font-delete i:before
+{
+	vertical-align: sub;
+}
+.selected-font-top
+{
+	position: relative;
+}
+.selected-font-top.have-variants
+{
+	cursor:pointer;
+}
+.selected-font-top
+{
+	padding: 5px 10px;
+	background: #F7F7F7;
+	background: -webkit-linear-gradient(#FAFAFA, #F3F3F3);
+	background: -o-linear-gradient(#FAFAFA, #F3F3F3);
+	background: -moz-linear-gradient(#FAFAFA, #F3F3F3);
+	background: linear-gradient(#FAFAFA, #F3F3F3);
+}
+.selected-font-top.fopened
+{
+	border-bottom: 1px solid #ECECEC;
+}
+.selected-font-content
+{
+	display: none;
+	padding: 15px 10px;
+	background: #FDFDFD;
+	position: relative;
+}
+.selected-font-content .spinner.fspinner {
+	bottom: 23px;
+	right: 10px;
+	position: absolute;
+	float: right !important;
+}
+.fspinner-show
+{
+	float: left;
+	display: block;
+	visibility:visible;
+}
+/*Fixed*/
+.wrap {
+	position: relative;
+}
+.nav {
+	background: #fff;
+	border: 1px solid #e9e9e9;
+	padding: 8px 12px;
+	margin: 15px 0 17px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+.fonts-list {
+	width: 65%;
+	float: left;
+}
+.gfont {
+	border: 1px solid #dcdcdc;
+	margin: 0 3px 10px 0;
+	background: #fff;
+	position: relative;
+	-moz-box-shadow: 0 1px 1px #e1e1e1;
+	-webkit-box-shadow: 0 1px 1px #eee;
+	-o-box-shadow: 0 1px 1px #eee;
+	box-shadow: 0 1px 1px #eee;
+	padding: 8px 10px;
+}
+.gfont div.font-header, 
+.fonts-selected-list div.font-header
+{
+	margin: 0;
+	float: left;
+	font-size: 17px;
+	line-height: 34px;
+}
+.fonts-selected-list {
+	overflow-y: auto;
+	max-height: 91%;
+	margin: 0;
+	padding:0;
+	width: 360px;
+	float:right;
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	-moz-box-shadow: 0px 3px 3px #D6D6D6;
+	-webkit-box-shadow: 0px 3px 3px #D6D6D6;
+	-o-box-shadow: 0px 3px 3px #D6D6D6;
+	box-shadow: 0px 3px 3px #D6D6D6;
+}
+#fonts-selected-wrapper
+{
+	margin-top: 0.5em;
+	border-top: 1px solid #F0F0F0;
+	padding: 10px;
+}
+#fonts-selected-wrapper .selected-font
+{
+	background: #F1F1F1;
+	margin-bottom: 7px;
+	position: relative;
+	border: 1px solid #ECECEC;
+}
+#fonts-selected-wrapper .selected-font:last-child {
+	margin-bottom: 0;
+}
+.fonts-selected-list h3
+{
+	margin:5px;
+	padding: 8px 10px;
+}
+.font-variant input
+{
+	vertical-align: bottom;
+	margin-right: 8px;
+}
+input.button.update-google-font-button {
+	float: left;
+	display: block;
+	width: 100%;
+	margin: 10px 0 0;
+	padding: 3px 0;
+	clear: both;
+	-mox-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-transition: all 0.218s linear;
+	-moz-transition: all 0.218s linear;
+	transition: all 0.218s linear;
+	background: #04a4cc;
+	border-color: #037c9a;
+	color: #fff;
+	-webkit-box-shadow: inset 0 1px 0 #22cffb,0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #22cffb,0 1px 0 rgba(0,0,0,.15);
+}
+input.button.update-google-font-button:focus,
+input.button.update-google-font-button:hover,
+input.button.update-google-font-button:active {
+	outline: none;
+	background: #0490b3;
+	border-color: #036881;
+	color: #fff;
+	-webkit-box-shadow: inset 0 1px 0 #09cafa,0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #09cafa,0 1px 0 rgba(0,0,0,.15);
+}
+.font-variant, .font-subset
+{
+	display: inline-block;
+	font-size: 14px;
+	margin: 0 0 6px;
+	min-width: 100px;
+}
+.uagffixed {
+	position: fixed;
+	top: 50px;
+	right: 20px;
+	z-index: 999999999;
+	margin: 0 !important;
+	float:none;
+}
+@media all and (max-width: 1200px) {
+	.fonts-selected-list, 
+	.uagffixed {
+		width: 23%;
+	}
+}
+/*Customizations*/
+.wrap.uavc-gfont .add-new-h2, 
+.wrap.uavc-gfont .add-new-h2:active {
+	padding: 6px 10px;
+	color: #0074a2;
+}
+.wrap.uavc-gfont .add-new-h2:hover{
+	background: #2ea2cc;
+	color: #fff;
+}
+.wrap.uavc-gfont input#refresh-google-fonts:focus {
+	outline: none;
+	cursor: pointer;
+}
+.wrap.uavc-gfont .nav {
+	position: relative;
+	min-width: 255px;
+	border: 1px solid #e5e5e5;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	background: #fff;
+	margin-top: 10px;
+}
+.wrap.uavc-gfont input#search_gfont {
+	max-width: 50%;
+	width: 320px;
+	padding: 5px 7px !important;
+	font-size: 13px;
+	line-height: 1.5em !important;
+	font-weight: 600;
+}
+/*buttons*/
+.wrap.uavc-gfont .add-google-font, 
+.google-font-message-buttons
+{
+	cursor: pointer;
+	padding: 8px 12px;
+	text-align: center;
+	font-size: 12px;
+	min-width: 111px;
+	text-align: center;
+	background: #2ea2cc;
+	color: #fff;
+	border: 1px solid #0074a2;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+	text-decoration: none;
+	-webkit-transition: all 0.218s;
+	-moz-transition: all 0.218s;
+	transition: all 0.218s;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.google-font-confirmation .google-font-message-buttons {
+	min-width: 70px;
+	background: #D6D6D6;
+	color: #4d4d4d;
+	font-weight: 700;
+	border: 1px solid #C2C2C2;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.5),0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 rgba(182, 182, 182, 0.5),0 1px 0 rgba(0,0,0,.15);
+}
+.wrap.uavc-gfont .add-google-font:hover, 
+.wrap.uavc-gfont .add-google-font:active,
+.wrap.uavc-gfont .add-google-font:focus,
+.google-font-message-buttons:hover,
+.google-font-message-buttons:active,
+.google-font-message-buttons:focus {
+	background: #1e8cbe;
+	border-color: #0074a2;
+	color: #fff;
+	outline: none;
+}
+.wrap.uavc-gfont .font-added,
+.wrap.uavc-gfont .font-added:active,
+.wrap.uavc-gfont .font-added:focus,
+.wrap.uavc-gfont .font-added:hover {
+	cursor: not-allowed;
+	background: #738e96;
+	border-color: #4D707A;
+	color: #fff;
+	-webkit-box-shadow: inset 0 1px 0 #8EAAB3,0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #8EAAB3,0 1px 0 rgba(0,0,0,.15);
+}
+.fonts-selected-list .dashicons.dashicons-arrow-down {
+	margin-left: 15px;
+	margin-top: 3px;
+	font-size: 27px;
+}
+.font-delete:before {
+	content: "Remove";
+	position: absolute;
+	right: 20px;
+	top: 11px;
+	background: #e14d43;
+	border: 1px solid #D54036;
+	color: #fff;
+	padding: 2px 5px;
+	opacity: 0;
+	-webkit-transition: all 300ms ease-in;
+	-moz-transition: all 300ms ease-in;
+	transition: all 300ms ease-in;
+}
+.font-delete:hover:before {
+	right: 30px;
+	opacity: 1;
+}
+.google-font-overlay
+{
+	position:fixed;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.6);
+	width: 100%;
+	height: 100%;
+	z-index: 999999999;
+}
+.google-font-confirmation
+{
+	position: fixed;
+	top: 40%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 420px;
+	max-width: 90%;
+	padding: 35px 35px 15px;
+	background: white;
+	border: 1px solid #525252;
+	border-radius: 5px;
+	box-shadow: 0px 0px 7px #525252;
+	z-index: 99999999999;
+}
+.google-font-message .google-font-message-buttons:first-child {
+	margin-right: 20px;
+	/*
+	background: #e14d43;
+	border-color: #d02a21;
+	color: #fff;
+	-webkit-box-shadow: inset 0 1px 0 #ec8a85,0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #ec8a85,0 1px 0 rgba(0,0,0,.15);
+	*/
+	background: #D6D6D6;
+	color: #333;
+	border: 1px solid #C2C2C2;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.5),0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 rgba(182, 182, 182, 0.5),0 1px 0 rgba(0,0,0,.15);
+}
+.google-font-message .google-font-message-buttons:first-child:hover {
+	background: #dd362d;
+	border-color: #ba251e;
+	color: #fff;
+	-webkit-box-shadow: inset 0 1px 0 #e8756f,0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #e8756f,0 1px 0 rgba(0,0,0,.15);
+}
+.google-font-confirmation-header h3
+{
+	margin: 0;
+	padding: 0px 8px;
+	text-align: center;
+}
+.google-font-message
+{
+	padding: 25px 0 10px;
+	display: block;
+	margin: 0 auto;
+	width: 220px;
+}
+.gfont-anchor-buttons
+{
+	text-decoration: none;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+.gfont-anchor-buttons i
+{
+	font-size: 28px;
+}
+#vc-gf-msg .updated
+{
+	padding:10px;
+}
+
+.selected-font-subset-wrapper {
+	margin-top: 5px;
+	padding-top: 10px;
+	border-top: 1px solid #F7F7F7;
+}

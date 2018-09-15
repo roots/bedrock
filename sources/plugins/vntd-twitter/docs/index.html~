@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Template Documentation Template</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;OAuth Twitter for WordPress&rdquo; Documentation by &ldquo;Michael Strong&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;OAuth Twitter&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 28th February 2013<br>
+					By: Michael Strong<br>
+					Email: <a href="mailto:micmania@hotmail.co.uk">micmania@hotmail.co.uk</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/micmania1">here</a>.</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#features">Features</a></li>
+			<li><a href="#quickstart">Quick Start</a></li>
+			<li><a href="#installation">Installation</a></li>
+			<li><a href="#setup">Setup</a></li>
+			<li><a href="#twitter">Twitter Application Setup</a></li>
+			<li><a href="#widget">Display Your Tweets (Enable the widget)</a></li>
+			<li><a href="#shortcodes">Embedding tweets with shortcodes</a></li>
+		</ol>
+		
+		<hr>
+		
+		<h3 id="features"><strong>Features</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+		    OAuth Twitter is a plugin which provides a configurable widget to display a list of recent tweets from a given Twitter account. Within the widget
+		    you can set which account to display tweets for as well how many you would like to display.
+	    </p>
+	    
+	    <p>
+	        This plugin has been built to work with Twitter API v1.1 and should fit right into any well built WordPress theme.
+	    </p>
+		
+		<hr>
+
+		<h3 id="quickstart"><strong>Quick Start</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+		    This quick start is aimed at the more techinical users who are comfortable installing plugins and managing widgets. Full &amp; complete instructions can be found below.
+		</p>
+		
+	    <ol>
+	        <li>Login to your WordPress dashboard as an Administrator.</li>
+	        <li>Go to the Plugins sections and add a new plugin. You'll be able to install the plguin from the downloaded zip file.</li>
+	        <li>Remember to activate the plugin once installed.</li>
+	        <li>Once activated go to Settings > OAuth Twitter</li>
+	        <li>On this screen you will see that four fields are required. You can get these by setting up a <a href="#twitter">Twitter Application</a>.</li>
+	        <li>When all 4 fields are complete you can go to Appearance > Widgets and create a 'Latest Tweets' widget.</li>
+            <li>The widget options are as follows:
+	            <ul>
+	                <li><strong>Title:</strong> The title you would like to appear above your tweets.</li>
+	                <li><strong>Screen Name:</strong> This is the Twitter username (without the @) of the user whose tweets you would like to list.</li>
+	                <li><strong>How many tweets?</strong> This sets how many tweets you would like to display.</li>
+                    <li><strong>Show Date?</strong> This sets whether or not to show the time passed since the tweet was made.</li>
+	            </ul>
+	        </li>
+	    </ol>
+		
+		<hr>
+
+		<h3 id="installation"><strong>Installation</strong> - <a href="#toc">top</a></h3>
+
+        <p>
+            To install the OAuth Twitter plugin you must upload it to the plugin directory of your WordPress blog. You can do this many ways, 
+            but the simplest is through your WordPress administrator Dashboard.
+        </p>
+        
+        <ol>
+            <li>Login to your WordPress dashboard.</li>
+            <li>Go to Plugins > Add New in the left column.</li>
+            <li>Click 'Upload' in the options just under the page title.</li>
+            <li>Select the .zip file you downloaded from CodeCanyon and upload it.</li>
+            <li>Once you&#039;ve done this you will need to activate it.</li>
+        </ol>
+        
+        <p>That's it! You should be done.</p>
+        
+        <p>
+            If you need any further help installing your plugin, here are a few useful llinks which may be able to help:<br>
+            <a href="http://www.wpbeginner.com/beginners-guide/step-by-step-guide-to-install-a-wordpress-plugin-for-beginners/">http://www.wpbeginner.com/beginners-guide/step-by-step-guide-to-install-a-wordpress-plugin-for-beginners/</a>
+            <a href="http://urbangiraffe.com/articles/how-to-install-a-wordpress-plugin/">http://urbangiraffe.com/articles/how-to-install-a-wordpress-plugin/</a>
+        </p>
+        
+
+		<hr>
+		
+		<h3 id="setup"><strong>Setup</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+		    Twitter have recently changed their API so that any requests made to it must be authenticated. This basically means you will need to setup an
+		    application on Twitter and copy over a few details for the widget to work. Here's how to setup your application:
+	    </p>
+	    
+	    <ol>
+	        <li>Go to <a href="https://dev.twitter.com/">Twitter&#039;s developer website</a> and sign in using your normal Twitter account.</li>
+	        <li>Navigate to 'My applications' which can be found by hovering over your name in the toolbar and clicking &#039;Create a new application&#039;.</li>
+	        <li>
+	            On this page there are <strong>4</strong> required fields which includes <strong>Callback URL</strong>. Here's an example setup:
+	            <ul>
+	                <li><strong>Name:</strong> My WordPress Blog</li>
+	                <li><strong>Description:</strong> An application to integrate My WordPress Blog with Twitter.</li>
+	                <li><strong>Website:</strong> http://www.mywordpressblog.com (This should match the URL of your blog).</li>
+	                <li><strong>Callback URL</strong> http://www.mywordpressblog.com (This can match the website field value).</li> 
+	            </ul>
+	        </li>
+	    </ol>
+	    
+	    <p>
+	        Once you have setup your application, make a note of your Consumer Key and Consumer Secret as you will need to enter these into your WordPress blog.
+        </p>
+        
+        <p>
+		    No you've completed the setup of your application you can go back to your WordPress dashboard and naviagte to Settings > OAuth Twitter. From here
+		    you will be able to enter your Consumer Key and Consumer secret. You can leave the Access Token and Access Secret blank for now. Click save and 
+		    wait for the page to refresh.
+	    </p>
+	    
+	    <p>
+	        When your consumer tokens have been saved, you will see an 'Autofill' link appear next to the access tokens. You can click this link to automatically 
+	        fill in the Access fields which are required for the widget to function. Note that when you click the link, you will be asked to login with your Twitter
+	        account. This is all part of the authentication process required by Twitter.
+	    </p>
+		
+		<hr>
+		
+		<h3 id="widget"><strong>Display Your Tweets (Enable the Widget)</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+		    Now that you&#039;ve completed the plugin <a href="#setup">setup</a> you&#039;re able to display tweets on your selected pages. To do this you will need to 
+		    add the 'Latest Tweets' widget to the sections you wish to display your tweets.
+		</p>
+		
+		<p>
+		    To add the widget navigate to Appearance > Widgets inside your WordPress dashboard. Drag the 'Latest Tweets' Widget from the 'Available Widgets' section into
+		    a Widget Area on the left. To find out which area(s) you should drag the widget into, consult your theme author or theme documentation.
+	    </p>
+	    
+	    <p>
+	        When you have your theme in the desired theme area you will be given 4 options by the widget. These options are as follows:
+            <ul>
+                <li><strong>Title:</strong> The title you would like to appear above your tweets.</li>
+                <li><strong>Screen Name:</strong> This is the Twitter username (without the @) of the user whose tweets you would like to list.</li>
+                <li><strong>How many tweets?</strong> This sets how many tweets you would like to display.</li>
+                <li><strong>Show Date?</strong> This sets whether or not to show the time passed since the tweet was made.</li>
+            </ul>
+	    </p>
+	    
+	    <p>
+	        When you&#039;ve finished setting up the widget, remember to click 'Save'. This will make the widget live and display the tweets in the desired
+	        location on your blog.
+		</p>
+		
+		<p>
+		    To display multiple tweet feeds in different place, simple follow this process again. There is no limit on the amount of feeds you can have in one area or blog.
+	    </p>
+	    
+	    <p>
+	        For more information on how to add a widget, this video may help:<br>
+	    </p>
+	    <iframe width="420" height="315" src="http://www.youtube.com/embed/gXnNQd25cT0" frameborder="0" allowfullscreen></iframe>
+		
+		<hr> 
+		
+	    <p>
+	        If you have further queries which aren&#039;t answered in this documentation, please feel free to contact me via <a href="http://themeforest.net/user/micmania1">themeforest</a>.
+	    </p>
+		
+		<hr>
+		
+		<h3 id="shortcodes"><strong>Shortcodes</strong> - <a href="#toc">top</a></h3>
+		
+		<p>
+		    OAuth Twitter comes with a <strong>[twitterfeed]</strong> shortcode so that you can add your most recent tweets into any blog post or content field. The shortcode comes
+		    with a few customizable attributes including the ability to override the default styles & control the number of tweets to fetch. See below for details:
+	    </p>
+	    
+	    
+	    <p>
+	        <strong>Displays the latest tweet from @twitter:</strong>
+	        <code>
+	            [twitterfeed]twitter[/twitterfeed]
+            </code>
+        </p>
+        
+        <p>
+            <strong>Displays the 2 latest tweets from @twitter:</strong>
+            <code>
+	            [twitterfeed count="2"]twitter[/twitterfeed]
+            </code>
+        </p>
+        
+        <p>
+            <strong>Overwrite the default styles:</strong>
+            <code>
+	            [twitterfeed class="mycustomclass"]twitter[/twitterfeed]<br />
+            </code>
+        </p>
+        
+        <p>
+            <strong>Add an id the the tweet holder:</strong>
+            <code>
+	            [twitterfeed id="mycustomid"]twitter[/twitter]<br />
+            </code>
+        </p>
+        
+        <p>
+            <strong>Show the time since the tweet was made:</strong>
+            <code>
+	            [twitterfeed showdate="true"]twitter[/twitterfeed]
+            </code>
+        </p>
+        
+        <p>
+            <strong>Use multiple attributes:</strong>
+            <code>
+                [twitterfeed count="2" class="mycustomclass" id="mycustomid" showdate="true"]twitter[/twitterfeed]
+            </code>
+        </p>
+        
+		<hr>
+		
+		<p class="append-bottom alt large"><strong>Michael Strong</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

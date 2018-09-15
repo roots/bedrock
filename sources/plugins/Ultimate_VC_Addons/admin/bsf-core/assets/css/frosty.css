@@ -1,0 +1,172 @@
+/*  ========================================================================
+ *  Frosty.js
+ *  https://owensbla.github.com/frosty
+ *  by Blake Owens (http://blakeowens.com/)
+ *  ======================================================================== */
+ .bsf-has-tip,
+ .has-tip {
+  cursor: help;
+ }
+.tip {
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #eeeeee;
+  font-size: 11px;
+  line-height: 1.5em;
+  max-width: 200px;
+  padding: 4px 8px;
+}
+.tip.success {
+  background-color: #47fe42;
+  background-color: rgba(71, 254, 66, 0.8);
+  color: #025600;
+}
+.tip.error {
+  background-color: #ff7f86;
+  background-color: rgba(255, 127, 134, 0.8);
+  color: #7f0006;
+}
+.tip.light {
+  background-color: #ebebeb;
+  background-color: rgba(235, 235, 235, 0.8);
+  color: #222222;
+}
+.tip[class*="arrow"]:before {
+  content: ' ';
+  position: absolute;
+  border: solid transparent;
+  width: 0px;
+  height: 0px;
+  border-width: 5px;
+  border-color: black;
+  border-color: rgba(0, 0, 0, 0.8);
+}
+.success[class*="arrow"]:before {
+  border-color: #47fe42;
+  border-color: rgba(71, 254, 66, 0.8);
+}
+.error[class*="arrow"]:before {
+  border-color: #ff7f86;
+  border-color: rgba(255, 127, 134, 0.8);
+}
+.light[class*="arrow"]:before {
+  border-color: #ebebeb;
+  border-color: rgba(235, 235, 235, 0.8);
+}
+.tip.arrow-right:before {
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-top: -5px;
+  top: 50%;
+  left: 100%;
+}
+.tip.arrow-left:before {
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+}
+.tip.arrow-top:before {
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+}
+.tip.arrow-bottom:before {
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-left: -5px;
+  top: 100%;
+  left: 50%;
+}
+
+/* Customizer Tooltip */
+.customize-support .tip {
+  background-color: rgba(0, 148, 221, 0.95);
+  color: #FFF;
+  font-size: 13px;
+  line-height: 1.5em;
+  max-width: 200px;
+  padding: 5px 11px;
+  border: 1px solid #0094DD;
+  border-radius: 1px;
+}
+.customize-support .tip[class*="arrow"]:before {
+  border-width: 5px;
+  border-color: #0094DD;
+  border-color: rgba(0, 148, 221, 0.95);
+}
+.customize-support .tip.arrow-right:before {
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-top: -5px;
+  top: 50%;
+  left: 100%;
+}
+.customize-support .tip.arrow-left:before {
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+}
+.customize-support .tip.arrow-top:before {
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+}
+.customize-support .tip.arrow-bottom:before {
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-left: -5px;
+  top: 100%;
+  left: 50%;
+}
+/*---close button tooltip--------*/
+.tip[class*="close-tip-content"]{
+    border-radius:7px;
+    max-width:300px;
+    padding: 15px 30px;
+}
+.tip[class*="close-tip-content"]:before{
+      border-width: 8px!important;
+      margin-top: -8px!important;
+}
+
+.tip[class*="close-tip-content"][class*="arrow-bottom"]{
+  /*  margin-top:-10px; */
+}
+ .tip[class*="close-tip-content"][class*="arrow-bottom"]:before{
+      margin-top: -1px!important;
+}
+.tip[class*="close-tip-content"][class*="arrow-right"]:before {
+     left: 100%;
+     left: calc(100% - 1px);
+}
+.cp-innertip.tip[class*="close-tip-content"][class*="arrow"]{
+     margin-top: 30px!important;
+}
+@media (max-width:768px) {
+    .tip[class*="close-tip-content"]{
+      border-radius:7px;
+      max-width:200px;
+      padding: 5px 20px;
+  }
+}
+@media (max-width:610px) {
+    .tip[class*="close-tip-content"]{
+       max-width:170px;
+     }
+}

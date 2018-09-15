@@ -1,0 +1,232 @@
+/* LayerSlider Glass Skin */
+
+
+
+.ls-glass {
+	padding: 10px;
+	background: #fff;
+	border-radius: 6px;
+}
+
+.ls-glass .ls-bottom-nav-wrapper {
+	margin-top: 10px;
+}
+
+.ls-glass .ls-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.ls-glass .ls-playvideo,
+.ls-glass .ls-nav-sides,
+.ls-glass .ls-bottom-slidebuttons a,
+.ls-glass .ls-nav-prev,
+.ls-glass .ls-nav-next,
+.ls-glass .ls-nav-start,
+.ls-glass .ls-nav-stop,
+.ls-glass .ls-fullscreen,
+.ls-glass .ls-loading-container {
+	background-image: url(skin.png);	
+}
+
+.ls-glass .ls-playvideo {
+	background-position: -300px -150px;
+}
+
+.ls-glass .ls-playvideo:hover,
+.ls-glass .ls-vpcontainer:hover .ls-playvideo {
+	background-position: -375px -150px;
+}
+
+.ls-glass .ls-nav-prev {
+	background-position: 0px 0px;
+}
+
+.ls-glass .ls-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.ls-glass .ls-nav-next {
+	background-position: -150px 0px;
+}
+
+.ls-glass .ls-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.ls-glass .ls-nav-start {
+	background-position: -300px 0px;
+}
+
+.ls-glass .ls-nav-start:hover,
+.ls-glass .ls-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.ls-glass .ls-nav-stop {
+	background-position: -450px 0px;
+}
+
+.ls-glass .ls-nav-stop:hover,
+.ls-glass .ls-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.ls-glass .ls-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.ls-glass .ls-bottom-slidebuttons a.ls-nav-active,
+.ls-glass .ls-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.ls-glass .ls-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.ls-glass .ls-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.ls-glass .ls-nav-prev,
+.ls-glass .ls-nav-next {
+	width: 22px;
+	height: 50px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -25px;	
+	position: absolute;
+}
+
+.ls-glass .ls-nav-prev {
+	left: -22px;	
+}
+
+.ls-glass .ls-nav-next {
+	right: -22px;	
+}
+
+
+
+.ls-glass .ls-bottom-slidebuttons,
+.ls-glass .ls-bottom-slidebuttons a,
+.ls-glass .ls-nav-start,
+.ls-glass .ls-nav-stop,
+.ls-glass .ls-nav-sides {
+	height: 30px;
+}
+
+.ls-glass .ls-bottom-slidebuttons,
+.ls-glass .ls-bottom-slidebuttons a,
+.ls-glass .ls-nav-start,
+.ls-glass .ls-nav-stop,
+.ls-glass .ls-nav-sides {
+	display: inline-block;
+}
+
+.ls-glass .ls-nav-start,
+.ls-glass .ls-nav-stop {
+	width: 28px;
+}
+
+.ls-glass .ls-bottom-slidebuttons a {
+	width: 18px;
+}
+
+.ls-glass .ls-nav-sides {
+	width: 9px;
+}
+
+
+
+.ls-glass .ls-thumbnail-hover {
+	bottom: 50px;
+	padding: 4px;
+	margin-left: 1px;
+}
+
+.ls-glass .ls-thumbnail-hover-bg {
+	background: white;
+	box-shadow: 0px 2px 12px -4px black;
+	border-radius: 4px;
+}
+
+.ls-glass .ls-thumbnail-hover span {
+	border: 5px solid white;
+	margin-left: -5px;
+}
+
+
+
+.ls-glass .ls-thumbnail {
+	top: -20px;
+}
+
+.ls-glass .ls-thumbnail-inner {
+	padding: 5px;
+	margin-left: -5px;
+	background: white;
+	box-shadow: 0px 3px 35px -10px black;
+	border-radius: 4px;
+}
+
+.ls-glass .ls-thumbnail-slide a {
+	margin-right: 5px;
+}
+
+.ls-glass .ls-nothumb {
+	background: #eee;
+}
+
+
+
+.ls-glass .ls-above-thumbnails {
+	display: none;
+}
+
+.ls-glass .ls-below-thumbnails {
+	display: block;
+	margin-top: -20px;
+}
+
+
+
+.ls-glass .ls-shadow {
+	display: block;
+}
+
+
+
+.ls-glass .ls-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;	
+}
+
+.ls-glass .ls-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.ls-glass .ls-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.ls-glass .ls-fullscreen:hover {
+	background-position: -525px -190px;
+}

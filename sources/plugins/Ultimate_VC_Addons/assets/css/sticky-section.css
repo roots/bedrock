@@ -1,0 +1,48 @@
+.ult-sticky-section > :first-child,
+.ult-sticky-section > :first-child :first-child{
+    margin-top: 0 !important;
+}
+
+.ult-sticky-section > :last-child,
+.ult-sticky-section > :last-child :last-child{
+    margin-bottom: 0 !important;
+}
+
+/*.ult-sticky-section > div {
+    margin-bottom: 0 !important;
+}
+*/
+.ult-sticky {
+    /*overflow: hidden;*/
+    z-index: 99999;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.ult-sticky.ult-stick {
+    position: fixed;
+    /*overflow:visible;*/
+    z-index: 99999;
+}
+
+
+.ult-sticky.ult-stick-full-width {
+    position: fixed;
+    left: 0;
+    z-index: 99999;
+    
+}
+
+.ult-sticky-anchor.ult_stick_to_row{
+    z-index: 99990;
+}
+/*.ult-sticky-section > .vc_row {
+    margin-left: 0px;
+    margin-right: 0px;
+}*/
+
+/************** stick within row css ********************/
+
+.ult_s_container {
+    position: relative;
+}

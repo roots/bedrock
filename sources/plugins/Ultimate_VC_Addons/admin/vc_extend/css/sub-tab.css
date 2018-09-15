@@ -1,0 +1,69 @@
+/*css for backend Tab Structure */
+/* to visible tab control Edit btn*/
+.wpb_ult_tab_element .wpb_single_tab > .vc_controls {visibility: visible !important; opacity: 1;}
+.wpb_ult_tab_element>.vc_controls {visibility: visible !important; opacity: 1;}
+
+.wpb_ult_tab_element .wpb_single_tab >.vc_controls > .vc_controls-tc  {
+	top: 45px!important;
+	margin-bottom: 10px;
+}
+.wpb_ult_tab_element >.vc_controls > .vc_controls-out-tc   {
+	top: 0px!important;
+
+}
+
+/*ui tabs nav.*/
+.wpb_ult_tab_element.wpb_content_element .ui-tabs .ui-tabs-nav li{
+	background: none repeat scroll 0% 0% #E6E6E6;
+	border: 1px solid transparent;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	margin-right: 3px;
+	padding: 0px;
+}
+ /*ui active tabs nav.*/
+.wpb_ult_tab_element.wpb_content_element .ui-tabs .ui-tabs-nav li.ui-tabs-active{
+
+	background: none repeat scroll 0% 0% #ffffff;
+	color:red!important;
+}
+.wpb_ult_tab_element.wpb_content_element .ui-tabs .ui-tabs-nav li a {
+	padding: 10px 16px;
+	color: #848C91;
+}
+.wpb_ult_tab_element.wpb_content_element > .wpb_element_wrapper {
+	padding-top: 30px;
+	background-color: transparent;
+}
+.wpb_single_tab {
+	background-color: #FFF!important;
+}
+.wpb_single_tab>.wpb_element_wrapper {
+	height: auto;
+    margin-top: 20px;
+}
+.wpb_ult_tab_element li.add_tab_block{
+	padding: 10px!important;
+}
+
+/*image for add btn*/
+.wpb_ult_tab_element a.add_tab {
+	padding: 9px!important;
+	display: inline-block;
+	background: url('../img/add.png') no-repeat scroll -16px -16px transparent;
+}
+.wpb_ult_tab_element ul.tabs_controls.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all.ui-sortable  {
+	padding: 0px!important;
+}
+.wpb_ult_tab_element .ult_noac{
+display: block;
+}
+/*------- hide the margin from design--------*/
+.vc_col-sm-12.vc_column.no-vc-background.no-vc-border.ult-no-margin-tab.wpb_el_type_css_editor.vc_shortcode-param .vc_padding {
+	visibility: visible;
+	margin-top: -40px;
+	margin-left: 0;
+}
+.vc_col-sm-12.vc_column.no-vc-background.no-vc-border.ult-no-margin-tab.wpb_el_type_css_editor.vc_shortcode-param .vc_margin {
+visibility: hidden;
+}

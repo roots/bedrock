@@ -1,0 +1,58 @@
+@mixin gradient($top, $bottom, $direction: to bottom) {
+	background: $top;
+	background: -webkit-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -moz-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -o-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -ms-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: linear-gradient($direction, $top 0%, $bottom 100%);
+}
+
+@mixin alphaGradient($top: 3%, $bottom: 10%, $direction: to bottom) {
+	$top: darken(white, $top);
+	$bottom: darken(white, $bottom);
+	background: $top;
+	background: -webkit-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -moz-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -o-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: -ms-linear-gradient($direction, $top 0%, $bottom 100%);
+	background: linear-gradient($direction, $top 0%, $bottom 100%);
+}
+
+@mixin verticalSideShadow($side: 5%,$center: 0%) {
+	$side: darken(white, $side);
+	$center: darken(white, $center);
+	background: #f7f7f7;
+	background: -webkit-linear-gradient(to bottom, $side 0%,$center 30%,$center 70%,$side 100%);
+	background: -moz-linear-gradient(to bottom, $side 0%,$center 30%,$center 70%,$side 100%);
+	background: -o-linear-gradient(to bottom, $side 0%,$center 30%,$center 70%,$side 100%);
+	background: -ms-linear-gradient(to bottom, $side 0%,$center 30%,$center 70%,$side 100%);
+	background: linear-gradient(to bottom, $side 0%,$center 30%,$center 70%,$side 100%);
+}
+
+
+@mixin transform($params) {
+	-webkit-transform: $params;
+	-moz-transform: $params;
+	-o-transform: $params;
+	-ms-transform: $params;
+	transform: $params;
+}
+
+@mixin transition($props, $duration) {
+	-webkit-transition: $props $duration;
+	-moz-transition: $props $duration;
+	-o-transition: $props $duration;
+	-ms-transition: $props $duration;
+	transition: $props $duration;
+}
+
+@mixin iconForPosition($x, $y, $img: "../img/sprite.png") {
+	background: transparent url($img) $x $y no-repeat;
+}
+
+@mixin userSelect($val) {
+	-webkit-user-select: $val;
+	-moz-user-select: $val;
+	-ms-user-select: $val;
+	user-select: $val;
+}

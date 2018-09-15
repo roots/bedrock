@@ -1,0 +1,90 @@
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+
+.lswp-notification {
+	position: relative;
+	margin: 10px auto;
+	padding: 10px 10px 15px 88px;
+	border-radius: 5px;
+	background: #de4528;
+	color: white !important;
+	font-family: 'Open Sans', arial, sans-serif !important;
+
+	a {
+		color: white !important;
+		text-decoration: underline !important;
+	}
+
+	&.info,
+	&.scheduled {
+		background: #00b4ff;
+		padding-left: 50px;
+
+		.lswp-notification-logo {
+			width: 30px;
+			height: 30px;
+			font-size: 30px;
+		}
+
+		strong {
+			font-size: 18px;
+		}
+	}
+
+	&.scheduled {
+		background: #1cd200;
+	}
+
+	&.dead {
+		background: black;
+	}
+
+	.lswp-notification-logo {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		width: 68px;
+		height: 66px;
+		float: left;
+		color: white;
+		margin: 0 10px 10px 0;
+		font-size: 70px;
+	}
+
+	strong {
+		display: block;
+		color: #fff;
+		font-size: 20px;
+		line-height: 26px;
+		font-weight: normal;
+	}
+
+	span {
+		display: block;
+		color: #fff;
+		font-size: 13px;
+		line-height: 16px;
+		text-align: justify;
+	}
+
+	small {
+		font: italic 12px/18px 'Open Sans', arial, sans-serif !important;
+		color: rgba(255, 255, 255, 0.7) !important;
+
+		.dashicons {
+			width: 17px;
+			height: 17px;
+			vertical-align: middle;
+			font-size: 16px;
+		}
+	}
+}

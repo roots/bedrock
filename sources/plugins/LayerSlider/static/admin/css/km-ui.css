@@ -1,0 +1,286 @@
+/*
+
+KM-UI styles
+
+*/
+/* SYSTEM */
+.km-ui-overflow-hidden {
+  overflow: hidden !important; }
+
+.km-ui-visible {
+  visibility: visible !important; }
+
+/* OVERLAY */
+.km-ui-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  z-index: 1000000; }
+  .km-ui-overlay.km-ui-theme-dark {
+    background: rgba(0, 0, 0, 0.75); }
+  .km-ui-overlay.km-ui-theme-light {
+    background: rgba(255, 255, 255, 0.75); }
+
+/* MODAL WINDOW */
+.km-ui-modal-window {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  visibility: hidden;
+  border-radius: 10px;
+  z-index: 1000010;
+  font-family: 'Poppins', 'Open Sans', Arial, sans-serif;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3); }
+  .km-ui-modal-window.km-ui-theme-dark {
+    background: rgba(0, 0, 0, 0.75); }
+  .km-ui-modal-window.km-ui-theme-light {
+    background: white; }
+  .km-ui-modal-window header,
+  .km-ui-modal-window header.km-ui-modal-header {
+    box-shadow: none !important; }
+    .km-ui-modal-window header b,
+    .km-ui-modal-window header .close,
+    .km-ui-modal-window header .km-ui-close,
+    .km-ui-modal-window header .km-ui-modal-close,
+    .km-ui-modal-window header.km-ui-modal-header b,
+    .km-ui-modal-window header.km-ui-modal-header .close,
+    .km-ui-modal-window header.km-ui-modal-header .km-ui-close,
+    .km-ui-modal-window header.km-ui-modal-header .km-ui-modal-close {
+      width: 25px;
+      height: 26px;
+      padding-left: 1px;
+      position: absolute;
+      right: 0px;
+      top: -8px;
+      text-align: center;
+      line-height: 27px;
+      color: #ccc	!important;
+      cursor: pointer !important;
+      font-size: 23px;
+      border-radius: 100px;
+      border: 2px solid #ccc !important; }
+      .km-ui-modal-window header b:hover,
+      .km-ui-modal-window header .close:hover,
+      .km-ui-modal-window header .km-ui-close:hover,
+      .km-ui-modal-window header .km-ui-modal-close:hover,
+      .km-ui-modal-window header.km-ui-modal-header b:hover,
+      .km-ui-modal-window header.km-ui-modal-header .close:hover,
+      .km-ui-modal-window header.km-ui-modal-header .km-ui-close:hover,
+      .km-ui-modal-window header.km-ui-modal-header .km-ui-modal-close:hover {
+        color: #999 !important;
+        border-color: #999 !important; }
+    .km-ui-modal-window header h1,
+    .km-ui-modal-window header.km-ui-modal-header h1 {
+      position: fixed;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 24px;
+      font-weight: 400;
+      color: #555 !important; }
+  .km-ui-modal-window .km-ui-modal-scrollable {
+    position: absolute !important;
+    overflow: auto !important;
+    display: block !important;
+    text-align: center;
+    font-size: 15px;
+    line-height: normal !important; }
+  .km-ui-modal-window > div, .km-ui-modal-window p, .km-ui-modal-window ul, .km-ui-modal-window li {
+    padding: 0 !important;
+    border: 0 !important;
+    margin: 0 auto !important;
+    font-size: 100%;
+    line-height: 1.5em;
+    color: #777;
+    box-shadow: none !important; }
+  .km-ui-modal-window p, .km-ui-modal-window ul, .km-ui-modal-window li {
+    text-align: left; }
+  .km-ui-modal-window p, .km-ui-modal-window ul, .km-ui-modal-window button,
+  .km-ui-modal-window .button {
+    margin-bottom: 24px !important; }
+  .km-ui-modal-window li {
+    list-style-type: circle;
+    margin: 0 0 10px 30px !important; }
+    .km-ui-modal-window li:last-child {
+      margin-bottom: 0 !important; }
+  .km-ui-modal-window button,
+  .km-ui-modal-window .button {
+    margin: 24px auto !important;
+    border-radius: 100px; }
+
+/* POPOVER, TOOLTIP */
+.ls-popover-data,
+.km-ui-popover.data,
+body.hidepopover .km-ui-popover
+.km-ui-popover-hide .km-ui-popover {
+  display: none !important; }
+
+.km-ui-popover {
+  max-width: 260px;
+  min-width: 80px;
+  position: absolute;
+  padding: 15px;
+  border-radius: 7px;
+  font-fmaily: 'Montserrat', 'Open Sans', Arial, sans-serif;
+  text-align: justify;
+  z-index: 999999;
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 300 !important;
+  font-size: 14px;
+  line-height: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); }
+  .km-ui-popover > span {
+    display: block;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    margin-left: -7px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid rgba(0, 0, 0, 0.7); }
+  .km-ui-popover.km-ui-direction-btm > span {
+    bottom: auto;
+    top: -14px;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.7);
+    border-top-color: transparent; }
+  .km-ui-popover.popover-light, .km-ui-popover.km-ui-theme-light {
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    color: #555;
+    box-shadow: 0px 2px 15px -7px black !important; }
+    .km-ui-popover.popover-light > span, .km-ui-popover.km-ui-theme-light > span {
+      opacity: .9;
+      border-top: 7px solid white; }
+    .km-ui-popover.popover-light.km-ui-direction-btm > span, .km-ui-popover.km-ui-theme-light.km-ui-direction-btm > span {
+      border-bottom: 7px solid white;
+      border-top-color: transparent; }
+  .km-ui-popover.km-ui-theme-red {
+    background: rgba(255, 0, 0, 0.7) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: none !important; }
+    .km-ui-popover.km-ui-theme-red > span {
+      border-top: 7px solid rgba(255, 0, 0, 0.7) !important; }
+    .km-ui-popover.km-ui-theme-red.km-ui-direction-btm > span {
+      border-bottom: 7px solid rgba(255, 0, 0, 0.7) !important;
+      border-top-color: transparent !important; }
+
+/* COMMON */
+.km-ui-element div.small, .km-ui-element div.km-ui-font-small,
+.km-ui-element div .small,
+.km-ui-element div .km-ui-font-small, .km-ui-element p.small, .km-ui-element p.km-ui-font-small,
+.km-ui-element p .small,
+.km-ui-element p .km-ui-font-small, .km-ui-element ul.small, .km-ui-element ul.km-ui-font-small,
+.km-ui-element ul .small,
+.km-ui-element ul .km-ui-font-small, .km-ui-element li.small, .km-ui-element li.km-ui-font-small,
+.km-ui-element li .small,
+.km-ui-element li .km-ui-font-small {
+  font-size: 80% !important; }
+
+.km-ui-element div.tiny, .km-ui-element div.km-ui-font-tiny,
+.km-ui-element div .tiny,
+.km-ui-element div .km-ui-font-tiny, .km-ui-element p.tiny, .km-ui-element p.km-ui-font-tiny,
+.km-ui-element p .tiny,
+.km-ui-element p .km-ui-font-tiny, .km-ui-element ul.tiny, .km-ui-element ul.km-ui-font-tiny,
+.km-ui-element ul .tiny,
+.km-ui-element ul .km-ui-font-tiny, .km-ui-element li.tiny, .km-ui-element li.km-ui-font-tiny,
+.km-ui-element li .tiny,
+.km-ui-element li .km-ui-font-tiny {
+  font-size: 80% !important; }
+
+.km-ui-element div.large, .km-ui-element div.km-ui-font-large,
+.km-ui-element div .large,
+.km-ui-element div .km-ui-font-large, .km-ui-element p.large, .km-ui-element p.km-ui-font-large,
+.km-ui-element p .large,
+.km-ui-element p .km-ui-font-large, .km-ui-element ul.large, .km-ui-element ul.km-ui-font-large,
+.km-ui-element ul .large,
+.km-ui-element ul .km-ui-font-large, .km-ui-element li.large, .km-ui-element li.km-ui-font-large,
+.km-ui-element li .large,
+.km-ui-element li .km-ui-font-large {
+  font-size: 120% !important; }
+
+.km-ui-element div.dark, .km-ui-element div.km-ui-font-dark,
+.km-ui-element div .dark,
+.km-ui-element div .km-ui-font-dark, .km-ui-element p.dark, .km-ui-element p.km-ui-font-dark,
+.km-ui-element p .dark,
+.km-ui-element p .km-ui-font-dark, .km-ui-element ul.dark, .km-ui-element ul.km-ui-font-dark,
+.km-ui-element ul .dark,
+.km-ui-element ul .km-ui-font-dark, .km-ui-element li.dark, .km-ui-element li.km-ui-font-dark,
+.km-ui-element li .dark,
+.km-ui-element li .km-ui-font-dark {
+  color: #222;
+  font-weight: 400 !important; }
+
+.km-ui-element div.dim, .km-ui-element div.km-ui-font-dim,
+.km-ui-element div .dim,
+.km-ui-element div .km-ui-font-dim, .km-ui-element p.dim, .km-ui-element p.km-ui-font-dim,
+.km-ui-element p .dim,
+.km-ui-element p .km-ui-font-dim, .km-ui-element ul.dim, .km-ui-element ul.km-ui-font-dim,
+.km-ui-element ul .dim,
+.km-ui-element ul .km-ui-font-dim, .km-ui-element li.dim, .km-ui-element li.km-ui-font-dim,
+.km-ui-element li .dim,
+.km-ui-element li .km-ui-font-dim {
+  opacity: .75 !important; }
+
+.km-ui-element div.notice, .km-ui-element div.km-ui-font-notice,
+.km-ui-element div .notice,
+.km-ui-element div .km-ui-font-notice, .km-ui-element p.notice, .km-ui-element p.km-ui-font-notice,
+.km-ui-element p .notice,
+.km-ui-element p .km-ui-font-notice, .km-ui-element ul.notice, .km-ui-element ul.km-ui-font-notice,
+.km-ui-element ul .notice,
+.km-ui-element ul .km-ui-font-notice, .km-ui-element li.notice, .km-ui-element li.km-ui-font-notice,
+.km-ui-element li .notice,
+.km-ui-element li .km-ui-font-notice {
+  color: red;
+  font-weight: 400 !important; }
+
+.km-ui-element div.bold, .km-ui-element div.km-ui-font-bold,
+.km-ui-element div .bold,
+.km-ui-element div .km-ui-font-bold, .km-ui-element p.bold, .km-ui-element p.km-ui-font-bold,
+.km-ui-element p .bold,
+.km-ui-element p .km-ui-font-bold, .km-ui-element ul.bold, .km-ui-element ul.km-ui-font-bold,
+.km-ui-element ul .bold,
+.km-ui-element ul .km-ui-font-bold, .km-ui-element li.bold, .km-ui-element li.km-ui-font-bold,
+.km-ui-element li .bold,
+.km-ui-element li .km-ui-font-bold {
+  font-weight: 600 !important; }
+
+.km-ui-element div.center, .km-ui-element div.km-ui-font-center,
+.km-ui-element div .center,
+.km-ui-element div .km-ui-font-center, .km-ui-element p.center, .km-ui-element p.km-ui-font-center,
+.km-ui-element p .center,
+.km-ui-element p .km-ui-font-center, .km-ui-element ul.center, .km-ui-element ul.km-ui-font-center,
+.km-ui-element ul .center,
+.km-ui-element ul .km-ui-font-center, .km-ui-element li.center, .km-ui-element li.km-ui-font-center,
+.km-ui-element li .center,
+.km-ui-element li .km-ui-font-center {
+  text-align: center !important; }
+
+.km-ui-element div.italic, .km-ui-element div.km-ui-font-italic,
+.km-ui-element div .italic,
+.km-ui-element div .km-ui-font-italic, .km-ui-element p.italic, .km-ui-element p.km-ui-font-italic,
+.km-ui-element p .italic,
+.km-ui-element p .km-ui-font-italic, .km-ui-element ul.italic, .km-ui-element ul.km-ui-font-italic,
+.km-ui-element ul .italic,
+.km-ui-element ul .km-ui-font-italic, .km-ui-element li.italic, .km-ui-element li.km-ui-font-italic,
+.km-ui-element li .italic,
+.km-ui-element li .km-ui-font-italic {
+  font-style: italic !important; }
+
+.km-ui-element div.centered, .km-ui-element div.km-ui-font-centered,
+.km-ui-element div .centered,
+.km-ui-element div .km-ui-font-centered, .km-ui-element p.centered, .km-ui-element p.km-ui-font-centered,
+.km-ui-element p .centered,
+.km-ui-element p .km-ui-font-centered, .km-ui-element ul.centered, .km-ui-element ul.km-ui-font-centered,
+.km-ui-element ul .centered,
+.km-ui-element ul .km-ui-font-centered, .km-ui-element li.centered, .km-ui-element li.km-ui-font-centered,
+.km-ui-element li .centered,
+.km-ui-element li .km-ui-font-centered {
+  display: block !important;
+  width: 60% !important; }

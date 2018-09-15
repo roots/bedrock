@@ -1,0 +1,95 @@
+/* spinner */
+.spinner.ult_img_single_spinner {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+.ult_selected_image_list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    line-height: normal;
+}
+.ult_selected_image_list img {
+    max-height: 75px;
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 9;
+}
+ .ult_selected_image_list .ult-icon-remove {
+    position: absolute;
+    background: #f5f5f5 url("../img/remove.png") center center no-repeat;
+    height: 10px;
+    width: 10px;
+    display: block;
+    right: 0;
+    padding: 2px;
+    top: 0;
+ }
+ .ult_selected_image_list .inner {
+     position: relative;
+ }
+ .ult_selected_image_list li {
+     display: inline-block;
+     position: relative;
+     margin: 0;
+}
+ .ult_add_image {
+     margin: 5px;
+     display: inline-block;    
+     float: left;
+     height: 75px;
+     width: 75px;    
+     background: #f5f5f5 url("../img/add-plus.png") no-repeat center center;
+     border: 1px solid #DFDFDF;
+     font-size: 0px;
+     color: #F5F5F5;
+     position: relative;
+ }
+ .ult_add_image.selected {
+     background: #f5f5f5 url("../img/remove.png") 90% 10% no-repeat;
+     top: 0;
+     width: 75px;
+     height: 75px;
+     overflow: hidden;
+     position: relative;
+     padding: 4px;
+     float: left;
+     margin: 0px 5px 5px 0;
+     min-height: 75px;
+     min-width: 75px;
+     line-height: 70px;
+     text-align: center;
+}
+.ult_add_image img {
+     max-height: 75px;
+     display: inline-block;
+     vertical-align: middle;
+}
+.ult_selected_image {
+    display: inline-block;
+    float: left;
+    margin: 5px;
+}
+#remove-thumbnail {
+    background: url('../img/remove.png') center center no-repeat;
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}

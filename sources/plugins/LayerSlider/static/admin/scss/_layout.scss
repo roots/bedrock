@@ -1,0 +1,25 @@
+.columns {
+	display: block !important;
+
+	.half {
+		width: 49%;
+		width: calc(50% - 5px);
+		margin-left: 10px;
+		*margin-left: 2%;
+		float: left;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	.third {
+		width: 33.3%;
+		float: left;
+	}
+
+	.fifth {
+		width: 20%;
+		float: left;
+	}
+}

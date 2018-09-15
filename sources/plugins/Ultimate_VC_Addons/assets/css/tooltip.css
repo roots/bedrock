@@ -1,0 +1,109 @@
+.bsf_tooltip {
+    position: absolute;
+    z-index: 1030;
+    display: block;
+    font-size: 12px;
+    line-height: 1.4;
+    visibility: visible;
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+.bsf_tooltip.in {
+    filter: alpha(opacity=90);
+    opacity: .9
+}
+.bsf_tooltip.top {
+    padding: 5px 0;
+    margin-top: -3px
+}
+.bsf_tooltip.right {
+    padding: 0 5px;
+    margin-left: 3px
+}
+.bsf_tooltip.bottom {
+    padding: 5px 0;
+    margin-top: 3px
+}
+.bsf_tooltip.left {
+    padding: 0 5px;
+    margin-left: -3px
+}
+.bsf_tooltip-inner {
+    max-width: 200px;
+    padding: 5px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #3b3b3b;
+    -webkit-border-radius: 0;
+    border-radius: 0
+}
+.bsf_tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid
+}
+.bsf_tooltip.top .bsf_tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #3b3b3b
+}
+.bsf_tooltip.top-left .bsf_tooltip-arrow {
+    bottom: 0;
+    left: 5px;
+    border-width: 5px 5px 0;
+    border-top-color: #3b3b3b
+}
+.bsf_tooltip.top-right .bsf_tooltip-arrow {
+    right: 5px;
+    bottom: 0;
+    border-width: 5px 5px 0;
+    border-top-color: #3b3b3b
+}
+.bsf_tooltip.right .bsf_tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #3b3b3b
+}
+.bsf_tooltip.left .bsf_tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #3b3b3b
+}
+.bsf_tooltip.bottom .bsf_tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #3b3b3b
+}
+.bsf_tooltip.bottom-left .bsf_tooltip-arrow {
+    top: 0;
+    left: 5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #3b3b3b
+}
+.bsf_tooltip.bottom-right .bsf_tooltip-arrow {
+    top: 0;
+    right: 5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #3b3b3b
+}
+.bsf_tooltip.fade {
+    opacity: 0;
+    -webkit-transition: opacity 300ms linear;
+    transition: opacity 300ms linear
+}
+.bsf_tooltip.fade.in {
+    opacity: 1;
+    -webkit-transition: opacity 300ms linear;
+    transition: opacity 300ms linear
+}

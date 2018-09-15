@@ -1,0 +1,457 @@
+/* LayerSlider Numbers Skin */
+
+
+.ls-numbers .ls-button{
+  text-decoration: none !important;
+  color:#fff;
+  background-color: rgba(0,0,0,0.7);
+  padding:12px 25px;
+}
+
+.ls-numbers .ls-button:hover{
+	background: rgba(0,0,0,1) !important;
+}
+
+
+.ls-numbers .ls-playvideo {
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+.ls-numbers .ls-playvideo:before {
+  position: absolute;
+  top:16px;
+  left:20px;
+  display: block;
+	width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 14px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  content: "";
+}
+
+.ls-numbers .ls-playvideo:hover:before{
+  border-color: transparent transparent transparent rgba(255, 255, 255, 1);
+}
+
+.ls-numbers .ls-playvideo:hover {
+	background: rgba(0,0,0,1);
+	border: 2px solid rgba(255, 255, 255, 1);
+}
+
+.ls-numbers .ls-nav-prev,
+.ls-numbers .ls-nav-next {
+  transition: transform 0.15s !important;
+  display:block !importan;
+}
+
+.ls-numbers .ls-nav-prev {
+  transform-origin: 0% 50% 0;
+}
+
+.ls-numbers .ls-nav-next {
+  transform-origin: 100% 50% 0;
+}
+
+
+.ls-numbers .ls-nav-prev:hover,
+.ls-numbers .ls-nav-next:hover {
+	background-color: rgba(0,0,0,0.9);
+}
+
+.ls-numbers .ls-nav-prev:before,
+.ls-numbers .ls-nav-prev:after,
+.ls-numbers .ls-nav-next:before,
+.ls-numbers .ls-nav-next:after{
+	width: 2px;
+  height: 14px;
+  left:22px;
+  position: absolute;
+  top:16px;
+  display: block;
+  transform: rotate(-40deg);
+  transform-origin: 50% 100% 0;
+  transition: transform 0.15s !important;
+  -webkit-transform: rotate(-40deg);
+  -webkit-transform-origin: 50% 100% 0;
+  -webkit-transition: -webkit-transform 0.15s !important;
+  content: "";
+  background-color: #fff;
+}
+
+.ls-numbers .ls-nav-prev:before{
+  top:29px;
+  left:12px;
+  transform-origin: 50% 0% 0;
+  -webkit-transform-origin: 50% 0% 0;
+}
+
+.ls-numbers .ls-nav-prev:after{
+  left:12px;
+  transform-origin: 50% 100% 0;
+  transform: rotate(40deg);
+  -webkit-transform-origin: 50% 100% 0;
+  -webkit-transform: rotate(40deg);
+}
+
+.ls-numbers .ls-nav-next:after{
+  top:29px;
+  transform-origin: 50% 0% 0;
+  transform: rotate(40deg);
+  -webkit-transform-origin: 50% 0% 0;
+  -webkit-transform: rotate(40deg);
+}
+
+.ls-numbers .ls-nav-prev:active:before{
+  transform: translateX(-3px) rotate(-60deg);
+  -webkit-transform: translateX(-3px) rotate(-60deg);
+}
+
+.ls-numbers .ls-nav-prev:active:after{
+  transform: translateX(-3px) rotate(60deg);
+  -webkit-transform: translateX(-3px) rotate(60deg);
+}
+
+.ls-numbers .ls-nav-next:active:before{
+  transform: translateX(3px) rotate(-60deg);
+  -webkit-transform: translateX(3px) rotate(-60deg);
+}
+
+.ls-numbers .ls-nav-next:active:after{
+  transform: translateX(3px) rotate(60deg);
+  -webkit-transform: translateX(3px) rotate(60deg);
+}
+
+
+.ls-numbers .ls-nav-start{
+  position: relative;
+}
+
+.ls-numbers .ls-nav-start:before {
+  position: absolute;
+  top:7px;
+  left:9px;
+  display: block;
+	width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.7);
+  content: "";
+}
+
+.ls-numbers .ls-nav-start-active:before,
+.ls-numbers .ls-nav-start:hover:before{
+  border-color: transparent transparent transparent rgba(255, 255, 255, 1);
+}
+
+.ls-numbers .ls-nav-stop {
+  position: relative;
+}
+
+.ls-numbers .ls-nav-stop:before {
+  position: absolute;
+  top:8px;
+  left:9px;
+  display: block;
+	width: 3px;
+  height: 11px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-top: none;
+  border-bottom: none;
+  content: "";
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+
+.ls-numbers .ls-nav-stop:hover:before,
+.ls-numbers .ls-nav-stop-active:before {
+  border-color: rgba(255,255,255,1);
+}
+
+.ls-numbers .ls-bottom-slidebuttons{
+  counter-reset: ls-counter;
+  vertical-align: top;
+}
+
+/* paginators background color*/
+
+.ls-numbers .ls-bottom-slidebuttons a {
+	background: rgba(0,0,0,0.7);
+	margin-right:8px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.ls-numbers .ls-bottom-slidebuttons a:before{
+  content: counter(ls-counter);
+  counter-increment: ls-counter;
+  font-family: "Lato";
+  font-size: 12px;
+  color:#ffffff;
+  line-height:28px;
+}
+
+/* paginators hover & active background color*/
+
+.ls-numbers .ls-bottom-slidebuttons a.ls-nav-active,
+.ls-numbers .ls-bottom-slidebuttons a:hover {
+	background: rgba(255,255,255,0.7);
+}
+
+.ls-numbers .ls-bottom-slidebuttons a.ls-nav-active:before,
+.ls-numbers .ls-bottom-slidebuttons a:hover:before{
+  color:#000;
+}
+
+
+.ls-numbers .ls-nav-sideleft {
+	background-position: -150px -150px;
+}
+
+.ls-numbers .ls-nav-sideright {
+	background-position: -225px -150px;
+}
+
+
+
+.ls-numbers .ls-nav-prev,
+.ls-numbers .ls-nav-next {
+	width: 35px;
+	height: 60px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -30px;
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+}
+
+.ls-numbers .ls-nav-prev {
+	left: 0px;
+}
+
+.ls-numbers .ls-nav-next {
+	right: 0px;
+}
+
+
+
+.ls-numbers .ls-bottom-slidebuttons,
+.ls-numbers .ls-bottom-slidebuttons a,
+.ls-numbers .ls-nav-start,
+.ls-numbers .ls-nav-stop {
+	height: 28px;
+}
+
+.ls-numbers .ls-bottom-slidebuttons,
+.ls-numbers .ls-bottom-slidebuttons a,
+.ls-numbers .ls-nav-start,
+.ls-numbers .ls-nav-stop{
+	display: inline-block;
+}
+
+.ls-numbers .ls-bottom-slidebuttons,
+.ls-numbers .ls-nav-start,
+.ls-numbers .ls-nav-stop{
+	top: -45px;
+}
+
+.ls-numbers .ls-nav-start,
+.ls-numbers .ls-nav-stop {
+	width: 25px;
+	margin-right:8px;
+}
+
+.ls-numbers .ls-bottom-slidebuttons a {
+	width: 28px;
+}
+
+.ls-numbers .ls-nav-sides {
+	width: 0px;
+}
+
+.ls-numbers .ls-thumbnail-hover {
+	bottom: 40px;
+	padding: 2px;
+	margin-left: 1px;
+}
+
+.ls-numbers .ls-thumbnail-hover-bg {
+	background: #eee;
+}
+
+.ls-numbers .ls-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+.ls-numbers .ls-thumbnail {
+	top: 10px;
+}
+
+.ls-numbers .ls-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+}
+
+.ls-numbers .ls-thumbnail-slide a {
+	margin-right: 2px;
+}
+
+.ls-numbers .ls-nothumb {
+	background: #eee;
+}
+
+.ls-numbers .ls-loading-container {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  position: relative;
+  border: 4px solid rgba(0,0,0,0.7);
+  top: 50%;
+  -webkit-animation: loader 2s infinite ease;
+  -moz-animation: loader 2s infinite ease;
+  animation: loader 2s infinite ease;
+}
+
+.ls-numbers .ls-loading-indicator  {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  -webkit-animation: loader-inner 2s infinite ease-in;
+  -moz-animation: loader-inner 2s infinite ease-in;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes loader {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  25% {
+    -moz-transform: rotate(180deg);
+  }
+  50% {
+    -moz-transform: rotate(180deg);
+  }
+  75% {
+    -moz-transform: rotate(360deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+@-moz-keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+.ls-numbers .ls-circle-timer {
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.ls-numbers .ls-ct-half,
+.ls-numbers .ls-ct-center {
+  border-width: 2px;
+}
