@@ -1,3 +1,12 @@
+### 1.9.0: 2018-09-17
+
+* Fix error display in development environments ([c457082](https://github.com/roots/bedrock/commit/c457082cf4b153400d3e34f4f68a30eea4cc7c38))
+* --prefer-dist on roave/security-advisories ([#381](https://github.com/roots/bedrock/pull/381))
+* New Bedrock Configuration Model ([#380](https://github.com/roots/bedrock/pull/380))
+* Remove vendor/.gitkeep ([#379](https://github.com/roots/bedrock/pull/379))
+* Composer 1.7.0 lockfile ([#378](https://github.com/roots/bedrock/pull/378))
+* Adds roave/security-advisories to composer dev deps ([#376](https://github.com/roots/bedrock/pull/376))
+
 ### 1.8.12: 2018-08-03
 
 * Update to WordPress 4.9.8
