@@ -5,6 +5,7 @@
 
 /* Colors */
 /* ------------- */
+$mobileheaderHeight: 85px;
 $header-bg-color: $gray-700;
 /* ------------- */
 
@@ -48,6 +49,34 @@ $header-bg-color: $gray-700;
         a.logo {
             width: 120px;
             margin-right: 3vw;
+        }
+    }
+    @media (max-width: $medium - 1) {
+        display: block;
+        height: $mobileheaderHeight;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        .has-opened-menu & {
+            position: fixed;
+        }
+
+        .inner-header {
+            display: grid;
+            grid-template-columns: 1fr 85px;
+
+            .nav-button {
+                order: 1;
+            }
+        }
+
+        a.logo {
+            width: auto;
+            margin-right: 0;
+            margin-left: 0;
+            text-align: center;
         }
     }
 
@@ -123,7 +152,6 @@ $header-bg-color: $gray-700;
     }
 }
 
-
 // mobile - Slide Menu/content
 .slider-menu-opened {
     overflow-y: scroll;
@@ -178,7 +206,7 @@ $header-bg-color: $gray-700;
             z-index: 1;
             height: 100%;
             width: 100%;
-            background-color: rgba(0,0,0, .5);
+            background-color: rgba(0, 0, 0, .5);
         }
         transform: translateX(85%);
     }
