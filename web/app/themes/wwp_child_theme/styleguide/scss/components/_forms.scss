@@ -106,6 +106,7 @@ form {
 
 .form-group {
     position: relative;
+    margin-bottom: 1rem;
 }
 
 
@@ -299,10 +300,11 @@ form {
     label.error {
         font-size: .9em;
         font-style: italic;
-        color: $alert-error;
+        color: $alert-error !important;
     }
     input.error {
-        background-color: $alert-error-bg;
+        color: $alert-error !important;
+        background-color: $alert-error-bg !important;
     }
 }
 

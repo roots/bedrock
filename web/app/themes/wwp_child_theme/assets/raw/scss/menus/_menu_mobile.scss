@@ -1,0 +1,153 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Header mobile (<768px)      */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$mobileheaderHeight: 85px;
+$menu-item-border-color: $gray-400;
+/* ------------- */
+
+@media (max-width: $medium - 1) {
+
+    .navigation-wrapper,
+    ul.header-menu .children {
+        display: block;
+        position: fixed;
+        top: $mobileheaderHeight;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+        width: 100vw;
+        max-width: 500px;
+        z-index: 10;
+        overflow-y: auto;
+
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        transform: translateX(-100%);
+        transition: all .3s ease;
+
+        &.is-opened {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+    }
+
+    .navigation-wrapper {
+        padding-bottom: 100vh;
+        border-top: 1px solid $menu-item-border-color;
+        background-color: $menu-item-bgcolor;
+    }
+
+    .navigation-wrapper ul.header-menu {
+
+        li {
+            height: 60px;
+            margin-left: 0;
+            font-size: 1.5rem;
+            line-height: 2rem;
+
+            > a {
+                display: block;
+                height: 100%;
+                padding: 20px;
+            }
+        }
+
+        li, li:first-child {
+            border-bottom: 1px solid $menu-item-border-color;
+        }
+
+        ul.level1 li {
+            min-width: auto;
+        }
+
+        li.page_item_has_children {
+
+            > a::after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                background-image: url("#{$get-path-to-assets}/raw/svg/chevron-r-small-white.svg");
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 25px;
+                transform: translateY(-60%);
+            }
+        }
+
+        ul.children {
+            top: 0;
+            transform: translateX(-33%);
+            display: block;
+        }
+
+        li.is-opened > .children {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        ul.mobile-nav-links {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            margin-left: 0;
+            background-color: $menu-item-bgcolor-active;
+        }
+
+        .back-btn {
+
+            button {
+                display: block;
+                height: 100%;
+                width: 100%;
+                position: relative;
+                text-indent: -999px;
+                background-color: transparent;
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-60%, -53%);
+                    background-image: url("#{$get-path-to-assets}/raw/svg/chevron-l-small-white.svg");
+                    background-repeat: no-repeat;
+                    width: 20px;
+                    height: 25px;
+                }
+            }
+        }
+
+        .parent-page {
+            font-size: 1.6rem;
+            font-weight: bold;
+
+            a {
+                display: grid;
+                grid-template-columns: 1fr 60px;
+            }
+
+            span:first-of-type {
+                justify-self: center;
+                font-family: $font-family-headings;
+            }
+
+            span:last-of-type {
+                display: block;
+                width: 60px;
+                text-indent: -9999px;
+            }
+        }
+    }
+
+}
