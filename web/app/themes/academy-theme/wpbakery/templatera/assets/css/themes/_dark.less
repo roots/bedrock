@@ -1,0 +1,326 @@
+@import "../../../../js_composer/assets/less/utils/mixins.less";
+/** Toggle/FAQ **/
+#content h4.wpb_toggle,
+h4.wpb_toggle {
+  background: @dark;
+  color: @white;
+  position: relative;
+  padding: 10px 15px;
+  margin: 0 0 1px 26px;
+  font-weight: normal;
+  .transition(all 0.3s ease-out);
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover,
+  &.wpb_toggle_title_active {
+    color: @accent_color;
+    &:before {
+      background: @accent_color;
+      color: @white;
+    }
+  }
+}
+h4.wpb_toggle,
+.wpb_toggle_content {
+  &:before {
+    content: '+';
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    left: -26px;
+    top: 0px;
+    width: 25px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 45px;
+    text-align: center;
+    background: lighten(@dark, 5%);
+    color: @white;
+    .transition(all 0.3s ease-out);
+  }
+}
+h4.wpb_toggle_title_active {
+  &:before {
+    content: "-";
+  }
+}
+.wpb_toggle_content {
+  position: relative;
+  padding: 10px 15px;
+  margin: 0 0 1px 26px;
+  background: @dark;
+  color: @white;
+}
+
+/** Tabs **/
+.wpb_content_element.wpb_tabs .wpb_tour_tabs_wrapper .wpb_tab {
+  background: @dark;
+  color: @white;
+}
+.wpb_content_element .wpb_tour_tabs_wrapper .wpb_tab, .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content {
+  padding: 10px 15px;
+}
+.wpb_tour_tabs_wrapper {
+  .wpb_tabs_nav {
+    padding: 0;
+    margin: 0 0 1px 0 !important;
+    li {
+      list-style: none;
+      margin: 0 1px 0 0;
+      float: left;
+      background: none;
+      a {
+        margin: 0;
+        display: block;
+        padding: 5px 15px;
+        background: @dark;
+        color: @white;
+        .transition(all 0.3s ease-out);
+      }
+      &.ui-state-active,
+      &:hover {
+        a {
+          background: @accent_color;
+          color: @white;
+          position: relative;
+        }
+      }
+    }
+  }
+}
+/** Tour **/
+.wpb_tour {
+  .wpb_tour_tabs_wrapper {
+    .wpb_tab {
+      background: @dark;
+      color: @white;
+    }
+    .wpb_tour_next_prev_nav {
+      padding: 0;
+      a {
+        color: @accent_color;
+        border-color: @dark;
+      }
+    }
+    .wpb_tabs_nav {
+      li {
+        float: none;
+        margin: 0 0 1px 0;
+      }
+    }
+  }
+}
+
+/* Accordion */
+.wpb_accordion_section {
+  margin-bottom: 1px;
+}
+.wpb_content_element .wpb_accordion_wrapper {
+  .wpb_accordion_header {
+    background: @dark;
+    color: @white;
+    margin: 0 0 0 0;
+    border: none;//1px solid @dark;
+    padding: 11px 15px;
+    &:after {
+      content: "+";
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: @white;
+      font-weight: bold;
+      .transition(all 0.3s ease-out);
+    }
+    &.ui-state-active {
+      border-bottom-color: transparent;
+      &:after {
+        content: "-";
+      }
+    }
+    &.ui-state-active,
+    &.ui-state-hover {
+      &:after {
+        color: @accent_color;
+      }
+    }
+    a:hover,
+    &.ui-state-active a {
+      color: @accent_color;
+    }
+    a {
+      padding: 0;
+      color: inherit;
+      .transition(all 0.3s ease-out);
+    }
+    > span {
+      display: none;
+    }
+  }
+  .wpb_accordion_content {
+    background: @dark;
+    color: @white;
+    padding-top: 0;
+  }
+}
+
+/* Call to Action box **/
+.wpb_call_to_action {
+  background: @dark;
+  border: 3px solid lighten(@dark, 5%);
+  border-left-color: @accent_color;
+  padding: 30px 25px;
+  .wpb_call_text {
+    font-weight: normal;
+    color: @white;
+  }
+}
+
+/* Separator */
+.wpb_separator, .vc_text_separator {
+  border-bottom: 1px dashed @dark;
+}
+.vc_text_separator {
+  div {
+    top: -11px;
+    color: @accent_color;
+    background: none;
+  }
+}
+
+/* Message box */
+.wpb_alert .messagebox_text {
+  padding-left: 40px;
+}
+.wpb_alert {  
+  color: @dark;
+  background: #FDDA48;
+  border: 3px solid darken(#FDDA48, 20%);
+  
+  text-shadow: none;
+  padding: 15px 25px;
+  .border-radius(0);
+}
+.wpb_alert-success,
+.wpb_alert-error,
+.wpb_alert-info {
+  color: #ffffff;
+}
+.wpb_alert-success {
+  background: #6AB165;
+  border: 3px solid darken(#6AB165, 15%);
+  p {
+    color: #ffffff;
+  }
+}
+
+.wpb_alert-error {
+  background: #D95757;
+  border: 3px solid darken(#D95757, 15%);
+  p {
+    color: #ffffff;
+  }
+}
+
+.wpb_alert-info {
+  background: #686B72;
+  border: 3px solid darken(#686B72, 15%);
+  p {
+    color: #ffffff;
+  }
+}
+
+/* Bar Graph */
+.vc_progress_bar {
+  .vc_single_bar {
+      background: none;
+      border: 1px dashed @dark;
+      .box-shadow(none);
+      .border-radius(0);
+      .vc_bar {
+        .border-radius(0);
+      }
+  }
+  .bar_grey {
+    .vc_label {
+      color: @white;
+    }
+    .vc_bar {
+      background: @accent_color;//@dark;
+    }
+  }
+}
+
+/* Button */
+.wpb_button {
+  border: 0;
+  padding: 6px 10px;
+  .border-radius(20px);
+  .transition(all 0.3s ease-out);
+  text-shadow: none;
+}
+.wpb_btn-mini {
+  padding: 3px 7px 4px 7px;
+  font-size: 85%;
+  line-height: 110%;
+}
+.wpb_btn-small {
+  padding: 5px 10px 5px;
+  font-size: 85%;
+  line-height: 110%;
+}
+.wpb_regularsize {
+  padding: 8px 20px;
+}
+.wpb_btn-large {
+  padding: 10px 25px;
+  font-size: 120%;
+}
+/** Colors */
+.wpb_wpb_button {
+  background: @accent_color;//@dark;
+  color: @white;
+  //font-size: inherit;
+  &:hover {
+    background: lighten(@dark, 5%);
+  }
+}
+.wpb_btn-primary {
+  //background: @accent_color;
+  &:hover {
+    //background: darken(@accent_color, 10%);
+  }
+}
+.wpb_btn-inverse {
+  background: #414141;
+  &:hover {
+    background: darken(#414141, 10%);
+  }
+}
+.wpb_btn-danger {
+  background: #DA4F49;
+  &:hover {
+    background: darken(#DA4F49, 10%);
+  }
+}
+.wpb_btn-success {
+  background: #5BB75B;
+  &:hover {
+    background: darken(#5BB75B, 10%);
+  }
+}
+.wpb_btn-warning {
+  background: #FAA732;
+  &:hover {
+    background: darken(#FAA732, 10%);
+  }
+}
+
+/* Google maps */
+.wpb_gmaps_widget .wpb_map_wraper {
+  background: @dark;
+  border: 3px solid @dark;
+  border-left-color: @accent_color;
+  padding: 0;
+}

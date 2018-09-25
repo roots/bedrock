@@ -1,0 +1,164 @@
+
+	.element-part{
+		width: 100%;
+		position: relative;
+		padding-bottom:30px;
+		margin-bottom:30px;
+		border-bottom:1px solid #f1f1f1;
+		clear: both;
+	}
+
+	.element-part:last-child{
+		border-bottom:transparent;
+	}
+
+	.element-part .fifty{
+		width: 50%;
+		padding-right:10px;
+		padding-left:0;
+	}
+
+	.element-part .fifty:last-child{
+		padding-left:10px;
+		padding-right:0;
+	}
+
+	.element-head{
+		font-size:25px;
+		margin:0 0 25px;
+	}
+
+/* Base styles (regardless of theme) */
+
+	.bs-callout {
+		margin: 20px 0;
+		padding: 30px 30px 30px 20px;
+		border-left: 2px solid #eee;
+	}
+
+	.bs-callout h2 {
+		margin-top: 0;
+		padding-top:0;
+	}
+
+	.bs-callout p:last-child {
+		margin-bottom: 0;
+		padding-bottom:0;
+	}
+
+	.bs-callout code,
+	.bs-callout .highlight {
+		background-color: #fff;
+	}
+
+/* Themes for different contexts */
+
+	.bs-callout-north {
+		/*background-color: #fafafa;*/
+	}
+
+	.bs-callout-danger {
+		background-color: #fcf2f2;
+		border-color: #d9534f;
+	}
+
+	.bs-callout-warning {
+		background-color: #fefbed;
+		border-color: #f0ad4e;
+	}
+
+	.bs-callout-info {
+		background-color: #f0f7fd;
+		border-color: #5bc0de;
+	}
+
+/* Progress Bars */
+
+	.progress{
+		height: auto;
+		border-radius: 1px;
+		background-color:#f8f8f8;
+		box-shadow: none;
+		margin-top:35px;
+		position: relative;
+	}
+
+	div .progress:first-child{
+		margin-top:0;
+	}
+
+	.progress .progress-bar{
+		height: 38px;
+		font-size:21px;
+	}
+
+	.progress .progress-bar span{
+		margin:10px 10px 8px;
+		padding:0;
+		font-size:20px;
+		position: absolute;
+		width: 100%;
+	}
+
+/* Facts */
+
+	.facts .fact{
+		padding:32px 36px;
+		border:1px #b1b1b1 dashed;
+		width:auto;
+		min-width: 200px;
+		height: auto;
+		display: inline-block;
+		margin-right:70px;
+		margin-top:25px;
+		cursor: default;
+	}
+
+	.facts div:last-child{
+		margin-right:0px;
+	}
+
+	.facts .fact h1{
+		font-size:60px;
+		color:inherit;
+		margin:0;
+		padding:0;
+		letter-spacing: 1px;
+	}
+
+	.facts .fact h3{
+		font-size:20px;
+		color:#3e3e3e;
+		margin:0;
+		padding:0;
+	}
+
+/* Social Buttons */
+
+	.social{
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		line-height: 40px;
+		text-align: center;
+		color:#454545;
+		margin-right: 5px;
+		background:#f7f7f7;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+	}
+
+	button:hover{
+		opacity: 0.9;
+	}
+
+	button.white:hover{
+		color:white;
+	}
+
+	button.colored-bg,
+	button.colored-bg:hover{
+		color:white;
+	}
+

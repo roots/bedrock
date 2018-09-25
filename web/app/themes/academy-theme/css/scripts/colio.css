@@ -1,0 +1,65 @@
+/* Colio - Basic Styles
+================================================== */
+
+.colio {
+	position: relative;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+.colio-container {
+	padding: 40px;
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.colio-content {
+	display: none;
+	overflow: hidden;
+}
+
+.colio-close,
+.colio-prev,
+.colio-next {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.colio-no-prev,
+.colio-no-next {
+	cursor: default;
+	opacity: 0.2;
+}
+
+/* navigation, close */
+
+.colio-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.colio-navigation {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.colio-navigation a {
+	margin-right: 5px;	
+}
+
+/* placement */
+
+.colio-placement-inside,
+.colio-placement-before {
+	margin-bottom: 20px;
+}
+
+.colio-placement-after {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

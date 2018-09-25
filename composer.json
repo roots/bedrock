@@ -111,7 +111,31 @@
         "type": "wordpress-plugin",
         "dist": {
           "type": "zip",
-          "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/academy-vcaddons.zip"
+          "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/academy-composer.zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "academy-theme",
+        "version": "1.0",
+        "type": "wordpress-theme",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/themes/north.zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "academy-theme-child",
+        "version": "1.0",
+        "type": "wordpress-theme",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/themes/north-child.zip"
         }
       }
     }
@@ -143,7 +167,9 @@
     "academy-rslider": "^1.0",
     "academy-twitter": "^1.0",
     "academy-vcaddons": "^1.0",
-    "academy-composer": "^1.0"
+    "academy-composer": "^1.0",
+    "academy-theme": "^1.0",
+    "academy-theme-child": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",

@@ -1,0 +1,1716 @@
+/*
+skins available:
+	- bullets
+	- thumbs
+*/
+
+/* the container */
+.fullscreen_background {
+	position:relative;
+	line-height:20px;
+}
+.fullscreen_background iframe {
+	position:absolute;
+	max-width: none !important;
+	min-width: none !important;
+	max-height: none !important;
+	min-height: none !important;	
+	bottom: -50px !important;
+}
+.fullscreen_background img {
+	/*xposition: relative !important;*/
+	position:static !important;
+	display: block;
+	max-width: none !important;
+	min-width: none !important;
+	max-height: none !important;
+	min-height: none !important;
+	/*width: auto !important;
+	height: auto !important;*/
+	margin:0;
+	border:none !important;
+	padding:0 !important;
+	object-fit: fill;
+	/*-webkit-backface-visibility: hidden;*/
+}
+.fullscreen_background_list {
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:none;
+}
+
+.fullscreen_background .contentHolderVisibleWrapper {
+	position:absolute;
+	overflow:hidden;
+	margin-top:0px;
+	*margin-top:-20px;
+}
+.fullscreen_background .contentHolder {
+	position:absolute;
+}
+.fullscreen_background .contentHolderUnit {
+	/*position:relative;
+	float:left;*/
+	display:block;
+	overflow:hidden;
+}
+.setAsBg {
+	position:absolute;
+	z-index:0;
+	margin:0;
+	padding:0;
+	left:0;
+	top:0;
+	overflow: hidden;
+	z-index: 0;
+}
+.fullscreen_background .texture_over_image {
+	position:absolute;
+	z-index:2;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	pointer-events:none;
+}
+
+.mycanvas {
+	/*border:1px solid #ff0000;*/
+	position:absolute;
+	top:8px;
+	right:10px;
+	z-index:10;
+}
+.myloader {
+	width:37px;
+	height:37px;
+	position:absolute;
+	left:49%;
+	top:49%;
+	z-index:5;
+}
+
+
+
+/***bullets SKIN***/
+.fullscreen_background.bullets .contentHolderVisibleWrapper {
+	position:absolute;
+	overflow:hidden;
+	margin-top:0px;
+}
+
+.fullscreen_background.bullets .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:2;
+	width:100%;
+}
+
+.fullscreen_background.bullets .leftNav {
+	position:absolute;
+	left:25px;
+	width:63px;
+	height:72px;
+	cursor: pointer;
+}
+
+.fullscreen_background.bullets .rightNav {
+	position:absolute;
+	right:25px;
+	width:63px;
+	height:72px;
+	cursor: pointer;
+}
+
+.fullscreen_background.bullets .bottomNav {
+	position:absolute;
+	width:0px;
+	height:24px;
+	bottom:-56px;
+	z-index:3;
+	padding-left:9px;
+}
+.fullscreen_background.bullets .bottomNavButtonOFF {
+	float:left;
+	display:block;
+	width:15px;
+	height:15px;
+	padding-left:6px;
+	cursor: pointer;
+}
+
+.fullscreen_background.bullets .bottomNavButtonON {
+	float:left;
+	display:block;
+	width:15px;
+	height:15px;
+	padding-left:6px;
+	cursor: pointer;
+}
+
+
+
+.fullscreen_background.bullets .bottomOverThumb {
+	position:absolute;
+	width:88px;
+	height:95px;
+	bottom:25px;
+	margin-left:-44px;
+}
+.fullscreen_background.bullets .innerBottomOverThumb {
+	position:relative;
+	width:80px;
+	height:80px;
+	margin:4px 0 0 4px;
+	overflow:hidden;
+}
+.fullscreen_background.bullets .bottomOverThumb img {
+
+}
+.fullscreen_background.bullets .playOver {
+	position:absolute;
+	width:73px;
+	height:73px;
+
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+.fullscreen_background.bullets .playOver:hover {
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***thumbs SKIN***/
+.fullscreen_background.thumbs .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:2;
+	width:100%;
+}
+
+.fullscreen_background.thumbs .leftNav {
+	position:absolute;
+	left:25px;
+	margin-top:0px;
+	width:60px;
+	height:110px;
+	background:url(skins/thumbs/leftNavOFF.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+.fullscreen_background.thumbs .leftNav:hover {
+	background:url(skins/thumbs/leftNavON.png) 0 0 no-repeat;
+}
+.fullscreen_background.thumbs .rightNav {
+	position:absolute;
+	right:25px;
+	margin-top:0px;
+	width:60px;
+	height:110px;
+	background:url(skins/thumbs/rightNavOFF.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+.fullscreen_background.thumbs .rightNav:hover {
+	background:url(skins/thumbs/rightNavON.png) 0 0 no-repeat;
+}
+
+.fullscreen_background.thumbs .playOver {
+	position:absolute;
+	width:75px;
+	height:100px;
+	background:url(skins/thumbs/play_overOFF.png) 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+.fullscreen_background.thumbs .playOver:hover {
+	background:url(skins/thumbs/play_overON.png) 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+
+
+/* thumbs */
+.fullscreen_background.thumbs .thumbsHolderWrapper {
+	position:absolute;
+	height:72px;
+	width:100%;
+	z-index:2;
+	overflow:hidden;
+}
+.fullscreen_background.thumbs .thumbsHolderVisibleWrapper {
+	position:absolute;
+	width:100%;
+	height:72px;
+	overflow:hidden;
+}
+.fullscreen_background.thumbs .thumbsHolder {
+	position:absolute;
+}
+.fullscreen_background.thumbs .thumbsHolder_ThumbOFF {
+	float:left;
+	display:block;
+	width:110px;
+	height:65px;
+	cursor: pointer;
+	border-width:3px;
+	border-style:solid;
+	border-color:#7a7a7a;
+	/*border-color:transparent !important;*/
+}
+
+
+
+.fullscreen_background.thumbs .thumbsHolder_ThumbOFF img {
+	display:block;
+	margin:0;
+	padding:0;
+}
+
+/*.fullscreen_background.thumbs .thumbsHolder_ThumbON {
+	border-width:2px;
+	border-style:solid;
+	border-color: #000000;*/
+	/*border-color:#FF0 !important;*/
+/*}*/
+
+.fullscreen_background.thumbs .carouselLeftNav {
+	position:absolute;
+	width:44px;
+	height:70px;
+	background:url(skins/thumbs/carouselLeftNavOFF.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.fullscreen_background.thumbs .carouselLeftNav:hover {
+	background:url(skins/thumbs/carouselLeftNavON.png) 0 0 no-repeat;
+}
+
+.fullscreen_background.thumbs .carouselLeftNavDisabled {
+	background:url(skins/thumbs/carouselLeftNavDisable.png) 0 0 no-repeat;
+	cursor:default;
+}
+.fullscreen_background.thumbs .carouselLeftNavDisabled:hover {
+	background:url(skins/thumbs/carouselLeftNavDisable.png) 0 0 no-repeat;
+}
+
+.fullscreen_background.thumbs .carouselRightNav {
+	position:absolute;
+	width:44px;
+	height:70px;
+	background:url(skins/thumbs/carouselRightNavOFF.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.fullscreen_background.thumbs .carouselRightNav:hover {
+	background:url(skins/thumbs/carouselRightNavON.png) 0 0 no-repeat;
+}
+
+.fullscreen_background.thumbs .carouselRightNavDisabled {
+	background:url(skins/thumbs/carouselRightNavDisable.png) 0 0 no-repeat;
+	cursor:default;
+}
+.fullscreen_background.thumbs .carouselRightNavDisabled:hover {
+	background:url(skins/thumbs/carouselRightNavDisable.png) 0 0 no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************Text Styles***************************************************/
+
+.fullscreen_background_texts {
+	position:absolute;
+	z-index:2;
+	display: none;
+	width:100%;
+}
+.fullscreen_background_text_line {
+	position:absolute;
+}
+/****/
+
+
+
+/***bulletsFixedDimensionsTexts***/
+
+.textElement11_bullets {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:34px;
+	text-transform:uppercase;
+	color:#333333;
+}
+.textElement12_bullets {
+	font: bold 16px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:23px;
+	text-transform:uppercase;
+	color:#333333;
+}
+
+.textElement12_bullets a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_bullets a:hover {
+	color:#FF0000;
+}
+
+
+.textElement21_bullets {
+	font: bold 38px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:54px;
+	text-transform:uppercase;
+	color:#000000;
+}
+.textElement22_bullets {
+	font: bold 15px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:21px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement41_bullets {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	color:#FFFFFF;
+}
+
+.textElement42_bullets {
+	font: bold 26px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:37px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement43_bullets {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	color:#FFFFFF;
+}
+
+
+.textElement51_bullets {
+	font: bold 14px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+}
+
+.textElement52_bullets {
+	font: bold 48px 'Lato', Verdana, Helvetica, sans-serif;
+	line-height:40px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement53_bullets {
+	font: 204px 'Arial', Verdana, Helvetica, sans-serif;
+	line-height:204px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+.textElement54_bullets {
+	font: 15px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:21px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement54_bullets a {
+	color:#ffffff;
+}
+
+.textElement54_bullets a:hover {
+	color:#FF0000;
+}
+
+
+
+.textElement61_bullets {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:35px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement62_bullets {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+/***bulletsFullWidthTexts***/
+
+
+.highlight1 {
+	font-weight:bold;
+	color:#FFFFFF;
+	text-transform:uppercase;
+}
+
+.highlight1b {
+	color:#FF0000;
+	font-weight:900;
+	font-style:italic;
+	text-transform:uppercase;
+}
+
+.textElement11_bulletsFullWidth {
+	padding: 4px 10px 4px 10px;
+	background:url(skins/bullets/textBg_transparency.png);
+	font:40px 'Lato', sans-serif;
+	line-height:52px;
+	color:#FFFFFF;
+}
+
+.textElement11_bulletsFullWidth a {
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement11_bulletsFullWidth a:hover {
+	color:#FF0000;
+}
+
+
+.textElement21_bulletsFullWidth {
+	font: bold 64px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:90px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement21_bulletsFullWidth a {
+	text-transform:uppercase;
+	color:#ff5656;
+	text-decoration:none;
+}
+
+.textElement21_bulletsFullWidth a:hover {
+	color:#d73c3c;
+}
+
+.textElement22_bulletsFullWidth {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:34px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement41_bulletsFullWidth {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:42px;
+	color:#000000;
+}
+
+.textElement42_bulletsFullWidth {
+	font: bold 38px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:58px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement43_bulletsFullWidth {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:42px;
+	color:#000000;
+}
+
+
+.textElement51_bulletsFullWidth {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:31px;
+	color:#000000;
+}
+.textElement51B_bulletsFullWidth {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:31px;
+	color:#000000;
+}
+
+.textElement52_bulletsFullWidth {
+	font: bold 74px 'Lato', Verdana, Helvetica, sans-serif;
+	line-height:60px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement53_bulletsFullWidth {
+	font: 298px 'Arial', Verdana, Helvetica, sans-serif;
+	line-height:298px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement54_bulletsFullWidth {
+	font: 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:34px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement54_bulletsFullWidth a {
+	color:#000000;
+}
+
+.textElement54_bulletsFullWidth a:hover {
+	color:#FF0000;
+}
+
+
+
+.textElement61_bulletsFullWidth {
+	background:url(skins/bullets/textBg_transparency40.png);
+	font: 52px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:60px;
+	padding:3px 6px 3px 6px;
+	color:#ffffff;
+}
+
+.highlight6 {
+	font-weight:bold;
+	color:#FFFFFF;
+	text-transform:uppercase;
+}
+
+
+
+
+
+
+/***bulletsFullScreenTexts***/
+
+.textElement41_bulletsFullScreen {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.textElement42_bulletsFullScreen {
+	font: bold 28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement43_bulletsFullScreen {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+
+.textElement54_bulletsFullScreen {
+	font: 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement54_bulletsFullScreen a {
+	color:#000000;
+}
+
+.textElement54_bulletsFullScreen a:hover {
+	color:#FF0000;
+}
+
+
+/***bulletsFullScreenMultimediaGalleryTexts***/
+
+.textElement11_bulletsFullScreenMultimediaGallery {
+	font: bold 28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	background:#ff0000;
+	padding:0 4px 0 4px;
+	color:#FFFFFF;
+}
+
+.textElement12_bulletsFullScreenMultimediaGallery {
+	font: bold 38px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	background:#000000;
+	padding:0 4px 0 4px;
+	color:#FFFFFF;
+}
+
+.textElement13_bulletsFullScreenMultimediaGallery {
+	font: bold 28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	background: #0C0;
+	padding:0 4px 0 4px;
+	color:#FFFFFF;
+}
+
+
+.textElement14_bulletsFullScreenMultimediaGallery {
+	font: 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement14_bulletsFullScreenMultimediaGallery a {
+	color:#000000;
+}
+
+.textElement14_bulletsFullScreenMultimediaGallery a:hover {
+	color:#FF0000;
+}
+
+
+
+
+
+
+
+/****majesticFixedDimensionsTexts***/
+
+.textElement11_majestic {
+	background: url(images/majesticFixedDimensions/bgBox.png);
+	font: 32px 'Satisfy', cursive;
+	padding:3px 9px  3px 9px ;
+	color:#FFFFFF;
+}
+
+.textElement12_majestic {
+	background: url(images/majesticFixedDimensions/bgBox.png);
+	padding:9px;
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+.textElement12_majestic a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement21_majestic {
+	font: bold 40px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:56px;
+	text-transform:uppercase;
+	color:#000000;
+}
+.textElement22_majestic {
+	font: bold 13px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:18px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement23_majestic {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:30px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement31_majestic {
+	background: url(skins/majestic/textBg_transparency.png);
+	font: 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:31px;
+	padding:4px 7px 4px 7px;
+	color:#FFFFFF;
+}
+
+.textElement31_majestic a {
+	color:#FF0000;
+	text-decoration:none;
+}
+
+.textElement31_majestic a:hover {
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+
+.textElement30b_majestic {
+	width:100%;
+	height: 70px;
+	background: url(skins/majestic/textBg_transparency70.png);
+}
+
+.textElement31b_majestic {
+	font: bold 16px/23px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff; 
+}
+
+.textElement31b_majestic a {
+	color:#ff0000;
+	text-decoration:none;
+}
+
+.textElement31b_majestic a:hover {
+	color:#ffffff;
+}
+
+
+.textElement51_majestic {
+	font: bold 32px/40px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement52_majestic {
+	font: bold 18px/23px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement61_majestic {
+	font: bold 14px/18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+}
+
+.textElement61b_majestic {
+	font: bold 14px/18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+}
+
+.textElement62_majestic {
+	font: bold 48px/45px 'Lato', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement63_majestic {
+	font: 206px/206px 'Arial', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+.textElement64_majestic {
+	font: 15px/21px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement64_majestic a {
+	color:#ffffff;
+}
+
+.textElement64_majestic a:hover {
+	color:#FF0000;
+}
+
+.textElement71_majestic {
+	font: bold 18px/23px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+.textElement72_majestic {
+	font: bold 26px/35px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement73_majestic {
+	font: bold 18px/23px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+.textElement80_majestic {
+	width:26%;
+	height: 420px;
+	background: url(skins/majestic/textBg_transparency70.png);
+	text-align:left;
+}
+
+.textElement81_majestic {
+	width:25%;
+	font: bold 16px/22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff; 
+	text-align:left;
+}
+
+.textElement81_majestic a {
+	color:#ff0000;
+	text-decoration:none;
+}
+
+.textElement81_majestic a:hover {
+	color:#ffffff;
+}
+
+.textElement82_majestic {
+	width:25%;
+	font: 14px/19px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+	text-align:left;
+}
+
+.textElement82_majestic a {
+	color:#ff0000;
+	text-decoration:none;
+}
+
+.textElement82_majestic a:hover {
+	color:#ff0000;
+	text-decoration:underline;
+}
+
+
+
+
+/****majesticFullWidthTexts***/
+
+.textElement21FW_majestic {
+	font: bold 64px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:85px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement22FW_majestic {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:29px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement23FW_majestic {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:42px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement31FW_majestic {
+	background: url(skins/majestic/textBg_transparency.png);
+	font: 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:39px;
+	padding:4px 7px 4px 7px;
+	color:#FFFFFF;
+}
+
+.textElement31FW_majestic a {
+	color:#FF0000;
+	text-decoration:none;
+}
+
+.textElement31FW_majestic a:hover {
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+
+.textElement50FW_majestic {
+	width:25%;
+	height: 782px;
+	background: url(skins/majestic/textBg_transparency40.png);	
+}
+
+.textElement51FW_majestic {
+	font: bold 47px/54px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement52FW_majestic {
+	font: bold 38px/49px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement61FW_majestic {
+	font: bold 21px/28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+}
+
+.textElement61bFW_majestic {
+	font: bold 21px/28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+}
+
+.textElement62FW_majestic {
+	font: bold 64px/65px 'Lato', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement63FW_majestic {
+	font: 300px/305px 'Arial', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+.textElement64FW_majestic {
+	font: 22px/28px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement64FW_majestic a {
+	color:#ffffff;
+}
+
+.textElement64FW_majestic a:hover {
+	color:#FF0000;
+}
+
+
+.textElement70FW_majestic {
+	width:100%;
+	height: 120px;
+	background: url(skins/majestic/textBg_transparency70.png);
+}
+
+.textElement71FW_majestic {
+	font: bold 32px/44px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff; 
+}
+
+.textElement71FW_majestic a {
+	color:#ff0000;
+	text-decoration:none;
+}
+
+.textElement71FW_majestic a:hover {
+	color:#ffffff;
+}
+
+
+
+.textElement81FW_majestic {
+	font: bold 32px/42px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+.textElement82FW_majestic {
+	font: bold 48px/64px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement83FW_majestic {
+	font: bold 32px/42px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+
+
+
+/***majesticFullScreenTexts***/
+
+.textElement11_majesticFullScreen {
+	font: bold 104px/120px 'Lato', sans-serif;
+	text-transform:uppercase;
+	color:#d41e3b;
+}
+.textElement12_majesticFullScreen {
+	font: bold 64px/80px 'Lato', sans-serif;
+	color:#000000;
+}
+
+.textElement13_majesticFullScreen {
+	font: bold 48px/80px 'Lato', sans-serif;
+	text-transform:uppercase;
+	color:#d41e3b;
+}
+
+.textElement13_majesticFullScreen a {
+	text-transform:uppercase;
+	color:#d41e3b;
+	text-decoration:none;
+}
+
+.textElement13_majesticFullScreen a:hover {
+	text-decoration:underline;
+}
+
+
+.textElement21_majesticFullScreen {
+	font: bold 64px/85px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement21_majesticFullScreen a {
+	text-transform:uppercase;
+	color:#ff5656;
+	text-decoration:none;
+}
+
+.textElement21_majesticFullScreen a:hover {
+	color:#d73c3c;
+}
+
+.textElement22_majesticFullScreen {
+	font: bold 24px/34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement41_majesticFullScreen {
+	font: bold 28px/37px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.textElement42_majesticFullScreen {
+	font: bold 48px/68px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement43_majesticFullScreen {
+	font: bold 28px/37px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+
+.textElement51_majesticFullScreen {
+	font: bold 22px/31px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.textElement51b_majesticFullScreen {
+	font: bold 22px/31px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.textElement52_majesticFullScreen {
+	font: bold 73px/72px 'Lato', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement53_majesticFullScreen {
+	font: 330px/335px 'Arial', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement54_majesticFullScreen {
+	font: 24px/34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement54_majesticFullScreen a {
+	color:#000000;
+}
+
+.textElement54_majesticFullScreen a:hover {
+	color:#FF0000;
+}
+
+
+
+.textElement61_majesticFullScreen {
+	font: bold 64px/74px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement62_majesticFullScreen {
+	font: bold 28px/37px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+
+
+/****thumbsFixedDimensionsTexts***/
+
+
+.textElement11_thumbs {
+	font: bold 26px 'Lato', sans-serif;
+	line-height:35px;
+	color:#FFFFFF;
+}
+
+.textElement12_thumbs {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	color:#FFFFFF;
+}
+
+.textElement12_thumbs a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_thumbs a:hover {
+	text-decoration: underline;
+}
+
+.textElement21_thumbs {
+	font: bold 40px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 55px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement22_thumbs {
+	font: bold 14px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 20px
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement23_thumbs {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 27px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement31_thumbs {
+	font: bold 38px 'Lato', sans-serif;
+	line-height: 45px;
+	text-transform:uppercase;
+	text-align:right;
+	color:#000000;
+}
+
+
+.textElement32_thumbs {
+	text-align:right;
+	text-transform:uppercase;
+	font: bold 24px 'Lato', sans-serif;
+	line-height: 31px;
+	color:#FFFFFF;
+}
+
+.textElement33_thumbs {
+	text-transform:uppercase;
+	font: 101px 'Lato', sans-serif;
+	line-height: 110px;
+	color:#FFFFFF;
+}
+
+.textElement33_thumbs a {
+	color:#ffffff;
+	text-decoration:none;
+}
+
+.textElement33_thumbs a:hover {
+	color:#FF0000;
+}
+
+
+.orangex {
+	color: #F60;
+}
+
+
+.textElement51_thumbs {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 38px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement52_thumbs {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 24px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement61_thumbs {
+	font: bold 14px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 18px;
+	color:#ffffff;
+}
+
+.textElement62_thumbs {
+	font: bold 42px 'Lato', sans-serif;
+	line-height:44px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement63_thumbs {
+	font: 210px 'Arial', Verdana, Helvetica, sans-serif;
+	line-height: 222px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+.textElement64_thumbs {
+	font: 15px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 18px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement64_thumbs a {
+	color:#ffffff;
+}
+
+.textElement64_thumbs a:hover {
+	color:#FF0000;
+}
+
+.textElement71_thumbs {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 24px;
+	color:#000000;
+}
+
+.textElement72_thumbs {
+	font: bold 26px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 36px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement73_thumbs {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 36px;
+	color:#000000;
+}
+
+
+
+
+/***thumbsFullWidthTexts***/
+
+.textElement11_thumbsFullWidth {
+	font: bold 50px 'Lato', sans-serif;
+	line-height: 52px;
+	color:#000000;
+}
+
+.textElement12_thumbsFullWidth {
+	font: bold 24px 'Lato', sans-serif;
+	line-height:40px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement12_thumbsFullWidth a {
+	text-decoration:none;
+	color:#de002a;
+}
+
+.textElement12_thumbsFullWidth a:hover {
+	text-decoration:underline;
+	color:#de002a;
+}
+
+.textElement21_thumbsFullWidth {
+	font: bold 65px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 80px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement22_thumbsFullWidth {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 30px
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement23_thumbsFullWidth {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 37px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+
+.textElement41_thumbsFullWidth {
+	text-transform:uppercase;
+	font: bold 60px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 80px;
+	color:#000000;
+}
+
+.textElement41_thumbsFullWidth a {
+	color:#ff5656;
+	text-decoration:none;
+}
+
+.textElement41_thumbsFullWidth a:hover {
+	color:#d73c3c;
+}
+
+.textElement42_thumbsFullWidth {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 34px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+
+/***thumbsFullScreenTexts***/
+
+.textElement21_thumbsFullScreen {
+	font: bold 54px/62px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement21_thumbsFullScreen a {
+	text-transform:uppercase;
+	color:#ff5656;
+	text-decoration:none;
+}
+
+.textElement21_thumbsFullScreen a:hover {
+	color:#d73c3c;
+}
+
+.textElement22_thumbsFullScreen {
+	font: bold 19px/30px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement54_thumbsFullScreen {
+	font: 24px/34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+.textElement54_thumbsFullScreen a {
+	color:#000000;
+}
+
+.textElement54_thumbsFullScreen a:hover {
+	color:#FF0000;
+}
+
+
+
+.textElement61_thumbsFullScreen {
+	font: bold 64px/74px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement62_thumbsFullScreen {
+	font: bold 28px/37px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+
+
+/***SideBarsPlusTexts***/
+
+/***300x600***/
+.textElement11_300x600 {
+	font: bold 34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:44px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement12_300x600 {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:27px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement12_300x600 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_300x600 a:hover {
+	color:#FF0000;
+}
+
+
+.textElement21_300x600 {
+	font:22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:31px;
+	color:#FFFFFF;
+}
+.textElement22_300x600 {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:26px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+
+
+
+
+/***728x90***/
+
+.textElement10_728x90 {
+	width:30%;
+	height: 260px;
+	background: url(images/SideBarPlus/728x90/textBg_transparency70.png);
+}
+
+
+.textElement11_728x90 {
+	font: bold 34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:44px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement12_728x90 {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:27px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+.textElement12_728x90 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_728x90 a:hover {
+	text-decoration: underline;
+}
+
+
+.textElement21_728x90 {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:31px;
+	color:#FFFFFF;
+}
+
+
+.textElement21_728x90 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement21_728x90 a:hover {
+	text-decoration: underline;
+}
+
+
+.textElement31_728x90 {
+	font: bold 15px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:21px;
+	color:#000000;
+}
+.textElement32_728x90 {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:26px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+
+
+
+
+
+/***468x60***/
+
+.textElement11_468x60 {
+	font: bold 24px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:34px;
+	text-transform:uppercase;
+	color:#000000;
+}
+.textElement12_468x60 {
+	font: bold 16px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:27px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement12_468x60 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_468x60 a:hover {
+	color:#FF0000;
+}
+
+
+.textElement21_468x60 {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:22px;
+	color:#FFFFFF;
+}
+
+.textElement21_468x60 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement21_468x60 a:hover {
+	color:#FF0000;
+}
+
+.textElement31_468x60 {
+	font: bold 11px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:21px;
+	color:#FFFFFF;
+}
+.textElement32_468x60 {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:26px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+
+
+/****MiniGallery1***/
+
+
+.textElement11_MiniGallery1 {
+	font: bold 26px 'Lato', sans-serif;
+	line-height:32px;
+	color:#FFFFFF;
+}
+
+.textElement12_MiniGallery1 {
+	font: bold 16px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:23px;
+	color:#FFFFFF;
+}
+
+.textElement12_MiniGallery1 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_MiniGallery1 a:hover {
+	text-decoration: underline;
+}
+
+.textElement31_MiniGallery1 {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 37px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+.textElement32_MiniGallery1 {
+	font: bold 14px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 22px
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+
+
+
+.orangex {
+	color: #F60;
+}
+
+
+.textElement51_MiniGallery1 {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height: 27px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+
+
+
+
+/***336x280***/
+
+.textElement11_336x280 {
+	font: bold 34px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:44px;
+	text-transform:uppercase;
+	color:#000000;
+}
+.textElement12_336x280 {
+	font: bold 22px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:27px;
+	text-transform:uppercase;
+	color:#000000;
+}
+
+.textElement12_336x280 a {
+	text-transform:uppercase;
+	color:#ff6c00;
+	text-decoration:none;
+}
+
+.textElement12_336x280 a:hover {
+	color:#FF0000;
+}
+
+
+.textElement21_336x280 {
+	font:16px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	color:#FFFFFF;
+}
+.textElement22_336x280 {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:22px;
+	text-transform:uppercase;
+	color:#FFFFFF;
+}
+
+
+
+
+.hideElement {
+	display:none;
+}
+
