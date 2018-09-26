@@ -12,13 +12,27 @@ Template: north
 /* Your code goes below! */
 
 .header { font-size:80px; }
+ul.learn-press-courses {
+    list-style: none;
+    padding: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 44px;
+    min-height: 655px;
+}
 body {
     width: 100%;
     height: 100%;
     padding: 0;
     margin-left: 0;
     margin-right: 0;
-    font-family: rad-semi,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+    font-family: 'Raleway', Open Sans, Helvetica, sans-serif !important;
     -webkit-font-smoothing: antialiased;
     position: relative;
     background-image: url(http://academy.ftlutte.tn/wp-content/uploads/2018/05/bg-corporate.jpg);
@@ -26,16 +40,14 @@ body {
     margin-bottom: 0px;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: rad-semi,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-family: rad-bold,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     font-weight: 400;
+    line-height: normal;
     margin: 0;
     line-height: 1.1;
 }
-.font-primary {
-    font-family: rad-semi,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-}
 footer.footer.dark-footer {
-background: linear-gradient(to right,#09033f 0,#3d1844 100%) !important;
+background: linear-gradient(to right,#09033f 0,#3d1844 100%);
 }
 footer img {
     width: 160px;
@@ -60,9 +72,9 @@ footer img {
     /* float: none; */
     position: relative;
     background-color: #FFF;
-    margin-top: -30px;
-    min-height: 875px !important;
     padding: 30px;
+    margin-top: -30px;
+    min-height: 875px;
 }
 .c-brand--corporate {
     background: linear-gradient(to right,#f5822a 0,#ab2153 100%);
@@ -76,6 +88,7 @@ footer img {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     min-width: 10%;
+    height: 6px;
 }
 .slider_home{
     margin-top: 0px;
@@ -164,6 +177,10 @@ ul.learn-press-courses .course .course-info .course-price {
     float: left;
     visibility: hidden;
 }
+.page-holder > .inner {
+    padding-top: 0px;
+    background-color: white;
+}
 .inner {
     width: 100%;
     height: auto;
@@ -184,54 +201,4 @@ ul.learn-press-courses .course .course-info .course-price {
     -moz-osx-font-smoothing: grayscale !important;
     opacity: 0;
     margin-top: 10%;
-}
-.um-member {
-    float: left;
-    width: 30%;
-    background: #fff;
-    text-align: center;
-    border: 1px solid #eee;
-    box-sizing: border-box;
-    margin-bottom: 40px;
-    position: relative;
-    margin-left: 20px;
-}
-ul.learn-press-courses {
-    list-style: none;
-    padding: 0;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: 44px;
-}
-form[name="search-course"] {
-    margin-bottom: 20px;
-    position: relative;
-    margin: 30px;
-}
-.lp-label.label-enrolled, .lp-label.label-started {
-    background: #ec6600;
-}
-.course-title {
-	text-align: center;
-	font-weight: bold;
-	font-family: arial;
-	color: #160840;
-}
-.course-instructor{
-	visibility: hidden;
-}
-.nav-menu ul li:hover{
-	color: #f58220;
-}
-.page_sidebar {
-    padding-left: 30px;
-    padding-right: 0;
-    visibility: hidden;
-    height: 0;
 }
