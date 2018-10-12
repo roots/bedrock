@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Header menu commons    */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$header-bg-color: $gray-700;
+$menu-item-color: $white;
+$menu-item-bgcolor: $gray-600;
+$menu-item-color-active: $gray-700;
+$menu-item-bgcolor-active: $gray-400;
+$menu-item-m0-color: $gray-600;
+/* ------------- */
+
+ul.header-menu {
+    display: block;
+    text-align: left;
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+
+    &, ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    li > a {
+        display: block;
+        padding: 20px;
+        color: $menu-item-color;
+        background-color: $menu-item-bgcolor;
+        text-decoration: none;
+        position: relative;
+        cursor: pointer;
+    }
+
+    ul.children {
+        display: none;
+        background-color: $menu-item-bgcolor;
+    }
+
+    li.current_page_ancestor,
+    li.current_page_item {
+        > a {
+            color: $menu-item-color-active;
+            background-color: $menu-item-bgcolor-active;
+        }
+    }
+
+}
