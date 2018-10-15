@@ -8,10 +8,10 @@ $alert-error: #d32F2f !default;
 $alert-error-bg: #f2d0d0 !default;
 
 // Components: checkboxes, radios, switches
-$checkbox-color         : $gray-600 !important;
+$checkbox-color         : #727e96 !important; //$gray-600
 $checkbox-size          : 3rem;
 $checkbox-border-radius : 0;
-$switch-color           : $gray-600;
+$switch-color           : #727e96; //$gray-600
 $switch-size            : 3rem;
 $switch-border-radius   : 3em;
 /* ------------- */
@@ -221,9 +221,8 @@ form {
 .switch,
 .checkbox,
 .radio {
+    flex-shrink: 0;
     box-shadow: 0 0 0 1px $gray-600 inset;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     ~ label {
         margin-bottom: 0;
