@@ -5,26 +5,33 @@
 
 /* Variables */
 /* ------------- */
-$mobileheaderHeight: 85px;
-$menu-item-border-color: $gray-400;
+$mobileheaderHeight: $burger-btn-size;
+
+$header-bg-color: #acb3c2; //$gray-500
+$menu-item-color: $white;
+$menu-item-bgcolor: #727e96; //$gray-600
+$menu-item-color-active: #acb3c2; //$gray-500
+$menu-item-bgcolor-active: $white;
+$menu-item-m0-color: $color-base;
+$menu-item-parent-color-active: $color-base;
+$menu-item-parent-bgcolor-active: $white;
+
+
 /* ------------- */
 
 @media (max-width: $medium - 1) {
 
-    .navigation-wrapper,
+    #header .navigation-wrapper,
     ul.header-menu .children {
         display: block;
         position: fixed;
-        top: $mobileheaderHeight;
+        z-index: 3;
+        top: 0;
         left: 0;
-        right: 0;
         bottom: 0;
         height: 100vh;
         width: 100vw;
-        max-width: 500px;
-        z-index: 10;
-        overflow-y: auto;
-
+        background-color: $header-bg-color;
         opacity: 0;
         pointer-events: none;
         visibility: hidden;
@@ -39,33 +46,43 @@ $menu-item-border-color: $gray-400;
         }
     }
 
-    .navigation-wrapper {
-        padding-bottom: 100vh;
-        border-top: 1px solid $menu-item-border-color;
-        background-color: $menu-item-bgcolor;
+    #header .navigation-wrapper {
+        padding-top: $mobileheaderHeight;
+        overflow-y: auto;
     }
 
     .navigation-wrapper ul.header-menu {
+        flex-direction: column;
+        align-items: stretch;
 
         li {
             height: 60px;
             margin-left: 0;
-            font-size: 1.5rem;
             line-height: 2rem;
+            border-bottom: 1px solid $header-bg-color;
 
             > a {
-                display: block;
+                position: relative;
+                display: flex;
+                align-items: center;
                 height: 100%;
-                padding: 20px;
+                padding: 0 20px;
+                font-size: 1.5rem;
+                color: $menu-item-color;
+                background-color: $menu-item-bgcolor;
             }
-        }
-
-        li, li:first-child {
-            border-bottom: 1px solid $menu-item-border-color;
         }
 
         ul.level1 li {
             min-width: auto;
+        }
+
+        li.current_page_ancestor,
+        li.current_page_item {
+
+            > a {
+                color: $menu-item-parent-color-active !important;
+            }
         }
 
         li.page_item_has_children {
@@ -76,7 +93,7 @@ $menu-item-border-color: $gray-400;
                 position: absolute;
                 right: 1rem;
                 top: 50%;
-                background-image: url("#{$get-path-to-assets}/raw/svg/chevron-r-small-white.svg");
+                background-image: url("#{$get-path-to-assets}/raw/svg/chevron-r-small.svg");
                 background-repeat: no-repeat;
                 width: 20px;
                 height: 25px;
@@ -88,6 +105,13 @@ $menu-item-border-color: $gray-400;
             top: 0;
             transform: translateX(-33%);
             display: block;
+            overflow-y: auto;
+
+            li > a {
+                padding-left: 40px;
+                /* color: $menu-item-color-active;
+                background-color: $menu-item-bgcolor-active;*/
+            }
         }
 
         li.is-opened > .children {
@@ -95,13 +119,14 @@ $menu-item-border-color: $gray-400;
             opacity: 1;
             visibility: visible;
             pointer-events: all;
+            background-color: #fff;
+            box-shadow: 0 60px 0 0 #fff;
         }
 
         ul.mobile-nav-links {
             display: grid;
             grid-template-columns: 60px 1fr;
             margin-left: 0;
-            background-color: $menu-item-bgcolor-active;
         }
 
         .back-btn {
@@ -110,9 +135,9 @@ $menu-item-border-color: $gray-400;
                 display: block;
                 height: 100%;
                 width: 100%;
+                background-color: #ffffff;
                 position: relative;
                 text-indent: -999px;
-                background-color: transparent;
                 &::after {
                     content: "";
                     display: block;
@@ -120,7 +145,7 @@ $menu-item-border-color: $gray-400;
                     left: 50%;
                     top: 50%;
                     transform: translate(-60%, -53%);
-                    background-image: url("#{$get-path-to-assets}/raw/svg/chevron-l-small-white.svg");
+                    background-image: url("#{$get-path-to-assets}/raw/svg/chevron-l-small.svg");
                     background-repeat: no-repeat;
                     width: 20px;
                     height: 25px;
@@ -129,19 +154,17 @@ $menu-item-border-color: $gray-400;
         }
 
         .parent-page {
-            font-size: 1.6rem;
-            font-weight: bold;
+            font-size: 1.2em;
 
-            a {
-                display: grid;
-                grid-template-columns: 1fr 60px;
+            > a {
+                padding-left: 0;
+                padding-right: 0;
+                color: $menu-item-parent-color-active !important;
+                background-color: $menu-item-parent-bgcolor-active !important;
             }
-
             span:first-of-type {
                 justify-self: center;
-                font-family: $font-family-headings;
             }
-
             span:last-of-type {
                 display: block;
                 width: 60px;
@@ -149,5 +172,93 @@ $menu-item-border-color: $gray-400;
             }
         }
     }
+}
 
+
+
+// Burger button (base styles are in buttons.scss and configs in variables.scss)
+.nav-button {
+
+    @media (min-width: $medium) {
+        display: none;
+    }
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $burger-btn-size;
+    width: $burger-btn-size;
+    background-color: $burger-bgcolor;
+}
+
+
+// mobile - Slide Menu/content
+.slider-menu-opened {
+    overflow-y: scroll;
+    position: fixed;
+    height: 110vh;
+    width: 100%;
+
+    #page {
+        overflow-x: hidden;
+    }
+
+    #header {
+        width: 85%;
+    }
+
+    .navigation-wrapper {
+        overflow: visible;
+        width: 100%;
+        transform: translateX(0);
+    }
+
+    .inner-header {
+        position: absolute;
+    }
+
+    .nav-button {
+        position: fixed;
+        top: 0;
+        right: -18%;
+        width: 18%;
+        background-color: transparent;
+        span {
+            background-color: #ffffff;
+        }
+        > * {
+            background-image: none;
+        }
+        > *::before, *::after {
+            display: none;
+        }
+    }
+
+    .site-content {
+        position: relative;
+        margin-top: 0;
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, .5);
+        }
+        transform: translateX(85%);
+    }
+}
+
+
+// Body overlay
+body.has-opened-menu {
+    position: fixed;
+    overflow: hidden;
 }
