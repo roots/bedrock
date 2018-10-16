@@ -1,16 +1,38 @@
 @charset "UTF-8";
 /* ----------------------------- */
-/* ==Footer      */
+/* ==Page contact      */
 /* ----------------------------- */
+
+/* Variables */
+/* ------------- */
+$encadre-bgcolor: #e7e9ed; //$gray-200
+$encadre-boxshadow: 1px 1px 4px 1px rgba(204, 202, 202, 0.5);
+/* ------------- */
 
 .module-contact {
 
     form {
-        @include grid(2, 2rem);
+        @include grid(2, 4rem);
+        grid-row-gap: 0 !important;
+    }
+
+    .textarea-wrap {
+        grid-row: auto/span 2;
+
+        textarea {
+            height: calc(100% - 28px);
+        }
     }
 
     .submitFormField {
-        grid-column: 1 / span 2;
+        grid-column: 1 / -1;
         justify-self: center;
+    }
+    
+    @media (max-width: $medium - 1) {
+        
+        form {
+            display: block;
+        }
     }
 }

@@ -8,13 +8,29 @@ $alert-error: #d32F2f !default;
 $alert-error-bg: #f2d0d0 !default;
 
 // Components: checkboxes, radios, switches
-$checkbox-color         : $gray-600 !important;
-$checkbox-size          : 3rem;
-$checkbox-border-radius : 0;
-$switch-color           : $gray-600;
-$switch-size            : 3rem;
-$switch-border-radius   : 3em;
-/* ------------- */
+$form-bgcolor               : #e7e9ed; //$gray-200
+$label-color                : #727e96; //$gray-600
+$input-color                : #727e96; //$gray-600
+$input-bgcolor              : $white;
+$placeholder-color          : #ced4da; //$gray-400
+
+$input-height               : 70px;
+
+$select-arrow-color         : $white;
+$select-arrow-bgcolor       : #727e96; //$gray-600
+$select-arrow-active-color  : $white;
+$select-bgcolor             : $white;
+$select-active-color        : $white;
+$select-active-bgcolor      : #727e96; //$gray-600
+
+$checkbox-color             : #727e96 !important; //$gray-600
+$checkbox-size              : 3rem;
+$checkbox-border-radius     : 0;
+
+$switch-color               : #727e96; //$gray-600
+$switch-size                : 3rem;
+$switch-border-radius       : 3em;
+/* -------------------------------------- */
 
 
 /// Styles for Atomics
@@ -24,6 +40,7 @@ $switch-border-radius   : 3em;
 
 form {
     padding: 2em;
+    background-color: $form-bgcolor;
 
     ul, ol {
         list-style: none;
@@ -31,24 +48,25 @@ form {
     }
 
     fieldset {
-        border: 1px solid #FFFFFF;
+        border: 1px solid $input-bgcolor;
     }
 
-    input, textarea {
+    input,
+    textarea,
+    select {
         width: 100%;
-        height: 70px;
         min-height: 0;
         padding: 2rem 3rem;
         font-size: inherit;
         line-height: 1.2;
-        font-weight: 400;
         letter-spacing: .2rem;
-        color: $color-base;
-        background-color: $gray-200;
+        color: $input-color;
+        background-color: $input-bgcolor;
         border: none;
     }
 
     input {
+        height: $input-height;
         padding-right: 5rem;
     }
     [type="color"],
@@ -74,13 +92,11 @@ form {
     }
 
     label {
-        font-weight: 400;
-        color: $color-base;
+        color: $label-color;
     }
 
     legend {
-        font-weight: 400;
-        color: $color-base;
+        color: $label-color;
     }
 
     ::placeholder {
@@ -91,16 +107,8 @@ form {
         margin: 2rem 0;
     }
 
-    @media (max-width: $medium - 1) {
-        input {
-            padding-right: 4.5rem;
-            padding-left: 2rem;
-        }
-        textarea {
-            min-height: 250px;
-            padding-right: 2rem;
-            padding-left: 2rem;
-        }
+    textarea {
+        min-height: $input-height;
     }
 }
 
@@ -110,42 +118,42 @@ form {
 }
 
 
-// Custom SELECT with Selectric
-.select-wrap {
-    display: inline-block;
-    width: auto;
-}
+// Custom SELECT
 .select-style {
+
+    select {
+        height: $input-height;
+        width: 100%;
+    }
+
     label.error {
         display: none;
     }
 }
+
+// Custom SELECT with Selectric
 .selectric-wrapper {
     position: relative;
 
     .selectric {
         display: flex;
         align-items: center;
-        height: 70px;
+        height: $input-height;
         width: 100%;
-        padding: 2rem 3rem;
-        color: $gray-400;
-        background-color: $gray-200;
+        background-color: $input-bgcolor;
         border: none;
 
         .label {
             margin-left: 0;
             font-size: 1.8rem;
             line-height: 1.8;
-            font-weight: 400;
-            letter-spacing: .2rem;
         }
     }
 
     .selectric .button {
         height: 100%;
-        width: 70px;
-        background-color: transparent;
+        width: $input-height;
+        background-color: $select-arrow-bgcolor;
     }
 
     .selectric .button::after {
@@ -154,7 +162,7 @@ form {
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 10px solid $gray-400;
+        border-top: 10px solid $select-arrow-color;
         pointer-events: none;
     }
 
@@ -164,6 +172,8 @@ form {
         border: 0;
         overflow: hidden;
         max-height: 0;
+        background-color: $select-bgcolor;
+        box-shadow: 0px 0px 5px 4px rgba(114,126,150,.3);
         transition: .5s all 0.1s;
         li {
             display: flex;
@@ -173,14 +183,19 @@ form {
             padding: 0 10px 0 27px;
             font-size: 1.6rem;
             line-height: 1.2;
-            background-color: $gray-100;
-            border-bottom: 2px solid #ffffff;
             &::before {
                 content: none;
             }
         }
         li:hover, li:focus, li.highlighted {
-            background-color: $gray-400;
+            color: $select-active-color;
+            background-color: $select-active-bgcolor;
+        }
+    }
+
+    &.selectric-hover {
+        .selectric .button::after {
+            border-top-color: $select-arrow-active-color;
         }
     }
 
@@ -221,9 +236,8 @@ form {
 .switch,
 .checkbox,
 .radio {
+    flex-shrink: 0;
     box-shadow: 0 0 0 1px $gray-600 inset;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     ~ label {
         margin-bottom: 0;
@@ -286,6 +300,19 @@ fieldset.inline {
             margin-right: 0;
         }
     }
+}
+
+// For before fields
+.form-before-fields {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+}
+
+// Help messages
+.help span {
+    font-size: .9em;
+    font-style: italic;
+    color: $label-color;
 }
 
 // Error messages (More in styleguide/atoms/alert)
