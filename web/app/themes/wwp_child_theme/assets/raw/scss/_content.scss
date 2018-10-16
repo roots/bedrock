@@ -1,20 +1,43 @@
 @charset "UTF-8";
 /* ----------------------------- */
-/* ==Grids      */
+/* ==Content      */
 /* ----------------------------- */
 
-/*Variables*/
+/* Variables */
 /* ------------- */
 $mobileheaderHeight : $burger-btn-size;
+
+$encadre-bgcolor: #e7e9ed; //$gray-200
+$encadre-boxshadow: 1px 1px 4px 1px rgba(204, 202, 202, 0.5);
 /* ------------- */
 
+/*Knacss override*/
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
+/*Content*/
 .site-content {
     position: relative;
     z-index: 0;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     overflow-x: hidden;
 
     @media (max-width: $medium - 1) {
         margin-top: $mobileheaderHeight;
     }
 }
+
+.entry-header {
+    @extend .container;
+}
+
+// Encadre style
+.encadre {
+    padding: 3rem 5rem;
+    background: $encadre-bgcolor;
+    box-shadow: $encadre-boxshadow;
+}
+
