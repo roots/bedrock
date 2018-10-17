@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Newsletter      */
+/* ----------------------------- */
+
+/* Variables */
+/* ------------------------------------- */
+$nl-color           : #727e96; //$gray-600
+$nl-bgcolor         : #ced4da; //$gray-400
+/* ------------------------------------- */
+
+.module-newsletter {
+    padding: 0;
+    background-color: $nl-bgcolor;
+
+    form {
+
+        label {
+            color: $nl-color;
+        }
+
+        .checkbox-wrap {
+            display: inline-flex;
+
+            label {
+                padding-left: 0 !important;
+            }
+        }
+
+        .submitFormField {
+            display: inline-block;
+        }
+    }
+}
