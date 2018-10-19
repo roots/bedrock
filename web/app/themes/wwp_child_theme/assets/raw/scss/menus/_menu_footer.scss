@@ -1,12 +1,12 @@
 @charset "UTF-8";
 /* ----------------------------- */
-/* ==Footer menu      */
+/* ==Footer menu */
 /* ----------------------------- */
 
 /* Colors */
 /* ------------- */
 $menu-item-color-active: $white;
-$menu-item-bgcolor-active: $gray-600;
+$menu-item-bgcolor-active: #727e96; //$gray-600
 /* ------------- */
 
 .site-footer .menu ul {
@@ -60,7 +60,7 @@ $menu-item-bgcolor-active: $gray-600;
         }
 
         li.m0 > ul li > a {
-            border-bottom: 1px solid $gray-600;
+            border-bottom: 1px solid $menu-item-bgcolor-active;
         }
 
         li.m0:hover > ul.children,

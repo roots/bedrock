@@ -3,8 +3,21 @@
 /* ==Buttons      */
 /* ----------------------------- */
 
+/* Variables */
+/* ------------- */
+$btn-height: 50px !default;
+/* ------------- */
+
+
 %btn {
-    /*Put styles here*/
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: $btn-height;
+
+    @media (max-width: $tiny) {
+        white-space: normal;
+    }
 }
 
 // Button wrapper : add margin and centering

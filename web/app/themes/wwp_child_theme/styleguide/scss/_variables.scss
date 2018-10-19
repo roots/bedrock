@@ -139,6 +139,7 @@ $red-500    : #D9534F !default;
 // Semantic colors
 $color-brand    : $green-500;
 $color-primary  : $blue-500;
+
 $color-success  : $green-500;
 $color-info     : $blue-300;
 $color-warning  : $orange-500;
@@ -150,8 +151,6 @@ $color-muted    : $gray-200;
 
 $color-base      : $gray-900;
 $background-base : $white;
-
-$forms-color     : $gray-800;
 
 // ---------------
 // Components zone
@@ -172,13 +171,30 @@ $quote-color     : $gray-200;
 // Component: arrows
 $arrow-color     : $black;
 
-// Components: checkboxes, radios, switches
-$checkbox-color         : $gray-800;
-$checkbox-size          : 2rem;
-$checkbox-border-radius : 4px;
-$switch-color           : $gray-800;
-$switch-size            : 2rem;
-$switch-border-radius   : 3em;
+// Components: forms
+$forms-color                : $gray-800;
+$forms-bgcolor              : $gray-200;
+$label-color                : $gray-600;
+$input-color                : $gray-600;
+$input-bgcolor              : $white;
+$placeholder-color          : $gray-400;
+
+$input-height               : 70px;
+
+$select-arrow-color         : $white;
+$select-arrow-bgcolor       : $gray-600;
+$select-arrow-active-color  : $white;
+$select-bgcolor             : $white;
+$select-active-color        : $white;
+$select-active-bgcolor      : $gray-600;
+
+$checkbox-color             : $color-primary;
+$checkbox-size              : 3rem;
+$checkbox-border-radius     : 0;
+
+$switch-color               : $gray-600;
+$switch-size                : 3rem;
+$switch-border-radius       : 3em;
 
 // Component: tables
 $table-border               : $gray-500;
@@ -197,6 +213,7 @@ $variants-list: (
         (info,       $color-info,       $black,    none),
         (warning,    $color-warning,    $black,    none),
         (danger,     $color-danger,     $white,    none),
+        (error,      $color-error,      $white,    none),
         (inverse,    $color-inverse,    $white,    none),
         (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
 ) !default;
@@ -211,9 +228,24 @@ $tabs-active-background : transparent;
 $tabs-border-radius     : 0;
 
 // Component: nav burger button
+$burger-btn-size          : 60px; //width of whole button
 $burger-color             : $gray-800;
-$burger-background        : transparent;
+$burger-background        : transparent; //behind stripes
 $burger-hover-background  : transparent;
-$burger-size              : 2.6rem;
-$burger-weight            : 5px; // size of stripes
+$burger-size              : 25px;
+$burger-weight            : 3px; //width of stripes
 $burger-padding           : 0;
+$burger-bgcolor           : $gray-500; //bg color of whole button
+
+// Components: alerts
+$alert-success: $color-success;
+$alert-success-bg: lighten($color-success, 35%);
+
+$alert-info: $color-info;
+$alert-info-bg: lighten($color-info, 30%);
+
+$alert-warning: $color-warning;
+$alert-warning-bg: lighten($color-warning, 30%);
+
+$alert-error: $color-error;
+$alert-error-bg: lighten($color-error, 35%);
