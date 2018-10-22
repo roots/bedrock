@@ -105,6 +105,16 @@ class WPMDBPro_Command extends WPMDB_Command {
 	 * will run a find & replace on all tables in your database that begin with your
 	 * installation's table prefix, e.g. wp_.
 	 *
+	 * [--backup=<prefix|selected|table_one,table_two,table_etc>]
+	 * : Perform a backup of the destination site's database tables before replacing it.
+	 *
+	 *     Accepted values:
+	 *
+	 *     * prefix - Backup only tables that begin with your installation's
+	 *                table prefix (e.g. wp_)
+	 *     * selected - Backup only tables selected for migration (as in --include-tables)
+	 *     * A comma separated list of the tables to backup.
+	 * 
 	 * [--exclude-post-types=<post-types>]
 	 * : A comma separated list of post types to exclude from the find & replace.
 	 * Excluding this parameter will run a find & replace on all post types.

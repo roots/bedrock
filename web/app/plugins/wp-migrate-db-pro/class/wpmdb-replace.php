@@ -190,8 +190,12 @@ final class WPMDB_Replace {
 			return $new;
 		}
 
-		$parsed_destination = wp_parse_url( $destination_url );
+		$parsed_destination = WPMDB_Utils::parse_url( $destination_url );
 		unset( $parsed_destination['scheme'] );
+
+		if ( isset( $parsed_destination['port'] ) ) {
+			$parsed_destination['port'] = ':' . $parsed_destination['port'];
+		}
 
 		$protocol_search  = $this->source_protocol . '://' . implode( '', $parsed_destination );
 		$protocol_replace = $destination_url;
@@ -237,6 +241,13 @@ final class WPMDB_Replace {
 		$pre = apply_filters( 'wpmdb_pre_recursive_unserialize_replace', false, $data, $this );
 		if ( false !== $pre ) {
 			return $pre;
+		}
+
+		// Some options contain serialized self-references which leads to memory exhaustion. Skip these.
+		if ( $this->table_is( 'options' ) && 'option_value' === $this->get_column() && is_serialized( $data ) ) {
+			if ( preg_match( '/r\:\d+/i', $data ) ) {
+				return $data;
+			}
 		}
 
 		$is_json           = false;

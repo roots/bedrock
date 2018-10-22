@@ -319,6 +319,10 @@ class WPMDB_CLI extends WPMDB_Base {
 
 		if ( 'find_replace' === $this->profile['action'] ) {
 			$progress_label = __( 'Running find & replace', 'wp-migrate-db-cli' );
+			
+			if ( 1 === $stage ) {
+				$progress_label = __( 'Performing backup', 'wp-migrate-db-cli' );
+			}
 		}
 
 		$progress_label = apply_filters( 'wpmdb_cli_progress_label', $progress_label, $stage, $tables );
@@ -464,6 +468,10 @@ class WPMDB_CLI extends WPMDB_Base {
 
 			++$stage_iterator;
 			$args['stage'] = 'migrate';
+
+			if ( 'find_replace' === $args['intent'] ) {
+				$args['stage'] = 'find_replace';
+			}
 
 			if ( 'import' === $args['intent'] ) {
 				break;

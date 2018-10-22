@@ -32,6 +32,10 @@
 		<?php _e( "<strong>Internet Explorer Not Supported</strong> &mdash; Less than 2% of our customers use IE, so we've decided not to spend time supporting it. We ask that you use Firefox or a Webkit-based browser like Chrome or Safari instead. If this is a problem for you, please let us know.", 'wp-migrate-db' ); ?>
 	</div>
 
+	<div class="updated warning edge-warning inline-message" style="display: none;">
+		<?php _e( "<strong>Microsoft Edge Not Supported</strong> &mdash; Less than 2% of our customers use Microsoft Edge, so we've decided not to spend time supporting it. We ask that you use Firefox or a Webkit-based browser like Chrome or Safari instead. If this is a problem for you, please let us know.", 'wp-migrate-db' ); ?>
+	</div>
+
 	<?php
 	$hide_warning = apply_filters( 'wpmdb_hide_set_time_limit_warning', false );
 	if ( false == $this->set_time_limit_available() && ! $hide_warning && ! $safe_mode ) {

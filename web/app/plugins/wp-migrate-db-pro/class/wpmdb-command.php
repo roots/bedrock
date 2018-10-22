@@ -99,6 +99,16 @@ class WPMDB_Command extends WP_CLI_Command {
 	 *     Should be used in conjunction with the --find=<strings> argument, see it's
 	 *     documentation for further explanation of the find & replace functionality.
 	 *
+	 * [--backup=<prefix|selected|table_one,table_two,table_etc>]
+	 * : Perform a backup of the destination site's database tables before replacing it.
+	 *
+	 *     Accepted values:
+	 *
+	 *     * prefix - Backup only tables that begin with your installation's
+	 *                table prefix (e.g. wp_)
+	 *     * selected - Backup only tables selected for migration (as in --include-tables)
+	 *     * A comma separated list of the tables to backup.
+	 *
 	 * [--exclude-post-revisions]
 	 * : Exclude post revisions from the find & replace.
 	 *
@@ -195,7 +205,6 @@ class WPMDB_Command extends WP_CLI_Command {
 			WP_CLI::error( WPMDB_CLI::cleanup_message( $result->get_error_message() ) );
 		}
 	}
-
 }
 
 WP_CLI::add_command( 'migratedb', 'WPMDB_Command' );

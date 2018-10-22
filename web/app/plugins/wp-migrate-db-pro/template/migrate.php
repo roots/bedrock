@@ -3,7 +3,7 @@ global $wpdb;
 global $loaded_profile;
 
 if ( isset( $_GET['wpmdb-profile'] ) ) {
-	$loaded_profile = $this->get_profile( $_GET['wpmdb-profile'] );
+	$loaded_profile = $this->get_profile( (int) $_GET['wpmdb-profile'] );
 } else {
 	$loaded_profile = $this->default_profile;
 }
@@ -321,7 +321,7 @@ $breadcrumbs_params = array(
 		<div class="option-section save-migration-profile-wrap">
 			<label for="save-migration-profile" class="save-migration-profile checkbox-label">
 				<input id="save-migration-profile" type="checkbox" value="1" name="save_migration_profile"<?php echo( ! $is_default_profile ? ' checked="checked"' : '' ); ?> />
-				<?php _e( 'Save Migration Profile', 'wp-migrate-db' ); ?><span class="option-description"><?php _e( 'Save the above settings for the next time you do a similiar migration', 'wp-migrate-db' ); ?></span>
+				<?php _e( 'Save Migration Profile', 'wp-migrate-db' ); ?><span class="option-description"><?php _e( 'Save the above settings for the next time you do a similar migration', 'wp-migrate-db' ); ?></span>
 			</label>
 
 			<div class="indent-wrap expandable-content">

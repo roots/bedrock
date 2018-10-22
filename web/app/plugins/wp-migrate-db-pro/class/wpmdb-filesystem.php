@@ -431,7 +431,12 @@ class WPMDB_Filesystem {
 	 */
 	public function scandir( $abs_path ) {
 
+		if ( is_link( $abs_path ) ) {
+			return false;
+		}
+
 		$dirlist = @scandir( $abs_path );
+
 		if ( false === $dirlist ) {
 			if ( $this->use_filesystem ) {
 				$abs_path = $this->get_sanitized_path( $abs_path );
@@ -446,17 +451,71 @@ class WPMDB_Filesystem {
 
 		// normalize return to look somewhat like the return value for WP_Filesystem::dirlist
 		foreach ( $dirlist as $entry ) {
-			if ( '.' === $entry || '..' === $entry ) {
+			if ( '.' === $entry || '..' === $entry || is_link( $abs_path . $entry ) ) {
 				continue;
 			}
-			$return[ $entry ] = array(
-				'name' => $entry,
-				'type' => $this->is_dir( $abs_path . '/' . $entry ) ? 'd' : 'f',
-			);
+
+			$return[ $entry ] = $this->get_file_info( $entry, $abs_path );
 		}
 
 		return $return;
 
+	}
+
+	/**
+	 * @param string $entry
+	 * @param string $abs_path
+	 *
+	 * @return array
+	 */
+	public function get_file_info( $entry, $abs_path ) {
+		$abs_path  = $this->slash_one_direction( $abs_path );
+		$full_path = realpath( trailingslashit( $abs_path ) . $entry );
+
+		$return                    = array();
+		$return['name']            = $entry;
+		$return['relative_path']   = str_replace( $abs_path, '', $full_path );
+		$return['wp_content_path'] = str_replace( $this->slash_one_direction( WP_CONTENT_DIR ) . DIRECTORY_SEPARATOR, '', $full_path );
+		$return['subpath']         = preg_replace( '#^(themes|plugins)#', '', $return['wp_content_path'] );
+		$return['absolute_path']   = $full_path;
+		$return['type']            = $this->is_dir( $abs_path . DIRECTORY_SEPARATOR . $entry ) ? 'd' : 'f';
+		$return['size']            = $this->filesize( $abs_path . DIRECTORY_SEPARATOR . $entry );
+
+		$exploded              = explode( DIRECTORY_SEPARATOR, $return['subpath'] );
+		$return['folder_name'] = isset( $exploded[1] ) ? $exploded[1] : $return['relative_path'];
+
+		return $return;
+	}
+
+	/**
+	 * List all files in a directory recursively
+	 *
+	 * @param $abs_path
+	 *
+	 * @return array|bool
+	 */
+	public function scandir_recursive( $abs_path ) {
+		$dirlist = $this->scandir( $abs_path );
+
+		if ( ! $dirlist ) {
+			return $dirlist;
+		}
+
+		foreach ( $dirlist as $key => $entry ) {
+			if ( 'd' === $entry['type'] ) {
+				$current_dir  = trailingslashit( $entry['name'] );
+				$current_path = trailingslashit( $abs_path ) . $current_dir;
+				$contents     = $this->scandir_recursive( $current_path );
+				unset( $dirlist[ $key ] );
+				foreach ( $contents as $filename => $value ) {
+					$contents[ $current_dir . $filename ] = $value;
+					unset( $contents[ $filename ] );
+				}
+				$dirlist += $contents;
+			}
+		}
+
+		return $dirlist;
 	}
 
 	/**
@@ -486,7 +545,7 @@ class WPMDB_Filesystem {
 	 * @param string $source_abs_path
 	 * @param string $destination_abs_path
 	 * @param bool   $overwrite
-	 * @param mixed    $perms
+	 * @param mixed  $perms
 	 *
 	 * @return bool
 	 *
@@ -537,7 +596,7 @@ class WPMDB_Filesystem {
 		// Taken in part from WP_Filesystem_Direct
 		if ( ! $overwrite && $this->file_exists( $destination_abs_path ) ) {
 			return false;
-		} elseif ( @rename( $source_abs_path, $destination_abs_path ) ) {
+		} elseif ( rename( $source_abs_path, $destination_abs_path ) ) {
 			return true;
 		} else {
 			if ( $this->copy( $source_abs_path, $destination_abs_path, $overwrite ) && $this->file_exists( $destination_abs_path ) ) {
@@ -549,6 +608,8 @@ class WPMDB_Filesystem {
 			}
 		}
 
+		//@TODO clean up temp location if using the rcopy() method
+
 		if ( ! $return && $this->use_filesystem ) {
 			$source_abs_path      = $this->get_sanitized_path( $source_abs_path );
 			$destination_abs_path = $this->get_sanitized_path( $destination_abs_path );
@@ -557,5 +618,51 @@ class WPMDB_Filesystem {
 		}
 
 		return $return;
+	}
+
+	/**
+	 *
+	 * Recursively copy files, alternative to rename()
+	 *
+	 * @param $source
+	 * @param $dest
+	 *
+	 * @return bool
+	 */
+	public function rcopy( $source, $dest ) {
+
+		// @TODO should probably throw on Maintenance Mode if using this as it takes much longer to complete vs. rename()
+
+		$this->rmdir( $dest, true );
+		$this->mkdir( $dest, 0755 );
+
+		$return = true;
+
+		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $source, RecursiveDirectoryIterator::SKIP_DOTS ), RecursiveIteratorIterator::SELF_FIRST );
+
+		foreach ( $iterator as $item ) {
+			if ( $item->isDir() ) {
+				if ( ! $this->mkdir( $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName() ) ) {
+					$return = false;
+				}
+			} else {
+				if ( ! $this->copy( $item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName() ) ) {
+					$return = false;
+				}
+			}
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Converts file paths that include mixed slashes to use the correct type of slash for the current operating system.
+	 *
+	 * @param $path string
+	 *
+	 * @return string
+	 */
+	public function slash_one_direction( $path ) {
+		return str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $path );
 	}
 }

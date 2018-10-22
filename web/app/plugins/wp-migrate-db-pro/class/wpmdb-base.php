@@ -14,7 +14,6 @@ class WPMDB_Base {
 	protected $dbrains_api_url;
 	protected $transient_timeout;
 	protected $transient_retry_timeout;
-	protected $dbrains_api_base = 'https://api.deliciousbrains.com';
 	protected $dbrains_api_status_url = 'http://s3.amazonaws.com/cdn.deliciousbrains.com/status.json';
 	protected $multipart_boundary = 'bWH4JVmYCnf6GfXacrcc';
 	protected $attempting_to_connect_to;
@@ -37,9 +36,10 @@ class WPMDB_Base {
 	public $mu_plugin_dest;
 	public $filesystem;
 
+	const DBRAINS_API_BASE = 'https://api.deliciousbrains.com';
+
 	function __construct( $plugin_file_path ) {
 		$this->load_settings();
-		$this->maybe_schema_update();
 
 		$this->plugin_file_path   = $plugin_file_path;
 		$this->plugin_dir_path    = plugin_dir_path( $plugin_file_path );
@@ -72,6 +72,7 @@ class WPMDB_Base {
 		}
 
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'admin_init', array( $this, 'maybe_schema_update' ) );
 
 		// in case admin_init isn't run (tests/cli), we'll just instantiate the fs class without wpfs and allow it to be overwritten when/if admin_init is run
 		if ( class_exists( 'WPMDB_Filesystem' ) ) {
@@ -80,6 +81,7 @@ class WPMDB_Base {
 		}
 
 		// List of properties that can be accessed by the get() method
+		//@TODO this needs to be refactored
 		$this->gettable_properties = array(
 			'settings',
 			'plugin_base',
@@ -88,6 +90,8 @@ class WPMDB_Base {
 			'error',
 			'state_data',
 			'is_pro',
+			'default_profile',
+			'doing_cli_migration',
 		);
 
 		//Setup strings for license responses
@@ -207,6 +211,7 @@ class WPMDB_Base {
 			$migration_state_id = $this->state_data[ $state_key ];
 		}
 
+		// Always pass migration_state_id or $state_key with every AJAX request
 		if ( true !== $this->get_migration_state( $migration_state_id ) ) {
 			exit;
 		}
@@ -245,15 +250,19 @@ class WPMDB_Base {
 		$this->addons = array(
 			'wp-migrate-db-pro-media-files/wp-migrate-db-pro-media-files.php'         => array(
 				'name'             => 'Media Files',
-				'required_version' => '1.4.9',
+				'required_version' => '1.4.10',
 			),
 			'wp-migrate-db-pro-cli/wp-migrate-db-pro-cli.php'                         => array(
 				'name'             => 'CLI',
-				'required_version' => '1.3.2',
+				'required_version' => '1.3.3',
 			),
 			'wp-migrate-db-pro-multisite-tools/wp-migrate-db-pro-multisite-tools.php' => array(
 				'name'             => 'Multisite Tools',
-				'required_version' => '1.2',
+				'required_version' => '1.2.1',
+			),
+			'wp-migrate-db-pro-theme-plugin-files/wp-migrate-db-pro-theme-plugin-files.php'   => array(
+				'name'             => 'Theme & Plugin Files',
+				'required_version' => '1.0.3',
 			),
 		);
 
@@ -262,15 +271,7 @@ class WPMDB_Base {
 		$this->transient_timeout       = 60 * 60 * 12;
 		$this->transient_retry_timeout = 60 * 60 * 2;
 
-		if ( defined( 'DBRAINS_API_BASE' ) ) {
-			$this->dbrains_api_base = DBRAINS_API_BASE;
-		}
-
-		if ( $this->open_ssl_enabled() == false ) {
-			$this->dbrains_api_base = str_replace( 'https://', 'http://', $this->dbrains_api_base );
-		}
-
-		$this->dbrains_api_url = $this->dbrains_api_base . '/?wc-api=delicious-brains';
+		$this->dbrains_api_url = $this->get_dbrains_api_base() . '/?wc-api=delicious-brains';
 
 		// allow developers to change the temporary prefix applied to the tables
 		$this->temp_prefix = apply_filters( 'wpmdb_temporary_prefix', $this->temp_prefix );
@@ -279,6 +280,20 @@ class WPMDB_Base {
 		add_filter( 'http_response', array( $this, 'verify_download' ), 10, 3 );
 
 		add_action( 'wpmdb_notices', array( $this, 'version_update_notice' ) );
+	}
+
+	public function get_dbrains_api_base() {
+		$dbrains_api_base = self::DBRAINS_API_BASE;
+
+		if ( defined( 'DBRAINS_API_BASE' ) ) {
+			$dbrains_api_base = DBRAINS_API_BASE;
+		}
+
+		if ( false === $this->open_ssl_enabled() ) {
+			$dbrains_api_base = str_replace( 'https://', 'http://', $dbrains_api_base );
+		}
+
+		return $dbrains_api_base;
 	}
 
 	/**
@@ -316,6 +331,7 @@ class WPMDB_Base {
 			'delay_between_requests' => 0,
 			'prog_tables_hidden'     => true,
 			'pause_before_finalize'  => false,
+			'allow_tracking'         => null,
 		);
 
 		// if we still don't have settings exist this must be a fresh install, set up some default settings
@@ -365,7 +381,7 @@ class WPMDB_Base {
 
 	function template( $template, $dir = '', $args = array() ) {
 		global $wpdb;
-		// TODO: Refactor to remove extract().
+		// @TODO: Refactor to remove extract().
 		extract( $args, EXTR_OVERWRITE );
 		$dir = ( ! empty( $dir ) ) ? trailingslashit( $dir ) : $dir;
 		include $this->template_dir . $dir . $template . '.php';
@@ -481,7 +497,6 @@ class WPMDB_Base {
 	 * @return bool|null
 	 */
 	public function handle_remote_post_response( $response, $url, $scope, $expecting_serial, $state_data = array() ) {
-
 		if ( is_wp_error( $response ) ) {
 			if ( 0 === strpos( $url, 'https://' ) && 'ajax_verify_connection_to_remote_site' == $scope ) {
 				return true;
@@ -564,7 +579,7 @@ class WPMDB_Base {
 				}
 			} else {
 
-				$url = urlencode( 'https://deliciousbrains.com/wp-migrate-db-pro/doc/a-response-was-expected-from-the-remote/?utm_campaign=error+messages&utm_source=MDB+Paid&utm_medium=insideplugin' );
+				$url = 'https://deliciousbrains.com/wp-migrate-db-pro/doc/a-response-was-expected-from-the-remote/?utm_campaign=error+messages&utm_source=MDB+Paid&utm_medium=insideplugin';
 
 				$this->error = sprintf( __( 'A response was expected from the remote, instead we got nothing. (#146 - scope: %1$s) Please review %2$s for possible solutions.', 'wp-migrate-db' ), $scope, sprintf( '<a href="%s" target="_blank">%s</a>', $url, __( 'our documentation', 'wp-migrate-db' ) ) );
 			}
@@ -664,10 +679,21 @@ class WPMDB_Base {
 		$error .= 'WPMDB Error: ' . $wpmdb_error . "\n\n";
 
 		if ( ! empty( $this->attempting_to_connect_to ) ) {
-			$error .= 'Attempted to connect to: ' . $this->attempting_to_connect_to . "\n\n";
+			$ip    = $this->get_remote_ip( $this->attempting_to_connect_to );
+			$error .= 'Attempted to connect to: ' . $this->attempting_to_connect_to . ' (' . ( $ip ? $ip : 'ip lookup failed' ) . ')' . "\n\n";
 		}
 
 		if ( $additional_error_var !== false ) {
+
+			// don't print the whole response object to the log
+			if ( is_array( $additional_error_var ) && isset( $additional_error_var['http_response'] ) ) {
+				if ( isset( $additional_error_var['http_response'] ) && ( $additional_error_var['http_response'] instanceof WP_HTTP_Requests_Response ) ) {
+					$response                    = $additional_error_var['http_response']->get_response_object();
+					$additional_error_var['url'] = $response->url;
+				}
+				unset( $additional_error_var['http_response'] );
+			}
+
 			$error .= print_r( $additional_error_var, true ) . "\n\n";
 		}
 
@@ -714,6 +740,19 @@ class WPMDB_Base {
 		}
 
 		return false;
+	}
+
+	function get_remote_ip( $url ) {
+		$parsed_url = WPMDB_Utils::parse_url( $url );
+		if ( ! isset( $parsed_url['host'] ) ) {
+			return false;
+		}
+		// '.' appended to host name to avoid issues with nslookup caching - see documentation of gethostbyname for more info
+		$host = $parsed_url['host'] . '.';
+
+		$ip = gethostbyname( $host );
+
+		return ( $ip === $host ) ? false : $ip;
 	}
 
 	function filter_post_elements( $post_array, $accepted_elements ) {
@@ -780,7 +819,6 @@ class WPMDB_Base {
 		if ( false !== get_site_transient( 'wpmdb_temporarily_disable_ssl' ) && 0 === strpos( $this->dbrains_api_url, 'https://' ) ) {
 			$url = substr_replace( $url, 'http', 0, 5 );
 		}
-
 		return $url;
 	}
 
@@ -1117,12 +1155,42 @@ class WPMDB_Base {
 		return $response;
 	}
 
-	function is_beta_version( $ver ) {
+	/**
+	 * Is the version a beta version?
+	 *
+	 * @param string $ver
+	 *
+	 * @return bool
+	 */
+	public function is_beta_version( $ver ) {
 		if ( preg_match( '@b[0-9]+$@', $ver ) ) {
 			return true;
 		}
 
 		return false;
+	}
+
+	/**
+	 * Has tbe beta optin been turned on?
+	 *
+	 * @return bool
+	 */
+	public function has_beta_optin() {
+		if ( ! isset( $this->settings['beta_optin'] ) ) {
+			return false;
+		}
+
+		return (bool) $this->settings['beta_optin'];
+	}
+
+	/**
+	 * Sets the value of the beta optin setting
+	 *
+	 * @param bool $value
+	 */
+	function set_beta_optin( $value = true ) {
+		$this->settings['beta_optin'] = $value;
+		update_site_option( 'wpmdb_settings', $this->settings );
 	}
 
 	function get_required_version( $slug ) {
@@ -1142,26 +1210,30 @@ class WPMDB_Base {
 			return false;
 		}
 
-		// If pre-1.1.2 version of Media Files addon
-		if ( ! isset( $GLOBALS['wpmdb_meta'][ $slug ]['version'] ) ) {
-			$installed_version = false;
-		} else {
-			$installed_version = $GLOBALS['wpmdb_meta'][ $slug ]['version'];
+		$latest_version = empty ( $data[ $slug ]['version'] ) ? false : $data[ $slug ]['version'];
+
+		if ( ! isset( $data[ $slug ]['beta_version'] ) ) {
+			// No beta version available
+			return $latest_version;
 		}
 
-		$required_version = $this->get_required_version( $slug );
-
-		// Return the latest beta version if the installed version is beta
-		// and the API returned a beta version and it's newer than the latest stable version
-		if ( $installed_version
-		     && ( $this->is_beta_version( $installed_version ) || $this->is_beta_version( $required_version ) )
-		     && isset( $data[ $slug ]['beta_version'] )
-		     && version_compare( $data[ $slug ]['version'], $data[ $slug ]['beta_version'], '<' )
-		) {
-			return $data[ $slug ]['beta_version'];
+		if ( version_compare( $data[ $slug ]['version'], $data[ $slug ]['beta_version'], '>' ) ) {
+			// Stable version greater than the beta
+			return $latest_version;
 		}
 
-		return $data[ $slug ]['version'];
+		if ( WPMDB_Beta_Manager::is_rolling_back_plugins() ) {
+			// We are in the process of rolling back to stable versions
+			return $latest_version;
+		}
+
+		if ( ! $this->has_beta_optin() ) {
+			// Not opted in to beta updates
+			// The required version isn't a beta version
+			return $latest_version;
+		}
+
+		return $data[ $slug ]['beta_version'];
 	}
 
 	function get_upgrade_data() {
@@ -1326,7 +1398,11 @@ class WPMDB_Base {
 
 			if ( version_compare( $installed_version, $latest_version, '<' ) ) { ?>
 				<div style="display: block;" class="updated warning inline-message">
-					<strong><?php _ex( 'Update Available', 'A new version of the plugin is available', 'wp-migrate-db' ); ?></strong> &mdash;
+					<?php if ( $this->is_beta_version( $latest_version ) ) : ?>
+						<strong><?php _ex( 'Beta Update Available', 'A new version of the plugin is available', 'wp-migrate-db' ); ?></strong> &mdash;
+					<?php else: ?>
+						<strong><?php _ex( 'Update Available', 'A new version of the plugin is available', 'wp-migrate-db' ); ?></strong> &mdash;
+					<?php endif; ?>
 					<?php printf( __( '%1$s %2$s is now available. You currently have %3$s installed. <a href="%4$s">%5$s</a>', 'wp-migrate-db' ), $this->plugin_title, $latest_version, $installed_version, $update_url, _x( 'Update Now', 'Download and install a new version of the plugin', 'wp-migrate-db' ) ); ?>
 				</div>
 				<?php
@@ -1452,7 +1528,7 @@ class WPMDB_Base {
 			$message = $this->get_contextual_message_string( $messages, 'connection_failed', $message_context );
 
 			if ( defined( 'WP_HTTP_BLOCK_EXTERNAL' ) && WP_HTTP_BLOCK_EXTERNAL ) {
-				$url_parts = $this->parse_url( $this->dbrains_api_base );
+				$url_parts = $this->parse_url( $this->get_dbrains_api_base() );
 				$host      = $url_parts['host'];
 				if ( ! defined( 'WP_ACCESSIBLE_HOSTS' ) || strpos( WP_ACCESSIBLE_HOSTS, $host ) === false ) {
 					$message = sprintf( $this->get_contextual_message_string( $messages, 'http_block_external', $message_context ), esc_attr( $host ), 'https://deliciousbrains.com/wp-migrate-db-pro/doc/wp_http_block_external/?utm_campaign=error%2Bmessages&utm_source=MDB%2BPaid&utm_medium=insideplugin' );
@@ -1589,9 +1665,9 @@ class WPMDB_Base {
 			$suhosin_limit = min( wp_convert_hr_to_bytes( $suhosin_request_limit ),  wp_convert_hr_to_bytes( $suhosin_post_limit ) );
 		}
 
-		// we have to account for HTTP headers and other bloating, here we minus 1kb for bloat
 		$post_max_upper_size   = apply_filters( 'wpmdb_post_max_upper_size', 26214400 );
 
+		// we have to account for HTTP headers and other bloating, here we minus 1kb for bloat
 		$calculated_bottleneck = min( ( $this->get_post_max_size() - 1024 ), $post_max_upper_size );
 
 		if( 0 >= $calculated_bottleneck ) {
@@ -1750,7 +1826,11 @@ class WPMDB_Base {
 	/**
 	 * Performs a schema update if required.
 	 */
-	function maybe_schema_update() {
+	public function maybe_schema_update() {
+		if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
+			return;
+		}
+
 		$schema_version = get_site_option( 'wpmdb_schema_version' );
 		$update_schema  = false;
 
@@ -1780,6 +1860,18 @@ class WPMDB_Base {
 
 			$update_schema  = true;
 			$schema_version = 1;
+		}
+
+		if ( $schema_version < 2 ) {
+			if ( $this->is_beta_version( $this->plugin_version ) ) {
+				// If the current installed version is a beta version then turn on the beta optin
+				$this->set_beta_optin();
+				// Dismiss the notice also, so it won't keep coming back
+				update_user_meta( get_current_user_id(), 'wpmdb_dismiss_beta_optin', true );
+			}
+
+			$update_schema  = true;
+			$schema_version = 2;
 		}
 
 		if ( true === $update_schema ) {
@@ -1917,7 +2009,7 @@ class WPMDB_Base {
 	 *
 	 * @return string
 	 */
-	function get_caller_function() {
+	public function get_caller_function() {
 		list( , , $caller ) = debug_backtrace( false );
 
 		if ( ! empty( $caller['function'] ) ) {
@@ -1930,6 +2022,24 @@ class WPMDB_Base {
 	}
 
 	/**
+	 * Has a specific method been called in the stack trace.
+	 *
+	 * @param string $method
+	 *
+	 * @return bool
+	 */
+	public function has_method_been_called( $method ) {
+		$stack = debug_backtrace();
+		foreach ( $stack as $caller ) {
+			if ( $method === $caller['function'] ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Scramble string.
 	 *
 	 * @param mixed $input String to be scrambled.
@@ -1938,7 +2048,7 @@ class WPMDB_Base {
 	 */
 	function scramble( $input ) {
 		if ( ! empty( $input ) ) {
-			$input = 'WPMDB-SCRAMBLED' . str_rot13( $input );
+			$input = 'WPMDB-SCRAMBLED' . str_replace( array( '/', '\\' ), array( '%#047%', '%#092%' ), str_rot13( $input ) );
 		}
 
 		return $input;
@@ -1956,7 +2066,7 @@ class WPMDB_Base {
 			if ( 0 === strpos( $input, 'WPMDB-SCRAMBLED' ) ) {
 				// If the string begins with WPMDB-SCRAMBED we can unscramble.
 				// As the scrambled string could be multiple segments of scrambling (from stow) we remove indicators in one go.
-				$input = str_replace( 'WPMDB-SCRAMBLED', '', $input );
+				$input = str_replace( array( 'WPMDB-SCRAMBLED', '%#047%', '%#092%' ), array( '', '/', '\\' ), $input );
 				$input = str_rot13( $input );
 			} elseif ( false !== strpos( $input, 'WPMDB-SCRAMBLED' ) ) {
 				// Starts with non-scrambled data (error), but with scrambled string following.
@@ -2203,6 +2313,8 @@ class WPMDB_Base {
 			'is_subdomain_install' => esc_html( ( is_multisite() && is_subdomain_install() ) ? 'true' : 'false' ),
 		);
 
+		$site_details = apply_filters( 'wpmdb_site_details', $site_details );
+
 		return $site_details;
 	}
 
@@ -2252,5 +2364,43 @@ class WPMDB_Base {
 		}
 
 		return $bytes;
+	}
+
+	/**
+	 * Verify a remote response is valid
+	 *
+	 * @param mixed $response Response
+	 *
+	 * @return mixed Response if valid, error otherwise
+	 */
+	public function verify_remote_post_response( $response ) {
+		if ( false === $response ) {
+			$return    = array( 'wpmdb_error' => 1, 'body' => $this->error );
+			$error_msg = 'Failed attempting to verify remote post response (#114mf)';
+			$this->log_error( $error_msg, $this->error );
+			$result = $this->end_ajax( json_encode( $return ) );
+
+			return $result;
+		}
+
+		if ( ! is_serialized( trim( $response ) ) ) {
+			$return    = array( 'wpmdb_error' => 1, 'body' => $response );
+			$error_msg = 'Failed as the response is not serialized string (#115mf)';
+			$this->log_error( $error_msg, $response );
+			$result = $this->end_ajax( json_encode( $return ) );
+
+			return $result;
+		}
+
+		$response = unserialize( trim( $response ) );
+
+		if ( isset( $response['wpmdb_error'] ) ) {
+			$this->log_error( $response['wpmdb_error'], $response );
+			$result = $this->end_ajax( json_encode( $response ) );
+
+			return $result;
+		}
+
+		return $response;
 	}
 }

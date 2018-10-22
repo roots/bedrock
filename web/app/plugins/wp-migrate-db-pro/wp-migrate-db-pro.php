@@ -4,7 +4,7 @@ Plugin Name: WP Migrate DB Pro
 Plugin URI: https://deliciousbrains.com/wp-migrate-db-pro/
 Description: Export, push, and pull to migrate your WordPress databases.
 Author: Delicious Brains
-Version: 1.8.1
+Version: 1.8.6
 Author URI: https://deliciousbrains.com
 Network: True
 Text Domain: wp-migrate-db
@@ -22,9 +22,13 @@ Domain Path: /languages/
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // **********************************************************************
 
-$GLOBALS['wpmdb_meta']['wp-migrate-db-pro']['version'] = '1.8.1';
+$GLOBALS['wpmdb_meta']['wp-migrate-db-pro']['version'] = '1.8.6';
 $GLOBALS['wpmdb_meta']['wp-migrate-db-pro']['folder']  = basename( plugin_dir_path( __FILE__ ) );
 $GLOBALS['wpmdb_meta']['wp-migrate-db-pro']['abspath'] = dirname( __FILE__ );
+
+if ( version_compare( phpversion(), '5.4', '>' ) ) {
+	require_once __DIR__ . '/class/autoload.php';
+}
 
 if ( ! class_exists( 'WPMDB_Utils' ) ) {
 	require dirname( __FILE__ ) . '/class/wpmdb-utils.php';
@@ -80,6 +84,7 @@ function wp_migrate_db_pro() {
 	require_once $abspath . '/class/wpmdb-migration-state.php';
 	require_once $abspath . '/class/wpmdb-filesystem.php';
 	require_once $abspath . '/class/wpmdb-compatibility-plugin-manager.php';
+	require_once $abspath . '/class/wpmdb-beta-manager.php';
 
 	$wpmdbpro = new WPMDBPro( __FILE__ );
 
@@ -95,6 +100,7 @@ function wpmdb_pro_cli_loaded() {
 		require_once dirname( __FILE__ ) . '/class/wpmdbpro-command.php';
 	}
 }
+
 add_action( 'plugins_loaded', 'wpmdb_pro_cli_loaded', 20 );
 
 function wpmdb_pro_cli() {
@@ -121,6 +127,6 @@ function wpmdb_pro_cli() {
 
 add_action( 'activated_plugin', array( 'WPMDB_Utils', 'deactivate_other_instances' ) );
 
-function wpmdb_pro_remove_mu_plugin(){
+function wpmdb_pro_remove_mu_plugin() {
 	do_action( 'wp_migrate_db_remove_compatibility_plugin' );
 }

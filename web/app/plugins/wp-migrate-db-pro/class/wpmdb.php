@@ -377,343 +377,234 @@ class WPMDB extends WPMDB_Base {
 	}
 
 	/**
-	 * Outputs diagnostic info for debugging.
-	 *
 	 * Outputs useful diagnostic info text at the Diagnostic Info & Error Log
 	 * section under the Help tab so the information can be viewed or
 	 * downloaded and shared for debugging.
 	 *
-	 * If you would like to add additional diagnostic information use the
-	 * `wpmdb_diagnostic_info` action hook (see {@link https://developer.wordpress.org/reference/functions/add_action/}).
-	 *
-	 * <code>
-	 * add_action( 'wpmdb_diagnostic_info', 'my_diagnostic_info' ) {
-	 *     echo "Additional Diagnostic Info: \r\n";
-	 *     echo "...\r\n";
-	 * }
-	 * </code>
 	 *
 	 * @return void
 	 */
 	function output_diagnostic_info() {
-		global $wpdb;
-		$table_prefix = $wpdb->base_prefix;
+		$diagnostic_info = $this->get_diagnostic_info();
 
-		echo 'site_url(): ';
-		echo esc_html( site_url() );
-		echo "\r\n";
+		foreach ( $diagnostic_info as $section => $arr ) {
+			$key_lengths    = array_map( 'strlen', array_keys( $arr ) );
+			$max_key_length = max( $key_lengths );
+			foreach ( $arr as $key => $val ) {
+				if ( 0 === $key ) {
+					echo $val . "\r\n";
+					continue;
+				}
+				if ( is_array( $val ) ) {
+					foreach ( $val as $subsection => $subval ) {
+						echo " - ";
+						if ( ! preg_match( '/^\d+$/', $subsection ) ) {
+							echo "$subsection: ";
+						}
+						echo "$subval\r\n";
+					}
+					continue;
+				}
+				if ( ! preg_match( '/^\d+$/', $key ) ) {
+					$pad_chr = '.';
+					if( $max_key_length - strlen($key) < 3 ) {
+						$pad_chr = ' ';
+					}
+					echo str_pad( "$key: ", $max_key_length + 2, $pad_chr, STR_PAD_RIGHT );
+				}
+				echo " $val\r\n";
 
-		echo 'home_url(): ';
-		echo esc_html( home_url() );
-		echo "\r\n";
-
-		echo "\r\n";
-
-		echo 'Database Name: ';
-		echo esc_html( $wpdb->dbname );
-		echo "\r\n";
-
-		echo 'Table Prefix: ';
-		echo esc_html( $table_prefix );
-		echo "\r\n";
-
-		echo "\r\n";
-
-		echo 'WordPress: ' . get_bloginfo( 'version' );
-		if ( is_multisite() ) {
-			$multisite_type = defined( 'SUBDOMAIN_INSTALL' ) && SUBDOMAIN_INSTALL ? 'Sub-domain' : 'Sub-directory';
-			echo ' Multisite (' . $multisite_type . ')';
-			echo "\r\n";
-
-			if ( defined( 'DOMAIN_CURRENT_SITE' ) ) {
-				echo 'Domain Current Site: ';
-				echo DOMAIN_CURRENT_SITE;
-				echo "\r\n";
 			}
-
-			if ( defined( 'PATH_CURRENT_SITE' ) ) {
-				echo 'Path Current Site: ';
-				echo PATH_CURRENT_SITE;
-				echo "\r\n";
-			}
-
-			if ( defined( 'SITE_ID_CURRENT_SITE' ) ) {
-				echo 'Site ID Current Site: ';
-				echo SITE_ID_CURRENT_SITE;
-				echo "\r\n";
-			}
-
-			if ( defined( 'BLOG_ID_CURRENT_SITE' ) ) {
-				echo 'Blog ID Current Site: ';
-				echo BLOG_ID_CURRENT_SITE;
-				echo "\r\n";
-			}
-		} else {
 			echo "\r\n";
 		}
 
-		echo "\r\n";
+		return;
+	}
 
+	/**
+	 * Gets diagnostic information about current site
+	 *
+	 * @return array
+	 */
+	function get_diagnostic_info() {
+		global $wpdb;
+		$diagnostic_info = array(); // group display sections into arrays
+
+		$diagnostic_info['basic-info'] = array(
+			'site_url()'    => site_url(),
+			'home_url()'    => home_url(),
+		);
+
+		$diagnostic_info['db-info'] = array(
+			'Database Name' => $wpdb->dbname,
+			'Table Prefix'  => $wpdb->base_prefix,
+		);
+
+		$diagnostic_info['wp-version'] = array(
+			'WordPress Version' => get_bloginfo( 'version' ),
+		);
+
+		if ( is_multisite() ) {
+			$diagnostic_info['multisite-info'] = array(
+				'Multisite'            => defined( 'SUBDOMAIN_INSTALL' ) && SUBDOMAIN_INSTALL ? 'Sub-domain' : 'Sub-directory',
+				'Domain Current Site'  => defined( 'DOMAIN_CURRENT_SITE' )  ? DOMAIN_CURRENT_SITE  : 'Not Defined',
+				'Path Current Site'    => defined( 'PATH_CURRENT_SITE' )    ? PATH_CURRENT_SITE    : 'Not Defined',
+				'Site ID Current Site' => defined( 'SITE_ID_CURRENT_SITE' ) ? SITE_ID_CURRENT_SITE : 'Not Defined',
+				'Blog ID Current Site' => defined( 'BLOG_ID_CURRENT_SITE' ) ? BLOG_ID_CURRENT_SITE : 'Not Defined',
+			);
+		}
+
+		$mdb_plugins = array();
 		foreach ( array_reverse( $GLOBALS['wpmdb_meta'] ) as $wpmdb_plugin => $wpmdb_plugin_info ) {
 			if ( strlen( $wpmdb_plugin ) > strlen( 'wp-migrate-db-pro' ) ) {
 				$wpmdb_plugin = str_replace( 'wp-migrate-db-pro-', '', $wpmdb_plugin );
 			}
-			$wpmdb_plugin = ucwords( str_replace( array( 'wp', 'db', 'cli', '-' ), array( 'WP', 'DB', 'CLI',' '), $wpmdb_plugin ) );
-			echo $wpmdb_plugin . ": " . $wpmdb_plugin_info['version'] . "\r\n";
+			$wpmdb_plugin                 = ucwords( str_replace( array( 'wp', 'db', 'cli', '-' ), array(
+				'WP',
+				'DB',
+				'CLI',
+				' ',
+			), $wpmdb_plugin ) );
+			$mdb_plugins[ $wpmdb_plugin ] = $wpmdb_plugin_info['version'];
 		}
+		$diagnostic_info['mdb-plugins'] = $mdb_plugins;
 
-		echo "\r\n";
+		$diagnostic_info['server-info'] = array(
+			'Web Server'                      => ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '',
+			'PHP'                             => ( function_exists( 'phpversion' ) ) ? phpversion() : '',
+			'WP Memory Limit'                 => WP_MEMORY_LIMIT,
+			'PHP Time Limit'                  => ( function_exists( 'ini_get' ) ) ? ini_get( 'max_execution_time' ) : '',
+			'Blocked External HTTP Requests'  => ( ! defined( 'WP_HTTP_BLOCK_EXTERNAL' ) || ! WP_HTTP_BLOCK_EXTERNAL ) ? 'None' : ( WP_ACCESSIBLE_HOSTS ? 'Partially (Accessible Hosts: ' . WP_ACCESSIBLE_HOSTS . ')' : 'All' ),
+			'fsockopen'                       => ( function_exists( 'fsockopen' ) ) ? 'Enabled' : 'Disabled',
+			'OpenSSL'                         => ( $this->open_ssl_enabled() ) ? OPENSSL_VERSION_TEXT : 'Disabled',
+			'cURL'                            => ( function_exists( 'curl_init' ) ) ? 'Enabled' : 'Disabled',
+			'Enable SSL verification setting' => ( 1 == $this->settings['verify_ssl'] ) ? 'Yes' : 'No',
+		);
 
-		echo 'Web Server: ';
-		echo esc_html( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '' );
-		echo "\r\n";
+		$diagnostic_info['db-server-info'] = array(
+			'MySQL'                    => empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh ),
+			'ext/mysqli'               => empty( $wpdb->use_mysqli ) ? 'no' : 'yes',
+			'WP Locale'                => get_locale(),
+			'DB Charset'               => DB_CHARSET,
+			'WPMDB_STRIP_INVALID_TEXT' => ( defined( 'WPMDB_STRIP_INVALID_TEXT' ) && WPMDB_STRIP_INVALID_TEXT ) ? 'Yes' : 'No',
+		);
 
-		echo 'PHP: ';
-		if ( function_exists( 'phpversion' ) ) {
-			echo esc_html( phpversion() );
-		}
-		echo "\r\n";
+		$diagnostic_info['debug-settings'] = array(
+			'Debug Mode'    => ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'Yes' : 'No',
+			'Debug Log'     => ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) ? 'Yes' : 'No',
+			'Debug Display' => ( defined( 'WP_DEBUG_DISPLAY' ) && WP_DEBUG_DISPLAY ) ? 'Yes' : 'No',
+			'Script Debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'Yes' : 'No',
+			'PHP Error Log' => ( function_exists( 'ini_get' ) ) ? ini_get( 'error_log' ) : '',
+		);
 
+		$server_limits = array(
+			'WP Max Upload Size' => size_format( wp_max_upload_size() ),
+			'PHP Post Max Size'  => size_format( $this->get_post_max_size() ),
+		);
 
-		echo 'WP Memory Limit: ';
-		echo esc_html( WP_MEMORY_LIMIT );
-		echo "\r\n";
-
-		echo 'PHP Time Limit: ';
 		if ( function_exists( 'ini_get' ) ) {
-			echo esc_html( ini_get( 'max_execution_time' ) );
-		}
-		echo "\r\n";
-
-		echo 'Blocked External HTTP Requests: ';
-		if ( ! defined( 'WP_HTTP_BLOCK_EXTERNAL' ) || ! WP_HTTP_BLOCK_EXTERNAL ) {
-			echo 'None';
-		} else {
-			$accessible_hosts = ( defined( 'WP_ACCESSIBLE_HOSTS' ) ) ? WP_ACCESSIBLE_HOSTS : '';
-
-			if ( empty( $accessible_hosts ) ) {
-				echo 'ALL';
-			} else {
-				echo 'Partially (Accessible Hosts: ' . esc_html( $accessible_hosts ) . ')';
+			if ( $suhosin_limit = ini_get( 'suhosin.post.max_value_length' ) ) {
+				$server_limits['Suhosin Post Max Value Length'] = is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit;
+			}
+			if ( $suhosin_limit = ini_get( 'suhosin.request.max_value_length' ) ) {
+				$server_limits['Suhosin Request Max Value Length'] = is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit;
 			}
 		}
-		echo "\r\n";
+		$diagnostic_info['server-limits'] = $server_limits;
 
-		echo 'fsockopen: ';
-		if ( function_exists( 'fsockopen' ) ) {
-			echo 'Enabled';
-		} else {
-			echo 'Disabled';
-		}
-		echo "\r\n";
+		$diagnostic_info['mdb-settings'] = array(
+			'WPMDB Bottleneck'       => size_format( $this->get_bottleneck() ),
+			'Compatibility Mode'     => ( isset( $GLOBALS['wpmdb_compatibility']['active'] ) ) ? 'Yes' : 'No',
+			'Delay Between Requests' => ( $this->settings['delay_between_requests'] > 0 ) ? $this->settings['delay_between_requests'] / 1000 . 's' : 0,
+		);
 
-		echo 'OpenSSL: ';
-		if ( $this->open_ssl_enabled() ) {
-			echo esc_html( OPENSSL_VERSION_TEXT );
-		} else {
-			echo 'Disabled';
-		}
-		echo "\r\n";
-
-		echo 'cURL: ';
-		if ( function_exists( 'curl_init' ) ) {
-			echo 'Enabled';
-		} else {
-			echo 'Disabled';
-		}
-		echo "\r\n";
-
-		echo 'Enable SSL verification setting: ';
-		if ( 1 == $this->settings['verify_ssl'] ) {
-			echo 'Yes';
-		} else {
-			echo 'No';
-		}
-
-		echo "\r\n";
-		echo "\r\n";
-
-		echo 'MySQL: ';
-		echo esc_html( empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh ) );
-		echo "\r\n";
-
-		echo 'ext/mysqli: ';
-		echo empty( $wpdb->use_mysqli ) ? 'no' : 'yes';
-		echo "\r\n";
-
-		echo 'WP Locale: ';
-		echo esc_html( get_locale() );
-		echo "\r\n";
-
-		echo 'DB Charset: ';
-		echo esc_html( DB_CHARSET );
-		echo "\r\n";
-
-		echo 'WPMDB_STRIP_INVALID_TEXT: ';
-		echo esc_html( ( defined( 'WPMDB_STRIP_INVALID_TEXT' ) && WPMDB_STRIP_INVALID_TEXT ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo "\r\n";
-
-		echo 'Debug Mode: ';
-		echo esc_html( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo 'Debug Log: ';
-		echo esc_html( ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo 'Debug Display: ';
-		echo esc_html( ( defined( 'WP_DEBUG_DISPLAY' ) && WP_DEBUG_DISPLAY ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo 'Script Debug: ';
-		echo esc_html( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'Yes' : 'No' );
-		echo "\r\n";
-
-		echo 'PHP Error Log: ';
-		if ( function_exists( 'ini_get' ) ) {
-			echo esc_html( ini_get( 'error_log' ) );
-		}
-		echo "\r\n";
-
-
-		echo "\r\n";
-
-		echo 'WP Max Upload Size: ';
-		echo esc_html( size_format( wp_max_upload_size() ) );
-		echo "\r\n";
-
-		echo 'PHP Post Max Size: ';
-		echo esc_html( size_format( $this->get_post_max_size() ) );
-		echo "\r\n";
-
-		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.post.max_value_length' ) ) {
-			echo 'Suhosin Post Max Value Length: ';
-			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
-			echo "\r\n";
-		}
-
-		if ( function_exists( 'ini_get' ) && $suhosin_limit = ini_get( 'suhosin.request.max_value_length' ) ) {
-			echo 'Suhosin Request Max Value Length: ';
-			echo esc_html( is_numeric( $suhosin_limit ) ? size_format( $suhosin_limit ) : $suhosin_limit );
-			echo "\r\n";
-		}
-
-		echo "\r\n";
-
-		echo 'WPMDB Bottleneck: ';
-		echo esc_html( size_format( $this->get_bottleneck() ) );
-		echo "\r\n";
-
-		echo 'Compatibility Mode: ';
-		if ( isset( $GLOBALS['wpmdb_compatibility']['active'] ) ) {
-			echo 'Yes';
-		} else {
-			echo 'No';
-		}
-		echo "\r\n";
-
-		echo 'Delay Between Requests: ';
-		$delay_between_requests = $this->settings['delay_between_requests'];
-		$delay_between_requests = $delay_between_requests > 0 ? $delay_between_requests / 1000 : $delay_between_requests;
-		echo esc_html( $delay_between_requests ) . ' s';
-		echo "\r\n\r\n";
-
-		echo 'WP_HOME: ';
-		echo esc_html( ( defined( 'WP_HOME' ) && WP_HOME ) ? WP_HOME : 'Not defined' );
-		echo "\r\n";
-
-		echo 'WP_SITEURL: ';
-		echo esc_html( ( defined( 'WP_SITEURL' ) && WP_SITEURL ) ? esc_html( WP_SITEURL ) : 'Not defined' );
-		echo "\r\n";
-
-		echo 'WP_CONTENT_URL: ';
-		echo esc_html( ( defined( 'WP_CONTENT_URL' ) && WP_CONTENT_URL ) ? WP_CONTENT_URL : 'Not defined' );
-		echo "\r\n";
-
-		echo 'WP_CONTENT_DIR: ';
-		echo esc_html( ( defined( 'WP_CONTENT_DIR' ) && WP_CONTENT_DIR ) ? WP_CONTENT_DIR : 'Not defined' );
-		echo "\r\n";
-
-		echo 'WP_PLUGIN_DIR: ';
-		echo esc_html( ( defined( 'WP_PLUGIN_DIR' ) ) ? WP_PLUGIN_DIR : 'Not defined' );
-		echo "\r\n";
-
-		echo 'WP_PLUGIN_URL: ';
-		echo esc_html( ( defined( 'WP_PLUGIN_URL' ) ) ? WP_PLUGIN_URL : 'Not defined' );
-		echo "\r\n";
+		$constants = array(
+			'WP_HOME'        => ( defined( 'WP_HOME' ) && WP_HOME ) ? WP_HOME : 'Not defined',
+			'WP_SITEURL'     => ( defined( 'WP_SITEURL' ) && WP_SITEURL ) ? WP_SITEURL : 'Not defined',
+			'WP_CONTENT_URL' => ( defined( 'WP_CONTENT_URL' ) && WP_CONTENT_URL ) ? WP_CONTENT_URL : 'Not defined',
+			'WP_CONTENT_DIR' => ( defined( 'WP_CONTENT_DIR' ) && WP_CONTENT_DIR ) ? WP_CONTENT_DIR : 'Not defined',
+			'WP_PLUGIN_DIR'  => ( defined( 'WP_PLUGIN_DIR' ) && WP_PLUGIN_DIR ) ? WP_PLUGIN_DIR : 'Not defined',
+			'WP_PLUGIN_URL'  => ( defined( 'WP_PLUGIN_URL' ) && WP_PLUGIN_URL ) ? WP_PLUGIN_URL : 'Not defined',
+		);
 
 		if ( is_multisite() ) {
-			echo 'UPLOADS Constant: ';
-			echo esc_html( ( defined( 'UPLOADS' ) && UPLOADS ) ? UPLOADS : 'Not defined' );
-			echo "\r\n";
-
-			echo 'UPLOADBLOGSDIR Constant: ';
-			echo esc_html( ( defined( 'UPLOADBLOGSDIR' ) && UPLOADS ) ? UPLOADBLOGSDIR : 'Not defined' );
-			echo "\r\n";
+			$constants['UPLOADS']        = ( defined( 'UPLOADS' ) && UPLOADS ) ? UPLOADS : 'Not defined';
+			$constants['UPLOADBLOGSDIR'] = ( defined( 'UPLOADBLOGSDIR' ) && UPLOADBLOGSDIR ) ? UPLOADBLOGSDIR : 'Not defined';
 		}
 
-		echo "\r\n";
+		$diagnostic_info['constants'] = $constants;
 
-		do_action( 'wpmdb_diagnostic_info' );
-		if ( has_action( 'wpmdb_diagnostic_info' ) ) {
-			echo "\r\n";
-		}
+		$diagnostic_info = array_merge( $diagnostic_info, apply_filters( 'wpmdb_diagnostic_info', array(), $diagnostic_info ) );
 
-		$theme_info = wp_get_theme();
-		echo "Active Theme Name: " . esc_html( $theme_info->Name ) . "\r\n";
-		echo "Active Theme Folder: " . esc_html( basename( $theme_info->get_stylesheet_directory() ) ) . "\r\n";
+		$theme_info     = wp_get_theme();
+		$theme_info_log = array(
+			'Active Theme Name'   => $theme_info->Name,
+			'Active Theme Folder' => $theme_info->get_stylesheet_directory(),
+		);
 		if ( $theme_info->get( 'Template' ) ) {
-			echo "Parent Theme Folder: " . esc_html( $theme_info->get( 'Template' ) ) . "\r\n";
+			$theme_info_log['Parent Theme Folder'] = $theme_info->get( 'Template' );
 		}
-		if ( ! file_exists( $theme_info->get_stylesheet_directory() ) ) {
-			echo "WARNING: Active Theme Folder Not Found\r\n";
+		if ( ! $this->filesystem->file_exists( $theme_info->get_stylesheet_directory() ) ) {
+			$theme_info_log['WARNING'] = 'Active Theme Folder Not Found';
 		}
+		$diagnostic_info['theme-info'] = $theme_info_log;
 
-		echo "\r\n";
+		$active_plugins_log = array( 'Active Plugins' );
 
-		echo "Active Plugins:\r\n";
-
+		$active_plugins_log[1] = array();
 		if ( isset( $GLOBALS['wpmdb_compatibility']['active'] ) ) {
 			$whitelist = array_flip( (array) $this->settings['whitelist_plugins'] );
 		} else {
 			$whitelist = array();
 		}
-
 		$active_plugins = (array) get_option( 'active_plugins', array() );
-
 		if ( is_multisite() ) {
 			$network_active_plugins = wp_get_active_network_plugins();
 			$active_plugins         = array_map( array( $this, 'remove_wp_plugin_dir' ), $network_active_plugins );
 		}
-
 		foreach ( $active_plugins as $plugin ) {
-			$prefix = ( isset( $whitelist[ $plugin ] ) ) ? '*' : '';
-			$this->print_plugin_details( WP_PLUGIN_DIR . '/' . $plugin, $prefix );
+			$active_plugins_log[1][] = $this->get_plugin_details( WP_PLUGIN_DIR . '/' . $plugin, isset( $whitelist[ $plugin ] ) ? '*' : '' );
 		}
+
+		$diagnostic_info['active-plugins'] = $active_plugins_log;
 
 		$mu_plugins = wp_get_mu_plugins();
 		if ( $mu_plugins ) {
-			echo "\r\n";
-
-			echo "Must-use Plugins:\r\n";
-
+			$mu_plugins_log    = array( 'Must-Use Plugins' );
+			$mu_plugins_log[1] = array();
 			foreach ( $mu_plugins as $mu_plugin ) {
-				$this->print_plugin_details( $mu_plugin );
+				$mu_plugins_log[1][] = $this->get_plugin_details( $mu_plugin );
 			}
-
-			echo "\r\n";
+			$diagnostic_info['mu-plugins'] = $mu_plugins_log;
 		}
+
+		return $diagnostic_info;
 	}
 
-	function print_plugin_details( $plugin_path, $prefix = '' ) {
+
+	function get_plugin_details( $plugin_path, $prefix = '' ) {
 		$plugin_data = get_plugin_data( $plugin_path );
-		if ( empty( $plugin_data['Name'] ) ) {
+		$plugin_name = strlen( $plugin_data['Name'] ) ? $plugin_data['Name'] : basename( $plugin_path );
+
+		if ( empty( $plugin_name ) ) {
 			return;
 		}
 
-		printf( "%s%s (v%s) by %s\r\n", $prefix, $plugin_data['Name'], $plugin_data['Version'], $plugin_data['AuthorName'] );
+		$version = '';
+		if ( $plugin_data['Version'] ) {
+			$version = sprintf( " (v%s)", $plugin_data['Version'] );
+		}
+
+		$author = '';
+		if ( $plugin_data['AuthorName'] ) {
+			$author = sprintf( " by %s", $plugin_data['AuthorName'] );
+		}
+
+		return sprintf( "%s %s%s%s", $prefix, $plugin_name, $version, $author);
+	}
+
+	function print_plugin_details( $plugin_path, $prefix = '' ) {
+		echo $this->get_plugin_details( $plugin_path, $prefix ) . "\r\n";
 	}
 
 	function remove_wp_plugin_dir( $name ) {
@@ -753,7 +644,6 @@ class WPMDB extends WPMDB_Base {
 
 		ob_start();
 		$wpdb->show_errors();
-
 		if ( empty( $wpdb->charset ) ) {
 			$charset       = ( defined( 'DB_CHARSET' ) ? DB_CHARSET : 'utf8' );
 			$wpdb->charset = $charset;
@@ -1187,6 +1077,7 @@ class WPMDB extends WPMDB_Base {
 			}
 
 			if ( $this->state_data['intent'] == 'pull' ) {
+
 				// sets up our table to store 'ALTER' queries
 				$create_alter_table_query = $this->get_create_alter_table_query();
 				$process_chunk_result     = $this->process_chunk( $create_alter_table_query );
@@ -1223,6 +1114,8 @@ class WPMDB extends WPMDB_Base {
 		$return['migration_state_id'] = $this->migration_state->id();
 		$return                       = $this->save_migration_state( $state, $return );
 
+		do_action( 'wpmdb_initiate_migration', $this->state_data );
+
 		$result = $this->end_ajax( json_encode( $return ) );
 
 		return $result;
@@ -1235,7 +1128,6 @@ class WPMDB extends WPMDB_Base {
 	 */
 	function ajax_finalize_migration() {
 		$this->check_ajax_referer( 'finalize-migration' );
-
 		$key_rules = array(
 			'action'             => 'key',
 			'migration_state_id' => 'key',
@@ -1274,10 +1166,13 @@ class WPMDB extends WPMDB_Base {
 			$data['sig']      = $this->create_signature( $data, $this->state_data['key'] );
 			$ajax_url         = $this->ajax_url();
 			$response         = $this->remote_post( $ajax_url, $data, __FUNCTION__ );
-			ob_start();
-			echo esc_html( $response );
+			$return           = esc_html( $response );
 			$this->display_errors();
-			$return = ob_get_clean();
+
+			// In the case of an error
+			if ( '1' !== $response ) {
+				$return =  $response;
+			}
 		} else {
 			$return = $this->finalize_migration();
 		}
@@ -1299,6 +1194,8 @@ class WPMDB extends WPMDB_Base {
 		$temp_tables      = array();
 		$type             = $this->state_data['intent'];
 		$alter_table_name = $this->get_alter_table_name();
+
+		do_action( 'wpmdb_before_finalize_migration', $this );
 
 		if ( isset( $this->state_data['type'] ) && 'push' === $this->state_data['type'] ) {
 			$type = 'push';
@@ -1350,7 +1247,6 @@ class WPMDB extends WPMDB_Base {
 		$process_chunk_result = $this->process_chunk( $sql );
 		if ( true !== $process_chunk_result ) {
 			$result = $this->end_ajax( $process_chunk_result );
-
 			return $result;
 		}
 
@@ -1361,15 +1257,11 @@ class WPMDB extends WPMDB_Base {
 			$data['sig']    = $this->create_signature( $data, $this->state_data['key'] );
 			$ajax_url       = $this->ajax_url();
 			$response       = $this->remote_post( $ajax_url, $data, __FUNCTION__ );
-			ob_start();
-			echo esc_html( $response );
+			$return = esc_html( $response );
 			$this->display_errors();
-			$maybe_errors = trim( ob_get_clean() );
-			if ( false === empty( $maybe_errors ) && '1' !== $maybe_errors ) {
-				$maybe_errors = array( 'wpmdb_error' => 1, 'body' => $maybe_errors );
-				$result       = $this->end_ajax( json_encode( $maybe_errors ) );
 
-				return $result;
+			if ( '1' !== $response ) {
+				return $this->end_ajax( json_encode( array( 'wpmdb_error' => 1, 'body' => $return ) ) );
 			}
 		}
 
@@ -1426,9 +1318,11 @@ class WPMDB extends WPMDB_Base {
 		$preserved_options = array(
 			'wpmdb_settings',
 			'wpmdb_error_log',
+			'wpmdb_file_ignores',
 			'wpmdb_schema_version',
 			'upload_path',
 			'upload_url_path',
+			'blog_public',
 		);
 
 		$preserved_sitemeta_options = $preserved_options;
@@ -2584,6 +2478,7 @@ class WPMDB extends WPMDB_Base {
 
 			$where .= " AND `{$col_name}` != 'wpmdb_settings'";
 			$where .= " AND `{$col_name}` != 'wpmdb_error_log'";
+			$where .= " AND `{$col_name}` != 'wpmdb_file_ignores'";
 			$where .= " AND `{$col_name}` != 'wpmdb_schema_version'";
 			$where .= " AND `{$col_name}` NOT LIKE 'wpmdb_state_%'";
 		}
@@ -3450,19 +3345,18 @@ class WPMDB extends WPMDB_Base {
 		$plugins_url = trailingslashit( plugins_url( $this->plugin_folder_name ) );
 		$version     = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : $this->plugin_version;
 		$ver_string  = '-' . str_replace( '.', '', $this->plugin_version );
-		$min         = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		$src = $plugins_url . 'asset/dist/css/styles.css';
+		$src = $plugins_url . 'asset/build/css/styles.css';
 		wp_enqueue_style( 'wp-migrate-db-pro-styles', $src, array(), $version );
 
 		do_action( 'wpmdb_load_assets' );
 
-		$src = $plugins_url . "asset/dist/js/script{$ver_string}.js";
+		$src = $plugins_url . "asset/build/js/bundle{$ver_string}.js";
 		wp_enqueue_script( 'wp-migrate-db-pro-script', $src, array( 'jquery', 'backbone' ), $version, true );
 
 		wp_localize_script( 'wp-migrate-db-pro-script',
 			'wpmdb_strings',
-			array(
+			apply_filters( 'wpmdb_js_strings', array(
 				'max_request_size_problem'              => __( 'A problem occurred when trying to change the maximum request size, please try again.', 'wp-migrate-db' ),
 				'license_check_problem'                 => __( 'A problem occurred when trying to check the license, please try again.', 'wp-migrate-db' ),
 				'establishing_remote_connection'        => __( 'Establishing connection to remote server, please wait', 'wp-migrate-db' ),
@@ -3554,6 +3448,7 @@ class WPMDB extends WPMDB_Base {
 				'temporarily_activated_licence'         => __( "<strong>We've temporarily activated your licence and will complete the activation once the Delicious Brains API is available again.</strong><br />Please refresh this page to continue.", 'wp-migrate-db' ),
 				'ajax_json_message'                     => __( 'JSON Decoding Failure', 'wp-migrate-db' ),
 				'ajax_json_errors'                      => __( 'Our AJAX request was expecting JSON but we received something else. Often this is caused by your theme and/or plugins spitting out PHP errors. If you can edit the theme or plugins causing the errors, you should be able to fix them up, but if not, you can set WP_DEBUG to false in wp-config.php to disable errors from showing up.', 'wp-migrate-db' ),
+				'ajax_php_errors'                      => __( 'Our AJAX request was expecting JSON but we received something else', 'wp-migrate-db' ),
 				'view_error_messages'                   => __( 'View error messages', 'wp-migrate-db' ),
 				'delaying_next_request'                 => __( 'Waiting %s seconds before executing next step', 'wp-migrate-db' ),
 				'delay_between_requests_problem'        => __( 'A problem occurred when trying to change the delay between requests, please try again.', 'wp-migrate-db' ),
@@ -3593,7 +3488,7 @@ class WPMDB extends WPMDB_Base {
 				'uploading_file_to_server'              => __( 'Uploading file to the server', 'wp-migrate-db' ),
 				'importing_file_to_db'                  => __( 'Importing data from %s', 'wp-migrate-db' ),
 				'upload'                                => __( 'Upload', 'wp-migrate-db' ),
-			)
+			) )
 		);
 
 		wp_enqueue_script( 'jquery' );
@@ -3846,6 +3741,8 @@ class WPMDB extends WPMDB_Base {
 				break;
 		}
 
+		do_action( 'wpmdb_cancellation' );
+
 		if ( ! $this->migration_state->delete() ) {
 			$this->log_error( 'Could not delete migration state.' );
 		}
@@ -4088,4 +3985,5 @@ class WPMDB extends WPMDB_Base {
 		<?php
 		return wptexturize( ob_get_clean() );
 	}
+
 }

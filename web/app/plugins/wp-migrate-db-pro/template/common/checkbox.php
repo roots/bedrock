@@ -1,5 +1,6 @@
 <?php
-$value    = ( isset( $value ) ) ? $value : $this->settings[$key];
+$default  = isset( $this->settings[ $key ] ) ? $this->settings[ $key ] : false;
+$value    = ( isset( $value ) ) ? $value : $default;
 $class    = ( isset( $class ) ) ? 'class="' . $class . '"' : '';
 $disabled = ( isset( $disabled ) && $disabled ) ? ' disabled' : '';
 ?>

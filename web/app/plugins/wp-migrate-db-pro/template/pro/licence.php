@@ -14,7 +14,7 @@
 				<p class="licence-status"></p>
 			<?php else : ?>
 				<div class="licence-not-entered">
-					<input type="text" class="licence-input" autocomplete="off"/>
+					<input type="text" class="licence-input" autocomplete="off" />
 					<button class="button register-licence" type="button"><?php _e( 'Activate License', 'wp-migrate-db' ); ?></button>
 					<p class="licence-status"></p>
 				</div>
@@ -22,3 +22,5 @@
 		<?php endif; ?>
 	</td>
 </tr>
+
+<?php do_action( 'wpmdb_settings_after_license' ); ?>

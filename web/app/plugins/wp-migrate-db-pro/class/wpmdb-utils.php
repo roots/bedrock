@@ -111,7 +111,7 @@ class WPMDB_Utils {
 	 */
 	public static function gzdecode( $data ) {
 		if ( ! function_exists( 'gzdecode' ) ) {
-			return @gzinflate( substr( $data, 10, -8 ) );
+			return @gzinflate( substr( $data, 10, - 8 ) );
 		}
 
 		return @gzdecode( $data );
@@ -155,7 +155,7 @@ class WPMDB_Utils {
 	public static function create_nonce( $action = - 1 ) {
 		global $wp_filter;
 		$filter_backup = $wp_filter;
-		static::filter_nonce_filters();
+		WPMDB_Utils::filter_nonce_filters();
 		$return    = wp_create_nonce( $action );
 		$wp_filter = $filter_backup;
 
@@ -178,7 +178,7 @@ class WPMDB_Utils {
 	public static function check_ajax_referer( $action = - 1, $query_arg = false, $die = true ) {
 		global $wp_filter;
 		$filter_backup = $wp_filter;
-		static::filter_nonce_filters();
+		WPMDB_Utils::filter_nonce_filters();
 		$return    = check_ajax_referer( $action, $query_arg, $die );
 		$wp_filter = $filter_backup;
 
@@ -205,11 +205,7 @@ class WPMDB_Utils {
 	 * @return bool
 	 */
 	public static function is_wpmdb_ajax_call() {
-		if (
-			( defined( 'DOING_AJAX' ) && DOING_AJAX )
-			&& ( isset( $_POST['action'] )
-			&& false !== strpos( $_POST['action'], 'wpmdb' ) )
-		) {
+		if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) && ( isset( $_POST['action'] ) && false !== strpos( $_POST['action'], 'wpmdb' ) ) ) {
 			return true;
 		}
 
@@ -233,5 +229,43 @@ class WPMDB_Utils {
 		}
 
 		return $r;
+	}
+
+	/*
+	 * Patch wp_parse_url if it doesn't exist
+	 * for compatibility with WP < 4.4
+	 */
+	public static function parse_url( $url ) {
+		if ( function_exists( 'wp_parse_url' ) ) {
+			return wp_parse_url( $url );
+		}
+
+		$parts = @parse_url( $url );
+		if ( ! $parts ) {
+			// < PHP 5.4.7 compat, trouble with relative paths including a scheme break in the path
+			if ( '/' == $url[0] && false !== strpos( $url, '://' ) ) {
+				// Since we know it's a relative path, prefix with a scheme/host placeholder and try again
+				if ( ! $parts = @parse_url( 'placeholder://placeholder' . $url ) ) {
+					return $parts;
+				}
+				// Remove the placeholder values
+				unset( $parts['scheme'], $parts['host'] );
+			} else {
+				return $parts;
+			}
+		}
+
+		// < PHP 5.4.7 compat, doesn't detect schemeless URL's host field
+		if ( '//' == substr( $url, 0, 2 ) && ! isset( $parts['host'] ) ) {
+			$path_parts    = explode( '/', substr( $parts['path'], 2 ), 2 );
+			$parts['host'] = $path_parts[0];
+			if ( isset( $path_parts[1] ) ) {
+				$parts['path'] = '/' . $path_parts[1];
+			} else {
+				unset( $parts['path'] );
+			}
+		}
+
+		return $parts;
 	}
 }
