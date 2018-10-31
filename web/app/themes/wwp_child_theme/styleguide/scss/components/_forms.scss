@@ -33,7 +33,6 @@ form {
     select {
         width: 100%;
         min-height: 0;
-        padding: 2rem 3rem;
         font-size: inherit;
         line-height: 1.2;
         letter-spacing: .2rem;
@@ -54,7 +53,6 @@ form {
     [type="number"],
     [type="password"],
     [type="search"],
-    [type="submit"],
     [type="tel"],
     [type="text"],
     [type="time"],
@@ -62,6 +60,7 @@ form {
     [type="week"],
     select,
     textarea {
+        padding: 0.5rem 4rem .5rem 1rem;
         box-shadow: none;
     } // reset knacss
     input[type=file] {
@@ -87,6 +86,7 @@ form {
 
     textarea {
         min-height: $input-height;
+        padding-top: 14px;
     }
 }
 
@@ -208,7 +208,7 @@ form {
 .checkbox-wrap,
 .radio-wrap {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .switch,

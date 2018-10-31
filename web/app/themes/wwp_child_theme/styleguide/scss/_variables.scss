@@ -157,8 +157,8 @@ $background-base : $white;
 // ---------------
 
 // Component: links
-$link-color            : $gray-800;
-$link-color-hover      : darken($link-color, 15%);
+$link-color            : $gray-800 !default;
+$link-color-hover      : darken($link-color, 15%) !default;
 $link-decoration       : underline;
 $link-decoration-hover : underline;
 
@@ -166,44 +166,44 @@ $link-decoration-hover : underline;
 $border-radius: 0 !default;
 
 // Component: quotes
-$quote-color     : $gray-200;
+$quote-color     : $gray-200 !default;
 
 // Component: arrows
-$arrow-color     : $black;
+$arrow-color     : $color-base !default;
 
 // Components: forms
-$forms-color                : $gray-800;
-$forms-bgcolor              : $gray-200;
-$label-color                : $gray-600;
-$input-color                : $gray-600;
-$input-bgcolor              : $white;
-$placeholder-color          : $gray-400;
+$forms-color                : $gray-800 !default;
+$forms-bgcolor              : $gray-400 !default;
+$label-color                : $gray-600 !default;
+$input-color                : $gray-600 !default;
+$input-bgcolor              : $white !default;
+$placeholder-color          : $gray-400 !default;
 
-$input-height               : 70px;
+$input-height               : 45px !default;
 
-$select-arrow-color         : $white;
-$select-arrow-bgcolor       : $gray-600;
-$select-arrow-active-color  : $white;
-$select-bgcolor             : $white;
-$select-active-color        : $white;
-$select-active-bgcolor      : $gray-600;
+$select-arrow-color         : $white !default;
+$select-arrow-bgcolor       : $gray-600 !default;
+$select-arrow-active-color  : $white !default;
+$select-bgcolor             : $white !default;
+$select-active-color        : $white !default;
+$select-active-bgcolor      : $gray-600 !default;
 
-$checkbox-color             : $color-primary;
+$checkbox-color             : $color-primary !default;
 $checkbox-size              : 3rem;
 $checkbox-border-radius     : 0;
 
-$switch-color               : $gray-600;
+$switch-color               : $gray-600 !default;
 $switch-size                : 3rem;
 $switch-border-radius       : 3em;
 
 // Component: tables
-$table-border               : $gray-500;
-$table-caption-color        : $gray-800;
-$table-background           : transparent;
-$table-head-color           : $color-base;
-$table-head-background      : transparent;
-$table-footer-color         : $color-base;
-$table-footer-background    : transparent;
+$table-border               : $gray-500 !default;
+$table-caption-color        : $gray-800 !default;
+$table-background           : transparent !default;
+$table-head-color           : $color-base !default;
+$table-head-background      : transparent !default;
+$table-footer-color         : $color-base !default;
+$table-footer-background    : transparent !default;
 
 // Components: buttons, badges, alerts color variants list
 // Convention is: name - background-color - color - border
@@ -219,23 +219,23 @@ $variants-list: (
 ) !default;
 
 // Component: tabs
-$tabs-border            : $gray-200;
-$tabs-active-border     : $gray-800;
-$tabs-color             : $color-base;
-$tabs-active-color      : $gray-800;
-$tabs-background        : transparent;
-$tabs-active-background : transparent;
+$tabs-border            : $gray-200 !default;
+$tabs-active-border     : $gray-800 !default;
+$tabs-color             : $color-base !default;
+$tabs-active-color      : $gray-800 !default;
+$tabs-background        : transparent !default;
+$tabs-active-background : transparent !default;
 $tabs-border-radius     : 0;
 
 // Component: nav burger button
 $burger-btn-size          : 60px; //width of whole button
-$burger-color             : $gray-800;
-$burger-background        : transparent; //behind stripes
-$burger-hover-background  : transparent;
+$burger-color             : $gray-800 !default;
+$burger-background        : transparent !default; //behind stripes
+$burger-hover-background  : transparent !default;
 $burger-size              : 25px;
 $burger-weight            : 3px; //width of stripes
 $burger-padding           : 0;
-$burger-bgcolor           : $gray-500; //bg color of whole button
+$burger-bgcolor           : $gray-500 !default; //bg color of whole button
 
 // Components: alerts
 $alert-success: $color-success;
@@ -248,4 +248,13 @@ $alert-warning: $color-warning;
 $alert-warning-bg: lighten($color-warning, 30%);
 
 $alert-error: $color-error;
-$alert-error-bg: lighten($color-error, 35%);
+$alert-error-bg: lighten($color-error, 30%);
+
+
+// ---------------
+// Plugins zone
+// ---------------
+
+// Newsletter form - colors override
+/*$nl-color: red;
+$nl-bgcolor: blue;*/
