@@ -1,0 +1,186 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Utilities      */
+/* ----------------------------- */
+
+/* Margins and paddings (knacss addons)*/
+.mtxl {
+    margin-top: $spacer-extra-large;
+
+    @media (max-width: $medium) {
+        margin-top: 0;
+    }
+}
+
+.mrxl {
+    margin-right: $spacer-extra-large;
+}
+
+.mbxl {
+    margin-bottom: $spacer-extra-large;
+    
+    @media (max-width: $small) {
+        margin-bottom: $spacer-large;
+    }
+}
+
+.mlxl {
+    margin-left: $spacer-extra-large;
+}
+
+.mtxxl {
+    margin-bottom: $spacer-ultra-large;
+}
+
+.mrxxl {
+    margin-bottom: $spacer-ultra-large;
+}
+
+.mbxxl {
+    margin-bottom: $spacer-ultra-large;
+}
+
+.mlxxl {
+    margin-left: $spacer-ultra-large;
+}
+
+.mbn, .mb0 {
+    margin-bottom: 0 !important;
+}
+
+// Paddings
+.ptxl {
+    padding-top: $spacer-extra-large;
+}
+
+.pbxl {
+    padding-bottom: $spacer-extra-large;
+}
+
+.ptxxl {
+    padding-top: $spacer-ultra-large ;
+}
+
+.pbxxl {
+    padding-bottom: $spacer-ultra-large ;
+}
+
+// Widths
+.w44 {
+    width: 44%;
+}
+
+[class^="w"] img {
+    width: 100%;
+    height: auto;
+}
+
+[class^="w"] > [class^="w"] {
+
+    @media (max-width: 900px) {
+        width: 100%;
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    @media (max-width: $medium - 1) {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: $medium) {
+
+    [class^="w"] {
+        width: 100%;
+    } // for all blocks with "wXX" class (ex: w30)
+
+    [class*="pt"] {
+        padding-top: 0;
+    }
+
+    [class*="pb"] {
+        padding-bottom: 0;
+    }
+}
+
+// Wrappers
+.img-wrapper,
+.video-wrapper {
+
+    > img,
+    > a img,
+    > a {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+
+// flexbox layout (knacss addons)
+.flex-container,
+.d-flex {
+    display: flex;
+    flex-wrap: nowrap;
+
+    @media (max-width: $medium) {
+        flex-direction: column-reverse;
+
+        > * {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        [class*="ml"] {
+            margin-left: 0;
+        }
+
+        [class*="mr"] {
+            margin-right: 0;
+        }
+    }
+}
+
+.flex-container--center,
+.flex-center {
+    @extend .flex-container;
+    justify-content: center;
+
+    @media (max-width: 1000px) {
+
+    }
+
+    @media (max-width: $medium) {
+        flex-direction: row; // For Bloc with 2 girls
+        flex-wrap: wrap;
+
+        > * {
+            min-width: auto;
+        }
+    }
+}
+
+.flex-container--spacebetween,
+.flex-spacebetween {
+    @extend .flex-container;
+    justify-content: space-between;
+}
+
+.flex-container--flexend,
+.flex-flexend {
+    @extend .flex-container;
+    justify-content: flex-end;
+}
+
+/*Positioning utilities*/
+.relative {
+    position: relative;
+}
+
+// Remove style for phone numbers for iOS
+a[href^="tel"]{
+    color:inherit;
+    text-decoration:none;
+}
