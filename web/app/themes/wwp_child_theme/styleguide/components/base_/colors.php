@@ -1,4 +1,4 @@
-<!-- components/base/colors.php -->
+<!-- components/base_/colors.php -->
 
 <div class="colors">
   <div class="color basecolor">

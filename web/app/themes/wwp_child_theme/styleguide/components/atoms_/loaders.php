@@ -1,4 +1,4 @@
-<!-- components/atoms/loaders.php -->
+<!-- components/atoms_/loaders.php -->
 
 
 <span class="subTitle">Simple spinner</span>
