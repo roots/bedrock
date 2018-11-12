@@ -1,0 +1,180 @@
+.atomic-editorWrap{
+  //padding:20px 0;
+  //padding-top:20px;
+
+  font-size:16px;
+  position: relative;
+  margin-bottom: 0;
+  transition:all .25s;
+}
+.atomic-editorInner{
+	padding: 30px 0;
+	position: relative;
+	z-index: 2;
+	background-color: #f7f7f7;
+	border: 1px solid #dadada;
+	border-top: 0;
+
+	max-height: 200px;
+	overflow: auto;
+}
+
+.codeBlocks.codeBlocks-open{
+	.atomic-editorInner{
+		max-height: 100%;
+		height: auto;
+	}
+}
+
+
+
+
+
+
+.ace-tm {
+  background-color: #f7f7f7;
+  font-size: 15px;
+  color: #4a4a4a;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+
+
+
+.ace-tm .ace_gutter {
+  background: #f7f7f7;
+  color: #8e8e8e;
+  left:-100%;
+  transition:all .25s;
+}
+
+
+.ace_scroller {
+    left: 20px !important;
+    transition:all .25s;
+
+}
+
+.ace_hidden-cursors {opacity:0}
+
+
+
+
+
+
+
+
+
+
+.ace-tm .ace_comment {
+    color: rgb(160, 160, 160);
+}
+
+//tag
+.ace-tm .ace_meta.ace_tag {
+   color: #a04a64;
+}
+//class name
+.ace-tm .ace_string, .ace-tm .ace_variable {
+    color: #00aff0;
+}
+
+//style property
+.ace-tm .ace_support.ace_type, .ace-tm .ace_support.ace_class {
+    color: #a04a64;
+}
+
+//style value
+.ace-tm .ace_constant.ace_numeric {
+    color: #4a4a4a;
+}
+
+.ace-tm .ace_constant.ace_language {
+	color: #65a768;
+}
+
+//function
+.ace-tm .ace_storage, .ace-tm .ace_keyword {
+	color: #ca6abc;
+}
+
+
+
+.atomic-editor-footer{
+	border: 1px solid #dadada;
+	border-bottom: none;
+	background: #fff;
+	border-top: none;
+	padding: 0;
+	padding-right: 10px;
+	text-align: right;
+	position: absolute;
+	width: 100%;
+	transition:top .25s;
+	top: 10%;
+	z-index: -1;
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	.atomic-btns{
+		font-weight: 300;
+		background: none;
+		color: #616161;
+		padding: 8px;
+	}
+}
+
+.codeBlocks{
+	box-shadow: none;
+	//transition: box-shadow .25s;
+}
+
+.atomic-editorWrap-active{
+	padding-bottom: 35px;
+	box-shadow: 0px 3px 21px -2px rgba(0, 0, 0, 0.17);
+	border-bottom: 1px solid #dadada;
+	.atomic-editor-footer{
+		display: block;
+		top:100%;
+		z-index: 1;
+		opacity: 1;
+		height: auto;
+		overflow: auto;
+	}
+	.ace-tm .ace_gutter {
+	  left:0;
+	}
+	.ace_scroller {
+	    left: 57px !important;
+	}
+	.atomic-editorInner{
+		max-height: 100%;
+	}
+}
+
+.clientMode{
+	.atomic-editorWrap-active{
+		margin-bottom: 0;
+
+		.ace-tm .ace_gutter {
+			left: -100% !important;
+		}
+		.ace_scroller {
+			left: 20px !important;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

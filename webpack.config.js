@@ -1,15 +1,15 @@
-const path = require('path');
+const path               = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const VersionFile = require('webpack-version-file');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackBarPlugin = require('webpackbar');
+const ExtractTextPlugin  = require("extract-text-webpack-plugin");
+const VersionFile        = require('webpack-version-file');
+const webpack            = require('webpack');
+const CopyWebpackPlugin  = require('copy-webpack-plugin');
+const WebpackBarPlugin   = require('webpackbar');
 
 let assetsFile = './assets.json';
-let assets = require(assetsFile);
+let assets     = require(assetsFile);
 let versionNum = new Date().getTime();
-let buildDir = assets.site.prefix + assets.site.assets_dest;
+let buildDir   = assets.site.prefix + assets.site.assets_dest;
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name]' + versionNum + '.css'
@@ -24,7 +24,6 @@ const versionFile = new VersionFile({
     output: buildDir + '/version.php',
     templateString: '<?php return ' + versionNum + '; ?>'
 });
-
 
 const commonChunk = new webpack.optimize.CommonsChunkPlugin({
     name: "js/vendor",
@@ -44,7 +43,6 @@ const copyPlugin = new CopyWebpackPlugin([
 ]);
 
 const webpackBarPlugin = new WebpackBarPlugin();
-
 
 const entry = getAssetsEntries();
 
@@ -75,9 +73,10 @@ module.exports = {
                             loader: 'css-loader',
                             options: {
                                 url: false,
-                                sourceMap: true
+                                sourceMap: true,
+                                minimize: true
                             }
-                        },{
+                        }, {
                             loader: "postcss-loader", options: {
                                 sourceMap: true
                             }
@@ -125,21 +124,20 @@ module.exports = {
     target: 'web'
 };
 
-
 function getAssetsEntries() {
     let jsAssets = Object.keys(assets.js);
-    let entry = {};
+    let entry    = {};
 
     jsAssets.forEach((key) => {
         if (key !== 'critical') { // critical.js is manually copied in dist
-            let attr = 'js/' + key;
+            let attr    = 'js/' + key;
             entry[attr] = assets.js[key];
         }
     });
 
     let cssAssets = Object.keys(assets.css);
     cssAssets.forEach((key) => {
-        let attr = 'css/' + key;
+        let attr    = 'css/' + key;
         entry[attr] = assets.css[key];
     });
 
@@ -179,7 +177,6 @@ function getAssetsEntries() {
     });
     entry['js/atomic'] = atomic;*/
     // #ATOMIC BUILD END
-
 
     return entry;
 }

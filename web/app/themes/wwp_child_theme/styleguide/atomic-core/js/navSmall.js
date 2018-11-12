@@ -7,7 +7,7 @@ var navClose = [
 
 
 
-$(".atoms-side_show-small").on('click', function(event) {
+/*$(".atoms-side_show-small").on('click', function(event) {
   
   
   if($('.atoms-side').css('top') == '0px'){ 
@@ -20,7 +20,7 @@ $(".atoms-side_show-small").on('click', function(event) {
      
   }
 
-});
+});*/
 
 
 

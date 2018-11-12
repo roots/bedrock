@@ -1,4 +1,4 @@
-import {PewComponent} from "../../../../styleguide/js/components/pew-component";
+import {PewComponent} from "./pew-component";
 import {Menu} from "./menu";
 
 class headerComponent extends PewComponent {

@@ -3,14 +3,7 @@
 /* ==Header menu commons    */
 /* ----------------------------- */
 
-/* Variables */
-/* ------------- */
-$header-bg-color: $gray-700;
-$menu-item-color: $white;
-$menu-item-bgcolor: $gray-600;
-$menu-item-color-active: $gray-700;
-$menu-item-bgcolor-active: $gray-400;
-$menu-item-m0-color: $gray-600;
+
 /* ------------- */
 
 ul.header-menu {
@@ -46,5 +39,11 @@ ul.header-menu {
             color: $menu-item-color-active;
             background-color: $menu-item-bgcolor-active;
         }
+    }
+}
+
+.nav-button {
+    @media (min-width: $medium) {
+        display: none;
     }
 }

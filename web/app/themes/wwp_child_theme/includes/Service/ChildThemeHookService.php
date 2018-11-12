@@ -3,6 +3,7 @@
 namespace WonderWp\Theme\Child\Service;
 
 use Symfony\Component\HttpFoundation\Cookie;
+use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\HttpFoundation\Request;
 use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
@@ -16,17 +17,20 @@ class ChildThemeHookService extends ThemeHookService
 
         //$viewService = $this->manager->getService(ServiceInterface::VIEW_SERVICE_NAME);
         //add_action( 'wwp_after_footer', array($viewService,'prepareCookies'));
-        add_filter('wwp.mailer.setBody', array($this,'includeMailTemplate'));
-        add_action( 'wp_footer', array($this,'loadJsonTpls'));
+        add_filter('wwp.mailer.setBody', [$this, 'includeMailTemplate']);
+        add_action('wp_footer', [$this, 'loadJsonTpls']);
         //Disable visual editor
         add_filter('user_can_richedit', '__return_false', 50);
         add_action('wp_loaded', [$this, 'setHasCookie']);
+
+        add_filter('jsonAssetsExporter.json', [$this, 'mergeSassFiles']);
     }
 
-    public function includeMailTemplate($mailBody){
-        $templateContent='<body>##MAIL_CONTENT##</body>';
-        $templatePath = locate_template(['/templates/mail/default.php'],false,false);
-        if(file_exists($templatePath)){
+    public function includeMailTemplate($mailBody)
+    {
+        $templateContent = '<body>##MAIL_CONTENT##</body>';
+        $templatePath    = locate_template(['/templates/mail/default.php'], false, false);
+        if (file_exists($templatePath)) {
             ob_start();
             include($templatePath);
             $templateContent = ob_get_contents();
@@ -37,17 +41,18 @@ class ChildThemeHookService extends ThemeHookService
         return $mailContent;
     }
 
-    public function loadJsonTpls(){
-        $templates = array();
+    public function loadJsonTpls()
+    {
+        $templates = [];
 
         //Notifications
         $templates['notification'] = NotificationComponent::$template;
 
         //Loaders
-        $loaderComp = new Loadercomponent();
+        $loaderComp           = new Loadercomponent();
         $templates['loaders'] = $loaderComp->getTemplates();
 
-        echo'<script type="content/json" id="jsTemplates">'.json_encode($templates).'</script>';
+        echo '<script type="content/json" id="jsTemplates">' . json_encode($templates) . '</script>';
     }
 
     public function setHasCookie()
@@ -61,5 +66,33 @@ class ChildThemeHookService extends ThemeHookService
             setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime());
             $request->getSession()->set($cookieName, '');
         }
+    }
+
+    public function mergeSassFiles($json)
+    {
+
+        if (isset($json['css']['plugins'])) {
+            $pluginSassFiles = $json['css']['plugins'];
+            unset($json['css']['plugins']);
+
+            $pluginSassContent = '';
+            if (!empty($pluginSassFiles)) {
+                foreach ($pluginSassFiles as $pluginSassFile) {
+                    $pluginSassContent .= '@import "'.str_replace(['./web/app','//','.scss'], ['../../../../../..','/',''], $pluginSassFile).'";'."\n";
+                }
+            }
+
+            /** @var \WP_Filesystem_Direct $filesystem */
+            $pluginSassPath = get_stylesheet_directory().'/assets/raw/scss/plugins/_vendors.scss';
+            $filesystem   = Container::getInstance()->offsetGet('wwp.fileSystem');
+            $written      = $filesystem->put_contents(
+                $pluginSassPath,
+                $pluginSassContent,
+                FS_CHMOD_FILE // predefined mode settings for WP files
+            );
+
+        }
+
+        return $json;
     }
 }

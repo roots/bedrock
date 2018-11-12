@@ -25,7 +25,16 @@ oflowHeight = sideHeight - formHeight;
 $('.atoms-overflow').css('height',oflowHeight);*/
 
 
-$('.cat-form-group .fa').click(function() {	
+
+$(window).on('load', function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
+});
+
+
+
+
+$('.cat-form-group .fa').click(function() {
 	$(this).toggleClass('fa-minus-square-o fa-plus-square-o');
 
 	$('.js-showContent').slideToggle();
@@ -34,12 +43,13 @@ $('.cat-form-group .fa').click(function() {
 
 
 
+$('body').on('click', '.aa_dir__dirNameGroup__icon', function() {
 
-
-$( ".aa_dir__dirNameGroup .aa_dir__dirNameGroup__icon" ).click(function() {
   $(this).parent().next().slideToggle('fast');
     $(this).toggleClass('fa-folder-o fa-folder-open-o ');
 });
+
+
 
 
 
@@ -54,6 +64,8 @@ $(document).ready(function() {
             link = $this.attr('href');
         $this.attr('href', pathname + link);
     });
+
+
 });
 
 

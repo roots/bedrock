@@ -1,4 +1,5 @@
-<!--components/molecules/card.php-->
+<!-- components/Molecules/card.php -->
+
 <p class="subTitle">Bloc de contenu polyvalent utilisé notamment pour créer des Call to Action.</p>
 <p> Peut contenir des titre, texte, image, bouton et lien (attributs du shortcode disponibles : "title", "text", "img", "link", "button" et "class"). Les classes fonctionnelles suivantes permettent de modifier son apparence : "negative", "reverse", "two-cols", "inline" (ex : class="negative"). On peut intervenir sur la couleur dominante des textes ou du fond avec les attributs du shortcode : "color" et "background"</p>
 

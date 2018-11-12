@@ -112,7 +112,7 @@ output {
 // input[type="tel"]
 // input[type="color"]
 
-.form-control {
+.formInput {
   display: block;
   width: 100%;
   height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
@@ -150,7 +150,7 @@ output {
 }
 
 // Reset height for `textarea`s
-textarea.form-control {
+textarea.formInput {
   height: auto;
 }
 
@@ -326,7 +326,7 @@ input[type="checkbox"] {
   position: relative;
 
   // Ensure icons don't overlap text
-  .form-control {
+  .formInput {
     padding-right: ($input-height-base * 1.25);
   }
 }
@@ -414,7 +414,7 @@ input[type="checkbox"] {
     }
 
     // In navbar-form, allow folks to *not* use `.form-group`
-    .form-control {
+    .formInput {
       display: inline-block;
       width: auto; // Prevent labels from stacking above inputs in `.form-group`
       vertical-align: middle;
@@ -431,13 +431,13 @@ input[type="checkbox"] {
 
       .input-group-addon,
       .input-group-btn,
-      .form-control {
+      .formInput {
         width: auto;
       }
     }
 
     // Input groups need that 100% width though
-    .input-group > .form-control {
+    .input-group > .formInput {
       width: 100%;
     }
 

@@ -33,7 +33,8 @@ class ThemeAssetService extends AbstractAssetService
 
             $this->_assets = [
                 'css' => [
-                    new $assetClass('styleguide', $themePath . '/assets/raw/scss/theme.scss', [], '', true, 'styleguide' )
+                    new $assetClass('styleguide', $themePath . '/assets/raw/scss/theme.scss', [], '', true, 'styleguide' ),
+                    new $assetClass('critical', $themePath . '/assets/raw/scss/critical.scss', [], '', true, 'critical' )
                 ],
                 'js' => [
                     new $assetClass('core', $themePath . '/assets/raw/js/app_bootstrap.js', [], '', true, 'core' ), // global app entry point

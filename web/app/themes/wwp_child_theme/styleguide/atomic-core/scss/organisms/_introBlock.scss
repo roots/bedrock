@@ -21,3 +21,138 @@
 .docBlock-img__big{
     max-width: 100%;
 }
+
+
+
+
+.searchWindow{
+	position: fixed;
+	background: rgba(0, 121, 191, 0.77);
+	color: #fff;
+	font-family: $font1;
+	opacity: 0;
+	//transition: opacity .25s;
+	//z-index: -1;
+
+	display: none;
+
+
+	z-index: 6000;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	
+	
+	a{
+		color: #fff;
+	}
+	::-webkit-input-placeholder {
+		color: #fff;
+		font-size: 30px;
+		font-style: italic;
+		text-indent: 5px;
+	}
+	::-moz-placeholder {
+		color: #fff;
+		font-size: 30px;
+	}
+	:-ms-input-placeholder {
+		color: #fff;
+		font-size: 30px;
+	}
+	:-moz-placeholder {
+		color: #fff;
+		font-size: 30px;
+	}
+}
+
+.searchWindow.searchWindow-open{
+	    z-index: 6000;
+		top: 0;
+		bottom: 0;
+		left: 0;
+	    width: 100%;
+	    height: 100%;
+		opacity: 1;
+}
+
+
+
+
+.searchWindow__close{
+	cursor: pointer;
+}
+
+
+
+.SearchContent{
+	max-width: 500px;
+	margin: auto;
+	position: relative;
+	padding: 100px 20px;
+
+}
+
+
+
+.searchInputWrap{
+	height: 60px;
+	position: relative;
+	margin-bottom: 50px;
+	&:before{
+		content: "\f002";
+		position: absolute;
+		left: 0;
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		display: inline-block;
+		font: normal normal normal 14px/1 FontAwesome;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		transform: translateY(-50%);
+		font-size: 31px;
+		top: 28px;
+	}
+}
+
+
+.searchInput{
+	width: 100%;
+	height: 60px;
+	background: none;
+	border: none;
+	border-bottom: 2px solid #fff;
+	padding-left: 50px;
+	color: #fff;
+	font-size: 30px;
+	&:focus{
+		outline: none;
+	}
+
+}
+
+
+.searchList{
+	list-style: none;
+	padding: 0;
+	a{
+		text-decoration: none;
+		font-size: 24px;
+	}
+}
+
+
+.searchWindow__close{
+	position: absolute;
+	right: 50px;
+	top: 25px;
+}
+
+
+
+

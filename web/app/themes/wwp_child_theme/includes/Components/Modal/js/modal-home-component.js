@@ -1,4 +1,4 @@
-import {Modal} from "../../../../styleguide/js/components/modal/modal";
+import {Modal} from "./modal";
 
 export class ModalHomeComponent extends Modal {
     setOptions() {

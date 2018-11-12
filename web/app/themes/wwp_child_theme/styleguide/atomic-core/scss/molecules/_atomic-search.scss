@@ -1,0 +1,45 @@
+.atomic-search {
+  padding: 15px;
+  background: #2988ac;
+  border-bottom: 1px solid #57d2ff;
+  position: relative;
+  margin-top: -71px;
+  transition: all .25s;
+  &.atomic-search-open {
+    margin-top: 0;
+
+  }
+  input {
+    width: 100%;
+    border: none;
+    padding-left: 30px;
+    color: #7A7A7A;
+    height: 40px;
+    background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-128.png');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 5px center;
+    border-radius: 100px;
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 12px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 12px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 12px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    font-size: 12px;
+  }
+}
+
+
+
+
+

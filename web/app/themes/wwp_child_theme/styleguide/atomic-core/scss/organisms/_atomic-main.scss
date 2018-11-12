@@ -1,43 +1,41 @@
-.atoms-container{
-	height:100%;
+.atoms-container {
+  height: 100%;
+  opacity: 1;
+  transition: opacity .25s;
 }
 
-
-
-.atoms-main{
-
-	padding:20px;
-	padding-left:282px;
-	width:100%;
-	padding-top: 0;
+.atoms-main {
+  box-sizing: border-box;
+  padding: 40px;
+  padding-left: 240px;
+  width: 100%;
+  padding-top: 0;
 }
 
-
-
+.compTitle, .compNotes, .nav-tabs-atomic {
+  font-family: $font1;
+}
 
 code, kbd, pre, samp {
-    font-size: 14px;
+  font-size: 14px;
 }
+
 pre[class*="language-"] {
-    padding: 2em;
+  padding: 2em;
 }
 
-
-.atoms-code-example{
-	position:relative;
+.atoms-code-example {
+  position: relative;
 }
 
-
-
-.atoms-group{
-	margin-bottom:50px;
+.atoms-group {
+  margin-bottom: 50px;
 }
 
-
-@media (max-width: 823px){ 
-  .atoms-main{
-    padding-left:20px !important ; 
-    width:100%;
+@media (max-width: 823px) {
+  .atoms-main {
+    padding-left: 20px !important;
+    width: 100%;
   }
 }
 

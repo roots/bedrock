@@ -23,6 +23,9 @@ class ChildThemeManager extends ThemeManager
 
     public function register(Container $container)
     {
+
+        $this->setConfig('use_critical_css',true);
+
         parent::register($container);
 
         //Controllers

@@ -16,7 +16,7 @@
 
 <footer id="colophon" class="site-footer">
     <div class="footer-content">
-        <?php wp_nav_menu(['theme_location' => 'footer-menu']); ?>
+
     </div><!-- .site-info -->
 </footer><!-- .site-footer -->
 

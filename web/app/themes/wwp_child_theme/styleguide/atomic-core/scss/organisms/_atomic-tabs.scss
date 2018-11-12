@@ -1,24 +1,51 @@
-.compWrap{
-  .nav-tabs {
-    border-bottom: none;
+.codeBlocks {
+  .nav-tabs-atomic {
+    border: 1px solid #dadada;
+    margin-top: 0;
+    background: #fff;
   }
-  .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-  	border:none;
-  	background: none;
-  	background: #E2F3F5;
+  .nav-tabs-atomic > li.active > a, .nav-tabs-atomic > li.active > a:focus, .nav-tabs-atomic > li.active > a:hover {
+    border: none;
+    border-bottom: 3px solid #00aff0;
     color: inherit;
   }
-  .nav>li>a:focus, .nav>li>a:hover {
+  .nav-atomic > li > a:focus, .nav-atomic > li > a:hover {
     background: none;
     border: none;
   }
-  .nav-tabs>li>a {
+  .nav-tabs-atomic > li > a {
     margin-right: 0;
     line-height: 1;
     border: none;
     border-radius: 0;
-    text-decoration:none;
-    font-size:14px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #929292;
+    font-weight: 300;
   }
 }
+
+.tabForm{
+  display: inline-block;
+  margin-bottom: 0;
+  label{
+    margin-right: 0;
+    line-height: 1;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 12px;
+    color: #929292;
+    font-weight: 300;
+    padding: 10px 15px;
+    display: block;
+  }
+  .formInput-check + label span {
+    width: 10px;
+    height: 10px;
+    top: 0;
+    border: 1px solid;
+  }
+}
+
 

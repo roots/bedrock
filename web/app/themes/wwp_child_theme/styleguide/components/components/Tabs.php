@@ -1,4 +1,5 @@
-<!--components/components/Tabs.php-->
+<!-- components/Components/tabs.php -->
+
 <?php
 
 $tabComponent = new \WonderWp\Theme\Child\Components\Tabs\TabsComponent();

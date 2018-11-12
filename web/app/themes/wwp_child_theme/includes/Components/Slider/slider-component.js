@@ -1,4 +1,4 @@
-import {Slider} from "../../../styleguide/js/components/slider/slider"
+import {Slider} from "./slider";
 
 export const SliderDefaultSelector = '.wdf-slider';
 
