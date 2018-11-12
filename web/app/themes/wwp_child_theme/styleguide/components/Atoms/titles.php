@@ -1,4 +1,4 @@
-<!-- components/Atoms/titles.php -->
+<!-- components/atoms/titles.php -->
 
 <h1>This is a h1</h1>
 <h2>This is a h2</h2>

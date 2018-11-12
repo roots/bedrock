@@ -1,4 +1,4 @@
-<!-- components/Components/tabs.php -->
+<!-- components/components/tabs.php -->
 
 <?php
 

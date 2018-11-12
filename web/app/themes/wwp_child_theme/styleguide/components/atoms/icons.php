@@ -1,4 +1,4 @@
-<!-- components/Atoms/icons.php -->
+<!-- components/atoms/icons.php -->
 
 <span class="subTitle">Utilisation</span>
 <p>En tant que shortcode dans un template php</p>

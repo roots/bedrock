@@ -1,4 +1,4 @@
-<!-- components/Components/dropdown.php -->
+<!-- components/components/dropdown.php -->
 
 <?php
 

@@ -1,4 +1,4 @@
-<!-- components/Components/slider.php -->
+<!-- components/components/slider.php -->
 
 <p class="subTitle">Attibuts disponibles : "title", "img", "link", "label", "content". <br>L'attribut "class" sert à cibler le slider afin de définir des options spécifiques (développement).</p>
 

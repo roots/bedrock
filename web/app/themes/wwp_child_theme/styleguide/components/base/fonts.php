@@ -1,4 +1,4 @@
-<!-- components/Base/fonts.php -->
+<!-- components/base/fonts.php -->
 
 <p class="font font1">
     <span>Base font example : $font-family-base</span>
