@@ -1,4 +1,4 @@
-/* scss/Components/_forms.scss */
+/*scss/components/_Form.scss*/
 
 /*@import "/node_modules/pikaday/css/pikaday.css";*/
 
@@ -9,14 +9,12 @@
 
 /* -------------------------------------- */
 
-
 /// Styles for Atomics
 #forms + p + .component {
   max-width: 1000px;
 }
 
 form {
-
   &.wwpform {
     padding: 2em;
     background-color: $forms-bgcolor;
@@ -36,7 +34,6 @@ form {
   select {
     width: 100%;
     min-height: 0;
-    padding: 2rem 3rem;
     font-size: inherit;
     line-height: 1.2;
     letter-spacing: .2rem;
@@ -57,7 +54,6 @@ form {
   [type="number"],
   [type="password"],
   [type="search"],
-  [type="submit"],
   [type="tel"],
   [type="text"],
   [type="time"],
@@ -65,8 +61,10 @@ form {
   [type="week"],
   select,
   textarea {
+    padding: 0.5rem 4rem .5rem 1rem;
     box-shadow: none;
-  } // reset knacss
+  }
+  // reset knacss
   input[type=file] {
     font-size: inherit;
   }
@@ -90,6 +88,7 @@ form {
 
   textarea {
     min-height: $input-height;
+    padding-top: 14px;
   }
 }
 
@@ -97,7 +96,6 @@ form {
   position: relative;
   margin-bottom: 1rem;
 }
-
 
 // Custom SELECT
 .select-style {
@@ -154,7 +152,7 @@ form {
     overflow: hidden;
     max-height: 0;
     background-color: $select-bgcolor;
-    box-shadow: 0px 0px 5px 4px rgba(114,126,150,.3);
+    box-shadow: 0px 0px 5px 4px rgba(114, 126, 150, .3);
     transition: .5s all 0.1s;
     li {
       display: flex;
@@ -211,7 +209,7 @@ form {
 .checkbox-wrap,
 .radio-wrap {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .switch,
