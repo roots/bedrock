@@ -1,4 +1,4 @@
-<!-- components/components/modals.php -->
+<!-- components/components_/modals.php -->
 
 <p class="subTitle">Le contenu ajouté dans les balises du shortcode sera affiché dans la modale. <br>L'attribut "class" sert à cibler la modale afin de définir des options spécifiques (développement).</p>
 
