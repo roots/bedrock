@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4afc672b78b06a7d9fd64f3496ce9f53",
+    "content-hash": "e9917f998f0571a09c6013abfa7faeb7",
     "packages": [
         {
             "name": "academy-grid",
@@ -614,6 +614,26 @@
             "homepage": "https://wordpress.org/plugins/health-check/"
         },
         {
+            "name": "wpackagist-plugin/https-redirection",
+            "version": "1.9",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/https-redirection/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/https-redirection.zip?timestamp=1531398624",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/https-redirection/"
+        },
+        {
             "name": "wpackagist-plugin/learnpress",
             "version": "3.0.12.1",
             "source": {
@@ -795,15 +815,15 @@
         },
         {
             "name": "wpackagist-plugin/ultimate-member",
-            "version": "2.0.31",
+            "version": "2.0.32",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/ultimate-member/",
-                "reference": "tags/2.0.31"
+                "reference": "tags/2.0.32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ultimate-member.2.0.31.zip",
+                "url": "https://downloads.wordpress.org/plugin/ultimate-member.2.0.32.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -910,6 +930,7 @@
                 "paragonie/random_compat": "<2",
                 "paypal/merchant-sdk-php": "<3.12",
                 "phpmailer/phpmailer": ">=5,<5.2.27|>=6,<6.0.6",
+                "phpoffice/phpspreadsheet": "<=1.5",
                 "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
@@ -1018,7 +1039,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-11-16T03:31:38+00:00"
+            "time": "2018-11-21T13:18:22+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
