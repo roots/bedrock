@@ -37,8 +37,6 @@ if (file_exists($env_config)) {
  */
 define('WP_HOME', env('WP_HOME'));
 define('WP_SITEURL', env('WP_SITEURL'));
-define('FORCE_SSL_ADMIN', true);
-define('FORCE_SSL_LOGIN', true);
 /**
  * Custom Content Directory
  */
