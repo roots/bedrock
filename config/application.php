@@ -39,8 +39,6 @@ define('WP_HOME', env('WP_HOME'));
 define('WP_SITEURL', env('WP_SITEURL'));
 define('FORCE_SSL_ADMIN', true);
 define('FORCE_SSL_LOGIN', true);
-if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-  $_SERVER['HTTPS']='on';
 /**
  * Custom Content Directory
  */
