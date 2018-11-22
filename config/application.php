@@ -26,9 +26,6 @@ if (file_exists($root_dir . '/.env')) {
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
-define('FORCE_SSL_ADMIN', true);
-define('FORCE_SSL_LOGIN', true);
-add_filter('force_ssl' , '__return_true');
 
 
 if (file_exists($env_config)) {
