@@ -10578,3 +10578,435 @@
   INFO [d41b8d6a] Finished in 0.150 seconds with exit status 0 (successful).
   INFO [b34ab26a] Finished in 0.157 seconds with exit status 0 (successful).
   INFO [6e1f949b] Finished in 0.167 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-12-10 08:40:29 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [1bf0a8d2] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-6.nine.ch
+  INFO [bf427d92] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-5.nine.ch
+  INFO [4180d87b] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-4.nine.ch
+  INFO [354ac695] Finished in 0.687 seconds with exit status 0 (successful).
+  INFO [647dd744] Finished in 0.811 seconds with exit status 0 (successful).
+  INFO [c97e6177] Finished in 0.814 seconds with exit status 0 (successful).
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [2c271ead] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-4.nine.ch
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [cb4e43e8] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-5.nine.ch
+  INFO [e89058e7] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [59aa3abb] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-6.nine.ch
+  INFO [8c67837e] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [85bf0d66] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO [88b94cd3] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-6.nine.ch
+  INFO [45302560] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-5.nine.ch
+  INFO [518441cb] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-4.nine.ch
+  INFO [3932c3a2] Finished in 1.296 seconds with exit status 0 (successful).
+  INFO [4e68b1f5] Finished in 1.343 seconds with exit status 0 (successful).
+  INFO [62119b27] Finished in 1.392 seconds with exit status 0 (successful).
+  INFO [24531236] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-6.nine.ch
+  INFO [58fab5dd] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-4.nine.ch
+  INFO [75c1a2b0] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-5.nine.ch
+  INFO [123d7445] Finished in 0.054 seconds with exit status 0 (successful).
+  INFO [277c8b82] Finished in 0.054 seconds with exit status 0 (successful).
+  INFO [e1e5efb6] Finished in 0.061 seconds with exit status 0 (successful).
+  INFO [0cfc7312] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [cc9c09fb] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [4dc1504c] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [ef039767] Finished in 0.088 seconds with exit status 0 (successful).
+  INFO [f5abfb96] Finished in 0.095 seconds with exit status 0 (successful).
+  INFO [3f5452f1] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [2ebd9900] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-6.nine.ch
+  INFO [c4b2a7f5] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-5.nine.ch
+  INFO [3de8f9fc] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-4.nine.ch
+  INFO [ec327a45] Finished in 0.084 seconds with exit status 0 (successful).
+  INFO [5176b3eb] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [f4275277] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO [9599e6dc] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-4.nine.ch
+  INFO [38f9cef6] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-5.nine.ch
+  INFO [4b94cb54] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-6.nine.ch
+  INFO [0c289f7c] Finished in 0.111 seconds with exit status 0 (successful).
+  INFO [59759f74] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-4.nine.ch
+  INFO [61299335] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [d543ee75] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-5.nine.ch
+  INFO [b01a1880] Finished in 0.096 seconds with exit status 0 (successful).
+  INFO [9d0b3507] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-6.nine.ch
+  INFO [a12f165a] Finished in 3.624 seconds with exit status 0 (successful).
+  INFO [f4f064db] Finished in 3.684 seconds with exit status 0 (successful).
+  INFO [03cb90ba] Finished in 4.124 seconds with exit status 0 (successful).
+  INFO [8693d83e] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-5.nine.ch
+  INFO [93d6b88f] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-4.nine.ch
+  INFO [a1ceec0a] Finished in 0.091 seconds with exit status 0 (successful).
+  INFO [8368bdca] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-5.nine.ch
+  INFO [aac9d076] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [82002e39] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-4.nine.ch
+  INFO [11253565] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-6.nine.ch
+  INFO [8b2cb814] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO [bc45e16b] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 as www-data@uww-prod-web-6.nine.ch
+  INFO [a365093c] Finished in 0.563 seconds with exit status 0 (successful).
+  INFO [200f97df] Finished in 0.672 seconds with exit status 0 (successful).
+  INFO [bfdb198d] Finished in 0.603 seconds with exit status 0 (successful).
+  INFO [c8e54028] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-4.nine.ch
+  INFO [a364c151] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-5.nine.ch
+  INFO [5dccd38d] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-6.nine.ch
+  INFO [79ffa496] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [46d98703] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [75751e73] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [d9749240] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web as www-data@uww-prod-web-6.nine.ch
+  INFO [bcfd8ff7] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web as www-data@uww-prod-web-5.nine.ch
+  INFO [3e5240e1] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web as www-data@uww-prod-web-4.nine.ch
+  INFO [63e99c92] Finished in 0.050 seconds with exit status 0 (successful).
+  INFO [6036ed88] Finished in 0.061 seconds with exit status 0 (successful).
+  INFO [394cac52] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [df76c087] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/.env as www-data@uww-prod-web-5.nine.ch
+  INFO [6a56bd78] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/.env as www-data@uww-prod-web-4.nine.ch
+  INFO [def36014] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/.env as www-data@uww-prod-web-6.nine.ch
+  INFO [2fed9464] Finished in 0.097 seconds with exit status 0 (successful).
+  INFO [4400cb01] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO [9bd4b53a] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [515744fe] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/.htaccess as www-data@uww-prod-web-5.nine.ch
+  INFO [997a90d0] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/.htaccess as www-data@uww-prod-web-4.nine.ch
+  INFO [0c55afb5] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/.htaccess as www-data@uww-prod-web-6.nine.ch
+  INFO [15a6ab11] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [317b8beb] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [0a5de475] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [e71226f5] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app as www-data@uww-prod-web-5.nine.ch
+  INFO [3c4a1862] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app as www-data@uww-prod-web-6.nine.ch
+  INFO [848a6f98] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app as www-data@uww-prod-web-4.nine.ch
+  INFO [78d0b52b] Finished in 0.047 seconds with exit status 0 (successful).
+  INFO [11246019] Finished in 0.050 seconds with exit status 0 (successful).
+  INFO [1119fad4] Finished in 0.098 seconds with exit status 0 (successful).
+  INFO [1cb3d647] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [11d5007e] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [6740766d] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [65f6f773] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [6e2c37de] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [93d8796e] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [de517215] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [b987af3f] Finished in 0.103 seconds with exit status 0 (successful).
+  INFO [ac9c208c] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [0538af21] Finished in 0.094 seconds with exit status 0 (successful).
+  INFO [9d2ff184] Finished in 0.113 seconds with exit status 0 (successful).
+  INFO [5eeaafb5] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [88e7cd79] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-5.nine.ch
+  INFO [9a96e240] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-4.nine.ch
+  INFO [0a174951] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-6.nine.ch
+  INFO [d2ef05c1] Finished in 2.424 seconds with exit status 0 (successful).
+  INFO [01fb4956] Finished in 2.523 seconds with exit status 0 (successful).
+  INFO [e39b9558] Finished in 2.524 seconds with exit status 0 (successful).
+  INFO [20b9d7e5] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-6.nine.ch
+  INFO [40c439df] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-5.nine.ch
+  INFO [8d427415] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084033 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-4.nine.ch
+  INFO [77277cd8] Finished in 0.051 seconds with exit status 0 (successful).
+  INFO [bdacb173] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-5.nine.ch
+  INFO [c7768a0e] Finished in 0.082 seconds with exit status 0 (successful).
+  INFO [3b74e937] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-4.nine.ch
+  INFO [0cbd8688] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [3e3d371c] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-6.nine.ch
+  INFO [81ddc08e] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO [3c009abe] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [ca59dfdd] Finished in 0.113 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-5.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-4.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-6.nine.ch
+  INFO [8a25c9ec] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126112749 as www-data@uww-prod-web-4.nine.ch
+  INFO [fe51c132] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126112749 as www-data@uww-prod-web-5.nine.ch
+  INFO [86c5b0b8] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126112749 as www-data@uww-prod-web-6.nine.ch
+  INFO [afc6b51e] Finished in 0.622 seconds with exit status 0 (successful).
+  INFO [d3edfd79] Finished in 0.606 seconds with exit status 0 (successful).
+  INFO [d7f982a9] Finished in 1.217 seconds with exit status 0 (successful).
+  INFO [d35012b0] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084033 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-5.nine.ch
+  INFO [8c36931d] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084033 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-4.nine.ch
+  INFO [47077dad] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084033 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-6.nine.ch
+  INFO [9631e917] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [f6c864c9] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [ba83df9c] Finished in 0.094 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-12-10 08:43:46 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [92c26fa2] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-6.nine.ch
+  INFO [20b6f7f2] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-5.nine.ch
+  INFO [85354033] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-4.nine.ch
+  INFO [3673b884] Finished in 0.759 seconds with exit status 0 (successful).
+  INFO [7746a0a5] Finished in 0.763 seconds with exit status 0 (successful).
+  INFO [44e356d2] Finished in 0.860 seconds with exit status 0 (successful).
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [82af2757] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-6.nine.ch
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [46652e1c] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-4.nine.ch
+  INFO [89ab11ff] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO [f9fec4a0] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-5.nine.ch
+  INFO [eae2073c] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [3694d5b5] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [e69012e0] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-6.nine.ch
+  INFO [fa11725d] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-5.nine.ch
+  INFO [2da79d44] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-4.nine.ch
+  INFO [fc8f384d] Finished in 1.271 seconds with exit status 0 (successful).
+  INFO [89062ffe] Finished in 1.337 seconds with exit status 0 (successful).
+  INFO [8e57dde8] Finished in 1.361 seconds with exit status 0 (successful).
+  INFO [bee2b7de] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-6.nine.ch
+  INFO [1710b85c] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-5.nine.ch
+  INFO [debca9de] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-4.nine.ch
+  INFO [c18fced3] Finished in 0.055 seconds with exit status 0 (successful).
+  INFO [0efaa78b] Finished in 0.057 seconds with exit status 0 (successful).
+  INFO [220af142] Finished in 0.057 seconds with exit status 0 (successful).
+  INFO [5312e96d] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [9855fd4f] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [591c1475] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [3bf93a55] Finished in 0.094 seconds with exit status 0 (successful).
+  INFO [4bc11174] Finished in 0.091 seconds with exit status 0 (successful).
+  INFO [e3f8e2d7] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [d2a6aecd] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-6.nine.ch
+  INFO [ef2707ed] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-5.nine.ch
+  INFO [89ecee42] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-4.nine.ch
+  INFO [a8df013f] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO [3d990665] Finished in 0.104 seconds with exit status 0 (successful).
+  INFO [3a7f5718] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO [ce9c1dc5] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-6.nine.ch
+  INFO [31a794c3] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-5.nine.ch
+  INFO [5c42bb84] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-4.nine.ch
+  INFO [c30151fd] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [fa775f38] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-6.nine.ch
+  INFO [2b5bb5f5] Finished in 0.113 seconds with exit status 0 (successful).
+  INFO [f4f6f78d] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-5.nine.ch
+  INFO [10a3092f] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [f84c81bc] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-4.nine.ch
+  INFO [093a6d96] Finished in 1.423 seconds with exit status 0 (successful).
+  INFO [40101561] Finished in 1.399 seconds with exit status 0 (successful).
+  INFO [8e530db9] Finished in 1.482 seconds with exit status 0 (successful).
+  INFO [8816b98c] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-6.nine.ch
+  INFO [a12cce6c] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-4.nine.ch
+  INFO [304f454b] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-5.nine.ch
+  INFO [cd54ed88] Finished in 0.097 seconds with exit status 0 (successful).
+  INFO [d87c29e7] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-6.nine.ch
+  INFO [ec370939] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [e8a4ea36] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-4.nine.ch
+  INFO [9ba75024] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [fc9a9277] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 as www-data@uww-prod-web-5.nine.ch
+  INFO [f3bdb911] Finished in 0.366 seconds with exit status 0 (successful).
+  INFO [8c21e7f3] Finished in 0.369 seconds with exit status 0 (successful).
+  INFO [5a9c046c] Finished in 0.372 seconds with exit status 0 (successful).
+  INFO [6cb49220] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-6.nine.ch
+  INFO [2d8ab25b] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-5.nine.ch
+  INFO [e142a684] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-4.nine.ch
+  INFO [e79515ac] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [2c3fb24f] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [f8ec6001] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [1b96c4e0] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web as www-data@uww-prod-web-6.nine.ch
+  INFO [a4e4f3c9] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web as www-data@uww-prod-web-5.nine.ch
+  INFO [cb9a6da7] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web as www-data@uww-prod-web-4.nine.ch
+  INFO [c4a68598] Finished in 0.052 seconds with exit status 0 (successful).
+  INFO [b7d0f2fc] Finished in 0.089 seconds with exit status 0 (successful).
+  INFO [ddb3f31e] Finished in 0.095 seconds with exit status 0 (successful).
+  INFO [47c6fd0c] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/.env as www-data@uww-prod-web-6.nine.ch
+  INFO [ee475e03] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/.env as www-data@uww-prod-web-5.nine.ch
+  INFO [79eb7823] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/.env as www-data@uww-prod-web-4.nine.ch
+  INFO [8b851782] Finished in 0.103 seconds with exit status 0 (successful).
+  INFO [df41733c] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [fbbffc4f] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [7121af64] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/.htaccess as www-data@uww-prod-web-6.nine.ch
+  INFO [9f435024] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/.htaccess as www-data@uww-prod-web-5.nine.ch
+  INFO [f9f43198] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/.htaccess as www-data@uww-prod-web-4.nine.ch
+  INFO [9387faec] Finished in 0.097 seconds with exit status 0 (successful).
+  INFO [6aa77941] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [29f31678] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [d3d8ea26] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app as www-data@uww-prod-web-6.nine.ch
+  INFO [413b89f0] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app as www-data@uww-prod-web-5.nine.ch
+  INFO [47e28710] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app as www-data@uww-prod-web-4.nine.ch
+  INFO [8700091d] Finished in 0.047 seconds with exit status 0 (successful).
+  INFO [43f9173d] Finished in 0.070 seconds with exit status 0 (successful).
+  INFO [fe47bac3] Finished in 0.092 seconds with exit status 0 (successful).
+  INFO [4004e1ba] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [73f00d57] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [5578756a] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [34efd1ef] Finished in 0.098 seconds with exit status 0 (successful).
+  INFO [9c2e72b6] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [81541e96] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO [63930ff2] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [79b55836] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [4dd5396b] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [36a0c8fc] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [ce6fb14d] Finished in 0.096 seconds with exit status 0 (successful).
+  INFO [73e52f55] Finished in 0.096 seconds with exit status 0 (successful).
+  INFO [03ee45b9] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-6.nine.ch
+  INFO [84168e0c] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-5.nine.ch
+  INFO [28646216] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-4.nine.ch
+  INFO [13e8bfc6] Finished in 2.141 seconds with exit status 0 (successful).
+  INFO [0a939ce6] Finished in 2.156 seconds with exit status 0 (successful).
+  INFO [54abc81d] Finished in 2.147 seconds with exit status 0 (successful).
+  INFO [9781d4f3] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-6.nine.ch
+  INFO [4b121ab8] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-5.nine.ch
+  INFO [742bddc9] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084349 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-4.nine.ch
+  INFO [b5312347] Finished in 0.058 seconds with exit status 0 (successful).
+  INFO [d8ec8337] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-6.nine.ch
+  INFO [80b093e8] Finished in 0.087 seconds with exit status 0 (successful).
+  INFO [c6cf968e] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-5.nine.ch
+  INFO [195877fb] Finished in 0.092 seconds with exit status 0 (successful).
+  INFO [0f941b41] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-4.nine.ch
+  INFO [1df1ffdb] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [5fe0ac74] Finished in 0.096 seconds with exit status 0 (successful).
+  INFO [108583e1] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-6.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-5.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-4.nine.ch
+  INFO [a6a5c61c] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126114642 as www-data@uww-prod-web-6.nine.ch
+  INFO [2de4cb49] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126114642 as www-data@uww-prod-web-5.nine.ch
+  INFO [237772f2] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126114642 as www-data@uww-prod-web-4.nine.ch
+  INFO [e359fec1] Finished in 0.688 seconds with exit status 0 (successful).
+  INFO [0133abc9] Finished in 0.703 seconds with exit status 0 (successful).
+  INFO [6d002aaf] Finished in 0.736 seconds with exit status 0 (successful).
+  INFO [81c390ff] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084349 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-5.nine.ch
+  INFO [d1dd54b9] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084349 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-4.nine.ch
+  INFO [7ad298b5] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084349 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-6.nine.ch
+  INFO [2035e240] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO [1dca85dc] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [9bfaccdb] Finished in 0.080 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-12-10 08:44:20 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [90ee6d4c] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-6.nine.ch
+  INFO [b79174d9] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-5.nine.ch
+  INFO [7d66f678] Running /usr/bin/env mkdir -p /tmp as www-data@uww-prod-web-4.nine.ch
+  INFO [b1acc11a] Finished in 0.608 seconds with exit status 0 (successful).
+  INFO [51274840] Finished in 0.694 seconds with exit status 0 (successful).
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [57988f41] Finished in 0.799 seconds with exit status 0 (successful).
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [9f5d206c] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-4.nine.ch
+  INFO Uploading /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh 100.0%
+  INFO [5adae1e2] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-6.nine.ch
+  INFO [1ebdb573] Finished in 0.110 seconds with exit status 0 (successful).
+  INFO [4cffa3cb] Running /usr/bin/env chmod 700 /tmp/git-ssh-academy.unitedworldwrestling.org-production-vagrant.sh as www-data@uww-prod-web-5.nine.ch
+  INFO [0d2660d6] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [fadaf23e] Finished in 0.100 seconds with exit status 0 (successful).
+  INFO [4fc8db4d] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-6.nine.ch
+  INFO [504c0934] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-5.nine.ch
+  INFO [f733e9db] Running /usr/bin/env git ls-remote git@github.com:unitedworldwrestling/academy.git HEAD as www-data@uww-prod-web-4.nine.ch
+  INFO [b777236d] Finished in 1.298 seconds with exit status 0 (successful).
+  INFO [18fb6bdf] Finished in 1.348 seconds with exit status 0 (successful).
+  INFO [b4991fad] Finished in 1.378 seconds with exit status 0 (successful).
+  INFO [77762a3f] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-6.nine.ch
+  INFO [8b31826e] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-5.nine.ch
+  INFO [7a9a46b3] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/academy.unitedworldwrestling.org/releases as www-data@uww-prod-web-4.nine.ch
+  INFO [5f5f7136] Finished in 0.063 seconds with exit status 0 (successful).
+  INFO [bf880f2d] Finished in 0.075 seconds with exit status 0 (successful).
+  INFO [b08693f5] Finished in 0.084 seconds with exit status 0 (successful).
+  INFO [cd3146b7] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [74280ea0] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [41db2a0e] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [5d727c4d] Finished in 0.098 seconds with exit status 0 (successful).
+  INFO [fd04827d] Finished in 0.092 seconds with exit status 0 (successful).
+  INFO [75e4f7fa] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [6ef301d5] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-6.nine.ch
+  INFO [0eb8092d] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-5.nine.ch
+  INFO [5b87e502] Running /usr/bin/env mkdir -p /home/www-data/efs_share/academy.unitedworldwrestling.org/shared /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web as www-data@uww-prod-web-4.nine.ch
+  INFO [9ceb3741] Finished in 0.090 seconds with exit status 0 (successful).
+  INFO [602b75e8] Finished in 0.091 seconds with exit status 0 (successful).
+  INFO [ee4dfe7a] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO The repository mirror is at /home/www-data/academy.unitedworldwrestling.org/repo
+  INFO [927613b6] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-4.nine.ch
+  INFO [bb8f97bd] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-6.nine.ch
+  INFO [1e63ac94] Running /usr/bin/env git remote set-url origin git@github.com:unitedworldwrestling/academy.git as www-data@uww-prod-web-5.nine.ch
+  INFO [9182f1ce] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [41b5a423] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-4.nine.ch
+  INFO [bef0fe15] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [19e20614] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-6.nine.ch
+  INFO [b2e497b6] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [a0ebbd1c] Running /usr/bin/env git remote update --prune as www-data@uww-prod-web-5.nine.ch
+  INFO [4c95a67b] Finished in 1.311 seconds with exit status 0 (successful).
+  INFO [fd76500d] Finished in 1.338 seconds with exit status 0 (successful).
+  INFO [6605bb9c] Finished in 1.468 seconds with exit status 0 (successful).
+  INFO [242090fd] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-5.nine.ch
+  INFO [0c10969e] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-4.nine.ch
+  INFO [c947c029] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-6.nine.ch
+  INFO [7200b707] Finished in 0.108 seconds with exit status 0 (successful).
+  INFO [52e82fa2] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-5.nine.ch
+  INFO [c41e61eb] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO [cb3b915f] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-6.nine.ch
+  INFO [ba046eef] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [3b1172cc] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 as www-data@uww-prod-web-4.nine.ch
+  INFO [5a1418f3] Finished in 0.357 seconds with exit status 0 (successful).
+  INFO [38534da7] Finished in 0.360 seconds with exit status 0 (successful).
+  INFO [cae80681] Finished in 0.358 seconds with exit status 0 (successful).
+  INFO [05047619] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-6.nine.ch
+  INFO [2e9d155c] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-5.nine.ch
+  INFO [ddd7ad19] Running /usr/bin/env echo "609145f3ab7fb0baceef1f2202a699b4a33f65ce" > REVISION as www-data@uww-prod-web-4.nine.ch
+  INFO [c831e2be] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO [d2d72b07] Finished in 0.097 seconds with exit status 0 (successful).
+  INFO [76cf8d8a] Finished in 0.088 seconds with exit status 0 (successful).
+  INFO [98994734] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web as www-data@uww-prod-web-6.nine.ch
+  INFO [7cdfc478] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web as www-data@uww-prod-web-5.nine.ch
+  INFO [40d04636] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web as www-data@uww-prod-web-4.nine.ch
+  INFO [d2f369c9] Finished in 1.366 seconds with exit status 0 (successful).
+  INFO [9f53a8a6] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/.env as www-data@uww-prod-web-4.nine.ch
+  INFO [3f23bb27] Finished in 1.698 seconds with exit status 0 (successful).
+  INFO [6ffe9c8c] Finished in 0.115 seconds with exit status 0 (successful).
+  INFO [be339dfe] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/.env as www-data@uww-prod-web-5.nine.ch
+  INFO [b0ce16ac] Finished in 1.879 seconds with exit status 0 (successful).
+  INFO [3b8ee8c2] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/.htaccess as www-data@uww-prod-web-4.nine.ch
+  INFO [253b0108] Finished in 0.102 seconds with exit status 0 (successful).
+  INFO [152b8b7b] Finished in 0.111 seconds with exit status 0 (successful).
+  INFO [c50f9588] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/.env /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/.env as www-data@uww-prod-web-6.nine.ch
+  INFO [9245585e] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/.htaccess as www-data@uww-prod-web-5.nine.ch
+  INFO [f2f5d324] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [486c5b9d] Finished in 0.117 seconds with exit status 0 (successful).
+  INFO [5a96a2c0] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/.htaccess /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/.htaccess as www-data@uww-prod-web-6.nine.ch
+  INFO [db410e5d] Finished in 0.107 seconds with exit status 0 (successful).
+  INFO [61c57f9e] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app as www-data@uww-prod-web-6.nine.ch
+  INFO [a23c633f] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app as www-data@uww-prod-web-4.nine.ch
+  INFO [cee32b5e] Running /usr/bin/env mkdir -p /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app as www-data@uww-prod-web-5.nine.ch
+  INFO [1beb1f8f] Finished in 0.044 seconds with exit status 0 (successful).
+  INFO [40cbf225] Finished in 0.052 seconds with exit status 0 (successful).
+  INFO [3bfe0af0] Finished in 0.087 seconds with exit status 0 (successful).
+  INFO [a17a11a8] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [9f4bc5a2] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [f4377073] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [c077e68b] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO [be1cb2bb] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-5.nine.ch
+  INFO [fbeec536] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [3694340b] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-4.nine.ch
+  INFO [dec7e116] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [3cc2b0fc] Running /usr/bin/env ln -s /home/www-data/efs_share/academy.unitedworldwrestling.org/shared/web/app/uploads /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424/web/app/uploads as www-data@uww-prod-web-6.nine.ch
+  INFO [19128a4a] Finished in 0.101 seconds with exit status 0 (successful).
+  INFO [e9d73a57] Finished in 0.081 seconds with exit status 0 (successful).
+  INFO [1cbf8d2e] Finished in 0.094 seconds with exit status 0 (successful).
+  INFO [f7b0c486] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-5.nine.ch
+  INFO [c916911d] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-4.nine.ch
+  INFO [6b28ed22] Running /home/www-data/bin/composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader as www-data@uww-prod-web-6.nine.ch
+  INFO [7a1fa63c] Finished in 2.105 seconds with exit status 0 (successful).
+  INFO [95037698] Finished in 2.209 seconds with exit status 0 (successful).
+  INFO [a4300caa] Finished in 2.246 seconds with exit status 0 (successful).
+  INFO [515c2766] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-6.nine.ch
+  INFO [c1b810bd] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-5.nine.ch
+  INFO [e3cccd40] Running /usr/bin/env ln -s /home/www-data/academy.unitedworldwrestling.org/releases/20181210084424 /home/www-data/academy.unitedworldwrestling.org/releases/current as www-data@uww-prod-web-4.nine.ch
+  INFO [c01b8dcb] Finished in 0.059 seconds with exit status 0 (successful).
+  INFO [13eec343] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-5.nine.ch
+  INFO [64d64e27] Finished in 0.056 seconds with exit status 0 (successful).
+  INFO [7ef45371] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-4.nine.ch
+  INFO [16b79665] Finished in 0.115 seconds with exit status 0 (successful).
+  INFO [90f855e7] Running /usr/bin/env mv /home/www-data/academy.unitedworldwrestling.org/releases/current /home/www-data/academy.unitedworldwrestling.org as www-data@uww-prod-web-6.nine.ch
+  INFO [93ff8973] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [d8fd0376] Finished in 0.105 seconds with exit status 0 (successful).
+  INFO [b94d6574] Finished in 0.109 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-4.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-5.nine.ch
+  INFO Keeping 5 of 6 deployed releases on uww-prod-web-6.nine.ch
+  INFO [643d8440] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126153141 as www-data@uww-prod-web-4.nine.ch
+  INFO [f20062bf] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126153141 as www-data@uww-prod-web-5.nine.ch
+  INFO [6dde9abc] Running /usr/bin/env rm -rf /home/www-data/academy.unitedworldwrestling.org/releases/20181126153141 as www-data@uww-prod-web-6.nine.ch
+  INFO [7f44d815] Finished in 0.745 seconds with exit status 0 (successful).
+  INFO [29c9b917] Finished in 0.788 seconds with exit status 0 (successful).
+  INFO [5c3eee1e] Finished in 0.741 seconds with exit status 0 (successful).
+  INFO [560d70b5] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084424 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-4.nine.ch
+  INFO [2b5e3cd6] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084424 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-6.nine.ch
+  INFO [67eb9103] Running /usr/bin/env echo "Branch master (at 609145f3ab7fb0baceef1f2202a699b4a33f65ce) deployed as release 20181210084424 by vagrant" >> /home/www-data/academy.unitedworldwrestling.org/revisions.log as www-data@uww-prod-web-5.nine.ch
+  INFO [c4920a8b] Finished in 0.106 seconds with exit status 0 (successful).
+  INFO [9dac2aed] Finished in 0.098 seconds with exit status 0 (successful).
+  INFO [f81608f1] Finished in 0.093 seconds with exit status 0 (successful).
