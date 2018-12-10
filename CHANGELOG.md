@@ -1,3 +1,7 @@
+### 1.10.0: 2018-12-09
+
+* Update to WordPress 5.0, switch from `johnpbloch/wordpress` to `roots/wordpress` package ([#395](https://github.com/roots/bedrock/pull/395))
+
 ### 1.9.0: 2018-09-17
 
 * Fix error display in development environments ([c457082](https://github.com/roots/bedrock/commit/c457082cf4b153400d3e34f4f68a30eea4cc7c38))
