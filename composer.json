@@ -120,7 +120,7 @@
       "package": {
         "name": "albumsListMasonry",
         "version": "1.0",
-        "type": "wordpress-plugin",
+        "type": "gmedia-plugin",
         "dist": {
           "type": "zip",
           "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/albumsListMasonry.zip"
@@ -182,6 +182,7 @@
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
       "web/app/plugins/{$name}": ["type:wordpress-plugin"],
+      "web/app/plugins/grand-media/module{$name}": ["type:gmedia-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "wordpress-install-dir": "web/wp"
