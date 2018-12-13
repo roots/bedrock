@@ -1,8 +1,11 @@
+# https://www.dependencies.io/docs/
 version: 2
 dependencies:
 - type: php
   path: /
   manifest_updates:
     filters:
+    - name: "roots/wordpress"
+      versions: "Y.Y.Y"
     - name: ".*"
       versions: "L.Y"
