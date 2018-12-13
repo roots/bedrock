@@ -1,3 +1,7 @@
+### 1.10.1: 2018-12-12
+
+* Update to WordPress 5.1 ([#403](https://github.com/roots/bedrock/pull/403))
+
 ### 1.10.0: 2018-12-09
 
 * Update to WordPress 5.0, switch from `johnpbloch/wordpress` to `roots/wordpress` package ([#395](https://github.com/roots/bedrock/pull/395))
