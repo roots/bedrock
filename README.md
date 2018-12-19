@@ -25,7 +25,7 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
 ## Requirements
 
-* PHP >= 5.6
+* PHP >= 7.1
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
