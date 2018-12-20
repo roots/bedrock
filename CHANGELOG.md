@@ -1,3 +1,7 @@
+### 1.11.0: 2018-12-19
+
+* Bump PHP requirement to >= 7.1 ([#405](https://github.com/roots/bedrock/pull/405))
+
 ### 1.10.2: 2018-12-19
 
 * Update to WordPress 5.0.2 ([#406](https://github.com/roots/bedrock/pull/406))
