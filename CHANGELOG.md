@@ -1,6 +1,10 @@
+### 1.10.2: 2018-12-19
+
+* Update to WordPress 5.0.2 ([#406](https://github.com/roots/bedrock/pull/406))
+
 ### 1.10.1: 2018-12-12
 
-* Update to WordPress 5.1 ([#403](https://github.com/roots/bedrock/pull/403))
+* Update to WordPress 5.0.1 ([#403](https://github.com/roots/bedrock/pull/403))
 
 ### 1.10.0: 2018-12-09
 
