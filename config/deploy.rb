@@ -4,7 +4,7 @@ set :repo_url, 'git@github.com:unitedworldwrestling/academy.git'
 set :log_level, :info
 
 set :linked_files, fetch(:linked_files, []).push('.env', 'web/.htaccess')
-set :linked_dirs, fetch(:linked_dirs, []).push('web/app/uploads', 'web/app/grand-media/image')
+set :linked_dirs, fetch(:linked_dirs, []).push('web/app/uploads', 'web/app/grand-media')
 
 namespace :deploy do
   desc 'Restart application'
