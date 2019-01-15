@@ -118,18 +118,6 @@
     {
       "type": "package",
       "package": {
-        "name": "albumsListMasonry",
-        "version": "1.0",
-        "type": "gmedia-plugin",
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/albumsListMasonry.zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
         "name": "north",
         "version": "1.0",
         "type": "wordpress-theme",
@@ -149,7 +137,6 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/wp-config": "1.0.0",
     "wpackagist-plugin/contact-form-7": "^5.0",
-    "wpackagist-plugin/grand-media": "^1.13",
     "wpackagist-plugin/bootstrap-3-shortcodes": "^3.3",
     "wpackagist-plugin/learnpress": "3.0.12.1",
     "wpackagist-plugin/learnpress-course-review": "^3.0",
@@ -171,8 +158,7 @@
     "vntd-twitter": "^1.0",
     "wpackagist-plugin/tac": "1.5.3",
     "wpackagist-plugin/remove-jquery-migrate-safely": "1.0.0",
-    "north": "^1.0",
-    "albumsListMasonry": "^1.0"
+    "north": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
@@ -182,7 +168,6 @@
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
       "web/app/plugins/{$name}": ["type:wordpress-plugin"],
-      "web/app/plugins/grand-media/module{$name}": ["type:gmedia-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
     "wordpress-install-dir": "web/wp"
