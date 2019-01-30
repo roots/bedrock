@@ -95,6 +95,10 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+    $_SERVER['HTTPS'] = 'on';
+}
+
 Config::apply();
 
 /**
