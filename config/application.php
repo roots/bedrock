@@ -57,7 +57,7 @@ $hasDsn = env('DATABASE_URL') !== null ? true : false;
 if (true === $hasDsn) {
     $databaseDsn = parse_url(env('DATABASE_URL'));
     $dbName = substr($databaseDsn['path'], 1);
-    $dbHost = $databaseDsn['host'] . ":" . $databaseDsn['port'];
+    $dbHost = isset($databaseDsn['port']) ? $databaseDsn['host'] . ":" . $databaseDsn['port'] : $databaseDsn['host'];
 }
 
 Config::define('DB_NAME', $hasDsn ? $dbName : env('DB_NAME'));
