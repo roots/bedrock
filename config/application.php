@@ -62,7 +62,7 @@ if (true === $hasDsn) {
 
 Config::define('DB_NAME', $hasDsn ? $dbName : env('DB_NAME'));
 Config::define('DB_USER', $hasDsn ? $databaseDsn['user'] : env('DB_USER'));
-Config::define('DB_PASSWORD', $hasDsn ? $databaseDsn['pass'] : env('DB_PASSWORD'));
+Config::define('DB_PASSWORD', $hasDsn ? ($databaseDsn['pass'] ?? null) : env('DB_PASSWORD'));
 Config::define('DB_HOST', $hasDsn ? $dbHost : env('DB_HOST') ?: 'localhost');
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
