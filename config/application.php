@@ -52,21 +52,24 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 /**
  * DB settings
  */
-$hasDsn = env('DATABASE_URL') !== null ? true : false;
-
-if (true === $hasDsn) {
-    $databaseDsn = parse_url(env('DATABASE_URL'));
-    $dbName = substr($databaseDsn['path'], 1);
-    $dbHost = isset($databaseDsn['port']) ? $databaseDsn['host'] . ":" . $databaseDsn['port'] : $databaseDsn['host'];
-}
-
-Config::define('DB_NAME', $hasDsn ? $dbName : env('DB_NAME'));
-Config::define('DB_USER', $hasDsn ? $databaseDsn['user'] : env('DB_USER'));
-Config::define('DB_PASSWORD', $hasDsn ? ($databaseDsn['pass'] ?? null) : env('DB_PASSWORD'));
-Config::define('DB_HOST', $hasDsn ? $dbHost : env('DB_HOST') ?: 'localhost');
+Config::define('DB_NAME', env('DB_NAME'));
+Config::define('DB_USER', env('DB_USER'));
+Config::define('DB_PASSWORD', env('DB_PASSWORD'));
+Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
+
+if (env('DATABASE_URL')) {
+    $databaseDsn = parse_url(env('DATABASE_URL'));
+    $dbName = substr($databaseDsn['path'], 1);
+    $dbHost = isset($databaseDsn['port']) ? $databaseDsn['host'] . ":" . $databaseDsn['port'] : $databaseDsn['host'];
+
+    Config::define('DB_NAME', $dbName);
+    Config::define('DB_USER', $databaseDsn['user']);
+    Config::define('DB_PASSWORD', $databaseDsn['pass'] ?? null);
+    Config::define('DB_HOST', $dbHost);
+}
 
 /**
  * Authentication Unique Keys and Salts
