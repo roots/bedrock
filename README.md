@@ -27,10 +27,12 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     $ composer create-project roots/bedrock
     ```
 2. Update environment variables in the `.env` file:
-  * `DB_NAME` - Database name
-  * `DB_USER` - Database user
-  * `DB_PASSWORD` - Database password
-  * `DB_HOST` - Database host
+  * Database variables
+    * `DB_NAME` - Database name
+    * `DB_USER` - Database user
+    * `DB_PASSWORD` - Database password
+    * `DB_HOST` - Database host
+    * You can also use a variable `DATABASE_URL` instead of using all the database variables above, that contains a DSN (ex: `mysql://user:password@127.0.0.1:3306/db_name`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (https://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
