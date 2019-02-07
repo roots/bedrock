@@ -1,3 +1,9 @@
+### 1.12.0: 2019-02-07
+
+* Support database DSN ([#414](https://github.com/roots/bedrock/pull/414))
+* Detect HTTPS if WordPress is behind a reverse proxy ([#413](https://github.com/roots/bedrock/pull/413))
+* Update `vlucas/phpdotenv` to `^3` ([#412](https://github.com/roots/bedrock/pull/412))
+
 ### 1.11.1: 2019-01-09
 
 * Update to WordPress 5.0.3 ([#408](https://github.com/roots/bedrock/pull/408))
