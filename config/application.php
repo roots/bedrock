@@ -28,7 +28,7 @@ $dotenv = Dotenv\Dotenv::create($root_dir);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
-    if (!env('DB_URL')) {
+    if (!env('DATABASE_URL')) {
         $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
     }
 }
@@ -55,16 +55,16 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 /**
  * DB settings
  */
-Config::define('DB_NAME', env('DB_NAME'));
-Config::define('DB_USER', env('DB_USER'));
-Config::define('DB_PASSWORD', env('DB_PASSWORD'));
+Config::define('DB_NAME', env('DB_NAME') ?? null);
+Config::define('DB_USER', env('DB_USER') ?? null);
+Config::define('DB_PASSWORD', env('DB_PASSWORD') ?? null);
 Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
-if (env('DB_URL')) {
-    $dsn = (object) parse_url(env('DB_URL'));
+if (env('DATABASE_URL')) {
+    $dsn = (object) parse_url(env('DATABASE_URL'));
 
     Config::define('DB_NAME', substr($dsn->path, 1));
     Config::define('DB_USER', $dsn->user);

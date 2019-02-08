@@ -32,7 +32,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * `DB_USER` - Database user
     * `DB_PASSWORD` - Database password
     * `DB_HOST` - Database host
-    * Optionally, you can define `DB_URL` for using a DSN instead of using the variables above (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
+    * Optionally, you can define `DATABASE_URL` for using a DSN instead of using the variables above (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (https://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
