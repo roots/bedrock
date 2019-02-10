@@ -22,7 +22,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 
 ## Installation
 
-1. Create a new project: 
+1. Create a new project:
     ```sh
     $ composer create-project roots/bedrock
     ```
@@ -32,7 +32,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * `DB_USER` - Database user
     * `DB_PASSWORD` - Database password
     * `DB_HOST` - Database host
-    * You can also use a variable `DATABASE_URL` instead of using all the database variables above, that contains a DSN (ex: `mysql://user:password@127.0.0.1:3306/db_name`)
+    * Optionally, you can define `DATABASE_URL` for using a DSN instead of using the variables above (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (https://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
@@ -40,7 +40,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     * Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command)
     * Generate with [our WordPress salts generator](https://roots.io/salts.html)
 3. Add theme(s) in `web/app/themes/` as you would for a normal WordPress site
-4. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/` 
+4. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/`
 5. Access WordPress admin at `https://example.com/wp/wp-admin/`
 
 ## Documentation

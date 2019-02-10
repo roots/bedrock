@@ -64,14 +64,12 @@ Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
 if (env('DATABASE_URL')) {
-    $database_dsn = parse_url(env('DATABASE_URL'));
-    $db_name = substr($database_dsn['path'], 1);
-    $db_host = isset($database_dsn['port']) ? $database_dsn['host'] . ":" . $database_dsn['port'] : $database_dsn['host'];
+    $dsn = (object) parse_url(env('DATABASE_URL'));
 
-    Config::define('DB_NAME', $db_name);
-    Config::define('DB_USER', $database_dsn['user']);
-    Config::define('DB_PASSWORD', $database_dsn['pass'] ?? null);
-    Config::define('DB_HOST', $db_host);
+    Config::define('DB_NAME', substr($dsn->path, 1));
+    Config::define('DB_USER', $dsn->user);
+    Config::define('DB_PASSWORD', $dsn->pass ?? null);
+    Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
 }
 
 /**
