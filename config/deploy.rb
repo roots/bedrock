@@ -19,16 +19,6 @@ end
 # The above restart task is not run by default
 # Uncomment the following line to run it on deploys if needed
 # after 'deploy:publishing', 'deploy:restart'
-namespace :composer do
-
-  desc <<-DESC
-    Deletes all content from Composer's cache directories.
-  DESC
-  task :clear_cache do
-    invoke "composer:run", "clear-cache"
-  end
-end
-
 namespace :deploy do
   desc 'Update WordPress template root paths to point to the new release'
   task :update_option_paths do

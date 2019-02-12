@@ -20,3 +20,4 @@ server "uww-prod-web-6.nine.ch", user: "www-data", roles: %w{web app db}
 fetch(:default_env).merge!(wp_env: :production)
 
 SSHKit.config.command_map[:composer] = "/home/www-data/bin/composer"
+set :pty, false
