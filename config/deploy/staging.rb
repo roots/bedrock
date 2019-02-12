@@ -18,4 +18,4 @@ server "uww-staging-web-4.nine.ch", user: "www-data", roles: %w{app db web}
 
 fetch(:default_env).merge!(wp_env: :staging)
 
-SSHKit.config.command_map[:composer] = "/home/www-data/bin/composer"
+SSHKit.config.command_map[:composer] = "/home/www-data/bin/composer --no-cache"
