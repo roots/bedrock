@@ -23,7 +23,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install -o --prefer-dist --no-interaction
+  - composer install -o --prefer-dist --no-interaction --no-cache
 
 script:
   - composer test
