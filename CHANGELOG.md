@@ -1,3 +1,8 @@
+### 1.12.1: 2019-02-14
+
+* Update `vlucas/phpdotenv` ([#417](https://github.com/roots/bedrock/pull/417))
+* Make DSN implementation more uniform ([#415](https://github.com/roots/bedrock/pull/415))
+
 ### 1.12.0: 2019-02-07
 
 * Support database DSN ([#414](https://github.com/roots/bedrock/pull/414))
