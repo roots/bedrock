@@ -1,3 +1,7 @@
+### 1.12.2: 2019-02-21
+
+* Update to WordPress 5.1 ([#420](https://github.com/roots/bedrock/pull/420))
+
 ### 1.12.1: 2019-02-14
 
 * Update `vlucas/phpdotenv` ([#417](https://github.com/roots/bedrock/pull/417))
