@@ -68,7 +68,7 @@ if (env('DATABASE_URL')) {
 
     Config::define('DB_NAME', substr($dsn->path, 1));
     Config::define('DB_USER', $dsn->user);
-    Config::define('DB_PASSWORD', $dsn->pass ?? null);
+    Config::define('DB_PASSWORD', isset($dsn->pass) ? $dsn->pass : null);
     Config::define('DB_HOST', isset($dsn->port) ? "{$dsn->host}:{$dsn->port}" : $dsn->host);
 }
 
