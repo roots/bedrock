@@ -82,6 +82,9 @@
     ],
     "fix": [
       "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpcbf --standard=web/app/plugins/$PB_PLUGIN/phpcs.ruleset.xml web/app/plugins/$PB_PLUGIN/*.php web/app/plugins/$PB_PLUGIN/inc/ web/app/plugins/$PB_PLUGIN/bin/"
+    ],
+    "readme": [
+      "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/wp2md -i web/app/plugins/$PB_PLUGIN/readme.txt -o  web/app/plugins/$PB_PLUGIN/README.md"
     ]
   }
 }
