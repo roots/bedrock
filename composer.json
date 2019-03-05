@@ -10,7 +10,7 @@
     "php": ">=7.0",
     "composer/installers": "~1.5",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "~4",
+    "johnpbloch/wordpress": "~5.1",
     "oscarotero/env": "^1.0",
     "symfony/yaml": "3.4.13",
     "phpdocumentor/reflection-common": "1.0.1",
@@ -166,6 +166,30 @@
       "type": "git",
       "url": "https://github.com/GSA/wp-open311",
       "no-api": true
+    },
+    {
+        "type": "package",
+        "package": {
+            "name": "wpackagist-plugin/custom-content-type-manager",
+            "version": "0.9.8.9",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/custom-content-type-manager/",
+                "reference": "tags/0.9.8.9"
+            }
+        }
+    },
+    {
+        "type": "package",
+        "package": {
+            "name": "wpackagist-plugin/si-captcha-for-wordpress",
+            "version": "3.0.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/si-captcha-for-wordpress/",
+                "reference": "tags/3.0.2"
+            }
+        }
     }
   ],
   "minimum-stability": "stable",
