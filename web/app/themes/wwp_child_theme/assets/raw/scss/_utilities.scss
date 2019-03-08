@@ -3,6 +3,56 @@
 /* ==Utilities      */
 /* ----------------------------- */
 
+.border {
+    border: 1px solid $gray-300;
+}
+
+
+// Flexbox
+.two-cols {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    > * {
+        flex: 0 1 auto;
+        width: calc(100% / 2 - 2rem) !important;
+    }
+
+    > .w40 {
+        width: 40% !important;
+    }
+
+    > .w60 {
+        width: 60% !important;
+    }
+
+    @media (max-width: $medium - 1) {
+        display: block;
+
+        > * {
+            width: 100% !important;
+        }
+    }
+}
+
+// Columns
+.two-cols-auto {
+    columns: 2;
+
+    @media (max-width: $medium - 1) {
+        columns: 1;
+    }
+}
+
+// Knacss helpers
+//Width
+.w80 {
+    @media (max-width: $medium - 1) {
+        width: 100%;
+    }
+}
+
 /* Margin (knacss addons)*/
 .mtxl {
     margin-top: $spacer-extra-large;
@@ -99,7 +149,7 @@
 .mbxxl {
     margin-bottom: $spacer-ultra-large;
 
-    @media (max-width: $small) {
+    @media (max-width: $medium) {
         margin-bottom: $spacer-large;
     }
 }
@@ -107,7 +157,7 @@
 .mbxxxl {
     margin-bottom: $spacer-ultra-large-plus;
 
-    @media (max-width: $small) {
+    @media (max-width: $medium) {
         margin-bottom: $spacer-large-plus;
     }
 }
@@ -210,9 +260,9 @@
 .pbxl {
     padding-bottom: $spacer-extra-large;
 
-    /*    @media (max-width: $medium) {
-            padding-bottom: $spacer-large;
-        }*/
+    @media (max-width: $medium - 1) {
+        padding-bottom: $spacer-medium;
+    }
 }
 
 .pbxxl {
@@ -239,6 +289,7 @@
 
 
 // Width
+
 div[class^="w"],
 p[class^="w"],
 .w40,
@@ -251,7 +302,7 @@ p[class^="w"],
         height: auto;
     }
 
-    @media (max-width: $medium) {
+    @media (max-width: $medium - 1) {
         width: 100%;
     }
 }
@@ -341,20 +392,6 @@ p[class^="w"],
     justify-content: flex-end;
 }
 
-.flex-container .flex-container {
-
-    /*    @media (max-width: 950px) {
-            display: block;
-
-            > * {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 4rem;
-                margin-left: 0;
-            }
-        }*/
-}
-
 // Grid layout
 [class*="grid-"] {
 
@@ -384,6 +421,10 @@ p[class^="w"],
 /*Positioning utilities*/
 .relative {
     position: relative;
+
+    > * {
+        z-index: 1;
+    }
 }
 
 .absolute-top-right {
@@ -408,7 +449,7 @@ a[href^="tel"]{
         content: "";
         height: 450px;
         width: 450px;
-        background-color: $gray-100; // Modify in theme colors
+        background-color: $gray-200; // Modify in theme colors
         position: absolute;
         top: 0;
         left: 0;
@@ -435,18 +476,17 @@ a[href^="tel"]{
     }
 }
 
-.bg-block-rectangle-left,
-.bg-block-rectangle-right {
+.bg-block-left,
+.bg-block-right {
     position: relative;
 
     &::after {
         content: "";
-        height: 450px;
-        width: 700px;
-        background-color: $gray-100; // Modify in theme colors
+        width: 50%;
+        background-color: $gray-200; // Modify in theme colors
         position: absolute;
-        top: 0;
-        left: 0;
+        top: -20%;
+        bottom: -20%;
         z-index: -1;
     }
 
@@ -456,10 +496,21 @@ a[href^="tel"]{
         }
     }
 }
-.bg-block-rectangle-right {
+.bg-block-left {
 
     &::after {
-        left: auto;
-        right: 0;
+        left: -30%;
     }
+}
+.bg-block-right {
+
+    &::after {
+        right: -30%;
+    }
+}
+
+// Z-index negative position for blocks
+.index-nega {
+    position: relative;
+    z-index: -2;
 }
