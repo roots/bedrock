@@ -66,7 +66,7 @@
 <div id="page" class="hfeed site">
     <div class="skip-links"><a href="#content"><?php _e('Skip to content', 'wonderwp'); ?></a></div>
 
-    <header id="header">
+    <header class="site-header" id="header">
 
         <div class="inner-header">
 
@@ -78,7 +78,7 @@
               </a>'
             ?>
 
-            <div class="navigation-wrapper">
+            <nav role="navigation" class="navigation-wrapper">
 
                 <ul class="header-menu" id="menu">
                     <?php
@@ -89,7 +89,7 @@
                     ?>
                 </ul>
 
-            </div>
+            </nav>
 
             <?php
             /** @var \WonderWp\Theme\Core\Service\ThemeViewService $themeViewService */
