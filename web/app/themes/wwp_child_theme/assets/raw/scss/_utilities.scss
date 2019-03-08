@@ -3,104 +3,267 @@
 /* ==Utilities      */
 /* ----------------------------- */
 
-/* Margins and paddings (knacss addons)*/
+/* Margin (knacss addons)*/
 .mtxl {
     margin-top: $spacer-extra-large;
 
     @media (max-width: $medium) {
+        margin-top: $spacer-large;
+    }
+
+    @media (max-width: $tiny) {
+        margin-top: $spacer-medium;
+    }
+}
+
+.mtxxl {
+    margin-top: $spacer-ultra-large;
+
+    @media (max-width: $medium) {
+        margin-top: $spacer-extra-large;
+    }
+
+    @media (max-width: $tiny) {
+        margin-top: $spacer-large;
+    }
+}
+
+.mtl-nega {
+    margin-top: - $spacer-large;
+
+    @media (max-width: $large) {
         margin-top: 0;
+
+        img {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.mtxl-nega {
+    margin-top: - $spacer-extra-large;
+
+    @media (max-width: $large) {
+        margin-top: 0;
+
+        img {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.mtxxl-nega {
+    margin-top: - $spacer-ultra-large;
+
+    @media (max-width: $large) {
+        margin-top: 0;
+
+        img {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.mrl {
+
+    @media (max-width: $medium ) {
+        margin-right: $spacer-medium;
+    }
+
+    @media (max-width: $medium -1) {
+        margin-right: 0;
     }
 }
 
 .mrxl {
     margin-right: $spacer-extra-large;
+    @media (max-width: $medium -1) {
+        margin-right: 0;
+    }
+}
+
+.mbl {
+    @media (max-width: $tiny) {
+        margin-bottom: $spacer-medium;
+    }
 }
 
 .mbxl {
     margin-bottom: $spacer-extra-large;
-    
+
+    @media (max-width: $medium) {
+        margin-bottom: $spacer-medium;
+    }
+}
+
+.mbxxl {
+    margin-bottom: $spacer-ultra-large;
+
     @media (max-width: $small) {
         margin-bottom: $spacer-large;
     }
 }
 
-.mlxl {
-    margin-left: $spacer-extra-large;
-}
+.mbxxxl {
+    margin-bottom: $spacer-ultra-large-plus;
 
-.mtxxl {
-    margin-bottom: $spacer-ultra-large;
-}
-
-.mrxxl {
-    margin-bottom: $spacer-ultra-large;
-}
-
-.mbxxl {
-    margin-bottom: $spacer-ultra-large;
-}
-
-.mlxxl {
-    margin-left: $spacer-ultra-large;
+    @media (max-width: $small) {
+        margin-bottom: $spacer-large-plus;
+    }
 }
 
 .mbn, .mb0 {
     margin-bottom: 0 !important;
 }
 
-// Paddings
-.ptxl {
-    padding-top: $spacer-extra-large;
+.mll {
+    @media (max-width: $medium ) {
+        margin-left: 0;
+    }
 }
 
-.pbxl {
-    padding-bottom: $spacer-extra-large;
+.mlxl {
+    margin-left: $spacer-extra-large;
+
+    @media (max-width: $medium) {
+        margin-left: $spacer-large;
+    }
+}
+
+.mlxxl {
+    margin-left:  $spacer-ultra-large;
+
+    @media (max-width: $medium) {
+        margin-left: $spacer-large;
+    }
+}
+
+// Padding
+.paxl {
+    padding: $spacer-extra-large;
+
+    @media (max-width: $large) {
+        padding: $spacer-large;
+    }
+
+    @media (max-width: $medium) {
+        padding: $spacer-medium $spacer-large;
+    }
+
+    @media (max-width: $medium) {
+        padding: 1rem 0;
+    }
+}
+
+.ptl {
+
+    @media (max-width: $medium) {
+        padding-top: $spacer-medium;
+    }
+}
+
+.ptxl {
+    padding-top: $spacer-extra-large;
+
+    @media (max-width: $medium) {
+        padding-top: $spacer-large;
+    }
 }
 
 .ptxxl {
     padding-top: $spacer-ultra-large ;
-}
 
-.pbxxl {
-    padding-bottom: $spacer-ultra-large ;
-}
-
-// Widths
-.w44 {
-    width: 44%;
-}
-
-[class^="w"] img {
-    width: 100%;
-    height: auto;
-}
-
-[class^="w"] > [class^="w"] {
-
-    @media (max-width: 900px) {
-        width: 100%;
-        padding-right: 2rem;
-        padding-left: 2rem;
+    @media (max-width: $medium) {
+        padding-top: $spacer-large;
     }
+}
+
+.prl {
 
     @media (max-width: $medium - 1) {
         padding-right: 0;
+    }
+}
+
+.plm,
+.pll {
+    @media (max-width: $medium - 1) {
         padding-left: 0;
     }
 }
 
-@media (max-width: $medium) {
+.plxl {
+    padding-left: $spacer-extra-large;
+}
 
-    [class^="w"] {
-        width: 100%;
-    } // for all blocks with "wXX" class (ex: w30)
+.prxl {
+    padding-right: $spacer-extra-large;
+}
 
-    [class*="pt"] {
-        padding-top: 0;
+.pbl {
+
+    @media (max-width: $medium) {
+        padding-bottom: $spacer-medium;
+    }
+}
+
+.pbxl {
+    padding-bottom: $spacer-extra-large;
+
+    /*    @media (max-width: $medium) {
+            padding-bottom: $spacer-large;
+        }*/
+}
+
+.pbxxl {
+    padding-bottom: $spacer-ultra-large;
+
+    @media (max-width: $medium) {
+        padding-bottom: $spacer-large;
+    }
+}
+
+
+// Translation
+.translate-tl {
+    transform: translateY(- $spacer-large-plus);
+
+    @media (max-width: $large) {
+        transform: translateY(- $spacer-large);
     }
 
-    [class*="pb"] {
-        padding-bottom: 0;
+    @media (max-width: $tiny) {
+        transform: translateY(0);
+    }
+}
+
+
+// Width
+div[class^="w"],
+p[class^="w"],
+.w40,
+.w50,
+.w60,
+.w70 {
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    @media (max-width: $medium) {
+        width: 100%;
+    }
+}
+
+// Enlarge text size
+.u-biggest {
+    line-height: 1.2;
+}
+@media (max-width: $medium - 1) {
+    .u-big,
+    .u-bigger {
+        font-size: 1em;
     }
 }
 
@@ -119,14 +282,14 @@
 }
 
 
-// flexbox layout (knacss addons)
+// flexbox layout
 .flex-container,
 .d-flex {
     display: flex;
     flex-wrap: nowrap;
 
-    @media (max-width: $medium) {
-        flex-direction: column-reverse;
+    @media (max-width: $medium - 1) {
+        flex-direction: column;
 
         > * {
             width: 100%;
@@ -140,6 +303,10 @@
         [class*="mr"] {
             margin-right: 0;
         }
+    }
+
+    @media (max-width: $small) {
+        display: block;
     }
 }
 
@@ -174,13 +341,125 @@
     justify-content: flex-end;
 }
 
+.flex-container .flex-container {
+
+    /*    @media (max-width: 950px) {
+            display: block;
+
+            > * {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 4rem;
+                margin-left: 0;
+            }
+        }*/
+}
+
+// Grid layout
+[class*="grid-"] {
+
+    @media (max-width: $medium) {
+        > * {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+.grid-4 {
+
+    @media (max-width: $medium - 1) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+[class^="grid-"].has-gutter-xxl {
+
+    @media (max-width: $medium - 1) {
+        grid-gap: 4rem;
+    }
+}
+
+
 /*Positioning utilities*/
 .relative {
     position: relative;
+}
+
+.absolute-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
 }
 
 // Remove style for phone numbers for iOS
 a[href^="tel"]{
     color:inherit;
     text-decoration:none;
+}
+
+// Decorative colored block
+.bg-block-square-left,
+.bg-block-square-right {
+    position: relative;
+
+    &::after {
+        content: "";
+        height: 450px;
+        width: 450px;
+        background-color: $gray-100; // Modify in theme colors
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    @media (max-width: $tiny) {
+        &::after {
+            content: none;
+        }
+    }
+}
+.bg-block-square-left::after {
+
+    @media (max-width: $large) {
+        transform: translateX(-15%);
+    }
+}
+.bg-block-square-right {
+
+    &::after {
+        left: auto;
+        right: 0;
+    }
+}
+
+.bg-block-rectangle-left,
+.bg-block-rectangle-right {
+    position: relative;
+
+    &::after {
+        content: "";
+        height: 450px;
+        width: 700px;
+        background-color: $gray-100; // Modify in theme colors
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    @media (max-width: $medium - 1) {
+        &::after {
+            content: none;
+        }
+    }
+}
+.bg-block-rectangle-right {
+
+    &::after {
+        left: auto;
+        right: 0;
+    }
 }
