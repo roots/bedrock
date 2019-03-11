@@ -1,0 +1,22 @@
+/* scss/atoms/_encadre.scss */
+
+/* Variables */
+/* ------------- */
+$encadre-bgcolor: #e7e9ed; //$gray-200
+$encadre-boxshadow: 1px 1px 4px 1px rgba(204, 202, 202, 0.5);
+/* ------------- */
+
+/*Content*/
+.encadre {
+  padding: 3rem 5rem;
+  background: $encadre-bgcolor;
+  box-shadow: $encadre-boxshadow;
+
+  .title {
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    font-weight: $weight-bold;
+    font-size: 1.1em;
+    letter-spacing: .03em;
+  }
+}
