@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
+    "build:prod": "webpack --env=production",
     "start": "webpack-dev-server --open",
     "watch": "webpack --watch",
     "sprites": "node compile-sprites.js"
