@@ -46,84 +46,88 @@ const webpackBarPlugin = new WebpackBarPlugin();
 
 const entry = getAssetsEntries();
 
-module.exports = {
-    entry: entry,
-    devtool: 'source-map',
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: [
-                    /node_modules(?!\/pewjs)/,
-                ],
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['babel-preset-es2015-ie']
-                    }
-                }
-            },
-            {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: extractSass.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                url: false,
-                                sourceMap: true,
-                                minimize: true
-                            }
-                        }, {
-                            loader: "postcss-loader", options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
+module.exports = (env) => {
+    env = env || 'development';
+
+    return {
+        entry: entry,
+        devtool: 'source-map',
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: [
+                        /node_modules(?!\/pewjs)/,
+                    ],
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['babel-preset-es2015-ie']
                         }
-                    ]
-                })
+                    }
+                },
+                {
+                    test: /\.scss$/,
+                    exclude: /node_modules/,
+                    use: extractSass.extract({
+                        fallback: 'style-loader',
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    url: false,
+                                    sourceMap: (env!=='production'),
+                                    minimize: true
+                                }
+                            }, {
+                                loader: "postcss-loader", options: {
+                                    sourceMap: (env!=='production'),
+                                }
+                            },
+                            {
+                                loader: 'sass-loader',
+                                options: {
+                                    sourceMap: (env!=='production'),
+                                }
+                            }
+                        ]
+                    })
+                }
+
+            ]
+        },
+        output: {
+            filename: '[name]' + versionNum + '.js',
+            path: path.resolve(__dirname, buildDir)
+        },
+        plugins: [
+            copyPlugin,
+            providePlugin,
+            commonChunk,
+            extractSass,
+            cleanWebpack,
+            versionFile,
+            webpackBarPlugin
+        ],
+        resolve: {
+            alias: {
+                jquery: "jquery/src/jquery",
+                "TweenLite": path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
+                "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
+                "BodyMovin": path.resolve('node_modules', 'lottie-web/build/player/lottie.min.js'),
+                "TimelineLite": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
+                "TimelineMax": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js'),
+                "ScrollMagic": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
+                "animation.gsap": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
+                "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
+                //  "velocity": path.resolve('web', 'app/themes/wwp_child_theme/styleguide/atomic-core/js/velocity.js'), // Uncomment only for Atomic-Core build use
+                "barba": path.resolve('node_modules', 'barba.js/dist/barba.min.js')
+
             }
-
-        ]
-    },
-    output: {
-        filename: '[name]' + versionNum + '.js',
-        path: path.resolve(__dirname, buildDir)
-    },
-    plugins: [
-        copyPlugin,
-        providePlugin,
-        commonChunk,
-        extractSass,
-        cleanWebpack,
-        versionFile,
-        webpackBarPlugin
-    ],
-    resolve: {
-        alias: {
-            jquery: "jquery/src/jquery",
-            "TweenLite": path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
-            "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
-            "BodyMovin": path.resolve('node_modules', 'lottie-web/build/player/lottie.min.js'),
-            "TimelineLite": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
-            "TimelineMax": path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js'),
-            "ScrollMagic": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
-            "animation.gsap": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
-            "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
-            //  "velocity": path.resolve('web', 'app/themes/wwp_child_theme/styleguide/atomic-core/js/velocity.js'), // Uncomment only for Atomic-Core build use
-            "barba": path.resolve('node_modules', 'barba.js/dist/barba.min.js')
-
-        }
-    },
-    stats: "minimal",
-    target: 'web'
+        },
+        stats: "minimal",
+        target: 'web'
+    }
 };
 
 function getAssetsEntries() {

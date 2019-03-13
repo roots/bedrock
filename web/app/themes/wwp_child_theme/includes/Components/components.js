@@ -1,5 +1,7 @@
-import "./Slider/slider-component";
+import "./Cookie/CookieComponent";
+import "./Dropdown/dropdown-component";
 import "./Modal/js/modal-component";
 import "./Modal/js/modal-home-component";
-import "./Dropdown/dropdown-component";
+import "./Notification/notification";
+import "./Slider/slider-component";
 import "./Tabs/tabs-component";
