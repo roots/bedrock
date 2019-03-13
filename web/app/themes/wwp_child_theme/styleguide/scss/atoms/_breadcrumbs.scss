@@ -23,22 +23,13 @@ li.breadcrumb-item {
   float: left;
   display: flex;
   align-items: center;
-  margin-right: 2rem;
+  margin-right: 1rem;
   font-size: 1.4rem;
   &::before {
-    content: '';
-    display: block;
-    float: left;
-    width: 0;
-    height: 0;
-    margin-right: 6px;
-    border-style: solid;
-    border-width: 5px 0 5px 8px;
-    border-color: transparent transparent transparent $gray-600;
+    @include svgIcon('chevron-r-small');
+    transform: scale(.6);
   }
   a {
-    text-decoration: none;
-    color: $gray-600;
     &:hover, &:focus {
       text-decoration: underline;
     }
