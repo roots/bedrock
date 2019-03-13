@@ -3,7 +3,6 @@
 /* ==Social networks      */
 /* ----------------------------- */
 
-
 ul.social-networks {
   padding-left: 0;
   list-style: none;
@@ -33,8 +32,9 @@ ul.social-networks {
       opacity: .8;
     }
   }
-  li.facebook > a::after {
-    @include svgIcon('facebook');
+  li.facebook > a {
+    /*@include svgIcon('facebook');*/
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill:'aaaaaa' viewBox='0 0 96 96'%3E%3Cpath d='M78.4 14.8H67.7c-11.8 0-19.5 7.9-19.5 20.1v9.2H37.7c-.9 0-1.7.8-1.7 1.7v13.4c0 .9.8 1.7 1.7 1.7h10.6v33.8c0 .9.8 1.7 1.7 1.7h13.9c.9 0 1.7-.8 1.7-1.7V60.8H78c.9 0 1.7-.8 1.7-1.7V45.7c0-.4-.2-.8-.5-1.2s-.8-.5-1.2-.5H65.4v-7.8c0-3.7.9-5.7 5.8-5.7h7.1c.9 0 1.7-.8 1.7-1.7V16.5c-.1-.9-.8-1.7-1.6-1.7z'/%3E%3C/svg%3E");
   }
   li.twitter > a::after {
     @include svgIcon('twitter');
