@@ -30,3 +30,16 @@
         text-align: center;
     }
 }
+
+
+/* Default list parent style */
+/* ------------------------- */
+.items-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    [class^="item"] {
+        display: flex; // All cards are same height
+        width: calc(100% / 3);
+    }
+}
