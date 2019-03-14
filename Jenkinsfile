@@ -21,7 +21,7 @@ def loadCreds(secretFile){
 def handleException(msg,exc) {
     def changeString_ = "${JOB_NAME}${env.BUILD_DISPLAY_NAME}\n";
 
-    if(msg){
+    if(msg){ 
 		changeString_ += msg;
     } else {
     	changeString_ += " - Build failed. ";
