@@ -97,3 +97,7 @@ if (!defined('ABSPATH')) {
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
 //define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
 //define("WWP_PLUGIN_MEMBRE_MANAGER",WonderWp\Plugin\EspaceRestreint\Child\ErThemeManager::class);
+//define("WWP_PLUGIN_RGPD_MANAGER",WonderWp\Plugin\RGPD\Child\RgpdThemeManager::class);
+//define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);
+//define("WWP_PLUGIN_TROMBI_MANAGER",WonderWp\Plugin\Trombinoscope\Child\TrombiThemeManager::class);
+//define("WWP_PLUGIN_PARTENAIRE_MANAGER",WonderWp\Plugin\Partenaires\Child\PartenaireThemeManager::class);
