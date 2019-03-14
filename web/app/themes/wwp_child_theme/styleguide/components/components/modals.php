@@ -6,4 +6,3 @@
 <br>
 
 <?php echo do_shortcode('[modal class="wdf-modal" label="Cliquer ici pour ouvrir"]    Some content over here    [/modal]');
-echo do_shortcode('[modal class="wdf-modal-home" label="Modale fond primary"]    Some content over here    [/modal]');

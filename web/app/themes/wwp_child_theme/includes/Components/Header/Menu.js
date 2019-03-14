@@ -1,4 +1,4 @@
-import {PewComponent} from "./pew-component";
+import {PewComponent} from "../../../assets/raw/js/components/pew-component";
 
 export class Menu extends PewComponent {
 

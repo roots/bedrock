@@ -1,7 +1,9 @@
+import "./Accordion/AccordionComponent"
 import "./Cookie/CookieComponent";
-import "./Dropdown/dropdown-component";
-import "./Modal/js/modal-component";
-import "./Modal/js/modal-home-component";
-import "./Notification/notification";
-import "./Slider/slider-component";
-import "./Tabs/tabs-component";
+import "./Dropdown/DropdownComponent";
+import "./Form/FormComponent";
+import "./Header/HeaderComponent";
+import "./Modal/ModalComponent";
+import "./Notification/NotificationComponent";
+import "./Slider/SliderComponent";
+import "./Tabs/TabsComponent";

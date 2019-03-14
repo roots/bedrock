@@ -1,0 +1,63 @@
+/*scss/components/_accordion.scss*/
+
+.js-accordion{
+  button, div{
+    width:100%;
+  }
+}
+.js-accordion__panel[aria-hidden=true] {
+  display: none;
+}
+.js-accordion__header {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 1em;
+  font-size: 2rem;
+  border: none;
+  &[aria-expanded="true"]{
+    margin-top: 0;
+    color: #FFFFFF;
+  }
+  &[aria-expanded="true"]:before {
+    content: "- ";
+  }
+  &[aria-expanded="false"]:before {
+    content: "+ ";
+  }
+  &[aria-selected="true"]:after {
+    content: " (selected)";
+  }
+  &[aria-selected="false"]:after {
+    content: " (unselected)";
+  }
+}
+
+.js-accordion__panel {
+  display: block;
+  margin: 0;
+  padding: 1em;
+  overflow: hidden;
+  opacity: 1;
+  max-height: 100em;
+  /* magic number for max-height = enough height */
+  visibility: visible;
+  transition: visibility .5s ease, max-height .2s ease, opacity 1s ease;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  transition-delay: 0s;
+}
+.my-accordion-name__title{
+  display: none;
+}
+
+/* This is the hidden state */
+[aria-hidden=true].js-accordion__panel {
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  transition: visibility .5s ease;
+}
