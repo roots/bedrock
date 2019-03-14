@@ -62,8 +62,8 @@ class ChildThemeHookService extends ThemeHookService
         $setCookie  = $request->getSession()->get($cookieName);
 
         if (!empty($setCookie)) {
-            $cookie = new Cookie($cookieName, true, time() + (60 * 60 * 24 * 7 * 30 * 6)); //Expires in 6 months
-            setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime());
+            $cookie = new Cookie($cookieName, true, time() + (60 * 60 * 24 * 30 * 6), '/'); //Expires in 6 months
+            setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime(), $cookie->getPath());
             $request->getSession()->set($cookieName, '');
         }
     }
@@ -78,14 +78,14 @@ class ChildThemeHookService extends ThemeHookService
             $pluginSassContent = '';
             if (!empty($pluginSassFiles)) {
                 foreach ($pluginSassFiles as $pluginSassFile) {
-                    $pluginSassContent .= '@import "'.str_replace(['./web/app','//','.scss'], ['../../../../../..','/',''], $pluginSassFile).'";'."\n";
+                    $pluginSassContent .= '@import "' . str_replace(['./web/app', '//', '.scss'], ['../../../../../..', '/', ''], $pluginSassFile) . '";' . "\n";
                 }
             }
 
             /** @var \WP_Filesystem_Direct $filesystem */
-            $pluginSassPath = get_stylesheet_directory().'/assets/raw/scss/plugins/_vendors.scss';
-            $filesystem   = Container::getInstance()->offsetGet('wwp.fileSystem');
-            $written      = $filesystem->put_contents(
+            $pluginSassPath = get_stylesheet_directory() . '/assets/raw/scss/plugins/_vendors.scss';
+            $filesystem     = Container::getInstance()->offsetGet('wwp.fileSystem');
+            $written        = $filesystem->put_contents(
                 $pluginSassPath,
                 $pluginSassContent,
                 FS_CHMOD_FILE // predefined mode settings for WP files
