@@ -1,0 +1,38 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.1-jessie-node
+    steps:
+      - checkout
+      - run: sudo apt install -y subversion
+      - restore_cache:
+          keys:
+            - v1-composer-{{ checksum "composer.lock" }}
+            - v1-composer-
+      - run: composer --no-interaction install
+      - save_cache:
+          key: v1-composer-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: sudo npm install -g snyk
+      - run: snyk test
+
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+
+  weekly:
+    triggers:
+      - schedule:
+          cron: "0 4 * * 1"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
