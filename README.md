@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/GSA/datagov-wp-boilerplate.svg?style=svg)](https://circleci.com/gh/GSA/datagov-wp-boilerplate)
+
 # [Datagov-wp-boilerplate]
 
 WordPress boilerplate based on [Bedrock](https://github.com/roots/bedrock)
