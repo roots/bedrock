@@ -1,43 +1,89 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Global layout      */
+/* ----------------------------- */
+
+/* Variables */
+$pagination-color: $color-primary;
+
+/* ------------- */
 
 .pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
-  list-style: none;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin: 0 auto;
-  padding-left: 0;
+  padding: 3rem 0;
+  text-align: center;
 
   li {
-    display: flex;
-    margin: auto 0;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    background-color: transparent;
-    touch-action: manipulation;
-    cursor: pointer;
-    border: none;
-    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-    white-space: nowrap;
-    -webkit-transition: all .25s;
-    transition: all .25s;
-    padding: 0.75rem;
-    &::before {
-      display: none;
-    }
-    & > a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      font-weight: 400;
+    display: inline-block;
+    margin: 0 .5rem;
+  }
 
-      &.navcurrent {
-        font-weight: 800;
-      }
+  li > a {
+    padding: 6px 11px 5px 11px;
+    color: $pagination-color;
+    background: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  li > a.navprev, li > a.navnext {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+  }
+
+  li > a.navprev{
+    text-align: left;
+    &::before {
+      content: '';
+      display: block;
+      @include svgIcon('chevron-l-small-grey');
+      margin-right: 1rem;
     }
-    & > a:hover, & > a:focus, & > a:active {
-      text-decoration: underline;
+  }
+
+  li > a.navnext{
+    text-align: right;
+    &::after {
+      content: '';
+      display: block;
+      @include svgIcon('chevron-r-small-grey');
+      margin-left: 1rem;
     }
+  }
+
+  li.select > a {
+    color: #fff;
+    background: $pagination-color;
+  }
+
+  li > a:hover, li > a:focus {
+    opacity: .6;
+  }
+
+  @media (max-width: $medium - 1) {
+    grid-column: 1 / span 2 !important;
+  }
+
+  @media (max-width: $tiny) {
+
+    li {
+      font-size: 1rem;
+    }
+  }
+}
+
+.nbr-items {
+  margin-top: 3rem;
+  text-align: center;
+
+  @media (max-width: $medium - 1) {
+    grid-column: 1 / span 2 !important;
+  }
+
+  @media (max-width: $tiny) {
+    font-size: 1.4rem;
   }
 }
