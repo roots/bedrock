@@ -218,6 +218,9 @@ $variants-list: (
         (inverse,    $color-inverse,    $white,    none),
         (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
 ) !default;
+$button-height         : 60px !default;
+$button-height-small   : 50px !default;
+$button-height-large   : 70px !default;
 
 // Component: tabs
 $tabs-border            : $gray-200 !default;
@@ -255,6 +258,9 @@ $alert-error-bg: lighten($color-error, 30%);
 // ---------------
 // Plugins zone
 // ---------------
+
+// RGPD color theme
+$rgpd-color: $color-primary !default;
 
 // Newsletter form - colors override
 /*$nl-color: red;
