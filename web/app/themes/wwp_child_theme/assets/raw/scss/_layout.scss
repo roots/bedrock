@@ -3,10 +3,6 @@
 /* ==Global layout      */
 /* ----------------------------- */
 
-body.has-opened-menu {
-    position: fixed;
-}
-
 iframe {
     border: none;
 }
@@ -19,77 +15,118 @@ iframe {
     height: 1000px;
 }
 
-@charset "UTF-8";
 /* ----------------------------- */
 /* ==Containers      */
 /* ----------------------------- */
 
-
-// For Style guide
+// For Styleguide
 #containers ~ .component{
     width: 100%;
-    max-width: $extra-large;
-    .container-xs, .container-s, .container, .container-l, .container-xl {
+    .container-s, .container, .container-l {
         margin-bottom: 2rem;
         padding: 1rem;
-        background: grey;
+        background: $gray-200;
         text-align: center;
     }
 }
 
 
-// Container
-.container-s, .container, .container-l {
+// Containers
+.container-s, .container, .container-l, .container-xl {
     display: block;
-    margin: 0 auto;
-}
-
-.container, .container-l {
-
-    @media (max-width: $very-large) {
-        width: 100% !important;
-    }
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .container-s {
-    width: $large;
+    width: $medium;
 
     @media (max-width: $medium) {
-        width: 100% !important;
-        padding-right: 2em;
-        padding-left: 2em;
+        width: 100%;
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 }
 
 .container {
-    width: $very-large;
+    width: $large;
 
     @media (max-width: $very-large) {
-        padding-right: 2em;
-        padding-left: 2em;
+        padding-right: 4em;
+        padding-left: 4em;
     }
+
+    @media (max-width: $large) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 4em;
+        padding-left: 4em;
+    }
+
+    @media (max-width: $medium - 1) {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
 }
 
 .container-l {
-    width: $extra-large;
+    width: $very-large;
 
-    @media (max-width: $extra-large) {
-        margin: 0;
+    @media (max-width: $very-large) {
         width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 2em;
+        padding-left: 2em;
+
+        .container,
+        .container-s {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .container {
+            width: 100%;
+        }
     }
+
+    @media (max-width: $medium - 1) {
+        padding-right: 0;
+        padding-left: 0;
+    } // Padding needed for header title
 }
 
 .container-xl {
-    width: $extra-extra-large;
+    width: $extra-large;
 
-    @media (max-width: $extra-extra-large) {
-        margin: 0;
+    @media (max-width: $extra-large) {
         width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 2em;
+        padding-left: 2em;
+
+        .container,
+        .container-s {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .container {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: $medium - 1) {
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 
-//Content
 
+//Content
 .site-content {
 
 }

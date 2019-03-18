@@ -289,7 +289,6 @@
 
 
 // Width
-
 div[class^="w"],
 p[class^="w"],
 .w40,
@@ -513,4 +512,15 @@ a[href^="tel"]{
 .index-nega {
     position: relative;
     z-index: -2;
+}
+
+// Wordpress
+.alignleft,
+.alignright {
+    @media (max-width: $medium - 1) {
+        float: none;
+        margin-right: 0;
+        margin-left: 0;
+        width: 100%;
+    }
 }

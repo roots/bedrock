@@ -1,1 +1,22 @@
 /* scss/atoms/_buttons.scss */
+
+%btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: $button-height;
+}
+
+.btn,
+.button {
+  &--small {
+    min-height: $button-height-small;
+  }
+
+  &--big {
+    min-height: $button-height-large;
+  }
+}
+
+a.btn {
+  text-decoration: none;
+}
