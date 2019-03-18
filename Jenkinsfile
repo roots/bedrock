@@ -90,6 +90,7 @@ def defineVariables(){
 	env.runComposer = false;
 	env.runNpm = false;
 	env.runBuild = false;
+	env.runCypress=false;
 
 	if(env.BUILD_ID.toInteger() < 10){
 	    env.runComposer = true;
@@ -108,13 +109,16 @@ def defineVariables(){
 	      //println file_.path
 	      if(file_.path=='composer.json' || file_.path=='composer.lock' || file_.path=='Jenkinsfile'){
 	      	env.runComposer = true;
+	      	env.runCypress = true;
 	      }
 	      if(file_.path=='package.json' || file_.path=='package.lock' || file_.path=='Jenkinsfile'){
 	      	env.runNpm = true;
 	      }
-
 	      if(file_.path.contains(".css") || file_.path.contains(".scss") || file_.path.contains(".js") || file_.path=='Jenkinsfile'){
 			env.runBuild = true;
+	      }
+	      if(file_.path.contains(".php") || file_.path.contains(".js") || file_.path=='cypress.json'){
+			env.runCypress = true;
 	      }
 	    }
 	  }
@@ -184,11 +188,26 @@ pipeline {
             }
         }
     }
-    stage('Test preprod') {
-        when { branch 'develop' }
+    stage('Integration tests') {
         steps {
-            echo 'Starting Smoke Tests'
-            sh 'cypress run --spec cypress/integration/smoke_test.js --env host=http://www.wonderwp.com.wdf-02.ovea.com'
+            script {
+                try {
+                    if(env.runCypress=='true'){
+                        def host = '';
+                        if(BRANCH_NAME=='develop'){
+                            host='http://www.wonderwp.com.wdf-02.ovea.com'
+                        } else {
+                            host='http://www.wonderwp.com.wdf-02.ovea.com'
+                        }
+                        echo "Starting integration tests on $host"
+                        sh "cypress run --spec cypress/integration/smoke_test.js --env host=$host"
+                    } else {
+                        echo 'Skipped integration tests'
+                    }
+	            } catch(exc){
+	            	handleException("Cypress tests failed, which means you have a problem on your $BRANCH_NAME live environment");
+                }
+            }
         }
     }
     stage('deploy master branch') {
