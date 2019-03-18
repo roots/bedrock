@@ -1,5 +1,5 @@
-import {PewComponent} from "./pew-component";
-import {Menu} from "./menu";
+import {PewComponent} from "../../../assets/raw/js/components/pew-component";
+import {Menu} from "./Menu";
 
 class headerComponent extends PewComponent {
 

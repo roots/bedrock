@@ -14,7 +14,7 @@ const SliderOptions = {
     stopAutoOnClick: true
 };
 
-export class Slider extends PewComponent {
+export class SliderComponent extends PewComponent {
     constructor(element) {
         super(element, SliderOptions);
     }
@@ -22,3 +22,5 @@ export class Slider extends PewComponent {
         this.element.bxSlider(this.options);
     }
 }
+
+window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '.wdf-slider', classDef: SliderComponent});

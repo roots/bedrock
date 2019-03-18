@@ -1,0 +1,331 @@
+/*@import "/node_modules/pikaday/css/pikaday.css";*/
+
+/* Variables */
+/* ------------- */
+
+/*in variables.scss*/
+
+/* -------------------------------------- */
+
+/// Styles for Atomics
+#forms + p + .component {
+  max-width: 1000px;
+}
+
+form {
+  &.wwpform {
+    padding: 2em;
+    background-color: $forms-bgcolor;
+  }
+
+  ul, ol {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  fieldset {
+    border: 1px solid $input-bgcolor;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    min-height: 0;
+    font-size: inherit;
+    line-height: 1.2;
+    letter-spacing: .2rem;
+    color: $input-color;
+    background-color: $input-bgcolor;
+    border: none;
+  }
+
+  input {
+    height: $input-height;
+    padding-right: 5rem;
+  }
+  [type="color"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="email"],
+  [type="month"],
+  [type="number"],
+  [type="password"],
+  [type="search"],
+  [type="tel"],
+  [type="text"],
+  [type="time"],
+  [type="url"],
+  [type="week"],
+  select,
+  textarea {
+    padding: 0.5rem 4rem .5rem 1rem;
+    box-shadow: none;
+  }
+  // reset knacss
+  input[type=file] {
+    font-size: inherit;
+  }
+
+  label {
+    color: $label-color;
+  }
+
+  legend {
+    color: $label-color;
+  }
+
+  ::placeholder {
+    font-size: 1.8rem;
+    letter-spacing: 0;
+  }
+
+  .btn {
+    margin: 2rem 0;
+  }
+
+  textarea {
+    min-height: $input-height;
+    padding-top: 14px;
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+// Custom SELECT
+.select-style {
+
+  select {
+    height: $input-height;
+    width: 100%;
+  }
+
+  label.error {
+    display: none;
+  }
+}
+
+// Custom SELECT with Selectric
+.selectric-wrapper {
+  position: relative;
+
+  .selectric {
+    display: flex;
+    align-items: center;
+    height: $input-height;
+    width: 100%;
+    background-color: $input-bgcolor;
+    border: none;
+
+    .label {
+      margin-left: 0;
+      font-size: 1.8rem;
+      line-height: 1.8;
+    }
+  }
+
+  .selectric .button {
+    height: 100%;
+    width: $input-height;
+    background-color: $select-arrow-bgcolor;
+  }
+
+  .selectric .button::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $select-arrow-color;
+    pointer-events: none;
+  }
+
+  .selectric-items {
+    display: block;
+    width: 100%;
+    border: 0;
+    overflow: hidden;
+    max-height: 0;
+    background-color: $select-bgcolor;
+    box-shadow: 0px 0px 5px 4px rgba(114, 126, 150, .3);
+    transition: .5s all 0.1s;
+    li {
+      display: flex;
+      align-items: center;
+      height: 55px;
+      margin-bottom: 0;
+      padding: 0 10px 0 27px;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      &::before {
+        content: none;
+      }
+    }
+    li:hover, li:focus, li.highlighted {
+      color: $select-active-color;
+      background-color: $select-active-bgcolor;
+    }
+  }
+
+  &.selectric-hover {
+    .selectric .button::after {
+      border-top-color: $select-arrow-active-color;
+    }
+  }
+
+  &.selectric-open {
+    .selectric-items {
+      opacity: 1;
+      max-height: none;
+    }
+    .selectric-items li[data-index="0"] {
+      display: none;
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+
+    .selectric {
+      padding-left: 2rem;
+
+      .label {
+        margin-right: 1rem;
+      }
+
+      .button {
+        width: 45px;
+      }
+    }
+  }
+}
+
+// Custom RADIO + CHECKBOX + SWITCH
+.switch-wrap,
+.checkbox-wrap,
+.radio-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.switch,
+.checkbox,
+.radio {
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px $gray-600 inset;
+  appearance: none;
+  ~ label {
+    margin-bottom: 0;
+  }
+}
+
+.checkbox,
+.radio {
+  width: $checkbox-size;
+  height: $checkbox-size;
+  margin-right: 1rem;
+  transition: background-color .15s;
+  &:checked {
+    background-color: $checkbox-color;
+  }
+}
+
+//SUBMIT button
+button[type="submit"] {
+  @extend .btn--primary;
+  height: 70px;
+  padding: 2rem 4rem;
+}
+
+// Hidden labels
+form.no-label {
+  label {
+    @extend .visually-hidden;
+  }
+}
+
+// Form inline (ie: newsletter form
+@media (min-width: $medium) {
+  .form-inline {
+    display: flex;
+    align-items: center;
+
+    .form-group {
+      margin-right: 2rem;
+      margin-bottom: 0;
+    }
+    label {
+      margin-right: 1rem;
+    }
+    .form-control {
+      display: inline-block;
+      width: auto;
+    }
+  }
+}
+
+// Fieldset with inline (dates…)
+fieldset.inline {
+  margin: 0;
+  padding: 0;
+  .form-group {
+    display: inline-block;
+    margin-right: 5%;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+// For before fields
+.form-before-fields {
+  grid-column: 1 / -1;
+  margin-bottom: 1rem;
+}
+
+// Help messages
+.help span {
+  font-size: .9em;
+  font-style: italic;
+  color: $label-color;
+}
+
+// Error messages (More in styleguide/atoms/alert)
+input[type="text"]:required:valid,
+input[type="number"]:required:valid {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABGdBTUEAALGPC/xhBQAAAOFJREFUKBVjZCASzJmjrPP7z9+NDIyMKzLT71czEqMPrOnvv30M//+LgtQzMjOmMBHSiK4JqP47w1/ma2CNQEmVmTOV+NENwaaJmYnJLyPjznEmoAbvP3//Xf3////puXPVpWCacWlKS7u3B6SGccYMhSf/GRikwRwGxtusrGwOf/78Fv7H8H8vzE9Aue8gm2CaQGqZGBkZqoH0PxDnP8N/1V9/fh0kpAmkFhyq02cpJzD8+zsXyEcPLAybQJpAAB4dWDTj1ISiEcRB0vwT3U8gebxgxgwl59mzlY3xKgJKAgDWBHhtFDswJQAAAABJRU5ErkJggg==');
+  background-position: calc(100% - 2rem) center;
+  background-repeat: no-repeat;
+}
+
+form {
+  label.error {
+    font-size: .9em;
+    font-style: italic;
+    color: $alert-error !important;
+  }
+  input.error {
+    color: $alert-error !important;
+    background-color: $alert-error-bg !important;
+  }
+}
+
+.form-errors {
+  margin-bottom: 4rem;
+  padding: 15px;
+  font-size: 2rem;
+  color: $alert-error;
+  background-color: $alert-error-bg;
+  border-bottom: 4px solid $alert-error;
+}
+
+.has-error {
+  input {
+    border: 1px solid $alert-error;
+  }
+  .label-error {
+    color: $alert-error;
+  }
+}

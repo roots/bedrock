@@ -10,3 +10,5 @@ export class TabsComponent extends PewComponent {
         tabs.initTabs(this.element);
     }
 }
+
+window.pew.addRegistryEntry({key: 'wdf-tabs', domSelector: '.wdf-tabs', classDef: TabsComponent});
