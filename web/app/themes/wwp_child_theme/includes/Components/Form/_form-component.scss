@@ -3,8 +3,7 @@
 /* Variables */
 /* ------------- */
 
-/*in variables.scss*/
-
+/*Edit directly in variables.scss*/
 /* -------------------------------------- */
 
 /// Styles for Atomics
@@ -31,7 +30,6 @@ form {
   textarea,
   select {
     width: 100%;
-    min-height: 0;
     font-size: inherit;
     line-height: 1.2;
     letter-spacing: .2rem;
@@ -59,8 +57,9 @@ form {
   [type="week"],
   select,
   textarea {
+    min-height: $input-height;
     padding: 0.5rem 4rem .5rem 1rem;
-    box-shadow: none;
+    box-shadow: $input-box-shadow;
   }
   // reset knacss
   input[type=file] {
@@ -78,10 +77,6 @@ form {
   ::placeholder {
     font-size: 1.8rem;
     letter-spacing: 0;
-  }
-
-  .btn {
-    margin: 2rem 0;
   }
 
   textarea {
@@ -117,8 +112,10 @@ form {
     align-items: center;
     height: $input-height;
     width: 100%;
+    padding: .5rem 4rem .5rem 1rem;
     background-color: $input-bgcolor;
     border: none;
+    box-shadow: $input-box-shadow;
 
     .label {
       margin-left: 0;
@@ -214,7 +211,7 @@ form {
 .checkbox,
 .radio {
   flex-shrink: 0;
-  box-shadow: 0 0 0 1px $gray-600 inset;
+  box-shadow: $input-box-shadow;
   appearance: none;
   ~ label {
     margin-bottom: 0;
@@ -235,7 +232,7 @@ form {
 //SUBMIT button
 button[type="submit"] {
   @extend .btn--primary;
-  height: 70px;
+  height: $input-height;
   padding: 2rem 4rem;
 }
 

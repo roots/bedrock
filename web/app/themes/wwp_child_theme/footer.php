@@ -12,7 +12,9 @@
 
 </div><!-- .site-content -->
 
-<?php do_action('wwp_before_footer'); ?>
+<div class="container-s">
+    <?php do_action('wwp_before_footer'); ?>
+</div>
 
 <footer id="colophon" class="site-footer">
     <div class="footer-content">
