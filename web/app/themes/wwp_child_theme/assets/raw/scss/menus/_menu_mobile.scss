@@ -174,26 +174,79 @@ $menu-item-parent-bgcolor-active: $white;
     }
 }
 
-
-
-// Burger button (base styles are in buttons.scss and configs in variables.scss)
+// Burger button (overrides button styles)
 .nav-button {
-
-    @media (min-width: $medium) {
-        display: none;
-    }
-
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    z-index: 4;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: $burger-btn-size;
-    width: $burger-btn-size;
-    background-color: $burger-bgcolor;
+    height: 85px !important;
+    width: 60px;
+    padding: 0;
+    background-color: transparent;
+    outline: 0;
+    border: none !important;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    & > * {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        height: $burger-size;
+        width: $burger-size;
+        padding: $burger-padding;
+        background-color: $burger-background;
+        background-image: linear-gradient($burger-color, $burger-color);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        background-size: 100% $burger-weight;
+        transition: .25s;
+        transition-property: transform, background;
+        will-change: transform, background;
+
+        &::before,
+        &::after {
+            content: "";
+            height: $burger-weight;
+            background: $burger-color;
+            transition: .25s;
+            transition-property: transform, top;
+            will-change: transform, top;
+        }
+    }
+
+    &:hover {
+        & > * {
+            background-color: $burger-hover-background;
+        }
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &.is-active {
+
+        & > * {
+            background-image: none;
+            justify-content: center;
+
+            &::before {
+                transform: translateY(50%) rotate3d(0, 0, 1, 45deg);
+            }
+            &::after {
+                transform: translateY(-50%) rotate3d(0, 0, 1, -45deg);
+            }
+        }
+    }
 }
+
 
 
 // mobile - Slide Menu/content
