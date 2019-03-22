@@ -1,0 +1,27 @@
+/* scss/atoms/_buttons.scss */
+
+%btn {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $button-height; //Used by IE11
+  min-height: $button-height;
+  padding: 0 3rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.btn,
+.button {
+  &--small {
+    min-height: $button-height-small;
+  }
+
+  &--big {
+    min-height: $button-height-large;
+  }
+}
+
+a.btn {
+  text-decoration: none;
+}
