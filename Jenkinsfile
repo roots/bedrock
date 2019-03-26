@@ -49,6 +49,7 @@ def deployCode(creds) {
     echo "rsync -uvrn --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     sh "rsync -uvr --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     if(creds.siteUrl){
+        env.siteUrl = creds.siteUrl;
         env.slackMsg+="\n"+'<'+creds.siteUrl+'|Voir le site>';
     }
 }
@@ -194,18 +195,18 @@ pipeline {
                 try {
                     if(env.runCypress=='true'){
                         def host = '';
-                        if(BRANCH_NAME=='develop'){
-                            host='http://www.wonderwp.com.wdf-02.ovea.com'
+                        if(env.siteUrl){
+                            host = env.siteUrl;
+                            echo "Starting integration tests on $host"
+                            sh "cypress run --env host=$host"
                         } else {
-                            host='http://www.wonderwp.com.wdf-02.ovea.com'
+                            echo 'No host defined to run cypress against';
                         }
-                        echo "Starting integration tests on $host"
-                        sh "cypress run --spec cypress/integration/smoke_test.js --env host=$host"
                     } else {
                         echo 'Skipped integration tests'
                     }
 	            } catch(exc){
-	            	handleException("Cypress tests failed, which means you have a problem on your $BRANCH_NAME live environment");
+	            	handleException("Cypress tests failed, which means you have a problem on your $BRANCH_NAME live environment",exc);
                 }
             }
         }
