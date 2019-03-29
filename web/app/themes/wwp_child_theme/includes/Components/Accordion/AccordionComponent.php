@@ -24,7 +24,7 @@ class AccordionComponent extends AbstractComponent
         if(!empty($this->_blocks)){
             $markup.='<div class="js-accordion" data-accordion-prefix-classes="my-accordion-name">';
             foreach($this->_blocks as $block){
-                $markup.='<h2 class="js-accordion__header">'.$block['title'].'</h2>
+                $markup.='<span class="js-accordion__header">'.$block['title'].'</span>
                 <div class="js-accordion__panel">
                     '.$block['content'].'
                 </div>';
