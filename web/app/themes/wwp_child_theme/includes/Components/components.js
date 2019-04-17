@@ -7,3 +7,4 @@ import "./Modal/ModalComponent";
 import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
 import "./Tabs/TabsComponent";
+import "./Video/VideoComponent";
