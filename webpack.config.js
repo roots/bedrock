@@ -77,7 +77,7 @@ module.exports = (env) => {
                                 options: {
                                     url: false,
                                     sourceMap: (env!=='production'),
-                                    minimize: true
+                                    //minimize: true
                                 }
                             }, {
                                 loader: "postcss-loader", options: {
