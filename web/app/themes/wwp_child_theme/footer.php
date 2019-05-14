@@ -18,7 +18,20 @@
 
 <footer id="colophon" class="site-footer">
     <div class="footer-content">
-
+        <?php
+        //Menu du footer
+        //Pour fonctionner automatiquement, creer un footer appele Footer fr_FR pour la france dans apparence/menus dans le BO
+        $footerMenuName = 'Footer ' . get_locale();
+        if (is_nav_menu($footerMenuName)) {
+            wp_nav_menu(['menu' => $footerMenuName]);
+        }
+        ?>
+        <?php
+        //Liens vers les reseaux sociaux
+        //Decommenter les 2 lignes suivantes si vous souhaitez afficher le composant des liens vers les profils sociaux adminstres depuis le BO
+        //$rs = new \WonderWp\Theme\Child\Components\ReseauxSociaux\ReseauxSociauxComponent();
+        //echo $rs->getMarkup();
+        ?>
     </div><!-- .site-info -->
 </footer><!-- .site-footer -->
 
