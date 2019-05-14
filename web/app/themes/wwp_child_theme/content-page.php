@@ -9,9 +9,7 @@
 
 <div id="post-<?php the_ID(); ?>" <?php post_class('page-' . $post->post_name); ?> data-name="<?php echo $post->post_name; ?>">
     <?php
-    /** @var \WonderWp\Theme\Core\Service\ThemeViewService $themeViewService */
-    $themeViewService = wwp_get_theme_service('view');
-    $postThumb = $themeViewService->getFeaturedImage(get_the_ID());
+    $postThumb = \WonderWp\Component\Media\Medias::getFeaturedImage(get_the_ID());
     ?>
     <?php if (!empty($postThumb)) : ?>
         <div class="post-thumbnail">
