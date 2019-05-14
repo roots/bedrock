@@ -45,6 +45,29 @@ $menu-item-m1-bgcolor: $gray-200;
             font-family: $font-family-base;
             font-size: 1.5rem;
             line-height: 1;
+
+            > ul {
+                position: absolute;
+                top: 0;
+                left: -9999px;
+                opacity: 0;
+                transition: opacity .4s;
+            }
+        }
+
+        /*Global open/hide sub-menus*/
+        li:hover,
+        li:focus,
+        li:focus-within,
+        li:active {
+            > ul {
+                opacity: 1;
+                left: auto;
+            } //2nd level only
+
+            > ul.children:not(.level1) {
+                right: -100%;
+            } //3rd level and under
         }
 
         li.m0 {
@@ -52,24 +75,10 @@ $menu-item-m1-bgcolor: $gray-200;
             > a {
                 padding-bottom: 30px;
             }
-
-            &:hover::before,
-            &:focus::before {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        li.m0:hover, li.m0:focus {
-            > ul.level1 {
-                display: block;
-            }
         }
 
         ul.level1 {
-            position: absolute;
             top: 65px;
-            left: 0;
             z-index: 1;
             list-style: none;
             background-color: $gray-200;
@@ -78,9 +87,6 @@ $menu-item-m1-bgcolor: $gray-200;
                 margin-left: 0;
                 min-width: 320px;
                 text-align: left;
-                &::before {
-                    position: absolute;
-                }
             }
 
             li > a {
@@ -110,19 +116,13 @@ $menu-item-m1-bgcolor: $gray-200;
                 > a {
                     background-color: $white;
                 }
-                > ul.level2 {
-                    display: block;
-                }
             }
         }
 
         ul.level2 {
-            position: absolute;
-            top: 0;
+            /* top: 0;
             left: auto;
-            right: -100%;
-            padding-left: 0;
-            list-style: none;
+            right: -100%;*/
             background-color: $white;
 
             > li {
@@ -137,7 +137,8 @@ $menu-item-m1-bgcolor: $gray-200;
                 border-bottom: 1px solid $gray-200;
             }
 
-            > li:hover > a, > li:focus > a {
+            > li:hover > a,
+            > li:focus > a {
                 color: blue;
             }
         }
