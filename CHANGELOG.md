@@ -1,3 +1,7 @@
+### 1.12.5: 2019-05-14
+
+* Disable WordPress' built-in fatal error handler on development ([#432](https://github.com/roots/bedrock/pull/434))
+
 ### 1.12.4: 2019-05-07
 
 * Update to WordPress 5.2 ([#432](https://github.com/roots/bedrock/pull/432))
