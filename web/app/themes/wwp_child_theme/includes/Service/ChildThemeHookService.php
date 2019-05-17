@@ -20,10 +20,7 @@ class ChildThemeHookService extends ThemeHookService
         //add_action( 'wwp_after_footer', array($viewService,'prepareCookies'));
         add_filter('wwp.mailer.setBody', [$this, 'includeMailTemplate']);
         add_action('wp_footer', [$this, 'loadJsonTpls']);
-        //Disable visual editor
-        add_filter('user_can_richedit', '__return_false', 50);
         add_action('wp_loaded', [$this, 'setHasCookie']);
-
         add_filter('jsonAssetsExporter.json', [$this, 'mergeSassFiles']);
         add_filter('body_class', [$this, 'addBodyClassForPostThumb']);
     }
