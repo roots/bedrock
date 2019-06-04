@@ -5,6 +5,7 @@ namespace WonderWp\Theme\Child\Service;
 use Symfony\Component\HttpFoundation\Cookie;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\HttpFoundation\Request;
+use WonderWp\Component\Media\Medias;
 use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\Service\ThemeHookService;
@@ -19,11 +20,9 @@ class ChildThemeHookService extends ThemeHookService
         //add_action( 'wwp_after_footer', array($viewService,'prepareCookies'));
         add_filter('wwp.mailer.setBody', [$this, 'includeMailTemplate']);
         add_action('wp_footer', [$this, 'loadJsonTpls']);
-        //Disable visual editor
-        add_filter('user_can_richedit', '__return_false', 50);
         add_action('wp_loaded', [$this, 'setHasCookie']);
-
         add_filter('jsonAssetsExporter.json', [$this, 'mergeSassFiles']);
+        add_filter('body_class', [$this, 'addBodyClassForPostThumb']);
     }
 
     public function includeMailTemplate($mailBody)
@@ -94,5 +93,16 @@ class ChildThemeHookService extends ThemeHookService
         }
 
         return $json;
+    }
+
+    public function addBodyClassForPostThumb($classes)
+    {
+        global $post;
+        $featuredImg = is_object($post) ? Medias::getFeaturedImage($post->ID) : null;
+        if (!empty($featuredImg)) {
+            $classes[] = 'has-post-thumb';
+        }
+
+        return $classes;
     }
 }
