@@ -23,38 +23,39 @@ if (!is_blog_installed()) {
  */
 class Autoloader
 {
+    /** @var static Singleton instance */
+    private static $single;
+
     /** @var array Store Autoloader cache and site option */
-    private static $cache;
+    private $cache;
 
     /** @var array Autoloaded plugins */
-    private static $auto_plugins;
+    private $auto_plugins;
 
     /** @var array Autoloaded mu-plugins */
-    private static $mu_plugins;
+    private $mu_plugins;
 
     /** @var int Number of plugins */
-    private static $count;
+    private $count;
 
     /** @var array Newly activated plugins */
-    private static $activated;
+    private $activated;
 
     /** @var string Relative path to the mu-plugins dir */
-    private static $relative_path;
-
-    /** @var static Singleton instance */
-    private static $_single;
+    private $relative_path;
 
     /**
      * Create singleton, populate vars, and set WordPress hooks
      */
     public function __construct()
     {
-        if (isset(self::$_single)) {
+        if (isset(self::$single)) {
             return;
         }
 
-        self::$_single = $this;
-        self::$relative_path = '/../' . basename(__DIR__);
+        self::$single = $this;
+
+        $this->relative_path = '/../' . basename(__DIR__);
 
         if (is_admin()) {
             add_filter('show_advanced_plugins', [$this, 'showInAdmin'], 0, 2);
@@ -74,7 +75,7 @@ class Autoloader
 
         array_map(static function () {
             include_once WPMU_PLUGIN_DIR . '/' . func_get_args()[0];
-        }, array_keys(self::$cache['plugins']));
+        }, array_keys($this->cache['plugins']));
 
         $this->pluginHooks();
     }
@@ -97,12 +98,12 @@ class Autoloader
 
         $this->updateCache();
 
-        self::$auto_plugins = array_map(function ($auto_plugin) {
+        $this->auto_plugins = array_map(function ($auto_plugin) {
             $auto_plugin['Name'] .= ' *';
             return $auto_plugin;
-        }, self::$auto_plugins);
+        }, $this->auto_plugins);
 
-        $GLOBALS['plugins']['mustuse'] = array_unique(array_merge(self::$auto_plugins, self::$mu_plugins), SORT_REGULAR);
+        $GLOBALS['plugins']['mustuse'] = array_unique(array_merge($this->auto_plugins, $this->mu_plugins), SORT_REGULAR);
 
         return false;
     }
@@ -119,7 +120,7 @@ class Autoloader
             return;
         }
 
-        self::$cache = $cache;
+        $this->cache = $cache;
     }
 
     /**
@@ -131,14 +132,14 @@ class Autoloader
     {
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-        self::$auto_plugins = get_plugins(self::$relative_path);
-        self::$mu_plugins   = get_mu_plugins();
-        $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
-        $rebuild            = !is_array(self::$cache['plugins']);
-        self::$activated    = $rebuild ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-        self::$cache        = ['plugins' => $plugins, 'count' => $this->countPlugins()];
+        $this->auto_plugins = get_plugins($this->relative_path);
+        $this->mu_plugins   = get_mu_plugins();
+        $plugins            = array_diff_key($this->auto_plugins, $this->mu_plugins);
+        $rebuild            = !is_array($this->cache['plugins']);
+        $this->activated    = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
+        $this->cache        = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
-        update_site_option('bedrock_autoloader', self::$cache);
+        update_site_option('bedrock_autoloader', $this->cache);
     }
 
     /**
@@ -148,11 +149,11 @@ class Autoloader
      */
     private function pluginHooks()
     {
-        if (!is_array(self::$activated)) {
+        if (!is_array($this->activated)) {
             return;
         }
 
-        foreach (self::$activated as $plugin_file => $plugin_info) {
+        foreach ($this->activated as $plugin_file => $plugin_info) {
             do_action('activate_' . $plugin_file);
         }
     }
@@ -162,7 +163,7 @@ class Autoloader
      */
     private function validatePlugins()
     {
-        foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
+        foreach ($this->cache['plugins'] as $plugin_file => $plugin_info) {
             if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
                 $this->updateCache();
                 break;
@@ -180,18 +181,18 @@ class Autoloader
      */
     private function countPlugins()
     {
-        if (isset(self::$count)) {
-            return self::$count;
+        if (isset($this->count)) {
+            return $this->count;
         }
 
         $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
-        if (!isset(self::$cache['count']) || $count !== self::$cache['count']) {
-            self::$count = $count;
+        if (!isset($this->cache['count']) || $count !== $this->cache['count']) {
+            $this->count = $count;
             $this->updateCache();
         }
 
-        return self::$count;
+        return $this->count;
     }
 }
 
