@@ -24,7 +24,7 @@ if (!is_blog_installed()) {
 class Autoloader
 {
     /** @var static Singleton instance */
-    private static $single;
+    private static $instance;
 
     /** @var array Store Autoloader cache and site option */
     private $cache;
@@ -49,11 +49,11 @@ class Autoloader
      */
     public function __construct()
     {
-        if (isset(self::$single)) {
+        if (isset(self::$instance)) {
             return;
         }
 
-        self::$single = $this;
+        self::$instance = $this;
 
         $this->relative_path = '/../' . basename(__DIR__);
 
