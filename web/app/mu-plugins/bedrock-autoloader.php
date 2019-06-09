@@ -30,10 +30,10 @@ class Autoloader
     private $cache;
 
     /** @var array Autoloaded plugins */
-    private $auto_plugins;
+    private $autoPlugins;
 
     /** @var array Autoloaded mu-plugins */
-    private $mu_plugins;
+    private $muPlugins;
 
     /** @var int Number of plugins */
     private $count;
@@ -42,7 +42,7 @@ class Autoloader
     private $activated;
 
     /** @var string Relative path to the mu-plugins dir */
-    private $relative_path;
+    private $relativePath;
 
     /**
      * Create singleton, populate vars, and set WordPress hooks
@@ -55,7 +55,7 @@ class Autoloader
 
         self::$instance = $this;
 
-        $this->relative_path = '/../' . basename(__DIR__);
+        $this->relativePath = '/../' . basename(__DIR__);
 
         if (is_admin()) {
             add_filter('show_advanced_plugins', [$this, 'showInAdmin'], 0, 2);
@@ -98,12 +98,12 @@ class Autoloader
 
         $this->updateCache();
 
-        $this->auto_plugins = array_map(function ($auto_plugin) {
+        $this->autoPlugins = array_map(function ($auto_plugin) {
             $auto_plugin['Name'] .= ' *';
             return $auto_plugin;
-        }, $this->auto_plugins);
+        }, $this->autoPlugins);
 
-        $GLOBALS['plugins']['mustuse'] = array_unique(array_merge($this->auto_plugins, $this->mu_plugins), SORT_REGULAR);
+        $GLOBALS['plugins']['mustuse'] = array_unique(array_merge($this->autoPlugins, $this->muPlugins), SORT_REGULAR);
 
         return false;
     }
@@ -132,12 +132,12 @@ class Autoloader
     {
         require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-        $this->auto_plugins = get_plugins($this->relative_path);
-        $this->mu_plugins   = get_mu_plugins();
-        $plugins            = array_diff_key($this->auto_plugins, $this->mu_plugins);
-        $rebuild            = !is_array($this->cache['plugins']);
-        $this->activated    = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
-        $this->cache        = ['plugins' => $plugins, 'count' => $this->countPlugins()];
+        $this->autoPlugins = get_plugins($this->relativePath);
+        $this->muPlugins   = get_mu_plugins();
+        $plugins           = array_diff_key($this->autoPlugins, $this->muPlugins);
+        $rebuild           = !is_array($this->cache['plugins']);
+        $this->activated   = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
+        $this->cache       = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
         update_site_option('bedrock_autoloader', $this->cache);
     }
