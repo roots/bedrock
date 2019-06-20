@@ -1,3 +1,11 @@
+### 1.12.7: 2019-06-19
+
+* Update to WordPress 5.2.2 ([#444](https://github.com/roots/bedrock/pull/444))
+* Bump `oscarotero/env` ([#443](https://github.com/roots/bedrock/pull/443))
+* Bump `vlucas/phpdotenv` ([#442](https://github.com/roots/bedrock/pull/442))
+* Bump `squizlabs/php_codesniffer` ([#441](https://github.com/roots/bedrock/pull/441))
+* Remove unnecessary static variables ([#437](https://github.com/roots/bedrock/pull/437))
+
 ### 1.12.6: 2019-05-21
 
 * Update to WordPress 5.2.1 ([#436](https://github.com/roots/bedrock/pull/436))
