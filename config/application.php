@@ -26,7 +26,7 @@ if (file_exists($root_dir . '/.env')) {
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
-
+define('WP_MEMORY_LIMIT', '128M');
 
 if (file_exists($env_config)) {
     require_once $env_config;
