@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc606a2b8820741e0b7831b010859b61",
+    "content-hash": "458f0df7f0ab0bb6a79b327bcd700a3f",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -597,12 +597,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-rgpd.git",
-                "reference": "c10e533a130d6cbdbc0990b89114097306e13436"
+                "reference": "527d8694d7f6814e4c3209809dabf1e0f0331d6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-rgpd/zipball/c10e533a130d6cbdbc0990b89114097306e13436",
-                "reference": "c10e533a130d6cbdbc0990b89114097306e13436",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-rgpd/zipball/527d8694d7f6814e4c3209809dabf1e0f0331d6d",
+                "reference": "527d8694d7f6814e4c3209809dabf1e0f0331d6d",
                 "shasum": ""
             },
             "require": {
@@ -625,7 +625,7 @@
                 "source": "https://github.com/agencewonderful/wwp-rgpd/tree/develop",
                 "issues": "https://github.com/agencewonderful/wwp-rgpd/issues"
             },
-            "time": "2019-05-17T13:03:53+00:00"
+            "time": "2019-06-25T08:26:46+00:00"
         },
         {
             "name": "agencewonderful/wwp-search",
@@ -735,6 +735,42 @@
                 "issues": "https://github.com/agencewonderful/wwp-stats/issues"
             },
             "time": "2019-05-17T13:04:30+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-tracker",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-tracker.git",
+                "reference": "f4149b4acab1026d3acf0940abae4da6a8d69fe3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-tracker/zipball/f4149b4acab1026d3acf0940abae4da6a8d69fe3",
+                "reference": "f4149b4acab1026d3acf0940abae4da6a8d69fe3",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-develop@dev"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Tracker\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Fabien Brisset",
+                    "email": "fabien.brisset@wonderful.fr"
+                }
+            ],
+            "description": "wwp tracker",
+            "support": {
+                "source": "https://github.com/agencewonderful/wwp-tracker/tree/develop",
+                "issues": "https://github.com/agencewonderful/wwp-tracker/issues"
+            },
+            "time": "2019-06-25T12:40:08+00:00"
         },
         {
             "name": "agencewonderful/wwp-translator",
@@ -7480,7 +7516,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-gutenberg.1.8.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/disable-gutenberg.1.8.1.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -7498,7 +7536,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/google-sitemap-generator.zip?timestamp=1524668759"
+                "url": "https://downloads.wordpress.org/plugin/google-sitemap-generator.zip?timestamp=1524668759",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -7517,7 +7557,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-nested-pages.3.0.11.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-nested-pages.3.0.11.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -7530,7 +7572,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "wpackagist-plugin/google-sitemap-generator": 20,
         "agencewonderful/wonderwp-theme-core": 20,
         "agencewonderful/wwp-actu": 20,
         "agencewonderful/wwp-branchepage": 20,
@@ -7539,8 +7580,8 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
-        "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-gutenberg-utils": 20,
+        "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-lazyload": 20,
         "agencewonderful/wwp-map": 20,
         "agencewonderful/wwp-meteo": 20,
@@ -7550,10 +7591,12 @@
         "agencewonderful/wwp-search": 20,
         "agencewonderful/wwp-social": 20,
         "agencewonderful/wwp-stats": 20,
-        "agencewonderful/wwp-trombinoscope": 20,
+        "agencewonderful/wwp-tracker": 20,
         "agencewonderful/wwp-translator": 20,
+        "agencewonderful/wwp-trombinoscope": 20,
         "agencewonderful/wwp-video": 20,
-        "agencewonderful/wwp-vote": 20
+        "agencewonderful/wwp-vote": 20,
+        "wpackagist-plugin/google-sitemap-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
