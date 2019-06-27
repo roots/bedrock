@@ -46,7 +46,6 @@ def notify(msg,color){
 
 def deployCode(creds) {
     echo "Sending files to remote server"
-    echo "rsync -uvrn --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     sh "rsync -uvr --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     if(creds.siteUrl){
         env.siteUrl = creds.siteUrl;
@@ -190,6 +189,20 @@ pipeline {
             }
         }
     }
+    stage('deploy master branch') {
+        when { branch 'master' }
+        steps {
+            script {
+            	try {
+	                echo "Deploying Master Branch"
+	                def creds = loadCreds('your_prod_credentials');
+	                deployCode(creds);
+	            } catch(exc){
+	            	handleException('The master branch deployment failed',exc);
+                }
+            }
+        }
+    }
     stage('Integration tests') {
         steps {
             script {
@@ -208,20 +221,6 @@ pipeline {
                     }
 	            } catch(exc){
 	            	handleException("Cypress tests failed, which means you have a problem on your $BRANCH_NAME live environment",exc);
-                }
-            }
-        }
-    }
-    stage('deploy master branch') {
-        when { branch 'master' }
-        steps {
-            script {
-            	try {
-	                echo "Deploying Master Branch"
-	                def creds = loadCreds('your_prod_credentials');
-	                deployCode(creds);
-	            } catch(exc){
-	            	handleException('The master branch deployment failed',exc);
                 }
             }
         }

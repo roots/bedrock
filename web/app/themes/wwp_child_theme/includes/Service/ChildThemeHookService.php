@@ -101,6 +101,8 @@ class ChildThemeHookService extends ThemeHookService
         $featuredImg = is_object($post) ? Medias::getFeaturedImage($post->ID) : null;
         if (!empty($featuredImg)) {
             $classes[] = 'has-post-thumb';
+        } else {
+            $classes[] = 'has-no-post-thumb';
         }
 
         return $classes;
