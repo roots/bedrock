@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42f81b6c9ec41ae48c5ca5c543fb1511",
+    "content-hash": "63447815ff5ae043a76291751fd7d83d",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -735,6 +735,42 @@
                 "issues": "https://github.com/agencewonderful/wwp-stats/issues"
             },
             "time": "2019-05-17T13:04:30+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-tracker",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-tracker.git",
+                "reference": "cae24eacc3bd3d837ee34989d1805211688967aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-tracker/zipball/cae24eacc3bd3d837ee34989d1805211688967aa",
+                "reference": "cae24eacc3bd3d837ee34989d1805211688967aa",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-develop@dev"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Tracker\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Fabien Brisset",
+                    "email": "fabien.brisset@wonderful.fr"
+                }
+            ],
+            "description": "wwp tracker",
+            "support": {
+                "source": "https://github.com/agencewonderful/wwp-tracker/tree/develop",
+                "issues": "https://github.com/agencewonderful/wwp-tracker/issues"
+            },
+            "time": "2019-06-26T16:56:19+00:00"
         },
         {
             "name": "agencewonderful/wwp-translator",
@@ -9023,7 +9059,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "wpackagist-plugin/google-sitemap-generator": 20,
         "agencewonderful/wonderwp-theme-core": 20,
         "agencewonderful/wwp-actu": 20,
         "agencewonderful/wwp-branchepage": 20,
@@ -9032,8 +9067,8 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
-        "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-gutenberg-utils": 20,
+        "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-lazyload": 20,
         "agencewonderful/wwp-map": 20,
         "agencewonderful/wwp-meteo": 20,
@@ -9043,10 +9078,12 @@
         "agencewonderful/wwp-search": 20,
         "agencewonderful/wwp-social": 20,
         "agencewonderful/wwp-stats": 20,
-        "agencewonderful/wwp-trombinoscope": 20,
+        "agencewonderful/wwp-tracker": 20,
         "agencewonderful/wwp-translator": 20,
+        "agencewonderful/wwp-trombinoscope": 20,
         "agencewonderful/wwp-video": 20,
-        "agencewonderful/wwp-vote": 20
+        "agencewonderful/wwp-vote": 20,
+        "wpackagist-plugin/google-sitemap-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
