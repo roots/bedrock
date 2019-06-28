@@ -150,7 +150,7 @@ pipeline {
 	        if(env.runNpm=='true'){
 	            try {
 	        	    sh 'npm install';
-	        	    sh 'npm rebuild node-sass --force';
+	        	    //sh 'npm rebuild node-sass --force';
                 } catch(exc){
                     handleException('npm install failed',exc);
                 }
