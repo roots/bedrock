@@ -103,6 +103,9 @@ if (env('STRIPE_PK')) {
 if (env('WPCOM_API_KEY')) {
     define('WPCOM_API_KEY', env('WPCOM_API_KEY'));
 }
+if (env('PB_MATHJAX_URL')) {
+    define('PB_MATHJAX_URL', env('PB_MATHJAX_URL'));
+}
 
 /**
  * Bootstrap WordPress
