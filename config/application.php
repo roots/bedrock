@@ -58,7 +58,13 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 Config::define('DB_NAME', env('DB_NAME'));
 Config::define('DB_USER', env('DB_USER'));
 Config::define('DB_PASSWORD', env('DB_PASSWORD'));
-Config::define('DB_HOST', env('DB_HOST') ?: 'localhost');
+
+$db_host = env('DB_HOST') ?: 'localhost';
+if (env('DB_PORT')) {
+    $db_host .= ':' . env('DB_PORT');
+}
+
+Config::define('DB_HOST', $db_host);
 Config::define('DB_CHARSET', 'utf8mb4');
 Config::define('DB_COLLATE', '');
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
