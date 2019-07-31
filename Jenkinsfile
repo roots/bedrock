@@ -23,7 +23,7 @@ def handleException(msg,exc) {
 
     if(msg){
 		changeString_ += msg;
-    } else {
+    } else { 
     	changeString_ += " - Build failed. ";
     }
 
