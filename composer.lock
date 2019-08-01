@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c2223641d5ad7f5e7f42f87d601d04b",
+    "content-hash": "425ba70a339c5853faff93fb965026f7",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wonderwp-plugin.git",
-                "reference": "cc71af582f75eb8d3268c25b33f532f49b45092c"
+                "reference": "3019c0157d7c94aae03002e4f3c4093f98f50a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/cc71af582f75eb8d3268c25b33f532f49b45092c",
-                "reference": "cc71af582f75eb8d3268c25b33f532f49b45092c",
+                "url": "https://api.github.com/repos/agencewonderful/wonderwp-plugin/zipball/3019c0157d7c94aae03002e4f3c4093f98f50a4a",
+                "reference": "3019c0157d7c94aae03002e4f3c4093f98f50a4a",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "source": "https://github.com/agencewonderful/wonderwp-plugin/tree/develop",
                 "issues": "https://github.com/agencewonderful/wonderwp-plugin/issues"
             },
-            "time": "2019-07-10T16:39:03+00:00"
+            "time": "2019-07-31T12:39:25+00:00"
         },
         {
             "name": "agencewonderful/wonderwp-theme-core",
@@ -669,16 +669,17 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:agencewonderful/wwp-social.git",
-                "reference": "00563640b1c71fe24b4e4c5aebdef1ea9e3c4235"
+                "reference": "d438c7cb52c049c2557a88fddde7e3e0c47ae0b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/00563640b1c71fe24b4e4c5aebdef1ea9e3c4235",
-                "reference": "00563640b1c71fe24b4e4c5aebdef1ea9e3c4235",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-social/zipball/d438c7cb52c049c2557a88fddde7e3e0c47ae0b8",
+                "reference": "d438c7cb52c049c2557a88fddde7e3e0c47ae0b8",
                 "shasum": ""
             },
             "require": {
                 "agencewonderful/wonderwp-plugin-core": "dev-develop@dev",
+                "facebook/graph-sdk": "^5.7",
                 "wp-cli/wp-cli": "^1.1"
             },
             "type": "wordpress-plugin",
@@ -698,7 +699,7 @@
                 "source": "https://github.com/agencewonderful/wwp-social/tree/develop",
                 "issues": "https://github.com/agencewonderful/wwp-social/issues"
             },
-            "time": "2019-05-17T13:04:18+00:00"
+            "time": "2019-08-01T08:33:59+00:00"
         },
         {
             "name": "agencewonderful/wwp-stats",
@@ -962,16 +963,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "33810d865dd06a674130fceb729b2f279dc79e8c"
+                "reference": "ec2e24d4fa6a0d50d423794a56605ecec3401b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/33810d865dd06a674130fceb729b2f279dc79e8c",
-                "reference": "33810d865dd06a674130fceb729b2f279dc79e8c",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/ec2e24d4fa6a0d50d423794a56605ecec3401b85",
+                "reference": "ec2e24d4fa6a0d50d423794a56605ecec3401b85",
                 "shasum": ""
             },
             "require": {
@@ -1014,7 +1015,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2019-07-31T08:13:16+00:00"
+            "time": "2019-08-01T07:52:17+00:00"
         },
         {
             "name": "composer/composer",
@@ -2235,6 +2236,64 @@
                 "reflection"
             ],
             "time": "2018-06-14T14:45:07+00:00"
+        },
+        {
+            "name": "facebook/graph-sdk",
+            "version": "5.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2018-12-11T22:56:31+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -7557,15 +7616,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-nested-pages",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-nested-pages/",
-                "reference": "tags/3.1.0"
+                "reference": "tags/3.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-nested-pages.3.1.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-nested-pages.3.1.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -7575,64 +7634,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "facebook/graph-sdk",
-            "version": "5.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.4|^7.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~5.0",
-                "mockery/mockery": "~0.8",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
-                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Facebook\\": "src/Facebook/"
-                },
-                "files": [
-                    "src/Facebook/polyfills.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Facebook Platform"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
-                }
-            ],
-            "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/php-graph-sdk",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "time": "2018-12-11T22:56:31+00:00"
-        },
         {
             "name": "myclabs/deep-copy",
             "version": "1.9.1",
