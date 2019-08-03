@@ -10,11 +10,19 @@
 
 use Roots\WPConfig\Config;
 
-/** @var string Directory containing all of the site's files */
-$root_dir = dirname(__DIR__);
+/**
+ * Directory containing all of the site's files
+ *
+ * @var string
+ */
+$rootDir = dirname(__DIR__);
 
-/** @var string Document Root */
-$webroot_dir = $root_dir . '/web';
+/**
+ * Document Root
+ *
+ * @var string
+ */
+$webrootDir = $rootDir . '/web';
 
 /**
  * Expose global env() function from oscarotero/env
@@ -24,11 +32,13 @@ Env::init();
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-$dotenv = Dotenv\Dotenv::create($root_dir);
-if (file_exists($root_dir . '/.env')) {
+$dotenv = Dotenv\Dotenv::create($rootDir);
+
+if (file_exists($rootDir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
-    if (!env('DATABASE_URL')) {
+
+    if (! env('DATABASE_URL')) {
         $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
     }
 }
@@ -49,7 +59,7 @@ Config::define('WP_SITEURL', env('WP_SITEURL'));
  * Custom Content Directory
  */
 Config::define('CONTENT_DIR', '/app');
-Config::define('WP_CONTENT_DIR', $webroot_dir . Config::get('CONTENT_DIR'));
+Config::define('WP_CONTENT_DIR', $webrootDir . Config::get('CONTENT_DIR'));
 Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_DIR'));
 
 /**
@@ -120,6 +130,6 @@ Config::apply();
 /**
  * Bootstrap WordPress
  */
-if (!defined('ABSPATH')) {
-    define('ABSPATH', $webroot_dir . '/wp/');
+if (! defined('ABSPATH')) {
+    define('ABSPATH', $webrootDir . '/wp/');
 }

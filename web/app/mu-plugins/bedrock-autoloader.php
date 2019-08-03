@@ -1,17 +1,17 @@
 <?php
 /**
- * Plugin Name: Bedrock Autoloader
- * Plugin URI: https://github.com/roots/bedrock/
- * Description: An autoloader that enables standard plugins to be required just like must-use plugins. The autoloaded plugins are included during mu-plugin loading. An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
- * Version: 1.0.0
- * Author: Roots
- * Author URI: https://roots.io/
- * License: MIT License
+ * Plugin Name:  Bedrock Autoloader
+ * Plugin URI:   https://github.com/roots/bedrock/
+ * Description:  An autoloader that enables standard plugins to be required just like must-use plugins. The autoloaded plugins are included during mu-plugin loading. An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
+ * Version:      1.0.0
+ * Author:       Roots
+ * Author URI:   https://roots.io/
+ * License:      MIT License
  */
 
 namespace Roots\Bedrock;
 
-if (!is_blog_installed()) {
+if (! is_blog_installed()) {
     return;
 }
 
@@ -23,29 +23,59 @@ if (!is_blog_installed()) {
  */
 class Autoloader
 {
-    /** @var static Singleton instance */
+    /**
+     * Singleton instance.
+     *
+     * @var static
+     */
     private static $instance;
 
-    /** @var array Store Autoloader cache and site option */
+    /**
+     * Store Autoloader cache and site option.
+     *
+     * @var array
+     */
     private $cache;
 
-    /** @var array Autoloaded plugins */
+    /**
+     * Autoloaded plugins.
+     *
+     * @var array
+     */
     private $autoPlugins;
 
-    /** @var array Autoloaded mu-plugins */
+    /**
+     * Autoloaded mu-plugins.
+     *
+     * @var array
+     */
     private $muPlugins;
 
-    /** @var int Number of plugins */
+    /**
+     * Number of plugins.
+     *
+     * @var int
+     */
     private $count;
 
-    /** @var array Newly activated plugins */
+    /**
+     * Newly activated plugins.
+     *
+     * @var array
+     */
     private $activated;
 
-    /** @var string Relative path to the mu-plugins dir */
+    /**
+     * Relative path to the mu-plugins directory.
+     *
+     * @var string
+     */
     private $relativePath;
 
     /**
-     * Create singleton, populate vars, and set WordPress hooks
+     * Create an instance of Autoloader.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -66,6 +96,8 @@ class Autoloader
 
    /**
     * Run some checks then autoload our plugins.
+    *
+    * @return void
     */
     public function loadPlugins()
     {
@@ -82,17 +114,17 @@ class Autoloader
 
     /**
      * Filter show_advanced_plugins to display the autoloaded plugins.
-     * @param $show bool Whether to show the advanced plugins for the specified plugin type.
-     * @param $type string The plugin type, i.e., `mustuse` or `dropins`
-     * @return bool We return `false` to prevent WordPress from overriding our work
-     * {@internal We add the plugin details ourselves, so we return false to disable the filter.}
+     *
+     * @param  bool    $show Whether to show the advanced plugins for the specified plugin type.
+     * @param  string  $type The plugin type, i.e., `mustuse` or `dropins`
+     * @return bool    We return `false` to prevent WordPress from overriding our work
      */
     public function showInAdmin($show, $type)
     {
         $screen = get_current_screen();
         $current = is_multisite() ? 'plugins-network' : 'plugins';
 
-        if ($screen->base !== $current || $type !== 'mustuse' || !current_user_can('activate_plugins')) {
+        if ($screen->base !== $current || $type !== 'mustuse' || ! current_user_can('activate_plugins')) {
             return $show;
         }
 
@@ -110,6 +142,8 @@ class Autoloader
 
     /**
      * This sets the cache or calls for an update
+     *
+     * @return void
      */
     private function checkCache()
     {
@@ -124,9 +158,13 @@ class Autoloader
     }
 
     /**
+     * Update mu-plugin cache.
+     *
      * Get the plugins and mu-plugins from the mu-plugin path and remove duplicates.
      * Check cache against current plugins for newly activated plugins.
      * After that, we can update the cache.
+     *
+     * @return void
      */
     private function updateCache()
     {
@@ -135,7 +173,7 @@ class Autoloader
         $this->autoPlugins = get_plugins($this->relativePath);
         $this->muPlugins   = get_mu_plugins();
         $plugins           = array_diff_key($this->autoPlugins, $this->muPlugins);
-        $rebuild           = !is_array($this->cache['plugins']);
+        $rebuild           = ! is_array($this->cache['plugins']);
         $this->activated   = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
         $this->cache       = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
@@ -143,13 +181,17 @@ class Autoloader
     }
 
     /**
+     * Activate plugin hooks.
+     *
      * This accounts for the plugin hooks that would run if the plugins were
      * loaded as usual. Plugins are removed by deletion, so there's no way
      * to deactivate or uninstall.
+     *
+     * @return void
      */
     private function pluginHooks()
     {
-        if (!is_array($this->activated)) {
+        if (! is_array($this->activated)) {
             return;
         }
 
@@ -160,11 +202,13 @@ class Autoloader
 
     /**
      * Check that the plugin file exists, if it doesn't update the cache.
+     *
+     * @return void
      */
     private function validatePlugins()
     {
         foreach ($this->cache['plugins'] as $plugin_file => $plugin_info) {
-            if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
+            if (! file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
                 $this->updateCache();
                 break;
             }
@@ -187,7 +231,7 @@ class Autoloader
 
         $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
-        if (!isset($this->cache['count']) || $count !== $this->cache['count']) {
+        if (! isset($this->cache['count']) || $count !== $this->cache['count']) {
             $this->count = $count;
             $this->updateCache();
         }
