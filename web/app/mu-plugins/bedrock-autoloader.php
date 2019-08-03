@@ -11,7 +11,7 @@
 
 namespace Roots\Bedrock;
 
-if (!is_blog_installed()) {
+if (! is_blog_installed()) {
     return;
 }
 
@@ -92,7 +92,7 @@ class Autoloader
         $screen = get_current_screen();
         $current = is_multisite() ? 'plugins-network' : 'plugins';
 
-        if ($screen->base !== $current || $type !== 'mustuse' || !current_user_can('activate_plugins')) {
+        if ($screen->base !== $current || $type !== 'mustuse' || ! current_user_can('activate_plugins')) {
             return $show;
         }
 
@@ -135,7 +135,7 @@ class Autoloader
         $this->autoPlugins = get_plugins($this->relativePath);
         $this->muPlugins   = get_mu_plugins();
         $plugins           = array_diff_key($this->autoPlugins, $this->muPlugins);
-        $rebuild           = !is_array($this->cache['plugins']);
+        $rebuild           = ! is_array($this->cache['plugins']);
         $this->activated   = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
         $this->cache       = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
@@ -149,7 +149,7 @@ class Autoloader
      */
     private function pluginHooks()
     {
-        if (!is_array($this->activated)) {
+        if (! is_array($this->activated)) {
             return;
         }
 
@@ -164,7 +164,7 @@ class Autoloader
     private function validatePlugins()
     {
         foreach ($this->cache['plugins'] as $plugin_file => $plugin_info) {
-            if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
+            if (! file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
                 $this->updateCache();
                 break;
             }
@@ -187,7 +187,7 @@ class Autoloader
 
         $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
-        if (!isset($this->cache['count']) || $count !== $this->cache['count']) {
+        if (! isset($this->cache['count']) || $count !== $this->cache['count']) {
             $this->count = $count;
             $this->updateCache();
         }
