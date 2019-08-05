@@ -4,6 +4,7 @@ import "./Dropdown/DropdownComponent";
 import "./Form/FormComponent";
 import "./Header/HeaderComponent";
 import "./Modal/ModalComponent";
+import "./NoAjaxTransition/NoAjaxTransitionComponent";
 import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
 import "./Tabs/TabsComponent";
