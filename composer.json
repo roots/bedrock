@@ -58,7 +58,7 @@
       "php -r \"copy('.env.example', '.env');\""
     ],
     "test": [
-      "phpcs"
+      "phpcs --ignore=vendor,web --extensions=php --standard=PSR12 --exclude=PSR1.Files.SideEffects ."
     ]
   }
 }
