@@ -1,24 +1,20 @@
 ## File Types
 - .svn
 - .git
-- Thumbs.db
 - .DS_Store
 - .htaccess
-- apigen.yml
-- cypress.json
-- *readme*
-- nbproject/
-- php_errors.log
-- exclude-file.txt
-- node_modules/
-- config.php
-- CI/
-- static_templates/
-- web/app/languages/
-- web/app/uploads/
-- web/wp/wp-content/themes/*
+- .gitignore
 - *.nfs*
 - *.scss
+
+## Uneeded / Unwanted files
+
+- Thumbs.db
+- config.php
+- apigen.yml
+- cypress.json
+- *readme.*
+- *README.*
 - webpack.config.js
 - postcss.config.js
 - phpcs.xml
@@ -29,11 +25,25 @@
 - composer.json
 - compile-styleguide.js
 - compile-sprites.js
-- .gitignore
+- php_errors.log
+- exclude-file.txt
 - .env.example
 - .editorconfig
+- wp/wp-admin/install.php
+
+## Unneeded / Unwanted directories
+
+- nbproject/
 - /cypress
 - /tests
+- CI/
+- node_modules/
+- static_templates/
+- web/doc
+- web/app/plugins/wwp-generator
+- web/app/languages/
+- web/app/uploads/
+- web/wp/wp-content/themes/*
 - vendor/mustache/mustache/test/*
 - vendor/respect/validation/docs/*
 - vendor/respect/validation/tests/*
@@ -44,6 +54,3 @@
 - vendor/wonderwp/framework/tests/*
 - vendor/wonderwp/doc/*
 - vendor/composer/composer/doc/
-- web/doc
-- web/app/plugins/wwp-generator
-- wp/wp-admin/install.php

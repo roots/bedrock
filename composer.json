@@ -6,7 +6,14 @@
     "homepage": "https:\/\/roots.io\/bedrock\/",
     "authors": [{"name": "Jeremy Desvaux", "email": "jeremy.desvaux@wonderful.fr", "homepage": "https:\/\/github.com\/jeremy-wdf"}],
     "keywords": ["bedrock", "roots", "wordpress", "stack", "composer", "vagrant", "wp"],
-    "config": {"preferred-install": {"wonderwp\/*": "source", "agencewonderful\/*": "source", "*": "dist"}, "sort-packages": true},
+    "config": {
+        "preferred-install": {
+            "wonderwp\/*": "source",
+            "agencewonderful\/*": "source",
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "repositories": [
         {"type": "composer", "url": "https:\/\/wpackagist.org"},
         {"type": "composer", "url": "https:\/\/won.wonderful.fr\/satis\/packages-mirror"}
