@@ -5,7 +5,7 @@ const VersionFile             = require('webpack-version-file');
 const webpack                 = require('webpack');
 const CopyWebpackPlugin       = require('copy-webpack-plugin');
 const WebpackBarPlugin        = require('webpackbar');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin    = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserJSPlugin          = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
@@ -30,8 +30,7 @@ const versionFile = new VersionFile({
 
 const providePlugin = new webpack.ProvidePlugin({
     $: 'jquery',
-    jQuery: 'jquery',
-    'window.jQuery': 'jquery'
+    jQuery: 'jquery'
 });
 
 const copyPlugin = new CopyWebpackPlugin([
@@ -150,7 +149,7 @@ module.exports = (env) => {
 
         resolve: {
             alias: {
-                jquery: "jquery/dist/jquery.min.js",
+                "jquery": "jquery/dist/jquery.min.js",
                 "TweenLite": path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
                 "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
                 "BodyMovin": path.resolve('node_modules', 'lottie-web/build/player/lottie.min.js'),
