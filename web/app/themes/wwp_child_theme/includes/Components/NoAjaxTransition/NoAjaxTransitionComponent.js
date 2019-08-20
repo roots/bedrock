@@ -2,12 +2,13 @@ import {PewComponent} from "../../../assets/raw/js/components/pew-component";
 
 export default class NoAjaxTransitionComponent extends PewComponent {
 
-    init(){
+    init() {
         this.element.removeClass('transitionning');
         this.setupTransitionTriggers();
     }
-    setupTransitionTriggers(){
-        $('a').not('.no-transition,.actu-list .pagination a').on('click', (e) => {
+
+    setupTransitionTriggers() {
+        $('a').not('.no-transition,.actu-list .pagination a,.post-edit-link').on('click', (e) => {
             let link = $(e.currentTarget).attr('href');
             if ((
                 link.indexOf(window.location.host) !== -1
