@@ -8,8 +8,9 @@ import Notification from "./DefaultNotification";
  * - RGPD
  * - Vote
  */
-
-$(document).on('notification', (e, showOpts) => {
-    let notif = new Notification();
-    notif.show(showOpts);
+let EventManager = window.EventManager || $(document);
+EventManager.on('notification', (e, showOpts) => {
+  //console.log('notification',showOpts);
+  let notif = new Notification();
+  notif.show(showOpts);
 });
