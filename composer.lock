@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "425ba70a339c5853faff93fb965026f7",
+    "content-hash": "d9d58f107f4f459304f4d4c997b3a3c2",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -337,6 +337,43 @@
                 "issues": "https://github.com/agencewonderful/wwp-faq/issues"
             },
             "time": "2019-08-20T17:06:54+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-generator",
+            "version": "dev-feature/wwp_v2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-generator.git",
+                "reference": "e4aa5b2ce2b23ba1ce31d5ac6c7b10e5eb10fff6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-generator/zipball/e4aa5b2ce2b23ba1ce31d5ac6c7b10e5eb10fff6",
+                "reference": "e4aa5b2ce2b23ba1ce31d5ac6c7b10e5eb10fff6",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-develop@dev",
+                "wp-cli/wp-cli": "^1.1"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\WDFGenerator\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "Generateur de plugin wonderwp",
+            "support": {
+                "source": "https://github.com/agencewonderful/wwp-generator/tree/feature/wwp_v2",
+                "issues": "https://github.com/agencewonderful/wwp-generator/issues"
+            },
+            "time": "2019-08-22T15:47:13+00:00"
         },
         {
             "name": "agencewonderful/wwp-gutenberg-utils",
@@ -4902,16 +4939,16 @@
         },
         {
             "name": "wonderwp/generator-wwp",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wonderwp/Generator.git",
-                "reference": "c016bf28cf79cbd7634d800ad9eff221fdb0af71"
+                "reference": "61012424ea1a13a7bad9686cdc3bae52745b6843"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wonderwp/Generator/zipball/c016bf28cf79cbd7634d800ad9eff221fdb0af71",
-                "reference": "c016bf28cf79cbd7634d800ad9eff221fdb0af71",
+                "url": "https://api.github.com/repos/wonderwp/Generator/zipball/61012424ea1a13a7bad9686cdc3bae52745b6843",
+                "reference": "61012424ea1a13a7bad9686cdc3bae52745b6843",
                 "shasum": ""
             },
             "require": {
@@ -4938,7 +4975,7 @@
                 }
             ],
             "description": "WonderWP Plugin Generator",
-            "time": "2018-10-25T21:26:29+00:00"
+            "time": "2019-08-22T15:45:25+00:00"
         },
         {
             "name": "wonderwp/hook",
@@ -9133,6 +9170,7 @@
         "agencewonderful/wwp-emploi": 20,
         "agencewonderful/wwp-espace-restreint": 20,
         "agencewonderful/wwp-faq": 20,
+        "agencewonderful/wwp-generator": 20,
         "agencewonderful/wwp-gutenberg-utils": 20,
         "agencewonderful/wwp-jeux": 20,
         "agencewonderful/wwp-lazyload": 20,
