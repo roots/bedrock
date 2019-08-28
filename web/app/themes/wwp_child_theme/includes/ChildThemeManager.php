@@ -13,6 +13,7 @@ use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\Service\ServiceInterface;
 use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\Pagination\PaginationComponent;
+use WonderWp\Theme\Child\Controller\ThemePublicController;
 use WonderWp\Theme\Child\Service\ChildThemeHookService;
 use WonderWp\Theme\Child\Service\ChildThemeShortcodeService;
 use WonderWp\Theme\Child\Service\ThemeAssetService;
@@ -36,7 +37,7 @@ class ChildThemeManager extends ThemeManager
 
         //Hooks
         $this->addService(ServiceInterface::HOOK_SERVICE_NAME,function(){
-            return new ChildThemeHookService();
+            return new ChildThemeHookService($this);
         });
         //Routes
         $this->addService(ServiceInterface::ROUTE_SERVICE_NAME,function(){
@@ -44,11 +45,11 @@ class ChildThemeManager extends ThemeManager
         });
         //Assets
         $this->addService(ServiceInterface::ASSETS_SERVICE_NAME,function(){
-            return new ThemeAssetService();
+            return new ThemeAssetService($this);
         });
         //Shortcodes
         $this->addService(ServiceInterface::SHORT_CODE_SERVICE_NAME,function(){
-            return new ChildThemeShortcodeService();
+            return new ChildThemeShortcodeService($this);
         });
 
         $container['wwp.theme.component.card'] = $container->factory(function(){
