@@ -2,8 +2,7 @@
   "name": "roots/bedrock",
   "type": "project",
   "license": "MIT",
-  "description":
-    "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
+  "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
   "homepage": "https://roots.io/bedrock/",
   "authors": [
     {
@@ -19,28 +18,16 @@
   ],
   "keywords": [
     "bedrock",
+    "composer",
     "roots",
     "wordpress",
-    "stack",
-    "composer",
-    "vagrant",
-    "wp"
+    "wp",
+    "wp-config"
   ],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
     "forum": "https://discourse.roots.io/category/bedrock"
   },
-  "config": {
-    "preferred-install": {
-      "pressbooks/*": "source",
-      "*": "dist"
-    },
-    "platform": {
-      "php": "7.1"
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "repositories": [
     {
       "type": "composer",
@@ -49,30 +36,51 @@
   ],
   "require": {
     "php": ">=7.1",
-    "composer/installers": "^1.6",
-    "oscarotero/env": "^1.1",
+    "composer/installers": "^1.7",
+    "vlucas/phpdotenv": "^3.4.0",
+    "oscarotero/env": "^1.2.0",
     "roots/multisite-url-fixer": "^1.1",
     "roots/wordpress": "5.2.2",
-    "roots/wp-password-bcrypt": "^1.0",
-    "tillkruss/redis-cache": "^1.4",
-    "vlucas/phpdotenv": "^2.5"
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.0.0",
+    "tillkruss/redis-cache": "^1.4"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.5",
+    "phpunit/phpunit": "^7",
     "pressbooks/coding-standards": "^1.0",
-    "wpreadme2markdown/wp2md": "^3.0",
-    "mybuilder/phpunit-accelerator": "^2.0"
+    "wpreadme2markdown/wp2md": "^3.0"
   },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": {
+      "pressbooks/*": "source",
+      "*": "dist"
+    },
+    "platform": {
+      "php": "7.1.30"
+    },
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "post-root-package-install": ["php -r \"copy('.env.example', '.env');\""],
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
     "test": [
       "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpunit --configuration web/app/plugins/$PB_PLUGIN/phpunit.xml",
       "@standards"
@@ -85,6 +93,16 @@
     ],
     "readme": [
       "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/wp2md -i web/app/plugins/$PB_PLUGIN/readme.txt -o  web/app/plugins/$PB_PLUGIN/README.md"
+    ],
+    "test-theme": [
+      "PB_THEME=${PB_THEME:-pressbooks-book}; vendor/bin/phpunit --configuration web/app/themes/$PB_THEME/phpunit.xml",
+      "@standards-theme"
+    ],
+    "standards-theme": [
+      "PB_THEME=${PB_THEME:-pressbooks-book}; vendor/bin/phpcs --standard=web/app/themes/$PB_THEME/phpcs.ruleset.xml web/app/themes/$PB_THEME/*.php web/app/themes/$PB_THEME/inc/ web/app/themes/$PB_THEME/bin/"
+    ],
+    "fix-theme": [
+      "PB_THEME=${PB_THEME:-pressbooks-book}; vendor/bin/phpcbf --standard=web/app/themes/$PB_THEME/phpcs.ruleset.xml web/app/themes/$PB_THEME/*.php web/app/themes/$PB_THEME/inc/ web/app/themes/$PB_THEME/bin/"
     ]
   }
 }

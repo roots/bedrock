@@ -12,11 +12,16 @@ web/app/uploads/*
 web/wp
 web/.htaccess
 
+# Logs
+*.log
+
 # Dotenv
 .env
 .env.*
 !.env.example
 
 # Composer
-vendor/*
-!vendor/.gitkeep
+/vendor
+
+# WP-CLI
+wp-cli.local.yml
