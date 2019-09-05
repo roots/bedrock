@@ -1,3 +1,14 @@
+### 1.12.8: 2019-09-05
+
+* Update to WordPress 5.2.3 ([#466](https://github.com/roots/bedrock/pull/466))
+* Remove `phpcs.xml` from `.gitattributes` ([#464](https://github.com/roots/bedrock/pull/464))
+* `ini_set()` fixes ([#463](https://github.com/roots/bedrock/pull/463))
+* Editorconfig updates ([#457](https://github.com/roots/bedrock/pull/457))
+* Bump `composer/installers` ([#462](https://github.com/roots/bedrock/pull/462))
+* Better default composer options ([#456](https://github.com/roots/bedrock/pull/456))
+* Ignore `.log` files ([#440](https://github.com/roots/bedrock/pull/440))
+* Change to CircleCI ([82945d8](https://github.com/roots/bedrock/commit/82945d803d10cb072b7e786e0a81094ccb2d067b), [#460](https://github.com/roots/bedrock/pull/460))
+
 ### 1.12.7: 2019-06-19
 
 * Update to WordPress 5.2.2 ([#444](https://github.com/roots/bedrock/pull/444))
