@@ -1,6 +1,1 @@
-export class AppInit {
-    constructor() {
-        window.pew.enhanceRegistry();
-    }
-}
-new AppInit();
+if(window.pew) { window.pew.enhanceRegistry(); }

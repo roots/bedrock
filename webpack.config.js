@@ -1,17 +1,20 @@
-const path               = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin  = require("extract-text-webpack-plugin");
-const VersionFile        = require('webpack-version-file');
-const webpack            = require('webpack');
-const CopyWebpackPlugin  = require('copy-webpack-plugin');
-const WebpackBarPlugin   = require('webpackbar');
+const path                    = require('path');
+const CleanWebpackPlugin      = require('clean-webpack-plugin');
+const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
+const VersionFile             = require('webpack-version-file');
+const webpack                 = require('webpack');
+const CopyWebpackPlugin       = require('copy-webpack-plugin');
+const WebpackBarPlugin        = require('webpackbar');
+const BundleAnalyzerPlugin    = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserJSPlugin          = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 let assetsFile = './assets.json';
 let assets     = require(assetsFile);
 let versionNum = new Date().getTime();
 let buildDir   = assets.site.prefix + assets.site.assets_dest;
 
-const extractSass = new ExtractTextPlugin({
+const MiniCssExtract = new MiniCssExtractPlugin({
     filename: '[name]' + versionNum + '.css'
 });
 
@@ -25,11 +28,6 @@ const versionFile = new VersionFile({
     templateString: '<?php return ' + versionNum + '; ?>'
 });
 
-const commonChunk = new webpack.optimize.CommonsChunkPlugin({
-    name: "js/vendor",
-    minChunks: Infinity,
-});
-
 const providePlugin = new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery'
@@ -37,8 +35,8 @@ const providePlugin = new webpack.ProvidePlugin({
 
 const copyPlugin = new CopyWebpackPlugin([
     {
-        from: 'critical/critical.js',
-        to: path.resolve(__dirname, buildDir + '/js/critical' + versionNum + '.js')
+        from: 'web/app/themes/wwp_child_theme/assets/raw/js/app_init.js',
+        to: path.resolve(__dirname, buildDir + '/js/init' + versionNum + '.js')
     }
 ]);
 
@@ -49,68 +47,109 @@ const entry = getAssetsEntries();
 module.exports = (env) => {
     env = env || 'development';
 
-    return {
-        entry: entry,
-        devtool: 'source-map',
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: [
-                        /node_modules(?!\/pewjs)/,
-                    ],
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['babel-preset-es2015-ie']
-                        }
-                    }
-                },
-                {
-                    test: /\.scss$/,
-                    exclude: /node_modules/,
-                    use: extractSass.extract({
-                        fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    url: false,
-                                    sourceMap: (env!=='production')
-                                }
-                            }, {
-                                loader: "postcss-loader", options: {
-                                    sourceMap: (env!=='production'),
-                                }
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: {
-                                    sourceMap: (env!=='production'),
-                                }
-                            }
-                        ]
-                    })
-                }
+    let config = {
+        mode: env,
+        stats: "minimal",
+        target: 'web',
+        devtool: env === 'production' ? 'none' : 'source-map',
 
-            ]
-        },
+        entry: entry,
+
         output: {
             filename: '[name]' + versionNum + '.js',
             path: path.resolve(__dirname, buildDir)
         },
+
+        module: {
+            rules: [
+                {
+                    "test": /\.js$/,
+                    "exclude": /node_modules/,
+                    "use": {
+                        "loader": "babel-loader",
+                        "options": {
+                            "presets": [
+                                "env"
+                            ]
+                        }
+                    }
+                },
+                {
+                    test: /\.(sa|sc|c)ss$/,
+                    "use": [
+                        {
+                            // After all CSS loaders we use plugin to do his work.
+                            // It gets all transformed CSS and extracts it into separate
+                            // single bundled file
+                            loader: MiniCssExtractPlugin.loader
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false,
+                                sourceMap: (env !== 'production')
+                            }
+                        }, {
+                            loader: "postcss-loader", options: {
+                                sourceMap: (env !== 'production'),
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: (env !== 'production'),
+                            }
+                        }
+                    ]
+                },
+                {
+                    // Now we apply rule for images
+                    test: /\.(png|jpe?g|gif|svg)$/,
+                    use: [
+                        {
+                            // Using file-loader for these files
+                            loader: "file-loader"
+                        }
+                    ]
+                },
+                {
+                    // Apply rule for fonts files
+                    test: /\.(woff|woff2|ttf|otf|eot)$/,
+                    use: [
+                        {
+                            // Using file-loader too
+                            loader: "file-loader"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        name: 'js/vendor',
+                        chunks: 'initial',
+                        minChunks: 3
+                    }
+                }
+            }
+        },
+
         plugins: [
             copyPlugin,
-            providePlugin,
-            commonChunk,
-            extractSass,
             cleanWebpack,
             versionFile,
+            providePlugin,
+            MiniCssExtract,
+            //new BundleAnalyzerPlugin(),
             webpackBarPlugin
         ],
+
         resolve: {
             alias: {
-                jquery: "jquery/src/jquery",
+                "jquery": "jquery/dist/jquery.min.js",
                 "TweenLite": path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
                 "TweenMax": path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
                 "BodyMovin": path.resolve('node_modules', 'lottie-web/build/player/lottie.min.js'),
@@ -124,10 +163,16 @@ module.exports = (env) => {
                 "barba": path.resolve('node_modules', 'barba.js/dist/barba.min.js')
 
             }
-        },
-        stats: "minimal",
-        target: 'web'
+        }
+    };
+
+    if (env === 'production') {
+        config['optimization']['minimizer'] = [
+            new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})
+        ];
     }
+
+    return config;
 };
 
 function getAssetsEntries() {
@@ -135,7 +180,7 @@ function getAssetsEntries() {
     let entry    = {};
 
     jsAssets.forEach((key) => {
-        if (key !== 'critical') { // critical.js is manually copied in dist
+        if (key !== 'init') { // is manually copied in dist
             let attr    = 'js/' + key;
             entry[attr] = assets.js[key];
         }

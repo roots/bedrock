@@ -1,3 +1,5 @@
-import { Pew } from "pewjs/pew"
+import {Pew} from "pewjs/pew"
+import {EventManager} from "./EventManager";
 
-window.pew = new Pew();
+window.EventManager = new EventManager();
+window.pew          = new Pew();

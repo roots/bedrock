@@ -15,9 +15,9 @@ $version = include($final_path_dir.'/version.php');
 if(defined('FRONT_ENV') && FRONT_ENV==='webpack') {
     ?>
     <script src="<?= $final_path_uri . "/js/vendor". $version; ?>.js"></script>
-    <script src="<?= $final_path_uri . "/js/core". $version; ?>.js"></script>
+    <script src="<?= $final_path_uri . "/js/critical". $version; ?>.js"></script>
     <script src="<?= $final_path_uri . "/js/styleguide". $version; ?>.js"></script>
-    <script src="<?= $final_path_uri . "/js/bootstrap". $version; ?>.js"></script>
+    <script src="<?= $final_path_uri . "/js/init". $version; ?>.js"></script>
     <?php
 } else {
     ?>

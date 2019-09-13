@@ -13,7 +13,7 @@
     ?>
     <?php if (!empty($postThumb)) : ?>
         <div class="post-thumbnail">
-            <?php the_post_thumbnail(); ?>
+            <?php the_post_thumbnail('large',['loading'=>'eager','class'=>'no-lazy']); ?>
         </div><!-- .post-thumbnail -->
     <?php endif; ?>
 

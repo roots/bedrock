@@ -23,6 +23,7 @@ class ChildThemeHookService extends ThemeHookService
         add_action('wp_loaded', [$this, 'setHasCookie']);
         add_filter('jsonAssetsExporter.json', [$this, 'mergeSassFiles']);
         add_filter('body_class', [$this, 'addBodyClassForPostThumb']);
+        add_action('wp_footer', [$this, 'deregisterWpEmbed']);
     }
 
     public function includeMailTemplate($mailBody)
@@ -101,8 +102,16 @@ class ChildThemeHookService extends ThemeHookService
         $featuredImg = is_object($post) ? Medias::getFeaturedImage($post->ID) : null;
         if (!empty($featuredImg)) {
             $classes[] = 'has-post-thumb';
+        } else {
+            $classes[] = 'has-no-post-thumb';
         }
 
         return $classes;
+    }
+
+    public function deregisterWpEmbed()
+    {
+        wp_deregister_script('wp-embed');
+        wp_deregister_script('admin-bar');
     }
 }

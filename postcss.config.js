@@ -5,7 +5,7 @@ module.exports = {
             grid: true
         }
     }
-}
+};
 
 /*
 * See https://github.com/postcss/autoprefixer
