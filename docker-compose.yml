@@ -1,0 +1,45 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - db
+    environment:
+      WP_ENV: development
+      WP_HOME: http://localhost:8000
+      WP_SITEURL: http://localhost:8000/wp
+      DB_NAME: datagov
+      DB_USER: root
+      DB_PASSWORD: mysql-dev-password
+      DB_HOST: db
+    ports:
+      - "9000"
+    volumes:
+      - .:/var/www
+      - composer:/var/www/vendor
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql-dev-password
+      MYSQL_DATABASE: datagov
+    ports:
+      - "3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  nginx:
+    image: nginx
+    ports:
+      - "8000:80"
+    depends_on:
+      - app
+    volumes:
+      - .:/var/www
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  db:
+  composer:

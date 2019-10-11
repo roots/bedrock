@@ -14,6 +14,34 @@ Updating your WordPress version (or any plugin) is just a matter of changing the
 
 Then running `composer update` will pull down the new version.
 
-### Community
+## Community
 
 Most of Data.gov discussions happen at [Data.gov github](https://github.com/gsa/data.gov/issues)
+
+
+## Development
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/install/) v18+
+- [Docker Compose](https://docs.docker.com/compose/) v1.24+
+
+### Setup
+
+Build the docker containers.
+
+    $ docker-compose build
+
+Run the docker containers.
+
+    $ docker-compose up
+
+Activate all the installed plugins and theme.
+
+    $ docker-compose exec app wp core install --url=http://localhost:8000 --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root
+    $ docker-compose exec app wp plugin activate --all --allow-root
+    $ docker-compose exec app wp theme activate roots-nextdatagov --allow-root
+
+Open your browser to [localhost:8000](http://localhost:8000/).
+
+_TODO: initialize the database with seed data so the theme loads properly._
