@@ -28,7 +28,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
     ```sh
     $ composer create-project roots/bedrock
     ```
-2. Update environment variables in the `.env` file:
+2. Update environment variables in the `.env` file. Wrap values that may contain non-alphanumeric characters with quotes, or they may be incorrectly parsed.
   * Database variables
     * `DB_NAME` - Database name
     * `DB_USER` - Database user
