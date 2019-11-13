@@ -38,7 +38,8 @@ Run the docker containers.
 
 Activate all the installed plugins and theme.
 
-    $ docker-compose exec app wp core install --url=http://localhost:8000 --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root
+    $ docker-compose exec app wp core install --url=http://localhost:8000 \
+      --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root
     $ docker-compose exec app wp plugin activate --all --allow-root
     $ docker-compose exec app wp theme activate roots-nextdatagov --allow-root
 
