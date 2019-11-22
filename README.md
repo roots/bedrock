@@ -36,6 +36,10 @@ Run the docker containers.
 
     $ docker-compose up
 
+Install composer dependencies.
+
+    $ docker-compose exec app composer install
+
 Activate all the installed plugins and theme.
 
     $ docker-compose exec app wp core install --url=http://localhost:8000 \
