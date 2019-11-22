@@ -46,3 +46,15 @@ Activate all the installed plugins and theme.
 Open your browser to [localhost:8000](http://localhost:8000/).
 
 _TODO: initialize the database with seed data so the theme loads properly._
+
+### Restoring database dumps
+
+You don't need a database dump for most development tasks. If you need
+a database dump, you can create one following instructions from the
+[Runbook](https://github.com/GSA/datagov-deploy/wiki/Runbook#database-dump).
+
+Once you have the database dump, you can restore it for your local development
+environment.
+
+    $ docker-compose exec -T db mysql -u root -pmysql-dev-password datagov \
+      < <(gzip --to-stdout --decompress databasedump.sql.gz)
