@@ -70,6 +70,17 @@ $menu-item-m1-bgcolor: $gray-200;
             } //3rd level and under
         }
 
+        /*Addon for IE only*/
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            li > a:focus + ul.children,
+            ul.children:focus,
+            ul.children:active {
+                opacity: 1;
+                left: auto;
+            }
+
+        } /*IE 10-11*!*/
+
         li.m0 {
 
             > a {
