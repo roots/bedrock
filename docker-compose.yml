@@ -7,13 +7,22 @@ services:
     depends_on:
       - db
     environment:
-      WP_ENV: development
-      WP_HOME: http://localhost:8000
-      WP_SITEURL: http://localhost:8000/wp
       DB_NAME: datagov
       DB_USER: root
       DB_PASSWORD: mysql-dev-password
       DB_HOST: db
+      WP_CONTENT_PROTOCOL: http
+      WP_ENV: development
+
+      # Development non-secrets
+      AUTH_KEY: test-auth-key
+      AUTH_SALT: test-auth-salt
+      LOGGED_IN_KEY: test-logged-in-key
+      LOGGED_IN_SALT: test-logged-in-salt
+      NONCE_KEY: test-nonce-key
+      NONCE_SALT: test-nonce-salt
+      SECURE_AUTH_KEY: test-secure-auth-eky
+      SECURE_AUTH_SALT: test-secure-auth-salt
     ports:
       - "9000"
     volumes:
