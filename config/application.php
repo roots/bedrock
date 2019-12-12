@@ -150,6 +150,7 @@ if (env('PB_MATHJAX_URL')) {
 }
 define('WP_MEMORY_LIMIT', env('WP_MEMORY_LIMIT') ?: '96M'); // Everywhere
 define('WP_MAX_MEMORY_LIMIT', env('WP_MAX_MEMORY_LIMIT') ?: '256M'); // In the admin
+define('WP_REDIS_DISABLE_BANNERS', true);
 
 /**
  * Bootstrap WordPress
