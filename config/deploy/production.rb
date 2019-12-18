@@ -6,9 +6,6 @@ set :shared_path, "/home/www-data/efs_share/academy.unitedworldwrestling.org/sha
 server "uww-prod-web-4.nine.ch", user: "www-data", roles: %w{web app db}
 server "uww-prod-web-5.nine.ch", user: "www-data", roles: %w{web app db}
 server "uww-prod-web-6.nine.ch", user: "www-data", roles: %w{web app db}
-server "uww-prod-web-7.nine.ch", user: "www-data", roles: %w{web app db}
-server "uww-prod-web-8.nine.ch", user: "www-data", roles: %w{web app db}
-server "uww-prod-web-9.nine.ch", user: "www-data", roles: %w{web app db}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
