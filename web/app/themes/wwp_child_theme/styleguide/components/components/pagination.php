@@ -1,4 +1,4 @@
-<!-- components/molecules/pagination.php -->
+<!-- components/components/pagination.php -->
 <?php
 $container = \WonderWp\Component\DependencyInjection\Container::getInstance();
 $paginationComponent = $container['wwp.theme.component.pagination'];
