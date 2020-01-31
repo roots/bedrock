@@ -6,11 +6,11 @@
  * Time: 16:16
  */
 
-namespace WonderWp\Theme\Child\Components\Video;
+namespace WonderWp\Theme\Child\Components\VideoEmbed;
 
 use WonderWp\Theme\Core\Component\AbstractComponent;
 
-class VideoComponent extends AbstractComponent
+class VideoEmbedComponent extends AbstractComponent
 {
     /**
      * @var string
@@ -29,9 +29,9 @@ class VideoComponent extends AbstractComponent
 
     /**
      * @param string $title
-     * @return VideoComponent
+     * @return VideoEmbedComponent
      */
-    public function setTitle(string $title): VideoComponent
+    public function setTitle(string $title): VideoEmbedComponent
     {
         $this->title = $title;
         return $this;
@@ -39,9 +39,9 @@ class VideoComponent extends AbstractComponent
 
     /**
      * @param string $video
-     * @return VideoComponent
+     * @return VideoEmbedComponent
      */
-    public function setVideo(string $video): VideoComponent
+    public function setVideo(string $video): VideoEmbedComponent
     {
         $this->video = $video;
         return $this;
@@ -49,9 +49,9 @@ class VideoComponent extends AbstractComponent
 
     /**
      * @param string $image
-     * @return VideoComponent
+     * @return VideoEmbedComponent
      */
-    public function setImage(string $image): VideoComponent
+    public function setImage(string $image): VideoEmbedComponent
     {
         $this->image = $image;
         return $this;
@@ -72,7 +72,7 @@ class VideoComponent extends AbstractComponent
 
             $markup .= '<button class="video-trigger"><span>Regarder la vidéo ' . $this->title . '</span></button>
             <div class="video-player" data-video="' . $this->video . '">
- 
+
             </div>';
 
         $markup .= '</div>';

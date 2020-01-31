@@ -1,6 +1,6 @@
 import {PewComponent} from "../../../assets/raw/js/components/pew-component";
 
-export class VideoComponent extends PewComponent {
+export class VideoEmbedComponent extends PewComponent {
     init() {
         this.registerVideoToggle();
     }
@@ -59,4 +59,4 @@ window.onYouTubeIframeAPIReady = function () {
     $(document).trigger("onYouTubeIframeAPIReadyCustom");
 };
 
-window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '[data-video-component]', classDef: VideoComponent});
+window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '[data-video-component]', classDef: VideoEmbedComponent});
