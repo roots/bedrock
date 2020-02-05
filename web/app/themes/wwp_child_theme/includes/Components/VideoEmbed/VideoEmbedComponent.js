@@ -7,8 +7,8 @@ export class VideoEmbedComponent extends PewComponent {
 
     registerVideoToggle() {
 
-        let $imgWrap      = this.element.find('.image-wrapper'),
-            $videoTrigger = this.element.find('.video-trigger');
+        let $imgWrap      = this.element.find('.video-embed-image-wrapper'),
+            $videoTrigger = this.element.find('.video-embed-trigger');
 
         console.log($videoTrigger);
 
