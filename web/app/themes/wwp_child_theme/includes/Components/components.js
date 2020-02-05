@@ -9,3 +9,4 @@ import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
 import "./Tabs/TabsComponent";
 import "./VideoEmbed/VideoEmbedComponent";
+import "./Video/VideoComponent";

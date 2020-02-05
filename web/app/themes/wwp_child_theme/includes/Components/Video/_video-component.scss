@@ -1,0 +1,218 @@
+@charset "UTF-8";
+/* ----------------------------- */
+/* ==Video component      */
+/* ----------------------------- */
+
+//Variables
+$progress-bar-bg: $gray-300;
+$progress-bar-color: $color-primary;
+$video-trigger-color: $color-primary;
+$video-controls-color: $color-primary;
+
+.video-wrapper {
+  @extend .container;
+  @extend .page-content;
+  position: relative;
+  height: 40rem;
+  min-height: 40rem;
+}
+
+.video-trigger,
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+//Video trigger
+a.video-trigger {
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 5rem;
+  text-decoration: none;
+  color: white;
+  background-color: $video-trigger-color;
+  background-size: cover;
+  background-position: center center;
+
+  .video-trigger-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 55px;
+    width: 55px;
+
+    svg {
+      height: 55px;
+      width: 55px;
+    }
+  }
+
+  .title {
+    margin-top: 2rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+//Video player
+.video-player {
+  z-index: 1;
+  margin-bottom: 4rem;
+  background: #000;
+
+  .video {
+    height: 100%;
+    width: 100%;
+  }
+
+  .controls {
+    position: relative;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    height: 58px;
+    width: 100%;
+    padding: 0 3rem;
+    background: $video-controls-color;
+
+    &[data-state=hidden] {
+      display: none;
+    }
+
+    &[data-state=visible] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .controls .buttons {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .progress-wrap {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    height: 10px;
+    width: 100%;
+  }
+
+  progress {
+    display: block;
+    height: 10px;
+    width: 100%;
+    background-color: $progress-bar-bg; //Background bar for all but Webkit
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    appearance: none;
+
+    //Recent browser custom for Firefox
+    &::-moz-progress-bar {
+      background-color: $color-primary;
+    }
+
+    //Recent browser custom for Webkit
+    &::-webkit-progress-value {
+      background-color: $color-primary; //Percentage bar
+    }
+
+    &::-webkit-progress-bar {
+      background-color: $progress-bar-bg; //Background bar
+    }
+
+    //Old browsers fallback
+    &[data-state="fake"] {
+      background: $color-primary;
+    }
+
+    //Custom for Internet Explorer
+    border: none;
+    color: $color-primary;
+
+    span {
+      width: 0%;
+      height: 100%;
+      display: inline-block;
+      background-color: $color-primary;
+    }
+  }
+
+  .left-buttons {
+    display: flex;
+    align-items: center;
+    width: 8rem;
+  }
+
+  //Override buttons base styles
+  button {
+    height: 30px;
+    min-height: 30px;
+    width: 30px;
+    min-width: auto;
+    margin-right: 10px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    border: 0;
+    outline: 0;
+    box-shadow: none !important;
+    font-size: 0; //Hide text (test if better way)
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &[data-state="play"] {
+      @include svgIcon('video-bar-play');
+    }
+
+    &[data-state="pause"] {
+      @include svgIcon('video-bar-pause');
+    }
+
+    &[data-state="unmute"] {
+      @include svgIcon('video-bar-unmute');
+    }
+
+    &[data-state="mute"] {
+      @include svgIcon('video-bar-mute');
+    }
+
+    &[data-state="go-fullscreen"] {
+      @include svgIcon('video-bar-fullscreen');
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+
+  //Show video -> toggle class "is-playing"
+  .video-wrapper.playing {
+
+    .video-player {
+      z-index: 2;
+    }
+  }
+
+}
+
+
+
+
+

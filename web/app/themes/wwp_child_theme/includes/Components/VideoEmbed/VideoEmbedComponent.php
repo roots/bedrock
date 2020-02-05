@@ -64,14 +64,14 @@ class VideoEmbedComponent extends AbstractComponent
 
         $markup = '';
 
-        $markup .= '<div class="video-wrapper" data-video-component>';
+        $markup .= '<div class="video-embed-wrapper" data-video-component>';
 
-            $markup .= '<div class="video-image-wrapper">
+            $markup .= '<div class="video-embed-image-wrapper">
                ' . $this->image . '
             </div>';
 
-            $markup .= '<button class="video-trigger"><span>Regarder la vidéo ' . $this->title . '</span></button>
-            <div class="video-player" data-video="' . $this->video . '">
+            $markup .= '<button class="video-embed-trigger"><span>Regarder la vidéo ' . $this->title . '</span></button>
+            <div class="video-embed-player" data-video="' . $this->video . '">
 
             </div>';
 
