@@ -33,8 +33,8 @@ export class VideoEmbedComponent extends PewComponent {
             $(document).off("onYouTubeIframeAPIReadyCustom");
             $(document).on("onYouTubeIframeAPIReadyCustom", () => {
                 console.log('onYouTubeIframeAPIReadyCustom');
-                console.log(this.element.find('.video-player').data('video'));
-                let $player              = this.element.find('.video-player');
+                console.log(this.element.find('.video-embed-player').data('video'));
+                let $player              = this.element.find('.video-embed-player');
                 window.wonderwp.ytplayer = new YT.Player($player[0], {
                     videoId: $player.data('video')
                 });
