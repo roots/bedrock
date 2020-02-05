@@ -1,7 +1,7 @@
 <!-- components/components/video_native.php -->
 <?php
 
-/*$video = new \WonderWp\Theme\Child\Components\Video\VideoComponent();
+$video = new \WonderWp\Theme\Child\Components\Video\VideoComponent();
 
 $video
     ->setTitle('Titre de la video')
@@ -11,4 +11,4 @@ $video
     ->setVideoWebm('/app/themes/wwp_child_theme/assets/raw/videos/clown.webm')
     ;
 
-echo $video->getMarkup();*/
+echo $video->getMarkup();
