@@ -1,152 +1,227 @@
 @charset "UTF-8";
-/**
- *	Card
- */
+/**************************
+ * Cards - global styles
+ *************************/
 
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid $gray-300;
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $gray-300;
+
+  a {
+    text-decoration: none;
+  }
+
+  .img-wrap {
+    position: relative;
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
 
     a {
-        text-decoration: none;
-    }
-
-    .image-wrapper {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .content {
-        flex-grow: 1;
-        margin-top: 2rem;
-        padding-right: 4rem;
-        padding-left: 4rem;
+      position: relative;
+      display: block;
+      height: 100%;
+      width: 100%;
     }
 
     img {
-        float: none;
-        min-height: 100%;
-        width: 100%;
-        min-width: 100%;
-        margin: 0;
-        transform-origin: center 100%;
-        transition: all .4s;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      float: none;
+      min-height: 100%;
+      width: auto;
+      min-width: 100%;
+      max-width: none;
+      margin: 0;
+      transform: translate(-50%, -50%);
+      transform-origin: center center;
+    }
+  }
+
+  .card-block {
+    flex-grow: 1;
+    width: 100%;
+    padding: 3rem;
+  }
+
+  .card-title {
+    @extend .h3-like;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .card-date {
+    @extend .tag--primary;
+    color: $white;
+    float: right;
+    margin-bottom: 2rem;
+  }
+
+  ul.card-categories {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      @extend .tag;
+      margin: 0 1rem 1rem 0;
+    }
+  }
+
+  .card-text {
+    clear: both;
+  }
+
+  .card-readmore-link {
+    @extend .btn;
+    display: flex;
+    max-width: 130px; //Suppimer quand clés de trad sont OK
+    margin: 2rem auto;
+    justify-content: center;
+  }
+
+  .post-author {
+    margin-bottom: 2rem;
+  }
+
+  ul.post-moderation {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+
+    li .btn {
+      @extend .tag--primary;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    margin-top: 2rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  button, .btn {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /*Options*/
+
+  &.reverse {
+
+    .image-wrapper {
+      order: 1;
     }
 
     button, .btn {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &.two-cols {
+
+    a {
+      flex-direction: row;
+      @include grid(2);
     }
 
-    &.reverse {
-
-        .image-wrapper {
-            order: 1;
-        }
-
-        button, .btn {
-            margin-bottom: 2rem;
-        }
+    .image-wrapper {
+      width: auto;
+      grid-row: auto/span 2;
     }
 
-    &.two-cols {
+    .btn {
+      justify-self: center;
+    }
+  }
 
-        a {
-            flex-direction: row;
-            @include grid(2);
-        }
+  &.inline {
 
-        .image-wrapper {
-            width: auto;
-            grid-row: auto/span 2;
-        }
-
-        .btn {
-            justify-self: center;
-        }
+    a {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 0;
     }
 
-    &.inline {
-
-        a {
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 0;
-        }
-
-        a > * {
-            margin: 0 2rem;
-        }
-
-        .content {
-            flex-grow: initial;
-            margin-top: 0;
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-
-        .btn {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
+    a > * {
+      margin: 0 2rem;
     }
 
-    @media (max-width: $medium) {
-
-        .content {
-            padding-right: 2rem;
-            padding-left: 2rem;
-        }
-
-        h3 {
-            font-size: 2.5rem;
-        }
-
-        button, .btn {
-            margin-top: 2rem;
-            margin-bottom: 2rem;;
-        }
+    .content {
+      flex-grow: initial;
+      margin-top: 0;
     }
 
-    @media (max-width: $medium - 1) {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 3rem;
+    p {
+      margin-bottom: 0;
     }
+
+    .btn {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: $medium) {
+
+    .content {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+    }
+
+    button, .btn {
+      margin-top: 2rem;
+      margin-bottom: 2rem;;
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
 }
 
 .wrapper-image-large {
-    width: 60%;
-    border-bottom: none !important;
-    overflow: hidden;
+  width: 60%;
+  border-bottom: none !important;
+  overflow: hidden;
 
-    .cta-image, .cta-image img {
-        min-height: 100%;
-        width: auto;
-        min-width: 100%;
-        max-width: none;
-        margin-bottom: 0;
+  .cta-image, .cta-image img {
+    min-height: 100%;
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  + .cta-text {
+    width: 40%;
+
+    &::before {
+      margin-top: 0;
+      margin-bottom: 2vw;
     }
+  }
+
+  @media (max-width: $medium - 1) {
+    width: 100%;
+    margin-bottom: 0 !important;
 
     + .cta-text {
-        width: 40%;
-        &::before {
-            margin-top: 0;
-            margin-bottom: 2vw;
-        }
+      width: 100%;
     }
-
-    @media (max-width: $medium - 1) {
-        width: 100%;
-        margin-bottom: 0 !important;
-
-        + .cta-text {
-            width: 100%;
-        }
-    }
+  }
 }
