@@ -9,21 +9,30 @@
 namespace WonderWp\Theme\Child\Components\VideoEmbed;
 
 use WonderWp\Theme\Core\Component\AbstractComponent;
+use WonderWp\Plugin\GutenbergUtils\Bloc\Annotation\Block;
+use WonderWp\Plugin\GutenbergUtils\Bloc\Annotation\BlockAttributes;
 
+/**
+ * @Block(title="Video embed")
+ *
+ */
 class VideoEmbedComponent extends AbstractComponent
 {
     /**
      * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Titre"})
      */
     protected $title;
 
     /**
      * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp embed"})
      */
     protected $video; // Youtube ID
 
     /**
      * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Image"})
      */
     protected $image;
 

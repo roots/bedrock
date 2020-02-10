@@ -9,21 +9,45 @@
 namespace WonderWp\Theme\Child\Components\Video;
 
 use WonderWp\Theme\Core\Component\AbstractComponent;
+use WonderWp\Plugin\GutenbergUtils\Bloc\Annotation\Block;
+use WonderWp\Plugin\GutenbergUtils\Bloc\Annotation\BlockAttributes;
 
+/**
+ * @Block(title="Video native")
+ *
+ */
 class VideoComponent extends AbstractComponent
 {
-    /** @var string */
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Titre"})
+     */
     protected $title;
 
-    /** @var string */
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp mp4"})
+     */
     protected $videoMp4;
 
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp ogg"})
+     */
     /** @var string */
     protected $videoOgg;
 
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp webm"})
+     */
     /** @var string */
     protected $videoWebm;
 
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Image"})
+     */
     /** @var string */
     protected $image;
 
