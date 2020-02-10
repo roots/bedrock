@@ -2,98 +2,15 @@
 /* ----------------------------- */
 /* ==Video component      */
 /* ----------------------------- */
+
+@import "../Video/video-commons";
+
+//Variables
 $video-height: 450px;
 
 /*For Atomic only*/
 .atoms-main #video-container {
   max-width: $large;
-}
-
-.video-embed-wrapper {
-  position: relative;
-  height: $video-height;
-  display: block;
-
-  span {
-    @extend .visually-hidden;
-  }
-}
-
-.video-embed-image-wrapper {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-    transition: all .4s;
-  }
-
-  img {
-    @include absolute-center;
-    z-index: 1;
-    min-height: 100%;
-    width: auto !important;
-    min-width: 100%;
-    max-width: none;
-    opacity: 1;
-    transition: all .4s;
-  }
-}
-
-.video-embed-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.video-embed-trigger {
-  @include absolute-center;
-  z-index: 3;
-  display: block;
-  height: 53px;
-  min-height: 53px;
-  width: 53px;
-  padding: 0;
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  appearance: none;
-  background-color: transparent;
-  transition: all .4s;
-
-  &::after {
-    @include svgIcon('play');
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all .4s;
-  }
-
-  &:hover,
-  &:focus {
-    &::after {
-      transform: scale(1.5);
-    }
-  }
 }
 
 /*Animations*/

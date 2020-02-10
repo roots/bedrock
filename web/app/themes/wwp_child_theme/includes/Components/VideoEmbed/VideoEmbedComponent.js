@@ -16,7 +16,7 @@ export class VideoEmbedComponent extends PewComponent {
 
             $videoTrigger.on('click', (e) => {
                 e.preventDefault();
-                console.log('click');
+                //console.log('click');
                 if (this.element.hasClass('video-active')) {
                     this.element.removeClass('video-active');
                     if (window.wonderwp.ytplayer) {
@@ -32,8 +32,8 @@ export class VideoEmbedComponent extends PewComponent {
 
             $(document).off("onYouTubeIframeAPIReadyCustom");
             $(document).on("onYouTubeIframeAPIReadyCustom", () => {
-                console.log('onYouTubeIframeAPIReadyCustom');
-                console.log(this.element.find('.video-embed-player').data('video'));
+                //console.log('onYouTubeIframeAPIReadyCustom');
+                //console.log(this.element.find('.video-embed-player').data('video'));
                 let $player              = this.element.find('.video-embed-player');
                 window.wonderwp.ytplayer = new YT.Player($player[0], {
                     videoId: $player.data('video')
@@ -41,7 +41,7 @@ export class VideoEmbedComponent extends PewComponent {
             });
 
             if (!document.getElementById('yt-iframe-lib')) {
-                console.log('yt-iframe-lib');
+                //console.log('yt-iframe-lib');
                 let tag            = document.createElement('script');
                 tag.id             = 'yt-iframe-lib';
                 tag.src            = 'https://www.youtube.com/iframe_api';
@@ -59,4 +59,4 @@ window.onYouTubeIframeAPIReady = function () {
     $(document).trigger("onYouTubeIframeAPIReadyCustom");
 };
 
-window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '[data-video-component]', classDef: VideoEmbedComponent});
+window.pew.addRegistryEntry({key: 'video-embed', domSelector: '[data-video-embed-component]', classDef: VideoEmbedComponent});

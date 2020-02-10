@@ -3,79 +3,25 @@
 /* ==Video component      */
 /* ----------------------------- */
 
+@import "video-commons";
+
 //Variables
 $progress-bar-bg: $gray-300;
 $progress-bar-color: $color-primary;
 $video-trigger-color: $color-primary;
 $video-controls-color: $color-primary;
 
-.video-wrapper {
-  @extend .container;
-  @extend .page-content;
-  position: relative;
-  height: 40rem;
-  min-height: 40rem;
-}
-
-.video-trigger,
-.video-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-//Video trigger
-a.video-trigger {
-  z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 5rem;
-  text-decoration: none;
-  color: white;
-  background-color: $video-trigger-color;
-  background-size: cover;
-  background-position: center center;
-
-  .video-trigger-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 55px;
-    width: 55px;
-
-    svg {
-      height: 55px;
-      width: 55px;
-    }
-  }
-
-  .title {
-    margin-top: 2rem;
-    font-size: 2rem;
-    text-align: center;
-  }
-}
-
 //Video player
 .video-player {
-  z-index: 1;
-  margin-bottom: 4rem;
-  background: #000;
 
   .video {
-    height: 100%;
-    width: 100%;
+/*    height: 100%;
+    width: 100%;*/
   }
 
   .controls {
     position: relative;
-    display: none;
+    //display: none;
     justify-content: space-between;
     align-items: center;
     height: 58px;

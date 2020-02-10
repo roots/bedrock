@@ -64,21 +64,25 @@ class VideoEmbedComponent extends AbstractComponent
 
         $markup = '';
 
-        $markup .= '<div class="video-embed-wrapper" data-video-component>';
+        $markup .= '<div class="video-embed-wrapper" data-video-embed-component>';
 
-            $markup .= '<div class="video-embed-image-wrapper">
-               ' . $this->image . '
-            </div>';
+            if (!empty($this->image)) {
+                $markup .= '<div class="video-embed-image-wrapper">
+                   ' . $this->image . '
+                </div>';
+            }
 
-            $markup .= '<button class="video-embed-trigger"><span>Regarder la vidéo ' . $this->title . '</span></button>
+            $markup .= '<button class="video-embed-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>
+
             <div class="video-embed-player" data-video="' . $this->video . '">
 
             </div>';
 
-        $markup .= '</div>';
+        $markup .= '</div>'; /*.video-embed-wrapper*/
 
 
         return $markup;
     }
 
 }
+

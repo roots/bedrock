@@ -1,8 +1,6 @@
 <!-- components/components/video_embed.php -->
 <?php
 
-use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
-
 $video = new WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent();
 
 $video

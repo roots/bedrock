@@ -7,8 +7,8 @@ export class VideoComponent extends PewComponent {
   }
 
   registerPlayerControls() {
-    initVideoPlayer(this.element);
+    initVideoPlayer(this.element.find('.video-player'));
   }
 }
 
-window.pew.addRegistryEntry({key: 'video-component', domSelector: '.video-wrapper', classDef: VideoComponent});
+window.pew.addRegistryEntry({key: 'video-component', domSelector: '[data-video-native-component]', classDef: VideoComponent});

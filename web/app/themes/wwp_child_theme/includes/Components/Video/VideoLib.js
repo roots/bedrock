@@ -22,7 +22,7 @@ export const initVideoPlayer = function($videoWrapper) {
     var progressBar = $videoWrapper.find('.progress-bar')[0];
     var fullscreen = $videoWrapper.find('.fs')[0];
 
-    console.log(playpause,stop,mute,progress,progressBar,fullscreen);
+    //console.log(playpause,stop,mute,progress,progressBar,fullscreen);
 
     // Check if the browser supports the Fullscreen API
     var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);

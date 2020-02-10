@@ -94,21 +94,19 @@ class VideoComponent extends AbstractComponent
         $playerWrapId = 'video-player-wrap-' . $index;
 
         $markup = '
-        <div class="video-wrapper">
+        <div class="video-wrapper" data-video-native-component>';
 
-            <a href="#' . $playerWrapId . '" class="video-trigger" ' . (!empty($this->image) ? 'style="background-image: url(' . $this->image . ')' : '') . '">
+        if (!empty($this->image)) {
+            $markup .= '<div class="video-image-wrapper">
+                <img src="' . $this->image . '" alt="">
+            </div>';
+        }
 
-                <div class="video-trigger-content">';
-
-        $markup .= getSvgIcon('play') .
-            '    </div>';
-
-        $markup .= '
-            </a>';
+        $markup .= '<button class="video-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>';
 
         $markup .= '
         <div class="video-player-wrap" id="' . $playerWrapId . '">
-            <div class="video-player">
+            <div class="video-player" id="' . $playerWrapId . '">
 
                <video class="video" width="780" height="440" ' . (!empty($this->image) ? 'poster="' . $this->image . '"' : '') . '>';
         if (!empty($this->videoMp4)) {
@@ -124,7 +122,7 @@ class VideoComponent extends AbstractComponent
                     ' . trad('no_video_support.trad', WWP_THEME_TEXTDOMAIN) . '
                 </video>
 
-                <div id="video-controls" class="controls">
+                <div class="video-controls controls">
                    <div class="progress-wrap">
                       <progress class="progress" value="0" max="100">
                          <span class="progress-bar"></span>
@@ -136,16 +134,16 @@ class VideoComponent extends AbstractComponent
                          <button class="mute" type="button" data-state="unmute">Mute/Unmute</button>
                      </div>
                     <button class="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
-                    <button id="stop" type="button" data-state="stop">Stop</button>
-                    <button id="volinc" type="button" data-state="volup">Vol+</button>
-                    <button id="voldec" type="button" data-state="voldown">Vol-</button>
+                    <button class="stop" type="button" data-state="stop">Stop</button>
+                    <button class="volinc" type="button" data-state="volup">Vol+</button>
+                    <button class="voldec" type="button" data-state="voldown">Vol-</button>
                     </div>
                 </div>
 
             </div>
         </div>';
 
-        $markup .= '</div>';
+        $markup .= '</div>';/*.video-wrapper*/
 
         return $markup;
     }
