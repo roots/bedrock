@@ -7,8 +7,7 @@
 $video-height: 450px;
 
 //Video wrapper
-.video-wrapper,
-.video-embed-wrapper {
+.video-wrapper {
   position: relative;
   height: $video-height;
   display: block;
@@ -19,8 +18,7 @@ $video-height: 450px;
 }
 
 //Video trigger
-.video-trigger,
-.video-embed-trigger {
+.video-trigger {
   @include absolute-center;
   z-index: 3;
   display: block;
@@ -52,8 +50,7 @@ $video-height: 450px;
 }
 
 //Video image wrapper
-.video-image-wrapper,
-.video-embed-image-wrapper {
+.video-image-wrapper {
   position: relative;
   z-index: 2;
   height: 100%;
@@ -78,8 +75,7 @@ $video-height: 450px;
     @include absolute-center;
     z-index: 1;
     min-height: 100%;
-    width: auto !important;
-    min-width: 100%;
+    min-width: fit-content;
     max-width: none;
     opacity: 1;
     transition: all .4s;
@@ -87,16 +83,37 @@ $video-height: 450px;
 }
 
 //Video player
-.video-player,
-.video-embed-player {
+.video-player {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  animation: all .6s;
 
   iframe {
     width: 100%;
     height: 100%;
+  }
+}
+
+//Animations
+.video-wrapper {
+
+  &:hover,
+  &:focus {
+    .video-image-wrapper::after {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &.video-active {
+
+    .video-player {
+      z-index: 4;
+      opacity: 1;
+    }
   }
 }

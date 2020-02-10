@@ -7,8 +7,8 @@ export class VideoEmbedComponent extends PewComponent {
 
     registerVideoToggle() {
 
-        let $imgWrap      = this.element.find('.video-embed-image-wrapper'),
-            $videoTrigger = this.element.find('.video-embed-trigger');
+        let $imgWrap      = this.element.find('.video-image-wrapper'),
+            $videoTrigger = this.element.find('.video-trigger');
 
         console.log($videoTrigger);
 
@@ -34,7 +34,7 @@ export class VideoEmbedComponent extends PewComponent {
             $(document).on("onYouTubeIframeAPIReadyCustom", () => {
                 //console.log('onYouTubeIframeAPIReadyCustom');
                 //console.log(this.element.find('.video-embed-player').data('video'));
-                let $player              = this.element.find('.video-embed-player');
+                let $player              = this.element.find('.video-player');
                 window.wonderwp.ytplayer = new YT.Player($player[0], {
                     videoId: $player.data('video')
                 });
@@ -59,4 +59,4 @@ window.onYouTubeIframeAPIReady = function () {
     $(document).trigger("onYouTubeIframeAPIReadyCustom");
 };
 
-window.pew.addRegistryEntry({key: 'video-embed', domSelector: '[data-video-embed-component]', classDef: VideoEmbedComponent});
+window.pew.addRegistryEntry({key: 'video-wrapper', domSelector: '[data-video-embed-component]', classDef: VideoEmbedComponent});

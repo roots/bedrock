@@ -90,7 +90,7 @@ class VideoComponent extends AbstractComponent
     public function getMarkup(array $opts = [])
     {
 
-        $index        = !empty($opts['index']) ? $opts['index'] : 0;
+        $index = !empty($opts['index']) ? $opts['index'] : 0;
         $playerWrapId = 'video-player-wrap-' . $index;
 
         $markup = '
@@ -102,7 +102,7 @@ class VideoComponent extends AbstractComponent
             </div>';
         }
 
-        $markup .= '<button class="video-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>';
+        $markup .= '<button class="video-trigger"><span>' . trad('video.play.label', WWP_THEME_TEXTDOMAIN) . ' ' . $this->title . '</span></button>';
 
         $markup .= '
         <div class="video-player-wrap" id="' . $playerWrapId . '">
@@ -133,10 +133,12 @@ class VideoComponent extends AbstractComponent
                          <button class="playpause" type="button" data-state="play">Play/Pause</button>
                          <button class="mute" type="button" data-state="unmute">Mute/Unmute</button>
                      </div>
-                    <button class="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
-                    <button class="stop" type="button" data-state="stop">Stop</button>
-                    <button class="volinc" type="button" data-state="volup">Vol+</button>
-                    <button class="voldec" type="button" data-state="voldown">Vol-</button>
+                     <div class="right-buttons">
+                        <button class="stop" type="button" data-state="stop">Stop</button>
+                        <button class="volinc" type="button" data-state="volup">Vol+</button>
+                        <button class="voldec" type="button" data-state="voldown">Vol-</button>
+                        <button class="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
+                     </div>
                     </div>
                 </div>
 

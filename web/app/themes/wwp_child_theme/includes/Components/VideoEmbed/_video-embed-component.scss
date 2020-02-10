@@ -6,29 +6,8 @@
 @import "../Video/video-commons";
 
 //Variables
-$video-height: 450px;
+$video-height: 436px;
 
-/*For Atomic only*/
-.atoms-main #video-container {
-  max-width: $large;
+.video-wrapper {
+  height: $video-height;
 }
-
-/*Animations*/
-.video-embed-wrapper {
-
-  &:hover,
-  &:focus {
-    .video-embed-image-wrapper::after {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  &.video-active {
-    .video-embed-image-wrapper,
-    .video-embed-trigger {
-      display: none;
-    }
-  }
-}
-
-

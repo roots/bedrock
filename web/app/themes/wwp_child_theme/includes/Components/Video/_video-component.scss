@@ -6,25 +6,25 @@
 @import "video-commons";
 
 //Variables
+$video-height: 440px;
+$video-controls-height: 60px;
 $progress-bar-bg: $gray-300;
 $progress-bar-color: $color-primary;
 $video-trigger-color: $color-primary;
 $video-controls-color: $color-primary;
 
+.video-wrapper {
+  height: $video-height;
+}
+
 //Video player
 .video-player {
 
-  .video {
-/*    height: 100%;
-    width: 100%;*/
-  }
-
   .controls {
     position: relative;
-    //display: none;
     justify-content: space-between;
     align-items: center;
-    height: 58px;
+    height: $video-controls-height;
     width: 100%;
     padding: 0 3rem;
     background: $video-controls-color;
@@ -38,14 +38,6 @@ $video-controls-color: $color-primary;
       justify-content: space-between;
       align-items: center;
     }
-  }
-
-  .controls .buttons {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
   }
 
   .progress-wrap {
@@ -97,17 +89,29 @@ $video-controls-color: $color-primary;
     }
   }
 
-  .left-buttons {
+  .controls .buttons {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .controls .left-buttons {
     display: flex;
     align-items: center;
-    width: 8rem;
+  }
+
+  .controls .right-buttons {
+    display: flex;
+    align-items: center;
   }
 
   //Override buttons base styles
   button {
-    height: 30px;
-    min-height: 30px;
-    width: 30px;
+    height: 26px;
+    min-height: 26px;
+    width: 26px;
     min-width: auto;
     margin-right: 10px;
     padding: 0;
@@ -130,6 +134,10 @@ $video-controls-color: $color-primary;
       @include svgIcon('video-bar-pause');
     }
 
+    &[data-state="stop"] {
+      @include svgIcon('video-bar-stop');
+    }
+
     &[data-state="unmute"] {
       @include svgIcon('video-bar-unmute');
     }
@@ -142,22 +150,20 @@ $video-controls-color: $color-primary;
       @include svgIcon('video-bar-fullscreen');
     }
 
+    &[data-state="volup"] {
+      @include svgIcon('video-bar-volup');
+    }
+
+    &[data-state="voldown"] {
+      @include svgIcon('video-bar-voldown');
+    }
+
     &:hover,
     &:focus {
       opacity: 0.5;
     }
   }
-
-  //Show video -> toggle class "is-playing"
-  .video-wrapper.playing {
-
-    .video-player {
-      z-index: 2;
-    }
-  }
-
 }
-
 
 
 

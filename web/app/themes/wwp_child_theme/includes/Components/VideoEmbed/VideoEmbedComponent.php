@@ -62,19 +62,17 @@ class VideoEmbedComponent extends AbstractComponent
     public function getMarkup(array $opts = [])
     {
 
-        $markup = '';
-
-        $markup .= '<div class="video-embed-wrapper" data-video-embed-component>';
+        $markup = '<div class="video-wrapper" data-video-embed-component>';
 
             if (!empty($this->image)) {
-                $markup .= '<div class="video-embed-image-wrapper">
+                $markup .= '<div class="video-image-wrapper">
                    ' . $this->image . '
                 </div>';
             }
 
-            $markup .= '<button class="video-embed-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>
+            $markup .= '<button class="video-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>
 
-            <div class="video-embed-player" data-video="' . $this->video . '">
+            <div class="video-player" data-video="' . $this->video . '">
 
             </div>';
 
