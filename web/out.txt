@@ -1,0 +1,50 @@
+ffmpeg version 4.2.2-0york0~16.04 Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 5.4.0 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 20160609
+  configuration: --prefix=/usr --extra-version='0york0~16.04' --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/vagrant/academy/web/app/plugins/spreebie-transcoder/includes/test/test_vid.mp4':
+  Metadata:
+    major_brand     : M4V 
+    minor_version   : 512
+    compatible_brands: isomiso2avc1
+    title           : VIDEO0092
+    artist          : MacX Free MP4 Video Converter
+    encoder         : Lavf55.19.104
+    genre           : Video
+  Duration: 00:00:39.21, start: 0.000000, bitrate: 901 kb/s
+    Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p, 720x408 [SAR 136:135 DAR 16:9], 765 kb/s, 23.98 fps, 23.98 tbr, 24k tbn, 47.95 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[swscaler @ 0x55b2131d7ec0] deprecated pixel format used, make sure you did set range correctly
+Output #0, image2, to '/vagrant/academy/web/app/plugins/spreebie-transcoder/includes/test/test_vid.mp4.jpg':
+  Metadata:
+    major_brand     : M4V 
+    minor_version   : 512
+    compatible_brands: isomiso2avc1
+    title           : VIDEO0092
+    artist          : MacX Free MP4 Video Converter
+    genre           : Video
+    encoder         : Lavf58.29.100
+    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 720x408 [SAR 136:135 DAR 16:9], q=2-31, 200 kb/s, 23.98 fps, 23.98 tbn, 23.98 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc58.54.100 mjpeg
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
+frame=    1 fps=0.0 q=4.2 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=0.0842x    
+video:16kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
