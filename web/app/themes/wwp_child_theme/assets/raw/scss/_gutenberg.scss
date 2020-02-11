@@ -1,0 +1,128 @@
+/* ----------------------------- */
+/* ==Gutenberg overrides      */
+/* ----------------------------- */
+
+/*Gouttière*/
+$gutter-col-width: 16px !default; //Gouttière de base
+
+//Columns mobile first
+.wp-block-columns {
+  width: 100%;
+}
+
+//Column mobile first
+.wp-block-column {
+  flex-basis: 100%;
+
+  .wp-block-image .alignleft {
+    float: none;
+    margin-right: 0 !important;
+  }
+
+  .wp-block-image img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+/*
+* Responsive
+*/
+
+@media (min-width: 782px) { //782px Gutenberg Breakpoint
+
+  // Grande gouttière
+  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} * 4);
+  }
+
+  // Petite gouttière
+  .wp-block-columns.gutter-s .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width});
+  }
+
+  // Sans gouttière
+  .wp-block-columns.no-gutter .wp-block-column:nth-child(even) {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 600px) { //600px Gutenberg Breakpoint
+
+  .wp-block-columns {
+    flex-wrap: nowrap;
+  }
+
+  .wp-block-column {
+    flex-basis: calc(50% - #{$gutter-col-width});
+    flex-grow: 0;
+  }
+
+  // Gouttière
+  .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} * 2);
+  }
+}
+
+@media (max-width: $large) {
+
+  //Colonnes full width
+  .wp-block-column.col-full-large {
+    flex-basis: 100% !important;
+    margin-left: 0;
+  }
+
+  //Colonnes masquées
+  .wp-block-column.col-no-large {
+    flex-basis: 0 !important;
+  }
+}
+
+@media (max-width: $medium) {
+
+  //Colonnes full width
+  .wp-block-column.col-full-medium {
+    flex-basis: 100% !important;
+    margin-left: 0;
+  }
+
+  //Colonnes masquées
+  .wp-block-column.col-no-medium {
+    flex-basis: 0 !important;
+  }
+}
+
+/*Mobile : on passe sur 1 seule colone*/
+@media (max-width: 599px) {
+
+  .wp-block-columns {
+    display: block;
+  }
+
+  .wp-block-column {
+
+    &.prm,
+    &.prl,
+    &.prxl {
+      padding-right: 0;
+    }
+
+    &.plm,
+    &.pll,
+    &.plxl {
+      padding-left: 0;
+    }
+
+    /*Attention : on décallage toutes les images sur la droite!*/
+    .wp-block-image img {
+      width: calc(100% + 3rem);
+      max-width: none;
+      margin-right: -3rem;
+    }
+    /*Sur la gauche*/
+    /*    .wp-block-image.size-large img {
+          margin-right: 0;
+          margin-left: -3rem;
+        }*/
+  }
+}

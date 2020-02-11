@@ -10,10 +10,12 @@ $verytiny           : 320px !default;
 $tiny               : 480px !default;
 $small              : 576px !default; // grid-small
 $medium             : 768px !default; // Mobile <768px .container-xs
-$large              : 992px !default; // .container-s
-$very-large         : 1200px !default; // .container
+$large              : 960px !default; // .container
+$very-large         : 1200px !default;
 $extra-large        : 1280px !default; // .container-l
 $extra-extra-large  : 1440px !default; // .container-xl
+
+$gutter: 16px;
 
 // ----------
 // Fonts zone
@@ -209,14 +211,14 @@ $table-footer-background    : transparent !default;
 // Components: buttons, badges, alerts color variants list
 // Convention is: name - background-color - color - border
 $variants-list: (
-        (primary,    $color-primary,    $white,    none),
-        (success,    $color-success,    $white,    none),
-        (info,       $color-info,       $black,    none),
-        (warning,    $color-warning,    $black,    none),
-        (danger,     $color-danger,     $white,    none),
-        (error,      $color-error,      $white,    none),
-        (inverse,    $color-inverse,    $white,    none),
-        (ghost,      $color-ghost,      $white,    0 0 0 1px $white inset)
+        (primary,    $color-primary,    $white,    0 0 0 2px $color-primary inset),
+        (success,    $color-success,    $white,    0 0 0 2px $color-success inset),
+        (info,       $color-info,       $white,    0 0 0 2px $color-info inset),
+        (warning,    $color-warning,    $white,    0 0 0 2px $color-warning inset),
+        (danger,     $color-danger,     $white,    0 0 0 2px $color-danger inset),
+        (error,      $color-error,      $white,    0 0 0 2px $color-error inset),
+        (inverse,    $color-inverse,    $white,    0 0 0 2px $color-inverse inset),
+        (ghost,      $color-ghost,      $white,    0 0 0 2px $color-ghost inset)
 ) !default;
 $button-height         : 60px !default;
 $button-height-small   : 50px !default;

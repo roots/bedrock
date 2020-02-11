@@ -1,22 +1,101 @@
 /* scss/atoms/_buttons.scss */
 
+/* Variables */
+/* ------------- */
+$btn-height: 50px !default;
+$btn-small-height: 36px !default;
+$btn-large-height: 60px !default;
+
+/* ------------- */
+
 %btn {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  min-height: $button-height;
-}
+  height: $btn-height; //IE11
+  min-height: $btn-height;
+  padding: 0 3.5rem;
+  font-size: 1.3rem;
+  font-weight: $weight-bold;
+  line-height: 1.2;
+  transition: all .4s;
 
-.btn,
-.button {
-  &--small {
-    min-height: $button-height-small;
+  &.btn--small,
+  &.button--small {
+    height: $btn-small-height;
+    min-height: $btn-small-height;
+    padding-right: 0 2.5rem;
+    font-size: .8em;
   }
 
-  &--big {
-    min-height: $button-height-large;
+  &.btn--big,
+  &.button--big {
+    height: $btn-large-height;
+    min-height: $btn-large-height;
+    font-size: 1.1em;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: $tiny) {
+    width: 100%;
+    white-space: normal;
   }
 }
 
 a.btn {
   text-decoration: none;
+}
+
+.btn,
+.button {
+  color: white;
+  background-color: $color-primary;
+  box-shadow: 0 0 0 2px $color-primary inset;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $color-primary;
+    background-color: white;
+  }
+}
+
+.btn,
+.button {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend %btn;
+      background-color: $background-color;
+      color: $color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: $background-color;
+        background-color: $color;
+      }
+    }
+  }
+}
+
+.entry-content .btn {
+  margin-top: 3rem;
+}
+
+// Button wrapper : add margin and centering
+// --------------------------------------------------
+
+.btn-wrapper {
+  position: relative;
+  text-align: center;
+  min-height: 10rem;
+
+  .btn {
+    @include absolute-center;
+  }
 }

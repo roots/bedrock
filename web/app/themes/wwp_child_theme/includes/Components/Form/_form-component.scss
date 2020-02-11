@@ -79,6 +79,7 @@ form {
     font-size: 1.8rem;
     letter-spacing: 0;
     color: $placeholder-color;
+    line-height: normal; // Vertical center for iOS
   }
 
   textarea {
@@ -108,6 +109,7 @@ form {
 // Custom SELECT with Selectric
 .selectric-wrapper {
   position: relative;
+  top: -1px;
 
   .selectric {
     display: flex;
@@ -186,6 +188,7 @@ form {
   }
 
   @media (max-width: $medium - 1) {
+    top: 0;
 
     .selectric {
       padding-left: 2rem;
@@ -232,11 +235,10 @@ form {
 }
 
 //SUBMIT button
-button[type="submit"] {
+[type="submit"] {
   @extend .btn--primary;
   justify-content: center;
   height: $input-height;
-  padding: 2rem 4rem;
 }
 
 // Hidden labels

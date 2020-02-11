@@ -7,45 +7,8 @@
     border: 1px solid $gray-300;
 }
 
+/*KNACSS OVERRIDES*/
 
-// Flexbox
-.two-cols {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    > * {
-        flex: 0 1 auto;
-        width: calc(100% / 2 - 2rem) !important;
-    }
-
-    > .w40 {
-        width: 40% !important;
-    }
-
-    > .w60 {
-        width: 60% !important;
-    }
-
-    @media (max-width: $medium - 1) {
-        display: block;
-
-        > * {
-            width: 100% !important;
-        }
-    }
-}
-
-// Columns
-.two-cols-auto {
-    columns: 2;
-
-    @media (max-width: $medium - 1) {
-        columns: 1;
-    }
-}
-
-// Knacss helpers
 //Width
 .w80 {
     @media (max-width: $medium - 1) {
@@ -53,7 +16,7 @@
     }
 }
 
-/* Margin (knacss addons)*/
+//Margins
 .mtxl {
     margin-top: $spacer-extra-large;
 
@@ -273,21 +236,6 @@
     }
 }
 
-
-// Translation
-.translate-tl {
-    transform: translateY(- $spacer-large-plus);
-
-    @media (max-width: $large) {
-        transform: translateY(- $spacer-large);
-    }
-
-    @media (max-width: $tiny) {
-        transform: translateY(0);
-    }
-}
-
-
 // Width
 div[class^="w"],
 p[class^="w"],
@@ -307,9 +255,6 @@ p[class^="w"],
 }
 
 // Enlarge text size
-.u-biggest {
-    line-height: 1.2;
-}
 @media (max-width: $medium - 1) {
     .u-big,
     .u-bigger {
@@ -317,96 +262,80 @@ p[class^="w"],
     }
 }
 
-// Wrappers
+// Child images
+.img-wrap,
 .img-wrapper,
 .video-wrapper {
 
-    > img,
-    > a img,
-    > a {
-        display: block;
-        width: 100%;
-        height: auto;
-        margin-bottom: 0;
-    }
+  img,
+  a img,
+  a {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+  }
 }
 
+/*FLEXBOX COLUMNS*/
 
-// flexbox layout
+/* flexbox layout (knacss addons)*/
 .flex-container,
 .d-flex {
-    display: flex;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
 
-    @media (max-width: $medium - 1) {
-        flex-direction: column;
+  @media (max-width: $small - 1) {
+    display: block;
 
-        > * {
-            width: 100%;
-            margin-bottom: 2rem;
-        }
-
-        [class*="ml"] {
-            margin-left: 0;
-        }
-
-        [class*="mr"] {
-            margin-right: 0;
-        }
+    div {
+      width: 100% !important;
+      margin-left: 0 !important;
     }
 
-    @media (max-width: $small) {
-        display: block;
+    div:not(:last-child) {
+      margin-bottom: 2rem;
     }
+  }
 }
 
 .flex-container--center,
 .flex-center {
-    @extend .flex-container;
-    justify-content: center;
+  @extend .flex-container;
+  justify-content: center;
 
-    @media (max-width: 1000px) {
+  @media (max-width: 1000px) {
 
-    }
+  }
 
-    @media (max-width: $medium) {
-        flex-direction: row; // For Bloc with 2 girls
-        flex-wrap: wrap;
-
-        > * {
-            min-width: auto;
-        }
-    }
+  @media (max-width: $small) {
+    flex-direction: row; // For Bloc with 2 girls
+    flex-wrap: wrap;
+  }
 }
 
 .flex-container--spacebetween,
 .flex-spacebetween {
-    @extend .flex-container;
-    justify-content: space-between;
+  @extend .flex-container;
+  justify-content: space-between;
 }
 
 .flex-container--flexend,
 .flex-flexend {
-    @extend .flex-container;
-    justify-content: flex-end;
+  @extend .flex-container;
+  justify-content: flex-end;
 }
 
-// Grid layout
-[class*="grid-"] {
+/*GRID COLUMNS*/
+[class*=" grid-"],
+[class^=grid-] {
 
-    @media (max-width: $medium) {
-        > * {
-            margin-bottom: 2rem;
-        }
+  @media (max-width: $tiny - 1) {
+
+    > div {
+      margin-bottom: 2rem;
     }
-}
-
-.grid-4 {
-
-    @media (max-width: $medium - 1) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+  }
 }
 
 [class^="grid-"].has-gutter-xxl {
@@ -416,7 +345,6 @@ p[class^="w"],
     }
 }
 
-
 /*Positioning utilities*/
 .relative {
     position: relative;
@@ -425,12 +353,14 @@ p[class^="w"],
         z-index: 1;
     }
 }
+.index-1 {
+  position: relative;
+  z-index: 1;
+}
 
-.absolute-top-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
+.index-nega {
+  position: relative;
+  z-index: -2;
 }
 
 // Remove style for phone numbers for iOS
@@ -439,80 +369,6 @@ a[href^="tel"]{
     text-decoration:none;
 }
 
-// Decorative colored block
-.bg-block-square-left,
-.bg-block-square-right {
-    position: relative;
-
-    &::after {
-        content: "";
-        height: 450px;
-        width: 450px;
-        background-color: $gray-200; // Modify in theme colors
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    @media (max-width: $tiny) {
-        &::after {
-            content: none;
-        }
-    }
-}
-.bg-block-square-left::after {
-
-    @media (max-width: $large) {
-        transform: translateX(-15%);
-    }
-}
-.bg-block-square-right {
-
-    &::after {
-        left: auto;
-        right: 0;
-    }
-}
-
-.bg-block-left,
-.bg-block-right {
-    position: relative;
-
-    &::after {
-        content: "";
-        width: 50%;
-        background-color: $gray-200; // Modify in theme colors
-        position: absolute;
-        top: -20%;
-        bottom: -20%;
-        z-index: -1;
-    }
-
-    @media (max-width: $medium - 1) {
-        &::after {
-            content: none;
-        }
-    }
-}
-.bg-block-left {
-
-    &::after {
-        left: -30%;
-    }
-}
-.bg-block-right {
-
-    &::after {
-        right: -30%;
-    }
-}
-
-// Z-index negative position for blocks
-.index-nega {
-    position: relative;
-    z-index: -2;
-}
 
 // Wordpress
 .alignleft,
@@ -523,4 +379,10 @@ a[href^="tel"]{
         margin-left: 0;
         width: 100%;
     }
+}
+
+// Remove style for phone numbers for iOS
+a[href^="tel"] {
+  color: inherit;
+  text-decoration: none;
 }
