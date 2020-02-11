@@ -132,7 +132,7 @@ class VideoComponent extends AbstractComponent
         <div class="video-player-wrap" id="' . $playerWrapId . '">
             <div class="video-player" id="' . $playerWrapId . '">
 
-               <video class="video" width="780" height="440" ' . (!empty($this->image) ? 'poster="' . $this->image . '"' : '') . '>';
+               <video class="video" ' . (!empty($this->image) ? 'poster="' . $this->image . '"' : '') . '>';
         if (!empty($this->videoMp4)) {
             $markup .= '<source src="' . $this->videoMp4 . '" type="video/mp4">';
         }

@@ -24,13 +24,13 @@ progress.progress-bar-component {
 
   //Recent browser custom for Firefox
   &::-moz-progress-bar {
-    background-color: $color-primary; //Percentage bar
+    background-color: $color-primary; //Foreground bar
   }
 
   //Recent browser custom for Webkit
   &::-webkit-progress-value {
     position: relative;
-    background-color: $color-primary; //Percentage bar
+    background-color: $color-primary; //Foreground bar
   }
 
   &::-webkit-progress-bar {
@@ -39,18 +39,18 @@ progress.progress-bar-component {
 
   //Old browsers fallback
   &[data-state="fake"] {
-    background: $color-primary;
+    background: $color-primary; //Foreground bar
   }
 
   //Custom for Internet Explorer
   border: none;
-  color: $color-primary;
+  color: $color-primary; //Foreground bar
 
   span {
     position: relative;
     width: 0%;
     display: inline-block;
-    background-color: $color-primary;
+    background-color: $color-primary; //Background bar
   }
 
   @media (max-width: $medium - 1) {

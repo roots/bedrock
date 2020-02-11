@@ -6,10 +6,11 @@
 @import "video-commons";
 
 //Variables
-$video-height: 440px;
-$video-controls-height: 60px;
 $progress-bar-bg: $gray-300;
-$progress-bar-color: $color-primary;
+$progress-bar-color: white;
+
+$video-height: 440px;
+$video-controls-height: 50px;
 $video-trigger-color: $color-primary;
 $video-controls-color: $color-primary;
 
@@ -21,7 +22,10 @@ $video-controls-color: $color-primary;
 .video-player {
 
   .controls {
-    position: relative;
+    position: absolute;
+    bottom: - $video-controls-height;
+    left: 0;
+    z-index: 1;
     justify-content: space-between;
     align-items: center;
     height: $video-controls-height;
@@ -60,12 +64,12 @@ $video-controls-color: $color-primary;
 
     //Recent browser custom for Firefox
     &::-moz-progress-bar {
-      background-color: $color-primary;
+      background-color: $progress-bar-bg; //Background bar
     }
 
     //Recent browser custom for Webkit
     &::-webkit-progress-value {
-      background-color: $color-primary; //Percentage bar
+      background-color: $progress-bar-color; //Foreground bar
     }
 
     &::-webkit-progress-bar {
@@ -74,18 +78,18 @@ $video-controls-color: $color-primary;
 
     //Old browsers fallback
     &[data-state="fake"] {
-      background: $color-primary;
+      background: $progress-bar-color; //Foreground bar
     }
 
     //Custom for Internet Explorer
     border: none;
-    color: $color-primary;
+    color: $progress-bar-color; //Foreground bar
 
     span {
       width: 0%;
       height: 100%;
       display: inline-block;
-      background-color: $color-primary;
+      background-color: $progress-bar-bg; //Background bar
     }
   }
 
@@ -161,6 +165,14 @@ $video-controls-color: $color-primary;
     &:hover,
     &:focus {
       opacity: 0.5;
+    }
+  }
+
+  //Ouverture en fullscreen
+  &[data-fullscreen="true"] {
+
+    .controls {
+      bottom: 0;
     }
   }
 }
