@@ -110,15 +110,16 @@ def defineVariables(){
 	      if(file_.path=='composer.json' || file_.path=='composer.lock' || file_.path=='Jenkinsfile'){
 	      	env.runComposer = true;
 	      	env.runCypress = true;
+	      	env.runBuild = true;
 	      }
 	      if(file_.path=='package.json' || file_.path=='package.lock' || file_.path=='Jenkinsfile'){
 	      	env.runNpm = true;
 	      }
 	      if(file_.path.contains(".css") || file_.path.contains(".scss") || file_.path.contains(".js") || file_.path=='Jenkinsfile'){
-			env.runBuild = true;
+			    env.runBuild = true;
 	      }
 	      if(file_.path.contains(".php") || file_.path.contains(".js") || file_.path=='cypress.json'){
-			env.runCypress = true;
+			    env.runCypress = true;
 	      }
 	    }
 	  }

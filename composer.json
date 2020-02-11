@@ -1,1 +1,82 @@
-{"name":"wonderwp\/site","type":"project","license":"MIT","description":"A modern WordPress stack","homepage":"https:\/\/roots.io\/bedrock\/","authors":[{"name":"Jeremy Desvaux","email":"jeremy.desvaux@wonderful.fr","homepage":"https:\/\/github.com\/jeremy-wdf"}],"keywords":["bedrock","roots","wordpress","stack","composer","vagrant","wp"],"config":{"preferred-install":{"wonderwp\/*":"source","agencewonderful\/*":"source","*":"dist"},"sort-packages":true},"repositories":[{"type":"composer","url":"https:\/\/wpackagist.org"},{"type":"composer","url":"https:\/\/won.wonderful.fr\/satis\/packages-mirror"}],"minimum-stability":"dev","prefer-stable":true,"require":{"php":">=7.2","agencewonderful\/wonderwp-theme-core":"dev-develop@dev","agencewonderful\/wwp-actu":"dev-develop@dev","agencewonderful\/wwp-branchepage":"dev-develop@dev","agencewonderful\/wwp-contact":"dev-develop@dev","agencewonderful\/wwp-download":"dev-develop@dev","agencewonderful\/wwp-emploi":"dev-develop@dev","agencewonderful\/wwp-espace-restreint":"dev-develop@dev","agencewonderful\/wwp-faq":"dev-develop@dev","agencewonderful\/wwp-generator":"dev-feature\/wwp_v2@dev","agencewonderful\/wwp-gutenberg-utils":"dev-develop@dev","agencewonderful\/wwp-jeux":"dev-develop@dev","agencewonderful\/wwp-lazyload":"dev-develop@dev","agencewonderful\/wwp-map":"dev-develop@dev","agencewonderful\/wwp-meteo":"dev-develop@dev","agencewonderful\/wwp-newsletter":"dev-develop@dev","agencewonderful\/wwp-partenaires":"dev-develop@dev","agencewonderful\/wwp-rgpd":"dev-develop@dev","agencewonderful\/wwp-search":"dev-develop@dev","agencewonderful\/wwp-social":"dev-develop@dev","agencewonderful\/wwp-stats":"dev-develop@dev","agencewonderful\/wwp-tracker":"dev-develop@dev","agencewonderful\/wwp-translator":"dev-develop@dev","agencewonderful\/wwp-trombinoscope":"dev-develop@dev","agencewonderful\/wwp-video":"dev-develop@dev","agencewonderful\/wwp-vote":"dev-develop@dev","composer\/installers":"~1.0.12","johnpbloch\/wordpress":"^5.2","oscarotero\/env":"^1.0","roots\/wp-password-bcrypt":"1.0.0","twig\/twig":"^2.0","vlucas\/phpdotenv":"^2.0.1","wpackagist-plugin\/disable-gutenberg":"^1.6","wpackagist-plugin\/google-sitemap-generator":"dev-trunk","wpackagist-plugin\/wp-nested-pages":"^3.0"},"require-dev":{"phpunit\/phpunit":"^6","squizlabs\/php_codesniffer":"^2.5.1"},"autoload":{"psr-4":{"WonderWp\\Theme\\Child\\":"web\/app\/themes\/wwp_child_theme\/includes","WonderWp\\Plugin\\Jeux\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-jeux\/includes","WonderWp\\Plugin\\Contact\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-contact\/includes","WonderWp\\Plugin\\EspaceRestreint\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-espace-restreint\/includes","WonderWp\\Plugin\\RGPD\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-rgpd\/includes","WonderWp\\Plugin\\Newsletter\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-newsletter\/includes","WonderWp\\Plugin\\Video\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-video\/includes","WonderWp\\Plugin\\Trombinoscope\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-trombi\/includes","WonderWp\\Plugin\\Partenaires\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-partenaires\/includes","WonderWp\\Plugin\\GutenbergUtils\\Child\\":"web\/app\/themes\/wwp_child_theme\/plugins\/wwp-gutenberg-utils\/includes"}},"extra":{"installer-paths":{"web\/app\/mu-plugins\/{$name}\/":["type:wordpress-muplugin"],"web\/app\/plugins\/{$name}\/":["type:wordpress-plugin"],"web\/app\/themes\/{$name}\/":["type:wordpress-theme"]},"wordpress-install-dir":"web\/wp"},"scripts":{"test":["vendor\/bin\/phpcs --ignore=web\/wp\/,vendor\/ -n -s ."]}}
+{
+    "name": "wonderwp\/site",
+    "type": "project",
+    "authors": [{"name": "Jeremy Desvaux", "email": "jeremy.desvaux@wonderful.fr", "homepage": "https:\/\/github.com\/jeremy-wdf"}],
+    "config": {
+        "preferred-install": {
+            "wonderwp\/*": "source",
+            "agencewonderful\/*": "source",
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "repositories": [
+        {"type": "composer", "url": "https:\/\/wpackagist.org"},
+        {"type": "composer", "url": "https:\/\/won.wonderful.fr\/satis\/packages-mirror"}
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2",
+        "agencewonderful/wonderwp-theme-core": "dev-develop@dev",
+        "agencewonderful/wwp-actu": "dev-develop@dev",
+        "agencewonderful/wwp-branchepage": "dev-develop@dev",
+        "agencewonderful/wwp-contact": "dev-develop@dev",
+        "agencewonderful/wwp-download": "dev-develop@dev",
+        "agencewonderful/wwp-emploi": "dev-develop@dev",
+        "agencewonderful/wwp-espace-restreint": "dev-develop@dev",
+        "agencewonderful/wwp-faq": "dev-develop@dev",
+        "agencewonderful/wwp-generator": "dev-feature/wwp_v2@dev",
+        "agencewonderful/wwp-gutenberg-utils": "dev-develop@dev",
+        "agencewonderful/wwp-jeux": "dev-develop@dev",
+        "agencewonderful/wwp-lazyload": "dev-develop@dev",
+        "agencewonderful/wwp-map": "dev-develop@dev",
+        "agencewonderful/wwp-meteo": "dev-develop@dev",
+        "agencewonderful/wwp-newsletter": "dev-develop@dev",
+        "agencewonderful/wwp-partenaires": "dev-develop@dev",
+        "agencewonderful/wwp-rgpd": "dev-develop@dev",
+        "agencewonderful/wwp-search": "dev-develop@dev",
+        "agencewonderful/wwp-social": "dev-develop@dev",
+        "agencewonderful/wwp-stats": "dev-develop@dev",
+        "agencewonderful/wwp-tracker": "dev-develop@dev",
+        "agencewonderful/wwp-translator": "dev-develop@dev",
+        "agencewonderful/wwp-trombinoscope": "dev-develop@dev",
+        "agencewonderful/wwp-video": "dev-develop@dev",
+        "agencewonderful/wwp-vote": "dev-develop@dev",
+        "composer/installers": "~1.0.12",
+        "johnpbloch/wordpress": "^5.2",
+        "oscarotero/env": "^1.0",
+        "roots/wp-password-bcrypt": "1.0.0",
+        "twig/twig": "^2.0",
+        "vlucas/phpdotenv": "^2.0.1",
+        "wpackagist-plugin/disable-gutenberg": "^1.6",
+        "wpackagist-plugin/google-sitemap-generator": "dev-trunk",
+        "wpackagist-plugin/wp-nested-pages": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6",
+        "squizlabs/php_codesniffer": "^2.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "WonderWp\\Theme\\Child\\": "web\/app\/themes\/wwp_child_theme\/includes",
+            "WonderWp\\Plugin\\Jeux\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-jeux\/includes",
+            "WonderWp\\Plugin\\Contact\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-contact\/includes",
+            "WonderWp\\Plugin\\EspaceRestreint\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-espace-restreint\/includes",
+            "WonderWp\\Plugin\\RGPD\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-rgpd\/includes",
+            "WonderWp\\Plugin\\Newsletter\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-newsletter\/includes",
+            "WonderWp\\Plugin\\Video\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-video\/includes",
+            "WonderWp\\Plugin\\Trombinoscope\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-trombi\/includes",
+            "WonderWp\\Plugin\\Partenaires\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-partenaires\/includes"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "web\/app\/mu-plugins\/{$name}\/": ["type:wordpress-muplugin"],
+            "web\/app\/plugins\/{$name}\/": ["type:wordpress-plugin"],
+            "web\/app\/themes\/{$name}\/": ["type:wordpress-theme"]
+        },
+        "wordpress-install-dir": "web\/wp"
+    },
+    "scripts": {"test": ["vendor\/bin\/phpcs --ignore=web\/wp\/,vendor\/ -n -s ."]}
+}

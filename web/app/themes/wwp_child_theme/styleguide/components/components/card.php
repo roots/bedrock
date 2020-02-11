@@ -1,15 +1,86 @@
 <!-- components/components/card.php -->
+<p class="subTitle">Bloc de contenu polyvalent</p>
 
-<p class="subTitle">Bloc de contenu polyvalent utilisé notamment pour créer des Call to Action.</p>
-<p> Peut contenir des titre, texte, image, bouton et lien (attributs du shortcode disponibles : "title", "text", "img", "link", "button" et "class"). Les classes fonctionnelles suivantes permettent de modifier son apparence : "negative", "reverse", "two-cols", "inline" (ex : class="negative"). On peut intervenir sur la couleur dominante des textes ou du fond avec les attributs du shortcode : "color" et "background"</p>
-
-<code>[card title="Lorem ipsum dolor sit amet" content="Lorem ipsum dolor(…)" image="https://placeimg.com/350/150/nature" link="/une-page" button="Découvrir" color="blue" background="blue" class="reverse negative "]</code>
-
-
-<div class="grid-3-small-2 has-gutter-xl">
-    <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." image="https://placeimg.com/350/150/animals" link="/une-page" button="Découvrir"]'); ?>
-    <?php echo do_shortcode ('[card title="Lorem ipsum" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." image="https://placeimg.com/350/150/nature" link="/une-page" button="Découvrir" class="negative"]'); ?>
-    <?php echo do_shortcode ('[card title="Lorem ipsum dolor sit amet" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." image="https://placeimg.com/350/150/architecture" link="/une-page" button="Découvrir" class="reverse"]'); ?>
+<div class="encadre">
+    <div class="grid-2 has-gutter-xl">
+        <div>
+            <p>ATTRIBUTS :</p>
+            <ul>
+                <li>title</li>
+                <li>text</li>
+                <li>img</li>
+                <li>link</li>
+                <li>button</li>
+                <li>color</li>
+                <li>background</li>
+                <li>class</li>
+            </ul>
+        </div>
+        <div>
+            <p>OPTIONS :</p>
+            <ul>
+                <li>reverse</li>
+                <li>landscape</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
+<div class="grid-2 has-gutter-l">
 
+    <?php
+
+    echo '<div>
+        <p class="subTitle">Sans option</p>';
+        $card1 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+        $card1
+            ->setTitle('Lorem ipsum dolor consectetur')
+            ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+            ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+            ->setLink('/vers-une-page')
+            ->setDate('12 septembre 2020')
+            /*->setCategories('')*/
+        ;
+        echo $card1->getMarkup();
+    echo '</div>';
+    echo '<div class="reverse-inside">
+        <p class="subTitle">Avec option "reverse"</p>';
+        $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+        $card2
+            ->setTitle('Lorem ipsum dolor consectetur')
+            ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+            ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+            ->setLink('/vers-une-page')
+            ->setDate('12 septembre 2020')
+            /*->setCategories('')*/
+        ;
+        echo $card2->getMarkup();
+    echo '</div>';
+    echo '<div class="col-2 landscape-inside">
+        <p class="subTitle">Avec option "landscape"</p>';
+        $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+        $card3
+            ->setTitle('Lorem ipsum dolor consectetur')
+            ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+            ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+            ->setLink('/vers-une-page')
+            ->setDate('12 septembre 2020')
+            /*->setCategories('')*/
+        ;
+        echo $card3->getMarkup();
+    echo '</div>';
+    echo '<div class="col-2 landscape-inside reverse-inside">
+        <p class="subTitle">Avec options "landscape" et "reverse"</p>';
+        $card4 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+        $card4
+            ->setTitle('Lorem ipsum dolor consectetur')
+            ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+            ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+            ->setLink('/vers-une-page')
+            ->setDate('12 septembre 2020')
+            /*->setCategories('')*/
+        ;
+        echo $card4->getMarkup();
+    echo '</div>';
+    ?>
+</div>
