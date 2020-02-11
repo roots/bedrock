@@ -9,7 +9,7 @@
 <input class="btn" type="button" value="Input">
 <input class="btn" type="submit" value="Submit">
 <br><br>
-<div class="btn-wrapper-inline">
+<div class="btn-wrapper">
     <a class="btn" href="#">Button in wrapper</a>
 </div>
 
