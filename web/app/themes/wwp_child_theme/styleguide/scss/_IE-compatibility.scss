@@ -6,243 +6,272 @@
 /*Inline declaration*/
 /*@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 
-}*/ /*IE 10-11*/
+}*/
+/*IE 10-11*/
 
 [class*="grid-2"] {
-    -ms-grid-columns: 1fr 1fr;
-    /*-ms-grid-rows: 1fr 1rem 1fr;*/ /*If more than one row*/
+  -ms-grid-columns: 1fr 1fr;
+  /*-ms-grid-rows: 1fr 1rem 1fr;*/
+  /*If more than one row*/
 
-    &.has-gutter {
-        -ms-grid-columns: 1fr 1rem 1fr;
-    }
+  &.has-gutter {
+    -ms-grid-columns: 1fr 1rem 1fr;
+  }
 
-    &.has-gutter-l {
-        -ms-grid-columns: 1fr 2rem 1fr;
-    }
+  &.has-gutter-l {
+    -ms-grid-columns: 1fr 2rem 1fr;
+  }
 
-    &.has-gutter-xl {
-        -ms-grid-columns: 1fr 4rem 1fr;
-    }
+  &.has-gutter-xl {
+    -ms-grid-columns: 1fr 4rem 1fr;
+  }
 
-    > *:nth-child(1) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 1;
-    }
+  > *:nth-child(1) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 1;
+  }
+
+  > *:nth-child(2) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 2;
+  }
+
+  > *:nth-child(3) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 1; /*If 2 rows*/
+  }
+
+  > *:nth-child(4) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 2; /*If 2 rows*/
+  }
+
+  > *:nth-child(5) {
+    -ms-grid-row: 3; /*If more than one row*/
+    -ms-grid-column: 1; /*If 3 rows*/
+  }
+
+  > *:nth-child(6) {
+    -ms-grid-row: 3; /*If more than one row*/
+    -ms-grid-column: 2; /*If 3 rows*/
+  }
+
+  &.has-gutter,
+  &.has-gutter-l,
+  &.has-gutter-xl {
 
     > *:nth-child(2) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 2;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 3;
     }
 
     > *:nth-child(3) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 1; /*If 2 rows*/
+      -ms-grid-row: 2; /*If more than one row*/
+      -ms-grid-column: 1; /*If 2 rows*/
     }
 
     > *:nth-child(4) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 2; /*If 2 rows*/
+      -ms-grid-row: 2; /*If more than one row*/
+      -ms-grid-column: 3; /*If 2 rows*/
     }
 
-    &.has-gutter,
-    &.has-gutter-l,
-    &.has-gutter-xl {
-
-        > *:nth-child(2) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 3;
-        }
-
-        > *:nth-child(3) {
-            -ms-grid-row: 2; /*If more than one row*/
-            -ms-grid-column: 1; /*If 2 rows*/
-        }
-
-        > *:nth-child(4) {
-            -ms-grid-row: 2; /*If more than one row*/
-            -ms-grid-column: 3; /*If 2 rows*/
-        }
+    > *:nth-child(5) {
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 1; /*If 3 rows*/
     }
+
+    > *:nth-child(6) {
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 3; /*If 3 rows*/
+    }
+  }
 }
 
 [class*="grid-3"] {
-    -ms-grid-columns: 1fr 1fr 1fr;
-    /*-ms-grid-rows: 1fr 1rem 1fr 1rem 1fr;*/ /*If more than one row*/
+  -ms-grid-columns: 1fr 1fr 1fr;
+  /*-ms-grid-rows: 1fr 1rem 1fr 1rem 1fr;*/
+  /*If more than one row*/
 
-    &.has-gutter {
-        -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr;
-    }
+  &.has-gutter {
+    -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr;
+  }
 
-    &.has-gutter-l {
-        -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr;
-    }
+  &.has-gutter-l {
+    -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr;
+  }
 
-    &.has-gutter-xl {
-        -ms-grid-columns: 1fr 4rem 1fr 4rem 1fr;
-    }
+  &.has-gutter-xl {
+    -ms-grid-columns: 1fr 4rem 1fr 4rem 1fr;
+  }
+
+  > *:nth-child(1) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 1;
+  }
+
+  > *:nth-child(2) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 2;
+  }
+
+  > *:nth-child(3) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 3;
+  }
+
+  > *:nth-child(4) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 1; /*If 2 rows*/
+  }
+
+  > *:nth-child(5) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 2; /*If 2 rows*/
+  }
+
+  > *:nth-child(6) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 3; /*If 2 rows*/
+  }
+
+  &.has-gutter,
+  &.has-gutter-l,
+  &.has-gutter-xl {
 
     > *:nth-child(1) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 1;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 1;
     }
 
     > *:nth-child(2) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 2;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 3;
     }
 
     > *:nth-child(3) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 3;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 5; /*If 2 rows*/
     }
 
     > *:nth-child(4) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 1; /*If 2 rows*/
+      -ms-grid-row: 2; /*If more than one row*/
+      -ms-grid-column: 1; /*If 2 rows*/
     }
 
     > *:nth-child(5) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 2; /*If 2 rows*/
+      -ms-grid-row: 2; /*If more than one row*/
+      -ms-grid-column: 3; /*If 2 rows*/
     }
 
     > *:nth-child(6) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 3; /*If 2 rows*/
+      -ms-grid-row: 2; /*If more than one row*/
+      -ms-grid-column: 5; /*If 2 rows*/
     }
-
-    &.has-gutter,
-    &.has-gutter-l,
-    &.has-gutter-xl {
-
-        > *:nth-child(2) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 3;
-        }
-
-        > *:nth-child(3) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 5;
-        }
-
-        > *:nth-child(4) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 1; /*If 2 rows*/
-        }
-
-        > *:nth-child(5) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 3; /*If 2 rows*/
-        }
-
-        > *:nth-child(6) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 5; /*If 2 rows*/
-        }
-    }
+  }
 }
 
 [class*="grid-4"] {
-    -ms-grid-columns: 1fr 1fr 1fr 1fr;
-    /*-ms-grid-rows: 1fr 1rem 1fr 1rem 1fr;*/ /*If more than one row*/
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  /*-ms-grid-rows: 1fr 1rem 1fr 1rem 1fr;*/
+  /*If more than one row*/
 
-    &.has-gutter {
-        -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
-    }
+  &.has-gutter {
+    -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
+  }
 
-    &.has-gutter-l {
-        -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr 2rem 1fr;
-    }
+  &.has-gutter-l {
+    -ms-grid-columns: 1fr 2rem 1fr 2rem 1fr 2rem 1fr;
+  }
 
-    &.has-gutter-xl {
-        -ms-grid-columns: 1fr 4rem 1fr 4rem 1fr 4rem 1fr;
-    }
+  &.has-gutter-xl {
+    -ms-grid-columns: 1fr 4rem 1fr 4rem 1fr 4rem 1fr;
+  }
 
-    > *:nth-child(1) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 1;
-    }
+  > *:nth-child(1) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 1;
+  }
+
+  > *:nth-child(2) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 2;
+  }
+
+  > *:nth-child(3) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 3;
+  }
+
+  > *:nth-child(4) {
+    -ms-grid-row: 1; /*If more than one row*/
+    -ms-grid-column: 4; /*If 2 rows*/
+  }
+
+  > *:nth-child(5) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 1; /*If 2 rows*/
+  }
+
+  > *:nth-child(6) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 2; /*If 2 rows*/
+  }
+
+  > *:nth-child(7) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 3; /*If 2 rows*/
+  }
+
+  > *:nth-child(8) {
+    -ms-grid-row: 2; /*If more than one row*/
+    -ms-grid-column: 4; /*If 2 rows*/
+  }
+
+  &.has-gutter,
+  &.has-gutter-l,
+  &.has-gutter-xl {
 
     > *:nth-child(2) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 2;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 3;
     }
 
     > *:nth-child(3) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 3;
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 5;
     }
 
     > *:nth-child(4) {
-        -ms-grid-row: 1; /*If more than one row*/
-        -ms-grid-column: 4; /*If 2 rows*/
+      -ms-grid-row: 1; /*If more than one row*/
+      -ms-grid-column: 7; /*If 2 rows*/
     }
 
     > *:nth-child(5) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 1; /*If 2 rows*/
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 1; /*If 2 rows*/
     }
 
     > *:nth-child(6) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 2; /*If 2 rows*/
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 3; /*If 2 rows*/
     }
 
     > *:nth-child(7) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 3; /*If 2 rows*/
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 5; /*If 2 rows*/
     }
 
     > *:nth-child(8) {
-        -ms-grid-row: 2; /*If more than one row*/
-        -ms-grid-column: 4; /*If 2 rows*/
+      -ms-grid-row: 3; /*If more than one row*/
+      -ms-grid-column: 7; /*If 2 rows*/
     }
-
-    &.has-gutter,
-    &.has-gutter-l,
-    &.has-gutter-xl {
-
-        > *:nth-child(2) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 3;
-        }
-
-        > *:nth-child(3) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 5;
-        }
-
-        > *:nth-child(4) {
-            -ms-grid-row: 1; /*If more than one row*/
-            -ms-grid-column: 7; /*If 2 rows*/
-        }
-
-        > *:nth-child(5) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 1; /*If 2 rows*/
-        }
-
-        > *:nth-child(6) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 3; /*If 2 rows*/
-        }
-
-        > *:nth-child(7) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 5; /*If 2 rows*/
-        }
-
-        > *:nth-child(8) {
-            -ms-grid-row: 3; /*If more than one row*/
-            -ms-grid-column: 7; /*If 2 rows*/
-        }
-    }
+  }
 }
 
 [class*="grid-5"] {
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 [class*="grid-6"] {
-    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
