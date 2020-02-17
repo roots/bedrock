@@ -1,62 +1,43 @@
 import {PewComponent} from "../../../assets/raw/js/components/pew-component";
+import {initVideoPlayer} from "./VideoLib";
 
 export class VideoComponent extends PewComponent {
-    init() {
-        this.registerVideoToggle();
-    }
+  init() {
+    this.registerPlayerControls();
+    this.registerVideoToggle();
+  }
 
-    registerVideoToggle() {
+  registerPlayerControls() {
+    initVideoPlayer(this.element.find('.video-player'));
+  }
 
-        let $imgWrap      = this.element.find('.image-wrapper'),
-            $videoTrigger = this.element.find('.video-trigger');
+  registerVideoToggle() {
+    const $videoWrapper = this.element.find('.video-player');
+    const $videoTrigger = this.element.find('.video-trigger');
+    const video = $videoWrapper.find('.video')[0];
+    const playpause = $videoWrapper.find('.playpause')[0];
+    const progress = $videoWrapper.find('.progress')[0];
 
-        console.log($videoTrigger);
+    if ($videoTrigger.length) {
 
-        if ($videoTrigger.length) {
-
-            $videoTrigger.on('click', (e) => {
-                e.preventDefault();
-                console.log('click');
-                if (this.element.hasClass('video-active')) {
-                    this.element.removeClass('video-active');
-                    if (window.wonderwp.ytplayer) {
-                        window.wonderwp.ytplayer.pauseVideo();
-                    }
-                } else {
-                    this.element.addClass('video-active');
-                    if (window.wonderwp.ytplayer) {
-                        window.wonderwp.ytplayer.playVideo();
-                    }
-                }
-            });
-
-            $(document).off("onYouTubeIframeAPIReadyCustom");
-            $(document).on("onYouTubeIframeAPIReadyCustom", () => {
-                console.log('onYouTubeIframeAPIReadyCustom');
-                console.log(this.element.find('.video-player').data('video'));
-                let $player              = this.element.find('.video-player');
-                window.wonderwp.ytplayer = new YT.Player($player[0], {
-                    videoId: $player.data('video')
-                });
-            });
-
-            if (!document.getElementById('yt-iframe-lib')) {
-                console.log('yt-iframe-lib');
-                let tag            = document.createElement('script');
-                tag.id             = 'yt-iframe-lib';
-                tag.src            = 'https://www.youtube.com/iframe_api';
-                let firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            } else {
-                onYouTubeIframeAPIReady();
-            }
+      $videoTrigger.on('click', (e) => {
+        e.preventDefault();
+        console.log('click');
+        if (this.element.hasClass('video-active')) {
+          this.element.removeClass('video-active');
+          //stop video
+          playpause.setAttribute('data-state', 'play');
+          video.pause();
+        } else {
+          this.element.addClass('video-active');
+          //play video
+          playpause.setAttribute('data-state', 'pause');
+          video.play();
+          progress.setAttribute('max', video.duration);
         }
+      });
     }
+  }
 }
 
-window.onYouTubeIframeAPIReady = function () {
-    console.log('onYouTubeIframeAPIReady');
-    $(document).trigger("onYouTubeIframeAPIReadyCustom");
-};
-
-window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '[data-video-component]', classDef: VideoComponent});
+window.pew.addRegistryEntry({key: 'video-component', domSelector: '[data-video-native-component]', classDef: VideoComponent});

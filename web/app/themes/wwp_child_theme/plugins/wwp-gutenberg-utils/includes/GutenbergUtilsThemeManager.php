@@ -4,6 +4,8 @@ namespace WonderWp\Plugin\GutenbergUtils\Child;
 
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Plugin\GutenbergUtils\GutenbergUtilsManager;
+use WonderWp\Theme\Child\Components\Video\VideoComponent;
+use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
 
 class GutenbergUtilsThemeManager extends GutenbergUtilsManager
 {
@@ -11,7 +13,8 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
     {
 
         $this->setConfig('moleculesToRegister', [
-
+            VideoComponent::class,
+            VideoEmbedComponent::class,
         ]);
 
         parent::register ($container);

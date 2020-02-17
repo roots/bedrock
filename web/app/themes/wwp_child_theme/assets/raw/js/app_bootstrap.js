@@ -110,4 +110,3 @@ if (typeof Object.assign != 'function') {
 
 window.EventManager = new EventManager();
 window.pew          = new Pew();
-//window.pew.__debug();

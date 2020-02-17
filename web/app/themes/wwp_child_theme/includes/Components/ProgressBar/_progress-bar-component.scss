@@ -1,0 +1,67 @@
+/*Barre de progression*/
+
+//Variables
+$progress-bar-bg: $gray-300;
+$progress-bar-color: $color-primary;
+
+
+progress.progress-bar-component {
+  display: flex;
+  align-items: center;
+  height: 15px;
+  width: 100%;
+  background-color: $progress-bar-bg; //Background bar for all but Webkit
+  border-radius: 0;
+  cursor: pointer;
+  appearance: none;
+
+  &::-moz-progress-bar,
+  &::-webkit-progress-value,
+  &::-webkit-progress-bar,
+  span {
+    height: 15px;
+  }
+
+  //Recent browser custom for Firefox
+  &::-moz-progress-bar {
+    background-color: $color-primary; //Foreground bar
+  }
+
+  //Recent browser custom for Webkit
+  &::-webkit-progress-value {
+    position: relative;
+    background-color: $color-primary; //Foreground bar
+  }
+
+  &::-webkit-progress-bar {
+    background-color: $progress-bar-bg; //Background bar
+  }
+
+  //Old browsers fallback
+  &[data-state="fake"] {
+    background: $color-primary; //Foreground bar
+  }
+
+  //Custom for Internet Explorer
+  border: none;
+  color: $color-primary; //Foreground bar
+
+  span {
+    position: relative;
+    width: 0%;
+    display: inline-block;
+    background-color: $color-primary; //Background bar
+  }
+
+  @media (max-width: $medium - 1) {
+    height: 4px;
+
+    &::-moz-progress-bar,
+    &::-webkit-progress-value,
+    &::-webkit-progress-bar,
+    span {
+      height: 4px;
+    }
+
+  }
+}
