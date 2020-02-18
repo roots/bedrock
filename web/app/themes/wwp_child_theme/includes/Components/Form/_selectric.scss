@@ -1,14 +1,14 @@
-$selectric-main-color:      #DDD !default;                                              // Color used in border
-$selectric-secondary-color: #BBB !default;                                              // Color used in button
-$selectric-text-color:      #444 !default;                                              // Color used in label
-$selectric-bg-color:        #F8F8F8 !default;                                           // Background color
-$selectric-btn-bg-color:    #F8f8f8 !default;                                           // Button background color
-$selectric-height:          40px !default;                                              // Outer height
-$selectric-spacing:         10px !default;                                              // Label left padding
-$selectric-border-width:    1px !default;                                               // Outer border width
-$selectric-border-radius:   0px !default;                                               // Border radius
-$selectric-inner-height:    $selectric-height - ($selectric-border-width * 2) !default; // Inner height
-$selectric-font-size:       12px !default;                                              // Font size
+$selectric-main-color: #DDD !default; // Color used in border
+$selectric-secondary-color: $input-color !default; // Color used in button
+$selectric-text-color: $input-color !default; // Color used in label
+$selectric-bg-color: $input-bgcolor !default; // Background color
+$selectric-btn-bg-color: #F8f8f8 !default; // Button background color
+$selectric-height: $input-height !default; // Outer height
+$selectric-spacing: 10px !default; // Label left padding
+$selectric-border-width: 0 !default; // Outer border width
+$selectric-border-radius: 0px !default; // Border radius
+$selectric-inner-height: $selectric-height - ($selectric-border-width * 2) !default; // Inner height
+$selectric-font-size: $placeholder-font-size !default; // Font size                                           // Font size
 
 .selectric-wrapper {
   position: relative;

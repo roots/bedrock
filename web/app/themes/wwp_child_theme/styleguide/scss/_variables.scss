@@ -154,6 +154,36 @@ $color-muted    : $gray-200;
 $color-base      : $gray-900;
 $background-base : $white;
 
+// Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
+$forms-color                : $gray-800 !default;
+$forms-bgcolor              : transparent !default;
+$label-color                : $gray-600 !default;
+$input-color                : $color-base !default;
+$input-bgcolor              : $white !default;
+$placeholder-color          : $gray-600 !default;
+
+$forms-padding              : 0 !default;
+
+$input-height               : 45px !default; // Same as button height
+$input-font-size            : 1.3rem !default;
+$placeholder-font-size      : 1.3rem !default;
+$input-box-shadow           : 0 0 0 1px $gray-600;
+
+$select-arrow-color         : $white !default;
+$select-arrow-bgcolor       : $gray-600 !default;
+$select-arrow-active-color  : $white !default;
+$select-bgcolor             : $white !default;
+$select-active-color        : $white !default;
+$select-active-bgcolor      : $gray-600 !default;
+
+$checkbox-color             : $color-primary !default;
+$checkbox-size              : 2rem;
+$checkbox-border-radius     : 0;
+
+$switch-color               : $gray-600 !default;
+$switch-size                : 3rem;
+$switch-border-radius       : 3em;
+
 // ---------------
 // Components zone
 // ---------------
@@ -172,32 +202,6 @@ $quote-color     : $gray-200 !default;
 
 // Component: arrows
 $arrow-color     : $color-base !default;
-
-// Components: forms
-$forms-color                : $gray-800 !default;
-$forms-bgcolor              : $gray-400 !default;
-$label-color                : $gray-600 !default;
-$input-color                : $gray-600 !default;
-$input-bgcolor              : $white !default;
-$placeholder-color          : $gray-400 !default;
-
-$input-height               : 60px !default; // Same as button height
-$input-box-shadow           : 0 0 0 1px $gray-600 inset;
-
-$select-arrow-color         : $white !default;
-$select-arrow-bgcolor       : $gray-600 !default;
-$select-arrow-active-color  : $white !default;
-$select-bgcolor             : $white !default;
-$select-active-color        : $white !default;
-$select-active-bgcolor      : $gray-600 !default;
-
-$checkbox-color             : $color-primary !default;
-$checkbox-size              : 3rem;
-$checkbox-border-radius     : 0;
-
-$switch-color               : $gray-600 !default;
-$switch-size                : 3rem;
-$switch-border-radius       : 3em;
 
 // Component: tables
 $table-border               : $gray-500 !default;

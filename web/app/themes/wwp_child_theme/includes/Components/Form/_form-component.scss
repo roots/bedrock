@@ -3,9 +3,8 @@
 
 /* Variables */
 /* ------------- */
+/*In variables.sccs car utilisés à d'autres endroits du site*/
 
-/*Edit directly in variables.scss*/
-/* -------------------------------------- */
 
 /// Styles for Atomics
 #forms + p + .component {
@@ -14,7 +13,7 @@
 
 form {
   &.wwpform {
-    padding: 2em;
+    padding: $forms-padding;
     background-color: $forms-bgcolor;
   }
 
@@ -31,10 +30,9 @@ form {
   textarea,
   select {
     width: 100%;
-    font-size: inherit;
     line-height: 1.2;
-    letter-spacing: .2rem;
-    color: $input-color;
+    font-size: $input-font-size !important;
+    color: $input-color !important;
     background-color: $input-bgcolor;
     border: none;
   }
@@ -43,6 +41,7 @@ form {
     height: $input-height;
     padding-right: 5rem;
   }
+
   [type="color"],
   [type="date"],
   [type="datetime-local"],
@@ -62,6 +61,7 @@ form {
     padding: 0.5rem 4rem .5rem 1rem;
     box-shadow: $input-box-shadow;
   }
+
   // reset knacss
   input[type=file] {
     font-size: inherit;
@@ -76,10 +76,14 @@ form {
   }
 
   ::placeholder {
-    font-size: 1.8rem;
     letter-spacing: 0;
     color: $placeholder-color;
+    font-size: $placeholder-font-size;
     line-height: normal; // Vertical center for iOS
+  }
+
+  ::-moz-placeholder {
+    line-height: 44px; //Préciser valeur en pixels pour centrage vertical sur Firefox
   }
 
   textarea {
@@ -107,102 +111,53 @@ form {
 }
 
 // Custom SELECT with Selectric
-.selectric-wrapper {
-  position: relative;
-  top: -1px;
+/*Variables
+à modifier directement dans le fichier selectric.scss
+*/
+
+.selectric-wrapper { //Add wrapper pour forcer override des styles
 
   .selectric {
-    display: flex;
-    align-items: center;
-    height: $input-height;
-    width: 100%;
-    padding: .5rem 4rem .5rem 1rem;
-    background-color: $input-bgcolor;
     border: none;
     box-shadow: $input-box-shadow;
 
-    .label {
-      margin-left: 0;
-      font-size: 1.8rem;
-      line-height: 1.8;
-    }
-  }
-
-  .selectric .button {
-    height: 100%;
-    width: $input-height;
-    background-color: $select-arrow-bgcolor;
-  }
-
-  .selectric .button::after {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid $select-arrow-color;
-    pointer-events: none;
-  }
-
-  .selectric-items {
-    display: block;
-    width: 100%;
-    border: 0;
-    overflow: hidden;
-    max-height: 0;
-    background-color: $select-bgcolor;
-    box-shadow: 0px 0px 5px 4px rgba(114, 126, 150, .3);
-    transition: .5s all 0.1s;
-    li {
+    .button {
       display: flex;
-      align-items: center;
-      height: 55px;
-      margin-bottom: 0;
-      padding: 0 10px 0 27px;
-      font-size: 1.6rem;
-      line-height: 1.2;
+      width: $input-height;
+      min-width: auto;
+      padding: 0;
+      font: none;
+      background-color: transparent;
+      appearance: none;
+      box-shadow: none;
+
       &::before {
+        @include svgIcon('chevron-bottom-s');
+      }
+
+      &::after {
         content: none;
-      }
-    }
-    li:hover, li:focus, li.highlighted {
-      color: $select-active-color;
-      background-color: $select-active-bgcolor;
-    }
-  }
-
-  &.selectric-hover {
-    .selectric .button::after {
-      border-top-color: $select-arrow-active-color;
-    }
-  }
-
-  &.selectric-open {
-    .selectric-items {
-      opacity: 1;
-      max-height: none;
-    }
-    .selectric-items li[data-index="0"] {
-      display: none;
-    }
-  }
-
-  @media (max-width: $medium - 1) {
-    top: 0;
-
-    .selectric {
-      padding-left: 2rem;
-
-      .label {
-        margin-right: 1rem;
-      }
-
-      .button {
-        width: 45px;
       }
     }
   }
 }
+
+
+@media (max-width: $medium - 1) {
+
+  .selectric {
+    padding-left: 2rem;
+
+    .label {
+      margin-right: 1rem;
+    }
+
+    .button {
+      width: $input-height;
+    }
+  }
+}
+
 
 // Custom RADIO + CHECKBOX + SWITCH
 .switch-wrap,
@@ -216,10 +171,16 @@ form {
 .checkbox,
 .radio {
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: $input-box-shadow;
   appearance: none;
+
   ~ label {
     margin-bottom: 0;
+    padding-top: 1px;
+    font-weight: $weight-bold;
   }
 }
 
@@ -229,8 +190,27 @@ form {
   height: $checkbox-size;
   margin-right: 1rem;
   transition: background-color .15s;
+
   &:checked {
-    background-color: $checkbox-color;
+    background-color: white !important;
+    background-image: none;
+
+    &::before {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 10px;
+      background-color: $checkbox-color;
+    }
+  }
+}
+
+//RGPD checkbox
+.rgpd-consent-wrap {
+  margin-top: 1rem;
+
+  label {
+    font-size: 1rem;
   }
 }
 
@@ -241,40 +221,15 @@ form {
   height: $input-height;
 }
 
-// Hidden labels
-form.no-label {
-  label {
-    @extend .visually-hidden;
-  }
-}
-
-// Form inline (ie: newsletter form
-@media (min-width: $medium) {
-  .form-inline {
-    display: flex;
-    align-items: center;
-
-    .form-group {
-      margin-right: 2rem;
-      margin-bottom: 0;
-    }
-    label {
-      margin-right: 1rem;
-    }
-    .form-control {
-      display: inline-block;
-      width: auto;
-    }
-  }
-}
-
 // Fieldset with inline (dates…)
 fieldset.inline {
   margin: 0;
   padding: 0;
+
   .form-group {
     display: inline-block;
     margin-right: 5%;
+
     &:last-child {
       margin-right: 0;
     }
@@ -308,6 +263,7 @@ form {
     font-style: italic;
     color: $alert-error !important;
   }
+
   input.error {
     color: $alert-error !important;
     background-color: $alert-error-bg !important;
@@ -327,7 +283,95 @@ form {
   input {
     border: 1px solid $alert-error;
   }
+
   .label-error {
     color: $alert-error;
+  }
+}
+
+
+/*
+Form options (gutenberg ?)
+*/
+
+// Hidden labels
+form.no-label {
+  label {
+    @extend .visually-hidden;
+  }
+}
+
+/*Présentation sur en ligne*/
+$form-gutter: 3px;
+
+.form-inline {
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$form-gutter;
+    margin-left: -$form-gutter;
+
+    > div {
+      margin: $form-gutter;
+    }
+
+    .textarea-wrap {
+      flex-basis: 80%;
+    }
+
+    .rgpd-consent-wrap {
+      order: 1;
+    }
+
+    .submitFormField {
+      margin-left: 2rem;
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+
+    form {
+      display: block;
+
+      > div {
+        width: 100% !important;
+        margin: 1rem 0;
+      }
+
+      .field-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group:not(.checkbox-wrap) {
+        display: block;
+        width: 100% !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .selectric {
+        padding-left: 2rem;
+
+        .label {
+          margin-right: 1rem;
+        }
+
+        .button {
+          width: 45px;
+        }
+      }
+
+      .submitFormField {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+        margin-left: 0;
+
+        .btn {
+          display: block;
+          width: auto !important;
+        }
+      }
+    }
   }
 }
