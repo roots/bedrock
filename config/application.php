@@ -10,10 +10,18 @@
 
 use Roots\WPConfig\Config;
 
-/** @var string Directory containing all of the site's files */
+/**
+ * Directory containing all of the site's files
+ *
+ * @var string
+ */
 $root_dir = dirname(__DIR__);
 
-/** @var string Document Root */
+/**
+ * Document Root
+ *
+ * @var string
+ */
 $webroot_dir = $root_dir . '/web';
 
 /**
