@@ -296,7 +296,7 @@ Form options (gutenberg ?)
 
 // Hidden labels
 .form-nolabel {
-  form label {
+  form div.form-group:not(.checkbox-wrap):not(.radio-wrap) label {
     @extend .visually-hidden;
   }
 }
@@ -318,6 +318,7 @@ $form-gutter: 5px;
     }
 
     .checkbox-wrap,
+    .radio-wrap,
     .textarea-wrap {
       flex-basis: 100%;
     }
@@ -341,7 +342,7 @@ $form-gutter: 5px;
         margin-bottom: 2rem;
       }
 
-      .form-group:not(.checkbox-wrap) {
+      .form-group:not(.checkbox-wrap):not(.radio-wrap) {
         display: block;
         width: 100% !important;
         margin-top: 1rem !important;
