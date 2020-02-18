@@ -87,7 +87,7 @@ form {
   }
 
   textarea {
-    min-height: $input-height;
+    min-height: $textarea-height;
     padding-top: 14px;
   }
 }
@@ -180,7 +180,7 @@ form {
   ~ label {
     margin-bottom: 0;
     padding-top: 1px;
-    font-weight: $weight-bold;
+    font-size: $input-font-size;
   }
 }
 
@@ -295,14 +295,14 @@ Form options (gutenberg ?)
 */
 
 // Hidden labels
-form.no-label {
-  label {
+.form-nolabel {
+  form label {
     @extend .visually-hidden;
   }
 }
 
 /*Présentation sur en ligne*/
-$form-gutter: 3px;
+$form-gutter: 5px;
 
 .form-inline {
 
@@ -313,19 +313,17 @@ $form-gutter: 3px;
     margin-left: -$form-gutter;
 
     > div {
+      flex: 1 1 auto;
       margin: $form-gutter;
     }
 
+    .checkbox-wrap,
     .textarea-wrap {
-      flex-basis: 80%;
+      flex-basis: 100%;
     }
 
     .rgpd-consent-wrap {
       order: 1;
-    }
-
-    .submitFormField {
-      margin-left: 2rem;
     }
   }
 
@@ -351,7 +349,7 @@ $form-gutter: 3px;
       }
 
       .selectric {
-        padding-left: 2rem;
+        padding-left: 0;
 
         .label {
           margin-right: 1rem;
