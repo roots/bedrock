@@ -1,3 +1,12 @@
+### 1.13.0: 2020-02-17
+
+* Update to WordPress 5.3.2 ([#489](https://github.com/roots/bedrock/pull/489))
+* chore(deps): Bump vlucas/phpdotenv from 4.0.1 to 4.1.0 ([#487](https://github.com/roots/bedrock/pull/487))
+* chore(deps): Bump vlucas/phpdotenv from 3.6.0 to 4.0.1 ([#485](https://github.com/roots/bedrock/pull/485))
+* chore(deps): Bump composer/installers from 1.7.0 to 1.8.0 ([#492](https://github.com/roots/bedrock/pull/492))
+* chore(deps-dev): Bump squizlabs/php_codesniffer from 3.4.2 to 3.5.4 ([#490](https://github.com/roots/bedrock/pull/490))
+* Clean up docblocks & commenting ([#459](https://github.com/roots/bedrock/pull/459))
+
 ### 1.12.8: 2019-09-05
 
 * Update to WordPress 5.2.3 ([#466](https://github.com/roots/bedrock/pull/466))
