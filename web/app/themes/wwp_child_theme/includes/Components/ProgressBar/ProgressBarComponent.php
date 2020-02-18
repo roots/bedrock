@@ -33,13 +33,21 @@ class ProgressBarComponent extends AbstractComponent
 
     public function getMarkup(array $opts = [])
     {
-        $markup = '
+        $markup = '';
 
-                <progress class="progress-bar-component" id="progress" value="' . $this->value . '" max="100">
+        $markup .= '<div class="progress-bar-component">
+
+                <progress id="progress" value="' . $this->value . '" max="100">
                    <span id="progress-bar"></span>
                 </progress>
 
-            ';
+                <div class="numbers">
+                   <span class="start">0%</span>
+                   <span class="cursor" style="left:calc(' . $this->value . '% - 10px);">' . $this->value . '%</span>
+                   <span class="end">100%</span>
+                </div>
+
+            </div>';
 
         return $markup;
     }

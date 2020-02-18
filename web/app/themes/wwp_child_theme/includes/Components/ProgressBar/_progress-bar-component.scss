@@ -4,64 +4,116 @@
 $progress-bar-bg: $gray-300;
 $progress-bar-color: $color-primary;
 
+.progress-bar-component {
+  flex: 1;
+  margin-top: 29px;
+  padding: 0 4rem 0 2rem;
 
-progress.progress-bar-component {
-  display: flex;
-  align-items: center;
-  height: 15px;
-  width: 100%;
-  background-color: $progress-bar-bg; //Background bar for all but Webkit
-  border-radius: 0;
-  cursor: pointer;
-  appearance: none;
+  //Barre de progression
+  progress {
+    display: flex;
+    align-items: center;
+    height: 1px;
+    width: 100%;
+    background-color: $progress-bar-bg; //Background bar for all but Webkit
+    border-radius: 0;
+    cursor: pointer;
+    appearance: none;
 
-  &::-moz-progress-bar,
-  &::-webkit-progress-value,
-  &::-webkit-progress-bar,
-  span {
-    height: 15px;
+    //Recent browser custom for Firefox
+    &::-moz-progress-bar {
+      height: 3px;
+      margin-top: -2px;
+      background-color: $progress-bar-color; //Foreground bar
+      transition: all .4s ease-in-out;
+    }
+
+    //Recent browser custom for Webkit
+    &::-webkit-progress-value {
+      position: relative;
+      top: -1px;
+      height: 3px;
+      background-color: $progress-bar-color; //Foreground bar
+      transition: all .4s ease-in-out;
+    }
+    &::-webkit-progress-bar{
+      height: 1px;
+      background-color: $progress-bar-bg; //Background bar
+      transition: all .4s ease-in-out;
+    }
+
+    //Old browsers fallback
+    &[data-state="fake"] {
+      background: $progress-bar-color; //Foreground bar
+      height: 3px;
+      transition: all .4s ease-in-out;
+    }
+    span {
+      position: relative;
+      top: -1px;
+      width: 0%;
+      height: 3px;
+      display: inline-block;
+      background-color: $progress-bar-bg; //Background bar
+      transition: all .4s ease-in-out;
+    }
+
+    //Custom for Internet Explorer
+    border: none;
+    color: $progress-bar-color; //Foreground bar
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: 2px;
+    } /*IE 10-11*/
   }
 
-  //Recent browser custom for Firefox
-  &::-moz-progress-bar {
-    background-color: $color-primary; //Foreground bar
-  }
-
-  //Recent browser custom for Webkit
-  &::-webkit-progress-value {
+  //Chiffres + curseur (pourcentages)
+  .numbers {
     position: relative;
-    background-color: $color-primary; //Foreground bar
-  }
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
 
-  &::-webkit-progress-bar {
-    background-color: $progress-bar-bg; //Background bar
-  }
+    span {
+      color: $progress-bar-color; //Foreground bar
 
-  //Old browsers fallback
-  &[data-state="fake"] {
-    background: $color-primary; //Foreground bar
-  }
+      &.start,
+      &.end {
+        opacity: .5;
+      }
 
-  //Custom for Internet Explorer
-  border: none;
-  color: $color-primary; //Foreground bar
+      &.cursor {
+        position: absolute;
+        top: -42px;
+        transition: left .4s ease-in-out;
 
-  span {
-    position: relative;
-    width: 0%;
-    display: inline-block;
-    background-color: $color-primary; //Background bar
+        /*Affiche un triangle*/
+        /* &::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 9px 5px 0 5px;
+            border-color: $progress-bar-color transparent transparent transparent;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+          }*/
+      }
+    }
   }
 
   @media (max-width: $medium - 1) {
-    height: 4px;
+    padding: 0 2rem 0 2rem;
+  }
 
-    &::-moz-progress-bar,
-    &::-webkit-progress-value,
-    &::-webkit-progress-bar,
-    span {
-      height: 4px;
+  @media (max-width: $medium - 1) and (orientation: landscape) {
+
+    .numbers {
+      margin-top: 3px;
+
+      span.cursor {
+        top: -29px;
+      }
     }
-
   }
 }
