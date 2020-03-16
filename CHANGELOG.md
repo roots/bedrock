@@ -1,3 +1,7 @@
+### Head
+
+* Add `WP_DEBUG_LOG` ([#499](https://github.com/roots/bedrock/pull/499))
+
 ### 1.13.0: 2020-02-17
 
 * Update to WordPress 5.3.2 ([#489](https://github.com/roots/bedrock/pull/489))
