@@ -1,4 +1,30 @@
-import {EventManager} from "./EventManager";
+import {EventManager} from "./features/EventManager";
+import {FeatureDetector} from "./features/FeatureDetector";
+
+/**
+ * Object.assign Polyfill
+ */
+if (typeof Object.assign != 'function') {
+  Object.assign = function (target) {
+    'use strict';
+    if (target == null) {
+      throw new TypeError('Cannot convert undefined or null to object');
+    }
+
+    target = Object(target);
+    for (var index = 1; index < arguments.length; index++) {
+      var source = arguments[index];
+      if (source != null) {
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+    }
+    return target;
+  };
+}
 
 /**
  * Pew.js polyfill
@@ -82,31 +108,14 @@ var Enhancer = function () {
   }, {key: "getRegistryEntry", value: function (e) {return this.registry.getEntry(e)}}]), t
 }();
 
-/**
- * Object.assign Polyfill
- */
-if (typeof Object.assign != 'function') {
-  Object.assign = function (target) {
-    'use strict';
-    if (target == null) {
-      throw new TypeError('Cannot convert undefined or null to object');
-    }
-
-    target = Object(target);
-    for (var index = 1; index < arguments.length; index++) {
-      var source = arguments[index];
-      if (source != null) {
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-    }
-    return target;
-  };
-}
-
-
 window.EventManager = new EventManager();
-window.pew          = new Pew();
+window.pew = new Pew();
+
+window.wonderwp = window.wonderwp || {};
+window.wonderwp.FeatureDetector = new FeatureDetector();
+
+let event = document.createEvent('Event');
+event.initEvent('criticalJsReady', true, true);
+document.dispatchEvent(event);
+
+window.criticalJsReady = 1;

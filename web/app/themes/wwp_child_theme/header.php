@@ -34,7 +34,7 @@
         echo $pageTitle;
 
         // Add the blog name.
-        echo ' | '.get_bloginfo('name');
+        echo ' | ' . get_bloginfo('name');
 
         // Add the blog description for the home/front page.
         if (is_home() || is_front_page()) {
@@ -54,12 +54,16 @@
     <?php wp_head(); ?>
 
     <script>
-        var domElt = window.document.documentElement;
-        if (domElt.classList.contains('no-js')) {
-            // The box that we clicked has a class of bad so let's remove it and add the good class
-            domElt.classList.remove('no-js');
+        if (window.criticalJsReady) {
+            criticalJsReady();
+        } else {
+            document.addEventListener('criticalJsReady', (e) => {
+                criticalJsReady();
+            });
         }
-        domElt.className += ' js-enabled';
+        criticalJsReady = function () {
+            window.wonderwp.FeatureDetector.runTests();
+        }
     </script>
 
 </head>
