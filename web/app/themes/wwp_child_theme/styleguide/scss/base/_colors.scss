@@ -1,78 +1,94 @@
 /* scss/base/_colors.scss */
 @charset "UTF-8";
-/* ----------------------------- */
-/* ==Colors      */
-/* ----------------------------- */
 
-/* Colors example (defined in variables.scss file) */
-/* ------------- */
-$color-base: $color-base;
-$color-brand: $color-brand;
-$color-primary: $color-primary;
-$gray-100: $gray-100;
-$gray-300: $gray-300;
-$gray-700: $gray-700;
-/* ------------- */
+/**
+ * -----------------------------
+ * Colors
+ * This file is read only
+ * -----------------------------
+ */
 
-.basecolor {
-    background: $color-base;
-}
+/**
+ * Edit your colors in the variables file : web/app/themes/wwp_child_theme/styleguide/scss/_variables.scss
+ * Then fill the $styleguide-colors below accordingly
+ */
 
-.brandcolor {
-    background: $color-brand;
-    span {
-        color: $white;
+//Styleguide Colors
+$styleguide-colors: ("base": $color-base, "brand": $color-brand, "primary": $color-primary, "lightgrey": $gray-100, "mediumgrey":$gray-300, "darkgrey":$gray-700);
+
+
+//----------------------------------------------------------------------------------//
+
+//Color generation mixin
+@each $name, $value in $styleguide-colors {
+  .color.#{$name} {
+    border: 1px solid #ddd;
+
+    &::after {
+      content: none;
     }
-}
 
-.primary {
-    background: $color-primary;
     span {
-        color: $white;
+      border-top: 1px solid #ddd;
+
+      &::after {
+        content: ' : #{$value}';
+        color: initial;
+      }
     }
+  }
+  .background-#{$name} {
+    background-color: $value;
+  }
 }
 
-.lightgrey {
-    background: $gray-100;
-    span {
-        color: #000;
-    }
-}
-
-.mediumgrey {
-    background: $gray-300;
-    span {
-        color: #000;
-    }
-}
-
-.darkgrey {
-    background: $gray-700;
-    span {
-        color: $white;
-    }
-}
-
+/* Color block properties */
 .colors:before,
 .colors:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .colors:after {
-    clear: both;
+  clear: both;
 }
 
 .colors {
-    *zoom: 1;
+  *zoom: 1;
 }
 
 .color {
-    width: 100px;
-    height: 100px;
-    float: left;
-    margin-right: 10px;
-    padding: 10px;
-    color: #fff;
-    font-size: 12px;
+  width: 100px;
+  height: 130px;
+  float: left;
+  margin-right: 10px;
+  font-size: 12px;
+  border: 1px solid red;
+  display: flex;
+  color: #000;
+  position: relative;
+
+  &::after {
+    content: 'undefined';
+    color: red;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  span {
+    width: 100%;
+    border-top: 1px solid red;
+    display: block;
+    padding: 5px;
+    margin-top: auto;
+    background: #fff;
+    font-size: .8em;
+
+    &::after {
+      content: ' : undefined';
+      color: red;
+    }
+  }
 }

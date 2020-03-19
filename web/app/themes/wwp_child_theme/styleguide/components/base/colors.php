@@ -1,22 +1,24 @@
 <!-- components/base/colors.php -->
+<?php
+//Edit your color names here based on the ones you've entered in your sass variable $styleguide-colors
+$colors = ['base', 'brand', 'primary', 'lightgrey', 'mediumgrey', 'darkgrey'];
+?>
 
+<?php
+//Do not touch below
+?>
+<p>Sass colors must be defined in the variable $styleguide-colors in the scss/base/_colors.scss file.</p>
+<p>If you see an undefined color in the list below, it means you haven't provided a correct value for this color yet in the $styleguide-colors variable.</p>
 <div class="colors">
-  <div class="color basecolor">
-    <span>$color-base #XXXXXX</span>
-  </div>
-  <div class="color brandcolor">
-    <span>$color-brand #XXXXXX</span>
-  </div>
-  <div class="color primary">
-    <span>$color-primary #XXXXXX</span>
-  </div>
-  <div class="color lightgrey">
-    <span>$gray-100 #XXXXXX</span>
-  </div>
-  <div class="color mediumgrey">
-    <span>$gray-300 #XXXXXX</span>
-  </div>
-  <div class="color darkgrey">
-    <span>$gray-700 #XXXXXX</span>
-  </div>
+    <?php
+
+    if (!empty($colors)) {
+        foreach ($colors as $color) {
+            echo '
+            <div class="color ' . $color . ' background-' . $color . '">
+                <span>$color-' . $color . '</span>
+            </div>';
+        }
+    }
+    ?>
 </div>
