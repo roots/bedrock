@@ -7,6 +7,7 @@ import "./Modal/ModalComponent";
 import "./NoAjaxTransition/NoAjaxTransitionComponent";
 import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
+import "./Slider/SliderGallery/SliderGallery";
 import "./Tabs/TabsComponent";
 import "./VideoEmbed/VideoEmbedComponent";
 import "./Video/VideoComponent";

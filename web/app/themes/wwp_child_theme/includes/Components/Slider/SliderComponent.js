@@ -28,7 +28,7 @@ export class SliderComponent extends PewComponent {
     });
     setTimeout(() => {
       this.reloadSlider('timeout');
-    }, 800);
+    }, 1000);
   }
 
   reloadSlider(origin) {
@@ -36,4 +36,4 @@ export class SliderComponent extends PewComponent {
   }
 }
 
-window.pew.addRegistryEntry({key: 'wdf-slider-home', domSelector: '.wdf-slider', classDef: SliderComponent});
+window.pew.addRegistryEntry({key: 'wdf-slider', domSelector: '.wdf-slider', classDef: SliderComponent});
