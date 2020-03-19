@@ -96,6 +96,7 @@ def defineVariables(){
 	    env.runComposer = true;
 	    env.runNpm = true;
 	    env.runBuild = true;
+	    env.runCypress=true;
 	}
 
 	def changeLogSets_ = currentBuild.changeSets
@@ -109,17 +110,17 @@ def defineVariables(){
 	      //println file_.path
 	      if(file_.path=='composer.json' || file_.path=='composer.lock' || file_.path=='Jenkinsfile'){
 	      	env.runComposer = true;
-	      	env.runCypress = true;
 	      	env.runBuild = true;
+	      	env.runCypress = true;
 	      }
 	      if(file_.path=='package.json' || file_.path=='package.lock' || file_.path=='Jenkinsfile'){
 	      	env.runNpm = true;
 	      }
 	      if(file_.path.contains(".css") || file_.path.contains(".scss") || file_.path.contains(".js") || file_.path=='Jenkinsfile'){
-			    env.runBuild = true;
+			env.runBuild = true;
 	      }
-	      if(file_.path.contains(".php") || file_.path.contains(".js") || file_.path=='cypress.json'){
-			    env.runCypress = true;
+	      if(file_.path.contains(".php") || file_.path.contains(".js") || file_.path.contains('cypress')){
+			env.runCypress = true;
 	      }
 	    }
 	  }
@@ -140,7 +141,7 @@ pipeline {
 
             if(env.runComposer=='true'){
                 try {
-	                sh 'composer install --no-dev';
+	                sh 'composer install --no-dev --prefer-dist';
                 } catch(exc){
                     handleException('Composer install failed', exc);
                 }
@@ -151,7 +152,6 @@ pipeline {
 	        if(env.runNpm=='true'){
 	            try {
 	        	    sh 'npm install';
-	        	    //sh 'npm rebuild node-sass --force';
                 } catch(exc){
                     handleException('npm install failed',exc);
                 }
@@ -190,7 +190,7 @@ pipeline {
             }
         }
     }
-    stage('deploy master branch') {
+    /*stage('deploy master branch') {
         when { branch 'master' }
         steps {
             script {
@@ -203,7 +203,7 @@ pipeline {
                 }
             }
         }
-    }
+    }*/
     stage('Integration tests') {
         steps {
             script {
@@ -235,4 +235,3 @@ pipeline {
     }
   }
 }
-
