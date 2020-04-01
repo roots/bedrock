@@ -1,8 +1,8 @@
 ### 1.13.2: 2020-04-01
 
+* chore(deps): Bump WordPress to 5.4 ([#502](https://github.com/roots/bedrock/pull/502))
+* chore(deps): Bump vlucas/phpdotenv ([#501](https://github.com/roots/bedrock/pull/502))
 * enhance(config): Add `WP_DEBUG_LOG` ([#499](https://github.com/roots/bedrock/pull/499))
-* chore(deps): Bump WordPress to 5.4
-* chore(deps): Bump vlucas/phpdotenv
 
 ### 1.13.1: 2020-02-19
 
