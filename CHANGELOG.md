@@ -1,6 +1,12 @@
-### Head
+### 1.13.2: 2020-04-01
 
-* Add `WP_DEBUG_LOG` ([#499](https://github.com/roots/bedrock/pull/499))
+* enhance(config): Add `WP_DEBUG_LOG` ([#499](https://github.com/roots/bedrock/pull/499))
+* chore(deps): Bump WordPress to 5.4
+* chore(deps): Bump vlucas/phpdotenv
+
+### 1.13.1: 2020-02-19
+
+* fix(env): Makes .env.example compatible with breaking changes from vlucas/phpdotenv 4.x ([#493](https://github.com/roots/bedrock/pull/493))
 
 ### 1.13.0: 2020-02-17
 
