@@ -1,4 +1,5 @@
 ### HEAD
+* Default to `WP_DEBUG_LOG=true` in development ([#505](https://github.com/roots/bedrock/pull/505))
 * Support `.env.local` config override ([#594](https://github.com/roots/bedrock/pull/594))
 * Use Bedrock disallow indexing package ([#521](https://github.com/roots/bedrock/pull/521))
 
