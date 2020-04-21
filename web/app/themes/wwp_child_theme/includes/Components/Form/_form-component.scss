@@ -57,6 +57,9 @@ form {
   [type="week"],
   select,
   textarea {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: $input-height; //Pour IE
+    }
     min-height: $input-height;
     padding: 0.5rem 4rem .5rem 1rem;
     box-shadow: $input-box-shadow;
@@ -98,6 +101,10 @@ form {
 }
 
 // Custom SELECT
+.select-wrap {
+  width: 100%;
+}
+
 .select-style {
 
   select {
@@ -205,12 +212,11 @@ form {
   }
 }
 
-//RGPD checkbox
-.rgpd-consent-wrap {
-  margin-top: 1rem;
+.radio {
+  border-radius: 50%;
 
-  label {
-    font-size: 1rem;
+  &:checked::before {
+    border-radius: 50%;
   }
 }
 
@@ -240,13 +246,22 @@ fieldset.inline {
 .form-before-fields {
   grid-column: 1 / -1;
   margin-bottom: 1rem;
+  flex: 1 1 100% !important;
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
 // Help messages
-.help span {
-  font-size: .9em;
-  font-style: italic;
-  color: $label-color;
+.help {
+  margin-top: 1rem;
+
+  span {
+    display: block;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: $label-color;
+    line-height: 1.2;
+  }
 }
 
 // Error messages (More in styleguide/atoms/alert)
@@ -372,5 +387,34 @@ $form-gutter: 5px;
         }
       }
     }
+  }
+}
+
+
+/*Chosen styles override*/
+.chosen-container {
+  width: 100% !important;
+}
+
+.chosen-choices {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    height: $input-height; //Pour IE
+  }
+  min-height: $input-height;
+  margin-top: 0 !important;
+  padding: 2px 5px;
+  box-shadow: none;
+
+  li.search-field {
+    height: $input-height - 8px;
+  }
+
+  li.search-field input[type="text"] {
+    font-family: $font-family-base;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: $input-height - 8px; //Pour IE
+    }
+    min-height: $input-height - 8px;
+    padding: 0 4px;
   }
 }
