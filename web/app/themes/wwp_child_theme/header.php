@@ -70,9 +70,9 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-    <div class="skip-links"><a href="#content"><?php _e('Skip to content', 'wonderwp'); ?></a></div>
+    <div class="skip-links"><a href="#content"><?php echo trad('Skip to content', WWP_THEME_TEXTDOMAIN); ?></a></div>
 
-    <header class="site-header" id="header">
+    <header class="site-header" id="header" role="banner">
 
         <div class="inner-header">
 
@@ -84,7 +84,7 @@
               </a>'
             ?>
 
-            <nav role="navigation" class="navigation-wrapper">
+            <nav role="navigation" aria-label="Menu principal" class="navigation-wrapper">
 
                 <ul class="header-menu" id="menu">
                     <?php

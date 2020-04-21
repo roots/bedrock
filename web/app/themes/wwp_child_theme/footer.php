@@ -16,7 +16,7 @@
     <?php do_action('wwp_before_footer'); ?>
 </div>
 
-<footer id="colophon" class="site-footer">
+<footer id="colophon" class="site-footer" role="contentinfo">
     <div class="footer-content">
         <?php
         //Menu du footer

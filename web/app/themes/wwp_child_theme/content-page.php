@@ -25,7 +25,7 @@
     </header><!-- .entry-header -->
 
     <div class="entry-content">
-        <main class="main">
+        <main class="main" role="main">
 
         <?php
         /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
