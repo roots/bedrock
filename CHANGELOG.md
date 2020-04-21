@@ -1,3 +1,7 @@
+### Head
+
+* Composer: Add `only` option to wpackagist.org repository ([#508](https://github.com/roots/bedrock/pull/508))
+
 ### 1.13.2: 2020-04-01
 
 * chore(deps): Bump WordPress to 5.4 ([#502](https://github.com/roots/bedrock/pull/502))
