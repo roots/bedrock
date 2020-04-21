@@ -20,10 +20,12 @@
     <div class="footer-content">
         <?php
         //Menu du footer
-        //Pour fonctionner automatiquement, creer un footer appele Footer fr_FR pour la france dans apparence/menus dans le BO
+        //Pour fonctionner automatiquement, creer un footer appelé Footer fr_FR pour la france dans apparence/menus dans le BO
         $footerMenuName = 'Footer ' . get_locale();
         if (is_nav_menu($footerMenuName)) {
-            wp_nav_menu(['menu' => $footerMenuName]);
+            echo '<nav role="navigation" aria-label="Menu secondaire">';
+                wp_nav_menu(['menu' => $footerMenuName]);
+            echo '</nav>';
         }
         ?>
         <?php
