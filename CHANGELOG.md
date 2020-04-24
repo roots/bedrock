@@ -1,5 +1,10 @@
 ### Head
 
+### 1.13.4: 2020-04-24
+
+* fix(mu-plugins): Bump bedrock-autoloader version ([#512](https://github.com/roots/bedrock/pull/512))
+* fix(mu-plugins): A more sane fix for #510 ([#512](https://github.com/roots/bedrock/pull/512))
+
 ### 1.13.3: 2020-04-24
 
 * enhance(ci): Add CircleCI workflow for PHP 7.4 ([#510](https://github.com/roots/bedrock/pull/511))
