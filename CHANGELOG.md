@@ -2,8 +2,8 @@
 
 ### 1.13.4: 2020-04-24
 
-* fix(mu-plugins): Bump bedrock-autoloader version
-* fix(mu-plugins): A more sane fix for #510
+* fix(mu-plugins): Bump bedrock-autoloader version ([#512](https://github.com/roots/bedrock/pull/512))
+* fix(mu-plugins): A more sane fix for #510 ([#512](https://github.com/roots/bedrock/pull/512))
 
 ### 1.13.3: 2020-04-24
 
