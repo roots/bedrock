@@ -173,7 +173,7 @@ class Autoloader
         $this->autoPlugins = get_plugins($this->relativePath);
         $this->muPlugins   = get_mu_plugins();
         $plugins           = array_diff_key($this->autoPlugins, $this->muPlugins);
-        $rebuild           = !is_array($this->cache['plugins']);
+        $rebuild           = !isset($this->cache['plugins']);
         $this->activated   = $rebuild ? $plugins : array_diff_key($plugins, $this->cache['plugins']);
         $this->cache       = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
