@@ -1,6 +1,10 @@
 ### Head
 
-* Composer: Add `only` option to wpackagist.org repository ([#508](https://github.com/roots/bedrock/pull/508))
+### 1.13.3: 2020-04-24
+
+* enhance(ci): Add CircleCI workflow for PHP 7.4 ([#510](https://github.com/roots/bedrock/pull/511))
+* fix(mu-plugins): Fix invalid array access notice on 7.4 ([#510](https://github.com/roots/bedrock/pull/510))
+* enhance(composer): Add `only` option to wpackagist.org repository ([#508](https://github.com/roots/bedrock/pull/508))
 
 ### 1.13.2: 2020-04-01
 
