@@ -3,9 +3,9 @@ version: 2.1
 orbs:
   bedrock:
     executors:
-      php-74:
+      php-latest:
         docker:
-          - image: 'circleci/php:7.4-stretch'
+          - image: 'circleci/php:latest'
       php-73:
         docker:
           - image: 'circleci/php:7.3-stretch'
@@ -39,8 +39,8 @@ workflows:
   build:
     jobs:
       - bedrock/build-php:
-          name: build-php-74
-          executor: bedrock/php-74
+          name: build-php-latest
+          executor: bedrock/php-latest
       - bedrock/build-php:
           name: build-php-73
           executor: bedrock/php-73
