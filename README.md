@@ -1,7 +1,8 @@
 <p align="center">
   <a href="https://roots.io/bedrock/">
-    <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" width="150">
+    <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" width="300">
   </a>
+  <br><br>
 </p>
 
 <p align="center">
