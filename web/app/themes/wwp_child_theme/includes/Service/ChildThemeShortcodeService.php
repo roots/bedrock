@@ -10,6 +10,7 @@ namespace WonderWp\Theme\Child\Service;
 
 use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
+use WonderWp\Theme\Child\Components\MapSearch\MapSearchShortcodeHandler;
 use WonderWp\Theme\Child\Components\Modal\ModalComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderComponent;
 use WonderWp\Theme\Child\Components\Slider\SliderItem\SliderItem;
@@ -24,17 +25,18 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
 
     public function registerShortcodes()
     {
-        parent::registerShortcodes ();
+        parent::registerShortcodes();
 
-        add_shortcode ('slider', [$this, 'slider']);
-        add_shortcode ('slider-item', [$this, 'slideritem']);
-        add_shortcode ('modal', [$this, 'modal']);
-        add_shortcode ('card', [$this, 'card']);
-        add_shortcode ('timeline', [$this, 'timeline']);
-        add_shortcode ('timeline-item', [$this, 'timelineitem']);
-        add_shortcode ('dropdown', [$this, 'dropdown']);
-        add_shortcode ('tabs', [$this, 'tabs']);
-        add_shortcode ('tab-item', [$this, 'tabitem']);
+        add_shortcode('slider', [$this, 'slider']);
+        add_shortcode('slider-item', [$this, 'slideritem']);
+        add_shortcode('modal', [$this, 'modal']);
+        add_shortcode('card', [$this, 'card']);
+        add_shortcode('timeline', [$this, 'timeline']);
+        add_shortcode('timeline-item', [$this, 'timelineitem']);
+        add_shortcode('dropdown', [$this, 'dropdown']);
+        add_shortcode('tabs', [$this, 'tabs']);
+        add_shortcode('tab-item', [$this, 'tabitem']);
+        //add_shortcode(MapSearchShortcodeHandler::$shortCode, [MapSearchShortcodeHandler::class, 'handle']);
 
         return $this;
     }
@@ -43,17 +45,17 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
     public function slider($attr, $content)
     {
         $slider = new SliderComponent();
-        $slider->fillWith ($attr);
+        $slider->fillWith($attr);
 
         $sliderItems = [];
 
-        $shortcodes = $this->extractShortcodes ($content, 'slider-item');
+        $shortcodes = $this->extractShortcodes($content, 'slider-item');
         foreach ($shortcodes as $shortcode) {
-            array_push ($sliderItems, do_shortcode ($shortcode)); // push slider item markup to slider component
+            array_push($sliderItems, do_shortcode($shortcode)); // push slider item markup to slider component
         }
         $slider->sliderItems = $sliderItems;
 
-        return $slider->getMarkup ();
+        return $slider->getMarkup();
 
     }
 
@@ -61,117 +63,114 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
     public function slideritem($attr, $content)
     {
         $slideritem = new SliderItem();
-        $slideritem->fillWith ($attr);
+        $slideritem->fillWith($attr);
 
         if (isset($content) && !empty($content)) {
             $slideritem->content = $content;
         }
 
-        return $slideritem->getMarkup ();
+        return $slideritem->getMarkup();
     }
 
     // Modale
     public function modal($attr, $content)
     {
         $modal = new ModalComponent();
-        $modal->fillWith ($attr);
+        $modal->fillWith($attr);
 
         if (isset($content) && !empty($content)) {
             $modal->content = $content;
         }
 
-        return $modal->getMarkup ();
+        return $modal->getMarkup();
     }
 
     // Generic card
     public function card($attr)
     {
         $card = new CardComponent();
-        $card->fillWith ($attr);
+        $card->fillWith($attr);
 
         if (!empty($attr['image'])) {
-            $card->setImage ('<img src="' . $attr['image'] . '" />');
+            $card->setImage('<img src="' . $attr['image'] . '" />');
         }
 
-        return $card->getMarkup ();
+        return $card->getMarkup();
     }
 
     // Timeline wrapper
     public function timeline($attr, $content)
     {
         $timeline = new TimelineComponent();
-        $timeline->fillWith ($attr);
+        $timeline->fillWith($attr);
 
         $timelineItems = [];
 
-        $shortcodes = $this->extractShortcodes ($content, 'timeline-item');
+        $shortcodes = $this->extractShortcodes($content, 'timeline-item');
         foreach ($shortcodes as $shortcode) {
-            array_push ($timelineItems, do_shortcode ($shortcode));
+            array_push($timelineItems, do_shortcode($shortcode));
         }
         $timeline->timelineItems = $timelineItems;
 
-        return $timeline->getMarkup ();
+        return $timeline->getMarkup();
     }
 
     // Timeline item
     public function timelineitem($attr)
     {
         $timelineitem = new TimelineItem();
-        $timelineitem->fillWith ($attr);
+        $timelineitem->fillWith($attr);
 
-        return $timelineitem->getMarkup ();
+        return $timelineitem->getMarkup();
     }
-
 
     public function dropdown($attr)
     {
         $modal = new DropdownComponent();
-        $modal->fillWith ($attr);
+        $modal->fillWith($attr);
 
-        return $modal->getMarkup ();
+        return $modal->getMarkup();
     }
 
     public function tabs($attr, $content)
     {
         $tab = new TabsComponent();
 
-        $nbTabs = $attr['nbtabs'];
+        $nbTabs   = $attr['nbtabs'];
         $tabItems = [];
 
-        $shortcodes = $this->extractShortcodes ($content, 'tab-item');
-
+        $shortcodes = $this->extractShortcodes($content, 'tab-item');
 
         for ($i = 1; $i <= $nbTabs; $i++) {
-            $tabItems[$i]['markup'] = do_shortcode ($shortcodes[$i - 1]);
-            $tabItems[$i]['title'] = $attr['title_' . $i];
+            $tabItems[$i]['markup'] = do_shortcode($shortcodes[$i - 1]);
+            $tabItems[$i]['title']  = $attr['title_' . $i];
         }
         $tab->tabItems = $tabItems;
 
-
-        return $tab->getMarkup ();
+        return $tab->getMarkup();
     }
 
     public function tabitem($attr, $content)
     {
         $tabitem = new TabItem();
-        $tabitem->fillWith ($attr);
+        $tabitem->fillWith($attr);
 
         if (isset($content) && !empty($content)) {
             $tabitem->content = $content;
         }
 
-        return $tabitem->getMarkup ();
+        return $tabitem->getMarkup();
     }
 
     public static function extractShortcode($content, $element)
     {
         $results = [];
 
-        $pattern = get_shortcode_regex ();
+        $pattern = get_shortcode_regex();
 
-        if (preg_match_all ('/' . $pattern . '/s', $content, $matches)
-            && array_key_exists (2, $matches)
-            && in_array ($element, $matches[2])) {
+        if (preg_match_all('/' . $pattern . '/s', $content, $matches)
+            && array_key_exists(2, $matches)
+            && in_array($element, $matches[2])) {
             $results = $matches[0];
         }
 
