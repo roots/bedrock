@@ -4,15 +4,15 @@
 /* ----------------------------- */
 
 iframe {
-    border: none;
+  border: none;
 }
 
 #iframeDoc {
-    display: block;
-    width: 100%;
-    max-width: 1350px;
-    margin: 0 auto;
-    height: 1000px;
+  display: block;
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  height: 1000px;
 }
 
 /* ----------------------------- */
@@ -20,109 +20,121 @@ iframe {
 /* ----------------------------- */
 
 // For Styleguide
-#containers ~ .component{
-    width: 100%;
-    .container-s, .container, .container-l {
-        margin-bottom: 2rem;
-        padding: 1rem;
-        background: $gray-200;
-        text-align: center;
-    }
+#containers ~ .component {
+  width: 100%;
+
+  .container-xs, .container-s, .container, .container-l {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: $gray-200;
+    text-align: center;
+  }
 }
 
 
 // Containers
-.container-s, .container, .container-l, .container-xl {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+.container-xs, .container-s, .container, .container-l, .container-xl {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-xs {
+  width: $extra-small;
+
+  @media (max-width: $medium - 1) {
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .container-s {
-    width: $medium;
+  width: $medium;
 
-    @media (max-width: $medium) {
-        width: 100%;
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
+  @media (max-width: $medium) {
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .container {
-    width: $large;
+  width: $large;
 
-    @media (max-width: $very-large) {
-        padding-right: 4em;
-        padding-left: 4em;
-    }
+  @media (max-width: $very-large) {
+    padding-right: 4em;
+    padding-left: 4em;
+  }
 
-    @media (max-width: $large) {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: 4em;
-        padding-left: 4em;
-    }
+  @media (max-width: $large) {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 4em;
+    padding-left: 4em;
+  }
 
-    @media (max-width: $medium - 1) {
-        padding-right: 3rem;
-        padding-left: 3rem;
-    }
+  @media (max-width: $medium - 1) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
 
 }
 
 .container-l {
-    width: $very-large;
+  width: $very-large;
 
-    @media (max-width: $very-large) {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: 2em;
-        padding-left: 2em;
+  @media (max-width: $very-large) {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 2em;
+    padding-left: 2em;
 
-        .container,
-        .container-s {
-            padding-right: 0;
-            padding-left: 0;
-        }
-
-        .container {
-            width: 100%;
-        }
+    .container,
+    .container-s {
+      padding-right: 0;
+      padding-left: 0;
     }
 
-    @media (max-width: $medium - 1) {
-        padding-right: 0;
-        padding-left: 0;
-    } // Padding needed for header title
+    .container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  // Padding needed for header title
 }
 
 .container-xl {
-    width: $extra-large;
+  width: $extra-large;
 
-    @media (max-width: $extra-large) {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: 2em;
-        padding-left: 2em;
+  @media (max-width: $extra-large) {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 2em;
+    padding-left: 2em;
 
-        .container,
-        .container-s {
-            padding-right: 0;
-            padding-left: 0;
-        }
-
-        .container {
-            width: 100%;
-        }
+    .container,
+    .container-s {
+      padding-right: 0;
+      padding-left: 0;
     }
 
-    @media (max-width: $medium - 1) {
-        padding-right: 0;
-        padding-left: 0;
+    .container {
+      width: 100%;
     }
+  }
+
+  @media (max-width: $medium - 1) {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 
@@ -132,5 +144,5 @@ iframe {
 }
 
 .entry-header {
-    @extend .container;
+  @extend .container;
 }
