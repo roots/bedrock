@@ -19,7 +19,7 @@ def loadCreds(secretFile){
 }
 
 def handleException(msg,exc) {
-    def changeString_ = "${JOB_NAME}${env.BUILD_DISPLAY_NAME}\n";
+    def changeString_ = getChangeString()+"\n";
 
     if(msg){
 		changeString_ += msg;

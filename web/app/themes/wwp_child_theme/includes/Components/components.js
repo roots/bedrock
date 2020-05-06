@@ -1,13 +1,13 @@
-import "./Accordion/AccordionComponent"
-import "./Cookie/CookieComponent";
+//import "./Accordion/AccordionComponent"
 import "./Dropdown/DropdownComponent";
 import "./Form/FormComponent";
 import "./Header/HeaderComponent";
+//import "./MapSearch/MapSearchComponent";
 import "./Modal/ModalComponent";
 import "./NoAjaxTransition/NoAjaxTransitionComponent";
 import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
 import "./Slider/SliderGallery/SliderGallery";
-import "./Tabs/TabsComponent";
+//import "./Tabs/TabsComponent";
 import "./VideoEmbed/VideoEmbedComponent";
 import "./Video/VideoComponent";
