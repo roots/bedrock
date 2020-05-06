@@ -29,12 +29,36 @@
 
 /* Default list parent style */
 /* ------------------------- */
-.items-list {
-    display: flex;
-    flex-wrap: wrap;
+//Variables:
+$gutter  : 2rem; //Largeur gouttière
+$col     : 3; //Nombre de colonnes
 
-    [class^="item"] {
-        display: flex; // All cards are same height
-        width: calc(100% / 3);
+.items-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+  margin-right: -$gutter;
+  margin-left: -$gutter;
+
+  .item {
+    width: calc(100% * 1 / #{$col} - #{$gutter * 2} - .01px);
+    margin-right: $gutter;
+    margin-left: $gutter;
+    margin-bottom: #{$gutter * 2};
+  }
+
+  @media (max-width: $medium - 1) {
+    display: block;
+    margin-right: 0;
+    margin-left: 0;
+
+    .item {
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      margin-bottom: $gutter;
     }
+  }
 }
