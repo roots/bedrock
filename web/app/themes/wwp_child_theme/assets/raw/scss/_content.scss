@@ -5,13 +5,13 @@
 
 /*Knacss override*/
 hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 table, .table {
-    /* for gutenberg styles */
-    table-layout: inherit;
+  /* for gutenberg styles */
+  table-layout: inherit;
 }
 
 
@@ -20,16 +20,17 @@ table, .table {
 
 /*Variables*/
 /* ------------- */
-$mobileheaderHeight : $burger-btn-size;
+$mobileheaderHeight: $burger-btn-size;
 /* ------------- */
 
 
 .site-content {
-    position: relative;
-    z-index: 0;
-    overflow-x: hidden;
+  position: relative;
+  z-index: 0;
+  padding: 6rem 0;
+  overflow-x: hidden;
 
-    @media (max-width: $medium - 1) {
-        margin-top: $mobileheaderHeight;
-    }
+  @media (max-width: $medium - 1) {
+    margin-top: $mobileheaderHeight;
+  }
 }

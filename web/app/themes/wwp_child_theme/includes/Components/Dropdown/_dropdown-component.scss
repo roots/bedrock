@@ -1,7 +1,15 @@
+$dropdown-height: auto;
+$trigger-height: 5rem;
+$trigger-color: white; //button
+$trigger-bgcolor: $color-primary; //button
+
 .wdf-dropdown {
+  height: $dropdown-height;
+  overflow: hidden;
 
   &, .dropup {
     position: relative;
+
     &:after {
       display: table;
       content: " ";
@@ -10,61 +18,63 @@
 
   // Trigger
   .dropdown-trigger {
+    height: $trigger-height;
+    position: relative;
+    z-index: 1;
+
     .button {
-      display: inline-flex;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      height: 100%;
+      min-height: auto;
+      width: 100%;
+      margin: 0;
+      font-size: 1.7rem;
+      appearance: none;
+      border-radius: 0;
+      box-shadow: none;
+
+      &,
+      &:hover,
+      &:focus {
+        color: $trigger-color;
+        background-color: $trigger-bgcolor;
+      }
     }
   }
 
   .dropdown-icon {
-    @include svgIcon('chevron-t-small');
+    @include svgIcon('dropdown-icon');
+    margin-left: 1rem;
+    transform-origin: center;
     transform: rotate(180deg);
+    transition: all .4s;
   }
 
-  .dropdown-toggle:focus {
-    outline: 0;
-  }
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #FFFFFF;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .15);
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  }
-  .dropdown-menu > li > a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.42857143;
-    color: #333333;
-    white-space: nowrap;
-    text-decoration: none;
-  }
+  // Content
+  .dropdown-content {
+    width: 100%;
+    padding-top: 2rem;
+    transform: translateY(calc(-100% - #{$trigger-height}));
+    transition: all .4s ease-in-out;
 
-  &.open > .dropdown-toggle {
-    color: #FFFFFF;
-    margin-bottom: 0;
-    &.btn-primary {
+    a.content {
+      text-decoration: none;
     }
   }
-  &.open > .dropdown-menu {
-    display: block;
+
+  // Reveal
+  &.open {
+
+    .dropdown-icon {
+      transform: rotate(0deg);
+    }
+
+    .dropdown-content {
+      transform: translateY(0);
+    }
   }
-  &.open .dropdown-icon {
-    transform: rotate(0deg);
-  }
+
 }
