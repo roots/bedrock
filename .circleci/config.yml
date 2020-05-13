@@ -19,12 +19,29 @@ jobs:
       - run: sudo npm install -g snyk
       - run: snyk test
 
+  deploy-sandbox:
+    docker:
+      - image: circleci/python:3.6
+    environment:
+      JENKINS_URL: https://ci.sandbox.datagov.us
+    steps:
+      - checkout
+      - deploy:
+          name: jenkins
+          command: ./jenkins_build deploy-ci-app-wordpress
+
 
 workflows:
   version: 2
   commit:
     jobs:
       - build
+      - deploy-sandbox:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
 
   weekly:
     triggers:
