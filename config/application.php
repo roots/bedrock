@@ -78,7 +78,7 @@ define ('WPLANG', 'fr_FR');
 /**
  * Custom Settings
  */
-define('AUTOMATIC_UPDATER_DISABLED', true);
+define('AUTOMATIC_UPDATER_DISABLED', !in_array(WP_ENV,['staging','production']));
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
 define('FS_METHOD','direct');
