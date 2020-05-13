@@ -1,0 +1,88 @@
+#!/bin/bash
+# Triggers a build on a Jenkins CI server.
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+
+function usage () {
+  cat <<EOF >&2
+
+Usage: $0 <job-name>
+
+Environment variables are required:
+
+  JENKINS_URL the URL of the Jenkins instance.
+
+  JENKINS_API_TOKEN the API token for the user, see \$JENKINS_URL/user/<user-name>/configure.
+
+  JENKINS_JOB_TOKEN the secret authorization token for this job, see \$JENKINS_URL/job/<job-name>/configure.
+
+  JENKINS_USER the username to access the API as.
+EOF
+
+  return 1
+}
+
+function jenkins_curl () {
+  local url
+  url=$1
+  shift
+
+  # TODO https://github.com/GSA/datagov-deploy/issues/1030 to remove -k insecure flag
+  curl --insecure --silent --fail --user "$JENKINS_USER:$JENKINS_API_TOKEN" "$@" "${JENKINS_URL}${url}"
+}
+
+function crumb_header () {
+  # Get a CRSF token (crumb) from Jenkins
+  local crumb_response crumb_header crumb_value
+
+  # Create a temp file for processing the response
+  crumb_response=$(mktemp)
+
+  jenkins_curl /crumbIssuer/api/json > "$crumb_response"
+  crumb_header=$(jq --raw-output .crumbRequestField "$crumb_response")
+  crumb_value=$(jq --raw-output .crumb "$crumb_response")
+  rm -rf "$crumb_response"
+  echo -n "$crumb_header:$crumb_value"
+}
+
+function build_job () {
+  local job_name
+  job_name=$1
+
+  jenkins_curl "/job/${job_name}/build?token=$JENKINS_JOB_TOKEN" -X POST -H "$(crumb_header)"
+  echo "$job_name" started.
+}
+
+
+# Make sure we have all the settings we need.
+if [[ -z "${JENKINS_URL:-}" ]]; then
+  echo \$JENKINS_URL is not set. >&2
+  usage
+fi
+
+if [[ -z "${JENKINS_API_TOKEN:-}" ]]; then
+  echo \$JENKINS_API_TOKEN is not set. >&2
+  usage
+fi
+
+if [[ -z "${JENKINS_JOB_TOKEN:-}" ]]; then
+  echo \$JENKINS_JOB_TOKEN is not set. >&2
+  usage
+fi
+
+if [[ -z "${JENKINS_USER:-}" ]]; then
+  echo \$JENKINS_USER is not set. >&2
+  usage
+fi
+
+# Parse the arguments
+job_name=${1:-}
+if [[ -z "$job_name" ]]; then
+  echo Jenkins job name must be specified. >&2
+  usage
+fi
+
+build_job "$job_name"
