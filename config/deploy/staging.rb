@@ -1,5 +1,5 @@
 set :stage, :staging
-set :branch, :master
+set :branch, :dev
 set :deploy_to, "/home/www-data/staging.academy.unitedworldwrestling.org"
 set :shared_path, "/home/www-data/efs_share/staging.academy.unitedworldwrestling.org/shared"
 
