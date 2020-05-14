@@ -20,7 +20,7 @@ pipeline {
     }
   }
   post {
-    failure {
+    always {
       step([$class: 'GitHubIssueNotifier', issueAppend: true])
     }
   }
