@@ -34,10 +34,10 @@ class headerComponent extends PewComponent {
   }
 
   registerSticky() {
-    if (this.element.hasClass(this.options.classToCheckIfHeaderShouldBeSticky)) {
+    if ($('body').hasClass(this.options.classToCheckIfHeaderShouldBeSticky)) {
       window.onscroll = function () {checkHeaderFixation()};
       checkHeaderFixation();
-      
+
       const header = this.element[0];
       let stickTreshold = header.offsetTop;
       if (this.options.stickyOffset === 'top') {
