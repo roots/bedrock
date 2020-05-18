@@ -68,7 +68,8 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<!--Ajouter la classe .stickable sur <body> pour rendre le header sticky-->
+<body <?php body_class(['stickable']); ?>>
 <div id="page" class="hfeed site">
     <div class="skip-links"><a href="#content"><?php echo trad('Skip to content', WWP_THEME_TEXTDOMAIN); ?></a></div>
 
