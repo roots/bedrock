@@ -72,7 +72,7 @@
 <div id="page" class="hfeed site">
     <div class="skip-links"><a href="#content"><?php echo trad('Skip to content', WWP_THEME_TEXTDOMAIN); ?></a></div>
 
-    <header class="site-header" id="header" role="banner">
+    <header class="site-header stickable" id="header" role="banner">
 
         <div class="inner-header">
 
