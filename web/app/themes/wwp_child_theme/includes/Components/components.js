@@ -1,4 +1,4 @@
-//import "./Accordion/AccordionComponent"
+import "./Accordion/AccordionComponent"
 import "./Dropdown/DropdownComponent";
 import "./Form/FormComponent";
 import "./Header/HeaderComponent";
@@ -8,6 +8,6 @@ import "./NoAjaxTransition/NoAjaxTransitionComponent";
 import "./Notification/NotificationComponent";
 import "./Slider/SliderComponent";
 import "./Slider/SliderGallery/SliderGallery";
-//import "./Tabs/TabsComponent";
+import "./Tabs/TabsComponent";
 import "./VideoEmbed/VideoEmbedComponent";
 import "./Video/VideoComponent";
