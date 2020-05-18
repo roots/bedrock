@@ -42,7 +42,7 @@ $col     : 3; //Nombre de colonnes
   margin-right: -$gutter;
   margin-left: -$gutter;
 
-  .item {
+  > * {
     width: calc(100% * 1 / #{$col} - #{$gutter * 2} - .01px);
     margin-right: $gutter;
     margin-left: $gutter;
@@ -54,7 +54,7 @@ $col     : 3; //Nombre de colonnes
     margin-right: 0;
     margin-left: 0;
 
-    .item {
+    > * {
       width: 100%;
       margin-right: 0;
       margin-left: 0;
