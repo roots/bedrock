@@ -232,6 +232,7 @@ form {
   @extend .btn--primary;
   justify-content: center;
   height: $input-height;
+  min-height: $input-height;
 }
 
 // Fieldset with inline (dates…)
@@ -337,6 +338,10 @@ $form-gutter: 5px;
     > div {
       flex: 1 1 auto;
       margin: $form-gutter;
+    }
+
+    > .form-group {
+      display: flex;
     }
 
     .checkbox-wrap,
