@@ -1,3 +1,6 @@
+### HEAD
+* Use Bedrock disallow indexing package ([#521](https://github.com/roots/bedrock/pull/521))
+
 ### 1.15.4: 2021-05-19
 * Bump roots/wordpress from 5.7 to 5.7.2 ([#593](https://github.com/roots/bedrock/pull/593))
 * Bump composer/installers from 1.10.0 to 1.11.0 ([#592](https://github.com/roots/bedrock/pull/592))
@@ -48,6 +51,7 @@
 * Upgrade `oscarotero/env` to `^2.0` ([#530](https://github.com/roots/bedrock/pull/530))
 * chore(deps): Bump vlucas/phpdotenv from 4.1.4 to 4.1.5 ([#518](https://github.com/roots/bedrock/pull/518))
 * Use Bedrock Autoloader package ([#519](https://github.com/roots/bedrock/pull/519))
+* chore(deps): Bump vlucas/phpdotenv from 4.1.4 to 4.1.5 ([#518](https://github.com/roots/bedrock/pull/518))
 
 ### 1.13.5: 2020-05-11
 
