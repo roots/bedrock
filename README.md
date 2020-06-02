@@ -30,26 +30,26 @@ Most of Data.gov discussions happen at [Data.gov github](https://github.com/gsa/
 
 Build the docker containers.
 
-    $ docker-compose build
+    $ make build
 
 Run the docker containers.
 
-    $ docker-compose up
-
-Install composer dependencies.
-
-    $ docker-compose exec app composer install
+    $ make up
 
 Activate all the installed plugins and theme.
 
-    $ docker-compose exec app wp core install --url=http://localhost:8000 \
-      --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root
-    $ docker-compose exec app wp plugin activate --all --allow-root
-    $ docker-compose exec app wp theme activate roots-nextdatagov --allow-root
+    $ make setup
+
+The admin password is in the output of the above command.
 
 Open your browser to [localhost:8000](http://localhost:8000/).
 
 _TODO: initialize the database with seed data so the theme loads properly._
+
+Clean local directories and containers.
+
+    $ make clean
+
 
 ### Restoring database dumps
 
