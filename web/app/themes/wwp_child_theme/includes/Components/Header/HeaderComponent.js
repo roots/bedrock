@@ -4,11 +4,11 @@ import {Menu} from "./Menu";
 class headerComponent extends PewComponent {
 
   constructor(element, options) {
-    let defaultOptions = {
-      'classToToggleOnBody': 'has-opened-menu',
-      'classToCheckIfHeaderShouldBeSticky': 'stickable',
-      'classToToggleOnBodyWhenHeaderStuck': 'has-stuck-header',
-      'stickyOffset': 'bottom'
+    const defaultOptions = {
+      classToToggleOnBody: 'has-opened-menu',
+      classToCheckIfHeaderShouldBeSticky: 'stickable',
+      classToToggleOnBodyWhenHeaderStuck: 'has-stuck-header',
+      stickyOffset: 'bottom'
     };
     super(element, Object.assign(defaultOptions, options));
     this.menu = null;
