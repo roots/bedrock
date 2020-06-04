@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6430ee15e46ba984ac4e4fbcc6da923",
+    "content-hash": "e500c175df1dac200890ec181ebe68b7",
     "packages": [
         {
             "name": "composer/installers",
@@ -135,27 +135,34 @@
         },
         {
             "name": "oscarotero/env",
-            "version": "v1.2.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/env.git",
-                "reference": "4ab45ce5c1f2c62549208426bfa20a3d5fa008c6"
+                "reference": "af3fe9677f4609f387abc53efb16a9a01594db8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/env/zipball/4ab45ce5c1f2c62549208426bfa20a3d5fa008c6",
-                "reference": "4ab45ce5c1f2c62549208426bfa20a3d5fa008c6",
+                "url": "https://api.github.com/repos/oscarotero/env/zipball/af3fe9677f4609f387abc53efb16a9a01594db8e",
+                "reference": "af3fe9677f4609f387abc53efb16a9a01594db8e",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
-                "php": ">=5.2"
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "^7.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Env": "src/"
-                }
+                "psr-4": {
+                    "Env\\": "src/"
+                },
+                "files": [
+                    "src/env_function.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -174,7 +181,7 @@
             "keywords": [
                 "env"
             ],
-            "time": "2019-04-03T18:28:43+00:00"
+            "time": "2020-06-03T21:16:26+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -607,12 +614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "885e8b1e0bc2096989fd20938342e407e8045186"
+                "reference": "de6fda3af9b36c77fdeb62b968157032f7111b09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/885e8b1e0bc2096989fd20938342e407e8045186",
-                "reference": "885e8b1e0bc2096989fd20938342e407e8045186",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/de6fda3af9b36c77fdeb62b968157032f7111b09",
+                "reference": "de6fda3af9b36c77fdeb62b968157032f7111b09",
                 "shasum": ""
             },
             "conflict": {
@@ -653,10 +660,10 @@
                 "doctrine/mongodb-odm": ">=1,<1.0.2",
                 "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
-                "dolibarr/dolibarr": "<=10.0.6",
+                "dolibarr/dolibarr": "<11.0.4",
                 "dompdf/dompdf": ">=0.6,<0.6.2",
-                "drupal/core": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
-                "drupal/drupal": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
+                "drupal/core": ">=7,<7.70|>=8,<8.7.14|>=8.8,<8.8.6",
+                "drupal/drupal": ">=7,<7.70|>=8,<8.7.14|>=8.8,<8.8.6",
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
@@ -666,8 +673,9 @@
                 "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
                 "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
                 "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2",
+                "ezsystems/ezplatform-kernel": ">=1,<1.0.2.1",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
-                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.1|>=6,<6.7.9.1|>=6.8,<6.13.6.2|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<7.5.6.2",
+                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<6.13.6.3|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<7.5.7.1",
                 "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.14.1|>=2011,<2017.12.7.2|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3|>=2019.3,<2019.3.4.2",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
                 "ezyang/htmlpurifier": "<4.1.1",
@@ -705,6 +713,7 @@
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
+                "october/october": ">=1.0.319,<1.0.466",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "openid/php-openid": "<2.3",
@@ -716,7 +725,7 @@
                 "paypal/merchant-sdk-php": "<3.12",
                 "pear/archive_tar": "<1.4.4",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
-                "phpmailer/phpmailer": ">=5,<5.2.27|>=6,<6.0.6",
+                "phpmailer/phpmailer": "<6.1.6",
                 "phpmyadmin/phpmyadmin": "<4.9.2",
                 "phpoffice/phpexcel": "<1.8.2",
                 "phpoffice/phpspreadsheet": "<1.8",
@@ -731,6 +740,7 @@
                 "propel/propel": ">=2-alpha.1,<=2-alpha.7",
                 "propel/propel1": ">=1,<=1.7.1",
                 "pusher/pusher-php-server": "<2.2.1",
+                "rainlab/debugbar-plugin": "<3.1",
                 "robrichards/xmlseclibs": "<3.0.4",
                 "sabre/dav": ">=1.6,<1.6.99|>=1.7,<1.7.11|>=1.8,<1.8.9",
                 "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
@@ -869,7 +879,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-05-16T00:00:31+00:00"
+            "time": "2020-06-04T00:00:55+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
