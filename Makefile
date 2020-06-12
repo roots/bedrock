@@ -3,7 +3,7 @@ up:
 build:
 	docker-compose build
 update:
-	docker-compose run app composer update
+	docker-compose run --rm app composer update
 clean:
 	docker-compose down -v
 	rm -rf web/app/mu-plugins/*/ web/app/plugins/* web/app/uploads/* web/app/themes web/wp vendor

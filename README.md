@@ -51,6 +51,13 @@ Clean local directories and containers.
     $ make clean
 
 
+### Update dependencies
+
+Build the containers and run composer update within the container.
+
+    $ make update
+
+
 ### Restoring database dumps
 
 You don't need a database dump for most development tasks. If you need
