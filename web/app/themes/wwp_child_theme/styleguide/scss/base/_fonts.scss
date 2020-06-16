@@ -4,24 +4,28 @@
 /* ==Fonts      */
 /* ----------------------------- */
 
-/* Fonts example (defined in variables.scss file) */
+/* Fonts are imported in variables.scss file */
 
+// Fonts extends (family + weight)
+.font-base {
+  @extend %font-family-roboto;
+  font-weight: $weight-book;
+}
+
+.font-headings {
+  @extend %font-family-roboto;
+  font-weight: $weight-bold;
+}
+
+.font-secondary {
+  @extend %font-family-robotocondensed;
+  font-weight: $weight-book;
+}
+
+/*For Atomic docs*/
 .font {
-  font-weight: normal;
   margin-top: 0;
   span {
     display: block;
   }
-}
-
-.font1 {
-  font-family: $font-family-base;
-}
-
-.font2 {
-  font-family: $font-family-headings;
-}
-
-.font3 {
-  font-family: $font-family-secondary;
 }
