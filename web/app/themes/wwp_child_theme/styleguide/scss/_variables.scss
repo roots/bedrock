@@ -23,12 +23,29 @@ $gutter: 16px;
 // ----------
 
 // Font families
-//Import Google fonts here:
-//@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
-$font-family-base      : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default; // system font stack
-$font-family-headings  : sans-serif !default; // font for h1, h2.. h6
-$font-family-secondary: 'Comfortaa', cursive;
+// 1. Import Google fonts here, and define variations in styleguide/base/fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;500,700;900&display=swap');
+
+// 2. Define families variables (titles, Knacss…)
+$font-family-base      : 'Roboto', sans-serif !default; // system font stack
+$font-family-headings  : 'Roboto', sans-serif !default; // font for h1, h2.. h6
+$font-family-secondary : 'Roboto Condensed', sans-serif !default;;
 $font-family-monospace : consolas, courier, monospace !default; // font for code and samples
+
+// 2. Define families extends
+%font-family-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+%font-family-robotocondensed {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+// Font weights
+$weight-light   : 200 !default;
+$weight-book    : 300 !default;
+$weight-regular : 400 !default;
+$weight-medium  : 500 !default;
+$weight-bold    : 700 !default;
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : 1.6rem !default;
@@ -73,13 +90,6 @@ $line-height-l    : 1.7 !default;
 $margin-bottom-base     : 3rem !default;
 $headings-margin-bottom : $margin-bottom-base /2 !default;
 $paragraph-margin-bottom: $margin-bottom-base !default;
-
-// Font weights
-$weight-light   : 200 !default;
-$weight-book    : 300 !default;
-$weight-regular : 400 !default;
-$weight-medium  : 500 !default;
-$weight-bold    : 700 !default;
 
 // Activate hyphenation on small screens
 $hyphens: false !default;
