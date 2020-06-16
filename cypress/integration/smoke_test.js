@@ -7,7 +7,7 @@ describe('Smoke Test', () => {
         it('Checks that page ' + host + url + ' has no fatal', () => {
 
             cy.visit(host + url);
-            cy.get("#colophon").should('be.visible');
+            cy.checkNoFatal();
 
         });
     });

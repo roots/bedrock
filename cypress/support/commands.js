@@ -10,25 +10,13 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("wpLogin", (email, password) => {
-    let host = Cypress.env('host') || Cypress.config('host'),
-        conf = Cypress.config('wp-admin');
-    /*cy.visit(host + conf.url);
-    cy.get('#user_login').type(conf.login);
-    cy.get('#user_pass').type(conf.pwd);
-    cy.get('#loginform').submit();*/
-    cy.request({
-        method: 'POST',
-        url: host+conf.url, // baseUrl is prepended to url
-        form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
-        body: {
-            log: conf.login,
-            pwd: conf.pwd
-        }
-    }).then((response) => {
-        console.log(response);
-    });
-});
+import {loginCommand} from "./loginCommand";
+import {checkNoFatalCommand} from "./checkNoFatalCommand";
+import {checkNoFatalInAdminCommand} from "./checkNoFatalInAdminCommand";
+
+Cypress.Commands.add("wpLogin", loginCommand);
+Cypress.Commands.add("checkNoFatal", checkNoFatalCommand);
+Cypress.Commands.add("checkNoFatalInAdmin", checkNoFatalInAdminCommand);
 //
 //
 // -- This is a child command --
