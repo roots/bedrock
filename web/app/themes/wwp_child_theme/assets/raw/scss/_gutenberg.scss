@@ -8,6 +8,7 @@ $gutter-col-width: 16px !default; //Gouttière de base
 //Columns mobile first
 .wp-block-columns {
   width: 100%;
+  margin-bottom: $gutter-col-width;
 }
 
 //Column mobile first
@@ -18,11 +19,6 @@ $gutter-col-width: 16px !default; //Gouttière de base
     float: none;
     margin-right: 0 !important;
   }
-
-  .wp-block-image img {
-    height: auto;
-    width: 100%;
-  }
 }
 
 /*
@@ -31,14 +27,19 @@ $gutter-col-width: 16px !default; //Gouttière de base
 
 @media (min-width: 782px) { //782px Gutenberg Breakpoint
 
-  // Grande gouttière
-  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} * 4);
+  // Très petite gouttière
+  .wp-block-columns.gutter-xs .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} / 2);
   }
 
   // Petite gouttière
   .wp-block-columns.gutter-s .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width});
+  }
+
+  // Grande gouttière
+  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} * 4);
   }
 
   // Sans gouttière
@@ -61,6 +62,30 @@ $gutter-col-width: 16px !default; //Gouttière de base
   // Gouttière
   .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width} * 2);
+  }
+
+  // Très petite gouttière
+  .wp-block-columns.gutter-xs .wp-block-column {
+    flex-basis: calc(50% - #{$gutter-col-width} / 4);
+  }
+  .wp-block-columns.gutter-xs .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} / 2);
+  }
+
+  // Petite gouttière
+  .wp-block-columns.gutter-s .wp-block-column {
+    flex-basis: calc(50% - #{$gutter-col-width} / 2);
+  }
+  .wp-block-columns.gutter-s .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width});
+  }
+
+  // grande gouttière
+  .wp-block-columns.gutter-l .wp-block-column {
+    flex-basis: calc(50% - #{$gutter-col-width} * 2);
+  }
+  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
+    margin-left: calc(#{$gutter-col-width} + 4);
   }
 }
 
@@ -100,6 +125,7 @@ $gutter-col-width: 16px !default; //Gouttière de base
   }
 
   .wp-block-column {
+    margin-bottom: 2rem;
 
     &.prm,
     &.prl,
@@ -113,16 +139,5 @@ $gutter-col-width: 16px !default; //Gouttière de base
       padding-left: 0;
     }
 
-    /*Attention : on décallage toutes les images sur la droite!*/
-    .wp-block-image img {
-      width: calc(100% + 3rem);
-      max-width: none;
-      margin-right: -3rem;
-    }
-    /*Sur la gauche*/
-    /*    .wp-block-image.size-large img {
-          margin-right: 0;
-          margin-left: -3rem;
-        }*/
   }
 }
