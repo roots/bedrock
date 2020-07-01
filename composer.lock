@@ -4,8 +4,17 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7d8dcf6a80c7971f952a6992962780e",
+    "content-hash": "843723801f9e08e33c9b1a7f1c8cf0f5",
     "packages": [
+        {
+            "name": "Divi",
+            "version": "4.4.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/themes/Divi.zip"
+            },
+            "type": "wordpress-theme"
+        },
         {
             "name": "Ultimate_VC_Addons",
             "version": "1.0",
@@ -87,16 +96,6 @@
                 "ssl",
                 "tls"
             ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-04-08T08:27:21+00:00"
         },
         {
@@ -176,20 +175,6 @@
                 "autoload",
                 "dependency",
                 "package"
-            ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/composer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-06-24T19:23:30+00:00"
         },
@@ -317,16 +302,6 @@
                 "yawik",
                 "zend",
                 "zikula"
-            ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-04-07T06:57:05+00:00"
         },
@@ -493,21 +468,16 @@
                 "Xdebug",
                 "performance"
             ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/composer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-06-04T11:16:35+00:00"
+        },
+        {
+            "name": "custom-css-js",
+            "version": "3.31.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/custom-css-js.zip"
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "cweagans/composer-patches",
@@ -810,22 +780,22 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.9.8",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "de02cd79a41e06f36558040724414197cb7f6246"
+                "reference": "18c41a328193d6f7425a3cea4e01faa220e90218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/de02cd79a41e06f36558040724414197cb7f6246",
-                "reference": "de02cd79a41e06f36558040724414197cb7f6246",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/18c41a328193d6f7425a3cea4e01faa220e90218",
+                "reference": "18c41a328193d6f7425a3cea4e01faa220e90218",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "4.9.8",
-                "johnpbloch/wordpress-core-installer": "^1.0",
-                "php": ">=5.3.2"
+                "johnpbloch/wordpress-core": "5.4.2",
+                "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
+                "php": ">=5.6.20"
             },
             "type": "package",
             "notification-url": "https://packagist.org/downloads/",
@@ -838,34 +808,35 @@
                     "homepage": "http://wordpress.org/about/"
                 }
             ],
-            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-08-02T21:48:39+00:00"
+            "time": "2020-06-10T22:05:43+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "4.9.8",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc"
+                "reference": "3e67d8b6ee6c11e8ce404da4627117fb7fbf9266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/50323f9b91d7689d615b4af02caf9d80584b1cfc",
-                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/3e67d8b6ee6c11e8ce404da4627117fb7fbf9266",
+                "reference": "3e67d8b6ee6c11e8ce404da4627117fb7fbf9266",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "ext-json": "*",
+                "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "4.9.8"
+                "wordpress/core-implementation": "5.4.2"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -875,41 +846,42 @@
             "authors": [
                 {
                     "name": "WordPress Community",
-                    "homepage": "http://wordpress.org/about/"
+                    "homepage": "https://wordpress.org/about/"
                 }
             ],
-            "description": "WordPress is web software you can use to create a beautiful website or blog.",
-            "homepage": "http://wordpress.org/",
+            "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
+            "homepage": "https://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-08-02T21:48:32+00:00"
+            "time": "2020-06-10T22:05:38+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
-            "version": "1.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4"
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/237faae9a60a4a2e1d45dce1a5836ffa616de63e",
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "composer/installers": "<1.0.6"
             },
             "require-dev": {
-                "composer/composer": "^1.0",
-                "phpunit/phpunit": ">=4.8.35"
+                "composer/composer": "^1.0 || ^2.0",
+                "phpunit/phpunit": ">=5.7.27"
             },
             "type": "composer-plugin",
             "extra": {
@@ -934,7 +906,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2018-11-09T20:10:38+00:00"
+            "time": "2020-04-16T21:44:57+00:00"
         },
         {
             "name": "js_composer",
@@ -1012,38 +984,20 @@
             "time": "2020-05-27T16:41:55+00:00"
         },
         {
-            "name": "learnpress",
-            "version": "1.0",
+            "name": "learndash-course-grid",
+            "version": "1.6.0",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/learnpress.zip"
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/learndash-course-grid.zip"
             },
             "type": "wordpress-plugin"
         },
         {
-            "name": "learnpress-certificates",
-            "version": "1.0",
+            "name": "loader",
+            "version": "2.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/learnpress-certificates.zip"
-            },
-            "type": "wordpress-plugin"
-        },
-        {
-            "name": "learnpress-gradebook",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/learnpress-gradebook.zip"
-            },
-            "type": "wordpress-plugin"
-        },
-        {
-            "name": "learnpress-sorting-choice",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/learnpress-sorting-choice.zip"
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/loader.zip"
             },
             "type": "wordpress-plugin"
         },
@@ -1230,15 +1184,6 @@
                 "php"
             ],
             "time": "2020-06-03T07:24:19+00:00"
-        },
-        {
-            "name": "north",
-            "version": "1.3",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/themes/northv2.zip"
-            },
-            "type": "wordpress-theme"
         },
         {
             "name": "oscarotero/env",
@@ -1657,16 +1602,6 @@
                 "parser",
                 "validator"
             ],
-            "funding": [
-                {
-                    "url": "https://github.com/Seldaek",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/seld/jsonlint",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-04-30T19:05:18+00:00"
         },
         {
@@ -1712,6 +1647,24 @@
                 "phar"
             ],
             "time": "2020-02-14T15:25:33+00:00"
+        },
+        {
+            "name": "sfwd-lms",
+            "version": "3.1.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/sfwd-lms.zip"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "simple_divi_shortcode",
+            "version": "1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/simple_divi_shortcode.zip"
+            },
+            "type": "wordpress-plugin"
         },
         {
             "name": "symfony/console",
@@ -1788,20 +1741,6 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-30T20:06:45+00:00"
         },
         {
@@ -1852,20 +1791,6 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-30T18:50:54+00:00"
         },
         {
@@ -1915,20 +1840,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:54:36+00:00"
         },
         {
@@ -1990,20 +1901,6 @@
                 "ctype",
                 "polyfill",
                 "portable"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-06-06T08:46:27+00:00"
         },
@@ -2068,20 +1965,6 @@
                 "portable",
                 "shim"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-06-06T08:46:27+00:00"
         },
         {
@@ -2136,20 +2019,6 @@
                 "polyfill",
                 "portable",
                 "shim"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-05-12T16:47:27+00:00"
         },
@@ -2212,20 +2081,6 @@
                 "polyfill",
                 "portable",
                 "shim"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-06-06T08:46:27+00:00"
         },
@@ -2293,20 +2148,6 @@
                 "portable",
                 "shim"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-06-06T08:46:27+00:00"
         },
         {
@@ -2356,20 +2197,6 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-30T20:06:45+00:00"
         },
         {
@@ -2505,20 +2332,6 @@
                 "debug",
                 "dump"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-30T20:06:45+00:00"
         },
         {
@@ -2527,6 +2340,15 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/unitedworldwrestling/academy/raw/master/sources/plugins/templatera.zip"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "tin-canny-learndash-reporting",
+            "version": "3.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/tin-canny-learndash-reporting.zip"
             },
             "type": "wordpress-plugin"
         },
@@ -2648,6 +2470,24 @@
             "type": "wordpress-plugin"
         },
         {
+            "name": "uncanny-learndash-toolkit",
+            "version": "3.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/uncanny-learndash-toolkit.zip"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "uncanny-toolkit-pro",
+            "version": "3.5.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/unitedworldwrestling/academy/raw/futurelearning-changes/sources/plugins/uncanny-toolkit-pro.zip"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.6.5",
             "source": {
@@ -2706,16 +2546,6 @@
                 "dotenv",
                 "env",
                 "environment"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/vlucas/phpdotenv",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-06-02T14:06:52+00:00"
         },
@@ -4786,15 +4616,15 @@
         },
         {
             "name": "wpackagist-plugin/fv-wordpress-flowplayer",
-            "version": "7.4.14.727",
+            "version": "7.4.24.727",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/fv-wordpress-flowplayer/",
-                "reference": "tags/7.4.14.727"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/fv-wordpress-flowplayer.7.4.14.727.zip"
+                "url": "https://downloads.wordpress.org/plugin/fv-wordpress-flowplayer.zip?timestamp=1591694178"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -4819,60 +4649,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/ilab-media-tools/"
-        },
-        {
-            "name": "wpackagist-plugin/learnpress-fill-in-blank",
-            "version": "3.1.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/learnpress-fill-in-blank/",
-                "reference": "tags/3.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/learnpress-fill-in-blank.3.1.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/learnpress-fill-in-blank/"
-        },
-        {
-            "name": "wpackagist-plugin/learnpress-import-export",
-            "version": "3.0.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/learnpress-import-export/",
-                "reference": "tags/3.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/learnpress-import-export.3.0.1.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/learnpress-import-export/"
-        },
-        {
-            "name": "wpackagist-plugin/learnpress-prerequisites-courses",
-            "version": "3.0.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/learnpress-prerequisites-courses/",
-                "reference": "tags/3.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/learnpress-prerequisites-courses.3.0.1.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/learnpress-prerequisites-courses/"
         },
         {
             "name": "wpackagist-plugin/onesignal-free-web-push-notifications",
@@ -5329,16 +5105,6 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "funding": [
-                {
-                    "url": "https://github.com/Ocramius",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/roave/security-advisories",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-06-19T13:23:43+00:00"
         }
     ],
@@ -5350,8 +5116,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6"
+        "php": ">=7.1"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
