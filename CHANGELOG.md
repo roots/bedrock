@@ -1,6 +1,6 @@
-### 1.8.12: 2018-08-03
+### 1.14.0: 2020-07-01
 
-* Update to WordPress 4.9.8
+* Future learning changes
 
 ### 1.8.11: 2018-07-09
 
