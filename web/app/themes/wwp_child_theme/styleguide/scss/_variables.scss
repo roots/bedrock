@@ -32,20 +32,34 @@ $font-family-headings  : 'Roboto', sans-serif !default; // font for h1, h2.. h6
 $font-family-secondary : 'Sriracha', cursive;
 $font-family-monospace : consolas, courier, monospace !default; // font for code and samples
 
-// 2. Define families extends
-%font-family-roboto {
-  font-family: 'Roboto', sans-serif;
-}
-%font-family-sriracha {
-  font-family: 'Sriracha', cursive;
-}
-
-// Font weights
+// ...and weights variables
 $weight-light   : 200 !default;
 $weight-book    : 300 !default;
 $weight-regular : 400 !default;
 $weight-medium  : 500 !default;
 $weight-bold    : 700 !default;
+
+// 3. Define families extends
+%font-family-roboto {
+  font-family: $font-family-base;
+}
+%font-family-sriracha {
+  font-family: $font-family-secondary;
+}
+
+// 4. Use families + weight extends
+.font-base {
+  @extend %font-family-roboto;
+  font-weight: $weight-book;
+}
+.font-headings {
+  @extend %font-family-roboto;
+  font-weight: $weight-bold;
+}
+.font-secondary {
+  @extend %font-family-robotocondensed;
+  font-weight: $weight-book;
+}
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : 1.6rem !default;
