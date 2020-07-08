@@ -11,7 +11,15 @@ jobs:
           keys:
             - v1-composer-{{ checksum "composer.lock" }}
             - v1-composer-
-      - run: composer --no-interaction install
+      - run:
+          name: Build the application image
+          command: make build
+      - run:
+          name: Start the application
+          command: make up
+      - run:
+          name: Install app plugins
+          command: make setup
       - save_cache:
           key: v1-composer-{{ checksum "composer.lock" }}
           paths:
