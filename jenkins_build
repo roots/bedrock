@@ -30,8 +30,7 @@ function jenkins_curl () {
   url=$1
   shift
 
-  # TODO https://github.com/GSA/datagov-deploy/issues/1030 to remove -k insecure flag
-  curl --insecure --silent --fail --user "$JENKINS_USER:$JENKINS_API_TOKEN" "$@" "${JENKINS_URL}${url}"
+  curl --silent --fail --user "$JENKINS_USER:$JENKINS_API_TOKEN" "$@" "${JENKINS_URL}${url}"
 }
 
 function crumb_header () {
