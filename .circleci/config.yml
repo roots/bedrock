@@ -15,8 +15,8 @@ jobs:
           name: Install app plugins
           command: make setup
       - run:
-          name: Remove running application
-          command: docker-compose down -v
+          name: Clean running application
+          command: make clean
 
   deploy-sandbox:
     docker:

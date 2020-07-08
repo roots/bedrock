@@ -10,10 +10,9 @@ clean:
 
 setup:
 	sleep 15 #wait for the db to allow connections
-	docker-compose exec app wp core download --allow-root
-	docker-compose exec app wp core install --url=http://localhost:8000 --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root
-	docker-compose exec app wp plugin activate --all --allow-root
-	docker-compose exec app wp theme activate roots-nextdatagov --allow-root
+	docker-compose exec app wp core install --url=http://localhost:8000 --title=Data.gov --admin_user=admin --admin_email=admin@example.com --allow-root --path='/var/www/web/wp'
+	docker-compose exec app wp plugin activate --all --allow-root --path='/var/www/web/wp'
+	docker-compose exec app wp theme activate roots-nextdatagov --allow-root --path='/var/www/web/wp'
 
 
 .PHONY: clean
