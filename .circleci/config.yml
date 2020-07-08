@@ -5,7 +5,6 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: sudo apt install -y subversion
       - run:
           name: Build the application image
           command: make build
@@ -15,8 +14,6 @@ jobs:
       - run:
           name: Install app plugins
           command: make setup
-      - run: sudo npm install -g snyk
-      - run: snyk test
 
   deploy-sandbox:
     docker:
