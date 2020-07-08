@@ -12,11 +12,8 @@ jobs:
           name: Start the application
           command: make up
       - run:
-          name: Install app plugins
-          command: make setup
-      - run:
           name: Clean running application
-          command: make clean
+          command: docker-compose down -v
 
   deploy-sandbox:
     docker:
