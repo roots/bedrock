@@ -15,6 +15,7 @@ class ReseauxSociauxComponent extends AbstractComponent
             'facebook',
             'twitter',
             'youtube',
+            'vimeo',
             'instagram',
             'pinterest',
             'flickr',
