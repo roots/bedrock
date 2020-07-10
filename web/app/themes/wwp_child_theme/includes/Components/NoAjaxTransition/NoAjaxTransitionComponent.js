@@ -8,7 +8,14 @@ export default class NoAjaxTransitionComponent extends PewComponent {
   }
 
   setupTransitionTriggers() {
-    $('a').not('.no-transition,.actu-list .pagination a,.post-edit-link').on('click', (e) => {
+    const exceptions = [
+      '.no-transition',
+      '.no-barba',
+      '.module-actu .pagination a',
+      '.module-faq .pagination a',
+      '.post-edit-link'
+    ];
+    $('a').not(exceptions.join(',')).on('click', (e) => {
       let $link = $(e.currentTarget);
       let href = $link.attr('href');
 
