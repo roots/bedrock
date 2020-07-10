@@ -228,6 +228,13 @@ form {
 }
 
 //SUBMIT button
+.submitFormField {
+
+  form.auto-submit & {
+    @extend .visually-hidden;
+  }
+}
+
 [type="submit"] {
   @extend .btn--primary;
   justify-content: center;
