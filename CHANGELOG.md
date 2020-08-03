@@ -1,3 +1,7 @@
+### 1.14.2: 2020-08-03
+
+* New plugin
+
 ### 1.14.1: 2020-07-01
 
 * Future learning changes
