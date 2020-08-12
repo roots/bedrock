@@ -1,3 +1,11 @@
+### 1.14.1: 2020-08-11
+
+* chore(deps): Bump roots/wordpress from 5.4.1 to 5.5 ([#542](https://github.com/roots/bedrock/pull/542))
+* chore(deps-dev): Bump squizlabs/php_codesniffer from 3.5.5 to 3.5.6 ([#541](https://github.com/roots/bedrock/pull/541))
+* chore(deps): Bump vlucas/phpdotenv from 4.1.5 to 4.1.8 ([#536](https://github.com/roots/bedrock/pull/536))
+* chore(deps): Bump oscarotero/env from 2.0.0 to 2.1.0 ([#531](https://github.com/roots/bedrock/pull/531))
+* CircleCI: Use offical CircleCI PHP orb and next-gen docker images ([#520](https://github.com/roots/bedrock/pull/520))
+
 ### 1.14.0: 2020-08-11
 
 * Upgrade `oscarotero/env` to `^2.0` ([#530](https://github.com/roots/bedrock/pull/530))
