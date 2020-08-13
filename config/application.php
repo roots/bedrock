@@ -36,12 +36,26 @@ if (file_exists($root_dir . '/.env')) {
         $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
     }
 }
+/**
+ * Set up Environment Types
+ * Default: production, staging, development
+ */
+Config::define('WP_ENVIRONMENT_TYPES', env('WP_ENVIRONMENT_TYPES') ? explode(',', env('WP_ENVIRONMENT_TYPES')) : ['production', 'staging', 'development']);
 
 /**
- * Set up our global environment constant and load its config first
- * Default: production
+ * Set up WP_ENV and WP_ENVIRONMENT_TYPE based on which
+ * constants are set
  */
-define('WP_ENV', env('WP_ENV') ?: 'production');
+if (env('WP_ENV') || env('WP_ENVIRONMENT_TYPE')) {
+    Config::define('WP_ENV', env('WP_ENV') ?: env('WP_ENVIRONMENT_TYPE'));
+    Config::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: env('WP_ENV'));
+    define('WP_ENV', env('WP_ENV') ?: env('WP_ENVIRONMENT_TYPE'));
+} else {
+    Config::define('WP_ENV', 'production');
+    define('WP_ENV', 'production');
+}
+
+Config::define('DB_NAME', env('DB_NAME'));
 
 /**
  * URLs
