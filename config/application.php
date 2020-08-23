@@ -55,8 +55,6 @@ if (env('WP_ENV') || env('WP_ENVIRONMENT_TYPE')) {
     define('WP_ENV', 'production');
 }
 
-Config::define('DB_NAME', env('DB_NAME'));
-
 /**
  * URLs
  */
