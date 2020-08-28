@@ -26,7 +26,7 @@ class VideoEmbedComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp embed"})
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Video ID"})
      */
     protected $video; // Youtube ID
 
