@@ -1,3 +1,7 @@
+### 1.14.2: 2020-09-04
+
+* chore(deps): Bump roots/wordpress from 5.5 to 5.5.1 ([#545](https://github.com/roots/bedrock/pull/545))
+
 ### 1.14.1: 2020-08-11
 
 * chore(deps): Bump roots/wordpress from 5.4.1 to 5.5 ([#542](https://github.com/roots/bedrock/pull/542))
@@ -15,7 +19,6 @@
 ### 1.13.5: 2020-05-11
 
 * chore(deps): Bump roots/wordpress from 5.4 to 5.4.1 ([#517](https://github.com/roots/bedrock/pull/517))
-
 
 ### 1.13.4: 2020-04-24
 
