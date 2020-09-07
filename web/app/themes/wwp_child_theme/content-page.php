@@ -27,11 +27,12 @@
     <div class="entry-content">
         <main class="main" role="main">
 
-        <?php
-        /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
-        if (!empty($viewService) && is_object($viewService)) {
-            echo $viewService->getBreadcrumbs();
-        } ?>
+            <?php
+            /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
+            $viewService = wwp_get_theme_service('view');
+            if (!empty($viewService) && is_object($viewService)) {
+                echo $viewService->getBreadcrumbs();
+            } ?>
 
         <?php the_content(); ?>
 
