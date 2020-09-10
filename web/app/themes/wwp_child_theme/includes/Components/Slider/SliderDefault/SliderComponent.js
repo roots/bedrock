@@ -1,24 +1,21 @@
-import "../../../../../../../node_modules/bxslider/dist/jquery.bxslider.js";
-import {PewComponent} from "../../../assets/raw/js/components/pew-component";
+import "bxslider/dist/jquery.bxslider.js";
+import {PewComponent} from "../../../../assets/raw/js/components/pew-component";
 
 // see https://bxslider.com/options/
 const SliderOptions = {
-  mode: 'horizontal',
   autoControlsCombine: true,
   keyboardEnabled: true,
   easing: 'ease-in-out',
   speed: 700,
   auto: true,
-  autoControls: false,
-  pager: true,
   stopAutoOnClick: true,
-  adaptiveHeight: true,
-  touchEnabled: (window.innerWidth<1025 && window.wonderwp.FeatureDetector.has('touch'))
+  touchEnabled: (window.innerWidth < 1025 && window.wonderwp.FeatureDetector.has('touch'))
 };
 
 export class SliderComponent extends PewComponent {
-  constructor(element) {
-    super(element, SliderOptions);
+  constructor(element, passedOptions) {
+    let opts = Object.assign(SliderOptions, passedOptions);
+    super(element, opts);
   }
 
   init() {
@@ -34,6 +31,10 @@ export class SliderComponent extends PewComponent {
   reloadSlider(origin) {
     this.slider.reloadSlider(this.options);
   }
+
+  getSlideByIndex(index) {
+    return this.element.find('>*:eq(' + index + ')');
+  }
 }
 
-window.pew.addRegistryEntry({key: 'wdf-slider', domSelector: '.wdf-slider', classDef: SliderComponent});
+window.pew.addRegistryEntry({key: 'wdf-slider', domSelector: '[class$="wdf-slider"]', classDef: SliderComponent});

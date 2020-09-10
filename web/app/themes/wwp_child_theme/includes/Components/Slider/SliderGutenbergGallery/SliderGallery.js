@@ -1,4 +1,4 @@
-import {SliderComponent} from "../SliderComponent";
+import {SliderComponent} from "../SliderDefault/SliderComponent";
 
 export default class SliderGallery extends SliderComponent {
 

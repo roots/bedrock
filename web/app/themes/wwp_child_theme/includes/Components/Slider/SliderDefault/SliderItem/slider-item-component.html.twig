@@ -6,5 +6,7 @@
         <div class="slider-title">{{ title }}</div>
         <div class="slider-content">{{ content | raw}}</div>
     </div>
-    <a class="btn" href="{{ link }}">{{ label }}</a>
+    {% if link %}
+    <a class="btn" href="{{ link }}">{{ linkLabel }}</a>
+    {% endif %}
 </div>
