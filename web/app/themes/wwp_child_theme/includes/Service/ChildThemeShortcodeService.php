@@ -23,9 +23,9 @@ use WonderWp\Theme\Core\Service\ThemeShortcodeService;
 class ChildThemeShortcodeService extends ThemeShortcodeService
 {
 
-    public function registerShortcodes()
+    public function register()
     {
-        parent::registerShortcodes();
+        parent::register();
 
         add_shortcode('slider', [$this, 'slider']);
         add_shortcode('slider-item', [$this, 'slideritem']);
