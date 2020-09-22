@@ -59,7 +59,7 @@
         if (window.criticalJsReady) {
             criticalJsReady();
         } else {
-            document.addEventListener('criticalJsReady', funciton() {
+            document.addEventListener('criticalJsReady', function() {
                 criticalJsReady();
             });
         }
