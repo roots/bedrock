@@ -10,6 +10,8 @@ namespace WonderWp\Theme\Child\Components\Tabs\TabItem;
 
 class TabItem
 {
+    public $id;
+    public $class;
     public $title;
     public $content;
 
