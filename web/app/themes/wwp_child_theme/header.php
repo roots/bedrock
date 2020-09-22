@@ -54,6 +54,8 @@
     <?php wp_head(); ?>
 
     <script>
+        window.document.documentElement.className += ' js-enabled';
+        window.document.documentElement.classList.remove('no-js');
         if (window.criticalJsReady) {
             criticalJsReady();
         } else {

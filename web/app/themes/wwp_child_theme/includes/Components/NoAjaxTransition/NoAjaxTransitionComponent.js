@@ -18,7 +18,6 @@ export default class NoAjaxTransitionComponent extends PewComponent {
     $('a').not(exceptions.join(',')).on('click', (e) => {
       let $link = $(e.currentTarget);
       let href = $link.attr('href');
-
       if (
         (
           href.indexOf(window.location.host) !== -1 //on trouve bien l'url du site dans le lien
@@ -27,11 +26,12 @@ export default class NoAjaxTransitionComponent extends PewComponent {
         )
         && href.indexOf('#') === -1 //Pas une ancre
         && ( !$(e.currentTarget).attr('target') || $link.attr('target') !== '_blank') //Pas un target blank
+        && !e.metaKey //Meta key is not pressed
       ) {
-        console.log('lien concerne');
+        console.log('[Transition] lien concerne');
         $('#content').addClass('transitionning');
       } else {
-        console.log('lien non concerne');
+        console.log('[Transition] lien non concerne');
       }
     });
   }
