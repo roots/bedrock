@@ -34,6 +34,12 @@ export class DropdownComponent extends PewComponent {
       }, function () {
         $(this).parents('.wdf-dropdown').removeClass('open')
       });
+      this.element.find('.dropdown-hover-trigger button').focus(function (e) {
+        $(this).parents('.wdf-dropdown').addClass('open')
+      });
+      this.element.find('.dropdown-hover-trigger button').blur(function (e) {
+        $(this).parents('.wdf-dropdown').removeClass('open')
+      });
     }
 
   }
