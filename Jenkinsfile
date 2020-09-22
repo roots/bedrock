@@ -54,7 +54,7 @@ def deployCode(creds) {
 }
 
 def deployDbChanges(creds){
-    echo "Sending db changes to remote server."
+    echo "Sending db changes to remote server"
     sh "rsync -uvr --delete ${WORKSPACE}/CI/DB/scripts/* ${creds.sshUser}@${creds.sshServer}:${creds.dbFolder};"
 }
 
