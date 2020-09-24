@@ -34,6 +34,10 @@ def handleException(msg,exc) {
 
     changeString_ +="\n<${env.RUN_DISPLAY_URL}|Voir le build>";
 
+    if(env.siteUrl){
+      changeString_+="\n"+'<'+env.siteUrl+'|Voir le site>';
+    }
+
 	notify(changeString_,"danger");
 	if(exc){
 		throw(exc);
