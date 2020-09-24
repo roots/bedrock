@@ -51,7 +51,7 @@
   },
   "wwp-emploi": {
     "list": {
-      "url": "/fr/plugins/emploi/",
+      "url": "/fr/plugins-liste/emploi/",
       "filters": {
         "selector": ".emploi-filters",
         "class": "items-filters"
@@ -68,6 +68,15 @@
     }
   },
   "wwp-espace-restreint": {
+    "protection": {
+      "protectedPageUrl": "/fr/plugins/espace-restreint/",
+      "loginPageUrl": "/authentification-inscription/",
+      "loginForm": {
+        "formSelector": ".er-login-form",
+        "userInputSelector": "#er-login",
+        "passwordInputSelector": "#er-pwd"
+      }
+    },
     "admin": {
       "list": {
         "url": "/wp/wp-admin/admin.php?page=wwp-espace-restreint"
@@ -76,7 +85,7 @@
   },
   "wwp-faq": {
     "list": {
-      "url": "/fr/plugins/faq/",
+      "url": "/fr/plugins-liste/faq/",
       "list": {
         "selector": ".faq-list",
         "class": "items-list"
@@ -157,7 +166,7 @@
   },
   "wwp-social": {
     "list": {
-      "url": "/fr/plugins/remontees-sociales/",
+      "url": "/fr/plugins-liste/remontees-sociales/",
       "list": {
         "selector": ".posts-list",
         "class": "items-list"
