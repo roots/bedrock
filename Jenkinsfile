@@ -145,7 +145,8 @@ pipeline {
 
             if(env.runComposer=='true'){
                 try {
-	                sh 'composer install --no-dev --prefer-dist';
+                  sh 'composer -V';
+	                sh 'composer install --no-dev --prefer-dist --verbose';
                 } catch(exc){
                     handleException('Composer install failed', exc);
                 }
