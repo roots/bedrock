@@ -31,10 +31,12 @@
 
         $pageTitle = stripslashes(wp_title('|', false, 'right'));
         $pageTitle = str_replace(['|'], [' '], $pageTitle);
-        echo $pageTitle;
+        if(!empty($pageTitle)) {
+            echo $pageTitle . ' | ';
+        }
 
         // Add the blog name.
-        echo ' | ' . get_bloginfo('name');
+        echo get_bloginfo('name');
 
         // Add the blog description for the home/front page.
         if (is_home() || is_front_page()) {
