@@ -6,12 +6,10 @@
 /* Variables */
 /* ------------- */
 $desktopheaderHeight: 56px;
-$menu-item-color: $color-base;
-$menu-item-bgcolor: #ffffff;
-$menu-item-color-active: $color-base;
-$menu-item-bgcolor-active: #ffffff;
-$menu-item-m0-color: $color-base;
-$menu-item-m1-bgcolor: $gray-200;
+$menu-item-m1-color: $color-base;
+$menu-item-m1-color-active: $color-base;
+$menu-item-m1-bgcolor: white;
+$menu-item-m1-bgcolor-active: $gray-200;
 /* ------------- */
 
 @media (min-width: $medium) {
@@ -91,7 +89,6 @@ $menu-item-m1-bgcolor: $gray-200;
       top: 55px;
       z-index: 1;
       list-style: none;
-      background-color: $gray-200;
 
       li {
         margin-left: 0;
@@ -105,8 +102,8 @@ $menu-item-m1-bgcolor: $gray-200;
         height: 100%;
         padding: 2rem 3rem;
         text-decoration: none;
-        color: $color-base;
-        background-color: $gray-200;
+        color: $menu-item-m1-color;
+        background-color: $menu-item-m1-bgcolor;
       }
 
       li.page_item_has_children > a::after {
@@ -124,16 +121,12 @@ $menu-item-m1-bgcolor: $gray-200;
 
       > li:hover, > li:focus {
         > a {
-          background-color: $white;
+          background-color: $menu-item-m1-bgcolor-active;
         }
       }
     }
 
     ul.level2 {
-      /* top: 0;
-      left: auto;
-      right: -100%;*/
-      background-color: $white;
 
       > li {
         width: 100%;
@@ -143,13 +136,7 @@ $menu-item-m1-bgcolor: $gray-200;
         display: inline-block;
         position: relative;
         width: 100%;
-        background-color: $white;
         border-bottom: 1px solid $gray-200;
-      }
-
-      > li:hover > a,
-      > li:focus > a {
-        color: blue;
       }
     }
 

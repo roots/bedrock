@@ -33,8 +33,10 @@ $stickedHeaderHeight: 40px;
       .site-header {
         height: $stickedHeaderHeight;
 
-        a.logo {
+        a.logo,
+        a.logo img {
           max-height: $stickedHeaderHeight;
+          width: auto;
         }
 
         ul.header-menu li > a {

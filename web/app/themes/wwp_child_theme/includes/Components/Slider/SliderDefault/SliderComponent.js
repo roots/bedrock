@@ -3,11 +3,14 @@ import {PewComponent} from "../../../../assets/raw/js/components/pew-component";
 
 // see https://bxslider.com/options/
 const SliderOptions = {
+  mode: 'horizontal',
   autoControlsCombine: true,
   keyboardEnabled: true,
   easing: 'ease-in-out',
   speed: 700,
   auto: true,
+  autoControls: true,
+  pager: true,
   stopAutoOnClick: true,
   touchEnabled: (window.innerWidth < 1025 && window.wonderwp.FeatureDetector.has('touch'))
 };

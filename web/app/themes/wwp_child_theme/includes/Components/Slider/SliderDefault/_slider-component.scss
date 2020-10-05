@@ -1,34 +1,31 @@
 @import "../../../../../../../node_modules/bxslider/dist/jquery.bxslider.css";
 
-/*Variables*/
-$slide-height: 550px;
-
-/*Global styles*/
+/*Remove plugin styles*/
 .bx-wrapper {
   margin-bottom: 0;
   box-shadow: none;
   border: none;
   background: transparent;
 
-  .bx-controls-direction a {
-    z-index: $zindex-navigation;
+  .sliderItem a {
+    display: block;
+  }
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
   }
 }
 
-/*Wdf slider styles*/
-.slider-wdf-slider-wrap .bx-wrapper {
-
-  .bx-viewport {
-    max-height: $slide-height;
-  }
+/*Basic styles*/
+.bx-wrapper {
 
   // Previous and next buttons
   .bx-controls-direction a {
     top: 50%;
-    z-index: 1;
     transform: translateY(-50%) !important;
-    width: 40px;
-    height: 70px;
+    width: 35px;
+    height: 55px;
     margin-top: 0 !important;
   }
 
@@ -38,43 +35,44 @@ $slide-height: 550px;
   }
 
   .bx-prev {
-    left: 2rem !important;
-
+    left: 51px !important;
     &::before {
       position: absolute;
       top: 0;
       left: 0;
-      @include svgIcon(chevron-l-grey);
+      @include svgIcon(chevron-slider-l);
       transition: transform .4s;
     }
-
     &:hover::before, &:focus::before {
-      opacity: .5;
+      @include svgIcon(chevron-slider-l-grey);
     }
   }
 
   .bx-next {
-    right: 2rem !important;
-
+    right: 51px !important;
     &::before {
       position: absolute;
       top: 0;
       left: 0;
-      @include svgIcon(chevron-r-grey);
+      @include svgIcon(chevron-slider-r);
+    }
+    &:hover::before, &:focus::before {
+      @include svgIcon(chevron-slider-r-grey);
     }
 
-    &:hover::before, &:focus::before {
-      opacity: .5;
-    }
   }
 
   // Pager steps
   .bx-pager {
+    position: absolute;
+    width: 100% !important;
+    text-align: center !important;
+    bottom: 4rem;
 
     a.bx-pager-link {
       margin: 0 1rem;
-      background-color: $color-base;
-      border: 1px solid $color-base;
+      background-color: #ffffff !important;
+      border: 1px solid #ffffff;
       transition: all .4s;
 
       &:hover,
@@ -84,6 +82,7 @@ $slide-height: 550px;
 
       &.active {
         background-color: transparent !important;
+        transform: scale(2);
       }
     }
   }
@@ -91,50 +90,49 @@ $slide-height: 550px;
   // Play and pause buttons
   .bx-controls-auto {
     display: none;
-    right: 100px !important;
-    bottom: -2rem;
-    width: 50px !important;
+  }
 
-    .bx-stop, .bx-start {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px;
-      width: 50px;
-      margin: 0;
-      color: rgba(0, 0, 0, 0); // Hide text
-      border: none;
-      background: none;
-      overflow: hidden;
-      transition: all .4s;
-    }
-
-    .bx-stop::before {
-      @include svgIcon('pause');
-    }
-
-    .bx-start::before {
-      content: "";
-      width: 0;
-      height: 0;
-      border-top: 11px solid rgba(0, 0, 0, 0);
-      border-bottom: 11px solid rgba(0, 0, 0, 0);
-      border-left: 16px solid $color-brand;
-      transition: all .4s;
-    }
-
-    .bx-stop:hover::before, .bx-stop:focus::before {
-      opacity: .5;
-    }
-
-    .bx-start:hover::before, .bx-start:focus::before {
-      border-left-color: $gray-100;
+  // Slide content
+  ul.bxslider {
+    li {
+      margin-bottom: 0;
     }
   }
 
-  // Loader
-  .bx-loading {
-    background: url('#{$get-path-to-assets}/raw/images/bx-slider/bx_loader.gif') center center no-repeat #ffffff;
+  @media (max-width: $large) {
+
+    .bx-prev {
+      left: 20px !important;
+    }
+
+    .bx-next {
+      right: 20px !important;
+    }
   }
 
+  @media (max-width: $medium - 1) {
+
+    .bx-prev {
+      left: 15px !important;
+    }
+
+    .bx-next {
+      right: 15px !important;
+    }
+
+    .bx-pager {
+      bottom: 2rem;
+    }
+  }
+
+  @media (max-width: $tiny) {
+
+    .bx-pager {
+      bottom: 2rem;
+    }
+
+    .bx-pager {
+      display: none;
+    }
+  }
 }

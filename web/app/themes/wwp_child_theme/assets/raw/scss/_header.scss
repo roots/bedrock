@@ -6,93 +6,59 @@
 /* Variables */
 /* ------------- */
 $mobileheaderHeight: $burger-btn-size;
-$header-bg-color: $gray-700;
+$header-bg-color: white;
 /* ------------- */
 
 .site-header {
-    position: relative;
-    z-index: 16;
-    background-color: $header-bg-color;
-    opacity: 1;
+  position: relative;
+  z-index: 16;
+  background-color: $header-bg-color;
+  opacity: 1;
+
+  .inner-header {
+    @extend .container;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a.logo {
+
+    &,
+    img {
+      height: 80px;
+      width: 150px;
+    }
+  }
+
+  @media (max-width: $large) {
 
     .inner-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      width: 100%;
     }
 
-    a.logo {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        width: 150px;
-        text-decoration: none;
-        color: $color-base;
-        background-color: $white;
+  }
+  @media (max-width: $medium) {
+    padding: 0;
+  }
+  @media (max-width: $medium - 1) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
-        img {
-            height: 77px;
-            width: 203px;
-        }
+    .has-opened-menu & {
+      position: fixed;
     }
 
-    @media (max-width: $large) {
+    .inner-header {
+      display: grid;
+      grid-template-columns: 1fr $burger-btn-size;
 
-        .inner-header {
-            width: 100%;
-        }
-
-        a.logo {
-            margin-right: 2vw;
-        }
+      .nav-button {
+        order: 1;
+      }
     }
-    @media (max-width: $medium) {
-        padding: 0;
-
-        a.logo {
-            width: 120px;
-            margin-right: 3vw;
-        }
-    }
-    @media (max-width: $medium - 1) {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-
-        .has-opened-menu & {
-            position: fixed;
-        }
-
-        .inner-header {
-            display: grid;
-            grid-template-columns: 1fr $burger-btn-size;
-
-            .nav-button {
-                order: 1;
-            }
-        }
-
-        a.logo {
-            width: auto;
-            margin-right: 0;
-
-            span {
-                display: flex;
-                align-items: center;
-                height: $mobileheaderHeight;
-                justify-content: center;
-            }
-        }
-    }
-}
-
-.post-thumbnail {
-    margin-bottom: $margin-bottom-base;
-
-    img {
-        width: 100%;
-        height: auto;
-    }
+  }
 }

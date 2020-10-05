@@ -84,9 +84,7 @@
             <button class="wdf-burger nav-button" data-menu-toggler type="button" aria-label="open/close navigation"><i></i></button>
 
             <?php
-            echo '<a href="/" class="logo" aria-title="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '">
-                <!--<img src="/app/themes/wwp_child_theme/assets/raw/svg/logo.svg" alt="Mon site - accueil">--> <span>LOGO</span>
-              </a>'
+            echo '<a href="/" class="logo" aria-title="'.trad('back.to.home', WWP_THEME_TEXTDOMAIN).'"><img src="/app/uploads/logo-site.svg" alt="Mon site - accueil"></a>'
             ?>
 
             <nav role="navigation" aria-label="Menu principal" class="navigation-wrapper">
