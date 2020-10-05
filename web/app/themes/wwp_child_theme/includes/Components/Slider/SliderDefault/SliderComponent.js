@@ -8,7 +8,7 @@ const SliderOptions = {
   keyboardEnabled: true,
   easing: 'ease-in-out',
   speed: 700,
-  auto: true,
+  auto: false,
   autoControls: true,
   pager: true,
   stopAutoOnClick: true,

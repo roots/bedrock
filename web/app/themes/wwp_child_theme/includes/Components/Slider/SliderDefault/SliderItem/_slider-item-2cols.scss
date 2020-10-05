@@ -1,0 +1,125 @@
+.slider-2cols {
+
+  //Slide
+  .sliderItem {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    //texte
+    .slider-panel {
+      position: static;
+      width: 50%;
+      padding: 3rem;
+      transform: none;
+
+      .slider-title {
+        color: $color-base;
+      }
+
+      .slider-content {
+        color: $color-base;
+      }
+    }
+
+    a.btn {
+      left: 3rem;
+      transform: none;
+    }
+
+    //Images
+    .slider-img {
+      position: relative;
+      height: 50rem;
+      width: 50%;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-height: 100%;
+        min-width: 100%;
+        width: auto;
+        max-width: none;
+      }
+    }
+  }
+
+  //Slider global
+  .bx-wrapper {
+
+    //Pager
+    .bx-pager {
+      bottom: -3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 5rem;
+      width: 28rem;
+      padding: 0 2rem 0 6rem;
+      background: white;
+
+      .bx-pager-item {
+        display: flex;
+        justify-content: center;
+        margin: 0 5px;
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+
+      a {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        background: transparent !important;
+        border-radius: 0;
+        text-decoration: none;
+        text-indent: initial;
+        counter-increment: pager-counter; /* On incrémente le compteur section */
+        content: counter(pager-counter); /* On affiche le compteur */
+      }
+
+      a.bx-pager-link {
+        font-weight: 300;
+        border: none;
+        transform: none !important;
+      }
+
+      a.bx-pager-link.active {
+        font-weight: 900;
+      }
+    }
+
+    //Controls
+    .bx-controls-direction {
+
+      a {
+        top: auto;
+        left: auto !important;
+        bottom: -2rem;
+        width: 24px;
+        height: 34px;
+        transform: none !important;
+      }
+
+      .bx-prev {
+        right: 3rem !important;
+
+        &::before {
+          @include svgIcon(chevron-l-small);
+        }
+      }
+
+      .bx-next {
+        right: 0 !important;
+
+        &::before {
+          @include svgIcon(chevron-r-small);
+        }
+      }
+    }
+  }
+}
