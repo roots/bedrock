@@ -2,27 +2,191 @@
 
 %btn {
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: $button-height; //Used by IE11
+  height: $button-height; //IE11
   min-height: $button-height;
-  padding: 0 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0 4rem;
+  font-family: $font-family-condensed;
+  font-weight: $weight-regular;
+  letter-spacing: 0.1em;
   font-size: 1.6rem;
+  line-height: 1;
   text-transform: uppercase;
-  white-space: initial;
-}
+  border-radius: $input-border-radius;
+  border: 2px solid transparent;
+  box-shadow: none;
+  transition: all .4s;
 
-.btn,
-.button {
-  &--small {
-    min-height: $button-height-small;
+  //Pour l'admin car du type p.btn > a
+  a {
+    color: inherit;
+    background-color: inherit;
+    text-decoration: none;
   }
 
-  &--big {
+  &.btn--small,
+  &.button--small {
+    height: $button-height-small;
+    min-height: $button-height-small;
+    padding-right: 0 2.5rem;
+    font-size: .8em;
+  }
+
+  &.btn--big,
+  &.button--big {
+    height: $button-height-large;
     min-height: $button-height-large;
+    font-size: 1.1em;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: $tiny) {
+    width: 100%;
+    white-space: normal;
   }
 }
 
 a.btn {
   text-decoration: none;
+}
+
+.btn,
+.button {
+  color: white;
+  background-color: $color-base;
+  border-color: white;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $color-base;
+    background-color: white;
+  }
+}
+
+.btn,
+.button {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend %btn;
+      background-color: $background-color;
+      color: $color;
+      border-color: $border;
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: $background-color;
+        background-color: $color;
+      }
+    }
+  }
+}
+
+// Button wrapper : add margin and centering
+.btn-wrapper {
+  position: relative;
+  text-align: center;
+  min-height: 10rem;
+
+  .btn {
+    @include absolute-center;
+  }
+}
+
+// Button wrapper inline
+.btn-wrapper-inline {
+  display: flex;
+  align-items: center;
+  margin-right: -1rem;
+  margin-left: -1rem;
+
+  [class*="btn"] {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+
+/*Pour le styleguide*/
+.atoms-main {
+  [class*="btn"]{
+    margin: 1rem;
+  }
+}
+
+//Bouton lien
+.btn--link {
+  display: inline-flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+  font-size: 1.9rem;
+  letter-spacing: 0.15em;
+  text-decoration: none !important;
+  &::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    transition: all 0.4s;
+  }
+  &:hover,
+  &:focus {
+    &::after {
+      width: 120%;
+      transform: translateX(-10%);
+    }
+  }
+}
+.btn--link-green {
+  @extend .btn--link;
+  &::after {
+    background-color: green;
+  }
+  &,
+  &:hover,
+  &:focus {
+    color: green;
+  }
+}
+.btn--link-blue {
+  @extend .btn--link;
+  &::after {
+    background-color: blue;
+  }
+  &,
+  &:hover,
+  &:focus {
+    color: blue;
+  }
+}
+.btn--link-white {
+  @extend .btn--link;
+  &::after {
+    background-color: white;
+  }
+  &,
+  &:hover,
+  &:focus {
+    color: white;
+  }
+}
+
+//Bouton retour
+.back-btn {
+  @extend .btn;
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: "\0027E8";
+    margin-right: 2rem;
+  }
 }
