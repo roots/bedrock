@@ -32,7 +32,7 @@ class VideoEmbedComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Image"})
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Image"})
      */
     protected $image;
 
