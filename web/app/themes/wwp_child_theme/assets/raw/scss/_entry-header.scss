@@ -1,0 +1,91 @@
+/* Variables */
+/* ------------- */
+$headerHeight: 80px;
+$mobileheaderHeight: 80px;
+$headerImageHeight: 520px;
+/* ------------- */
+
+.post-thumbnail {
+  position: relative;
+  z-index: 0;
+  height: $headerImageHeight;
+  overflow: hidden;
+
+  //Filtre d'opacité par-dessus image
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0.2;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: auto;
+    min-height: 100%;
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    transform: translateX(-50%);
+  }
+}
+
+.entry-header {
+  position: relative;
+  padding: 0 6rem;
+
+  .entry-title,
+  .excerpt {
+    position: relative;
+    left: 133px;
+  }
+
+  .entry-title {
+
+  }
+
+  &.hasPostThumb {
+    min-height: 36rem;
+    padding: 0;
+
+    .entry-title-wrapper {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .entry-title,
+    .excerpt {
+      color: white;
+    }
+
+  }
+}
+
+.header-texts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 40px;
+
+  .container {
+    position: relative;
+    height: 100%;
+  }
+
+  .hasPostThumb & {
+
+  }
+}
