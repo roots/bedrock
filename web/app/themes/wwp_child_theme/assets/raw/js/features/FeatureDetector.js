@@ -14,7 +14,6 @@ export class FeatureDetector {
 
   getDefaultTests() {
     return {
-      js: jsTest,
       touch: touchTest
     }
   }

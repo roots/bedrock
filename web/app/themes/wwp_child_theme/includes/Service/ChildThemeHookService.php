@@ -12,9 +12,9 @@ use WonderWp\Theme\Core\Service\ThemeHookService;
 
 class ChildThemeHookService extends ThemeHookService
 {
-    public function run()
+    public function register()
     {
-        parent::run();
+        parent::register();
 
         //$viewService = $this->manager->getService(ServiceInterface::VIEW_SERVICE_NAME);
         //add_action( 'wwp_after_footer', array($viewService,'prepareCookies'));

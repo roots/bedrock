@@ -34,6 +34,10 @@ def handleException(msg,exc) {
 
     changeString_ +="\n<${env.RUN_DISPLAY_URL}|Voir le build>";
 
+    if(env.siteUrl){
+      changeString_+="\n"+'<'+env.siteUrl+'|Voir le site>';
+    }
+
 	notify(changeString_,"danger");
 	if(exc){
 		throw(exc);
@@ -45,7 +49,7 @@ def notify(msg,color){
 }
 
 def deployCode(creds) {
-    echo "Sending files to remote server"
+    echo "Sending files to remote server."
     sh "rsync -uvr --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     if(creds.siteUrl){
         env.siteUrl = creds.siteUrl;
@@ -116,11 +120,11 @@ def defineVariables(){
 	      if(file_.path=='package.json' || file_.path=='package.lock' || file_.path=='Jenkinsfile'){
 	      	env.runNpm = true;
 	      }
-	      if(file_.path.contains(".css") || file_.path.contains(".scss") || file_.path.contains(".js") || file_.path=='Jenkinsfile'){
-			env.runBuild = true;
+	      if(file_.path.contains(".css") || file_.path.contains(".scss") || file_.path.contains(".js") || file_.path.contains(".svg") || file_.path=='Jenkinsfile'){
+			    env.runBuild = true;
 	      }
 	      if(file_.path.contains(".php") || file_.path.contains(".js") || file_.path.contains('cypress')){
-			env.runCypress = true;
+			    env.runCypress = true;
 	      }
 	    }
 	  }
@@ -141,7 +145,8 @@ pipeline {
 
             if(env.runComposer=='true'){
                 try {
-	                sh 'composer install --no-dev --prefer-dist';
+                  sh 'composer -V';
+	                sh 'composer install --no-dev --prefer-dist --verbose';
                 } catch(exc){
                     handleException('Composer install failed', exc);
                 }

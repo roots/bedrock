@@ -63,18 +63,21 @@ export class AccordionWrap {
           var $accordion_header = $('<button class="js-accordion__header ' + $accordions_prefix_classes + '__header">' + $text + '</button>');
           $accordion_panel.before($accordion_header);
 
+          var panelId = $accordion_panel.attr('id'),
+            localIndex = panelId && panelId.length ? panelId : $index_accordion
+
           $accordion_header.attr({
-            "aria-controls": "accordion" + $index_accordion + "_panel" + $index_header,
+            "aria-controls": "accordion" + localIndex + "_panel" + $index_header,
             "aria-expanded": "false",
             "role": "tab",
-            "id": "accordion" + $index_accordion + "_tab" + $index_header,
+            "id": "accordion" + localIndex + "_tab" + $index_header,
             "tabindex": "-1",
             "aria-selected": "false"
           });
           $accordion_panel.attr({
-            "aria-labelledby": "accordion" + $index_accordion + "_tab" + $index_header,
+            "aria-labelledby": "accordion" + localIndex + "_tab" + $index_header,
             "role": "tabpanel",
-            "id": "accordion" + $index_accordion + "_panel" + $index_header,
+            "id": "accordion" + localIndex + "_panel" + $index_header,
             "aria-hidden": "true"
           }).addClass($accordions_prefix_classes + "__panel");
 

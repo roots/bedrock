@@ -10,10 +10,9 @@ namespace WonderWp\Theme\Child\Service;
 
 use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
-use WonderWp\Theme\Child\Components\MapSearch\MapSearchShortcodeHandler;
 use WonderWp\Theme\Child\Components\Modal\ModalComponent;
-use WonderWp\Theme\Child\Components\Slider\SliderComponent;
-use WonderWp\Theme\Child\Components\Slider\SliderItem\SliderItem;
+use WonderWp\Theme\Child\Components\Slider\SliderDefault\SliderComponent;
+use WonderWp\Theme\Child\Components\Slider\SliderDefault\SliderItem\SliderItem;
 use WonderWp\Theme\Child\Components\Tabs\TabsComponent;
 use WonderWp\Theme\Child\Components\Tabs\TabItem\TabItem;
 use WonderWp\Theme\Child\Components\Timeline\TimelineComponent;
@@ -23,9 +22,9 @@ use WonderWp\Theme\Core\Service\ThemeShortcodeService;
 class ChildThemeShortcodeService extends ThemeShortcodeService
 {
 
-    public function registerShortcodes()
+    public function register()
     {
-        parent::registerShortcodes();
+        parent::register();
 
         add_shortcode('slider', [$this, 'slider']);
         add_shortcode('slider-item', [$this, 'slideritem']);

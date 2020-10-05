@@ -1,0 +1,140 @@
+@import "../../../../../../../node_modules/bxslider/dist/jquery.bxslider.css";
+
+/*Variables*/
+$slide-height: 550px;
+
+/*Global styles*/
+.bx-wrapper {
+  margin-bottom: 0;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+
+  .bx-controls-direction a {
+    z-index: $zindex-navigation;
+  }
+}
+
+/*Wdf slider styles*/
+.slider-wdf-slider-wrap .bx-wrapper {
+
+  .bx-viewport {
+    max-height: $slide-height;
+  }
+
+  // Previous and next buttons
+  .bx-controls-direction a {
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%) !important;
+    width: 40px;
+    height: 70px;
+    margin-top: 0 !important;
+  }
+
+  .bx-prev, .bx-next {
+    background: none;
+    overflow: hidden;
+  }
+
+  .bx-prev {
+    left: 2rem !important;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include svgIcon(chevron-l-grey);
+      transition: transform .4s;
+    }
+
+    &:hover::before, &:focus::before {
+      opacity: .5;
+    }
+  }
+
+  .bx-next {
+    right: 2rem !important;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include svgIcon(chevron-r-grey);
+    }
+
+    &:hover::before, &:focus::before {
+      opacity: .5;
+    }
+  }
+
+  // Pager steps
+  .bx-pager {
+
+    a.bx-pager-link {
+      margin: 0 1rem;
+      background-color: $color-base;
+      border: 1px solid $color-base;
+      transition: all .4s;
+
+      &:hover,
+      &:focus {
+        transform: scale(2);
+      }
+
+      &.active {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  // Play and pause buttons
+  .bx-controls-auto {
+    display: none;
+    right: 100px !important;
+    bottom: -2rem;
+    width: 50px !important;
+
+    .bx-stop, .bx-start {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 50px;
+      margin: 0;
+      color: rgba(0, 0, 0, 0); // Hide text
+      border: none;
+      background: none;
+      overflow: hidden;
+      transition: all .4s;
+    }
+
+    .bx-stop::before {
+      @include svgIcon('pause');
+    }
+
+    .bx-start::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 11px solid rgba(0, 0, 0, 0);
+      border-bottom: 11px solid rgba(0, 0, 0, 0);
+      border-left: 16px solid $color-brand;
+      transition: all .4s;
+    }
+
+    .bx-stop:hover::before, .bx-stop:focus::before {
+      opacity: .5;
+    }
+
+    .bx-start:hover::before, .bx-start:focus::before {
+      border-left-color: $gray-100;
+    }
+  }
+
+  // Loader
+  .bx-loading {
+    background: url('#{$get-path-to-assets}/raw/images/bx-slider/bx_loader.gif') center center no-repeat #ffffff;
+  }
+
+}

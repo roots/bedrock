@@ -14,8 +14,9 @@ class AccordionComponent extends AbstractComponent
 {
     private $_blocks;
 
-    public function addBlock($title,$content){
-        $this->_blocks[] = ['title'=>$title,'content'=>$content];
+    public function addBlock($title, $content, $id = '')
+    {
+        $this->_blocks[] = ['title' => $title, 'content' => $content, 'id' => $id];
     }
 
     public function getMarkup(array $opts=array())
@@ -24,10 +25,13 @@ class AccordionComponent extends AbstractComponent
         if(!empty($this->_blocks)){
             $markup.='<div class="js-accordion" data-accordion-prefix-classes="my-accordion-name">';
             foreach($this->_blocks as $block){
-                $markup.='<span class="js-accordion__header">'.$block['title'].'</span>
-                <div class="js-accordion__panel">
+                $idAttr = !empty($block['id']) ? 'id="' . $block['id'] . '"' : '';
+                $markup.='
+                <span class="js-accordion__header">'.$block['title'].'</span>
+                <div class="js-accordion__panel" ' . $idAttr . '>
                     '.$block['content'].'
-                </div>';
+                </div>
+                ';
             }
             $markup.='</div>';
         }
