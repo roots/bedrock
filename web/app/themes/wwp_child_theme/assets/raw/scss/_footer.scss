@@ -4,44 +4,106 @@
 
 /* Colors */
 /* ------------- */
-$footer-bg-color: $gray-700;
+$footer-color: white;
+$footer-bg-color: $color-base;
 /* ------------- */
 
 .site-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 20rem;
-    background-color: $footer-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  background-color: $footer-bg-color;
 }
 
 .footer-content {
-    width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  //Logo
+  a.logo {
+
+    &,
+    img {
+      height: 53px;
+      width: 118px;
+    }
+  }
+
+  //Navigation
+  nav {
+    flex: 1;
+  }
+
+  ul.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      font-size: 1.6rem;
+    }
+
+    li a {
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+      color: $footer-color;
+    }
+
+    li a:hover,
+    li a:focus {
+      text-decoration: underline;
+    }
+  }
+
+  //Reseaux sociaux footer
+  ul.social-networks {
+
+    li a {
+      background-color: white;
+      border-color: white;
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+    flex-direction: column;
+
+    ul.menu {
+      display: block;
+      text-align: center;
+    }
+  }
 }
 
+/*Lien admin*/
 .edit-link {
-    position: fixed;
-    left: 0;
-    bottom: 10rem;
-    z-index: 1;
+  position: fixed;
+  left: 0;
+  bottom: 10rem;
+  z-index: 1;
 
-    a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: .5rem .5rem .5rem 1rem;
-        text-decoration: none;
-        color: #fff;
-        text-indent: -9999px;
-        background-color: $color-primary;
-    }
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .5rem .5rem 1rem;
+    text-decoration: none;
+    color: #fff;
+    text-indent: -9999px;
+    background-color: $color-primary;
+  }
 
-    a::after {
-        @include svgIcon('edit');
-        transform: scale(.8);
-    }
+  a::after {
+    @include svgIcon('edit');
+    transform: scale(.8);
+  }
 
-    a:hover, a:focus {
-        background-color: darken($color-primary, 10%);
-    }
+  a:hover, a:focus {
+    background-color: darken($color-primary, 10%);
+  }
 }
