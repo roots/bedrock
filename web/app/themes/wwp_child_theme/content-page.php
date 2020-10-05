@@ -34,7 +34,7 @@
                 $excerpt = !empty($post->post_excerpt) ? $post->post_excerpt : null;
                 if (!empty($excerpt)) {
                     //Allow shortcodes in excerpt
-                    echo '<div class="excerpt">' . apply_filters('the_content', $excerpt) . '</div>';
+                    echo '<div class="excerpt">' . apply_filters('the_excerpt', $excerpt) . '</div>';
                 }
                 ?>
             </div>
