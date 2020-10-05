@@ -22,17 +22,11 @@ $header-bg-color: $gray-700;
     }
 
     a.logo {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        width: 150px;
-        text-decoration: none;
-        color: $color-base;
-        background-color: $white;
 
+        &,
         img {
-            height: 77px;
-            width: 203px;
+            height: 80px;
+            width: 150px;
         }
     }
 
@@ -42,17 +36,9 @@ $header-bg-color: $gray-700;
             width: 100%;
         }
 
-        a.logo {
-            margin-right: 2vw;
-        }
     }
     @media (max-width: $medium) {
         padding: 0;
-
-        a.logo {
-            width: 120px;
-            margin-right: 3vw;
-        }
     }
     @media (max-width: $medium - 1) {
         display: block;
@@ -71,18 +57,6 @@ $header-bg-color: $gray-700;
 
             .nav-button {
                 order: 1;
-            }
-        }
-
-        a.logo {
-            width: auto;
-            margin-right: 0;
-
-            span {
-                display: flex;
-                align-items: center;
-                height: $mobileheaderHeight;
-                justify-content: center;
             }
         }
     }
