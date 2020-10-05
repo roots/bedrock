@@ -34,6 +34,10 @@ $mobileheaderHeight: $burger-btn-size;
   padding: 6rem 0;
   overflow-x: hidden;
 
+  body.has-post-thumb & {
+    padding-top: 0;
+  }
+
   @media (max-width: $medium - 1) {
     margin-top: $mobileheaderHeight;
   }
