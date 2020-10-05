@@ -27,7 +27,7 @@ class CardGutenbergComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="image",componentAttributes={"size":"large"})
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"size":"large"})
      */
     protected $image;
 

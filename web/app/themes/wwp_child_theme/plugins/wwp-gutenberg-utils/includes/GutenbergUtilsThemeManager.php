@@ -19,7 +19,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
         $this->setConfig('moleculesToRegister', [
             VideoEmbedComponent::class,
             DropdownComponent::class,
-            CardGutenbergComponent::class,
+            CardComponent::class,
             TestMolecule::class
         ]);
 
