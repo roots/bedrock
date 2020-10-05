@@ -12,6 +12,7 @@ use WonderWp\Component\PluginSkeleton\AbstractManager;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Component\Service\ServiceInterface;
 use WonderWp\Theme\Child\Components\Card\CardComponent;
+use WonderWp\Theme\Child\Components\PageSummary\PageSummaryComponent;
 use WonderWp\Theme\Child\Components\Pagination\PaginationComponent;
 use WonderWp\Theme\Child\Controller\ThemePublicController;
 use WonderWp\Theme\Child\Service\ChildThemeHookService;
@@ -58,6 +59,9 @@ class ChildThemeManager extends ThemeManager
         $container['wwp.theme.component.pagination'] = function () {
             return new PaginationComponent();
         };
+        $container['wwp.childpage.card']             = $container->factory(function () {
+            return new PageSummaryComponent();
+        });
 
     }
 
