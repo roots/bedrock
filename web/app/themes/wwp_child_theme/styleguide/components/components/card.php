@@ -1,4 +1,4 @@
-<!-- components/components/card_item.php -->
+<!-- components/components/card.php -->
 <p class="subTitle">Bloc de contenu polyvalent</p>
 
 <div class="encadre">
@@ -6,14 +6,14 @@
         <div>
             <p>ATTRIBUTS :</p>
             <ul>
-                <li>title</li>
-                <li>text</li>
-                <li>img</li>
-                <li>link</li>
-                <li>button</li>
-                <li>color</li>
-                <li>background</li>
-                <li>class</li>
+                <li>Titre</li>
+                <li>Texte</li>
+                <li>Image</li>
+                <li>Lien</li>
+                <li>Label bouton</li>
+                <li>Couleur de fond</li>
+                <li>Date</li>
+                <li>Bloc de contenu libre</li>
             </ul>
         </div>
         <div>
@@ -39,11 +39,10 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        /*->setCategories('')*/
     ;
     echo $card1->getMarkup();
     echo '</div>';
-    echo '<div class="reverse-inside">
+    echo '<div>
         <p class="subTitle">Avec option "reverse"</p>';
     $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card2
@@ -52,11 +51,11 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        /*->setCategories('')*/
+        ->setReverse('reverse')
     ;
     echo $card2->getMarkup();
     echo '</div>';
-    echo '<div class="col-2 landscape-inside">
+    echo '<div class="col-2">
         <p class="subTitle">Avec option "landscape"</p>';
     $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card3
@@ -65,11 +64,11 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        /*->setCategories('')*/
+        ->setLandscape('landscape')
     ;
     echo $card3->getMarkup();
     echo '</div>';
-    echo '<div class="col-2 landscape-inside reverse-inside">
+    echo '<div class="col-2">
         <p class="subTitle">Avec options "landscape" et "reverse"</p>';
     $card4 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card4
@@ -78,7 +77,8 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        /*->setCategories('')*/
+        ->setReverse('reverse')
+        ->setLandscape('landscape')
     ;
     echo $card4->getMarkup();
     echo '</div>';
