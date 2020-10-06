@@ -6,6 +6,7 @@
         <div>
             <p>ATTRIBUTS :</p>
             <ul>
+                <li>Surtitre</li>
                 <li>Titre</li>
                 <li>Texte</li>
                 <li>Image</li>
@@ -34,6 +35,7 @@
         <p class="subTitle">Sans option</p>';
     $card1 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card1
+        ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
@@ -46,6 +48,7 @@
         <p class="subTitle">Avec option "reverse"</p>';
     $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card2
+        ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
@@ -59,6 +62,7 @@
         <p class="subTitle">Avec option "landscape"</p>';
     $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card3
+        ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
@@ -72,6 +76,7 @@
         <p class="subTitle">Avec options "landscape" et "reverse"</p>';
     $card4 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
     $card4
+        ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
