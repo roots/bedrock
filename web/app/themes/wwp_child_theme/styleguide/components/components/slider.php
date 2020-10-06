@@ -1,4 +1,17 @@
 <!-- components/components/slider.php -->
+<div class="encadre">
+    <div class="grid-2 has-gutter-xl">
+        <div>
+            <p>PLUGIN</p>
+        </div>
+        <div>
+            <p>CLASSES DE VARIANTES</p>
+            <ul>
+                <li>.slider-2cols</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <p class="subTitle">Slider de base : le contenu est positionné au-dessus de l'image</p>
 <br>
