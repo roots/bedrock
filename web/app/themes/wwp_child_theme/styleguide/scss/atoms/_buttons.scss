@@ -79,6 +79,16 @@ a.btn {
   margin-top: 3rem;
 }
 
+.btn--submit {
+  @extend %btn;
+  padding-right: 2.5rem;
+
+  &::after {
+    @include svgIcon('chevron-r-small-white');
+    margin-left: 8px;
+  }
+}
+
 // Button wrapper : add margin and centering
 // --------------------------------------------------
 
