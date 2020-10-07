@@ -145,8 +145,7 @@ pipeline {
 
             if(env.runComposer=='true'){
                 try {
-                  sh 'composer -V';
-	                sh 'composer install --no-dev --prefer-dist --verbose';
+	                sh '/usr/bin/php7.4 /bin/composer install --no-dev --prefer-dist';
                 } catch(exc){
                     handleException('Composer install failed', exc);
                 }
