@@ -1,12 +1,12 @@
 <div class="sliderItem">
-    {% if img %}
-        <div class="slider-img"><img src="{{ img }}"/></div>
-    {% endif %}
-    <div class="slider-panel">
-        <div class="slider-title">{{ title }}</div>
-        <div class="slider-content">{{ content | raw}}</div>
-    </div>
-    {% if link %}
+  {% if img %}
+    <div class="slider-img"><img src="{{ img }}" alt="{{ imgAlt }}"/></div>
+  {% endif %}
+  <div class="slider-panel">
+    <div class="slider-title">{{ title }}</div>
+    <div class="slider-content">{{ content | raw}}</div>
+  </div>
+  {% if link %}
     <a class="btn" href="{{ link }}">{{ linkLabel }}</a>
-    {% endif %}
+  {% endif %}
 </div>
