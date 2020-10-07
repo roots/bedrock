@@ -181,17 +181,19 @@ $background-base : $white;
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
 $forms-color                : $gray-800 !default;
 $forms-bgcolor              : transparent !default;
-$label-color                : $gray-600 !default;
+$label-color                : $color-base !default;
 $input-color                : $color-base !default;
 $input-bgcolor              : $white !default;
-$placeholder-color          : $gray-600 !default;
+$placeholder-color          : $color-base !default;
 
 $forms-padding              : 0 !default;
 
 $input-height               : 45px !default; // Same as button height
-$input-font-size            : 1.3rem !default;
-$placeholder-font-size      : 1.3rem !default;
-$input-box-shadow           : 0 0 0 1px $gray-400 inset;
+$input-font-size            : 1.4rem !default;
+$label-font-size            : 1.4rem !default;
+$placeholder-font-size      : 1.4rem !default;
+$input-box-shadow           : none;
+$input-border-radius        : 10px;
 
 $select-arrow-color         : $white !default;
 $select-arrow-bgcolor       : $gray-600 !default;
@@ -202,11 +204,12 @@ $select-active-bgcolor      : $gray-600 !default;
 
 $textarea-height            : ($input-height * 2) !default;
 
-$checkbox-color             : $color-primary !default;
-$checkbox-size              : 2rem;
-$checkbox-border-radius     : 0;
+$checkbox-color             : $color-base !default;
+$checkbox-size              : 3rem;
+$checkbox-innersize         : 16px;
+$checkbox-border-radius     : 5px;
 
-$switch-color               : $gray-600 !default;
+$switch-color               : $color-base !default;
 $switch-size                : 3rem;
 $switch-border-radius       : 3em;
 
