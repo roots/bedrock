@@ -49,7 +49,7 @@ def notify(msg,color){
 }
 
 def deployCode(creds) {
-    echo "Sending files to remote server."
+    echo "Sending files to remote server"
     sh "rsync -uvr --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     if(creds.siteUrl){
         env.siteUrl = creds.siteUrl;
