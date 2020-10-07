@@ -150,7 +150,7 @@ pipeline {
                     handleException('Composer install failed', exc);
                 }
 	        } else {
-	        	echo 'skipped composer install';
+	        	echo 'Skipped composer install';
 	        }
 
 	        if(env.runNpm=='true'){
@@ -160,7 +160,7 @@ pipeline {
                     handleException('npm install failed',exc);
                 }
 	        } else {
-	        	echo 'skipped npm install';
+	        	echo 'Skipped npm install';
 	        }
 
             if(env.runBuild=='true'){
@@ -175,7 +175,7 @@ pipeline {
                     handleException('Building the front failed',exc);
                 }
             } else {
-            	echo 'skipped npm sprites & build';
+            	echo 'Skipped npm sprites & build';
             }
         }
       }
