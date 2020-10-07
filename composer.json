@@ -1,17 +1,17 @@
 {
-  "name": "wonderwp\/site",
+  "name": "wonderwp/site",
   "type": "project",
   "authors": [
     {
       "name": "Jeremy Desvaux",
       "email": "jeremy.desvaux@wonderful.fr",
-      "homepage": "https:\/\/github.com\/jeremy-wdf"
+      "homepage": "https://github.com/jeremy-wdf"
     }
   ],
   "config": {
     "preferred-install": {
-      "wonderwp\/*": "source",
-      "agencewonderful\/*": "source",
+      "wonderwp/*": "source",
+      "agencewonderful/*": "source",
       "*": "dist"
     },
     "sort-packages": true
@@ -19,11 +19,11 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "https:\/\/wpackagist.org"
+      "url": "https://wpackagist.org"
     },
     {
       "type": "composer",
-      "url": "https:\/\/won.wonderful.fr\/satis\/packages-mirror"
+      "url": "https://won.wonderful.fr/satis/packages-mirror"
     },
     {
       "type":"composer",
@@ -79,42 +79,32 @@
     "wpackagist-plugin/wp-nested-pages": "^3.0"
   },
   "require-dev": {
-    "phpunit\/phpunit": "^6",
-    "squizlabs\/php_codesniffer": "^2.5.1"
+    "phpunit/phpunit": "^6",
+    "squizlabs/php_codesniffer": "^2.5.1"
   },
   "autoload": {
     "psr-4": {
-      "WonderWp\\Theme\\Child\\": "web\/app\/themes\/wwp_child_theme\/includes",
-      "WonderWp\\Plugin\\Jeux\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-jeux\/includes",
-      "WonderWp\\Plugin\\Contact\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-contact\/includes",
-      "WonderWp\\Plugin\\EspaceRestreint\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-espace-restreint\/includes",
-      "WonderWp\\Plugin\\RGPD\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-rgpd\/includes",
-      "WonderWp\\Plugin\\Newsletter\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-newsletter\/includes",
-      "WonderWp\\Plugin\\Video\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-video\/includes",
-      "WonderWp\\Plugin\\Trombinoscope\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-trombi\/includes",
-      "WonderWp\\Plugin\\Partenaires\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-partenaires\/includes",
-      "WonderWp\\Plugin\\Map\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-map\/includes",
-      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-gutenberg-utils\/includes",
-      "WonderWp\\Plugin\\Event\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-event\/includes"
+      "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes",
+      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-gutenberg-utils/includes",
     }
   },
   "extra": {
     "installer-paths": {
-      "web\/app\/mu-plugins\/{$name}\/": [
+      "web/app/mu-plugins/{$name}/": [
         "type:wordpress-muplugin"
       ],
-      "web\/app\/plugins\/{$name}\/": [
+      "web/app/plugins/{$name}/": [
         "type:wordpress-plugin"
       ],
-      "web\/app\/themes\/{$name}\/": [
+      "web/app/themes/{$name}/": [
         "type:wordpress-theme"
       ]
     },
-    "wordpress-install-dir": "web\/wp"
+    "wordpress-install-dir": "web/wp"
   },
   "scripts": {
     "test": [
-      "vendor\/bin\/phpcs --ignore=web\/wp\/,vendor\/ -n -s ."
+      "vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."
     ]
   }
 }

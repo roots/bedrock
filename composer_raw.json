@@ -33,7 +33,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "composer/installers": "^1.9",
     "deliciousbrains-plugin/wp-migrate-db-pro": "^1.9",
     "johnpbloch/wordpress": "^5.4",
@@ -42,18 +42,17 @@
     "wpackagist-plugin/google-sitemap-generator": "4.1.0",
     "wpackagist-plugin/secupress": "^1.4",
     "wpackagist-plugin/wp-nested-pages": "^3.0",
-    "twig\/twig": "^2.0",
+    "twig/twig": "^2.0",
     "vlucas/phpdotenv": "^2.0.1"
   },
   "require-dev": {
-    "phpunit\/phpunit": "^6",
+    "phpunit/phpunit": "^6",
     "squizlabs/php_codesniffer": "^2.5.1"
   },
   "autoload": {
     "psr-4": {
-      "WonderWp\\Theme\\Components\\": "web/app/themes/wwp_child_theme/styleguide/components/components/componentsClasses",
       "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes",
-      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web\/app\/themes\/wwp_child_theme\/plugins\/wwp-gutenberg-utils\/includes"
+      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-gutenberg-utils/includes"
     }
   },
   "extra": {
