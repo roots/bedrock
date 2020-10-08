@@ -6,10 +6,13 @@
   align-items: center;
   height: $button-height; //IE11
   min-height: $button-height;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0 3.5rem;
-  font-size: 1.3rem;
-  font-weight: $weight-bold;
+  font-size: 1.6rem;
   line-height: 1.2;
+  box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
   transition: all .4s;
 
   &.btn--small,
@@ -39,41 +42,56 @@
   }
 }
 
-a.btn {
-  text-decoration: none;
-}
-
-.btn,
-.button {
+a.btn,
+button {
   color: white;
   background-color: $color-primary;
-  box-shadow: 0 0 0 2px $color-primary inset;
 
-  &:active,
-  &:focus,
-  &:hover {
-    color: $color-primary;
-    background-color: white;
+  &:focus, &:hover, &:active {
+    color: white;
+    background-color: darken($color-primary, 10%);
   }
 }
 
-.btn,
-.button {
+a.btn,
+button {
   @each $name, $background-color, $color, $border in $variants-list {
     &--#{$name} {
       @extend %btn;
       background-color: $background-color;
       color: $color;
-
-      &:active,
-      &:focus,
-      &:hover {
-        color: $background-color;
-        background-color: $color;
-      }
     }
   }
 }
+
+a[class*="btn"] {
+  text-decoration: none;
+}
+
+a.btn,
+button {
+
+  &-cta {
+    @extend .btn;
+    padding-right: 2.5rem;
+
+    &::after {
+      @include svgIcon('arrow_right_w_s');
+      margin-left: 1rem;
+      transform: translateX(0);
+      transition: all 0.4s;
+    }
+
+    &:focus, &:hover, &:active {
+
+      &::after {
+        transform: translateX(10px);
+      }
+    }
+  }
+
+}
+
 
 .entry-content .btn {
   margin-top: 3rem;

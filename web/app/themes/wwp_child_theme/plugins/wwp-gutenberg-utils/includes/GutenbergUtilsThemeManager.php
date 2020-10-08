@@ -5,6 +5,7 @@ namespace WonderWp\Plugin\GutenbergUtils\Child;
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Plugin\GutenbergUtils\Component\TestMolecule;
 use WonderWp\Plugin\GutenbergUtils\GutenbergUtilsManager;
+use WonderWp\Theme\Child\Components\Button\ButtonComponent;
 use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\GutenbergCardComponent\CardGutenbergComponent;
@@ -20,6 +21,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
             VideoEmbedComponent::class,
             DropdownComponent::class,
             CardComponent::class,
+            ButtonComponent::class,
             TestMolecule::class
         ]);
 

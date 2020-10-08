@@ -27,9 +27,15 @@ class ButtonComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"size":"small"})
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Couleur"})
      */
-    protected $icon;
+    protected $color;
+
+    /**
+     * @var boolean
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Flèche droite"})
+     */
+    protected $arrow;
 
     /**
      * @param string $label
@@ -52,21 +58,47 @@ class ButtonComponent extends AbstractComponent
     }
 
     /**
-     * @param string $icon
+     * @param string $color
      * @return ButtonComponent
      */
-    public function setIcon(string $icon): ButtonComponent
+    public function setColor(string $color): ButtonComponent
     {
-        $this->icon = $icon;
+        $this->color = $color;
+        return $this;
+    }
+
+    /**
+     * @param bool $arrow
+     * @return ButtonComponent
+     */
+    public function setArrow(bool $arrow): ButtonComponent
+    {
+        $this->arrow = $arrow;
         return $this;
     }
 
     public function getMarkup(array $opts = [])
     {
-        $markup = '<a href="">';
+        if (!empty($this->label) || !empty($this->link)) {
 
-        $markup .= '</a>';
+            $markup = '<a class="btn ';
 
-        return $markup;
+            if ($this->color) {
+                $markup .= ' btn--'.$this->color;
+            }
+
+            if ($this->arrow == true) {
+                $markup .= ' btn-cta';
+            }
+
+            $markup .= '"';
+
+            $markup .= 'href="'.$this->link.'">';
+
+            $markup .= $this->label.'</a>';
+
+            return $markup;
+
+        }
     }
 }
