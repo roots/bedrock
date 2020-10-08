@@ -49,7 +49,7 @@ def notify(msg,color){
 }
 
 def deployCode(creds) {
-    echo "Sending files to remote server."
+    echo "Sending files to remote server"
     sh "rsync -uvr --delete --exclude-from ${WORKSPACE}/CI/exclude-file.txt ${WORKSPACE}/* ${creds.sshUser}@${creds.sshServer}:${creds.sshRemotePath};"
     if(creds.siteUrl){
         env.siteUrl = creds.siteUrl;
@@ -145,7 +145,7 @@ pipeline {
 
             if(env.runComposer=='true'){
                 try {
-	                sh '/usr/bin/php7.4 /bin/composer install --no-dev --prefer-dist';
+	                sh '/usr/bin/php7.4 /usr/local/bin/composer install --no-dev --prefer-dist';
                 } catch(exc){
                     handleException('Composer install failed', exc);
                 }
