@@ -11,6 +11,7 @@ use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\GutenbergCardComponent\CardGutenbergComponent;
 use WonderWp\Theme\Child\Components\Video\VideoComponent;
 use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
+use WonderWp\Theme\Child\Components\VideoModale\VideoModaleComponent;
 
 class GutenbergUtilsThemeManager extends GutenbergUtilsManager
 {
@@ -19,6 +20,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
 
         $this->setConfig('moleculesToRegister', [
             VideoEmbedComponent::class,
+            VideoModaleComponent::class,
             DropdownComponent::class,
             CardComponent::class,
             ButtonComponent::class,

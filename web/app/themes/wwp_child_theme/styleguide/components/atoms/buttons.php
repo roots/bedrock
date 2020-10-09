@@ -1,33 +1,68 @@
-<!-- components/atoms/buttons.php -->
+<!-- components/components/button.php -->
+<p class="subTitle">Bouton Gutenberg</p>
 
-<!--components/atoms/buttons.php-->
-<span class="title">Un bouton dispose de la classe .btn ou .button (pour les styles par défaut) ou une classe commençant par .btn-- ou .button-- pour les différentes variantes, par exemple .btn--primary,  .btn--success, .btn--warning, .btn--error, .btn--info, .btn--inverse, .btn--ghost</span>
-
-<span class="subTitle">Différents types de boutons</span>
-<a class="btn" href="#" role="button">Link</a>
-<button class="btn" type="button">Button</button>
-<input class="btn" type="button" value="Input">
-<input class="btn" type="submit" value="Submit">
-<br><br>
-<div class="btn-wrapper">
-    <a class="btn" href="#">Button in wrapper</a>
+<div class="encadre">
+    <div class="grid-2 has-gutter-xl">
+        <div>
+            <p>ATTRIBUTS :</p>
+            <ul>
+                <li>Label</li>
+                <li>Lien</li>
+                <li>Couleur (variable)</li>
+            </ul>
+        </div>
+        <div>
+            <p>OPTIONS :</p>
+            <ul>
+                <li>Flèche droite</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<hr>
-<span class="subTitle">Couleurs</span>
-<button class="btn">Button Default</button>
-<button class="btn--primary">Primary</button>
-<button class="btn--success">Success</button>
-<input  class="btn--warning" type="button" role="button" value="Warning">
-<span class="btn--danger" role="button">Danger</span>
-<span class="btn--info" role="button">Info</span>
-<span class="btn--inverse" role="button">Inverse</span>
-<button class="btn--ghost">Ghost</button>
+<p class="subTitle">Bouton de base</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('Valider')
+;
+echo $button->getMarkup();
+?>
+<br><hr>
 
-<hr>
-<span class="subTitle">Tailles</span>
-<button type="button" class="btn--big">Large button</button>
-<button type="button" class="btn--big btn--primary">Large button</button>
-<br><br>
-<button type="button" class="btn--small">Small button</button>
-<button type="button" class="btn--small btn--primary btn-sm">Small button</button>
+<p class="subTitle">Bouton couleur "brand"</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('Valider')
+    ->setColor('brand')
+;
+echo $button->getMarkup();
+?>
+<br><hr>
+
+<p class="subTitle">Bouton avec flèche</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('En savoir plus')
+    ->setArrow('true')
+;
+echo $button->getMarkup();
+?>
+<br><hr>
+
+<p class="subTitle">Bouton couleur avec flèche</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('Valider')
+    ->setColor('brand')
+    ->setArrow('true')
+;
+echo $button->getMarkup();
+?>
