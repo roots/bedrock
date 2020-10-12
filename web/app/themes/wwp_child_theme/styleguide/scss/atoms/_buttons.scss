@@ -11,7 +11,8 @@
   padding: 0 3.5rem;
   font-size: 1.6rem;
   line-height: 1.2;
-  box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.09);
+  white-space: normal;
+  box-shadow: $button-box-shadow;
   border-radius: 5px;
   transition: all .4s;
 
@@ -44,6 +45,8 @@
 
 a.btn,
 button {
+
+  @extend %btn;
   color: white;
   background-color: $color-primary;
 
@@ -68,8 +71,7 @@ a[class*="btn"] {
   text-decoration: none;
 }
 
-a.btn,
-button {
+a.btn {
 
   &-cta {
     @extend .btn;
@@ -98,7 +100,7 @@ button {
 }
 
 .btn--submit {
-  @extend %btn;
+  @extend a.btn;
   padding-right: 2.5rem;
 
   &::after {
