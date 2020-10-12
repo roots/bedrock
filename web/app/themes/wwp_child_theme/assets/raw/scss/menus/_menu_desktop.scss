@@ -44,51 +44,78 @@ $menu-item-m1-bgcolor-active: $gray-200;
       font-family: $font-family-base;
       font-size: 1.5rem;
       line-height: 1;
+    }
 
-      > ul {
-        position: absolute;
-        top: 0;
-        left: -9999px;
-        opacity: 0;
-        transition: opacity .4s;
+    //Tous les sous-menus sont masqués
+    li > ul {
+      position: absolute;
+      top: 0;
+      left: -9999px;
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    // Premier niveau
+    > li.m0 {
+
+      > a {
+        position: relative;
+        margin-right: 4rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid transparent;
+      }
+
+      &.current_page_ancestor,
+      &.current_page_item {
+
+        > a {
+          border-bottom-color: $menu-item-color;
+        }
+      }
+
+      &.page_item_has_children {
+
+        > a {
+          margin-right: 6rem;
+        }
+
+        > a::after {
+          position: absolute;
+          right: -30px;
+          top: calc(50% - 4px);
+          content: "";
+          display: block;
+          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
+          background-repeat: no-repeat;
+          height: 9px;
+          width: 17px;
+          transform: rotate(0);
+          transition: transform 0.4s;
+        }
+      }
+
+      &:hover,
+      &:focus {
+
+        > a {
+          border-bottom-color: $color-base;
+        }
+
+        > a::after {
+          transform: rotate(180deg);
+        }
       }
     }
 
-    /*Global open/hide sub-menus*/
-    li:hover,
-    li:focus,
-    li:focus-within,
-    li:active {
-      > ul {
-        opacity: 1;
-        left: auto;
-      }
-
-      //2nd level only
-
-      > ul.children:not(.level1) {
-        right: -100%;
-      }
-
-      //3rd level and under
-    }
-
-    /*Addon for IE only*/
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      li > a:focus + ul.children,
-      ul.children:focus,
-      ul.children:active {
-        opacity: 1;
-        left: auto;
-      }
-
-    }
-    /*IE 10-11*!*/
-
+    // Deuxième niveau
     ul.level1 {
-      top: 55px;
+      top: $desktopheaderHeight;
       z-index: 1;
       list-style: none;
+
+      body.has-stuck-header & {
+        top: 40px;
+      }
 
       li {
         margin-left: 0;
@@ -106,17 +133,9 @@ $menu-item-m1-bgcolor-active: $gray-200;
         background-color: $menu-item-m1-bgcolor;
       }
 
-      li.page_item_has_children > a::after {
-        content: "";
-        display: block;
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: scale(.8) translateY(-60%);
-        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-r-small-grey.svg");
-        background-repeat: no-repeat;
-        width: 24px;
-        height: 34px;
+      //Pour IE11
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        top: 40px;
       }
 
       > li:hover, > li:focus {
@@ -126,24 +145,35 @@ $menu-item-m1-bgcolor-active: $gray-200;
       }
     }
 
+    // Troisième niveau
     ul.level2 {
+      left: 100% !important;
+    }
 
-      > li {
-        width: 100%;
-      }
-
-      > li > a {
-        display: inline-block;
-        position: relative;
-        width: 100%;
-        border-bottom: 1px solid $gray-200;
+      //Animations
+    li:hover,
+    li:focus,
+    li:focus-within,
+    li:active {
+      > ul {
+        opacity: 1;
+        left: -3rem;
       }
     }
 
-    li.m0_3 {
+    //Pour IE11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      li > ul {
+        left: 0;
+        opacity: 1;
+        display: none;
+      }
+      > li.m0:hover,
+      > li.m0:focus {
 
-      ul.level2 {
-        right: 100%;
+        > ul {
+          display: block;
+        }
       }
     }
 
