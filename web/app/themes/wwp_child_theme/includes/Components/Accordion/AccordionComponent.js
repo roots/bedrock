@@ -44,7 +44,7 @@ export class AccordionWrap {
         $this.attr({
           "role": "tablist",
           "aria-multiselectable": "true",
-          "class": $accordions_prefix_classes
+          "class": $accordions_prefix_classes + ' ' + $this.attr('class')
         });
 
         // multiselectable or not
