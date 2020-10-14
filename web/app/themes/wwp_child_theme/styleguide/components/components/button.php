@@ -60,7 +60,7 @@ echo $button->getMarkup();
 $button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
 $button
     ->setLink('/')
-    ->setLabel('En savoir plus')
+    ->setLabel('Valider')
     ->setColor('brand')
     ->setArrow('true')
 ;

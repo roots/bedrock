@@ -9,8 +9,8 @@
 $verytiny           : 320px !default;
 $extra-small        : 385px !default; // .container-xs
 $tiny               : 480px !default;
-$small              : 576px !default; // grid-small
-$medium             : 768px !default; // Mobile <768px .container-xs
+$small              : 660px !default; //.container-s
+$medium             : 768px !default; // Mobile <768px
 $large              : 960px !default; // .container
 $very-large         : 1200px !default;
 $extra-large        : 1280px !default; // .container-l
@@ -245,6 +245,7 @@ $table-footer-background    : transparent !default;
 // Convention is: name - background-color - color - border
 $variants-list: (
         (primary,    $color-primary,    $white,    0 0 0 2px $color-primary inset),
+        (brand,      $color-brand,      $white,    0 0 0 2px $color-brand inset),
         (success,    $color-success,    $white,    0 0 0 2px $color-success inset),
         (info,       $color-info,       $white,    0 0 0 2px $color-info inset),
         (warning,    $color-warning,    $white,    0 0 0 2px $color-warning inset),
@@ -253,9 +254,10 @@ $variants-list: (
         (inverse,    $color-inverse,    $white,    0 0 0 2px $color-inverse inset),
         (ghost,      $color-ghost,      $white,    0 0 0 2px $color-ghost inset)
 ) !default;
-$button-height         : $input-height;
-$button-height-small   : 50px !default;
-$button-height-large   : 70px !default;
+$button-height          : $input-height;
+$button-height-small    : 50px !default;
+$button-height-large    : 70px !default;
+$button-box-shadow      : none; //0 5px 14px 0 rgba(0, 0, 0, 0.09)
 
 // Component: tabs
 $tabs-border            : $gray-200 !default;

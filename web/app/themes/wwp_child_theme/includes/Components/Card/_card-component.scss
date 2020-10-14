@@ -9,14 +9,14 @@ $image-landscape-height: 360px;
 $image-mobile-height: 50vw;
 
 .item {
+  border: 1px solid $gray-300;
 
   &,
   &.has-link a {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: 1px solid $gray-300;
+    width: 100%; //For IE11
   }
 
   a {
@@ -88,9 +88,33 @@ $image-mobile-height: 50vw;
     clear: both;
   }
 
+  //Champs spécifiques
+  .function,
+  .biography,
+  .email,
+  .phone {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .function {
+    font-weight: $weight-bold;
+  }
+
+  .biography {
+
+  }
+
+  .email {
+
+  }
+
+  .phone {
+
+  }
+
   .card-readmore-link {
-    @extend .btn;
-    display: flex;
+    @extend a.btn;
     margin: 2rem auto 0 auto;
     justify-content: center;
   }
@@ -146,5 +170,15 @@ $image-mobile-height: 50vw;
       order: initial;
       height: $image-mobile-height;
     }
+  }
+}
+
+/*TYPES*/
+.video-list .item {
+
+  .img-wrap::before {
+    @include svgIcon('play');
+    @include absolute-center;
+    z-index: 1;
   }
 }

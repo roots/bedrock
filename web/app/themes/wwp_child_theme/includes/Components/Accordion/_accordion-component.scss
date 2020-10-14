@@ -6,32 +6,43 @@
   }
 }
 
+//Titre
 .js-accordion__header {
   position: relative;
   display: block;
+  height: auto;
   width: 100%;
-  margin-top: 4rem;
-  padding: 0 4.5rem 1rem 0;
+  margin: 0;
+  padding: 2rem 4.5rem 2rem 2rem;
   text-align: left;
   font-size: 2rem;
   letter-spacing: .2rem;
+  color: $color-base;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid $gray-200;
 
   &:after {
     position: absolute;
+    top: 50%;
     right: 2rem;
     z-index: 1;
     content: "+";
     font-weight: initial;
     font-size: 3rem;
     transform-origin: center;
+    transform: translateY(-50%) rotate(0);
     transition: all .2s ease-out;
   }
 
+  &:hover,
+  &:focus {
+    color: $color-base;
+    background-color: $gray-200;
+  }
+
   &[aria-expanded="true"]:after {
-    transform: rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
   }
 
   @media (max-width: $tiny) {
@@ -42,28 +53,23 @@
   }
 }
 
-
+//Contenu
 .js-accordion__panel {
-  padding-bottom: 0;
+  padding: 2rem;
   overflow: hidden;
   font-size: 1.5rem;
-  transition: all 1s ease-out;
+  transition: all 0.4s ease-out;
 
   .js &,
   .js-enabled & {
     height: 0;
+    padding: 0 2rem;
     visibility: hidden;
     opacity: 0;
   }
 
   h2:before {
     content: none;
-  }
-
-  @media (max-width: $tiny) {
-    /*visibility: visible;
-    opacity: 1;
-    height: auto;*/
   }
 }
 
@@ -78,4 +84,5 @@
   visibility: visible;
   opacity: 1;
   height: auto;
+  padding: 2rem;
 }
