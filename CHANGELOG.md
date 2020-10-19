@@ -1,3 +1,8 @@
+### 1.14.4: 2020-10-19
+
+* Update Uncanny-toolkit-pro
+* Add UserInsights
+
 ### 1.14.3: 2020-10-06
 
 * disable errors on prod
