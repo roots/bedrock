@@ -1,6 +1,8 @@
 <li>
-  <a href="">
-    <span class="date">{{ date }}</span>
+  <a href="{{ link }}">
+    {% if date %}
+      <span class="date">{{ date }}</span>
+    {% endif %}
     <span class="text">{{ text }}</span>
     {% if image %}
       <div class="image-wrapper"><img src="{{ image }}" alt="{{ alt }}"></div>
