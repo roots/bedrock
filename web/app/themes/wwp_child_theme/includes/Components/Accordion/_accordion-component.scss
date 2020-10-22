@@ -1,6 +1,6 @@
 // Accordion
 :root{
-  --accordion-theme-color: #{$vert-6};
+  --accordion-theme-color: #{$color-brand};
 }
 
 .js-accordion {
@@ -61,7 +61,7 @@
     top: 0;
     height: 100%;
     width: 5rem;
-    background: $rose-1;
+    background: $color-brand;
     z-index: 1;
     border-radius: 0 10px 10px 0;
   }
@@ -82,10 +82,8 @@
 .js-accordion__panel {
   background: #fff;
   position: relative;
-  // top: -10px;
-  // z-index: -1;
   border: 1px solid var(--accordion-theme-color);
-  padding: 0rem 5rem;
+  padding: 0 5rem;
   border-radius: 10px;
   overflow: hidden;
   font-size: 1.5rem;
@@ -103,9 +101,7 @@
   }
 
   @media (max-width: $tiny) {
-    /*visibility: visible;
-    opacity: 1;
-    height: auto;*/
+
   }
 }
 
@@ -132,15 +128,14 @@
   counter-reset: accordeon;
   button.js-accordion__header {
     counter-increment: accordeon;
-    margin: 0;
-    border-radius: 5px;
-    font-size: 2.4rem;
-    color: #fff;
     margin-top: -5px;
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
-    font-size: 2rem;
+    margin: 0;
     padding-right: 2rem;
     padding-left: 6rem;
+    font-size: 2rem;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
     &:before{
       content: counter(accordeon) ".";
       font-size: 3rem;
@@ -176,10 +171,9 @@
     border-radius: 0;
     color: #fff;
     margin-top: -3px;
-    padding-top: 0rem;
+    padding-top: 0;
     padding-left:3rem;
     padding-right:3rem;
-    font-family: $font-silka-medium;
     &[aria-hidden="false"]{
       padding-top: 2rem;
       padding-bottom: 4rem;
