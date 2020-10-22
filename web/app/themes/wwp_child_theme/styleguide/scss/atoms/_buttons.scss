@@ -45,14 +45,14 @@
 
 a.btn,
 button {
-
   @extend %btn;
-  color: white;
-  background-color: $color-primary;
+  color: $color-base;
+  background-color: white;
+  box-shadow: 0 0 0 2px $color-brand inset;
 
   &:focus, &:hover, &:active {
-    color: white;
-    background-color: darken($color-primary, 10%);
+    color: $color-base;
+    background-color: $color-brand;
   }
 }
 
@@ -61,8 +61,14 @@ button {
   @each $name, $background-color, $color, $border in $variants-list {
     &--#{$name} {
       @extend %btn;
-      background-color: $background-color;
       color: $color;
+      background-color: $background-color;
+      box-shadow: 0 0 0 2px $background-color inset;
+
+      &:focus, &:hover, &:active {
+        color: $background-color;
+        background-color: $color;
+      }
     }
   }
 }
@@ -73,12 +79,12 @@ a[class*="btn"] {
 
 a.btn {
 
-  &-cta {
+  &--cta {
     @extend .btn;
     padding-right: 2.5rem;
 
     &::after {
-      @include svgIcon('arrow_right_w_s');
+      @include svgIcon('arrow_right_s');
       margin-left: 1rem;
       transform: translateX(0);
       transition: all 0.4s;
@@ -91,21 +97,33 @@ a.btn {
       }
     }
   }
-
 }
-
 
 .entry-content .btn {
   margin-top: 3rem;
 }
 
+// Bouton submit
 .btn--submit {
-  @extend a.btn;
-  padding-right: 2.5rem;
+  @extend .btn;
+  color: white;
+  background-color: $color-base;
+  box-shadow: 0 0 0 2px $color-base inset;
+
+  &:hover,
+  &:focus {
+    color: $color-base;
+    background-color: white;
+  }
+}
+
+// Bouton lien sortant
+.btn[target=_blank] {
+  @extend .btn;
 
   &::after {
-    @include svgIcon('chevron-r-small-white');
-    margin-left: 8px;
+    @include svgIcon('extlink');
+    margin-left: 0.1em;
   }
 }
 

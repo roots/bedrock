@@ -8,13 +8,14 @@
             <ul>
                 <li>Label</li>
                 <li>Lien</li>
-                <li>Couleur (variable)</li>
+                <li>Couleur (nom de variable)</li>
             </ul>
         </div>
         <div>
             <p>OPTIONS :</p>
             <ul>
                 <li>Flèche droite</li>
+                <li>Target blank</li>
             </ul>
         </div>
     </div>
@@ -26,6 +27,18 @@ $button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
 $button
     ->setLink('/')
     ->setLabel('Valider')
+;
+echo $button->getMarkup();
+?>
+<br><hr>
+
+<p class="subTitle">Bouton avec lien sortant</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('Lien externe')
+    ->setTargetBlank('true')
 ;
 echo $button->getMarkup();
 ?>
