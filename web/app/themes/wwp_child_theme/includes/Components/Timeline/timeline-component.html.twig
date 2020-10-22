@@ -1,7 +1,9 @@
-<ul class="timeline timeline--{{ class }}">
-  {% if timelineItems %}
-    {% for item in timelineItems %}
-      {{ item | raw }}
-    {% endfor %}
-  {% endif  %}
-</ul>
+<div class="timeline-component">
+  <ul class="timeline timeline--{{ class }}">
+    {% if timelineItems %}
+      {% for item in timelineItems %}
+        {{ item | raw }}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</div>
