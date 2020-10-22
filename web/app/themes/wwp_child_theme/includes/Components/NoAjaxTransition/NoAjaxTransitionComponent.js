@@ -13,7 +13,8 @@ export default class NoAjaxTransitionComponent extends PewComponent {
       '.no-barba',
       '.module-actu .pagination a',
       '.module-faq .pagination a',
-      '.post-edit-link'
+      '.post-edit-link',
+      '.timeline-component a'
     ];
     $('a').not(exceptions.join(',')).on('click', (e) => {
       let $link = $(e.currentTarget);
