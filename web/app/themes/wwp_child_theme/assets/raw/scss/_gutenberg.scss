@@ -28,17 +28,17 @@ $gutter-col-width: 16px !default; //Gouttière de base
 @media (min-width: 782px) { //782px Gutenberg Breakpoint
 
   // Très petite gouttière
-  .wp-block-columns.gutter-xs .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-xs .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width} / 2);
   }
 
   // Petite gouttière
-  .wp-block-columns.gutter-s .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-s .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width});
   }
 
   // Grande gouttière
-  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-l .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width} * 4);
   }
 
@@ -65,26 +65,26 @@ $gutter-col-width: 16px !default; //Gouttière de base
   }
 
   // Très petite gouttière
-  .wp-block-columns.gutter-xs .wp-block-column {
+  .wp-block-columns.has-gutter-xs .wp-block-column {
     flex-basis: calc(50% - #{$gutter-col-width} / 4);
   }
-  .wp-block-columns.gutter-xs .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-xs .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width} / 2);
   }
 
   // Petite gouttière
-  .wp-block-columns.gutter-s .wp-block-column {
+  .wp-block-columns.has-gutter-s .wp-block-column {
     flex-basis: calc(50% - #{$gutter-col-width} / 2);
   }
-  .wp-block-columns.gutter-s .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-s .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width});
   }
 
   // Grande gouttière
-  .wp-block-columns.gutter-l .wp-block-column {
+  .wp-block-columns.has-gutter-l .wp-block-column {
     flex-basis: calc(50% - #{$gutter-col-width} * 2);
   }
-  .wp-block-columns.gutter-l .wp-block-column:not(:first-child) {
+  .wp-block-columns.has-gutter-l .wp-block-column:not(:first-child) {
     margin-left: calc(#{$gutter-col-width} * 4);
   }
 }
