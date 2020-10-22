@@ -14,6 +14,7 @@
   display: block;
   width: 100%;
   margin: 1rem 0 0 0;
+  padding-right: 8rem;
   padding-left: 5rem;
   text-align: left;
   background-color: var(--accordion-theme-color);
@@ -25,7 +26,6 @@
   font-size: 1.8rem;
   color: $black;
   border-radius: 10px;
-  padding-right: 8rem;
 
   &:hover,
   &:focus,
@@ -66,8 +66,12 @@
     border-radius: 0 10px 10px 0;
   }
 
-  &[aria-expanded="true"]:before {
-    transform: rotate(90deg);
+  &[aria-expanded="true"] {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    &:before {
+      transform: rotate(90deg);
+    }
   }
 
   @media (max-width: $tiny) {
@@ -84,7 +88,8 @@
   position: relative;
   border: 1px solid var(--accordion-theme-color);
   padding: 0 5rem;
-  border-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   overflow: hidden;
   font-size: 1.5rem;
   transition: all .4s ease-out;
