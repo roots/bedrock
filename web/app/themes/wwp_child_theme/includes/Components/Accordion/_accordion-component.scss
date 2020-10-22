@@ -1,4 +1,7 @@
 // Accordion
+:root{
+  --accordion-theme-color: #{$vert-6};
+}
 
 .js-accordion {
   button, div {
@@ -6,43 +9,65 @@
   }
 }
 
-//Titre
 .js-accordion__header {
   position: relative;
   display: block;
-  height: auto;
   width: 100%;
-  margin: 0;
-  padding: 2rem 4.5rem 2rem 2rem;
+  margin: 1rem 0 0 0;
+  padding-left: 5rem;
   text-align: left;
-  font-size: 2rem;
-  letter-spacing: .2rem;
-  color: $color-base;
-  background-color: transparent;
+  background-color: var(--accordion-theme-color);
+  box-shadow: none;
+  white-space: normal;
+  min-height: 80px;
+  height: initial;
   border: none;
-  border-bottom: 1px solid $gray-200;
-
-  &:after {
-    position: absolute;
-    top: 50%;
-    right: 2rem;
-    z-index: 1;
-    content: "+";
-    font-weight: initial;
-    font-size: 3rem;
-    transform-origin: center;
-    transform: translateY(-50%) rotate(0);
-    transition: all .2s ease-out;
-  }
+  font-size: 1.8rem;
+  color: $black;
+  border-radius: 10px;
+  padding-right: 8rem;
 
   &:hover,
-  &:focus {
-    color: $color-base;
-    background-color: $gray-200;
+  &:focus,
+  &:active{
+    background-color: var(--accordion-theme-color);
+    color: $black;
   }
 
-  &[aria-expanded="true"]:after {
-    transform: translateY(-50%) rotate(45deg);
+  &:focus{
+    outline:0;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    background: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-l-small-white.svg") no-repeat center center;
+    background-size: 35%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 5rem;
+    z-index: 2;
+    transition: all .2s ease-out;
+    transform: rotate(-90deg);
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 5rem;
+    background: $rose-1;
+    z-index: 1;
+    border-radius: 0 10px 10px 0;
+  }
+
+  &[aria-expanded="true"]:before {
+    transform: rotate(90deg);
   }
 
   @media (max-width: $tiny) {
@@ -53,17 +78,22 @@
   }
 }
 
-//Contenu
+
 .js-accordion__panel {
-  padding: 2rem;
+  background: #fff;
+  position: relative;
+  // top: -10px;
+  // z-index: -1;
+  border: 1px solid var(--accordion-theme-color);
+  padding: 0rem 5rem;
+  border-radius: 10px;
   overflow: hidden;
   font-size: 1.5rem;
-  transition: all 0.4s ease-out;
+  transition: all .4s ease-out;
 
   .js &,
   .js-enabled & {
     height: 0;
-    padding: 0 2rem;
     visibility: hidden;
     opacity: 0;
   }
@@ -71,6 +101,16 @@
   h2:before {
     content: none;
   }
+
+  @media (max-width: $tiny) {
+    /*visibility: visible;
+    opacity: 1;
+    height: auto;*/
+  }
+}
+
+.js-accordion__header[aria-expanded="true"] + .js-accordion__panel {
+  padding: 4rem 5rem;
 }
 
 .js-accordion__title,
@@ -84,5 +124,65 @@
   visibility: visible;
   opacity: 1;
   height: auto;
-  padding: 2rem;
+}
+
+
+// Accordéon autre style (page contrôle/collectif & valeurs)
+.accordeon-style2{
+  counter-reset: accordeon;
+  button.js-accordion__header {
+    counter-increment: accordeon;
+    margin: 0;
+    border-radius: 5px;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-top: -5px;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
+    font-size: 2rem;
+    padding-right: 2rem;
+    padding-left: 6rem;
+    &:before{
+      content: counter(accordeon) ".";
+      font-size: 3rem;
+      transform: none;
+      background: none;
+      top: 20px;
+      right: initial;
+      left: 3rem;
+    }
+    &:after{
+      display: none;
+    }
+    &[aria-expanded="true"]{
+      font-size: 2.4rem;
+      padding-left: 8rem;
+      padding-top: 3.6rem;
+      &:before{
+        font-size: 5rem;
+      }
+    }
+  }
+  button.js-accordion__header:nth-of-type(4n+1),
+  button.js-accordion__header:nth-of-type(4n+1) + div{ background: #DC9B74; }
+  button.js-accordion__header:nth-of-type(4n+2),
+  button.js-accordion__header:nth-of-type(4n+2) + div{ background: #BD8462; }
+  button.js-accordion__header:nth-of-type(4n+3),
+  button.js-accordion__header:nth-of-type(4n+3) + div{ background: #946344; }
+  button.js-accordion__header:nth-of-type(4n+4),
+  button.js-accordion__header:nth-of-type(4n+4) + div{ background: #D37F59; }
+
+  .js-accordion__panel {
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    margin-top: -3px;
+    padding-top: 0rem;
+    padding-left:3rem;
+    padding-right:3rem;
+    font-family: $font-silka-medium;
+    &[aria-hidden="false"]{
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+  }
 }

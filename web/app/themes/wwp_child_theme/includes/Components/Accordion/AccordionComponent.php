@@ -16,16 +16,18 @@ class AccordionComponent extends AbstractComponent
 {
     private $_blocks;
 
-    public function addBlock($title, $content, $id = '')
+    public function addBlock($title, $content, $id = '', $opened = false)
     {
-        $this->_blocks[] = ['title' => $title, 'content' => $content, 'id' => $id];
+        $this->_blocks[] = ['title' => $title, 'content' => $content, 'id' => $id, 'opened' => $opened];
     }
 
     public function getMarkup(array $opts = [])
     {
+        if (empty($opts['id'])) {
+            $opts['id'] = 'accordion-' . uniqid();
+        }
         $markup = '';
         if (!empty($this->_blocks)) {
-
             $defaultClass      = 'js-accordion';
             $defaultAttributes = [
                 'class'                         => [$defaultClass],
@@ -44,7 +46,7 @@ class AccordionComponent extends AbstractComponent
             foreach ($this->_blocks as $block) {
                 $idAttr = !empty($block['id']) ? 'id="' . $block['id'] . '"' : '';
                 $markup .= '
-                <span class="js-accordion__header">' . $block['title'] . '</span>
+                <span class="js-accordion__header" ' . (!empty($block['opened']) ? 'data-accordion-opened="true"' : '') . '>' . $block['title'] . '</span>
                 <div class="js-accordion__panel" ' . $idAttr . '>
                     ' . $block['content'] . '
                 </div>
