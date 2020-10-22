@@ -1,0 +1,136 @@
+/*scss/molecules/_timeline.scss*/
+
+/*Base horizontal timeline*/
+ul.timeline {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  //Ligne
+  &::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: $color-base;
+    position: absolute;
+    top: 50%;
+    pointer-events: none;
+  }
+
+  li {
+    position: relative;
+
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    // Cercle + halo
+    a::after,
+    a::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+    // Halo cercle
+    a::before {
+      z-index: 2;
+      width: 0;
+      height: 0;
+      background-color: $color-base;
+      opacity: 0.2;
+      transform: scale(1) translate(-50%, -50%);
+      transition: all .8s;
+    }
+
+    // Cercle
+    a::after {
+      z-index: 3;
+      width: 20px;
+      height: 20px;
+      background-color: $color-base;
+    }
+
+    .date {
+      position: relative;
+      top: 9rem;
+
+      &::after {
+        position: absolute;
+        bottom: -5px;
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0;
+        background-color: $color-base;
+      }
+    }
+
+    .text {
+      display: block;
+      padding: 0 3rem 0 3rem;
+      text-align: center;
+      font-size: 1.5rem;
+      border: 2px solid #000;
+      border-radius: 15px;
+      opacity: 0;
+      overflow: hidden;
+      transition: all .6s;
+    }
+
+    .image-wrapper {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    img {
+
+    }
+  }
+
+  li:hover,
+  li:focus,
+  li.active {
+
+    a:before {
+      transform: scale(2) translate(-50%, -50%);
+    }
+
+    .date {
+      top: 0;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    .text {
+      font-size: 1.5rem;
+      opacity: 1;
+    }
+  }
+
+}
