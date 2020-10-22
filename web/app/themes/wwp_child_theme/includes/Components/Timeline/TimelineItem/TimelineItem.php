@@ -23,6 +23,7 @@ class TimelineItem extends TwigComponent
     protected $alt;
     /** @var string */
     protected $link;
+    protected $timelineItems;
 
     /**
      * @param string $date
@@ -74,7 +75,15 @@ class TimelineItem extends TwigComponent
         return parent::__set('link', $link);
     }
 
-
+    /**
+     * @param mixed $timelineItems
+     *
+     * @return static
+     */
+    public function setTimelineItems($timelineItems)
+    {
+        return parent::__set('timelineItems', $timelineItems);
+    }
 
     public function __construct()
     {

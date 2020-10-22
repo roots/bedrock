@@ -8,4 +8,11 @@
       <div class="image-wrapper"><img src="{{ image }}" alt="{{ alt }}"></div>
     {% endif %}
   </a>
+  {% if timelineItems %}
+    <ul>
+    {% for item in timelineItems %}
+      {{ item | raw }}
+    {% endfor %}
+    </ul>
+  {% endif %}
 </li>

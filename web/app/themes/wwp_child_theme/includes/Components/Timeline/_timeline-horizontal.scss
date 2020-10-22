@@ -3,13 +3,18 @@
 /*Variables*/
 $timelineHorizHeight: 15rem; //Hauteur de la timeline
 $stepWidthClose: 5rem; //Largeur entre 2 points fermé
-$stepWidthOpen: 20rem; //Largeur entre 2 points ouvert
+$stepWidthOpen: 25rem; //Largeur entre 2 points ouvert
 /*---------*/
 
 ul.timeline.timeline--horizontal {
   height: $timelineHorizHeight;
 
   li {
+
+    &,
+    a {
+      height: 100%;
+    }
 
     a {
       flex-direction: column;
@@ -18,8 +23,15 @@ ul.timeline.timeline--horizontal {
     }
 
     .text {
-      margin-top: 7rem;
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
       text-align: center;
+      opacity: 0;
+      font-size: 0;
+      border-color: white;
+      transform: translate(-50%, 0);
+      transition: all 0.4s;
     }
   }
 
@@ -29,6 +41,12 @@ ul.timeline.timeline--horizontal {
 
     a {
       width: $stepWidthOpen;
+    }
+
+    .text {
+      font-size: 1.5rem;
+      border-color: $color-base;
+      opacity: 1;
     }
   }
 }

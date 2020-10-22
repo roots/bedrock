@@ -24,6 +24,7 @@ ul.timeline {
 
   li {
     position: relative;
+    cursor: pointer;
 
     a {
       position: relative;
@@ -87,11 +88,8 @@ ul.timeline {
       padding: 0 3rem 0 3rem;
       text-align: center;
       font-size: 1.5rem;
-      border: 2px solid #000;
+      border: 2px solid $color-base;
       border-radius: 15px;
-      opacity: 0;
-      overflow: hidden;
-      transition: all .6s;
     }
 
     .image-wrapper {
