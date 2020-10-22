@@ -22,10 +22,12 @@
             </div><!-- .post-thumbnail -->
         <?php endif; ?>
         <?php
-        /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
-        $viewService = wwp_get_theme_service('view');
-        if (!empty($viewService) && is_object($viewService)) {
-            echo $viewService->getBreadcrumbs();
+        if (!\WonderWp\Functions\isAjax()) {
+            /** @var \WonderWp\Theme\Core\Service\ThemeViewService $viewService */
+            $viewService = wwp_get_theme_service('view');
+            if (!empty($viewService) && is_object($viewService)) {
+                echo $viewService->getBreadcrumbs();
+            }
         } ?>
         <div class="entry-title-wrapper">
             <div class="container">

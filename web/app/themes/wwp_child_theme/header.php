@@ -1,3 +1,4 @@
+<?php if (!\WonderWp\Functions\isAjax()): ?>
 <?php
 /**
  * The template for displaying the header
@@ -31,7 +32,7 @@
 
         $pageTitle = stripslashes(wp_title('|', false, 'right'));
         $pageTitle = str_replace(['|'], [' '], $pageTitle);
-        if(!empty($pageTitle)) {
+        if (!empty($pageTitle)) {
             echo $pageTitle . ' | ';
         }
 
@@ -61,7 +62,7 @@
         if (window.criticalJsReady) {
             criticalJsReady();
         } else {
-            document.addEventListener('criticalJsReady', function() {
+            document.addEventListener('criticalJsReady', function () {
                 criticalJsReady();
             });
         }
@@ -84,7 +85,7 @@
             <button class="wdf-burger nav-button" data-menu-toggler type="button" aria-label="open/close navigation"><i></i></button>
 
             <?php
-            echo '<a href="/" class="logo" aria-title="'.trad('back.to.home', WWP_THEME_TEXTDOMAIN).'"><img src="/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg" alt="Mon site - accueil"></a>'
+            echo '<a href="/" class="logo" aria-title="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg" alt="Mon site - accueil"></a>'
             ?>
 
             <nav role="navigation" aria-label="Menu principal" class="navigation-wrapper">
@@ -108,5 +109,5 @@
 
         </div>
     </header>
-
+    <?php endif; /* isAjax */ ?>
     <div id="content" class="site-content transitionning">
