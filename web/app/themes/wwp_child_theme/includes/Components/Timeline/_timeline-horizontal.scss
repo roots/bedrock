@@ -1,0 +1,34 @@
+/*Option timeline horizontale*/
+
+/*Variables*/
+$timelineHorizHeight: 15rem; //Hauteur de la timeline
+$stepWidthClose: 5rem; //Largeur entre 2 points fermé
+$stepWidthOpen: 20rem; //Largeur entre 2 points ouvert
+/*---------*/
+
+ul.timeline.timeline--horizontal {
+  height: $timelineHorizHeight;
+
+  li {
+
+    a {
+      flex-direction: column;
+      width: $stepWidthClose;
+      overflow: hidden;
+    }
+
+    .text {
+      margin-top: 7rem;
+      text-align: center;
+    }
+  }
+
+  li:hover,
+  li:focus,
+  li.active {
+
+    a {
+      width: $stepWidthOpen;
+    }
+  }
+}

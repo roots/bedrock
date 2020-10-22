@@ -1,0 +1,49 @@
+/*Option timeline verticale*/
+ul.timeline.timeline--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25rem; // Largeur timeline
+  padding-left: 21px;
+
+  &::after {
+    height: 100%;
+    width: 2px;
+    top: 0;
+    left: 3rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    min-height: 6rem; //Hauteur entre 2 points
+
+    a {
+      height: 100%;
+    }
+
+    .text {
+      padding: 0 3rem 0 4rem;
+      text-align: left;
+    }
+  }
+
+  // Cercle + halo
+  li a::before {
+    left: 0;
+    transform: scale(1) translate(0, -50%);
+  }
+
+  li a::after {
+    left: 0;
+    transform: translate(0, -50%);
+  }
+
+  li:hover,
+  li:focus,
+  li.active {
+
+    a::before {
+      transform: scale(2) translate(0, -50%);
+    }
+  }
+}
