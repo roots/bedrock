@@ -1,29 +1,53 @@
 /*Option timeline verticale*/
+
+/*Variables*/
+$timelineVerticalWidth: 25rem; //Hauteur de la timeline
+$stepHeightClose: 6rem; //Hauteur entre 2 points fermé
+//$stepHeightOpen: 25rem; //Hauteur entre 2 points ouvert
+/*---------*/
+
+//Wrapper pour position fixed
+.parcours-vertical .timeline-wrap {
+  flex: 1 0 $timelineVerticalWidth;
+
+  .timeline-component {
+    position: fixed;
+    bottom: 18rem;
+    left: 0;
+  }
+}
+
+//Timeline
 ul.timeline.timeline--vertical {
   flex-direction: column;
   align-items: flex-start;
-  width: 25rem; // Largeur timeline
+  width: $timelineVerticalWidth; // Largeur timeline
   padding-left: 21px;
 
   &::after {
     height: 100%;
     width: 2px;
     top: 0;
-    left: 3rem;
+    left: 36px;
   }
 
   li {
     display: flex;
     align-items: center;
-    min-height: 6rem; //Hauteur entre 2 points
+    min-height: $stepHeightClose; //Hauteur entre 2 points
+    padding-left: 6px;
+    overflow: hidden;
 
     a {
       height: 100%;
     }
 
     .text {
-      padding: 0 3rem 0 4rem;
+      margin-left: -6px;
+      padding: 2px 3rem 2px 4rem;
       text-align: left;
+      opacity: 0;
+      transition: all .6s;
     }
   }
 
@@ -44,6 +68,10 @@ ul.timeline.timeline--vertical {
 
     a::before {
       transform: scale(2) translate(0, -50%);
+    }
+
+    .text {
+      opacity: 1;
     }
   }
 }
