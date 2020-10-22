@@ -146,25 +146,28 @@ $image-mobile-height: 50vw;
 
 /*OPTIONS*/
 .item.landscape,
-.item.has-link a.landscape {
+.item.has-link.landscape a {
   flex-direction: row;
-  > div {
-    flex: 1;
-  }
+  width: 100%;
+
   .img-wrap {
     height: $image-landscape-height;
   }
+
   @media (max-width: $medium - 1) {
     .img-wrap {
       height: $image-mobile-height;
     }
   }
 }
+
 .item.reverse,
-.item.has-link a.reverse {
+.item.has-link.reverse a {
+
   .img-wrap {
     order: 1;
   }
+
   @media (max-width: $medium - 1) {
     .img-wrap {
       order: initial;
