@@ -18,10 +18,11 @@ ul.timeline {
     width: 100%;
     background-color: $color-base;
     position: absolute;
-    top: 50%;
+    top: calc(50% - 1px);
     pointer-events: none;
   }
 
+  //Etapes
   li {
     position: relative;
     cursor: pointer;
@@ -109,9 +110,42 @@ ul.timeline {
     }
   }
 
+  //Premier niveau
+  > li {
+
+
+  }
+
+  //Deuxième niveau
+  li ul {
+    position: relative;
+    display: none; //Masqués par défaut
+    align-items: center;
+    padding: 0;
+    list-style: none;
+
+    li {
+
+      // Cercle
+      a::after {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    li a {
+      height: 25px;
+    }
+  }
+
+  //Animations
   li:hover,
   li:focus,
   li.active {
+
+    ul {
+      display: flex;
+    }
 
     a:before {
       transform: scale(2) translate(-50%, -50%);
