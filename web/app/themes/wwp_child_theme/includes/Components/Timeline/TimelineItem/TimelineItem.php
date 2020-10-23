@@ -23,6 +23,9 @@ class TimelineItem extends TwigComponent
     protected $alt;
     /** @var string */
     protected $link;
+    /** @var string */
+    protected $liClass;
+    /** @var string */
     protected $timelineItems;
 
     /**
@@ -73,6 +76,16 @@ class TimelineItem extends TwigComponent
     public function setLink(string $link)
     {
         return parent::__set('link', $link);
+    }
+
+    /**
+     * @param string $liClass
+     *
+     * @return static
+     */
+    public function setLiClass(string $liClass)
+    {
+        return parent::__set('liClass', $liClass);
     }
 
     /**

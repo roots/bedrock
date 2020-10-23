@@ -1,4 +1,4 @@
-<li>
+<li class="{{ liClass }}">
   <a href="{{ link }}">
     {% if date %}
       <span class="date">{{ date }}</span>
@@ -9,10 +9,10 @@
     {% endif %}
   </a>
   {% if timelineItems %}
-    <ul>
-    {% for item in timelineItems %}
-      {{ item | raw }}
-    {% endfor %}
+    <ul class="sub-items">
+      {% for item in timelineItems %}
+        {{ item | raw }}
+      {% endfor %}
     </ul>
   {% endif %}
 </li>
