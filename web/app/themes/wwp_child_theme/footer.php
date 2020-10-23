@@ -12,6 +12,8 @@
 
 </div><!-- .site-content -->
 
+<?php if (!\WonderWp\Functions\isAjax()): ?>
+
 <div class="container-s">
     <?php do_action('wwp_before_footer'); ?>
 </div>
@@ -57,3 +59,4 @@
 
 </body>
 </html>
+<?php endif; /* isAjax */ ?>
