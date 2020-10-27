@@ -1,0 +1,84 @@
+/*Variables*/
+$catWidthClose: 6rem; //Largeur entre 2 points de catégorie fermé
+$catWidthOpen: 20rem; //Largeur entre 2 points de catégorie ouvert
+$itemWidthClose: 5rem; //Largeur entre 2 points fermé niveau 2
+$itemWidthOpen: 10rem; //Largeur entre 2 points ouvert niveau 2
+/*---------*/
+
+ul.timeline.timeline--vertical {
+
+  //Global
+  li.scene-list-item.active .text {
+    left: 5rem;
+  }
+
+  //Categories
+  li.category-list-item {
+    padding: 5rem 0;
+
+    > a {
+      top: 0;
+    }
+
+    > a::before {
+      left: 19px;
+      top: 50%;
+      height: 2px;
+      width: 30px;
+      transform: translateY(-50%);
+    }
+
+    > a .text {
+      top: 50% !important;
+      left: 6rem;
+      transform: translateY(-50%);
+    }
+  }
+
+  //Niveau 2
+  ul.sub-items {
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    align-items: flex-start;
+
+    li {
+      top: 50% !important;
+      width: 100%;
+    }
+
+    .text {
+      left: 5rem;
+    }
+
+  }
+
+}
+
+/*OPTION : masquage des éléments inactifs*/
+//Pour activer, ajouter la classe .mask-inactive-subitems
+ul.timeline.timeline--vertical.mask-inactive-subitems {
+
+  li.category-list-item {
+    flex: 0 0 $catWidthClose;
+    transition: all 0.4s; //Animation sur largeur (flex-basis)
+
+    //Niveau 2
+    ul.sub-items {
+      opacity: 0;
+    }
+  }
+
+  //Premier niveau
+  li.category-list-item:hover,
+  li.category-list-item:focus,
+  li.category-list-item.active-cat {
+    flex: 0 0 $catWidthOpen;
+
+    //Niveau 2
+    ul.sub-items {
+      opacity: 1;
+    }
+  }
+}

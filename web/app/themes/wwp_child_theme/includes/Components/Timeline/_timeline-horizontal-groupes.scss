@@ -1,0 +1,101 @@
+
+/*Variables*/
+$timelineHorizHeight: 16rem; //Hauteur de la timeline
+$catWidthClose: 12rem; //Largeur entre 2 points de catégorie fermé
+$catWidthOpen: 30rem; //Largeur entre 2 points de catégorie ouvert
+/*---------*/
+
+ul.timeline.timeline--horizontal {
+
+  //Etapes {
+  li {
+
+    > a {
+      overflow: initial;
+    }
+
+  }
+
+  //Etapes catégories (niveau 1)
+  li.category-list-item {
+    flex: 0 0 $timelineHorizHeight;
+    display: block;
+    padding: 0 12rem 0 18rem;
+
+    > a {
+      top: auto;
+      bottom: -5rem;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+
+    > a::before {
+      left: 19px;
+      top: 50%;
+      height: 30px;
+      width: 2px;
+      transform: translateY(-50%);
+    }
+
+    > a .text {
+      top: auto;
+      left: 0;
+      bottom: 10rem;
+      transform: none;
+    }
+  }
+
+  //Niveau 2
+  ul.sub-items {
+    top: 50%;
+    transform: translateY(-50%);
+
+    li {
+
+      .text {
+        top: auto;
+        bottom: 5.5rem;
+      }
+    }
+  }
+
+  //Animations spécifiques timeline simple
+  li.scene-list-item:hover,
+  li.scene-list-item:focus,
+  li.scene-list-item.active {
+
+    .text {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+}
+
+/*OPTION : masquage des éléments inactifs*/
+//Pour activer, ajouter la classe .mask-inactive-subitems
+ul.timeline.timeline--horizontal.mask-inactive-subitems {
+
+  li.category-list-item {
+    flex: 0 0 $catWidthClose;
+    padding: 0;
+    transition: all 0.4s; //Animation sur largeur (flex-basis)
+
+    //Niveau 2
+    ul.sub-items {
+      opacity: 0;
+    }
+  }
+
+  //Premier niveau
+  li.category-list-item:hover,
+  li.category-list-item:focus,
+  li.category-list-item.active-cat {
+    flex: 0 0 $catWidthOpen;
+
+    //Niveau 2
+    ul.sub-items {
+      opacity: 1;
+    }
+  }
+}

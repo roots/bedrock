@@ -1,86 +1,41 @@
 /*Option timeline horizontale*/
 
 /*Variables*/
-$timelineHorizHeight: 15rem; //Hauteur de la timeline
-$stepWidthClose: 5rem; //Largeur entre 2 points fermé
-$stepWidthOpen: 25rem; //Largeur entre 2 points ouvert
-$stepLevel2WidthClose: 3rem; //Largeur entre 2 points fermé niveau 2
-$stepLevel2WidthOpen: 10rem; //Largeur entre 2 points ouvert niveau 2
-
+$timelineHorizHeight: 13rem; //Hauteur de la timeline
 /*---------*/
 
 ul.timeline.timeline--horizontal {
   height: $timelineHorizHeight;
 
-  //Premier niveau
-  > li {
-    flex: 0 0 $stepWidthClose;
-    display: flex;
-    align-items: center;
+  //Etapes
+  li {
 
-    &,
-    a {
-      height: 100%;
-    }
-
-    a {
-      flex: 1 0 10rem;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .text {
-      position: absolute;
-      top: calc(#{$timelineHorizHeight} - 5rem);
+    > a .text {
+      top: 0;
       left: 50%;
-      text-align: center;
+      transform: translateX(-50%);
+    }
+  }
+
+  //Etapes simples (sans catégories)
+  li.scene-list-item {
+
+    //Animation texte
+    .text {
       opacity: 0;
-      font-size: 0;
-      border-color: white;
-      transform: translate(-50%, 0);
-      transition: all 0.4s;
+      transform: translate(-50%, 100%);
+      transition: opacity 1s, transform 0.4s;
     }
   }
 
-  //Deuxième niveau
-  > li ul {
-    position: static;
-    margin: 0;
-    flex: 1 0 auto;
-
-    li {
-      flex-basis: $stepLevel2WidthClose;
-    }
-
-    li a {
-      height: 25px;
-    }
-  }
-
-  //Animations
-  //Premier niveau
-  > li:hover,
-  > li:focus,
-  > li.active {
-    flex: 0 0 $stepWidthOpen;
+  //Animations spécifiques timeline simple
+  li.scene-list-item:hover,
+  li.scene-list-item:focus,
+  li.scene-list-item.active {
 
     .text {
-      font-size: 1.5rem;
-      border-color: $color-base;
       opacity: 1;
-    }
-
-    ul li {
-      flex-basis: $stepLevel2WidthClose;
-    }
-  }
-
-  //Deuxième niveau
-  li ul li {
-    &:hover,
-    &:focus,
-    &.active {
-      width: $stepLevel2WidthOpen;
+      transform: translate(-50%, 0);
     }
   }
 }

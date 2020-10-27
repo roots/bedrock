@@ -2,7 +2,7 @@
 
 /*Variables*/
 $timelineVerticalWidth: 25rem; //Hauteur de la timeline
-$stepHeightClose: 6rem; //Hauteur entre 2 points fermé
+$itemHeightClose: 6rem; //Hauteur entre 2 points fermé
 //$stepHeightOpen: 25rem; //Hauteur entre 2 points ouvert
 /*---------*/
 
@@ -24,54 +24,66 @@ ul.timeline.timeline--vertical {
   width: $timelineVerticalWidth; // Largeur timeline
   padding-left: 21px;
 
+  //Ligne
   &::after {
     height: 100%;
     width: 2px;
     top: 0;
-    left: 36px;
+    left: 41px;
   }
 
-  > li {
-    display: flex;
-    align-items: center;
-    min-height: $stepHeightClose; //Hauteur entre 2 points
-    padding-left: 6px;
-    overflow: hidden;
+  //Etapes
+  li {
+    flex: 0 0 $itemHeightClose;
+    height: auto; //Annule héritage
+    width: 100%;
 
     a {
       height: 100%;
     }
 
     .text {
-      margin-left: -6px;
-      padding: 2px 3rem 2px 4rem;
-      text-align: left;
-      opacity: 0;
-      transition: all .6s;
+      top: 50%;
+      left: 5rem;
+      transform: translate(0, -50%);
     }
   }
 
-  // Cercle + halo
-  li a::before {
-    left: 0;
-    transform: scale(1) translate(0, -50%);
-  }
+  //Etapes simples (sans catégories)
+  li.scene-list-item {
 
-  li a::after {
-    left: 0;
-    transform: translate(0, -50%);
-  }
-
-  li:hover,
-  li:focus,
-  li.active {
+    a::before,
+    a::after {
+      left: 10px;
+      transform: translateY(-50%);
+    }
 
     a::before {
-      transform: scale(2) translate(0, -50%);
+      transform: translateY(-50%) scale(1);
+    }
+
+    //Animation texte
+    .text {
+      opacity: 0;
+      transform: translate(-100%, -50%);
+      transition: opacity 1s, transform 0.4s;
+    }
+
+  }
+
+  //Animations spécifiques timeline simple
+  li.scene-list-item:hover,
+  li.scene-list-item:focus,
+  li.scene-list-item.active {
+
+    a::before {
+      transform: translateY(-50%) scale(2);
     }
 
     .text {
       opacity: 1;
+      transform: translate(0, -50%);
     }
   }
+
 }
