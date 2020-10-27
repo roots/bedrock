@@ -14,7 +14,8 @@ export default class NoAjaxTransitionComponent extends PewComponent {
       '.module-actu .pagination a',
       '.module-faq .pagination a',
       '.post-edit-link',
-      '.timeline-component a'
+      '.timeline-component a',
+      '.wdf-modal'
     ];
     $('a').not(exceptions.join(',')).on('click', (e) => {
       let $link = $(e.currentTarget);
