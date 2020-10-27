@@ -1,0 +1,79 @@
+/*scss/molecules/_timeline.scss*/
+
+/*Variables*/
+//$catWidthClose: 10rem; //Largeur entre 2 points de catégorie fermé
+//$catWidthOpen: 30rem; //Largeur entre 2 points de catégorie ouvert
+//$itemWidthClose: 5rem; //Largeur entre 2 points fermé niveau 2
+//$itemWidthOpen: 10rem; //Largeur entre 2 points ouvert niveau 2
+/*---------*/
+
+/*Base horizontal timeline*/
+ul.timeline {
+
+  //Etapes catégories (niveau 1)
+  li.category-list-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    > a::before {
+      content: " ";
+      position: absolute;
+      display: block;
+      background-color: $color-base;
+      pointer-events: none;
+    }
+
+    > a::after {
+      content: none !important;
+    }
+
+    > a .text {
+      font-weight: $weight-bold;
+      opacity: 1;
+    }
+  }
+
+  //Niveau 2
+  ul.sub-items {
+    flex-basis: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      height: 100%;
+      //flex: 0 0 $itemWidthClose;
+
+      > a {
+        height: 100%;
+        width: 100%;
+      }
+
+      > .text {
+        top: 5rem;
+        font-weight: inherit;
+      }
+    }
+  }
+
+  //Animations
+
+  //Premier niveau
+  li.category-list-item:hover,
+  li.category-list-item:focus,
+  li.category-list-item.active-cat {
+
+    ul.sub-items {
+      flex-basis: 100%;
+      opacity: 1;
+    }
+  }
+
+}
