@@ -8,12 +8,16 @@
   min-height: $button-height;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 0 3.5rem;
-  font-size: 1.6rem;
+  padding: 0 6rem 0 7rem;
+  font-size: 1.2rem;
+  font-family: $font-family-secondary;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   line-height: 1.2;
   white-space: normal;
   box-shadow: $button-box-shadow;
-  border-radius: 5px;
+  border-radius: 0;
   transition: all .4s;
 
   &.btn--small,
@@ -43,27 +47,26 @@
   }
 }
 
-a.btn,
-button {
+.btn {
   @extend %btn;
-  color: $color-base;
-  background-color: white;
-  box-shadow: 0 0 0 2px $color-brand inset;
+  color: white;
+  background-color: $color-base;
+  box-shadow: 0 0 0 2px $color-base;
 
   &:focus, &:hover, &:active {
     color: $color-base;
-    background-color: $color-brand;
+    background-color: white;
   }
 }
 
-a.btn,
+.btn,
 button {
   @each $name, $background-color, $color, $border in $variants-list {
     &--#{$name} {
       @extend %btn;
       color: $color;
       background-color: $background-color;
-      box-shadow: 0 0 0 2px $background-color inset;
+      box-shadow: $border;
 
       &:focus, &:hover, &:active {
         color: $background-color;
@@ -77,23 +80,43 @@ a[class*="btn"] {
   text-decoration: none;
 }
 
-a.btn {
+.btn {
 
   &--cta {
     @extend .btn;
-    padding-right: 2.5rem;
 
     &::after {
-      @include svgIcon('arrow_right_s');
+      display: inline-block;
+      content: '';
+      width: 20px;
+      height: 18px;
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
+      background-repeat: no-repeat;
       margin-left: 1rem;
       transform: translateX(0);
-      transition: all 0.4s;
+      transition: transform 0.4s;
     }
 
     &:focus, &:hover, &:active {
 
       &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
         transform: translateX(10px);
+      }
+    }
+  }
+
+  &--cta.btn--white {
+    @extend .btn--white;
+
+    &::after {
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
+    }
+
+    &:focus, &:hover, &:active {
+
+      &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
       }
     }
   }

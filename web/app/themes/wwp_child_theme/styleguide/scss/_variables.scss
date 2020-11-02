@@ -163,7 +163,7 @@ $orange-500 : #F0AD4E !default;
 $red-500    : #D9534F !default;
 
 // Semantic colors
-$color-brand    : $green-500;
+$color-brand    : $blue-500;
 $color-primary  : $blue-500;
 
 $color-success  : $green-500;
@@ -175,7 +175,7 @@ $color-inverse  : $gray-800;
 $color-ghost    : transparent;
 $color-muted    : $gray-200;
 
-$color-base      : $gray-900;
+$color-base      : black;
 $background-base : $white;
 
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
@@ -244,15 +244,16 @@ $table-footer-background    : transparent !default;
 // Components: buttons, badges, alerts color variants list
 // Convention is: name - background-color - color - border
 $variants-list: (
-        (primary,    $color-primary,    $white,    0 0 0 2px $color-primary inset),
-        (brand,      $color-brand,      $white,    0 0 0 2px $color-brand inset),
-        (success,    $color-success,    $white,    0 0 0 2px $color-success inset),
-        (info,       $color-info,       $white,    0 0 0 2px $color-info inset),
-        (warning,    $color-warning,    $white,    0 0 0 2px $color-warning inset),
-        (danger,     $color-danger,     $white,    0 0 0 2px $color-danger inset),
-        (error,      $color-error,      $white,    0 0 0 2px $color-error inset),
-        (inverse,    $color-inverse,    $white,    0 0 0 2px $color-inverse inset),
-        (ghost,      $color-ghost,      $white,    0 0 0 2px $color-ghost inset)
+        (primary,    $color-primary,    white,    0 0 0 2px $color-primary inset),
+        (brand,      $color-brand,      white,    0 0 0 2px $color-brand inset),
+        (white,      white,             $color-base,    0 0 0 2px $color-base inset),
+        (success,    $color-success,    white,    0 0 0 2px $color-success inset),
+        (info,       $color-info,       white,    0 0 0 2px $color-info inset),
+        (warning,    $color-warning,    white,    0 0 0 2px $color-warning inset),
+        (danger,     $color-danger,     white,    0 0 0 2px $color-danger inset),
+        (error,      $color-error,      white,    0 0 0 2px $color-error inset),
+        (inverse,    $color-inverse,    white,    0 0 0 2px $color-inverse inset),
+        (ghost,      $color-ghost,      white,    0 0 0 2px $color-ghost inset)
 ) !default;
 $button-height          : $input-height;
 $button-height-small    : 50px !default;

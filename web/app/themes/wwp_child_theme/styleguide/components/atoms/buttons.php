@@ -31,13 +31,13 @@ echo $button->getMarkup();
 ?>
 <br><hr>
 
-<p class="subTitle">Bouton couleur "brand"</p>
+<p class="subTitle">Bouton couleur "white"</p>
 <?php
 $button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
 $button
     ->setLink('/')
     ->setLabel('Valider')
-    ->setColor('brand')
+    ->setColor('white')
 ;
 echo $button->getMarkup();
 ?>
@@ -55,13 +55,13 @@ echo $button->getMarkup();
 ?>
 <br><hr>
 
-<p class="subTitle">Bouton couleur avec flèche</p>
+<p class="subTitle">Bouton couleur "white" avec flèche</p>
 <?php
 $button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
 $button
     ->setLink('/')
     ->setLabel('En savoir plus')
-    ->setColor('brand')
+    ->setColor('white')
     ->setArrow('true')
 ;
 echo $button->getMarkup();
