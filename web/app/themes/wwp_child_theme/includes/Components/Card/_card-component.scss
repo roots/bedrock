@@ -6,6 +6,7 @@
 /*Variables*/
 $image-height: 250px;
 $image-landscape-height: 360px;
+$background-image-height: 450px;
 $image-mobile-height: 50vw;
 
 .item {
@@ -150,7 +151,7 @@ $image-mobile-height: 50vw;
   width: 100%;
 
   .img-wrap {
-    height: $image-landscape-height;
+    height: 100%;
   }
 
   @media (max-width: $medium - 1) {
@@ -179,7 +180,7 @@ $image-mobile-height: 50vw;
 //Backgroundimage : le bloc image occupe le fond de la card
 .item.backgroundimage,
 .item.has-link.backgroundimage a {
-  height: $image-landscape-height;
+  height: $background-image-height;
 
   .img-wrap {
     height: 100%;

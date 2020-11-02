@@ -70,7 +70,7 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setReverse('backgroundimage')
+        ->setBackgroundimage('backgroundimage')
     ;
     echo $card2->getMarkup();
     echo '</div>';
