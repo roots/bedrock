@@ -22,6 +22,7 @@
             <ul>
                 <li>reverse</li>
                 <li>landscape</li>
+                <li>backgroundimage</li>
             </ul>
         </div>
     </div>
@@ -58,6 +59,22 @@
     ;
     echo $card2->getMarkup();
     echo '</div>';
+
+    echo '<div>
+        <p class="subTitle">Avec option "backgroundimage"</p>';
+    $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+    $card2
+        ->setSubtitle('Surtitre lorem ipsum')
+        ->setTitle('Lorem ipsum dolor consectetur')
+        ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setLink('/vers-une-page')
+        ->setDate('12 septembre 2020')
+        ->setReverse('backgroundimage')
+    ;
+    echo $card2->getMarkup();
+    echo '</div>';
+
     echo '<div class="col-2">
         <p class="subTitle">Avec option "landscape"</p>';
     $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();

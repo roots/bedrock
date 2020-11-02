@@ -143,6 +143,7 @@ $image-mobile-height: 50vw;
 }
 
 /*OPTIONS*/
+//Paysage : image/texte en vis-à-vis
 .item.landscape,
 .item.has-link.landscape a {
   flex-direction: row;
@@ -159,6 +160,7 @@ $image-mobile-height: 50vw;
   }
 }
 
+//Reverse : inversion image/texte haut/bas
 .item.reverse,
 .item.has-link.reverse a {
 
@@ -171,6 +173,36 @@ $image-mobile-height: 50vw;
       order: initial;
       height: $image-mobile-height;
     }
+  }
+}
+
+//Backgroundimage : le bloc image occupe le fond de la card
+.item.backgroundimage,
+.item.has-link.backgroundimage a {
+  height: $image-landscape-height;
+
+  .img-wrap {
+    height: 100%;
+  }
+
+  .card-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 4rem;
+  }
+
+  .card-readmore-link {
+    
+  }
+
+  @media (max-width: $medium - 1) {
+
   }
 }
 
