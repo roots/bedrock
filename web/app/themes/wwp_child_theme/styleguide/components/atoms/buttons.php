@@ -66,3 +66,17 @@ $button
 ;
 echo $button->getMarkup();
 ?>
+<br><hr>
+
+<p class="subTitle">Bouton modale</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('En savoir plus')
+    ->setColor('white')
+    ->setArrow('true')
+    ->setModale(true)
+;
+echo $button->getMarkup();
+?>

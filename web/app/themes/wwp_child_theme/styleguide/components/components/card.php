@@ -55,7 +55,7 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setReverse('reverse')
+        ->setReverse('true')
     ;
     echo $card2->getMarkup();
     echo '</div>';
@@ -70,7 +70,7 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setBackgroundimage('backgroundimage')
+        ->setBackgroundimage('true')
     ;
     echo $card2->getMarkup();
     echo '</div>';
@@ -85,7 +85,7 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setLandscape('landscape')
+        ->setLandscape('true')
     ;
     echo $card3->getMarkup();
     echo '</div>';
@@ -99,8 +99,8 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setReverse('reverse')
-        ->setLandscape('landscape')
+        ->setReverse('true')
+        ->setLandscape('true')
     ;
     echo $card4->getMarkup();
     echo '</div>';
