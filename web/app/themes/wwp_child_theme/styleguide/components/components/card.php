@@ -22,6 +22,7 @@
             <ul>
                 <li>reverse</li>
                 <li>landscape</li>
+                <li>backgroundimage</li>
             </ul>
         </div>
     </div>
@@ -54,10 +55,26 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setReverse('reverse')
+        ->setReverse('true')
     ;
     echo $card2->getMarkup();
     echo '</div>';
+
+    echo '<div>
+        <p class="subTitle">Avec option "backgroundimage"</p>';
+    $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+    $card2
+        ->setSubtitle('Surtitre lorem ipsum')
+        ->setTitle('Lorem ipsum dolor consectetur')
+        ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setLink('/vers-une-page')
+        ->setDate('12 septembre 2020')
+        ->setBackgroundimage('true')
+    ;
+    echo $card2->getMarkup();
+    echo '</div>';
+
     echo '<div class="col-2">
         <p class="subTitle">Avec option "landscape"</p>';
     $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
@@ -68,7 +85,7 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setLandscape('landscape')
+        ->setLandscape('true')
     ;
     echo $card3->getMarkup();
     echo '</div>';
@@ -82,8 +99,8 @@
         ->setImage('<img src="https://via.placeholder.com/150" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
-        ->setReverse('reverse')
-        ->setLandscape('landscape')
+        ->setReverse('true')
+        ->setLandscape('true')
     ;
     echo $card4->getMarkup();
     echo '</div>';

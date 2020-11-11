@@ -6,6 +6,7 @@
 /*Variables*/
 $image-height: 250px;
 $image-landscape-height: 360px;
+$background-image-height: 450px;
 $image-mobile-height: 50vw;
 
 .item {
@@ -69,8 +70,6 @@ $image-mobile-height: 50vw;
   }
 
   .card-date {
-    @extend .tag--primary;
-    color: $white;
     margin-bottom: 2rem;
   }
 
@@ -114,7 +113,7 @@ $image-mobile-height: 50vw;
   }
 
   .card-readmore-link {
-    @extend a.btn;
+    @extend .btn;
     margin: 2rem auto 0 auto;
     justify-content: center;
   }
@@ -145,13 +144,14 @@ $image-mobile-height: 50vw;
 }
 
 /*OPTIONS*/
+//Paysage : image/texte en vis-à-vis
 .item.landscape,
 .item.has-link.landscape a {
   flex-direction: row;
   width: 100%;
 
   .img-wrap {
-    height: $image-landscape-height;
+    height: 100%;
   }
 
   @media (max-width: $medium - 1) {
@@ -161,6 +161,7 @@ $image-mobile-height: 50vw;
   }
 }
 
+//Reverse : inversion image/texte haut/bas
 .item.reverse,
 .item.has-link.reverse a {
 
@@ -173,6 +174,32 @@ $image-mobile-height: 50vw;
       order: initial;
       height: $image-mobile-height;
     }
+  }
+}
+
+//Backgroundimage : le bloc image occupe le fond de la card
+.item.backgroundimage,
+.item.has-link.backgroundimage a {
+  height: $background-image-height;
+
+  .img-wrap {
+    height: 100%;
+  }
+
+  .card-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 4rem;
+  }
+
+  @media (max-width: $medium - 1) {
+
   }
 }
 

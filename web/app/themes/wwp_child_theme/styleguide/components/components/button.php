@@ -79,3 +79,31 @@ $button
 ;
 echo $button->getMarkup();
 ?>
+<br><hr>
+
+<p class="subTitle">Bouton modale : ouvre du contenu (lien vers ancre)</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('#wdf-modal')
+    ->setLabel('Ouvrir contenu dans modale')
+    ->setArrow('false')
+    ->setModale(true)
+;
+echo $button->getMarkup();
+?>
+
+<br><hr>
+
+<p class="subTitle">Bouton modale : ouvre le contenu d'une autre page</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/fr/exemples-de-page/page-exemple/')
+    ->setLabel('Ouvrir page dans modale')
+    ->setArrow('false')
+    ->setModale(true)
+;
+echo $button->getMarkup();
+?>
+
