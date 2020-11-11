@@ -10,13 +10,18 @@ const ModalOptions = {
 
 export class ModalComponent extends PewComponent {
   constructor(element) {
-    if ($(element).data('modaal-type')) {
-      ModalOptions['type'] = $(element).data('modaal-type');
+
+    //Recup / override des options par data attribut
+    const dataSet = $(element).data();
+    if (dataSet) {
+      for (let i in dataSet) {
+        if (i.includes("modaal")) {
+          let optIndex = i.replace('modaal', '').toLowerCase();
+          ModalOptions[optIndex] = dataSet[i];
+        }
+      }
     }
-    ModalOptions['ajax_success'] = function ($modal_wrapper) {
-      window.pew.enhanceRegistry($modal_wrapper[0]);
-      $modal_wrapper.find('.transitionning').removeClass('transitionning');
-    };
+
     super(element, ModalOptions);
   }
 
