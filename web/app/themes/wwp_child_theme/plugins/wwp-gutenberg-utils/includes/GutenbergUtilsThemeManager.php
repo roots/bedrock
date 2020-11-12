@@ -4,6 +4,7 @@ namespace WonderWp\Plugin\GutenbergUtils\Child;
 
 use WonderWp\Component\DependencyInjection\Container;
 use WonderWp\Plugin\GutenbergUtils\Bloc\AccordionBlock\AccordionBlock;
+use WonderWp\Plugin\GutenbergUtils\Bloc\AccordionBlock\AccordionPaneBlock;
 use WonderWp\Plugin\GutenbergUtils\Child\Bloc\QualiteBlock\QualiteBlock;
 use WonderWp\Plugin\GutenbergUtils\Component\TestMolecule;
 use WonderWp\Plugin\GutenbergUtils\GutenbergUtilsManager;
@@ -21,6 +22,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
 
         $this->setConfig('blocksToRegister',[
             AccordionBlock::class,
+            AccordionPaneBlock::class
         ]);
 
         $this->setConfig('moleculesToRegister', [
