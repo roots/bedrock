@@ -1,3 +1,7 @@
+### 1.14.4: 2020-11-13
+
+* chore(deps): Bump roots/wordpress from 5.5.1 to 5.5.3 ([#556](https://github.com/roots/bedrock/pull/556))
+
 ### 1.14.3: 2020-10-28
 
 * Bump `roots/wordpress-core-installer` for Composer 2 compatibility([#552](https://github.com/roots/bedrock/pull/552))
