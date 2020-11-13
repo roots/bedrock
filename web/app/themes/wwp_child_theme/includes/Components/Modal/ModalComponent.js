@@ -21,7 +21,10 @@ export class ModalComponent extends PewComponent {
         }
       }
     }
-
+    ModalOptions['ajax_success'] = function ($modal_wrapper) {
+      window.pew.enhanceRegistry($modal_wrapper[0]);
+      $modal_wrapper.find('.transitionning').removeClass('transitionning');
+    };
     super(element, ModalOptions);
   }
 
