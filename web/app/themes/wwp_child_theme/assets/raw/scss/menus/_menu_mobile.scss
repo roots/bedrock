@@ -7,6 +7,7 @@
 /* ------------- */
 $mobileheaderHeight: 80px;
 $header-bg-color: #ffffff;
+$menu-item-height: 60px;
 $menu-item-color: $color-base;
 $menu-item-bgcolor: $gray-200;
 $menu-item-color-active: $color-base;
@@ -57,7 +58,7 @@ $menu-item-m0-color: $color-base;
     /*overflow-x: hidden;*/
 
     li {
-      height: 60px;
+      height: $menu-item-height;
       margin-left: 0;
       font-size: 1.5rem;
       line-height: 2rem;
@@ -126,7 +127,7 @@ $menu-item-m0-color: $color-base;
 
     ul.mobile-nav-links {
       display: grid;
-      grid-template-columns: 60px 1fr;
+      grid-template-columns: $menu-item-height 1fr;
       margin-left: 0;
     }
 
@@ -139,6 +140,7 @@ $menu-item-m0-color: $color-base;
         width: 100%;
         margin-top: 0;
         margin-bottom: 0;
+        padding: 0;
         background-color: #ffffff;
         text-indent: -999px;
         border-bottom: 0 !important;
