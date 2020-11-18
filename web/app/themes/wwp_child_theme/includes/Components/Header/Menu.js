@@ -15,7 +15,8 @@ export class Menu extends PewComponent {
     }
 
     init() {
-        this.opened = this.element.css('display') !== 'none' && this.element.css('visibility') !== 'hidden';
+        //this.opened = this.element.css('display') !== 'none' && this.element.css('visibility') !== 'hidden';
+        this.opened = this.element.hasClass(this.options.classToToggle);
         this.registerEvents();
         if (this.options.depth > 0) {
             this.addSubMenuNavTo(this.element);
@@ -27,6 +28,7 @@ export class Menu extends PewComponent {
     }
 
     toggle() {
+      //console.log(this.opened);
         if (this.opened) {
             this.close()
         } else {
@@ -83,7 +85,7 @@ export class Menu extends PewComponent {
         });
     }
     handleSubMenu($thisLi){
-        this.openSubMenu($thisLi);
+        this.toggleSubMenu($thisLi);
     }
 
     createSubMenu($thisLi) {
@@ -97,11 +99,11 @@ export class Menu extends PewComponent {
         }
     }
 
-    openSubMenu($thisLi) {
+    toggleSubMenu($thisLi) {
         if (!$thisLi.data('menu')) {
             this.createSubMenu($thisLi);
         }
-        $thisLi.data('menu').open();
+        $thisLi.data('menu').toggle();
     }
 
     addSubMenuNavTo($elt) {

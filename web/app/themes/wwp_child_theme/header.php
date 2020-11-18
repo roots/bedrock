@@ -73,8 +73,7 @@
 
 </head>
 
-<!--Ajouter la classe .stickable sur <body> pour rendre le header sticky-->
-<body <?php body_class(['stickable']); ?>>
+<body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
     <div class="skip-links"><a href="#content"><?php echo trad('Skip to content', WWP_THEME_TEXTDOMAIN); ?></a></div>
 
@@ -88,7 +87,7 @@
             echo '<a href="/" class="logo" aria-title="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg" alt="Mon site - accueil"></a>'
             ?>
 
-            <nav role="navigation" aria-label="Menu principal" class="navigation-wrapper">
+            <nav role="navigation" aria-label="<?php echo trad('main.menu', WWP_THEME_TEXTDOMAIN); ?>" class="<?php echo apply_filters('wwp-main-nav-class', 'navigation-wrapper'); ?>">
 
                 <ul class="header-menu" id="menu">
                     <?php

@@ -19,6 +19,7 @@ use WonderWp\Theme\Child\Service\ChildThemeHookService;
 use WonderWp\Theme\Child\Service\ChildThemeShortcodeService;
 use WonderWp\Theme\Child\Service\ThemeAssetService;
 use WonderWp\Theme\Child\Service\ThemeRouteService;
+use WonderWp\Theme\Child\Service\ThemeCustomizerService;
 use WonderWp\Theme\Core\ThemeManager;
 
 class ChildThemeManager extends ThemeManager
@@ -51,6 +52,10 @@ class ChildThemeManager extends ThemeManager
         //Shortcodes
         $this->addService(ServiceInterface::SHORT_CODE_SERVICE_NAME, function () {
             return new ChildThemeShortcodeService($this);
+        });
+        //Theme Customizer
+        $this->addService('customizer', function () {
+            return new ThemeCustomizerService();
         });
 
         $container['wwp.theme.component.card']       = $container->factory(function () {

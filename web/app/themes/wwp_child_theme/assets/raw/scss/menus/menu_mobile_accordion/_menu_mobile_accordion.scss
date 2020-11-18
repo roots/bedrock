@@ -52,7 +52,7 @@ $menu-item-bgcolor-active: $gray-400;
       }
 
       ul.children {
-        display: initial;
+        display: none;
         position: initial;
         height: auto;
         opacity: 1 !important;
@@ -65,9 +65,13 @@ $menu-item-bgcolor-active: $gray-400;
         display: none;
       }
 
-      //ANIMATIONS
-      li.page_item_has_children.is-opened > a::after {
-        transform: rotate(45deg);
+      li.page_item_has_children.is-opened {
+        > a::after {
+          transform: rotate(45deg);
+        }
+        > .children {
+          display: block;
+        }
       }
     }
   }

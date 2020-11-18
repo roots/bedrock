@@ -9,6 +9,7 @@ use WonderWp\Component\Media\Medias;
 use WonderWp\Theme\Child\Components\Loader\Loadercomponent;
 use WonderWp\Theme\Core\Component\NotificationComponent;
 use WonderWp\Theme\Core\Service\ThemeHookService;
+use WP_Customize_Manager;
 
 class ChildThemeHookService extends ThemeHookService
 {
@@ -24,6 +25,18 @@ class ChildThemeHookService extends ThemeHookService
         add_filter('jsonAssetsExporter.json', [$this, 'mergeSassFiles']);
         add_filter('body_class', [$this, 'addBodyClassForPostThumb']);
         add_action('wp_footer', [$this, 'deregisterWpEmbed']);
+        add_action('wwp_after_footer', [$this, 'injectFixedMobileMenu']);
+
+        //Customizer
+        $this->registerCustomizerHooks();
+    }
+
+    protected function registerCustomizerHooks()
+    {
+        $customizer = $this->manager->getService('customizer');
+        add_action('customize_register', [$this, 'registerCustomizer']);
+        add_action('body_class', [$customizer, 'stickyHeaderHook']);
+        add_action('wwp-main-nav-class', [$customizer, 'mobileMenuVariationClassHook']);
     }
 
     public function includeMailTemplate($mailBody)
@@ -85,7 +98,7 @@ class ChildThemeHookService extends ThemeHookService
             /** @var \WP_Filesystem_Direct $filesystem */
             $pluginSassPath = get_stylesheet_directory() . '/assets/raw/scss/plugins/_vendors.scss';
             $filesystem     = Container::getInstance()->offsetGet('wwp.fileSystem');
-            $written        = $filesystem->put_contents(
+            $filesystem->put_contents(
                 $pluginSassPath,
                 $pluginSassContent,
                 FS_CHMOD_FILE // predefined mode settings for WP files
@@ -113,5 +126,30 @@ class ChildThemeHookService extends ThemeHookService
     {
         wp_deregister_script('wp-embed');
         wp_deregister_script('admin-bar');
+    }
+
+    public function registerCustomizer(WP_Customize_Manager $wp_customize)
+    {
+        /** @var ThemeCustomizerService $customizer */
+        $customizer = $this->manager->getService('customizer');
+        $customizer->setWpCustomize($wp_customize);
+        $customizer->register();
+    }
+
+    public function injectFixedMobileMenu()
+    {
+        $locale   = get_locale();
+        $menuName = 'Barre Menu Mobile ' . $locale;
+        if (is_nav_menu($menuName)) {
+            $defaultOpts = [
+                'menu'       => 'Menu ' . $locale,
+                'container'  => false,
+                'items_wrap' => '%3$s',
+            ];
+
+            $menuArgs = apply_filters('getBarreMenuMobile.menuArgs', $defaultOpts);
+
+            wp_nav_menu($menuArgs);
+        }
     }
 }
