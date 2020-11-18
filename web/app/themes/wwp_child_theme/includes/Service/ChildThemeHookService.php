@@ -142,7 +142,7 @@ class ChildThemeHookService extends ThemeHookService
         $menuName = 'Barre Menu Mobile ' . $locale;
         if (is_nav_menu($menuName)) {
             $defaultOpts = [
-                'menu'       => 'Menu ' . $locale,
+                'menu'       => $menuName,
                 'container'  => false,
                 'items_wrap' => '%3$s',
             ];
