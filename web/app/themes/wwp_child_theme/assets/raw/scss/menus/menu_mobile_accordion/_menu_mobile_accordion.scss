@@ -1,0 +1,75 @@
+/*MENU MOBILE ACCORDION*/
+//Pour activer cette forme, ajouter la classe .menu-mobile-accordion à .navigation-wrapper
+
+/* Variables */
+$menu-item-height: 60px;
+$menu-item-bgcolor-active: $gray-400;
+
+@media (max-width: $medium - 1) {
+
+  .navigation-wrapper.menu-mobile-accordion {
+    height: auto;
+
+    ul.header-menu {
+      height: auto;
+
+      li {
+        height: auto;
+
+        > a {
+          justify-content: center;
+          height: $menu-item-height;
+        }
+      }
+
+      li.page_item_has_children {
+        height: auto;
+
+        > a {
+          flex-direction: row;
+          justify-content: center;
+          font-size: 1.6rem;
+          background-color: $menu-item-bgcolor-active;
+        }
+
+        > a::after {
+          position: static;
+          width: 20px;
+          height: 20px;
+          margin-top: -3px;
+          margin-left: 1rem;
+          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/plus.svg");
+          transform: rotate(0deg);
+        }
+      }
+
+      li.m0 {
+
+        > a {
+          text-transform: uppercase;
+          font-weight: $weight-bold;
+        }
+      }
+
+      ul.children {
+        display: initial;
+        position: initial;
+        height: auto;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: all !important;
+        transform: none !important;
+      }
+
+      ul.mobile-nav-links {
+        display: none;
+      }
+
+      //ANIMATIONS
+      li.page_item_has_children.is-opened > a::after {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
