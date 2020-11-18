@@ -77,6 +77,8 @@
 <div id="page" class="hfeed site">
     <div class="skip-links"><a href="#content"><?php echo trad('Skip to content', WWP_THEME_TEXTDOMAIN); ?></a></div>
 
+    <?php echo apply_filters('wwp_before_header', ''); ?>
+
     <header class="site-header" id="header" role="banner">
 
         <div class="inner-header">
@@ -84,7 +86,7 @@
             <button class="wdf-burger nav-button" data-menu-toggler type="button" aria-label="open/close navigation"><i></i></button>
 
             <?php
-            echo '<a href="/" class="logo" aria-title="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg" alt="Mon site - accueil"></a>'
+            echo '<a href="/" class="logo" aria-title="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="' . apply_filters('wwp-header-logo', '/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg') . '" alt="Mon site - accueil"></a>'
             ?>
 
             <nav role="navigation" aria-label="<?php echo trad('main.menu', WWP_THEME_TEXTDOMAIN); ?>" class="<?php echo apply_filters('wwp-main-nav-class', 'navigation-wrapper'); ?>">
@@ -108,5 +110,7 @@
 
         </div>
     </header>
+    <?php echo apply_filters('wwp_after_header', ''); ?>
     <?php endif; /* isAjax */ ?>
     <div id="content" class="site-content transitionning">
+        <?php echo apply_filters('wwp_prepend_content', ''); ?>

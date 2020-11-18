@@ -35,8 +35,9 @@ class ChildThemeHookService extends ThemeHookService
     {
         $customizer = $this->manager->getService('customizer');
         add_action('customize_register', [$this, 'registerCustomizer']);
-        add_action('body_class', [$customizer, 'stickyHeaderHook']);
-        add_action('wwp-main-nav-class', [$customizer, 'mobileMenuVariationClassHook']);
+        add_filter('body_class', [$customizer, 'stickyHeaderHook']);
+        add_filter('wwp-main-nav-class', [$customizer, 'mobileMenuVariationClassHook']);
+        add_filter('wwp-header-logo', [$customizer, 'changeHeaderLogoHook']);
     }
 
     public function includeMailTemplate($mailBody)

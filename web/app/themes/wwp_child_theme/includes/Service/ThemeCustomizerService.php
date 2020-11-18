@@ -3,12 +3,14 @@
 namespace WonderWp\Theme\Child\Service;
 
 use WonderWp\Component\PluginSkeleton\Service\RegistrableInterface;
+use WP_Customize_Image_Control;
 use WP_Customize_Manager;
 
 class ThemeCustomizerService implements RegistrableInterface
 {
 
     const HeaderSection                 = 'wwp-theme-header';
+    const HeaderLogoMod                 = "HeaderLogo";
     const HeaderFixedMod                = 'isFixed';
     const MobileMenuVariationMod        = 'MobileMenuVariation';
     const MobileMenuVariation_Panel     = 'panel';
@@ -47,9 +49,33 @@ class ThemeCustomizerService implements RegistrableInterface
             ]
         );
 
+        $this->addLogoSetting($sectionId);
         $this->addStickyHeaderSetting($sectionId);
         $this->addMobileMenuVariationSetting($sectionId);
 
+    }
+
+    protected function addLogoSetting($sectionId)
+    {
+        $settingId = $sectionId . self::HeaderLogoMod;
+        $this->wp_customize->add_setting(
+            $settingId,
+            [
+                'default'   => '',
+                'transport' => 'postMessage',
+            ]
+        );
+        $this->wp_customize->add_control(
+            new WP_Customize_Image_Control(
+                $this->wp_customize,
+                $settingId,
+                [
+                    'label'    => 'Logo du header',
+                    'settings' => $settingId,
+                    'section'  => $sectionId,
+                ]
+            )
+        );
     }
 
     protected function addStickyHeaderSetting($sectionId)
@@ -94,6 +120,17 @@ class ThemeCustomizerService implements RegistrableInterface
                 ],
             ]
         );
+    }
+
+    /**
+     * HOOKS
+     */
+
+    public function changeHeaderLogoHook($headerLogo)
+    {
+        $headerLogo = get_theme_mod(self::HeaderSection . self::HeaderLogoMod, $headerLogo);
+
+        return $headerLogo;
     }
 
     public function stickyHeaderHook(array $classes)
