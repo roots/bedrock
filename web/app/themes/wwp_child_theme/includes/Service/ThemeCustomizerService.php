@@ -128,7 +128,10 @@ class ThemeCustomizerService implements RegistrableInterface
 
     public function changeHeaderLogoHook($headerLogo)
     {
-        $headerLogo = get_theme_mod(self::HeaderSection . self::HeaderLogoMod, $headerLogo);
+        $customizedLogo = get_theme_mod(self::HeaderSection . self::HeaderLogoMod);
+        if (!empty($customizedLogo)) {
+            $headerLogo = $customizedLogo;
+        }
 
         return $headerLogo;
     }
