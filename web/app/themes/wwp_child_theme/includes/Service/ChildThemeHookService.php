@@ -144,7 +144,8 @@ class ChildThemeHookService extends ThemeHookService
         if (is_nav_menu($menuName)) {
             $defaultOpts = [
                 'menu'       => $menuName,
-                'container'  => 'nav'
+                'container'  => 'nav',
+                'container_class'=>'mobile-direct-links'
             ];
 
             $menuArgs = apply_filters('getBarreMenuMobile.menuArgs', $defaultOpts);
