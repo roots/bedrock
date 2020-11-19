@@ -144,8 +144,7 @@ class ChildThemeHookService extends ThemeHookService
         if (is_nav_menu($menuName)) {
             $defaultOpts = [
                 'menu'       => $menuName,
-                'container'  => false,
-                'items_wrap' => '%3$s',
+                'container'  => 'nav'
             ];
 
             $menuArgs = apply_filters('getBarreMenuMobile.menuArgs', $defaultOpts);
