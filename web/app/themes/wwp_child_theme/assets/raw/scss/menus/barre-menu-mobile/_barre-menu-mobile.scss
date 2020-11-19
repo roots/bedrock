@@ -1,0 +1,49 @@
+.barre-menu-mobile {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+  list-style: none;
+
+  li {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: $weight-bold;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  li a {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    height: 6rem;
+    min-width: 4rem;
+    padding: 0 8px;
+    text-decoration: none;
+
+  }
+
+  li a::after {
+    margin-bottom: 6px;
+  }
+
+/*  li.mobile-especes a::after {
+    @include svgIcon(especes-blue, 1.4);
+    margin-bottom: 8px;
+  }
+
+  li.mobile-infos a::after {
+    @include svgIcon(infos-blue, 1.3);
+  }
+
+  li.mobile-reouverture a::after {
+    @include svgIcon(reouverture-blue, 1.2);
+  }*/
+
+}
