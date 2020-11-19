@@ -1,12 +1,24 @@
-.barre-menu-mobile {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0;
-  list-style: none;
+.menu-barre-menu-mobile-fr_fr-container {
+
+  // Affichage sur mobile seulement
+  @media (min-width: $medium) {
+    display: none;
+  }
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: $zindex-navigation;
+  width: 100%;
+  background-color: white;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
   li {
     text-align: center;
@@ -15,17 +27,20 @@
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0;
+    margin: 5px;
   }
 
   li a {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: flex-start;
     align-items: center;
-    height: 6rem;
+    justify-content: center;
+    height: 5rem;
     min-width: 4rem;
-    padding: 0 8px;
+    padding: 1rem;
     text-decoration: none;
+    color: white;
+    background-color: $color-base;
 
   }
 
