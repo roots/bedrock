@@ -1,7 +1,11 @@
 // Accordion
 :root{
-  --accordion-theme-color: #{$color-brand};
+  --accordion-theme-color: white;
+  --accordion-theme-bgcolor: #{$color-base};
 }
+
+/*Variables*/
+$accordion-border-radius: 3px;
 
 .js-accordion {
   button, div {
@@ -17,21 +21,21 @@
   padding-right: 8rem;
   padding-left: 5rem;
   text-align: left;
+  color: var(--accordion-theme-bgcolor);
   background-color: var(--accordion-theme-color);
   box-shadow: none;
   white-space: normal;
-  min-height: 80px;
+  min-height: 5rem;
   height: initial;
-  border: none;
-  font-size: 1.6rem;
-  color: $black;
-  border-radius: 10px;
+  border: 1px solid var(--accordion-theme-bgcolor);
+  font-size: 1.4rem;
+  border-radius: $accordion-border-radius;
 
   &:hover,
   &:focus,
   &:active{
-    background-color: var(--accordion-theme-color);
-    color: $black;
+    color: var(--accordion-theme-color);
+    background-color: var(--accordion-theme-bgcolor);
   }
 
   &:focus{
@@ -61,9 +65,9 @@
     top: 0;
     height: 100%;
     width: 5rem;
-    background: $color-brand;
+    background-color: var(--accordion-theme-bgcolor);
     z-index: 1;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 $accordion-border-radius $accordion-border-radius 0;
   }
 
   &[aria-expanded="true"] {
