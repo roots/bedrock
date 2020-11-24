@@ -24,7 +24,7 @@
 
         <div class="footer-content">
 
-            <a href="/" class="logo" aria-title="<?php echo trad('back.to.home', WWP_THEME_TEXTDOMAIN); ?>">
+            <a href="/" class="logo" aria-label="<?php echo trad('back.to.home', WWP_THEME_TEXTDOMAIN); ?>">
                 <img src="/app/themes/wwp_child_theme/assets/raw/images/logo-site-white.svg" alt="Mon site - accueil">
             </a>
 
