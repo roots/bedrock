@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c27006bc15ec2fc39ae583df16497813",
+    "content-hash": "1b8c017ae8b872e37403903d133855b8",
     "packages": [
         {
             "name": "agencewonderful/wonderwp-plugin-core",
@@ -125,6 +125,42 @@
                 "issues": "https://github.com/agencewonderful/wwp-actu/issues"
             },
             "time": "2020-11-11T13:01:42+00:00"
+        },
+        {
+            "name": "agencewonderful/wwp-alerte",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:agencewonderful/wwp-alerte.git",
+                "reference": "6bea8a092e74e489767b08e6f45f51e6be208da5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencewonderful/wwp-alerte/zipball/6bea8a092e74e489767b08e6f45f51e6be208da5",
+                "reference": "6bea8a092e74e489767b08e6f45f51e6be208da5",
+                "shasum": ""
+            },
+            "require": {
+                "agencewonderful/wonderwp-plugin-core": "dev-develop@dev"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WonderWp\\Plugin\\Alerte\\": "includes"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Jeremy Desvaux",
+                    "email": "jeremy.desvaux@wonderful.fr"
+                }
+            ],
+            "description": "Plugin wwp-alerte",
+            "support": {
+                "source": "https://github.com/agencewonderful/wwp-alerte/tree/develop",
+                "issues": "https://github.com/agencewonderful/wwp-alerte/issues"
+            },
+            "time": "2020-11-27T20:37:28+00:00"
         },
         {
             "name": "agencewonderful/wwp-branchepage",
@@ -10791,6 +10827,7 @@
     "stability-flags": {
         "agencewonderful/wonderwp-theme-core": 20,
         "agencewonderful/wwp-actu": 20,
+        "agencewonderful/wwp-alerte": 20,
         "agencewonderful/wwp-branchepage": 20,
         "agencewonderful/wwp-cache": 20,
         "agencewonderful/wwp-contact": 20,
