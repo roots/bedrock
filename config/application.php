@@ -28,7 +28,9 @@ $webroot_dir = $root_dir . '/web';
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir);
+$dotenv = method_exists('\\Dotenv\\Dotenv', 'createUnsafeImmutable') ?
+    Dotenv\Dotenv::createUnsafeImmutable($root_dir) :
+    Dotenv\Dotenv::createImmutable($root_dir);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
