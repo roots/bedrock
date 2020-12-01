@@ -1,1355 +1,1037 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "c67e5b25fd7b4bb8681db20649815d86",
-    "packages": [
-        {
-            "name": "composer/installers",
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
-                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 || ^2.0"
-            },
-            "replace": {
-                "roundcube/plugin-installer": "*",
-                "shama/baton": "*"
-            },
-            "require-dev": {
-                "composer/composer": "1.6.* || 2.0.*@dev",
-                "composer/semver": "1.0.* || 2.0.*@dev",
-                "phpunit/phpunit": "^4.8.36",
-                "sebastian/comparator": "^1.2.4",
-                "symfony/process": "^2.3"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Composer\\Installers\\Plugin",
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Composer\\Installers\\": "src/Composer/Installers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "https://composer.github.io/installers/",
-            "keywords": [
-                "Craft",
-                "Dolibarr",
-                "Eliasis",
-                "Hurad",
-                "ImageCMS",
-                "Kanboard",
-                "Lan Management System",
-                "MODX Evo",
-                "MantisBT",
-                "Mautic",
-                "Maya",
-                "OXID",
-                "Plentymarkets",
-                "Porto",
-                "RadPHP",
-                "SMF",
-                "Thelia",
-                "Whmcs",
-                "WolfCMS",
-                "agl",
-                "aimeos",
-                "annotatecms",
-                "attogram",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "cockpit",
-                "codeigniter",
-                "concrete5",
-                "croogo",
-                "dokuwiki",
-                "drupal",
-                "eZ Platform",
-                "elgg",
-                "expressionengine",
-                "fuelphp",
-                "grav",
-                "installer",
-                "itop",
-                "joomla",
-                "known",
-                "kohana",
-                "laravel",
-                "lavalite",
-                "lithium",
-                "magento",
-                "majima",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "modx",
-                "moodle",
-                "osclass",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "puppet",
-                "pxcms",
-                "reindex",
-                "roundcube",
-                "shopware",
-                "silverstripe",
-                "sydes",
-                "sylius",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "yawik",
-                "zend",
-                "zikula"
-            ],
-            "support": {
-                "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v1.9.0"
-            },
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-04-07T06:57:05+00:00"
-        },
-        {
-            "name": "graham-campbell/result-type",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GrahamCampbell/Result-Type.git",
-                "reference": "7e279d2cd5d7fbb156ce46daada972355cea27bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Result-Type/zipball/7e279d2cd5d7fbb156ce46daada972355cea27bb",
-                "reference": "7e279d2cd5d7fbb156ce46daada972355cea27bb",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0|^8.0",
-                "phpoption/phpoption": "^1.7.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.5|^7.5|^8.5|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GrahamCampbell\\ResultType\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com"
-                }
-            ],
-            "description": "An Implementation Of The Result Type",
-            "keywords": [
-                "Graham Campbell",
-                "GrahamCampbell",
-                "Result Type",
-                "Result-Type",
-                "result"
-            ],
-            "support": {
-                "issues": "https://github.com/GrahamCampbell/Result-Type/issues",
-                "source": "https://github.com/GrahamCampbell/Result-Type/tree/v1.0.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/graham-campbell/result-type",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-04-13T13:17:36+00:00"
-        },
-        {
-            "name": "oscarotero/env",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oscarotero/env.git",
-                "reference": "0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/env/zipball/0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3",
-                "reference": "0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Env\\": "src/"
-                },
-                "files": [
-                    "src/env_function.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oscar Otero",
-                    "email": "oom@oscarotero.com",
-                    "homepage": "http://oscarotero.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple library to consume environment variables",
-            "homepage": "https://github.com/oscarotero/env",
-            "keywords": [
-                "env"
-            ],
-            "support": {
-                "email": "oom@oscarotero.com",
-                "issues": "https://github.com/oscarotero/env/issues",
-                "source": "https://github.com/oscarotero/env/tree/v2.1.0"
-            },
-            "time": "2020-06-11T10:59:27+00:00"
-        },
-        {
-            "name": "phpoption/phpoption",
-            "version": "1.7.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/994ecccd8f3283ecf5ac33254543eb0ac946d525",
-                "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.4.1",
-                "phpunit/phpunit": "^4.8.35 || ^5.7.27 || ^6.5.6 || ^7.0 || ^8.0 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpOption\\": "src/PhpOption/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                },
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com"
-                }
-            ],
-            "description": "Option Type for PHP",
-            "keywords": [
-                "language",
-                "option",
-                "php",
-                "type"
-            ],
-            "support": {
-                "issues": "https://github.com/schmittjoh/php-option/issues",
-                "source": "https://github.com/schmittjoh/php-option/tree/1.7.5"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpoption/phpoption",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-07-20T17:29:33+00:00"
-        },
-        {
-            "name": "roots/bedrock-autoloader",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roots/bedrock-autoloader.git",
-                "reference": "885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roots/bedrock-autoloader/zipball/885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70",
-                "reference": "885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Roots\\Bedrock\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nick Fox",
-                    "email": "nick@foxaii.com",
-                    "homepage": "https://github.com/foxaii"
-                },
-                {
-                    "name": "Scott Walkinshaw",
-                    "email": "scott.walkinshaw@gmail.com",
-                    "homepage": "https://github.com/swalkinshaw"
-                },
-                {
-                    "name": "Austin Pray",
-                    "email": "austin@austinpray.com",
-                    "homepage": "https://github.com/austinpray"
-                }
-            ],
-            "description": "An autoloader that enables standard plugins to be required just like must-use plugins",
-            "keywords": [
-                "autoloader",
-                "bedrock",
-                "mu-plugin",
-                "must-use",
-                "plugin",
-                "wordpress"
-            ],
-            "support": {
-                "forum": "https://discourse.roots.io/",
-                "issues": "https://github.com/roots/bedrock-autoloader/issues",
-                "source": "https://github.com/roots/bedrock-autoloader/tree/1.0.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/roots",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/rootsdev",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-05-18T04:43:20+00:00"
-        },
-        {
-            "name": "roots/wordpress",
-            "version": "5.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.5.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.5.1"
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "roots/wordpress-core-installer": ">=1.0.0"
-            },
-            "type": "wordpress-core",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "WordPress Community",
-                    "homepage": "https://wordpress.org/about/"
-                }
-            ],
-            "description": "WordPress is web software you can use to create a beautiful website or blog.",
-            "homepage": "https://wordpress.org/",
-            "keywords": [
-                "blog",
-                "cms",
-                "wordpress"
-            ],
-            "support": {
-                "docs": "https://developer.wordpress.org/",
-                "forum": "https://wordpress.org/support/",
-                "irc": "irc://irc.freenode.net/wordpress",
-                "issues": "https://core.trac.wordpress.org/",
-                "rss": "https://wordpress.org/news/feed/",
-                "source": "https://core.trac.wordpress.org/browser",
-                "wiki": "https://codex.wordpress.org/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/roots",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/rootsdev",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-09-01T18:56:09+00:00"
-        },
-        {
-            "name": "roots/wordpress-core-installer",
-            "version": "1.100.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roots/wordpress-core-installer.git",
-                "reference": "73f8488e5178c5d54234b919f823a9095e2b1847"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/73f8488e5178c5d54234b919f823a9095e2b1847",
-                "reference": "73f8488e5178c5d54234b919f823a9095e2b1847",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 || ^2.0",
-                "php": ">=5.6.0"
-            },
-            "conflict": {
-                "composer/installers": "<1.0.6"
-            },
-            "replace": {
-                "johnpbloch/wordpress-core-installer": "*"
-            },
-            "require-dev": {
-                "composer/composer": "^1.0 || ^2.0",
-                "phpunit/phpunit": ">=5.7.27"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Roots\\Composer\\WordPressCorePlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Roots\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "John P. Bloch",
-                    "email": "me@johnpbloch.com"
-                },
-                {
-                    "name": "Roots",
-                    "email": "team@roots.io"
-                }
-            ],
-            "description": "A custom installer to handle deploying WordPress with composer",
-            "keywords": [
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/roots/wordpress-core-installer/issues",
-                "source": "https://github.com/roots/wordpress-core-installer/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/roots",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/rootsdev",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-08-20T00:27:30+00:00"
-        },
-        {
-            "name": "roots/wp-config",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roots/wp-config.git",
-                "reference": "37c38230796119fb487fa03346ab0706ce6d4962"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roots/wp-config/zipball/37c38230796119fb487fa03346ab0706ce6d4962",
-                "reference": "37c38230796119fb487fa03346ab0706ce6d4962",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^5.7",
-                "roave/security-advisories": "dev-master",
-                "squizlabs/php_codesniffer": "^3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Roots\\WPConfig\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Austin Pray",
-                    "email": "austin@austinpray.com"
-                }
-            ],
-            "description": "Collect configuration values and safely define() them",
-            "support": {
-                "issues": "https://github.com/roots/wp-config/issues",
-                "source": "https://github.com/roots/wp-config/tree/master"
-            },
-            "time": "2018-08-10T14:18:38+00:00"
-        },
-        {
-            "name": "roots/wp-password-bcrypt",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roots/wp-password-bcrypt.git",
-                "reference": "5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roots/wp-password-bcrypt/zipball/5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa",
-                "reference": "5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "brain/monkey": "^1.3.1",
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^4.8.23|^5.2.9",
-                "squizlabs/php_codesniffer": "^2.5.1"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "wp-password-bcrypt.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Scott Walkinshaw",
-                    "email": "scott.walkinshaw@gmail.com",
-                    "homepage": "https://github.com/swalkinshaw"
-                },
-                {
-                    "name": "qwp6t",
-                    "homepage": "https://github.com/qwp6t"
-                },
-                {
-                    "name": "Jan Pingel",
-                    "email": "jpingel@bitpiston.com",
-                    "homepage": "http://janpingel.com"
-                }
-            ],
-            "description": "WordPress plugin which replaces wp_hash_password and wp_check_password's phpass hasher with PHP 5.5's password_hash and password_verify using bcrypt.",
-            "homepage": "https://roots.io/plugins/wp-password-bcrypt",
-            "keywords": [
-                "wordpress wp bcrypt password"
-            ],
-            "support": {
-                "forum": "https://discourse.roots.io/",
-                "issues": "https://github.com/roots/wp-password-bcrypt/issues",
-                "source": "https://github.com/roots/wp-password-bcrypt/tree/master"
-            },
-            "time": "2016-03-01T16:27:06+00:00"
-        },
-        {
-            "name": "symfony/polyfill-ctype",
-            "version": "v1.20.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f4ba089a5b6366e453971d3aad5fe8e897b37f41",
-                "reference": "f4ba089a5b6366e453971d3aad5fe8e897b37f41",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "suggest": {
-                "ext-ctype": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.20-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for ctype functions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "ctype",
-                "polyfill",
-                "portable"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.20.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-10-23T14:02:19+00:00"
-        },
-        {
-            "name": "symfony/polyfill-mbstring",
-            "version": "v1.20.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "39d483bdf39be819deabf04ec872eb0b2410b531"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/39d483bdf39be819deabf04ec872eb0b2410b531",
-                "reference": "39d483bdf39be819deabf04ec872eb0b2410b531",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "suggest": {
-                "ext-mbstring": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.20-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for the Mbstring extension",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "mbstring",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.20.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-10-23T14:02:19+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php80",
-            "version": "v1.20.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "e70aa8b064c5b72d3df2abd5ab1e90464ad009de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/e70aa8b064c5b72d3df2abd5ab1e90464ad009de",
-                "reference": "e70aa8b064c5b72d3df2abd5ab1e90464ad009de",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.20-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ],
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ion Bazan",
-                    "email": "ion.bazan@gmail.com"
-                },
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.20.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-10-23T14:02:19+00:00"
-        },
-        {
-            "name": "vlucas/phpdotenv",
-            "version": "v5.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/fba64139db67123c7a57072e5f8d3db10d160b66",
-                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "graham-campbell/result-type": "^1.0.1",
-                "php": "^7.1.3 || ^8.0",
-                "phpoption/phpoption": "^1.7.4",
-                "symfony/polyfill-ctype": "^1.17",
-                "symfony/polyfill-mbstring": "^1.17",
-                "symfony/polyfill-php80": "^1.17"
-            },
-            "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.4.1",
-                "ext-filter": "*",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.2 || ^9.0"
-            },
-            "suggest": {
-                "ext-filter": "Required to use the boolean validator."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dotenv\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com",
-                    "homepage": "https://gjcampbell.co.uk/"
-                },
-                {
-                    "name": "Vance Lucas",
-                    "email": "vance@vancelucas.com",
-                    "homepage": "https://vancelucas.com/"
-                }
-            ],
-            "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
-            "keywords": [
-                "dotenv",
-                "env",
-                "environment"
-            ],
-            "support": {
-                "issues": "https://github.com/vlucas/phpdotenv/issues",
-                "source": "https://github.com/vlucas/phpdotenv/tree/v5.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/vlucas/phpdotenv",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-09-14T15:57:31+00:00"
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "7fbf02812d2a8d9820da5e172e1f72a9",
+  "packages": [{
+      "name": "composer/installers",
+      "version": "v1.9.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/composer/installers.git",
+        "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+        "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+        "shasum": ""
+      },
+      "require": {
+        "composer-plugin-api": "^1.0 || ^2.0"
+      },
+      "replace": {
+        "roundcube/plugin-installer": "*",
+        "shama/baton": "*"
+      },
+      "require-dev": {
+        "composer/composer": "1.6.* || 2.0.*@dev",
+        "composer/semver": "1.0.* || 2.0.*@dev",
+        "phpunit/phpunit": "^4.8.36",
+        "sebastian/comparator": "^1.2.4",
+        "symfony/process": "^2.3"
+      },
+      "type": "composer-plugin",
+      "extra": {
+        "class": "Composer\\Installers\\Plugin",
+        "branch-alias": {
+          "dev-master": "1.0-dev"
         }
-    ],
-    "packages-dev": [
-        {
-            "name": "roave/security-advisories",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "fa05999280434eacf621cc78ab9179d9394c7998"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/fa05999280434eacf621cc78ab9179d9394c7998",
-                "reference": "fa05999280434eacf621cc78ab9179d9394c7998",
-                "shasum": ""
-            },
-            "conflict": {
-                "3f/pygmentize": "<1.2",
-                "adodb/adodb-php": "<5.20.12",
-                "alterphp/easyadmin-extension-bundle": ">=1.2,<1.2.11|>=1.3,<1.3.1",
-                "amphp/artax": "<1.0.6|>=2,<2.0.6",
-                "amphp/http": "<1.0.1",
-                "amphp/http-client": ">=4,<4.4",
-                "api-platform/core": ">=2.2,<2.2.10|>=2.3,<2.3.6",
-                "asymmetricrypt/asymmetricrypt": ">=0,<9.9.99",
-                "aws/aws-sdk-php": ">=3,<3.2.1",
-                "bagisto/bagisto": "<0.1.5",
-                "barrelstrength/sprout-base-email": "<1.2.7",
-                "barrelstrength/sprout-forms": "<3.9",
-                "baserproject/basercms": ">=4,<=4.3.6|>=4.4,<4.4.1",
-                "bolt/bolt": "<3.7.1",
-                "brightlocal/phpwhois": "<=4.2.5",
-                "buddypress/buddypress": "<5.1.2",
-                "bugsnag/bugsnag-laravel": ">=2,<2.0.2",
-                "cakephp/cakephp": ">=1.3,<1.3.18|>=2,<2.4.99|>=2.5,<2.5.99|>=2.6,<2.6.12|>=2.7,<2.7.6|>=3,<3.5.18|>=3.6,<3.6.15|>=3.7,<3.7.7",
-                "cart2quote/module-quotation": ">=4.1.6,<=4.4.5|>=5,<5.4.4",
-                "cartalyst/sentry": "<=2.1.6",
-                "centreon/centreon": "<18.10.8|>=19,<19.4.5",
-                "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
-                "codeigniter/framework": "<=3.0.6",
-                "composer/composer": "<=1-alpha.11",
-                "contao-components/mediaelement": ">=2.14.2,<2.21.1",
-                "contao/core": ">=2,<3.5.39",
-                "contao/core-bundle": "= 4.10.0|>=4,<4.4.52|>=4.5,<4.9.6",
-                "contao/listing-bundle": ">=4,<4.4.8",
-                "datadog/dd-trace": ">=0.30,<0.30.2",
-                "david-garcia/phpwhois": "<=4.3.1",
-                "derhansen/sf_event_mgt": "<4.3.1|>=5,<5.1.1",
-                "doctrine/annotations": ">=1,<1.2.7",
-                "doctrine/cache": ">=1,<1.3.2|>=1.4,<1.4.2",
-                "doctrine/common": ">=2,<2.4.3|>=2.5,<2.5.1",
-                "doctrine/dbal": ">=2,<2.0.8|>=2.1,<2.1.2",
-                "doctrine/doctrine-bundle": "<1.5.2",
-                "doctrine/doctrine-module": "<=0.7.1",
-                "doctrine/mongodb-odm": ">=1,<1.0.2",
-                "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
-                "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
-                "dolibarr/dolibarr": "<11.0.4",
-                "dompdf/dompdf": ">=0.6,<0.6.2",
-                "drupal/core": ">=7,<7.74|>=8,<8.8.11|>=8.9,<8.9.9|>=9,<9.0.8",
-                "drupal/drupal": ">=7,<7.74|>=8,<8.8.11|>=8.9,<8.9.9|>=9,<9.0.8",
-                "endroid/qr-code-bundle": "<3.4.2",
-                "enshrined/svg-sanitize": "<0.13.1",
-                "erusev/parsedown": "<1.7.2",
-                "ezsystems/demobundle": ">=5.4,<5.4.6.1",
-                "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
-                "ezsystems/ezfind-ls": ">=5.3,<5.3.6.1|>=5.4,<5.4.11.1|>=2017.12,<2017.12.0.1",
-                "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
-                "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
-                "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2.1|>=5,<5.0.1|>=5.1,<5.1.1",
-                "ezsystems/ezplatform-kernel": ">=1,<1.0.2.1",
-                "ezsystems/ezplatform-user": ">=1,<1.0.1",
-                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<6.13.6.3|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<7.5.7.1",
-                "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.14.2|>=2011,<2017.12.7.3|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3|>=2019.3,<2019.3.5.1",
-                "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
-                "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
-                "ezyang/htmlpurifier": "<4.1.1",
-                "firebase/php-jwt": "<2",
-                "fooman/tcpdf": "<6.2.22",
-                "fossar/tcpdf-parser": "<6.2.22",
-                "friendsofsymfony/oauth2-php": "<1.3",
-                "friendsofsymfony/rest-bundle": ">=1.2,<1.2.2",
-                "friendsofsymfony/user-bundle": ">=1.2,<1.3.5",
-                "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
-                "fuel/core": "<1.8.1",
-                "getgrav/grav": "<1.7-beta.8",
-                "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
-                "gree/jose": "<=2.2",
-                "gregwar/rst": "<1.0.3",
-                "guzzlehttp/guzzle": ">=4-rc.2,<4.2.4|>=5,<5.3.1|>=6,<6.2.1",
-                "illuminate/auth": ">=4,<4.0.99|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.10",
-                "illuminate/cookie": ">=4,<=4.0.11|>=4.1,<=4.1.99999|>=4.2,<=4.2.99999|>=5,<=5.0.99999|>=5.1,<=5.1.99999|>=5.2,<=5.2.99999|>=5.3,<=5.3.99999|>=5.4,<=5.4.99999|>=5.5,<=5.5.49|>=5.6,<=5.6.99999|>=5.7,<=5.7.99999|>=5.8,<=5.8.99999|>=6,<6.18.31|>=7,<7.22.4",
-                "illuminate/database": ">=4,<4.0.99|>=4.1,<4.1.29|>=5.5,<=5.5.44|>=6,<6.18.34|>=7,<7.23.2",
-                "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
-                "illuminate/view": ">=7,<7.1.2",
-                "ivankristianto/phpwhois": "<=4.3",
-                "james-heinrich/getid3": "<1.9.9",
-                "joomla/session": "<1.3.1",
-                "jsmitty12/phpwhois": "<5.1",
-                "kazist/phpwhois": "<=4.2.6",
-                "kitodo/presentation": "<3.1.2",
-                "kreait/firebase-php": ">=3.2,<3.8.1",
-                "la-haute-societe/tcpdf": "<6.2.22",
-                "laravel/framework": ">=4,<4.0.99|>=4.1,<=4.1.99999|>=4.2,<=4.2.99999|>=5,<=5.0.99999|>=5.1,<=5.1.99999|>=5.2,<=5.2.99999|>=5.3,<=5.3.99999|>=5.4,<=5.4.99999|>=5.5,<=5.5.49|>=5.6,<=5.6.99999|>=5.7,<=5.7.99999|>=5.8,<=5.8.99999|>=6,<6.18.34|>=7,<7.23.2",
-                "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
-                "league/commonmark": "<0.18.3",
-                "librenms/librenms": "<1.53",
-                "livewire/livewire": ">2.2.4,<2.2.6",
-                "magento/community-edition": ">=2,<2.2.10|>=2.3,<2.3.3",
-                "magento/magento1ce": "<1.9.4.3",
-                "magento/magento1ee": ">=1,<1.14.4.3",
-                "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2-p.2",
-                "marcwillmann/turn": "<0.3.3",
-                "mediawiki/core": ">=1.27,<1.27.6|>=1.29,<1.29.3|>=1.30,<1.30.2|>=1.31,<1.31.9|>=1.32,<1.32.6|>=1.32.99,<1.33.3|>=1.33.99,<1.34.3|>=1.34.99,<1.35",
-                "mittwald/typo3_forum": "<1.2.1",
-                "monolog/monolog": ">=1.8,<1.12",
-                "namshi/jose": "<2.2",
-                "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
-                "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
-                "nystudio107/craft-seomatic": "<3.3",
-                "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
-                "october/backend": ">=1.0.319,<1.0.470",
-                "october/cms": "= 1.0.469|>=1.0.319,<1.0.469",
-                "october/october": ">=1.0.319,<1.0.466",
-                "october/rain": ">=1.0.319,<1.0.468",
-                "onelogin/php-saml": "<2.10.4",
-                "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
-                "openid/php-openid": "<2.3",
-                "openmage/magento-lts": "<19.4.8|>=20,<20.0.4",
-                "orchid/platform": ">=9,<9.4.4",
-                "oro/crm": ">=1.7,<1.7.4",
-                "oro/platform": ">=1.7,<1.7.4",
-                "padraic/humbug_get_contents": "<1.1.2",
-                "pagarme/pagarme-php": ">=0,<3",
-                "paragonie/random_compat": "<2",
-                "passbolt/passbolt_api": "<2.11",
-                "paypal/merchant-sdk-php": "<3.12",
-                "pear/archive_tar": "<1.4.11",
-                "personnummer/personnummer": "<3.0.2",
-                "phpfastcache/phpfastcache": ">=5,<5.0.13",
-                "phpmailer/phpmailer": "<6.1.6",
-                "phpmussel/phpmussel": ">=1,<1.6",
-                "phpmyadmin/phpmyadmin": "<4.9.6|>=5,<5.0.3",
-                "phpoffice/phpexcel": "<1.8.2",
-                "phpoffice/phpspreadsheet": "<1.8",
-                "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
-                "phpwhois/phpwhois": "<=4.2.5",
-                "phpxmlrpc/extras": "<0.6.1",
-                "pimcore/pimcore": "<6.3",
-                "pocketmine/pocketmine-mp": "<3.15.4",
-                "prestashop/autoupgrade": ">=4,<4.10.1",
-                "prestashop/contactform": ">1.0.1,<4.3",
-                "prestashop/gamification": "<2.3.2",
-                "prestashop/productcomments": ">=4,<4.2",
-                "prestashop/ps_facetedsearch": "<3.4.1",
-                "privatebin/privatebin": "<1.2.2|>=1.3,<1.3.2",
-                "propel/propel": ">=2-alpha.1,<=2-alpha.7",
-                "propel/propel1": ">=1,<=1.7.1",
-                "pterodactyl/panel": "<0.7.19|>=1-rc.0,<=1-rc.6",
-                "pusher/pusher-php-server": "<2.2.1",
-                "rainlab/debugbar-plugin": "<3.1",
-                "robrichards/xmlseclibs": "<3.0.4",
-                "sabberworm/php-css-parser": ">=1,<1.0.1|>=2,<2.0.1|>=3,<3.0.1|>=4,<4.0.1|>=5,<5.0.9|>=5.1,<5.1.3|>=5.2,<5.2.1|>=6,<6.0.2|>=7,<7.0.4|>=8,<8.0.1|>=8.1,<8.1.1|>=8.2,<8.2.1|>=8.3,<8.3.1",
-                "sabre/dav": ">=1.6,<1.6.99|>=1.7,<1.7.11|>=1.8,<1.8.9",
-                "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
-                "sensiolabs/connect": "<4.2.3",
-                "serluck/phpwhois": "<=4.2.6",
-                "shopware/core": "<=6.3.2",
-                "shopware/platform": "<=6.3.2",
-                "shopware/shopware": "<5.6.9",
-                "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
-                "silverstripe/assets": ">=1,<1.4.7|>=1.5,<1.5.2",
-                "silverstripe/cms": "<4.3.6|>=4.4,<4.4.4",
-                "silverstripe/comments": ">=1.3,<1.9.99|>=2,<2.9.99|>=3,<3.1.1",
-                "silverstripe/forum": "<=0.6.1|>=0.7,<=0.7.3",
-                "silverstripe/framework": "<4.4.7|>=4.5,<4.5.4",
-                "silverstripe/graphql": ">=2,<2.0.5|>=3,<3.1.2|>=3.2,<3.2.4",
-                "silverstripe/registry": ">=2.1,<2.1.2|>=2.2,<2.2.1",
-                "silverstripe/restfulserver": ">=1,<1.0.9|>=2,<2.0.4",
-                "silverstripe/subsites": ">=2,<2.1.1",
-                "silverstripe/taxonomy": ">=1.3,<1.3.1|>=2,<2.0.1",
-                "silverstripe/userforms": "<3",
-                "simple-updates/phpwhois": "<=1",
-                "simplesamlphp/saml2": "<1.10.6|>=2,<2.3.8|>=3,<3.1.4",
-                "simplesamlphp/simplesamlphp": "<1.18.6",
-                "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
-                "simplito/elliptic-php": "<1.0.6",
-                "slim/slim": "<2.6",
-                "smarty/smarty": "<3.1.33",
-                "socalnick/scn-social-auth": "<1.15.2",
-                "spoonity/tcpdf": "<6.2.22",
-                "squizlabs/php_codesniffer": ">=1,<2.8.1|>=3,<3.0.1",
-                "ssddanbrown/bookstack": "<0.29.2",
-                "stormpath/sdk": ">=0,<9.9.99",
-                "studio-42/elfinder": "<2.1.49",
-                "sulu/sulu": "<1.6.34|>=2,<2.0.10|>=2.1,<2.1.1",
-                "swiftmailer/swiftmailer": ">=4,<5.4.5",
-                "sylius/admin-bundle": ">=1,<1.0.17|>=1.1,<1.1.9|>=1.2,<1.2.2",
-                "sylius/grid": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
-                "sylius/grid-bundle": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
-                "sylius/resource-bundle": "<1.3.14|>=1.4,<1.4.7|>=1.5,<1.5.2|>=1.6,<1.6.4",
-                "sylius/sylius": "<1.6.9|>=1.7,<1.7.9|>=1.8,<1.8.3",
-                "symbiote/silverstripe-multivaluefield": ">=3,<3.0.99",
-                "symbiote/silverstripe-versionedfiles": "<=2.0.3",
-                "symfony/cache": ">=3.1,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8",
-                "symfony/dependency-injection": ">=2,<2.0.17|>=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
-                "symfony/error-handler": ">=4.4,<4.4.4|>=5,<5.0.4",
-                "symfony/form": ">=2.3,<2.3.35|>=2.4,<2.6.12|>=2.7,<2.7.50|>=2.8,<2.8.49|>=3,<3.4.20|>=4,<4.0.15|>=4.1,<4.1.9|>=4.2,<4.2.1",
-                "symfony/framework-bundle": ">=2,<2.3.18|>=2.4,<2.4.8|>=2.5,<2.5.2|>=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
-                "symfony/http-foundation": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8|>=4.4,<4.4.7|>=5,<5.0.7",
-                "symfony/http-kernel": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.4.13|>=5,<5.1.5",
-                "symfony/intl": ">=2.7,<2.7.38|>=2.8,<2.8.31|>=3,<3.2.14|>=3.3,<3.3.13",
-                "symfony/mime": ">=4.3,<4.3.8",
-                "symfony/phpunit-bridge": ">=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
-                "symfony/polyfill": ">=1,<1.10",
-                "symfony/polyfill-php55": ">=1,<1.10",
-                "symfony/proxy-manager-bridge": ">=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
-                "symfony/routing": ">=2,<2.0.19",
-                "symfony/security": ">=2,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7|>=4.4,<4.4.7|>=5,<5.0.7",
-                "symfony/security-bundle": ">=2,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
-                "symfony/security-core": ">=2.4,<2.6.13|>=2.7,<2.7.9|>=2.7.30,<2.7.32|>=2.8,<2.8.37|>=3,<3.3.17|>=3.4,<3.4.7|>=4,<4.0.7",
-                "symfony/security-csrf": ">=2.4,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
-                "symfony/security-guard": ">=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
-                "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.2.12|>=4.3,<4.3.8|>=4.4,<4.4.7|>=5,<5.0.7",
-                "symfony/serializer": ">=2,<2.0.11",
-                "symfony/symfony": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.4.13|>=5,<5.1.5",
-                "symfony/translation": ">=2,<2.0.17",
-                "symfony/validator": ">=2,<2.0.24|>=2.1,<2.1.12|>=2.2,<2.2.5|>=2.3,<2.3.3",
-                "symfony/var-exporter": ">=4.2,<4.2.12|>=4.3,<4.3.8",
-                "symfony/web-profiler-bundle": ">=2,<2.3.19|>=2.4,<2.4.9|>=2.5,<2.5.4",
-                "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
-                "t3g/svg-sanitizer": "<1.0.3",
-                "tecnickcom/tcpdf": "<6.2.22",
-                "thelia/backoffice-default-template": ">=2.1,<2.1.2",
-                "thelia/thelia": ">=2.1-beta.1,<2.1.3",
-                "theonedemon/phpwhois": "<=4.2.5",
-                "titon/framework": ">=0,<9.9.99",
-                "truckersmp/phpwhois": "<=4.3.1",
-                "twig/twig": "<1.38|>=2,<2.7",
-                "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.23|>=10,<10.4.10",
-                "typo3/cms-core": ">=8,<8.7.38|>=9,<9.5.23|>=10,<10.4.10",
-                "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.10|>=3.1,<3.1.7|>=3.2,<3.2.7|>=3.3,<3.3.5",
-                "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4",
-                "typo3/phar-stream-wrapper": ">=1,<2.1.1|>=3,<3.1.1",
-                "typo3fluid/fluid": ">=2,<2.0.8|>=2.1,<2.1.7|>=2.2,<2.2.4|>=2.3,<2.3.7|>=2.4,<2.4.4|>=2.5,<2.5.11|>=2.6,<2.6.10",
-                "ua-parser/uap-php": "<3.8",
-                "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
-                "verot/class.upload.php": "<=1.0.3|>=2,<=2.0.4",
-                "wallabag/tcpdf": "<6.2.22",
-                "willdurand/js-translation-bundle": "<2.1.1",
-                "yii2mod/yii2-cms": "<1.9.2",
-                "yiisoft/yii": ">=1.1.14,<1.1.15",
-                "yiisoft/yii2": "<2.0.38",
-                "yiisoft/yii2-bootstrap": "<2.0.4",
-                "yiisoft/yii2-dev": "<2.0.15",
-                "yiisoft/yii2-elasticsearch": "<2.0.5",
-                "yiisoft/yii2-gii": "<2.0.4",
-                "yiisoft/yii2-jui": "<2.0.4",
-                "yiisoft/yii2-redis": "<2.0.8",
-                "yourls/yourls": "<1.7.4",
-                "zendframework/zend-cache": ">=2.4,<2.4.8|>=2.5,<2.5.3",
-                "zendframework/zend-captcha": ">=2,<2.4.9|>=2.5,<2.5.2",
-                "zendframework/zend-crypt": ">=2,<2.4.9|>=2.5,<2.5.2",
-                "zendframework/zend-db": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.10|>=2.3,<2.3.5",
-                "zendframework/zend-developer-tools": ">=1.2.2,<1.2.3",
-                "zendframework/zend-diactoros": ">=1,<1.8.4",
-                "zendframework/zend-feed": ">=1,<2.10.3",
-                "zendframework/zend-form": ">=2,<2.2.7|>=2.3,<2.3.1",
-                "zendframework/zend-http": ">=1,<2.8.1",
-                "zendframework/zend-json": ">=2.1,<2.1.6|>=2.2,<2.2.6",
-                "zendframework/zend-ldap": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.8|>=2.3,<2.3.3",
-                "zendframework/zend-mail": ">=2,<2.4.11|>=2.5,<2.7.2",
-                "zendframework/zend-navigation": ">=2,<2.2.7|>=2.3,<2.3.1",
-                "zendframework/zend-session": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.9|>=2.3,<2.3.4",
-                "zendframework/zend-validator": ">=2.3,<2.3.6",
-                "zendframework/zend-view": ">=2,<2.2.7|>=2.3,<2.3.1",
-                "zendframework/zend-xmlrpc": ">=2.1,<2.1.6|>=2.2,<2.2.6",
-                "zendframework/zendframework": "<2.5.1",
-                "zendframework/zendframework1": "<1.12.20",
-                "zendframework/zendopenid": ">=2,<2.0.2",
-                "zendframework/zendxml": ">=1,<1.0.1",
-                "zetacomponents/mail": "<1.8.2",
-                "zf-commons/zfc-user": "<1.2.2",
-                "zfcampus/zf-apigility-doctrine": ">=1,<1.0.3",
-                "zfr/zfr-oauth2-server-module": "<0.1.2"
-            },
-            "type": "metapackage",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "role": "maintainer"
-                },
-                {
-                    "name": "Ilya Tribusean",
-                    "email": "slash3b@gmail.com",
-                    "role": "maintainer"
-                }
-            ],
-            "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "support": {
-                "issues": "https://github.com/Roave/SecurityAdvisories/issues",
-                "source": "https://github.com/Roave/SecurityAdvisories/tree/latest"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Ocramius",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/roave/security-advisories",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-11-26T07:02:13+00:00"
+      },
+      "autoload": {
+        "psr-4": {
+          "Composer\\Installers\\": "src/Composer/Installers"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+        "name": "Kyle Robinson Young",
+        "email": "kyle@dontkry.com",
+        "homepage": "https://github.com/shama"
+      }],
+      "description": "A multi-framework Composer library installer",
+      "homepage": "https://composer.github.io/installers/",
+      "keywords": [
+        "Craft",
+        "Dolibarr",
+        "Eliasis",
+        "Hurad",
+        "ImageCMS",
+        "Kanboard",
+        "Lan Management System",
+        "MODX Evo",
+        "MantisBT",
+        "Mautic",
+        "Maya",
+        "OXID",
+        "Plentymarkets",
+        "Porto",
+        "RadPHP",
+        "SMF",
+        "Thelia",
+        "Whmcs",
+        "WolfCMS",
+        "agl",
+        "aimeos",
+        "annotatecms",
+        "attogram",
+        "bitrix",
+        "cakephp",
+        "chef",
+        "cockpit",
+        "codeigniter",
+        "concrete5",
+        "croogo",
+        "dokuwiki",
+        "drupal",
+        "eZ Platform",
+        "elgg",
+        "expressionengine",
+        "fuelphp",
+        "grav",
+        "installer",
+        "itop",
+        "joomla",
+        "known",
+        "kohana",
+        "laravel",
+        "lavalite",
+        "lithium",
+        "magento",
+        "majima",
+        "mako",
+        "mediawiki",
+        "modulework",
+        "modx",
+        "moodle",
+        "osclass",
+        "phpbb",
+        "piwik",
+        "ppi",
+        "puppet",
+        "pxcms",
+        "reindex",
+        "roundcube",
+        "shopware",
+        "silverstripe",
+        "sydes",
+        "sylius",
+        "symfony",
+        "typo3",
+        "wordpress",
+        "yawik",
+        "zend",
+        "zikula"
+      ],
+      "funding": [{
+          "url": "https://packagist.com",
+          "type": "custom"
         },
         {
-            "name": "squizlabs/php_codesniffer",
-            "version": "3.5.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
-                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-simplexml": "*",
-                "ext-tokenizer": "*",
-                "ext-xmlwriter": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
-            },
-            "bin": [
-                "bin/phpcs",
-                "bin/phpcbf"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Greg Sherwood",
-                    "role": "lead"
-                }
-            ],
-            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
-            "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
-            "keywords": [
-                "phpcs",
-                "standards"
-            ],
-            "support": {
-                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
-                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
-                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
-            },
-            "time": "2020-10-23T02:01:07+00:00"
+          "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+          "type": "tidelift"
         }
-    ],
-    "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "roave/security-advisories": 20
+      ],
+      "time": "2020-04-07T06:57:05+00:00"
     },
-    "prefer-stable": true,
-    "prefer-lowest": false,
-    "platform": {
+    {
+      "name": "oscarotero/env",
+      "version": "v2.1.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/oscarotero/env.git",
+        "reference": "0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/oscarotero/env/zipball/0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3",
+        "reference": "0da22cadc6924155fa9bbea2cdda2e84ab7cbdd3",
+        "shasum": ""
+      },
+      "require": {
+        "ext-ctype": "*",
         "php": ">=7.1"
+      },
+      "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^7.0"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Env\\": "src/"
+        },
+        "files": [
+          "src/env_function.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+        "name": "Oscar Otero",
+        "email": "oom@oscarotero.com",
+        "homepage": "http://oscarotero.com",
+        "role": "Developer"
+      }],
+      "description": "Simple library to consume environment variables",
+      "homepage": "https://github.com/oscarotero/env",
+      "keywords": [
+        "env"
+      ],
+      "time": "2020-06-11T10:59:27+00:00"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    {
+      "name": "phpoption/phpoption",
+      "version": "1.7.5",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/schmittjoh/php-option.git",
+        "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/994ecccd8f3283ecf5ac33254543eb0ac946d525",
+        "reference": "994ecccd8f3283ecf5ac33254543eb0ac946d525",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^5.5.9 || ^7.0 || ^8.0"
+      },
+      "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.4.1",
+        "phpunit/phpunit": "^4.8.35 || ^5.7.27 || ^6.5.6 || ^7.0 || ^8.0 || ^9.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.7-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "PhpOption\\": "src/PhpOption/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "Apache-2.0"
+      ],
+      "authors": [{
+          "name": "Johannes M. Schmitt",
+          "email": "schmittjoh@gmail.com"
+        },
+        {
+          "name": "Graham Campbell",
+          "email": "graham@alt-three.com"
+        }
+      ],
+      "description": "Option Type for PHP",
+      "keywords": [
+        "language",
+        "option",
+        "php",
+        "type"
+      ],
+      "funding": [{
+          "url": "https://github.com/GrahamCampbell",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/phpoption/phpoption",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2020-07-20T17:29:33+00:00"
+    },
+    {
+      "name": "roots/bedrock-autoloader",
+      "version": "1.0.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/roots/bedrock-autoloader.git",
+        "reference": "885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/roots/bedrock-autoloader/zipball/885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70",
+        "reference": "885f2a5c425d82dfd811ef4f13ab8f5bcc89cd70",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.1"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Roots\\Bedrock\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+          "name": "Nick Fox",
+          "email": "nick@foxaii.com",
+          "homepage": "https://github.com/foxaii"
+        },
+        {
+          "name": "Scott Walkinshaw",
+          "email": "scott.walkinshaw@gmail.com",
+          "homepage": "https://github.com/swalkinshaw"
+        },
+        {
+          "name": "Austin Pray",
+          "email": "austin@austinpray.com",
+          "homepage": "https://github.com/austinpray"
+        }
+      ],
+      "description": "An autoloader that enables standard plugins to be required just like must-use plugins",
+      "keywords": [
+        "autoloader",
+        "bedrock",
+        "mu-plugin",
+        "must-use",
+        "plugin",
+        "wordpress"
+      ],
+      "funding": [{
+          "url": "https://github.com/roots",
+          "type": "github"
+        },
+        {
+          "url": "https://www.patreon.com/rootsdev",
+          "type": "patreon"
+        }
+      ],
+      "time": "2020-05-18T04:43:20+00:00"
+    },
+    {
+      "name": "roots/wordpress",
+      "version": "5.5.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/WordPress/WordPress.git",
+        "reference": "5.5.3"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.5.3"
+      },
+      "require": {
+        "php": ">=5.3.2",
+        "roots/wordpress-core-installer": ">=1.0.0"
+      },
+      "type": "wordpress-core",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "GPL-2.0-or-later"
+      ],
+      "authors": [{
+        "name": "WordPress Community",
+        "homepage": "https://wordpress.org/about/"
+      }],
+      "description": "WordPress is web software you can use to create a beautiful website or blog.",
+      "homepage": "https://wordpress.org/",
+      "keywords": [
+        "blog",
+        "cms",
+        "wordpress"
+      ],
+      "funding": [{
+          "url": "https://github.com/roots",
+          "type": "github"
+        },
+        {
+          "url": "https://www.patreon.com/rootsdev",
+          "type": "patreon"
+        }
+      ],
+      "time": "2020-10-30T20:40:02+00:00"
+    },
+    {
+      "name": "roots/wordpress-core-installer",
+      "version": "1.100.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/roots/wordpress-core-installer.git",
+        "reference": "73f8488e5178c5d54234b919f823a9095e2b1847"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/73f8488e5178c5d54234b919f823a9095e2b1847",
+        "reference": "73f8488e5178c5d54234b919f823a9095e2b1847",
+        "shasum": ""
+      },
+      "require": {
+        "composer-plugin-api": "^1.0 || ^2.0",
+        "php": ">=5.6.0"
+      },
+      "conflict": {
+        "composer/installers": "<1.0.6"
+      },
+      "replace": {
+        "johnpbloch/wordpress-core-installer": "*"
+      },
+      "require-dev": {
+        "composer/composer": "^1.0 || ^2.0",
+        "phpunit/phpunit": ">=5.7.27"
+      },
+      "type": "composer-plugin",
+      "extra": {
+        "class": "Roots\\Composer\\WordPressCorePlugin"
+      },
+      "autoload": {
+        "psr-4": {
+          "Roots\\Composer\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "GPL-2.0-or-later"
+      ],
+      "authors": [{
+          "name": "John P. Bloch",
+          "email": "me@johnpbloch.com"
+        },
+        {
+          "name": "Roots",
+          "email": "team@roots.io"
+        }
+      ],
+      "description": "A custom installer to handle deploying WordPress with composer",
+      "keywords": [
+        "wordpress"
+      ],
+      "funding": [{
+          "url": "https://github.com/roots",
+          "type": "github"
+        },
+        {
+          "url": "https://www.patreon.com/rootsdev",
+          "type": "patreon"
+        }
+      ],
+      "time": "2020-08-20T00:27:30+00:00"
+    },
+    {
+      "name": "roots/wp-config",
+      "version": "1.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/roots/wp-config.git",
+        "reference": "37c38230796119fb487fa03346ab0706ce6d4962"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/roots/wp-config/zipball/37c38230796119fb487fa03346ab0706ce6d4962",
+        "reference": "37c38230796119fb487fa03346ab0706ce6d4962",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.6"
+      },
+      "require-dev": {
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^5.7",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.3"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Roots\\WPConfig\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+        "name": "Austin Pray",
+        "email": "austin@austinpray.com"
+      }],
+      "description": "Collect configuration values and safely define() them",
+      "time": "2018-08-10T14:18:38+00:00"
+    },
+    {
+      "name": "roots/wp-password-bcrypt",
+      "version": "1.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/roots/wp-password-bcrypt.git",
+        "reference": "5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/roots/wp-password-bcrypt/zipball/5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa",
+        "reference": "5cecd2e98ccc3193443cc5c5db9b3bc7abed5ffa",
+        "shasum": ""
+      },
+      "require": {
+        "composer/installers": "~1.0",
+        "php": ">=5.5.0"
+      },
+      "require-dev": {
+        "brain/monkey": "^1.3.1",
+        "mockery/mockery": "^0.9.4",
+        "phpunit/phpunit": "^4.8.23|^5.2.9",
+        "squizlabs/php_codesniffer": "^2.5.1"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "wp-password-bcrypt.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+          "name": "Scott Walkinshaw",
+          "email": "scott.walkinshaw@gmail.com",
+          "homepage": "https://github.com/swalkinshaw"
+        },
+        {
+          "name": "qwp6t",
+          "homepage": "https://github.com/qwp6t"
+        },
+        {
+          "name": "Jan Pingel",
+          "email": "jpingel@bitpiston.com",
+          "homepage": "http://janpingel.com"
+        }
+      ],
+      "description": "WordPress plugin which replaces wp_hash_password and wp_check_password's phpass hasher with PHP 5.5's password_hash and password_verify using bcrypt.",
+      "homepage": "https://roots.io/plugins/wp-password-bcrypt",
+      "keywords": [
+        "wordpress wp bcrypt password"
+      ],
+      "time": "2016-03-01T16:27:06+00:00"
+    },
+    {
+      "name": "symfony/polyfill-ctype",
+      "version": "v1.18.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-ctype.git",
+        "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
+        "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3"
+      },
+      "suggest": {
+        "ext-ctype": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.18-dev"
+        },
+        "thanks": {
+          "name": "symfony/polyfill",
+          "url": "https://github.com/symfony/polyfill"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Polyfill\\Ctype\\": ""
+        },
+        "files": [
+          "bootstrap.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+          "name": "Gert de Pagter",
+          "email": "BackEndTea@gmail.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for ctype functions",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "ctype",
+        "polyfill",
+        "portable"
+      ],
+      "funding": [{
+          "url": "https://symfony.com/sponsor",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/fabpot",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2020-07-14T12:35:20+00:00"
+    },
+    {
+      "name": "vlucas/phpdotenv",
+      "version": "v4.1.8",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/vlucas/phpdotenv.git",
+        "reference": "572af79d913627a9d70374d27a6f5d689a35de32"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/572af79d913627a9d70374d27a6f5d689a35de32",
+        "reference": "572af79d913627a9d70374d27a6f5d689a35de32",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^5.5.9 || ^7.0 || ^8.0",
+        "phpoption/phpoption": "^1.7.3",
+        "symfony/polyfill-ctype": "^1.17"
+      },
+      "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.4.1",
+        "ext-filter": "*",
+        "ext-pcre": "*",
+        "phpunit/phpunit": "^4.8.35 || ^5.7.27 || ^6.5.6 || ^7.0"
+      },
+      "suggest": {
+        "ext-filter": "Required to use the boolean validator.",
+        "ext-pcre": "Required to use most of the library."
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "4.1-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Dotenv\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [{
+          "name": "Graham Campbell",
+          "email": "graham@alt-three.com",
+          "homepage": "https://gjcampbell.co.uk/"
+        },
+        {
+          "name": "Vance Lucas",
+          "email": "vance@vancelucas.com",
+          "homepage": "https://vancelucas.com/"
+        }
+      ],
+      "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
+      "keywords": [
+        "dotenv",
+        "env",
+        "environment"
+      ],
+      "funding": [{
+          "url": "https://github.com/GrahamCampbell",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/vlucas/phpdotenv",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2020-07-14T19:22:52+00:00"
+    }
+  ],
+  "packages-dev": [{
+      "name": "roave/security-advisories",
+      "version": "dev-master",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/Roave/SecurityAdvisories.git",
+        "reference": "327370943772f9917bc2dc2aa4263db2d572a112"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/327370943772f9917bc2dc2aa4263db2d572a112",
+        "reference": "327370943772f9917bc2dc2aa4263db2d572a112",
+        "shasum": ""
+      },
+      "conflict": {
+        "3f/pygmentize": "<1.2",
+        "adodb/adodb-php": "<5.20.12",
+        "alterphp/easyadmin-extension-bundle": ">=1.2,<1.2.11|>=1.3,<1.3.1",
+        "amphp/artax": "<1.0.6|>=2,<2.0.6",
+        "amphp/http": "<1.0.1",
+        "amphp/http-client": ">=4,<4.4",
+        "api-platform/core": ">=2.2,<2.2.10|>=2.3,<2.3.6",
+        "asymmetricrypt/asymmetricrypt": ">=0,<9.9.99",
+        "aws/aws-sdk-php": ">=3,<3.2.1",
+        "bagisto/bagisto": "<0.1.5",
+        "barrelstrength/sprout-base-email": "<1.2.7",
+        "barrelstrength/sprout-forms": "<3.9",
+        "baserproject/basercms": ">=4,<=4.3.6",
+        "bolt/bolt": "<3.7.1",
+        "brightlocal/phpwhois": "<=4.2.5",
+        "buddypress/buddypress": "<5.1.2",
+        "bugsnag/bugsnag-laravel": ">=2,<2.0.2",
+        "cakephp/cakephp": ">=1.3,<1.3.18|>=2,<2.4.99|>=2.5,<2.5.99|>=2.6,<2.6.12|>=2.7,<2.7.6|>=3,<3.5.18|>=3.6,<3.6.15|>=3.7,<3.7.7",
+        "cart2quote/module-quotation": ">=4.1.6,<=4.4.5|>=5,<5.4.4",
+        "cartalyst/sentry": "<=2.1.6",
+        "centreon/centreon": "<18.10.8|>=19,<19.4.5",
+        "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
+        "codeigniter/framework": "<=3.0.6",
+        "composer/composer": "<=1-alpha.11",
+        "contao-components/mediaelement": ">=2.14.2,<2.21.1",
+        "contao/core": ">=2,<3.5.39",
+        "contao/core-bundle": ">=4,<4.4.52|>=4.5,<4.9.6|= 4.10.0",
+        "contao/listing-bundle": ">=4,<4.4.8",
+        "datadog/dd-trace": ">=0.30,<0.30.2",
+        "david-garcia/phpwhois": "<=4.3.1",
+        "derhansen/sf_event_mgt": "<4.3.1|>=5,<5.1.1",
+        "doctrine/annotations": ">=1,<1.2.7",
+        "doctrine/cache": ">=1,<1.3.2|>=1.4,<1.4.2",
+        "doctrine/common": ">=2,<2.4.3|>=2.5,<2.5.1",
+        "doctrine/dbal": ">=2,<2.0.8|>=2.1,<2.1.2",
+        "doctrine/doctrine-bundle": "<1.5.2",
+        "doctrine/doctrine-module": "<=0.7.1",
+        "doctrine/mongodb-odm": ">=1,<1.0.2",
+        "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
+        "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
+        "dolibarr/dolibarr": "<11.0.4",
+        "dompdf/dompdf": ">=0.6,<0.6.2",
+        "drupal/core": ">=7,<7.73|>=8,<8.8.10|>=8.9,<8.9.6|>=9,<9.0.6",
+        "drupal/drupal": ">=7,<7.73|>=8,<8.8.10|>=8.9,<8.9.6|>=9,<9.0.6",
+        "endroid/qr-code-bundle": "<3.4.2",
+        "enshrined/svg-sanitize": "<0.13.1",
+        "erusev/parsedown": "<1.7.2",
+        "ezsystems/demobundle": ">=5.4,<5.4.6.1",
+        "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
+        "ezsystems/ezfind-ls": ">=5.3,<5.3.6.1|>=5.4,<5.4.11.1|>=2017.12,<2017.12.0.1",
+        "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
+        "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
+        "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2.1|>=5,<5.0.1|>=5.1,<5.1.1",
+        "ezsystems/ezplatform-kernel": ">=1,<1.0.2.1",
+        "ezsystems/ezplatform-user": ">=1,<1.0.1",
+        "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<6.13.6.3|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<7.5.7.1",
+        "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.14.2|>=2011,<2017.12.7.3|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3|>=2019.3,<2019.3.5.1",
+        "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
+        "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
+        "ezyang/htmlpurifier": "<4.1.1",
+        "firebase/php-jwt": "<2",
+        "fooman/tcpdf": "<6.2.22",
+        "fossar/tcpdf-parser": "<6.2.22",
+        "friendsofsymfony/oauth2-php": "<1.3",
+        "friendsofsymfony/rest-bundle": ">=1.2,<1.2.2",
+        "friendsofsymfony/user-bundle": ">=1.2,<1.3.5",
+        "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
+        "fuel/core": "<1.8.1",
+        "getgrav/grav": "<1.7-beta.8",
+        "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
+        "gree/jose": "<=2.2",
+        "gregwar/rst": "<1.0.3",
+        "guzzlehttp/guzzle": ">=4-rc.2,<4.2.4|>=5,<5.3.1|>=6,<6.2.1",
+        "illuminate/auth": ">=4,<4.0.99|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.10",
+        "illuminate/cookie": ">=4,<=4.0.11|>=4.1,<=4.1.99999|>=4.2,<=4.2.99999|>=5,<=5.0.99999|>=5.1,<=5.1.99999|>=5.2,<=5.2.99999|>=5.3,<=5.3.99999|>=5.4,<=5.4.99999|>=5.5,<=5.5.49|>=5.6,<=5.6.99999|>=5.7,<=5.7.99999|>=5.8,<=5.8.99999|>=6,<6.18.31|>=7,<7.22.4",
+        "illuminate/database": ">=4,<4.0.99|>=4.1,<4.1.29|>=5.5,<=5.5.44|>=6,<6.18.34|>=7,<7.23.2",
+        "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
+        "illuminate/view": ">=7,<7.1.2",
+        "ivankristianto/phpwhois": "<=4.3",
+        "james-heinrich/getid3": "<1.9.9",
+        "joomla/session": "<1.3.1",
+        "jsmitty12/phpwhois": "<5.1",
+        "kazist/phpwhois": "<=4.2.6",
+        "kitodo/presentation": "<3.1.2",
+        "kreait/firebase-php": ">=3.2,<3.8.1",
+        "la-haute-societe/tcpdf": "<6.2.22",
+        "laravel/framework": ">=4,<4.0.99|>=4.1,<=4.1.99999|>=4.2,<=4.2.99999|>=5,<=5.0.99999|>=5.1,<=5.1.99999|>=5.2,<=5.2.99999|>=5.3,<=5.3.99999|>=5.4,<=5.4.99999|>=5.5,<=5.5.49|>=5.6,<=5.6.99999|>=5.7,<=5.7.99999|>=5.8,<=5.8.99999|>=6,<6.18.34|>=7,<7.23.2",
+        "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
+        "league/commonmark": "<0.18.3",
+        "librenms/librenms": "<1.53",
+        "livewire/livewire": ">2.2.4,<2.2.6",
+        "magento/community-edition": ">=2,<2.2.10|>=2.3,<2.3.3",
+        "magento/magento1ce": "<1.9.4.3",
+        "magento/magento1ee": ">=1,<1.14.4.3",
+        "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2-p.2",
+        "marcwillmann/turn": "<0.3.3",
+        "mediawiki/core": ">=1.31,<1.31.4|>=1.32,<1.32.4|>=1.33,<1.33.1",
+        "mittwald/typo3_forum": "<1.2.1",
+        "monolog/monolog": ">=1.8,<1.12",
+        "namshi/jose": "<2.2",
+        "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
+        "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
+        "nystudio107/craft-seomatic": "<3.3",
+        "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
+        "october/backend": ">=1.0.319,<1.0.467",
+        "october/cms": ">=1.0.319,<1.0.466",
+        "october/october": ">=1.0.319,<1.0.466",
+        "october/rain": ">=1.0.319,<1.0.468",
+        "onelogin/php-saml": "<2.10.4",
+        "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
+        "openid/php-openid": "<2.3",
+        "openmage/magento-lts": "<19.4.6|>=20,<20.0.2",
+        "oro/crm": ">=1.7,<1.7.4",
+        "oro/platform": ">=1.7,<1.7.4",
+        "padraic/humbug_get_contents": "<1.1.2",
+        "pagarme/pagarme-php": ">=0,<3",
+        "paragonie/random_compat": "<2",
+        "paypal/merchant-sdk-php": "<3.12",
+        "pear/archive_tar": "<1.4.4",
+        "personnummer/personnummer": "<3.0.2",
+        "phpfastcache/phpfastcache": ">=5,<5.0.13",
+        "phpmailer/phpmailer": "<6.1.6",
+        "phpmussel/phpmussel": ">=1,<1.6",
+        "phpmyadmin/phpmyadmin": "<4.9.2",
+        "phpoffice/phpexcel": "<1.8.2",
+        "phpoffice/phpspreadsheet": "<1.8",
+        "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
+        "phpwhois/phpwhois": "<=4.2.5",
+        "phpxmlrpc/extras": "<0.6.1",
+        "pimcore/pimcore": "<6.3",
+        "prestashop/autoupgrade": ">=4,<4.10.1",
+        "prestashop/contactform": ">1.0.1,<4.3",
+        "prestashop/gamification": "<2.3.2",
+        "prestashop/ps_facetedsearch": "<3.4.1",
+        "privatebin/privatebin": "<1.2.2|>=1.3,<1.3.2",
+        "propel/propel": ">=2-alpha.1,<=2-alpha.7",
+        "propel/propel1": ">=1,<=1.7.1",
+        "pterodactyl/panel": "<0.7.19|>=1-rc.0,<=1-rc.6",
+        "pusher/pusher-php-server": "<2.2.1",
+        "rainlab/debugbar-plugin": "<3.1",
+        "robrichards/xmlseclibs": "<3.0.4",
+        "sabberworm/php-css-parser": ">=1,<1.0.1|>=2,<2.0.1|>=3,<3.0.1|>=4,<4.0.1|>=5,<5.0.9|>=5.1,<5.1.3|>=5.2,<5.2.1|>=6,<6.0.2|>=7,<7.0.4|>=8,<8.0.1|>=8.1,<8.1.1|>=8.2,<8.2.1|>=8.3,<8.3.1",
+        "sabre/dav": ">=1.6,<1.6.99|>=1.7,<1.7.11|>=1.8,<1.8.9",
+        "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
+        "sensiolabs/connect": "<4.2.3",
+        "serluck/phpwhois": "<=4.2.6",
+        "shopware/core": "<=6.3.1",
+        "shopware/platform": "<=6.3.1",
+        "shopware/shopware": "<5.3.7",
+        "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
+        "silverstripe/assets": ">=1,<1.4.7|>=1.5,<1.5.2",
+        "silverstripe/cms": "<4.3.6|>=4.4,<4.4.4",
+        "silverstripe/comments": ">=1.3,<1.9.99|>=2,<2.9.99|>=3,<3.1.1",
+        "silverstripe/forum": "<=0.6.1|>=0.7,<=0.7.3",
+        "silverstripe/framework": "<4.4.7|>=4.5,<4.5.4",
+        "silverstripe/graphql": ">=2,<2.0.5|>=3,<3.1.2|>=3.2,<3.2.4",
+        "silverstripe/registry": ">=2.1,<2.1.2|>=2.2,<2.2.1",
+        "silverstripe/restfulserver": ">=1,<1.0.9|>=2,<2.0.4",
+        "silverstripe/subsites": ">=2,<2.1.1",
+        "silverstripe/taxonomy": ">=1.3,<1.3.1|>=2,<2.0.1",
+        "silverstripe/userforms": "<3",
+        "simple-updates/phpwhois": "<=1",
+        "simplesamlphp/saml2": "<1.10.6|>=2,<2.3.8|>=3,<3.1.4",
+        "simplesamlphp/simplesamlphp": "<1.18.6",
+        "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
+        "simplito/elliptic-php": "<1.0.6",
+        "slim/slim": "<2.6",
+        "smarty/smarty": "<3.1.33",
+        "socalnick/scn-social-auth": "<1.15.2",
+        "spoonity/tcpdf": "<6.2.22",
+        "squizlabs/php_codesniffer": ">=1,<2.8.1|>=3,<3.0.1",
+        "ssddanbrown/bookstack": "<0.29.2",
+        "stormpath/sdk": ">=0,<9.9.99",
+        "studio-42/elfinder": "<2.1.49",
+        "sulu/sulu": "<1.6.34|>=2,<2.0.10|>=2.1,<2.1.1",
+        "swiftmailer/swiftmailer": ">=4,<5.4.5",
+        "sylius/admin-bundle": ">=1,<1.0.17|>=1.1,<1.1.9|>=1.2,<1.2.2",
+        "sylius/grid": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
+        "sylius/grid-bundle": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
+        "sylius/resource-bundle": "<1.3.14|>=1.4,<1.4.7|>=1.5,<1.5.2|>=1.6,<1.6.4",
+        "sylius/sylius": "<1.3.16|>=1.4,<1.4.12|>=1.5,<1.5.9|>=1.6,<1.6.5",
+        "symbiote/silverstripe-multivaluefield": ">=3,<3.0.99",
+        "symbiote/silverstripe-versionedfiles": "<=2.0.3",
+        "symfony/cache": ">=3.1,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8",
+        "symfony/dependency-injection": ">=2,<2.0.17|>=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
+        "symfony/error-handler": ">=4.4,<4.4.4|>=5,<5.0.4",
+        "symfony/form": ">=2.3,<2.3.35|>=2.4,<2.6.12|>=2.7,<2.7.50|>=2.8,<2.8.49|>=3,<3.4.20|>=4,<4.0.15|>=4.1,<4.1.9|>=4.2,<4.2.1",
+        "symfony/framework-bundle": ">=2,<2.3.18|>=2.4,<2.4.8|>=2.5,<2.5.2|>=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
+        "symfony/http-foundation": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8|>=4.4,<4.4.7|>=5,<5.0.7",
+        "symfony/http-kernel": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.4.13|>=5,<5.1.5",
+        "symfony/intl": ">=2.7,<2.7.38|>=2.8,<2.8.31|>=3,<3.2.14|>=3.3,<3.3.13",
+        "symfony/mime": ">=4.3,<4.3.8",
+        "symfony/phpunit-bridge": ">=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
+        "symfony/polyfill": ">=1,<1.10",
+        "symfony/polyfill-php55": ">=1,<1.10",
+        "symfony/proxy-manager-bridge": ">=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
+        "symfony/routing": ">=2,<2.0.19",
+        "symfony/security": ">=2,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7|>=4.4,<4.4.7|>=5,<5.0.7",
+        "symfony/security-bundle": ">=2,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
+        "symfony/security-core": ">=2.4,<2.6.13|>=2.7,<2.7.9|>=2.7.30,<2.7.32|>=2.8,<2.8.37|>=3,<3.3.17|>=3.4,<3.4.7|>=4,<4.0.7",
+        "symfony/security-csrf": ">=2.4,<2.7.48|>=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
+        "symfony/security-guard": ">=2.8,<2.8.41|>=3,<3.3.17|>=3.4,<3.4.11|>=4,<4.0.11",
+        "symfony/security-http": ">=2.3,<2.3.41|>=2.4,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.2.12|>=4.3,<4.3.8|>=4.4,<4.4.7|>=5,<5.0.7",
+        "symfony/serializer": ">=2,<2.0.11",
+        "symfony/symfony": ">=2,<2.8.52|>=3,<3.4.35|>=4,<4.2.12|>=4.3,<4.4.13|>=5,<5.1.5",
+        "symfony/translation": ">=2,<2.0.17",
+        "symfony/validator": ">=2,<2.0.24|>=2.1,<2.1.12|>=2.2,<2.2.5|>=2.3,<2.3.3",
+        "symfony/var-exporter": ">=4.2,<4.2.12|>=4.3,<4.3.8",
+        "symfony/web-profiler-bundle": ">=2,<2.3.19|>=2.4,<2.4.9|>=2.5,<2.5.4",
+        "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
+        "t3g/svg-sanitizer": "<1.0.3",
+        "tecnickcom/tcpdf": "<6.2.22",
+        "thelia/backoffice-default-template": ">=2.1,<2.1.2",
+        "thelia/thelia": ">=2.1-beta.1,<2.1.3",
+        "theonedemon/phpwhois": "<=4.2.5",
+        "titon/framework": ">=0,<9.9.99",
+        "truckersmp/phpwhois": "<=4.3.1",
+        "twig/twig": "<1.38|>=2,<2.7",
+        "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.30|>=9,<9.5.20|>=10,<10.4.6",
+        "typo3/cms-core": ">=8,<8.7.30|>=9,<9.5.20|>=10,<10.4.6",
+        "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.10|>=3.1,<3.1.7|>=3.2,<3.2.7|>=3.3,<3.3.5",
+        "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4",
+        "typo3/phar-stream-wrapper": ">=1,<2.1.1|>=3,<3.1.1",
+        "typo3fluid/fluid": ">=2,<2.0.5|>=2.1,<2.1.4|>=2.2,<2.2.1|>=2.3,<2.3.5|>=2.4,<2.4.1|>=2.5,<2.5.5|>=2.6,<2.6.1",
+        "ua-parser/uap-php": "<3.8",
+        "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
+        "verot/class.upload.php": "<=1.0.3|>=2,<=2.0.4",
+        "wallabag/tcpdf": "<6.2.22",
+        "willdurand/js-translation-bundle": "<2.1.1",
+        "yii2mod/yii2-cms": "<1.9.2",
+        "yiisoft/yii": ">=1.1.14,<1.1.15",
+        "yiisoft/yii2": "<2.0.38",
+        "yiisoft/yii2-bootstrap": "<2.0.4",
+        "yiisoft/yii2-dev": "<2.0.15",
+        "yiisoft/yii2-elasticsearch": "<2.0.5",
+        "yiisoft/yii2-gii": "<2.0.4",
+        "yiisoft/yii2-jui": "<2.0.4",
+        "yiisoft/yii2-redis": "<2.0.8",
+        "yourls/yourls": "<1.7.4",
+        "zendframework/zend-cache": ">=2.4,<2.4.8|>=2.5,<2.5.3",
+        "zendframework/zend-captcha": ">=2,<2.4.9|>=2.5,<2.5.2",
+        "zendframework/zend-crypt": ">=2,<2.4.9|>=2.5,<2.5.2",
+        "zendframework/zend-db": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.10|>=2.3,<2.3.5",
+        "zendframework/zend-developer-tools": ">=1.2.2,<1.2.3",
+        "zendframework/zend-diactoros": ">=1,<1.8.4",
+        "zendframework/zend-feed": ">=1,<2.10.3",
+        "zendframework/zend-form": ">=2,<2.2.7|>=2.3,<2.3.1",
+        "zendframework/zend-http": ">=1,<2.8.1",
+        "zendframework/zend-json": ">=2.1,<2.1.6|>=2.2,<2.2.6",
+        "zendframework/zend-ldap": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.8|>=2.3,<2.3.3",
+        "zendframework/zend-mail": ">=2,<2.4.11|>=2.5,<2.7.2",
+        "zendframework/zend-navigation": ">=2,<2.2.7|>=2.3,<2.3.1",
+        "zendframework/zend-session": ">=2,<2.0.99|>=2.1,<2.1.99|>=2.2,<2.2.9|>=2.3,<2.3.4",
+        "zendframework/zend-validator": ">=2.3,<2.3.6",
+        "zendframework/zend-view": ">=2,<2.2.7|>=2.3,<2.3.1",
+        "zendframework/zend-xmlrpc": ">=2.1,<2.1.6|>=2.2,<2.2.6",
+        "zendframework/zendframework": "<2.5.1",
+        "zendframework/zendframework1": "<1.12.20",
+        "zendframework/zendopenid": ">=2,<2.0.2",
+        "zendframework/zendxml": ">=1,<1.0.1",
+        "zetacomponents/mail": "<1.8.2",
+        "zf-commons/zfc-user": "<1.2.2",
+        "zfcampus/zf-apigility-doctrine": ">=1,<1.0.3",
+        "zfr/zfr-oauth2-server-module": "<0.1.2"
+      },
+      "type": "metapackage",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [{
+          "name": "Marco Pivetta",
+          "email": "ocramius@gmail.com",
+          "role": "maintainer"
+        },
+        {
+          "name": "Ilya Tribusean",
+          "email": "slash3b@gmail.com",
+          "role": "maintainer"
+        }
+      ],
+      "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
+      "funding": [{
+          "url": "https://github.com/Ocramius",
+          "type": "github"
+        },
+        {
+          "url": "https://tidelift.com/funding/github/packagist/roave/security-advisories",
+          "type": "tidelift"
+        }
+      ],
+      "time": "2020-10-19T07:02:45+00:00"
+    },
+    {
+      "name": "squizlabs/php_codesniffer",
+      "version": "3.5.6",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+        "reference": "e97627871a7eab2f70e59166072a6b767d5834e0"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e97627871a7eab2f70e59166072a6b767d5834e0",
+        "reference": "e97627871a7eab2f70e59166072a6b767d5834e0",
+        "shasum": ""
+      },
+      "require": {
+        "ext-simplexml": "*",
+        "ext-tokenizer": "*",
+        "ext-xmlwriter": "*",
+        "php": ">=5.4.0"
+      },
+      "require-dev": {
+        "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+      },
+      "bin": [
+        "bin/phpcs",
+        "bin/phpcbf"
+      ],
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.x-dev"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [{
+        "name": "Greg Sherwood",
+        "role": "lead"
+      }],
+      "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+      "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
+      "keywords": [
+        "phpcs",
+        "standards"
+      ],
+      "time": "2020-08-10T04:50:15+00:00"
+    }
+  ],
+  "aliases": [],
+  "minimum-stability": "dev",
+  "stability-flags": {
+    "roave/security-advisories": 20
+  },
+  "prefer-stable": true,
+  "prefer-lowest": false,
+  "platform": {
+    "php": ">=7.1"
+  },
+  "platform-dev": [],
+  "plugin-api-version": "1.1.0"
 }
