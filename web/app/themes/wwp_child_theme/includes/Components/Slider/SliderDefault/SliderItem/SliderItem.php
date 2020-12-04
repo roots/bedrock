@@ -51,6 +51,14 @@ class SliderItem extends TwigComponent implements SlideInterface
     }
 
     /** @inheritDoc */
+    public function setSubtitle(string $subtitle)
+    {
+        $this->__set('subtitle', stripslashes($subtitle));
+
+        return $this;
+    }
+
+    /** @inheritDoc */
     public function setLink(string $link)
     {
         $this->__set('link', stripslashes($link));
@@ -70,6 +78,22 @@ class SliderItem extends TwigComponent implements SlideInterface
     public function setContent(string $content)
     {
         $this->__set('content', stripslashes($content));
+
+        return $this;
+    }
+
+    /** @inheritDoc */
+    public function setImgWidth(int $imgWidth)
+    {
+        $this->__set('imgWidth', stripslashes($imgWidth));
+
+        return $this;
+    }
+
+    /** @inheritDoc */
+    public function setImgHeight(int $imgHeight)
+    {
+        $this->__set('imgHeight', stripslashes($imgHeight));
 
         return $this;
     }

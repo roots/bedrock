@@ -105,3 +105,4 @@ define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
 //define("WWP_PLUGIN_NEWSLETTER_MANAGER",WonderWp\Plugin\Newsletter\Child\NewsletterThemeManager::class);
 define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
 //define("WWP_PLUGIN_GALERIE_MANAGER",WonderWp\Plugin\Galerie\Child\GalerieThemeManager::class);
+//define("WWP_PLUGIN_SLIDER_MANAGER",WonderWp\Plugin\Slider\Child\SliderThemeManager::class);

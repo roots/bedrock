@@ -1,10 +1,15 @@
 <div class="sliderItem">
   {% if img %}
-    <div class="slider-img"><img src="{{ img }}" alt="{{ imgAlt }}"/></div>
+    <div class="slider-img">
+      <img loading="eager" src="{{ img }}" alt="{{ imgAlt }}" {% if imgWidth %}width="{{ imgWidth }}"{% endif %} {% if imgHeight %}height="{{ imgHeight }}"{% endif %} />
+    </div>
   {% endif %}
   <div class="slider-panel">
+    {% if subtitle %}
+      <div class="slider-subtitle">{{ subtitle | raw }}</div>
+    {% endif %}
     <div class="slider-title">{{ title }}</div>
-    <div class="slider-content">{{ content | raw}}</div>
+    <div class="slider-content">{{ content | raw }}</div>
   </div>
   {% if link %}
     <a class="btn" href="{{ link }}">{{ linkLabel }}</a>
