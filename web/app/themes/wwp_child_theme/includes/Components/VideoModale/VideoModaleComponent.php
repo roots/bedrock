@@ -22,15 +22,15 @@ class VideoModaleComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Videp embed"})
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Video ID"})
      */
-    protected $video; //Embed Youtube url (ex: https://www.youtube.com/embed/BQ8tw0D8SuU)
+    protected $video; // Youtube ID
 
     /**
      * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Image"})
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Image"})
      */
-    protected $image; //Complete image tag (ex: <img src="/app/uploads/2020/05/btn-video-modale.png" alt="">)
+    protected $image;
 
     /**
      * @var boolean
@@ -52,25 +52,21 @@ class VideoModaleComponent extends AbstractComponent
 
     /**
      * @param string $video
-     *
      * @return VideoModaleComponent
      */
     public function setVideo(string $video): VideoModaleComponent
     {
         $this->video = $video;
-
         return $this;
     }
 
     /**
      * @param string $image
-     *
      * @return VideoModaleComponent
      */
     public function setImage(string $image): VideoModaleComponent
     {
         $this->image = $image;
-
         return $this;
     }
 
@@ -94,7 +90,7 @@ class VideoModaleComponent extends AbstractComponent
 
         $markup .= '" data-modaal-type="video" data-modaal-close-text="Fermer" data-modaal-close-aria-label="Fermer (Cliquer sur escape pour fermer)" href="';
         if (!empty($this->video)) {
-            $markup .= $this->video;
+            $markup .= 'https://www.youtube.com/embed/'.$this->video;
         }
         $markup .= '"' ;
         if (!empty($this->title)) {
