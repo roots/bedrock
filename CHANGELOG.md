@@ -1,3 +1,9 @@
+### 1.15.0: 2020-12-04
+
+* chore(deps): Bump roots/bedrock-autoloader from 1.0.3 to 1.0.4 ([#564](https://github.com/roots/bedrock/pull/564))
+* Upgrade to vlucas/phpdotenv:5.2 ([#563](https://github.com/roots/bedrock/pull/563))
+* chore(deps-dev): Bump squizlabs/php_codesniffer from 3.5.6 to 3.5.8 ([#550](https://github.com/roots/bedrock/pull/550))
+
 ### 1.14.4: 2020-11-13
 
 * chore(deps): Bump roots/wordpress from 5.5.1 to 5.5.3 ([#556](https://github.com/roots/bedrock/pull/556))
