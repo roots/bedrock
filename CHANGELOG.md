@@ -1,3 +1,7 @@
+### 1.15.1: 2020-12-08
+
+* chore(deps): Bump roots/wordpress from 5.5.3 to 5.6 ([#567](https://github.com/roots/bedrock/pull/567))
+
 ### 1.15.0: 2020-12-04
 
 * chore(deps): Bump roots/bedrock-autoloader from 1.0.3 to 1.0.4 ([#564](https://github.com/roots/bedrock/pull/564))
