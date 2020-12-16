@@ -1,0 +1,27 @@
+$background-image-height: 450px;
+
+//Backgroundimage : le bloc image occupe le fond de la card
+.item.backgroundimage,
+.item.has-link.backgroundimage a {
+  height: $background-image-height;
+
+  .img-wrap {
+    height: 100%;
+  }
+
+  .card-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 4rem;
+  }
+
+  @media (max-width: $medium - 1) {
+
+  }
+}
