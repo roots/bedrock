@@ -37,6 +37,9 @@ if (file_exists($env_config)) {
  */
 define('WP_HOME', env('WP_HOME'));
 define('WP_SITEURL', env('WP_SITEURL'));
+if (!isset($_SERVER['HTTPS']) && strpos(WP_HOME, 'https') !== false) {
+    $_SERVER['HTTPS'] = 'on';
+}
 
 /**
  * Custom Content Directory
