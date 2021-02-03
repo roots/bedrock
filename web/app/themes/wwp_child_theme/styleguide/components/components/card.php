@@ -23,6 +23,7 @@
                 <li>reverse</li>
                 <li>landscape</li>
                 <li>backgroundimage</li>
+                <li>has icons</li>
             </ul>
         </div>
     </div>
@@ -39,9 +40,10 @@
         ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
-        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
+        ->setCategories(['catégorie 1', 'catégorie 2'])
     ;
     echo $card1->getMarkup();
     echo '</div>';
@@ -52,7 +54,7 @@
         ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
-        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
         ->setReverse('true')
@@ -67,10 +69,24 @@
         ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
-        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
         ->setBackgroundimage('true')
+    ;
+    echo $card2->getMarkup();
+    echo '</div>';
+
+    echo '<div>
+        <p class="subTitle">Avec option "has-icons"</p>';
+    $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+    $card2
+        ->setSubtitle('Surtitre lorem ipsum')
+        ->setTitle('Lorem ipsum dolor consectetur')
+        ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+        ->setLink('/vers-une-page')
+        ->setCategories(['catégorie 1', 'catégorie 2'])
+        ->setHasicons('true')
     ;
     echo $card2->getMarkup();
     echo '</div>';
@@ -82,7 +98,7 @@
         ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
-        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
         ->setLandscape('true')
@@ -96,7 +112,7 @@
         ->setSubtitle('Surtitre lorem ipsum')
         ->setTitle('Lorem ipsum dolor consectetur')
         ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
-        ->setImage('<img src="https://via.placeholder.com/150" alt="">')
+        ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
         ->setLink('/vers-une-page')
         ->setDate('12 septembre 2020')
         ->setReverse('true')

@@ -1,0 +1,27 @@
+//Backgroundimage : le bloc image occupe le fond de la card
+.item.has-icons,
+.item.has-link.has-icons a {
+
+  // Exemple d'ajout d'icône qur une catégorie
+  .card-cat-categorie-1,
+  .card-cat-categorie-2  {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    background: none;
+  }
+
+  .card-cat-categorie-1 {
+
+    &::before {
+      @include svgIcon('icone-presse');
+    }
+  }
+
+  .card-cat-categorie-2 {
+
+    &::before {
+      @include svgIcon('icone-actu');
+    }
+  }
+}

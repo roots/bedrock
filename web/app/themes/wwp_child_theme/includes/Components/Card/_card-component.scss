@@ -6,11 +6,10 @@
 /*Variables*/
 $image-height: 250px;
 $image-landscape-height: 360px;
-$background-image-height: 450px;
 $image-mobile-height: 50vw;
 
 .item {
-  border: 1px solid $gray-300;
+  border-radius: 10px;
 
   &,
   &.has-link a {
@@ -29,6 +28,8 @@ $image-mobile-height: 50vw;
     height: $image-height;
     width: 100%;
     overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 
     a {
       position: relative;
@@ -55,7 +56,7 @@ $image-mobile-height: 50vw;
   .card-block {
     flex-grow: 1;
     width: 100%;
-    padding: 3rem;
+    padding: 5rem;
   }
 
   .card-subtitle {
@@ -168,6 +169,9 @@ $image-mobile-height: 50vw;
 
   .img-wrap {
     order: 1;
+    border-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 
   @media (max-width: $medium - 1) {
@@ -178,31 +182,6 @@ $image-mobile-height: 50vw;
   }
 }
 
-//Backgroundimage : le bloc image occupe le fond de la card
-.item.backgroundimage,
-.item.has-link.backgroundimage a {
-  height: $background-image-height;
-
-  .img-wrap {
-    height: 100%;
-  }
-
-  .card-block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 4rem;
-  }
-
-  @media (max-width: $medium - 1) {
-
-  }
-}
 
 /*TYPES*/
 .video-list .item {

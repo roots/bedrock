@@ -143,6 +143,22 @@ $zindex-debug        : 7000 !default;
 // Color zone
 // ----------
 
+// Project's colors
+$nav-lightblue: #F5F7F9;  // Fond bleu très clair
+$nav-blue: #103494;       // Actualités
+$nav-mediumblue: #2F629F;   // Chapo
+$nav-darkblue: #0E1D44;   // Texte (base)
+$nav-overlay-blue: rgba(9,27,74,0.84); //Modale blue overlay
+$nav-green: #3FAE99;      // Presse
+$nav-lightgreen: #5ADAC2; // Filets
+$nav-overlay-green: rgba(10,80,67,0.84); //Modale green overlay
+$nav-red: #E40828;        // Emploi
+
+$color-base      : $nav-darkblue;
+$background-base : white;
+$color-brand    : $nav-darkblue;
+$color-primary  : $nav-red;
+
 // Color names
 $white    : #fff !default;
 $gray-100 : #f8f9fa !default;
@@ -162,10 +178,7 @@ $green-500  : #5CB85C !default;
 $orange-500 : #F0AD4E !default;
 $red-500    : #D9534F !default;
 
-// Semantic colors
-$color-brand    : $blue-500;
-$color-primary  : $blue-500;
-
+// Alert colors
 $color-success  : $green-500;
 $color-info     : $blue-300;
 $color-warning  : $orange-500;
@@ -174,9 +187,6 @@ $color-error    : $red-500;
 $color-inverse  : $gray-800;
 $color-ghost    : transparent;
 $color-muted    : $gray-200;
-
-$color-base      : black;
-$background-base : $white;
 
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
 $forms-color                : $gray-800 !default;
