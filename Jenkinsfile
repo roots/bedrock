@@ -147,7 +147,7 @@ pipeline {
                 try {
 	                sh '/usr/bin/php7.4 /usr/local/bin/composer install --no-dev --prefer-dist';
                 } catch(exc){
-                    handleException('Composer install failed', exc);
+                    handleException('Composer install failed.', exc);
                 }
 	        } else {
 	        	echo 'Skipped composer install';
