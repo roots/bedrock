@@ -5,13 +5,14 @@
 
 /* Variables */
 /* ------------- */
-$mobileheaderHeight: $burger-btn-size;
+$mobileheaderHeight: 8rem;
 $header-bg-color: white;
 /* ------------- */
 
 .site-header {
   position: relative;
   z-index: 16;
+  height: $mobileheaderHeight;
   background-color: $header-bg-color;
   opacity: 1;
 
@@ -36,11 +37,12 @@ $header-bg-color: white;
     .inner-header {
       width: 100%;
     }
-
   }
+
   @media (max-width: $medium) {
     padding: 0;
   }
+
   @media (max-width: $medium - 1) {
     display: block;
     position: fixed;
@@ -53,8 +55,6 @@ $header-bg-color: white;
     }
 
     .inner-header {
-      display: grid;
-      grid-template-columns: 1fr $burger-btn-size;
 
       .nav-button {
         order: 1;
