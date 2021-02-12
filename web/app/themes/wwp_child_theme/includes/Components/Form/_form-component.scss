@@ -36,6 +36,10 @@ form {
     background-color: $input-bgcolor;
     border-radius: $input-border-radius;
     border: none;
+
+    @media (max-width: $medium - 1) {
+      font-size: 1.6rem !important;
+    } //Pour iOS
   }
 
   input {
@@ -58,12 +62,17 @@ form {
   [type="week"],
   select,
   textarea {
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      height: $input-height; //Pour IE
-    }
     min-height: $input-height;
     padding: 0.5rem 4rem .5rem 2rem;
     box-shadow: $input-box-shadow;
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: $input-height; //Pour IE
+    }
+
+    @media (max-width: $medium - 1) {
+      font-size: 1.6rem;
+    } // Pour éviter le zoom iOS
   }
 
   // reset knacss
