@@ -1,3 +1,10 @@
+### 1.15.2: 2021-02-11
+
+* chore(deps): Bump roots/wordpress from 5.5.3 to 5.6.1 ([#573](https://github.com/roots/bedrock/pull/573))
+* chore(deps): Bump composer/installers from 1.9.0 to 1.10.0 ([#569](https://github.com/roots/bedrock/pull/569))
+* chore(deps): Bump vlucas/phpdotenv from 5.2.0 to 5.3.0 ([#570 ](https://github.com/roots/bedrock/pull/570))
+*  Add WP_POST_REVISIONS as an option ([#572](https://github.com/roots/bedrock/pull/572))
+
 ### 1.15.1: 2020-12-08
 
 * chore(deps): Bump roots/wordpress from 5.5.3 to 5.6 ([#567](https://github.com/roots/bedrock/pull/567))
