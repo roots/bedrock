@@ -27,7 +27,7 @@ class ReseauxSociauxComponent extends AbstractComponent
         foreach ($reseauxOpts as $reseau) {
             $link = get_option('wonderwp_rs_' . $reseau);
             if (!empty($link)) {
-                $reseauxActifs[] = '<li class="' . $reseau . '"><a href="' . $link . '" target="_blank">' . __('rs.follow.' . $reseau, WWP_THEME_TEXTDOMAIN) . '</a></li>';
+                $reseauxActifs[] = '<li class="' . $reseau . '"><a href="' . $link . '" target="_blank" aria-label="' . __('rs.follow.' . $reseau, WWP_THEME_TEXTDOMAIN) . ' (nouvelle fenêtre)">' . __('rs.follow.' . $reseau, WWP_THEME_TEXTDOMAIN) . '</a></li>';
             }
         }
 
