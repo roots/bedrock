@@ -9,7 +9,9 @@ $image-landscape-height: 36rem;
 $image-mobile-height: 50vw;
 
 .item {
-  border-radius: 10px;
+  background: white;
+  box-shadow: 0 16px 40px 0 rgba(41,57,95,0.30);
+  border-radius: 6px;
 
   &,
   &.has-link a {
@@ -55,39 +57,65 @@ $image-mobile-height: 50vw;
 
   .card-block {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     padding: 2.5rem;
   }
 
   .card-subtitle {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 4px;
+    font-family: var(--font-bold);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--orange);
+    letter-spacing: 0.05em;
   }
 
   .card-title {
-    @extend .h3-like;
-    text-transform: none;
+    display: block;
     max-width: 100%;
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-medium);
+    font-size: 2.2rem;
+    text-transform: none;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
   }
 
   .card-date {
-    margin-bottom: 2rem;
+    order: -1;
+    @extend .card-subtitle;
   }
 
   ul.card-categories {
+    order: 1;
     list-style: none;
+    margin: 2rem 0;
     padding-left: 0;
 
     li {
-      @extend .tag;
-      margin: 0 1rem 1rem 0;
+      flex-basis: auto;
+      margin: 3px 1rem 3px 0;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: var(--font-book);
+      color: var(--orange);
+
+      /* &::after {
+        content: "•";
+        margin-left: 8px;
+      }*/
     }
   }
 
   .card-text {
     clear: both;
+    letter-spacing: 0.05em;
+    font-size: 1.4rem;
   }
 
   //Champs spécifiques
@@ -116,9 +144,8 @@ $image-mobile-height: 50vw;
   }
 
   .card-readmore-link {
-    @extend .btn;
-    margin: 2rem auto 0 auto;
-    justify-content: center;
+    order: 2;
+    @extend .btn--inline;
   }
 
   button, .btn {

@@ -43,7 +43,7 @@
 
   @media (max-width: $tiny) {
     width: 100%;
-    white-space: normal;
+    //white-space: normal;
   }
 }
 
@@ -137,6 +137,55 @@ a[class*="btn"] {
   &:focus {
     color: $color-base;
     background-color: white;
+  }
+}
+
+// Bouton En savoir plus
+.btn--inline {
+  position: relative;
+  height: auto;
+  min-height: auto;
+  margin: 2rem 0;
+  padding: 5px 0 5px 40px;
+  font-family: var(--font-medium);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: none;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: 26px;
+    width: 26px;
+    background-color: var(--orange);
+    border-radius: 50%;
+    transform: translateY(-50%) scale(1);
+    transform-origin: center;
+    transition: all 0.4s;
+  }
+
+  &::after {
+    @include svgIcon('arrow-btn--white');
+    left: 5px;
+  }
+
+  &:hover,
+  &:focus {
+
+    &::before {
+      transform: translateY(-50%) scale(1.2);
+    }
   }
 }
 
