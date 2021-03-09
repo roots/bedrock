@@ -50,11 +50,11 @@
 .btn {
   @extend %btn;
   color: white;
-  background-color: $color-base;
-  box-shadow: 0 0 0 2px $color-base;
+  background-color: var(--orange);
+  box-shadow: 0 0 0 2px var(--orange);
 
   &:focus, &:hover, &:active {
-    color: $color-base;
+    color: var(--orange);
     background-color: white;
   }
 }
