@@ -21,16 +21,21 @@ $gutter: 16px;
 // ----------
 // Fonts zone
 // ----------
+// Import : via theme.scss et critical.scss
 
-// Font families
-// 1. Import Google fonts here, and define variations in styleguide/base/fonts
-//@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@700&family=Roboto:wght@300;400;500&display=swap");
-//Commenté car ça donne une erreur dans le socle pour le moment
+// Fonts variables
+:root {
+  --font-light: 'geomanistlight';
+  --font-regular: 'geomanistregular';
+  --font-book: 'geomanistbook';
+  --font-medium: 'geomanistmedium';
+  --font-bold: 'geomanistbold';
+}
 
-// 2. Define families variables (titles, Knacss…)
-$font-family-base      : 'Roboto', sans-serif !default;
-$font-family-headings  : 'Alegreya Sans', sans-serif !default;
-$font-family-secondary : 'Alegreya Sans', sans-serif !default;
+// 2. Define families variables for Knacss
+$font-family-base      : var(--font-regular), sans-serif !default;
+$font-family-headings  : var(--font-book), sans-serif !default;
+$font-family-secondary : var(--font-book), sans-serif !default;
 $font-family-monospace : consolas, courier, monospace !default; // font for code and samples
 
 // ...and weights variables
@@ -40,16 +45,17 @@ $weight-regular : 400 !default;
 $weight-medium  : 500 !default;
 $weight-bold    : 700 !default;
 
+/*Examples if Google fonts are used*/
 // 3. Define families extends
-%font-family-roboto {
+/*%font-family-roboto {
   font-family: $font-family-base;
 }
 %font-family-sriracha {
   font-family: $font-family-secondary;
-}
+}*/
 
 // 4. Use families + weight extends
-.font-base {
+/*.font-base {
   @extend %font-family-roboto;
   font-weight: $weight-book;
 }
@@ -57,6 +63,10 @@ $weight-bold    : 700 !default;
   @extend %font-family-roboto;
   font-weight: $weight-bold;
 }
+.font-secondary {
+  @extend %font-family-sriracha;
+}*/
+
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : 1.6rem !default;
