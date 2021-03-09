@@ -21,6 +21,10 @@ $image-mobile-height: 50vw;
     width: 100%; //For IE11
   }
 
+  &.has-link a {
+    height: 100%;
+  }
+
   a {
     text-decoration: none;
   }
@@ -59,6 +63,7 @@ $image-mobile-height: 50vw;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     padding: 2.5rem;
   }
