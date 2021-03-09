@@ -4,6 +4,7 @@
 /* ------------- */
 $stickableHeaderHeight: 80px;
 $stickedHeaderHeight: 40px;
+$alertHeight: 48px; // Si bandeau alerte
 
 @media (min-width: $medium) {
 
@@ -24,6 +25,14 @@ $stickedHeaderHeight: 40px;
           height: 100%;
         }
       }
+
+      &.has-wwp-alerte {
+        padding-top: calc(#{$stickableHeaderHeight} + #{$alertHeight});
+
+        .site-header {
+          top: $alertHeight;
+        }
+      } // Si bandeau alerte
     }
 
     //Lors du scroll, le header devient sticky

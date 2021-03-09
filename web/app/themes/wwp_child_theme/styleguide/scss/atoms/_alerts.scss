@@ -9,10 +9,11 @@
 
 /* ------------- */
 
-
 .alert {
   padding: 15px;
   margin-bottom: 1rem;
+  color: white;
+  background-color: var(--black);
   border-bottom: 4px solid;
 }
 
@@ -34,7 +35,9 @@
   border-bottom-color: $alert-warning;
 }
 
-.alert-error, .form-errors {
+.alert-danger,
+.alert-error,
+.form-errors {
   color: $alert-error;
   background-color: $alert-error-bg;
   border-bottom-color: $alert-error;
