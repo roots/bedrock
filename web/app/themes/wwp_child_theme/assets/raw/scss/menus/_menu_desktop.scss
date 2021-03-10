@@ -5,7 +5,7 @@
 
 /* Variables */
 /* ------------- */
-$desktopheaderHeight: 56px;
+$desktopheaderHeight: 57px;
 $menu-item-m1-color: $color-base;
 $menu-item-m1-color-active: $color-base;
 $menu-item-m1-bgcolor: white;
@@ -41,7 +41,6 @@ $menu-item-m1-bgcolor-active: $gray-200;
     li {
       position: relative;
       text-align: center;
-      font-family: $font-family-base;
       font-size: 1.5rem;
       line-height: 1;
     }
@@ -62,15 +61,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
         position: relative;
         margin-right: 4rem;
         padding: 2rem 0;
-        border-bottom: 1px solid transparent;
-      }
-
-      &.current_page_ancestor,
-      &.current_page_item {
-
-        > a {
-          border-bottom-color: $menu-item-color;
-        }
+        border-bottom: 2px solid transparent;
       }
 
       &.page_item_has_children {
@@ -81,25 +72,34 @@ $menu-item-m1-bgcolor-active: $gray-200;
 
         > a::after {
           position: absolute;
-          right: -30px;
+          right: -25px;
           top: calc(50% - 4px);
           content: "";
           display: block;
           background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
           background-repeat: no-repeat;
-          height: 9px;
-          width: 17px;
-          transform: rotate(0);
+          height: 7px;
+          width: 12px;
+          transform: rotate(-90deg);
           transition: transform 0.4s;
+        }
+      }
+
+      &.current_page_ancestor,
+      &.current_page_item {
+
+        > a {
+          border-bottom-color: var(--orange);
+
+          &::after {
+            background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s-orange.svg");
+            transform: rotate(0);
+          }
         }
       }
 
       &:hover,
       &:focus {
-
-        > a {
-          border-bottom-color: $color-base;
-        }
 
         > a::after {
           transform: rotate(180deg);
@@ -112,6 +112,8 @@ $menu-item-m1-bgcolor-active: $gray-200;
       top: $desktopheaderHeight;
       z-index: 1;
       list-style: none;
+      background: white;
+      box-shadow: 0 16px 40px 0 rgba(41,57,95,0.20);
 
       body.has-stuck-header & {
         top: 40px;
@@ -120,6 +122,8 @@ $menu-item-m1-bgcolor-active: $gray-200;
       li {
         margin-left: 0;
         min-width: 320px;
+        font-family: var(--font-regular);
+        font-size: 1.4rem;
         text-align: left;
       }
 
@@ -127,10 +131,25 @@ $menu-item-m1-bgcolor-active: $gray-200;
         position: relative;
         display: block;
         height: 100%;
-        padding: 2rem 3rem;
+        padding: 1.5rem 3rem;
         text-decoration: none;
         color: $menu-item-m1-color;
         background-color: $menu-item-m1-bgcolor;
+      }
+
+      li:first-child > a {
+        padding-top: 2rem;
+      }
+
+      li:last-child > a {
+        padding-bottom: 3rem;
+      }
+
+      li.current_page_item {
+
+        > a {
+          color: var(--orange);
+        }
       }
 
       //Pour IE11
@@ -214,7 +233,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
     }
 
     ul.level1 {
-      top: 56px;
+      top: 60px;
 
       li {
         min-width: 280px;

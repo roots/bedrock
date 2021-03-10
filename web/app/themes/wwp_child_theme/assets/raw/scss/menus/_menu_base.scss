@@ -4,28 +4,34 @@
 /* ----------------------------- */
 
 ul.header-menu {
+  display: block;
+  text-align: left;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+
+  &, ul {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  li {
+    font-family: var(--font-medium);
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  li > a {
     display: block;
-    text-align: left;
+    padding: 20px;
+    color: $menu-item-color;
+    background-color: $menu-item-bgcolor;
+    text-decoration: none;
     position: relative;
-    width: 100%;
-    margin-bottom: 0;
+    cursor: pointer;
+  }
 
-    &, ul {
-        padding-left: 0;
-        list-style: none;
-    }
-
-    li > a {
-        display: block;
-        padding: 20px;
-        color: $menu-item-color;
-        background-color: $menu-item-bgcolor;
-        text-decoration: none;
-        position: relative;
-        cursor: pointer;
-    }
-
-    ul.children {
-        background-color: $menu-item-bgcolor;
-    }
+  ul.children {
+    background-color: $menu-item-bgcolor;
+  }
 }

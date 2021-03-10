@@ -18,11 +18,6 @@ $extra-extra-large  : 1440px !default; // .container-xl
 
 $gutter: 16px;
 
-// ----------
-// Fonts zone
-// ----------
-// Import : via theme.scss et critical.scss
-
 // Fonts variables
 :root {
   --font-light: 'geomanistlight';
@@ -31,6 +26,18 @@ $gutter: 16px;
   --font-medium: 'geomanistmedium';
   --font-bold: 'geomanistbold';
 }
+
+// Colors variables
+:root {
+  --black: #2E2632;
+  --grey: #ECEDF0;
+  --orange: #FF503A;
+}
+
+// ----------
+// Fonts zone
+// ----------
+// Import : via theme.scss et critical.scss
 
 // 2. Define families variables for Knacss
 $font-family-base      : var(--font-regular), sans-serif !default;
@@ -197,13 +204,6 @@ $color-error    : $red-500;
 $color-inverse  : $gray-800;
 $color-ghost    : transparent;
 $color-muted    : $gray-200;
-
-// Project's colors
-:root {
-  --black: #2E2632;
-  --grey: #ECEDF0;
-  --orange: #FF503A;
-}
 
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
 $forms-color                : $gray-800 !default;
