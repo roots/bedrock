@@ -3,14 +3,13 @@
 /* ==Header menu desktop + tablet (<=768px)      */
 /* ----------------------------- */
 
-/* Variables */
-/* ------------- */
-$desktopheaderHeight: 57px;
-$menu-item-m1-color: $color-base;
-$menu-item-m1-color-active: $color-base;
-$menu-item-m1-bgcolor: white;
-$menu-item-m1-bgcolor-active: $gray-200;
-/* ------------- */
+:root {
+  --desktopheaderHeight: 57px;
+  --menu-item-m1-color: var(--black);
+  --menu-item-m1-color-active: var(--orange);
+  --menu-item-m1-bgcolor: white;
+  --menu-item-m1-bgcolor-active: var(--grey);
+}
 
 @media (min-width: $medium) {
 
@@ -109,7 +108,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
 
     // Deuxième niveau
     ul.level1 {
-      top: $desktopheaderHeight;
+      top: var(--desktopheaderHeight);
       z-index: 1;
       list-style: none;
       background: white;
@@ -133,8 +132,8 @@ $menu-item-m1-bgcolor-active: $gray-200;
         height: 100%;
         padding: 1.5rem 3rem;
         text-decoration: none;
-        color: $menu-item-m1-color;
-        background-color: $menu-item-m1-bgcolor;
+        color: var(--menu-item-m1-color);
+        background-color: var(--menu-item-m1-bgcolor);
       }
 
       li:first-child > a {
@@ -148,7 +147,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
       li.current_page_item {
 
         > a {
-          color: var(--orange);
+          color: var(--menu-item-m1-color-active);
         }
       }
 
@@ -159,7 +158,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
 
       > li:hover, > li:focus {
         > a {
-          background-color: $menu-item-m1-bgcolor-active;
+          background-color: var(--menu-item-m1-bgcolor-active);
         }
       }
     }
@@ -219,9 +218,7 @@ $menu-item-m1-bgcolor-active: $gray-200;
         text-transform: none;
       }
     }
-
   }
-
 }
 
 @media (max-width: $very-large) {

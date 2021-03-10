@@ -6,6 +6,10 @@
 
 .breadcrumb-wrapper {
   @extend .container;
+
+  @media (max-width: $medium - 1) {
+    display: none !important;
+  }
 }
 
 ul.breadcrumb {

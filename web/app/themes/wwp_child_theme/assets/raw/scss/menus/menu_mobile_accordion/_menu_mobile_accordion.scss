@@ -1,9 +1,13 @@
 /*MENU MOBILE ACCORDION*/
 //Pour activer cette variante, ajouter la classe .menu-mobile-accordion à .navigation-wrapper
 
-/* Variables */
-$menu-item-height: 60px;
-$menu-item-bgcolor-active: $gray-400;
+:root {
+  --menu-item-height: 60px;
+  --menu-item-color-active: var(--orange);
+  --menu-item-bgcolor-active: transparent;
+  --menu-item-parent-color: var(--orange);
+  --menu-item-parent-bgcolor: transparent;
+}
 
 @media (max-width: $medium - 1) {
 
@@ -12,13 +16,43 @@ $menu-item-bgcolor-active: $gray-400;
 
     ul.header-menu {
       height: auto;
+      margin-top: 3rem;
 
       li {
         height: auto;
 
         > a {
           justify-content: center;
-          height: $menu-item-height;
+          height: var(--menu-item-height);
+          border-bottom: none;
+        }
+      }
+
+      .parent-page {
+        font-size: 1.6rem;
+        background-color: var(--menu-item-bgcolor-active);
+
+        > a {
+          justify-content: center;
+          padding: 0;
+          color: var(--menu-item-parent-color);
+          background-color: var(--menu-item-parent-bgcolor);
+        }
+
+        span:first-of-type {
+          justify-self: center;
+        }
+
+        span:last-of-type {
+          display: none;
+        }
+      }
+
+      li.current_page_ancestor,
+      li.current_page_item {
+
+        > a {
+          color: var(--menu-item-color-active);
         }
       }
 
@@ -28,18 +62,23 @@ $menu-item-bgcolor-active: $gray-400;
         > a {
           flex-direction: row;
           justify-content: center;
+          align-items: center;
           font-size: 1.6rem;
-          background-color: $menu-item-bgcolor-active;
+          color: var(--menu-item-parent-color);
+          background-color: var(--menu-item-parent-bgcolor);
         }
 
         > a::after {
           position: static;
-          width: 20px;
-          height: 20px;
-          margin-top: -3px;
+          content: "";
+          display: block;
+          height: 7px;
+          width: 12px;
           margin-left: 1rem;
-          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/plus.svg");
-          transform: rotate(0deg);
+          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
+          background-repeat: no-repeat;
+          transform: rotate(0);
+          transition: transform 0.4s;
         }
       }
 
@@ -47,7 +86,7 @@ $menu-item-bgcolor-active: $gray-400;
 
         > a {
           text-transform: uppercase;
-          font-weight: $weight-bold;
+          font-family: var(--font-medium);
         }
       }
 
@@ -61,13 +100,18 @@ $menu-item-bgcolor-active: $gray-400;
         transform: none !important;
       }
 
+      ul.level1 li {
+        font-family: var(--font-regular);
+        font-size: 1.4rem;
+      }
+
       ul.mobile-nav-links {
         display: none;
       }
 
       li.page_item_has_children.is-opened {
         > a::after {
-          transform: rotate(45deg);
+          transform: rotate(180deg);
         }
         > .children {
           display: block;

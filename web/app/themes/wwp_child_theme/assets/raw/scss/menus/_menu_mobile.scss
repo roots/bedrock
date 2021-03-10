@@ -3,17 +3,14 @@
 /* ==Header mobile (<768px)      */
 /* ----------------------------- */
 
-/* Variables */
-/* ------------- */
-$mobileheaderHeight: 80px;
-$header-bg-color: #ffffff;
-$menu-item-height: 60px;
-$menu-item-color: $color-base;
-$menu-item-bgcolor: $gray-200;
-$menu-item-color-active: $color-base;
-$menu-item-bgcolor-active: $gray-400;
-$menu-item-m0-color: $color-base;
-/* ------------- */
+:root {
+  --mobileheaderHeight: 80px;
+  --header-bg-color: white;
+  --menu-item-height: 60px;
+  --menu-item-color: var(--black);
+  --menu-item-bgcolor: transparent;
+  --menu-item-m0-color: var(--black);
+}
 
 @media (max-width: $medium - 1) {
 
@@ -27,7 +24,7 @@ $menu-item-m0-color: $color-base;
     height: 100vh;
     width: 100vw;
     z-index: 3;
-    background-color: $header-bg-color !important;
+    background-color: var(--header-bg-color) !important;
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
@@ -44,7 +41,7 @@ $menu-item-m0-color: $color-base;
 
   .site-header .navigation-wrapper {
     position: fixed;
-    top: $mobileheaderHeight;
+    top: var(--mobileheaderHeight);
     overflow-y: auto;
   }
 
@@ -54,15 +51,13 @@ $menu-item-m0-color: $color-base;
     align-items: stretch;
     height: 200vh;
     margin: 0;
-    /*overflow-y: auto;*/
-    /*overflow-x: hidden;*/
 
     li {
-      height: $menu-item-height;
+      height: var(--menu-item-height);
       margin-left: 0;
       font-size: 1.5rem;
-      line-height: 2rem;
-      background-color: $menu-item-bgcolor;
+      //line-height: 2rem;
+      background-color: var(--menu-item-bgcolor);
 
       > a {
         position: relative;
@@ -70,13 +65,9 @@ $menu-item-m0-color: $color-base;
         align-items: center;
         height: 100%;
         padding: 20px;
-        color: $menu-item-color !important;
-        background-color: $menu-item-bgcolor;
+        background-color: var(--menu-item-bgcolor);
+        border-bottom: 1px solid var(--grey);
       }
-    }
-
-    li, li:first-child {
-      border-bottom: 1px solid $gray-400;
     }
 
     ul.level1 li {
@@ -85,26 +76,27 @@ $menu-item-m0-color: $color-base;
 
     li.current_page_ancestor,
     li.current_page_item {
-      background-color: $menu-item-bgcolor-active;
 
       > a {
-        color: $menu-item-color-active;
+        color: var(--menu-item-color-active);
+        background-color: var(--menu-item-bgcolor-active);
       }
     }
 
     li.page_item_has_children {
 
       > a::after {
+        position: absolute;
+        right: -25px;
+        top: calc(50% - 4px);
         content: "";
         display: block;
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-r-small-grey.svg");
+        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
         background-repeat: no-repeat;
-        width: 20px;
-        height: 25px;
-        transform: translateY(-60%);
+        height: 7px;
+        width: 12px;
+        transform: rotate(-90deg);
+        transition: transform 0.4s;
       }
     }
 
@@ -122,12 +114,12 @@ $menu-item-m0-color: $color-base;
       opacity: 1;
       visibility: visible;
       pointer-events: all;
-      box-shadow: 0 60px 0 0 $menu-item-bgcolor;
+      box-shadow: 0 60px 0 0 var(--menu-item-bgcolor);
     }
 
     ul.mobile-nav-links {
       display: grid;
-      grid-template-columns: $menu-item-height 1fr;
+      grid-template-columns: var(--menu-item-height) 1fr;
       margin-left: 0;
     }
 
@@ -141,7 +133,7 @@ $menu-item-m0-color: $color-base;
         margin-top: 0;
         margin-bottom: 0;
         padding: 0;
-        background-color: #ffffff;
+        background-color: white;
         text-indent: -999px;
         border-bottom: 0 !important;
         border-radius: 0;
@@ -160,26 +152,6 @@ $menu-item-m0-color: $color-base;
         }
       }
     }
-
-    .parent-page {
-      font-size: 1.6rem;
-      background-color: $menu-item-bgcolor-active;
-
-      > a {
-        justify-content: center;
-        padding: 0;
-        background-color: $menu-item-bgcolor-active;
-      }
-
-      span:first-of-type {
-        justify-self: center;
-        font-family: $font-family-headings;
-      }
-
-      span:last-of-type {
-        display: none;
-      }
-    }
   }
 
   // Burger button (overrides button styles)
@@ -191,8 +163,8 @@ $menu-item-m0-color: $color-base;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: $mobileheaderHeight !important;
-    width: $mobileheaderHeight;
+    height: var(--mobileheaderHeight) !important;
+    width: var(--mobileheaderHeight);
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
@@ -258,7 +230,6 @@ $menu-item-m0-color: $color-base;
       }
     }
   }
-
 }
 
 
