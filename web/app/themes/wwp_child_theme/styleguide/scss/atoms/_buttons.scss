@@ -8,7 +8,7 @@
   min-height: $button-height;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 0 6rem 0 7rem;
+  padding: 0 6rem;
   font-size: 1.2rem;
   font-family: $font-family-secondary;
   font-weight: $weight-bold;
@@ -41,9 +41,10 @@
     text-decoration: none;
   }
 
-  @media (max-width: $tiny) {
-    width: 100%;
-    //white-space: normal;
+  @media (max-width: $medium - 1) {
+    height: $button-height-small;
+    min-height: $button-height-small;
+    padding: 0 2rem;
   }
 }
 

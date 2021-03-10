@@ -1,5 +1,10 @@
 @import "../../../../../../../node_modules/bxslider/dist/jquery.bxslider.css";
 
+/*Variables*/
+$slideHeight: 45vw;
+$slideHeightMobile: auto;
+$slideMaxHeight: 50rem;
+
 .no-js .wdf-slider {
   overflow: hidden;
   display: flex;
@@ -27,6 +32,17 @@
   img {
     min-width: 100%;
     min-height: 100%;
+  }
+}
+
+/*Slider height*/
+.bx-viewport,
+.sliderItem .slider-img {
+  height: $slideHeight;
+  max-height: $slideMaxHeight;
+
+  @media (max-width: $medium - 1) {
+    height: $slideHeightMobile !important;
   }
 }
 
@@ -126,27 +142,21 @@
 
   @media (max-width: $medium - 1) {
 
-    .bx-prev {
-      left: 15px !important;
-    }
 
-    .bx-next {
-      right: 15px !important;
-    }
-
-    .bx-pager {
-      bottom: 2rem;
-    }
   }
 
   @media (max-width: $tiny) {
 
-    .bx-pager {
-      bottom: 2rem;
+    .bx-prev {
+      left: 10px !important;
+    }
+
+    .bx-next {
+      right: 10px !important;
     }
 
     .bx-pager {
-      display: none;
+      bottom: 1rem;
     }
   }
 }

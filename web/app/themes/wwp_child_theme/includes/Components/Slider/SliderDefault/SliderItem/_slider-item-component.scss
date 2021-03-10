@@ -1,12 +1,8 @@
 .sliderItem {
 
-  .slider-img {
-    max-height: 45vw;
-  }
-
   .slider-panel {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 2rem);
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -28,6 +24,7 @@
     position: absolute;
     bottom: 7rem;
     left: 50%;
+    margin: 0;
     transform: translateX(-50%);
   }
 
@@ -51,23 +48,23 @@
 
   @media (max-width: $medium - 1) {
 
-    .slider-panel {
-      top: 40%;
-    }
 
-    .slider-title {
-      font-size: 3rem;
-    }
   }
 
   @media (max-width: $tiny) {
 
     .slider-panel {
-      font-size: 2rem;
+      top: calc(50% - 3rem);
+      font-size: 1.3rem;
+    }
+
+    .slider-title {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
     }
 
     .btn {
-      bottom: 2rem;
+      bottom: 4rem;
     }
   }
 
