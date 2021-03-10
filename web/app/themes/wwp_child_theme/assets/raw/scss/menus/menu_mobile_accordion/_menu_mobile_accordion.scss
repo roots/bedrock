@@ -15,7 +15,8 @@
     height: auto;
 
     ul.header-menu {
-      height: auto;
+      display: block;
+      //height: auto;
       margin-top: 3rem;
 
       li {
@@ -60,9 +61,12 @@
         height: auto;
 
         > a {
+          display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
+          padding-bottom: 0;
+          padding-left: 4rem;
           font-size: 1.6rem;
           color: var(--menu-item-parent-color);
           background-color: var(--menu-item-parent-bgcolor);
@@ -103,6 +107,12 @@
       ul.level1 li {
         font-family: var(--font-regular);
         font-size: 1.4rem;
+
+        a {
+          height: 4rem;
+          padding: 10px;
+          text-align: center;
+        }
       }
 
       ul.mobile-nav-links {
