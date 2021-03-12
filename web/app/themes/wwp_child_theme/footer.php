@@ -14,9 +14,12 @@
 
 <?php if (!\WonderWp\Functions\isAjax()): ?>
 
-    <div class="container-s">
-        <?php do_action('wwp_before_footer'); ?>
+    <div class="before-footer">
+        <div class="container-s">
+            <?php do_action('wwp_before_footer'); ?>
+        </div>
     </div>
+
 
     <footer id="colophon" class="site-footer" role="contentinfo">
 
