@@ -60,7 +60,11 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
+      "php -r \"copy('.env.example', '.env');\"",
+      "composer run remove-legacy-themes"
+    ],
+    "remove-legacy-themes": [
+      "rm -rf web/wp/wp-content/themes/twenty{ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen}"
     ],
     "test": [
       "phpcs"
