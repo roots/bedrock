@@ -1,7 +1,9 @@
-//Backgroundimage : le bloc image occupe le fond de la card
+// Quand cette classe est ajoutée, des icônes sont ajoutées devant certains labels (date, place, actu)
+// Toujours ajoutées dans la Newsroom
 .item.has-icons,
 .item.has-link.has-icons a {
 
+  // Exemple d'icônes
   li {
     display: flex;
     align-items: center;
@@ -11,23 +13,24 @@
     background: none;
 
     &::before {
-      flex: 0 0 40px;
-      margin-right: 1rem;
+      margin-right: 10px;
+      margin-left: -5px;
     }
-  }
 
-  // Exemple d'icônes
-  .card-cat-categorie-1 {
-
-    &::before {
+    &.card-cat-categorie-1::before {
       @include svgIcon('icone-presse');
     }
-  }
 
-  .card-cat-categorie-2 {
-
-    &::before {
+    &.card-cat-categorie-2::before {
       @include svgIcon('icone-actu');
+    }
+
+    &.card-cat-categorie-3::before {
+      @include svgIcon('icone-date');
+    }
+
+    &.card-cat-categorie-4::before {
+      @include svgIcon('icone-lieu');
     }
   }
 }

@@ -19,6 +19,22 @@
     padding: 4rem;
     color: white;
   }
+
+  .card-date,
+  .card-readmore-link {
+    color: white;
+  }
+
+  .card-readmore-link {
+
+    &::before {
+      background-color: white;
+    }
+
+    &::after {
+      @include svgIcon('arrow-btn--orange');
+    }
+  }
 }
 
 .item.has-link.backgroundimage a {

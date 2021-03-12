@@ -1,0 +1,24 @@
+// Newsroom actu cards
+.module-newsroom {
+
+  // Actualité
+  .actu-item {
+    @extend .backgroundimage;
+    background-color: var(--orange);
+
+    .card-date::before {
+      @include svgIcon('icone-actu-white');
+    }
+
+    .img-wrap {
+      background-color: var(--orange);
+      opacity: 0.3;
+    }
+  }
+
+  // Evénement
+  .event-item {
+    background-color: var(--grey);
+  }
+
+}
