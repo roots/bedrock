@@ -1,3 +1,6 @@
+### 1.15.3: 2021-03-12
+* chore(deps): Bump roots/wordpress from 5.6.2 to 5.7 ([#578](https://github.com/roots/bedrock/pull/578))
+
 ### 1.15.2: 2021-02-11
 
 * chore(deps): Bump roots/wordpress from 5.5.3 to 5.6.1 ([#573](https://github.com/roots/bedrock/pull/573))
