@@ -1,3 +1,9 @@
+$barreMobileHeight: 60px;
+
+body.has-barre-menu-mobile {
+  padding-bottom: $barreMobileHeight;
+}
+
 .mobile-direct-links {
 
   // Affichage sur mobile seulement
@@ -9,6 +15,7 @@
   left: 0;
   bottom: 0;
   z-index: $zindex-navigation;
+  height: $barreMobileHeight;
   width: 100%;
   background-color: white;
 
