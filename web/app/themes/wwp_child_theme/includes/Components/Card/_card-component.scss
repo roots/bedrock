@@ -11,20 +11,15 @@ $border-radius: 6px;
 
 .item {
   background: white;
-  box-shadow: 0 16px 40px 0 rgba(41,57,95,0.30);
   border-radius: $border-radius;
 
   &,
-  &.has-link a {
+  &.has-link > a {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%; //For IE11
   }
-
-/*  &.has-link a {
-    height: 100%;
-  }*/
 
   a {
     text-decoration: none;
@@ -141,18 +136,6 @@ $border-radius: 6px;
     font-weight: $weight-bold;
   }
 
-  .biography {
-
-  }
-
-  .email {
-
-  }
-
-  .phone {
-
-  }
-
   .card-readmore-link {
     order: 2;
     @extend .btn--inline;
@@ -161,6 +144,16 @@ $border-radius: 6px;
   button, .btn {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  // Si lien global
+  &.has-link > a {
+    height: 100%;
+    box-shadow: 0 16px 40px 0 rgba(41,57,95,0.30);
+
+    &:hover, &:focus {
+      box-shadow: 0 16px 40px 0 rgba(41,57,95,0.50);
+    }
   }
 
   @media (max-width: $medium) {

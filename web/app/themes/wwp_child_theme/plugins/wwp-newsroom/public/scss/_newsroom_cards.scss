@@ -19,6 +19,15 @@
   // Evénement
   .event-item {
     background-color: var(--grey);
+
+    // Si lien global
+    &.has-link {
+      background-color: transparent;
+
+      a {
+        background-color: var(--grey);
+      }
+    }
   }
 
 }
