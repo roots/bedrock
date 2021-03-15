@@ -3,10 +3,9 @@
 /* ==Global layout      */
 /* ----------------------------- */
 
-/* Variables */
-$pagination-color: $color-primary;
-
-/* ------------- */
+:root {
+  --pagination-color: var(--black)
+}
 
 .pagination {
   display: flex;
@@ -17,15 +16,16 @@ $pagination-color: $color-primary;
 
   li {
     display: inline-block;
-    margin: 0 .5rem;
+    margin: 0 10px;
+    font-family: var(--font-light);
   }
 
   li > a {
-    padding: 6px 11px 5px 11px;
-    color: $pagination-color;
-    background: #fff;
+    padding: 6px 0 5px 0;
+    color: var(--pagination-color);
     text-decoration: none;
     transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
   }
 
   li > a.navprev,
@@ -36,29 +36,34 @@ $pagination-color: $color-primary;
     font-size: 1.2rem;
   }
 
-  li > a.navprev{
+  li > a.navprev {
     text-align: left;
+
     &::before {
       content: '';
       display: block;
-      @include svgIcon('chevron-l-small-grey');
+      @include svgIcon('pagination-left');
       margin-right: 1rem;
     }
   }
 
-  li > a.navnext{
+  li > a.navnext {
     text-align: right;
+
     &::after {
       content: '';
       display: block;
-      @include svgIcon('chevron-r-small-grey');
+      @include svgIcon('pagination-right');
       margin-left: 1rem;
     }
   }
 
-  li.select > a {
-    color: #fff;
-    background: $pagination-color;
+  li.select {
+    font-family: var(--font-medium);
+
+    > a {
+      border-bottom-color: var(--pagination-color);
+    }
   }
 
   li > a:hover, li > a:focus {

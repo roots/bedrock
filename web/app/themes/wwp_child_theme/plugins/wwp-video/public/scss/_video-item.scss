@@ -1,0 +1,39 @@
+$imageHeight: 22rem;
+$playHeight: 65px;
+
+.video-item {
+
+  .img-wrap {
+    height: $imageHeight;
+    background-color: var(--black);
+
+    img {
+      opacity: 0.65;
+    }
+
+    &::before {
+      content: none !important;
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    top: calc(#{$imageHeight} / 2 - #{$playHeight} / 2);
+    left: 50%;
+    width: 100%;
+    max-width: 90%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    color: white;
+    pointer-events: none;
+    transform: translate(-50%, 0);
+
+    &::before {
+      flex: 0 0 74px;
+      @include svgIcon('video');
+      margin-right: 10px;
+    }
+  }
+}

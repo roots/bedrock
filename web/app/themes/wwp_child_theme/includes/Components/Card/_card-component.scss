@@ -7,11 +7,12 @@
 $image-height: 22rem;
 $image-landscape-height: 36rem;
 $image-mobile-height: 50vw;
+$border-radius: 6px;
 
 .item {
   background: white;
   box-shadow: 0 16px 40px 0 rgba(41,57,95,0.30);
-  border-radius: 6px;
+  border-radius: $border-radius;
 
   &,
   &.has-link a {
@@ -21,9 +22,9 @@ $image-mobile-height: 50vw;
     width: 100%; //For IE11
   }
 
-  &.has-link a {
+/*  &.has-link a {
     height: 100%;
-  }
+  }*/
 
   a {
     text-decoration: none;
@@ -34,8 +35,8 @@ $image-mobile-height: 50vw;
     height: $image-height;
     width: 100%;
     overflow: hidden;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
 
     a {
       position: relative;
