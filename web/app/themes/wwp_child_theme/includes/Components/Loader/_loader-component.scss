@@ -1,4 +1,6 @@
-/*scss/atoms/_loader.scss*/
+:root {
+  --loader-bgcolor: var(--grey);
+}
 
 // Specific styleguide
 .component {
@@ -12,12 +14,12 @@
     display: inline-block;
     width: 44px;
     height: 44px;
-    background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff.svg") no-repeat $gray-600 !important;
+    background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff.svg") no-repeat !important;
     &--small {
         transform: scale(.5);
     }
     &--alt {
-        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff_alt.svg") no-repeat transparent !important;
+        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff_alt.svg") no-repeat var(--loader-bgcolor) transparent !important;
     }
 }
 
@@ -30,7 +32,7 @@
         display: block;
         width: 44px;
         height: 44px;
-        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff_alt.svg") no-repeat center center!important;
+        background: url("#{$get-path-to-assets}/raw/images/loaders/loader_puff.svg") no-repeat center center!important;
         position: absolute;
         right: 1rem;
         top: calc(50% - 22px);
