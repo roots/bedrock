@@ -1,5 +1,18 @@
+$image-height: 12rem;
+
 .post-component {
   box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
+
+  > * {
+    transition: opacity .3s ease;
+  }
+
+  .card-block {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 
   .post-author,
   .card-date,
@@ -7,7 +20,65 @@
     font-family: var(--font-bold);
   }
 
+  .post-author,
+  .card-date {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .post-author {
+    order: -1;
+    margin-right: 1rem;
+
+    &::before {
+      @include svgIcon('twitter-blue');
+      margin-right: 5px;
+      margin-left: -6px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '@';
+      }
+    }
+  }
+
   .card-date {
     color: var(--black);
+  }
+
+  .img-wrap {
+    height: $image-height;
+
+    img {
+      min-height: auto;
+      min-width: auto !important;
+      max-width: 100%;
+    }
+  }
+
+  // Bouton modérateur
+  &.post-moderated > * {
+    opacity: .2;
+  }
+
+  &.post-moderated:hover > * {
+    opacity: .4;
+  }
+
+  &.loading > * {
+    opacity: .6;
+  }
+
+  .post-moderation {
+    opacity: 1 !important;
   }
 }

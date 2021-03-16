@@ -4,9 +4,11 @@
   .event-location {
     display: flex !important;
     align-items: center;
+    flex-wrap: wrap;
     padding: 0;
     font-family: var(--font-bold);
     font-size: 1.2rem;
+    line-height: 1;
     background: none;
 
     &::before {
@@ -15,11 +17,28 @@
     }
   }
 
-  .card-date::before {
-    @include svgIcon('icone-date');
+  .card-date {
+
+    &::before {
+      @include svgIcon('icone-date');
+    }
+
+    .separator {
+      &::before,
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 0.1em;
+      }
+    }
   }
 
   .event-location::before {
     @include svgIcon('icone-lieu');
+  }
+
+  //Heures
+  .partie-heure {
+    display: none;
   }
 }
