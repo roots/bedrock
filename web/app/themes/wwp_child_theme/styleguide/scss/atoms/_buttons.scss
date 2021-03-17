@@ -8,7 +8,7 @@
   min-height: $button-height;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 0 6rem;
+  padding: 0 5rem;
   font-size: 1.2rem;
   font-family: $font-family-secondary;
   font-weight: $weight-bold;
@@ -190,16 +190,6 @@ a[class*="btn"] {
     &::before {
       transform: translateY(-50%) scale(1.2);
     }
-  }
-}
-
-// Bouton lien sortant
-.btn[target=_blank] {
-  @extend .btn;
-
-  &::after {
-    @include svgIcon('extlink');
-    margin-left: 0.1em;
   }
 }
 

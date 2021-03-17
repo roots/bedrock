@@ -30,8 +30,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
             VideoModaleComponent::class,
             DropdownComponent::class,
             CardComponent::class,
-            ButtonComponent::class,
-            TestMolecule::class
+            ButtonComponent::class
         ]);
 
         parent::register ($container);
