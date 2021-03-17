@@ -97,9 +97,13 @@ class VideoModaleComponent extends AbstractComponent
             $markup .= 'title="'.$this->title.'"';
         }
         $markup .= '>';
+
         if (!empty($this->image)) {
-            $markup .= $this->image;
+            $markup .= '<div class="video-image-wrapper">
+                   ' . $this->image . '
+                </div>';
         }
+
         $markup .= '</a>';
 
         return $markup;

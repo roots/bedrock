@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ----------------------------- */
 /* ==Video commons      */
 /* ----------------------------- */
@@ -11,40 +10,48 @@ $video-height: 450px;
   position: relative;
   height: $video-height;
   display: block;
-
-  span {
-    @extend .visually-hidden;
-  }
 }
 
 //Video trigger
 .video-trigger {
   @include absolute-center;
-  z-index: 3;
-  display: block;
-  height: 53px;
-  min-height: 53px;
-  width: 53px;
+  z-index: 4;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: auto;
   padding: 0;
   border-radius: 0;
   border: none;
   cursor: pointer;
   appearance: none;
   background-color: transparent;
-  transition: all .4s;
+
+  span {
+    font-family: var(--font-medium);
+    font-size: 2.2rem;
+    text-transform: none;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    color: white;
+    pointer-events: none;
+  }
 
   &::after {
-    @include svgIcon('play');
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all .4s;
+    flex: 0 0 74px;
+    @include svgIcon('video');
+    margin-right: 10px;
+    transform: scale(1);
+    transition: all 0.4s;
+    pointer-events: none;
   }
 
   &:hover,
   &:focus {
     &::after {
-      transform: scale(1.5);
+      transform: scale(1.1);
     }
   }
 }
@@ -113,8 +120,33 @@ $video-height: 450px;
   &.video-active {
 
     .video-player {
-      z-index: 4;
+      z-index: 3;
       opacity: 1;
+    }
+
+    .video-trigger {
+      display: block;
+      top: 0;
+      right: 0;
+      left: auto;
+      transform: none !important;
+
+      &,
+      &::after {
+        height: 40px;
+        min-height: 40px;
+        width: 44px;
+        margin: 0 !important;
+      }
+
+      &::after {
+        @include svgIcon('video-close');
+        transform: none;
+      }
+
+      span {
+        display: none;
+      }
     }
   }
 }

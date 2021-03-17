@@ -1,53 +1,71 @@
+/* ----------------------------- */
+/* ==Video commons      */
+/* ----------------------------- */
+
+//Variables
+$video-height: 450px;
+
 a.modaal[data-modaal-type="video"] {
   position: relative;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 300px;
+  height: $video-height;
+  text-decoration: none;
   overflow: hidden;
 
   &::before,
-  &::after,
-  img {
-    @include absolute-center;
-  }
-
-  &::before,
   &::after {
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center;
+    z-index: 3;
   }
 
   &::before {
-    z-index: 1;
-    content: "";
-    display: block;
-    height: 50px;
-    width: 50px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    transition: transform 0.8s;
+    @include svgIcon('video');
+    margin-right: 10px;
+    transform: scale(1);
+    transform-origin: center;
+    transition: all 0.4s;
   }
 
   &::after {
-    @include svgIcon('play-video-thumb');
-    left: calc(50% + 1px);
-    z-index: 2;
+    content: attr(title);
+    font-family: var(--font-medium);
+    font-size: 2.2rem;
+    text-transform: none;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    color: white;
+    pointer-events: none;
   }
 
-  img {
-    display: block;
-    height: auto;
-    min-height: 100%;
-    width: auto;
-    min-width: 100%;
-    max-width: none;
+  .video-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+    img {
+      display: block;
+      height: auto;
+      min-height: 100%;
+      width: auto;
+      min-width: 100%;
+      max-width: none;
+    }
   }
 
   &:hover,
   &:focus {
 
     &::before {
-      transform: translate(-50%, -50%) scale(1.3);
+      transform: scale(1.1);
+    }
+
+    .video-image-wrapper::after {
+      background-color: rgba(0, 0, 0, 0.4);
     }
   }
 
