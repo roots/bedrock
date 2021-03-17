@@ -23,32 +23,19 @@ $trigger-bgcolor: $color-primary; //button
     z-index: 1;
 
     .button {
-      position: relative;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      height: 100%;
-      min-height: auto;
       width: 100%;
       margin: 0;
-      font-size: 1.7rem;
-      appearance: none;
+      padding: 0 3rem;
       border-radius: 0;
-      box-shadow: none;
-
-      &,
-      &:hover,
-      &:focus {
-        color: $trigger-color;
-        background-color: $trigger-bgcolor;
-      }
     }
   }
 
   .dropdown-icon {
-    @include svgIcon('dropdown-icon');
+    @include svgIcon('chevron-b');
+    pointer-events: none;
     transform-origin: center;
-    transform: rotate(180deg);
+    transform: rotate(0);
     transition: all .4s;
   }
 
@@ -68,12 +55,11 @@ $trigger-bgcolor: $color-primary; //button
   &.open {
 
     .dropdown-icon {
-      transform: rotate(0deg);
+      transform: rotate(180deg);
     }
 
     .dropdown-content {
       transform: translateY(0);
     }
   }
-
 }

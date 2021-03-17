@@ -30,8 +30,7 @@ $border-radius: 6px;
     height: $image-height;
     width: 100%;
     overflow: hidden;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-radius: $border-radius $border-radius 0 0;
 
     a {
       position: relative;
@@ -149,10 +148,11 @@ $border-radius: 6px;
   // Si lien global
   &.has-link > a {
     height: 100%;
-    box-shadow: 0 16px 40px 0 rgba(41,57,95,0.30);
+    border-radius: 6px;
+    box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
 
     &:hover, &:focus {
-      box-shadow: 0 16px 40px 0 rgba(41,57,95,0.50);
+      box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
     }
   }
 
@@ -178,13 +178,28 @@ $border-radius: 6px;
 
 /*OPTIONS*/
 //Paysage : image/texte en vis-à-vis
-.item.landscape,
-.item.has-link.landscape a {
+.item.landscape {
   flex-direction: row;
+  align-items: stretch;
   width: 100%;
 
+  &.has-link {
+  display: block;
+
+    a {
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+
+  .img-wrap,
+  .card-block {
+    flex: 0 0 50%;
+  }
+
   .img-wrap {
-    height: 100%;
+    height: auto; //Bug flex-child
+    border-radius: $border-radius 0 0 $border-radius;
   }
 
   @media (max-width: $medium - 1) {
@@ -201,8 +216,8 @@ $border-radius: 6px;
   .img-wrap {
     order: 1;
     border-radius: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
   }
 
   @media (max-width: $medium - 1) {

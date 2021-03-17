@@ -1,4 +1,8 @@
 //Backgroundimage : le bloc image occupe le fond de la card
+
+/*Variables*/
+$border-radius: 6px;
+
 .item.backgroundimage {
   display: block;
 
@@ -8,6 +12,12 @@
     left: 0;
     display: block;
     height: 100%;
+    background-color: var(--black);
+    border-radius: $border-radius;
+
+    img {
+      opacity: 0.65;
+    }
   }
 
   .card-block {
