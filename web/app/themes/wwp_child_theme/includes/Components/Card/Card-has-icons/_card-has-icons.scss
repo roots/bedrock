@@ -4,33 +4,37 @@
 .item.has-link.has-icons a {
 
   // Exemple d'icônes
-  li {
+  .card-date,
+  .event-location,
+  [class*="card-cat-categorie-"] {
     display: flex;
     align-items: center;
-    padding: 0;
-    font-family: var(--font-bold);
-    font-size: 1.2rem;
-    background: none;
 
     &::before {
       margin-right: 10px;
       margin-left: -5px;
     }
+  }
 
-    &.card-cat-categorie-1::before {
-      @include svgIcon('icone-presse');
-    }
+  .card-cat-categorie-1::before {
+    @include svgIcon('icone-presse');
+    flex: 0 0 30px;
+  }
 
-    &.card-cat-categorie-2::before {
-      @include svgIcon('icone-actu');
-    }
+  .card-cat-categorie-2::before {
+    @include svgIcon('icone-actu');
+    flex: 0 0 30px;
+  }
 
-    &.card-cat-categorie-3::before {
-      @include svgIcon('icone-date');
-    }
+  .card-cat-categorie-3::before,
+  .card-date::before {
+    @include svgIcon('icone-date');
+    flex: 0 0 25px;
+  }
 
-    &.card-cat-categorie-4::before {
-      @include svgIcon('icone-lieu');
-    }
+  .card-cat-categorie-4::before,
+  .event-location::before {
+    @include svgIcon('icone-lieu');
+    flex: 0 0 25px;
   }
 }
