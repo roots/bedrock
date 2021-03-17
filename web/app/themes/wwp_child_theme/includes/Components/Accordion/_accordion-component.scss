@@ -1,11 +1,12 @@
 // Accordion
-:root{
-  --accordion-theme-color: white;
-  --accordion-theme-bgcolor: #{$color-base};
+:root {
+  --accordion-theme-color: var(--black);
+  --accordion-theme-bgcolor: white;
+  --accordion-theme-btn-color: var(--orange);
+  --accordion-theme-hovercolor: var(--grey);
 }
 
-/*Variables*/
-$accordion-border-radius: 3px;
+$accordion-border-radius: 6px;
 
 .js-accordion {
   button, div {
@@ -21,26 +22,25 @@ $accordion-border-radius: 3px;
   padding-right: 8rem;
   padding-left: 5rem;
   text-align: left;
-  color: var(--accordion-theme-bgcolor);
-  background-color: var(--accordion-theme-color);
+  color: var(--accordion-theme-color);
+  background-color: var(--accordion-theme-bgcolor);
   box-shadow: none;
   white-space: normal;
   min-height: 5rem;
   height: initial;
-  border: 1px solid var(--accordion-theme-bgcolor);
+  border: 1px solid var(--accordion-theme-color);
   font-size: 1.4rem;
   border-radius: $accordion-border-radius;
   cursor: pointer;
 
   &:hover,
   &:focus,
-  &:active{
-    color: var(--accordion-theme-color);
-    background-color: var(--accordion-theme-bgcolor);
+  &:active {
+    background-color: var(--accordion-theme-hovercolor);
   }
 
-  &:focus{
-    outline:0;
+  &:focus {
+    outline: 0;
   }
 
   &:before {
@@ -62,20 +62,27 @@ $accordion-border-radius: 3px;
     content: '';
     display: block;
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
+    right: -1px;
+    top: -1px;
+    height: calc(100% + 2px);
     width: 5rem;
-    background-color: var(--accordion-theme-bgcolor);
+    background-color: var(--accordion-theme-btn-color);
     z-index: 1;
     border-radius: 0 $accordion-border-radius $accordion-border-radius 0;
   }
 
   &[aria-expanded="true"] {
+    color: var(--accordion-theme-bgcolor);
+    background-color: var(--accordion-theme-color);
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+
     &:before {
       transform: rotate(90deg);
+    }
+
+    &:after {
+      border-radius: 0 $accordion-border-radius 0 0;
     }
   }
 
@@ -91,7 +98,7 @@ $accordion-border-radius: 3px;
 .js-accordion__panel {
   background: #fff;
   position: relative;
-  border: 1px solid var(--accordion-theme-color);
+  border: 1px solid var(--accordion-theme-bgcolor);
   padding: 0 5rem;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -134,8 +141,9 @@ $accordion-border-radius: 3px;
 
 
 // Accordéon autre style (page contrôle/collectif & valeurs)
-.accordeon-style2{
+.accordeon-style2 {
   counter-reset: accordeon;
+
   button.js-accordion__header {
     counter-increment: accordeon;
     margin-top: -5px;
@@ -146,7 +154,8 @@ $accordion-border-radius: 3px;
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
-    &:before{
+
+    &:before {
       content: counter(accordeon) ".";
       font-size: 3rem;
       transform: none;
@@ -155,26 +164,41 @@ $accordion-border-radius: 3px;
       right: initial;
       left: 3rem;
     }
-    &:after{
+
+    &:after {
       display: none;
     }
-    &[aria-expanded="true"]{
+
+    &[aria-expanded="true"] {
       font-size: 2.4rem;
       padding-left: 8rem;
       padding-top: 3.6rem;
-      &:before{
+
+      &:before {
         font-size: 5rem;
       }
     }
   }
+
   button.js-accordion__header:nth-of-type(4n+1),
-  button.js-accordion__header:nth-of-type(4n+1) + div{ background: #DC9B74; }
+  button.js-accordion__header:nth-of-type(4n+1) + div {
+    background: #DC9B74;
+  }
+
   button.js-accordion__header:nth-of-type(4n+2),
-  button.js-accordion__header:nth-of-type(4n+2) + div{ background: #BD8462; }
+  button.js-accordion__header:nth-of-type(4n+2) + div {
+    background: #BD8462;
+  }
+
   button.js-accordion__header:nth-of-type(4n+3),
-  button.js-accordion__header:nth-of-type(4n+3) + div{ background: #946344; }
+  button.js-accordion__header:nth-of-type(4n+3) + div {
+    background: #946344;
+  }
+
   button.js-accordion__header:nth-of-type(4n+4),
-  button.js-accordion__header:nth-of-type(4n+4) + div{ background: #D37F59; }
+  button.js-accordion__header:nth-of-type(4n+4) + div {
+    background: #D37F59;
+  }
 
   .js-accordion__panel {
     border: none;
@@ -182,9 +206,10 @@ $accordion-border-radius: 3px;
     color: #fff;
     margin-top: -3px;
     padding-top: 0;
-    padding-left:3rem;
-    padding-right:3rem;
-    &[aria-hidden="false"]{
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    &[aria-hidden="false"] {
       padding-top: 2rem;
       padding-bottom: 4rem;
     }
