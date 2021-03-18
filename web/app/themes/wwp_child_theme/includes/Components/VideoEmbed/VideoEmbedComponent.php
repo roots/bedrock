@@ -79,14 +79,13 @@ class VideoEmbedComponent extends AbstractComponent
                 </div>';
             }
 
-            $markup .= '<button class="video-trigger"><span>'.trad('video.play.label', WWP_THEME_TEXTDOMAIN).' ' . $this->title . '</span></button>
+            $markup .= '<button class="video-trigger" aria-label="' . trad('video.play.label', WWP_THEME_TEXTDOMAIN) . '" ><span> ' . $this->title . '</span></button>
 
             <div class="video-player" data-video="' . $this->video . '">
 
             </div>';
 
         $markup .= '</div>'; /*.video-embed-wrapper*/
-
 
         return $markup;
     }

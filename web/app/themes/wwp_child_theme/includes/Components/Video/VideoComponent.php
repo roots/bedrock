@@ -126,7 +126,7 @@ class VideoComponent extends AbstractComponent
             </div>';
         }
 
-        $markup .= '<button class="video-trigger"><span>' . trad('video.play.label', WWP_THEME_TEXTDOMAIN) . ' ' . $this->title . '</span></button>';
+        $markup .= '<button class="video-trigger" aria-label="' . trad('video.play.label', WWP_THEME_TEXTDOMAIN) . '" ><span> ' . $this->title . '</span></button>';
 
         $markup .= '
         <div class="video-player-wrap" id="' . $playerWrapId . '">
