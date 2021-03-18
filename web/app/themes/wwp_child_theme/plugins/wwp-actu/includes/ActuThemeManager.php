@@ -3,9 +3,7 @@
 namespace WonderWp\Plugin\Actu\Child;
 
 use WonderWp\Component\DependencyInjection\Container;
-use WonderWp\Component\Service\ServiceInterface;
 use WonderWp\Plugin\Actu\ActuManager;
-use WonderWp\Plugin\Actu\Child\Service\ActuThemeHookService;
 
 class ActuThemeManager extends ActuManager
 {

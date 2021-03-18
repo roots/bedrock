@@ -48,7 +48,7 @@ $video-height: 450px;
     pointer-events: none;
   }
 
-  &:hover,
+  .no-touch &:hover,
   &:focus {
     &::after {
       transform: scale(1.1);
@@ -110,7 +110,7 @@ $video-height: 450px;
 //Animations
 .video-wrapper {
 
-  &:hover,
+  .no-touch &:hover,
   &:focus {
     .video-image-wrapper::after {
       background-color: rgba(0, 0, 0, 0.4);
@@ -129,7 +129,9 @@ $video-height: 450px;
       top: 0;
       right: 0;
       left: auto;
+      opacity: 0;
       transform: none !important;
+      transition: opacity 0.4s;
 
       &,
       &::after {
@@ -146,6 +148,13 @@ $video-height: 450px;
 
       span {
         display: none;
+      }
+    }
+
+    .no-touch &:hover,
+    &:focus {
+      .video-trigger {
+        opacity: 1;
       }
     }
   }

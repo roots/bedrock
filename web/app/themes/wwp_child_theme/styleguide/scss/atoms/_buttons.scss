@@ -39,7 +39,7 @@
 
   &:active,
   &:focus,
-  &:hover {
+  .no-touch &:hover {
     text-decoration: none;
   }
 
@@ -57,7 +57,7 @@
   background-color: var(--orange);
   box-shadow: 0 0 0 2px var(--orange);
 
-  &:focus, &:hover, &:active {
+  &:focus, .no-touch &:hover, &:active {
     color: var(--orange);
     background-color: white;
   }
@@ -72,7 +72,7 @@ button {
       background-color: $background-color;
       box-shadow: $border;
 
-      &:focus, &:hover, &:active {
+      &:focus, .no-touch &:hover, &:active {
         color: $background-color;
         background-color: $color;
       }
@@ -101,7 +101,7 @@ a[class*="btn"] {
       transition: transform 0.4s;
     }
 
-    &:focus, &:hover, &:active {
+    &:focus, .no-touch &:hover, &:active {
 
       &::after {
         background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
@@ -117,7 +117,7 @@ a[class*="btn"] {
       background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
     }
 
-    &:focus, &:hover, &:active {
+    &:focus, .no-touch &:hover, &:active {
 
       &::after {
         background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
@@ -137,7 +137,7 @@ a[class*="btn"] {
   background-color: $color-base;
   box-shadow: 0 0 0 2px $color-base inset;
 
-  &:hover,
+  .no-touch &:hover,
   &:focus {
     color: $color-base;
     background-color: white;
@@ -184,7 +184,7 @@ a[class*="btn"] {
     left: 5px;
   }
 
-  &:hover,
+  .no-touch &:hover,
   &:focus {
 
     &::before {

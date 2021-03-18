@@ -33,10 +33,11 @@ $accordion-border-radius: 6px;
   border-radius: $accordion-border-radius;
   cursor: pointer;
 
-  &:hover,
+  .no-touch &:hover,
   &:focus,
   &:active {
     background-color: var(--accordion-theme-hovercolor);
+    border-color: var(--accordion-theme-hovercolor);
   }
 
   &:focus {
@@ -116,10 +117,6 @@ $accordion-border-radius: 6px;
   h2:before {
     content: none;
   }
-
-  @media (max-width: $tiny) {
-
-  }
 }
 
 .js-accordion__header[aria-expanded="true"] + .js-accordion__panel {
@@ -146,8 +143,7 @@ $accordion-border-radius: 6px;
 
   button.js-accordion__header {
     counter-increment: accordeon;
-    margin-top: -5px;
-    margin: 0;
+    margin: -5px 0 0 0;
     padding-right: 2rem;
     padding-left: 6rem;
     font-size: 2rem;
@@ -178,26 +174,6 @@ $accordion-border-radius: 6px;
         font-size: 5rem;
       }
     }
-  }
-
-  button.js-accordion__header:nth-of-type(4n+1),
-  button.js-accordion__header:nth-of-type(4n+1) + div {
-    background: #DC9B74;
-  }
-
-  button.js-accordion__header:nth-of-type(4n+2),
-  button.js-accordion__header:nth-of-type(4n+2) + div {
-    background: #BD8462;
-  }
-
-  button.js-accordion__header:nth-of-type(4n+3),
-  button.js-accordion__header:nth-of-type(4n+3) + div {
-    background: #946344;
-  }
-
-  button.js-accordion__header:nth-of-type(4n+4),
-  button.js-accordion__header:nth-of-type(4n+4) + div {
-    background: #D37F59;
   }
 
   .js-accordion__panel {

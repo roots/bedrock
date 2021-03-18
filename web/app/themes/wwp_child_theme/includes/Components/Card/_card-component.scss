@@ -44,9 +44,10 @@ $image-mobile-height: 50vw;
       left: 50%;
       float: none;
       min-height: 100%;
+      max-height: 200%;
       width: auto;
       min-width: 100%;
-      max-width: none;
+      max-width: 200%;
       margin: 0;
       transform: translate(-50%, -50%);
       transform-origin: center center;
@@ -150,7 +151,8 @@ $image-mobile-height: 50vw;
     border-radius: 6px;
     box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
 
-    &:hover, &:focus {
+    .no-touch &:hover,
+    .no-touch &:focus {
       box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
     }
   }
