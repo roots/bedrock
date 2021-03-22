@@ -7,9 +7,9 @@ export class ModalComponent extends PewComponent {
   constructor(element, passedOptions) {
 
     let defaultOptions = {
-      background: "#E4E4E4",
-      overlay_opacity: .9,
-      fullscreen: true,
+      //background: "#E4E4E4",
+      //overlay_opacity: .9,
+      fullscreen: false,
       close_text: "Fermer"
     };
 
