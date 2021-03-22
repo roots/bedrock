@@ -3,7 +3,10 @@
   --accordion-theme-color: var(--black);
   --accordion-theme-bgcolor: white;
   --accordion-theme-btn-color: var(--orange);
-  --accordion-theme-hovercolor: var(--grey);
+  --accordion-theme-hovercolor: var(--black);
+  --accordion-theme-hoverbackground: white;
+  --accordion-theme-activecolor: var(--black);
+  --accordion-theme-activebackground: white;
 }
 
 $accordion-border-radius: 6px;
@@ -24,20 +27,21 @@ $accordion-border-radius: 6px;
   text-align: left;
   color: var(--accordion-theme-color);
   background-color: var(--accordion-theme-bgcolor);
-  box-shadow: none;
   white-space: normal;
   min-height: 5rem;
   height: initial;
-  border: 1px solid var(--accordion-theme-color);
+  border: 0;
   font-size: 1.4rem;
   border-radius: $accordion-border-radius;
+  box-shadow: var(--theme-box-shadow);
   cursor: pointer;
 
   .no-touch &:hover,
   &:focus,
   &:active {
-    background-color: var(--accordion-theme-hovercolor);
-    border-color: var(--accordion-theme-hovercolor);
+    color: var(--accordion-theme-hovercolor);
+    background-color: var(--accordion-theme-hoverbackground);
+    box-shadow: var(--theme-box-shadow-active);
   }
 
   &:focus {
@@ -73,8 +77,9 @@ $accordion-border-radius: 6px;
   }
 
   &[aria-expanded="true"] {
-    color: var(--accordion-theme-bgcolor);
-    background-color: var(--accordion-theme-color);
+    font-family: var(--font-medium);
+    color: var(--accordion-theme-activecolor);
+    background-color: var(--accordion-theme-activebackground);
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -103,8 +108,9 @@ $accordion-border-radius: 6px;
   padding: 0 5rem;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  overflow: hidden;
   font-size: 1.5rem;
+  box-shadow: var(--theme-box-shadow);
+  overflow: hidden;
   transition: all .4s ease-out;
 
   .js &,
