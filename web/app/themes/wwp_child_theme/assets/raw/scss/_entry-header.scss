@@ -42,10 +42,6 @@ $headerImageHeight: 520px;
   position: relative;
   padding: 0 6rem;
 
-  .entry-title {
-
-  }
-
   &.hasPostThumb {
     min-height: 36rem;
     padding: 0;
@@ -63,7 +59,10 @@ $headerImageHeight: 520px;
     .excerpt {
       color: white;
     }
+  }
 
+  @media (max-width: $medium - 1) {
+    padding: 0;
   }
 }
 
