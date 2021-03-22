@@ -1,3 +1,5 @@
+$pagerHeight: 5rem;
+
 .slider-2cols {
 
   //Slide
@@ -51,13 +53,19 @@
   //Slider global
   .bx-wrapper {
 
+    .bx-controls {
+      position: relative;
+    }
+
     //Pager
     .bx-pager {
-      bottom: -3rem;
+      position: relative;
+      z-index: -1;
+      bottom: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 5rem;
+      height: $pagerHeight;
       width: 28rem;
       padding: 0 2rem 0 6rem;
       background: white;
@@ -99,7 +107,7 @@
       a {
         top: auto;
         left: auto !important;
-        bottom: -2rem;
+        bottom: 1rem;
         width: 24px;
         height: 34px;
         transform: none !important;
