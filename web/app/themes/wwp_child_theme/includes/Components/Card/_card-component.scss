@@ -4,9 +4,11 @@
 *************************/
 
 /*Variables*/
-$image-height: 22rem;
-$image-landscape-height: 36rem;
-$image-mobile-height: 50vw;
+:root {
+  --card-image-height: 22rem;
+  --card-image-landscape-height: 36rem;
+  --card-image-mobile-height: 50vw;
+}
 
 .item {
   background: white;
@@ -26,7 +28,7 @@ $image-mobile-height: 50vw;
 
   .img-wrap {
     position: relative;
-    height: $image-height;
+    height: var(--card-image-height);
     width: 100%;
     overflow: hidden;
     border-radius: var(--theme-border-radius) var(--theme-border-radius) 0 0;
@@ -172,7 +174,7 @@ $image-mobile-height: 50vw;
 
     .img-wrap {
       order: initial;
-      height: $image-mobile-height;
+      height: var(--card-image-mobile-height);
     }
   }
 }
@@ -205,7 +207,7 @@ $image-mobile-height: 50vw;
 
   @media (max-width: $medium - 1) {
     .img-wrap {
-      height: $image-mobile-height;
+      height: var(--card-image-mobile-height);
     }
   }
 }
@@ -224,7 +226,7 @@ $image-mobile-height: 50vw;
   @media (max-width: $medium - 1) {
     .img-wrap {
       order: initial;
-      height: $image-mobile-height;
+      height: var(--card-image-mobile-height);
     }
   }
 }
