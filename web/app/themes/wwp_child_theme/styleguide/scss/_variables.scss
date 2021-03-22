@@ -25,6 +25,11 @@ $gutter: 16px;
   --font-book: 'geomanistbook';
   --font-medium: 'geomanistmedium';
   --font-bold: 'geomanistbold';
+
+  // Thèmes
+  --font-theme-base: var(--font-regular);
+  --font-theme-headings: var(--font-book);
+  --font-theme-secondary: var(--font-medium);
 }
 
 // Colors variables
@@ -32,7 +37,25 @@ $gutter: 16px;
   --black: #2E2632;
   --grey: #ECEDF0;
   --orange: #FF503A;
+
+  // Thèmes
+  --color-theme-base: var(--black);
+  --background-theme-base: white;
+  --color-theme-primary: var(--orange);
+  --color-theme-secondary: var(--grey);
 }
+
+// Thème border-radius
+:root {
+  --theme-border-radius: 6px;
+}
+
+// Thème box shadow
+:root {
+  --theme-box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
+  --theme-box-shadow-active: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
+}
+
 
 // ----------
 // Fonts zone
@@ -121,13 +144,6 @@ $paragraph-margin-bottom: $margin-bottom-base !default;
 
 // Activate hyphenation on small screens
 $hyphens: false !default;
-
-// Border-radius
-$global-border-radius: 6px;
-
-// Box shadow
-$global-box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
-$global-box-shadow-active: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
 
 // ------------
 // Spacing zone
