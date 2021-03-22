@@ -22,8 +22,11 @@ form {
     padding-left: 0;
   }
 
-  fieldset {
-    border: 1px solid $input-bgcolor;
+  fieldset,
+  .form-group-wrap {
+    padding: $fieldset-padding;
+    background-color: var(--grey);
+    border: 1px solid $fieldset-border;
   }
 
   input,
