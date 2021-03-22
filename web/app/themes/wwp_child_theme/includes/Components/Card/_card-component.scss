@@ -10,7 +10,7 @@ $image-mobile-height: 50vw;
 
 .item {
   background: white;
-  border-radius: $border-radius;
+  border-radius: $global-border-radius;
 
   &,
   &.has-link > a {
@@ -29,7 +29,7 @@ $image-mobile-height: 50vw;
     height: $image-height;
     width: 100%;
     overflow: hidden;
-    border-radius: $border-radius $border-radius 0 0;
+    border-radius: $global-border-radius $global-border-radius 0 0;
 
     a {
       position: relative;
@@ -149,11 +149,11 @@ $image-mobile-height: 50vw;
   &.has-link > a {
     height: 100%;
     border-radius: 6px;
-    box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
+    box-shadow: $global-box-shadow;
 
     .no-touch &:hover,
     .no-touch &:focus {
-      box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
+      box-shadow: $global-box-shadow-active;
     }
   }
 
@@ -200,7 +200,7 @@ $image-mobile-height: 50vw;
 
   .img-wrap {
     height: auto; //Bug flex-child
-    border-radius: $border-radius 0 0 $border-radius;
+    border-radius: $global-border-radius 0 0 $global-border-radius;
   }
 
   @media (max-width: $medium - 1) {
@@ -217,8 +217,8 @@ $image-mobile-height: 50vw;
   .img-wrap {
     order: 1;
     border-radius: 0;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $global-border-radius;
+    border-bottom-right-radius: $global-border-radius;
   }
 
   @media (max-width: $medium - 1) {

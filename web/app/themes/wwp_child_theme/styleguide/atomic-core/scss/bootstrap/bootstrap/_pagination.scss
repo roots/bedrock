@@ -5,7 +5,7 @@
   display: inline-block;
   padding-left: 0;
   margin: $line-height-computed 0;
-  border-radius: $border-radius-base;
+  border-radius: $global-border-radius-base;
 
   > li {
     display: inline; // Remove list-style and block-level defaults
@@ -25,13 +25,13 @@
       > a,
       > span {
         margin-left: 0;
-        @include border-left-radius($border-radius-base);
+        @include border-left-radius($global-border-radius-base);
       }
     }
     &:last-child {
       > a,
       > span {
-        @include border-right-radius($border-radius-base);
+        @include border-right-radius($global-border-radius-base);
       }
     }
   }
@@ -79,10 +79,10 @@
 
 // Large
 .pagination-lg {
-  @include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $border-radius-large);
+  @include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $global-border-radius-large);
 }
 
 // Small
 .pagination-sm {
-  @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $border-radius-small);
+  @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $global-border-radius-small);
 }

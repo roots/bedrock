@@ -1,6 +1,6 @@
 // Pagination
 
-@mixin pagination-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+@mixin pagination-size($padding-vertical, $padding-horizontal, $font-size, $global-border-radius) {
   > li {
     > a,
     > span {
@@ -10,13 +10,13 @@
     &:first-child {
       > a,
       > span {
-        @include border-left-radius($border-radius);
+        @include border-left-radius($global-border-radius);
       }
     }
     &:last-child {
       > a,
       > span {
-        @include border-right-radius($border-radius);
+        @include border-right-radius($global-border-radius);
       }
     }
   }
