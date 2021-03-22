@@ -5,6 +5,7 @@
 
 :root {
   --desktopheaderHeight: 81px;
+  --menu-item-m0-color-active: var(--black);
   --menu-item-m1-color: var(--black);
   --menu-item-m1-color-active: var(--orange);
   --menu-item-m1-bgcolor: white;
@@ -45,6 +46,30 @@
       transition: opacity .4s;
     }
 
+    li.page_item_has_children {
+
+      > a::after {
+        position: absolute;
+        right: 20px;
+        top: calc(50% - 4px);
+        content: "";
+        display: block;
+        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
+        background-repeat: no-repeat;
+        height: 7px;
+        width: 12px;
+        transform: rotate(-90deg);
+        transition: transform 0.4s;
+      }
+    }
+
+    li.current_page_ancestor,
+    li.current_page_item {
+      > a {
+        color: var(--menu-item-m1-color-active);
+      }
+    }
+
     // Premier niveau
     > li.m0 {
 
@@ -59,20 +84,11 @@
 
         > a {
           margin-right: 6rem;
-        }
+          color: var(--menu-item-m0-color-active);
 
-        > a::after {
-          position: absolute;
-          right: -25px;
-          top: calc(50% - 4px);
-          content: "";
-          display: block;
-          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
-          background-repeat: no-repeat;
-          height: 7px;
-          width: 12px;
-          transform: rotate(-90deg);
-          transition: transform 0.4s;
+          &::after {
+            right: -25px;
+          }
         }
       }
 
@@ -99,9 +115,10 @@
     }
 
     // Niveaux inférieurs
-    ul.level1, ul.level2 {
+    ul.level1,
+    ul.level2 {
       background: white;
-      box-shadow: 0 16px 40px 0 rgba(41,57,95,0.20);
+      box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.20);
 
       > li:hover, > li:focus {
         > a {
@@ -133,7 +150,6 @@
         height: 100%;
         padding: 1.5rem 3rem;
         text-decoration: none;
-        color: var(--menu-item-m1-color);
         background-color: var(--menu-item-m1-bgcolor);
       }
 
@@ -167,7 +183,7 @@
       }
     }
 
-      //Animations
+    //Animations
     li:hover,
     li:focus,
     li:focus-within,
