@@ -31,6 +31,7 @@
 /* ------------------------- */
 //Variables:
 $gutter  : 2rem; //Largeur gouttière
+$gutterTablet  : 1rem; //Largeur gouttière
 $col     : 3; //Nombre de colonnes
 
 .items-list {
@@ -54,6 +55,18 @@ $col     : 3; //Nombre de colonnes
   //Au cas ou .item n'est pas un enfant direct de .items-list
   li > .item {
     height: 100%;
+  }
+
+  @media (max-width: $large) {
+    margin-right: -$gutterTablet;
+    margin-left: -$gutterTablet;
+
+    li,
+    > .item {
+      flex-basis: calc(100% * 1 / #{$col} - #{$gutterTablet * 2} - .01px);
+      margin-right: $gutterTablet;
+      margin-left: $gutterTablet;
+    }
   }
 
   @media (max-width: $medium - 1) {
