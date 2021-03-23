@@ -26,34 +26,30 @@ $gutter: 16px;
   --font-medium: 'geomanistmedium';
   --font-bold: 'geomanistbold';
 
-  // Thème
+  // theme fonts
   --font-theme-base: var(--font-regular);
   --font-theme-headings: var(--font-book);
   --font-theme-secondary: var(--font-medium);
 }
 
-// Colors variables
+// Theme colors variables
 :root {
-  --black: #2E2632;
-  --grey: #ECEDF0;
-  --orange: #FF503A;
-
-  // Thème
-  --color-theme-base: var(--black);
+  --color-theme-base: #2E2632; //Noir
   --background-theme-base: white;
-  --color-theme-primary: var(--orange);
-  --color-theme-secondary: var(--grey);
+  --color-theme-primary: #FF503A; //Orange
+  --color-theme-secondary: #ECEDF0; //Gris
+  --color-theme-brand: #FF503A; //Orange
 }
 
-// Border-radius - Thème
+// Theme border-radius
 :root {
-  --theme-border-radius: 6px;
+  --border-radius-theme: 6px;
 }
 
-// Box-shadow - Thème
+// Theme box-shadow
 :root {
-  --theme-box-shadow: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
-  --theme-box-shadow-active: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
+  --box-shadow-theme: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
+  --box-shadow-theme-active: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
 }
 
 
@@ -63,9 +59,9 @@ $gutter: 16px;
 // Import : via theme.scss et critical.scss
 
 // 2. Define families variables for Knacss
-$font-family-base      : var(--font-regular), sans-serif !default;
-$font-family-headings  : var(--font-book), sans-serif !default;
-$font-family-secondary : var(--font-book), sans-serif !default;
+$font-family-base      : var(--font-theme-base), sans-serif !default;
+$font-family-headings  : var(--font-theme-headings), sans-serif !default;
+$font-family-secondary : var(--font-theme-secondary), sans-serif !default;
 $font-family-monospace : consolas, courier, monospace !default; // font for code and samples
 
 // ...and weights variables
@@ -99,7 +95,10 @@ $weight-bold    : 700 !default;
 
 
 // Font sizes (1.6rem value is "16px" equivalent)
-$font-size-base : 1.6rem !default;
+:root {
+  --font-size-base: 1.6rem !default; //$font-size-base
+}
+$font-size-base : var(--font-size-base);
 
 $font-sizes: (
     base: (
@@ -133,8 +132,11 @@ $font-sizes: (
 ) !default;
 
 // Line heights
+:root {
+  --line-height-base: 1.5;
+}
 $line-height-s    : 1.1 !default;
-$line-height-base : 1.5 !default;
+$line-height-base : var(--line-height-base) !default;
 $line-height-l    : 1.7 !default;
 
 // Default margin-bottom (vertical rythm)
@@ -184,10 +186,10 @@ $zindex-debug        : 7000 !default;
 // ----------
 
 // Project's colors
-$color-base      : var(--black);
+$color-base      : var(--color-theme-base);
 $background-base : white;
 $color-brand    : var(--black);
-$color-primary  : #FF503A; //--orange
+$color-primary  : var(--color-theme-primary);
 
 // Color names
 $white    : #fff !default;
@@ -227,8 +229,8 @@ $input-bgcolor              : $white !default;
 $placeholder-color          : $color-base !default;
 
 $fieldset-padding: 2rem;
-$fieldset-bgcolor: var(--grey);
-$fieldset-border: 1px solid var(--orange);
+$fieldset-bgcolor: var(--color-theme-secondary);
+$fieldset-border: 1px solid var(--color-theme-primary);
 
 $forms-padding              : 0 !default;
 

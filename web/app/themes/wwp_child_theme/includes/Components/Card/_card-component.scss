@@ -12,7 +12,7 @@
 
 .item {
   background: white;
-  border-radius: var(--theme-border-radius);
+  border-radius: var(--border-radius-theme);
 
   &,
   &.has-link > a {
@@ -31,7 +31,7 @@
     height: var(--card-image-height);
     width: 100%;
     overflow: hidden;
-    border-radius: var(--theme-border-radius) var(--theme-border-radius) 0 0;
+    border-radius: var(--border-radius-theme) var(--border-radius-theme) 0 0;
 
     a {
       position: relative;
@@ -70,7 +70,7 @@
     font-family: var(--font-bold);
     font-size: 1.2rem;
     text-transform: uppercase;
-    color: var(--orange);
+    color: var(--color-theme-primary);
     letter-spacing: 0.05em;
   }
 
@@ -109,7 +109,7 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       font-family: var(--font-book);
-      color: var(--orange);
+      color: var(--color-theme-primary);
 
       /* &::after {
         content: "•";
@@ -151,11 +151,11 @@
   &.has-link > a {
     height: 100%;
     border-radius: 6px;
-    box-shadow: var(--theme-box-shadow);
+    box-shadow: var(--box-shadow-theme);
 
     .no-touch &:hover,
     .no-touch &:focus {
-      box-shadow: var(--theme-box-shadow-active);
+      box-shadow: var(--box-shadow-theme-active);
     }
   }
 
@@ -202,7 +202,7 @@
 
   .img-wrap {
     height: auto; //Bug flex-child
-    border-radius: var(--theme-border-radius) 0 0 var(--theme-border-radius);
+    border-radius: var(--border-radius-theme) 0 0 var(--border-radius-theme);
   }
 
   @media (max-width: $medium - 1) {
@@ -219,8 +219,8 @@
   .img-wrap {
     order: 1;
     border-radius: 0;
-    border-bottom-left-radius: var(--theme-border-radius);
-    border-bottom-right-radius: var(--theme-border-radius);
+    border-bottom-left-radius: var(--border-radius-theme);
+    border-bottom-right-radius: var(--border-radius-theme);
   }
 
   @media (max-width: $medium - 1) {

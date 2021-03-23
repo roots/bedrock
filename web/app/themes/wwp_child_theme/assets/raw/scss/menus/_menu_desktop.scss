@@ -5,11 +5,11 @@
 
 :root {
   --desktopheaderHeight: 81px;
-  --menu-item-m0-color-active: var(--black);
-  --menu-item-m1-color: var(--black);
-  --menu-item-m1-color-active: var(--orange);
+  --menu-item-m0-color-active: var(--color-theme-base);
+  --menu-item-m1-color: var(--color-theme-base);
+  --menu-item-m1-color-active: var(--color-theme-primary);
   --menu-item-m1-bgcolor: white;
-  --menu-item-m1-bgcolor-active: var(--grey);
+  --menu-item-m1-bgcolor-active: var(--color-theme-secondary);
 }
 
 @media (min-width: $medium) {
@@ -96,7 +96,7 @@
       &.current_page_item {
 
         > a {
-          border-bottom-color: var(--orange);
+          border-bottom-color: var(--color-theme-primary);
 
           &::after {
             background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s-orange.svg");

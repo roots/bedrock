@@ -5,7 +5,7 @@
 
 :root {
   --footer-color: white;
-  --footer-background-color: var(--black);
+  --footer-background-color: var(--color-theme-base);
 }
 
 $footer-content-height: 75px;
@@ -112,7 +112,7 @@ $colPaddingSmall: 3rem;
 //Footer haut
 .footer-content-top {
   height: $footer-content-height;
-  background-color: var(--grey);
+  background-color: var(--color-theme-secondary);
 
   a.logo {
     display: flex;
@@ -283,7 +283,7 @@ $colPaddingSmall: 3rem;
     text-decoration: none;
     color: #fff;
     text-indent: -9999px;
-    background-color: red;
+    background-color: var(--color-theme-primary);
   }
 
   a::after {
@@ -291,7 +291,8 @@ $colPaddingSmall: 3rem;
     transform: scale(.8);
   }
 
-  a:hover, a:focus {
-    background-color: darken($color-primary, 10%);
+  a:hover,
+  a:focus {
+    background-color: var(--color-theme-base);
   }
 }

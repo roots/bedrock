@@ -7,9 +7,9 @@
   --mobileheaderHeight: 80px;
   --header-bg-color: white;
   --menu-item-height: 60px;
-  --menu-item-color: var(--black);
+  --menu-item-color: var(--color-theme-base);
   --menu-item-bgcolor: transparent;
-  --menu-item-m0-color: var(--black);
+  --menu-item-m0-color: var(--color-theme-base);
 }
 
 @media (max-width: $medium - 1) {
@@ -66,7 +66,7 @@
         height: 100%;
         padding: 20px;
         background-color: var(--menu-item-bgcolor);
-        border-bottom: 1px solid var(--grey);
+        border-bottom: 1px solid var(--color-theme-secondary);
       }
     }
 
@@ -136,7 +136,7 @@
         background-color: white;
         text-indent: -999px;
         border-radius: 0;
-        border: 1px solid var(--grey);
+        border: 1px solid var(--color-theme-secondary);
 
         &::after {
           content: "";
