@@ -55,11 +55,11 @@
 button {
   @extend %btn;
   color: white;
-  background-color: var(--orange);
-  box-shadow: 0 0 0 2px var(--orange);
+  background-color: var(--color-theme-primary);
+  box-shadow: 0 0 0 2px var(--color-theme-primary);
 
   &:focus, .no-touch &:hover, &:active {
-    color: var(--orange);
+    color: var(--color-theme-primary);
     background-color: white;
   }
 }
@@ -156,7 +156,7 @@ a[class*="btn"] {
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--black);
+  color: var(--color-theme-base);
   background: none;
   box-shadow: none;
 
@@ -173,7 +173,7 @@ a[class*="btn"] {
     display: block;
     height: 26px;
     width: 26px;
-    background-color: var(--orange);
+    background-color: var(--color-theme-primary);
     border-radius: 50%;
     transform: translateY(-50%) scale(1);
     transform-origin: center;

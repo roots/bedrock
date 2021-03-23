@@ -1,11 +1,11 @@
 // Accordion
 :root {
-  --accordion-theme-color: var(--black);
+  --accordion-theme-color: var(--color-theme-base);
   --accordion-theme-bgcolor: white;
-  --accordion-theme-btn-color: var(--orange);
-  --accordion-theme-hovercolor: var(--black);
+  --accordion-theme-btn-color: var(--color-theme-primary);
+  --accordion-theme-hovercolor: var(--color-theme-base);
   --accordion-theme-hoverbackground: white;
-  --accordion-theme-activecolor: var(--black);
+  --accordion-theme-activecolor: var(--color-theme-base);
   --accordion-theme-activebackground: white;
 }
 
@@ -33,7 +33,7 @@ $accordion-border-radius: 6px;
   border: 0;
   font-size: 1.4rem;
   border-radius: $accordion-border-radius;
-  box-shadow: var(--theme-box-shadow);
+  box-shadow: var(--box-shadow-theme);
   cursor: pointer;
 
   .no-touch &:hover,
@@ -41,7 +41,7 @@ $accordion-border-radius: 6px;
   &:active {
     color: var(--accordion-theme-hovercolor);
     background-color: var(--accordion-theme-hoverbackground);
-    box-shadow: var(--theme-box-shadow-active);
+    box-shadow: var(--box-shadow-theme-active);
   }
 
   &:focus {
@@ -109,7 +109,7 @@ $accordion-border-radius: 6px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   font-size: 1.5rem;
-  box-shadow: var(--theme-box-shadow);
+  box-shadow: var(--box-shadow-theme);
   overflow: hidden;
   transition: all .4s ease-out;
 
