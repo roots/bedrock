@@ -1,0 +1,77 @@
+/*MEGAMENU*/
+//Pour activer cette variante, ajouter la classe .megamenu à .navigation-wrapper
+
+/*Si le menu est un megamenu*/
+.navigation-wrapper.megamenu {
+  /*Niveau 0*/
+  ul.header-menu {
+    position: unset;
+    > li.page_item {
+      position: relative;
+      &:hover {
+        position: unset;
+        a {
+          background-color: $white;
+          border-bottom-color: $color-primary;
+          padding-top: 31px;
+          margin-top: 1px;
+          &:after {
+            transform: rotate(0deg);
+            filter: brightness(300%) hue-rotate(75deg) saturate(500%);
+          }
+        }
+        /*Niveau 1*/
+        > ul.children.level1 {
+          width: 100vw;
+          left: 0;
+          position: absolute;
+          display: flex;
+          flex-flow: row nowrap;
+          max-height: calc(100vh - 80px);
+          padding: 40px 2em;
+          align-items: first baseline;
+          margin-top: -1px;
+          justify-content: center;
+          @media screen and (min-width: $extra-large) {
+            padding: 2em calc((100vw - 1280px) / 2);
+            left: calc((-100vw + 1280px) / 2);
+          }
+          > li.page_item {
+            min-width: unset;
+            flex: auto 0 0;
+            position: relative;
+            display: flex;
+            flex-flow: column wrap;
+            a {
+              font-size: 1.1em;
+              flex: 1;
+              &::after {
+                display: none !important;
+              }
+              &:hover {
+                color: $color-primary;
+              }
+            }
+            /*Niveau 2*/
+            ul {
+              flex: 1;
+              opacity: 1;
+              position: relative;
+              box-shadow: none;
+              left: 0 !important;
+              bottom: 0;
+              li {
+                text-align: left;
+                a {
+                  font-size: 1em;
+                  color: $gray-600;
+                  padding: 0.5rem 3rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
