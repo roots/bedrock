@@ -4,8 +4,10 @@
 
 
 :root {
-  --footer-color: white;
-  --footer-background-color: var(--color-theme-base);
+  --footer-top-color: var(--color-theme-base);
+  --footer-top-background-color: var(--color-theme-secondary);
+  --footer-bottom-color: white;
+  --footer-bottom-background-color: var(--color-theme-base);
 }
 
 $footer-content-height: 75px;
@@ -112,7 +114,8 @@ $colPaddingSmall: 3rem;
 //Footer haut
 .footer-content-top {
   height: $footer-content-height;
-  background-color: var(--color-theme-secondary);
+  color: var(--footer-top-color);
+  background-color: var(--footer-top-background-color);
 
   a.logo {
     display: flex;
@@ -192,8 +195,12 @@ $colPaddingSmall: 3rem;
 .footer-content-bottom {
   padding-top: 2rem;
   padding-bottom: 4rem;
-  color: var(--footer-color);
-  background-color: var(--footer-background-color);
+  background-color: var(--footer-bottom-background-color);
+
+  *,
+  a {
+    color: var(--footer-bottom-color) !important;
+  }
 
   .container-l {
     align-items: flex-start;
