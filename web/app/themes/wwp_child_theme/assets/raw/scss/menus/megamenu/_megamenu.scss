@@ -75,3 +75,31 @@
     }
   }
 }
+
+/*Patch pour le menu fixe*/
+body.has-stuck-header {
+  .site-header {
+    .navigation-wrapper.megamenu {
+      ul.header-menu {
+        > li {
+          > a {
+            padding-top: 10px;
+          }
+          > ul.children.level1 {
+            margin-top: 0 !important;
+            > li.page_item {
+              /*Niveau 2*/
+              ul {
+                li {
+                  a {
+                    padding: 0.5rem 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
