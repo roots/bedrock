@@ -73,8 +73,12 @@
 
       > a {
         position: relative;
+        display: flex;
+        align-items: center;
+        height: var(--header-height); //Permet de postionner les enfants
         margin-right: 4rem;
-        padding: 32px 0;
+        //padding: 32px 0;
+        padding: 0;
         border-bottom: 2px solid transparent;
       }
 
@@ -127,7 +131,7 @@
 
     // Deuxième niveau
     ul.level1 {
-      top: calc(var(--header-height) + 1px);
+      top: var(--header-height);
       z-index: 1;
 
       body.has-stuck-header & {
