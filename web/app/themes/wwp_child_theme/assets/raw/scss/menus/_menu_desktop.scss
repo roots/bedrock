@@ -1,10 +1,8 @@
-@charset "UTF-8";
 /* ----------------------------- */
 /* ==Header menu desktop + tablet (<=768px)      */
 /* ----------------------------- */
 
 :root {
-  --desktopheaderHeight: 81px;
   --menu-item-m0-color-active: var(--color-theme-base);
   --menu-item-m1-color: var(--color-theme-base);
   --menu-item-m1-color-active: var(--color-theme-primary);
@@ -129,11 +127,11 @@
 
     // Deuxième niveau
     ul.level1 {
-      top: var(--desktopheaderHeight);
+      top: calc(var(--header-height) + 1px);
       z-index: 1;
 
       body.has-stuck-header & {
-        top: 40px;
+        top: calc(var(--header-height) / 2);
       }
 
       li {
@@ -170,7 +168,7 @@
 
       //Pour IE11
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        top: 40px;
+        top: calc(var(--header-height) / 2);
       }
     }
 
@@ -217,10 +215,6 @@
         font-size: 1.1rem;
       }
 
-      li.m0::before {
-        bottom: -28px;
-      }
-
       ul.level1 {
         top: 52px;
       }
@@ -254,16 +248,6 @@
 
     ul.level2 {
       right: 100%;
-    }
-  }
-}
-
-@media (max-width: $large) {
-
-  ul.header-menu {
-
-    li.m0::before {
-      bottom: -40px;
     }
   }
 }

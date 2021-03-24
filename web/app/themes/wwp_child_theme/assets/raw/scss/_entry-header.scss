@@ -1,14 +1,12 @@
 /* Variables */
-/* ------------- */
-$headerHeight: 80px;
-$mobileheaderHeight: 80px;
-$headerImageHeight: 520px;
-/* ------------- */
+:root {
+  --header-image-height: 520px;
+}
 
 .post-thumbnail {
   position: relative;
   z-index: 0;
-  height: $headerImageHeight;
+  height: var(--header-image-height);
   overflow: hidden;
 
   //Filtre d'opacité par-dessus image
@@ -77,9 +75,5 @@ $headerImageHeight: 520px;
   .container {
     position: relative;
     height: 100%;
-  }
-
-  .hasPostThumb & {
-
   }
 }

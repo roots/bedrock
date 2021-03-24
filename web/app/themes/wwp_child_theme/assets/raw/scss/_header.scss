@@ -4,23 +4,24 @@
 /* ----------------------------- */
 
 /* Variables */
-/* ------------- */
-$mobileheaderHeight: 8rem;
-$header-bg-color: white;
-/* ------------- */
+:root {
+  --header-height: 80px;
+  --header-height-mobile: 80px;
+  --header-bg-color: white;
+}
 
 .site-header {
   position: relative;
   z-index: 16;
-  height: $mobileheaderHeight;
-  background-color: $header-bg-color;
+  height: var(--header-height);
+  background-color: var(--header-bg-color);
   opacity: 1;
   box-shadow: inset 0 0 4px 0 rgba(0,0,0,0.20);
 
   .inner-header {
     position: relative;
     @extend .container-l;
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: flex-end;
   }
