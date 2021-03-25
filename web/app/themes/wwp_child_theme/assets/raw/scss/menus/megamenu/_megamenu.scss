@@ -17,7 +17,7 @@
     position: unset;
 
     /*Niveau 1*/
-    ul.children.level1 {
+    ul.level1 {
       position: fixed;
       top: var(--desktopheaderHeight);
       left: 0;
@@ -34,7 +34,7 @@
       opacity: 0;
       transition: opacity 0.4s;
 
-      > li {
+      li {
         min-width: unset !important;
         flex: 1;
         position: relative;
@@ -58,7 +58,7 @@
     }
 
     /*Niveau 2*/
-    ul.children.level2 {
+    ul.level2 {
       flex: 1;
       opacity: 1;
       position: relative;
@@ -66,7 +66,7 @@
       left: 0 !important;
       bottom: 0;
 
-      > li {
+      li {
         font-size: 0.9em;
         text-align: left;
         min-width: unset;
@@ -84,50 +84,31 @@
       .no-touch &:hover {
         position: unset;
 
-        > ul.children.level1 {
+        > ul.level1 {
           z-index: 0;
           opacity: 1;
           transform: translateY(0);
         }
       }
     }
-  }
-}
 
-@media (min-width: $extra-large) {
+    @media (max-width: $medium) {
+      //iPad only
 
-  .navigation-wrapper.megamenu ul.header-menu {
+      ul.level1 li {
+        font-size: 1.2rem;
 
-    ul.children.level1 {
-      padding: 2em calc((100vw - 1280px) / 2);
-      //left: calc((-100vw + 1280px) / 2);
-    }
-  }
-}
-
-/*Patch pour le menu fixe*/
-body.has-stuck-header .site-header .navigation-wrapper.megamenu {
-
-  ul.header-menu {
-    > li {
-      > a {
-        padding-top: 10px;
-      }
-
-      > ul.children.level1 {
-        margin-top: 0 !important;
-
-        > li.page_item {
-          /*Niveau 2*/
-          ul {
-            li {
-              a {
-                padding: 0.5rem 1rem;
-              }
-            }
-          }
+        > a {
+          padding: 1.5rem 1rem;
         }
       }
+
+      ul.level2 li a {
+        font-size: 1em;
+        padding: 0.5rem 1rem;
+      }
     }
   }
 }
+
+
