@@ -20,6 +20,8 @@ class SliderItem extends TwigComponent implements SlideInterface
     /** @var string */
     protected $title;
     /** @var string */
+    protected $subtitle;    
+    /** @var string */
     protected $link;
     /** @var string */
     protected $linkLabel;
