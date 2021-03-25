@@ -99,28 +99,4 @@ if (!defined('ABSPATH')) {
 }
 
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
-define("WWP_PLUGIN_ACTU_MANAGER",WonderWp\Plugin\Actu\Child\ActuThemeManager::class);
-//define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
-//define("WWP_PLUGIN_MEMBRE_MANAGER",WonderWp\Plugin\EspaceRestreint\Child\ErThemeManager::class);
-//define("WWP_PLUGIN_RGPD_MANAGER",WonderWp\Plugin\RGPD\Child\RgpdThemeManager::class);
-//define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);
-//define("WWP_PLUGIN_TROMBI_MANAGER",WonderWp\Plugin\Trombinoscope\Child\TrombiThemeManager::class);
-//define("WWP_PLUGIN_PARTENAIRE_MANAGER",WonderWp\Plugin\Partenaires\Child\PartenaireThemeManager::class);
-//define("WWP_PLUGIN_NEWSLETTER_MANAGER",WonderWp\Plugin\Newsletter\Child\NewsletterThemeManager::class);
 define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
-//define("WWP_PLUGIN_GALERIE_MANAGER",WonderWp\Plugin\Galerie\Child\GalerieThemeManager::class);
-//define("WWP_PLUGIN_SLIDER_MANAGER",WonderWp\Plugin\Slider\Child\SliderThemeManager::class);
-//define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
-//define("WWP_PLUGIN_MEMBRE_MANAGER",WonderWp\Plugin\EspaceRestreint\Child\ErThemeManager::class);
-//define("WWP_PLUGIN_FAQ_MANAGER",WonderWp\Plugin\Faq\Child\FaqThemeManager::class);
-//define("WWP_PLUGIN_GALERIE_MANAGER",WonderWp\Plugin\Galerie\Child\GalerieThemeManager::class);
-//define("WWP_PLUGIN_JEUX_MANAGER",WonderWp\Plugin\Jeux\Child\JeuxThemeManager::class);
-//define("WWP_PLUGIN_METEO_MANAGER",WonderWp\Plugin\Meteo\Child\MeteoThemeManager::class);
-//define("WWP_PLUGIN_PARCOURS_MANAGER",WonderWp\Plugin\Parcours\Child\ParcoursThemeManager::class);
-//define("WWP_PLUGIN_PARTENAIRE_MANAGER",WonderWp\Plugin\Partenaires\Child\PartenaireThemeManager::class);
-//define("WWP_PLUGIN_RGPD_MANAGER",WonderWp\Plugin\RGPD\Child\RgpdThemeManager::class);
-//define("WWP_PLUGIN_SEARCH_MANAGER",WonderWp\Plugin\Search\Child\SearchThemeManager::class);
-//define("WWP_PLUGIN_SLIDER_MANAGER",WonderWp\Plugin\Slider\Child\SliderThemeManager::class);
-//define("WWP_PLUGIN_STATS_MANAGER",WonderWp\Plugin\Stats\Child\StatsThemeManager::class);
-//define("WWP_PLUGIN_DOWNLOAD_MANAGER",WonderWp\Plugin\Download\Child\DownloadThemeManager::class);
-//define("WWP_PLUGIN_VOTE_MANAGER",WonderWp\Plugin\Vote\Child\VoteThemeManager::class);
