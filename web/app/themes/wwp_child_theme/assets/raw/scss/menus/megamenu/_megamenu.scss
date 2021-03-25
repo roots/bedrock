@@ -1,0 +1,133 @@
+/*MEGAMENU*/
+//Pour activer cette variante, ajouter la classe .megamenu à .navigation-wrapper
+
+:root {
+  --menu-item-m1-color-active: var(--color-theme-primary);
+  --menu-item-m1-bgcolor-active: white
+}
+
+@media (min-width: $medium) {
+
+  /*Si le menu est un megamenu*/
+  .navigation-wrapper.megamenu {
+    flex: 1;
+  }
+
+  .navigation-wrapper.megamenu ul.header-menu {
+    position: unset;
+
+    /*Niveau 1*/
+    ul.children.level1 {
+      position: fixed;
+      top: var(--desktopheaderHeight);
+      left: 0;
+      z-index: -1;
+      display: flex;
+      justify-content: center;
+      align-items: first baseline;
+      flex-flow: row nowrap;
+      max-height: calc(100vh - 80px);
+      width: 100vw;
+      padding: 0 2em 2em;
+      margin-top: -1px;
+      transform: translateY(-200%);
+      opacity: 0;
+      transition: opacity 0.4s;
+
+      > li {
+        min-width: unset !important;
+        flex: 1;
+        position: relative;
+        display: flex;
+        flex-flow: column wrap;
+
+        a {
+          font-size: 1.1em;
+          flex: 1;
+
+          &::after {
+            display: none !important;
+          }
+
+          &:focus,
+          .no-touch &:hover {
+            color: var(--menu-item-m1-color-active);
+          }
+        }
+      }
+    }
+
+    /*Niveau 2*/
+    ul.children.level2 {
+      flex: 1;
+      opacity: 1;
+      position: relative;
+      box-shadow: none;
+      left: 0 !important;
+      bottom: 0;
+
+      > li {
+        font-size: 0.9em;
+        text-align: left;
+        min-width: unset;
+
+        a {
+          font-size: 1em;
+          padding: 0.5rem 3rem;
+        }
+      }
+    }
+
+    //Animations
+    > li.m0 {
+      &:focus,
+      .no-touch &:hover {
+        position: unset;
+
+        > ul.children.level1 {
+          z-index: 0;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $extra-large) {
+
+  .navigation-wrapper.megamenu ul.header-menu {
+
+    ul.children.level1 {
+      padding: 2em calc((100vw - 1280px) / 2);
+      //left: calc((-100vw + 1280px) / 2);
+    }
+  }
+}
+
+/*Patch pour le menu fixe*/
+body.has-stuck-header .site-header .navigation-wrapper.megamenu {
+
+  ul.header-menu {
+    > li {
+      > a {
+        padding-top: 10px;
+      }
+
+      > ul.children.level1 {
+        margin-top: 0 !important;
+
+        > li.page_item {
+          /*Niveau 2*/
+          ul {
+            li {
+              a {
+                padding: 0.5rem 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
