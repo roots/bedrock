@@ -30,8 +30,16 @@ li.breadcrumb-item {
   margin-right: 1rem;
   font-size: 1.4rem;
   &::before {
-    @include svgIcon('chevron-r-small');
-    transform: scale(.6);
+    // Chevron
+    content: "";
+    display: block;
+    height: 8px;
+    width: 8px;
+    margin-right: 0.8em;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: var(--color-theme-base);
+    transform: rotate(-45deg);
   }
   a {
     &:hover, &:focus {

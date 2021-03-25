@@ -45,19 +45,21 @@
     }
 
     li.page_item_has_children {
-
+      // Chevron
       > a::after {
         position: absolute;
         right: 20px;
         top: calc(50% - 4px);
         content: "";
         display: block;
-        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s.svg");
-        background-repeat: no-repeat;
-        height: 7px;
-        width: 12px;
-        transform: rotate(-90deg);
+        height: 10px;
+        width: 10px;
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+        border-color: var(--color-theme-base);
+        transform: rotate(-45deg);
         transition: transform 0.4s;
+        transform-origin: center;
       }
     }
 
@@ -77,7 +79,6 @@
         align-items: center;
         height: var(--header-height); //Permet de postionner les enfants
         margin-right: 4rem;
-        //padding: 32px 0;
         padding: 0;
         border-bottom: 2px solid transparent;
       }
@@ -101,8 +102,7 @@
           border-bottom-color: var(--color-theme-primary);
 
           &::after {
-            background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-b-s-orange.svg");
-            transform: rotate(0);
+            border-color: var(--color-theme-primary);
           }
         }
       }
@@ -111,7 +111,7 @@
       &:focus {
 
         > a::after {
-          transform: rotate(180deg);
+          transform: rotate(45deg);
         }
       }
     }

@@ -87,11 +87,14 @@
         position: absolute;
         top: 50%;
         right: 1rem;
-        transform: translate(0, -53%);
-        background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-r-small-grey.svg");
-        background-repeat: no-repeat;
-        width: 20px;
-        height: 25px;
+        height: 10px;
+        width: 10px;
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+        border-color: var(--color-theme-base);
+        transform: translateY(-50%) rotate(-45deg);
+        transition: transform 0.4s;
+        transform-origin: center;
       }
     }
 
@@ -137,6 +140,7 @@
         text-indent: -999px;
         border-radius: 0;
         border: 1px solid var(--color-theme-secondary);
+        box-shadow: none;
 
         &::after {
           content: "";
@@ -144,11 +148,12 @@
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-60%, -53%);
-          background-image: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-l-small-grey.svg");
-          background-repeat: no-repeat;
-          width: 20px;
-          height: 25px;
+          height: 15px;
+          width: 15px;
+          border-left: 2px solid;
+          border-bottom: 2px solid;
+          border-color: var(--color-theme-base);
+          transform: rotate(45deg) translate(-45%, -17%);
         }
       }
     }
