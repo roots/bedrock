@@ -40,7 +40,7 @@ iframe {
 }
 
 .container-xs {
-  width: $extra-small;
+  max-width: $extra-small;
 
   @media (max-width: $medium - 1) {
     width: 100%;
@@ -50,7 +50,7 @@ iframe {
 }
 
 .container-s {
-  width: $medium;
+  max-width: $medium;
 
   @media (max-width: $medium) {
     width: 100%;
@@ -60,7 +60,7 @@ iframe {
 }
 
 .container {
-  width: $large;
+  max-width: $large;
 
   @media (max-width: $very-large) {
     padding-right: 4em;
@@ -83,7 +83,7 @@ iframe {
 }
 
 .container-l {
-  width: $extra-large;
+  max-width: $extra-large;
 
   @media (max-width: $extra-large) {
     width: 100%;
@@ -111,7 +111,7 @@ iframe {
 }
 
 .container-xl {
-  width: $extra-large;
+  max-width: $extra-large;
 
   @media (max-width: $extra-large) {
     width: 100%;
