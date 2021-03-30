@@ -27,14 +27,13 @@ $webroot_dir = $root_dir . '/web';
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
+ * Create a .env.local to override any defaults
  */
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir);
-if (file_exists($root_dir . '/.env')) {
-    $dotenv->load();
-    $dotenv->required(['WP_HOME', 'WP_SITEURL']);
-    if (!env('DATABASE_URL')) {
-        $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
-    }
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir, ['.env', '.env.local'], false);
+$dotenv->load();
+$dotenv->required(['WP_HOME', 'WP_SITEURL']);
+if (!env('DATABASE_URL')) {
+    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
 }
 
 /**
