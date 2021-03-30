@@ -2,7 +2,7 @@ import "bxslider/dist/jquery.bxslider.js";
 import {PewComponent} from "../../../../assets/raw/js/components/pew-component";
 
 // see https://bxslider.com/options/
-const SliderOptions = {
+let SliderOptions = {
   mode: 'horizontal',
   autoControlsCombine: true,
   keyboardEnabled: true,
@@ -17,7 +17,18 @@ const SliderOptions = {
 
 export class SliderComponent extends PewComponent {
   constructor(element, passedOptions) {
-    let opts = Object.assign(SliderOptions, passedOptions);
+
+    if (window.wonderwp && window.wonderwp.i18n && window.wonderwp.i18n.slider) {
+      const keysProvided = ['nextText', 'prevText', 'startText', 'stopText', 'goToPaneText', 'currentPaneText'];
+      for (let i in keysProvided) {
+        let keyProvided = keysProvided[i];
+        if (window.wonderwp.i18n.slider[keyProvided]) {
+          SliderOptions[keyProvided] = window.wonderwp.i18n.slider[keyProvided];
+        }
+      }
+    }
+
+    const opts = Object.assign(SliderOptions, passedOptions);
     super(element, opts);
   }
 
