@@ -3,6 +3,8 @@
 namespace WonderWp\Theme\Child\Components\ReseauxSociaux;
 
 use WonderWp\Theme\Core\Component\AbstractComponent;
+use function WonderWp\Functions\array_merge_recursive_distinct;
+use function WonderWp\Functions\paramsToHtml;
 
 class ReseauxSociauxComponent extends AbstractComponent
 {
@@ -11,16 +13,18 @@ class ReseauxSociauxComponent extends AbstractComponent
 
         $markup = '';
 
-        $reseauxOpts = [
-            'facebook',
-            'twitter',
-            'youtube',
-            'vimeo',
-            'instagram',
-            'pinterest',
-            'flickr',
-            'linkedin'
-        ];
+        $reseauxOpts = !empty($opts['reseaux'])
+            ? $opts['reseaux']
+            : [
+                'facebook',
+                'twitter',
+                'youtube',
+                'vimeo',
+                'instagram',
+                'pinterest',
+                'flickr',
+                'linkedin',
+            ];
 
         $reseauxActifs = [];
 
@@ -32,7 +36,11 @@ class ReseauxSociauxComponent extends AbstractComponent
         }
 
         if (!empty($reseauxActifs)) {
-            $markup = '<ul class="social-networks">
+            $params       = [
+                'class' => ['social-networks'],
+            ];
+            $passedParams = !empty($opts['listParams']) ? $opts['listParams'] : [];
+            $markup       = '<ul ' . paramsToHtml(array_merge_recursive_distinct($params, $passedParams)) . '>
                 ' . implode("\n", $reseauxActifs) . '
             </ul>';
         }
