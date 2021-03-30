@@ -3,8 +3,11 @@ import {initVideoPlayer} from "./VideoLib";
 
 export class VideoComponent extends PewComponent {
   init() {
-    this.registerPlayerControls();
-    this.registerVideoToggle();
+    if (!this.element.data('video-lazy')) {
+      this.registerPlayerControls();
+      this.registerVideoToggle();
+    }
+    this.element.data('video-component', this);
   }
 
   registerPlayerControls() {
@@ -36,6 +39,18 @@ export class VideoComponent extends PewComponent {
           progress.setAttribute('max', video.duration);
         }
       });
+    }
+  }
+  initLazy() {
+    const varName = this.element.data('var-name');
+    if (varName && window[varName]) {
+      const template = window[varName].template;
+      const data = window[varName].data;
+      const markup = template.replaceArray(Object.keys(data), Object.values(data));
+      this.element.append(markup);
+      this.registerPlayerControls();
+      const $videoWrapper = this.element.find('.video-player');
+      const video = $videoWrapper.find('.video')[0];
     }
   }
 }
