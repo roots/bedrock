@@ -9,10 +9,20 @@
   [class*="card-cat-categorie-"] {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &::before {
       margin-right: 10px;
       margin-left: -5px;
+    }
+
+    .separator {
+      &::before,
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 0.1em;
+      }
     }
   }
 
