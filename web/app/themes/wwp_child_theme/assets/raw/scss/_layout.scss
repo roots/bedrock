@@ -23,7 +23,11 @@ iframe {
 #containers ~ .component {
   width: 100%;
 
-  .container-xs, .container-s, .container, .container-l, .container-xl {
+  .container-xs,
+  .container-s,
+  .container,
+  .container-l,
+  .container-xl {
     margin-bottom: 2rem;
     padding: 1rem;
     background: $gray-200;
@@ -31,16 +35,19 @@ iframe {
   }
 }
 
-
 // Containers
-.container-xs, .container-s, .container, .container-l, .container-xl {
+.container-xs,
+.container-s,
+.container,
+.container-l,
+.container-xl {
   display: block;
   margin-right: auto;
   margin-left: auto;
 }
 
 .container-xs {
-  width: $extra-small;
+  max-width: $extra-small;
 
   @media (max-width: $medium - 1) {
     width: 100%;
@@ -50,7 +57,7 @@ iframe {
 }
 
 .container-s {
-  width: $medium;
+  max-width: $medium;
 
   @media (max-width: $medium) {
     width: 100%;
@@ -60,7 +67,7 @@ iframe {
 }
 
 .container {
-  width: $large;
+  max-width: $large;
 
   @media (max-width: $very-large) {
     padding-right: 4em;
@@ -79,11 +86,10 @@ iframe {
     padding-right: 3rem;
     padding-left: 3rem;
   }
-
 }
 
 .container-l {
-  width: $extra-large;
+  max-width: $extra-large;
 
   @media (max-width: $extra-large) {
     width: 100%;
@@ -111,7 +117,7 @@ iframe {
 }
 
 .container-xl {
-  width: $extra-large;
+  max-width: $extra-large;
 
   @media (max-width: $extra-large) {
     width: 100%;
