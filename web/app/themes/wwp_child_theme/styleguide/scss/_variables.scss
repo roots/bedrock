@@ -1,4 +1,5 @@
 // Config file and project variables
+@import "_variables_themes";
 
 // ----------------
 // Breakpoints zone
@@ -19,13 +20,6 @@ $extra-extra-large  : 1440px !default; // .container-xl
 $gutter: 16px;
 
 // Theme colors variables
-:root {
-  --color-theme-base: #2E2632; //Noir
-  --background-theme-base: white;
-  --color-theme-primary: #FF503A; //Orange
-  --color-theme-secondary: #ECEDF0; //Gris
-  --color-theme-brand: #FF503A; //Orange
-}
 $color-theme-base: var(--color-theme-base);
 $background-theme-base: var(--background-theme-base);
 $color-theme-primary: var(--color-theme-primary);
@@ -33,16 +27,9 @@ $color-theme-secondary: var(--color-theme-secondary);
 $color-theme-brand: var(--color-theme-brand);
 
 // Theme border-radius
-:root {
-  --border-radius-theme: 6px;
-}
 $border-radius-theme: var(--border-radius-theme);
 
 // Theme box-shadow
-:root {
-  --box-shadow-theme: 0 16px 40px 0 rgba(41, 57, 95, 0.30);
-  --box-shadow-theme-active: 0 16px 40px 0 rgba(41, 57, 95, 0.50);
-}
 $box-shadow-theme: var(--box-shadow-theme);
 $box-shadow-theme-active: var(--box-shadow-theme-active);
 
@@ -50,20 +37,8 @@ $box-shadow-theme-active: var(--box-shadow-theme-active);
 // Fonts zone
 // ----------
 // Import : via theme.scss et critical.scss
-// Fonts variables
-:root {
-  --font-light: 'geomanistlight';
-  --font-regular: 'geomanistregular';
-  --font-book: 'geomanistbook';
-  --font-medium: 'geomanistmedium';
-  --font-bold: 'geomanistbold';
 
-  // theme fonts
-  --font-theme-base: var(--font-regular);
-  --font-theme-headings: var(--font-book);
-  --font-theme-secondary: var(--font-medium);
-  --font-theme-bold: var(--font-bold);
-}
+// 1. Create css variables in variables_themes.scss
 
 // 2. Define families variables for Knacss
 $font-family-base       : var(--font-theme-base), sans-serif !default;
@@ -103,9 +78,6 @@ $weight-bold    : 700 !default;
 
 
 // Font sizes (1.6rem value is "16px" equivalent)
-:root {
-  --font-size-base: 1.6rem; //$font-size-base
-}
 $font-size-base : var(--font-size-base);
 
 $font-sizes: (
@@ -140,10 +112,6 @@ $font-sizes: (
 ) !default;
 
 // Line heights
-:root {
-  --line-height-base: 1.5;
-  --line-height-headings: 1.1;
-}
 $line-height-s    : var(--line-height-headings);
 $line-height-base : var(--line-height-base);
 $line-height-l    : 1.7 !default;
