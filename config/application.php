@@ -36,8 +36,6 @@ if (!env('DATABASE_URL')) {
     $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
 }
 
-echo '<pre>';print_r($_SERVER);die;
-
 /**
  * Set up our global environment constant and load its config first
  * Default: production
