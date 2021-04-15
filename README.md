@@ -1,6 +1,6 @@
 ## Requirements
 
-* PHP >= 7.2
+* PHP >= 7.4
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
