@@ -1,0 +1,212 @@
+
+
+%btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: $button-height; //IE11
+  min-height: $button-height;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 5rem;
+  font-size: 1.2rem;
+  font-family: $font-family-secondary;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  white-space: normal;
+  cursor: pointer;
+  box-shadow: $button-box-shadow;
+  border: 0;
+  border-radius: $button-border-radius;
+  transition: all .4s;
+
+  &.btn--small,
+  &.button--small {
+    height: $button-height-small;
+    min-height: $button-height-small;
+    padding-right: 0 2.5rem;
+    font-size: .8em;
+  }
+
+  &.btn--big,
+  &.button--big {
+    height: $button-height-large;
+    min-height: $button-height-large;
+    font-size: 1.1em;
+  }
+
+  &:active,
+  &:focus,
+  .no-touch &:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: $medium - 1) {
+    height: $button-height-small;
+    min-height: $button-height-small;
+    padding: 0 2rem;
+  }
+}
+
+.btn,
+.button,
+button {
+  @extend %btn;
+  color: white;
+  background-color: var(--color-theme-primary);
+  box-shadow: 0 0 0 2px var(--color-theme-primary);
+
+  &:focus, .no-touch &:hover, &:active {
+    color: var(--color-theme-primary);
+    background-color: white;
+  }
+}
+
+.btn,
+button {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend %btn;
+      color: $color;
+      background-color: $background-color;
+      box-shadow: $border;
+
+      &:focus, .no-touch &:hover, &:active {
+        color: $background-color;
+        background-color: $color;
+      }
+    }
+  }
+}
+
+a[class*="btn"] {
+  text-decoration: none;
+}
+
+.btn {
+
+  &--cta {
+    @extend .btn;
+
+    &::after {
+      display: inline-block;
+      content: '';
+      width: 20px;
+      height: 18px;
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
+      background-repeat: no-repeat;
+      margin-left: 1rem;
+      transform: translateX(0);
+      transition: transform 0.4s;
+    }
+
+    &:focus, .no-touch &:hover, &:active {
+
+      &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
+        transform: translateX(10px);
+      }
+    }
+  }
+
+  &--cta.btn--white {
+    @extend .btn--white;
+
+    &::after {
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
+    }
+
+    &:focus, .no-touch &:hover, &:active {
+
+      &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
+      }
+    }
+  }
+}
+
+.entry-content .btn {
+  margin-top: 3rem;
+}
+
+// Bouton submit
+.btn--submit,
+.btn-submit {
+  @extend .btn;
+  color: white;
+  background-color: $color-base;
+  box-shadow: 0 0 0 2px $color-base;
+
+  .no-touch &:hover,
+  &:focus {
+    color: $color-base;
+    background-color: white;
+  }
+}
+form [type="submit"] {
+  box-shadow: 0 0 0 2px $color-base inset; //Filet à l'intérieur quand est dans un formulaire
+}
+
+// Bouton En savoir plus
+.btn--inline {
+  position: relative;
+  height: auto;
+  min-height: auto;
+  margin: 2rem 0;
+  padding: 5px 0 5px 40px;
+  font-family: var(--font-theme-secondary);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-theme-base);
+  background: none;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: 26px;
+    width: 26px;
+    background-color: var(--color-theme-primary);
+    border-radius: 50%;
+    transform: translateY(-50%) scale(1);
+    transform-origin: center;
+    transition: all 0.4s;
+  }
+
+  &::after {
+    @include svgIcon('arrow-btn--white');
+    left: 5px;
+  }
+
+  .no-touch &:hover,
+  &:focus {
+
+    &::before {
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+}
+
+// Button wrapper : add margin and centering
+// --------------------------------------------------
+
+.btn-wrapper {
+  position: relative;
+  text-align: center;
+  min-height: 10rem;
+
+  .btn {
+    @include absolute-center;
+  }
+}
