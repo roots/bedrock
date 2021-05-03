@@ -96,7 +96,7 @@ def defineVariables(){
 	env.runBuild = false;
 	env.runCypress=false;
 
-	if(env.BUILD_ID.toInteger() < 10){
+	if(env.BUILD_ID.toInteger() < 10 || isRestartedRun()){
 	    env.runComposer = true;
 	    env.runNpm = true;
 	    env.runBuild = true;
@@ -135,6 +135,10 @@ def defineVariables(){
 
 pipeline {
   agent any
+  options {
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
+    disableConcurrentBuilds()
+  }
   stages {
     stage('Build') {
       steps {
