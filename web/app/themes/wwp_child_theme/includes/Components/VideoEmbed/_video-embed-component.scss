@@ -14,6 +14,15 @@
     }
   }
 
+  .video-trigger {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &, &::after {
+      transition: none !important;
+    }
+  }
+
   &.video-active {
 
     .video-player {
@@ -26,21 +35,20 @@
       top: 0;
       right: 0;
       left: auto;
+      height: 40px;
+      width: 40px;
+      background-color: var(--color-theme-primary) !important;
       opacity: 0;
       transform: none !important;
-      transition: opacity 0.4s;
-
-      &,
-      &::after {
-        height: 40px;
-        min-height: 40px;
-        width: 44px;
-        margin: 0 !important;
-      }
 
       &::after {
+        flex: auto;
         @include svgIcon('video-close');
-        transform: none;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        margin: 0;
+        transform: none !important;
       }
 
       span {
