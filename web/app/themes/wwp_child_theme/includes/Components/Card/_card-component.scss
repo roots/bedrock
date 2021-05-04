@@ -13,6 +13,7 @@
 .item {
   background: white;
   border-radius: var(--border-radius-theme);
+  box-shadow: var(--box-shadow-theme);
 
   &,
   &.has-link > a {
@@ -122,6 +123,10 @@
     clear: both;
     letter-spacing: 0.05em;
     font-size: 1.4rem;
+
+    a:not(.card-link) {
+      text-decoration: underline;
+    }
   }
 
   //Champs spécifiques
@@ -140,6 +145,7 @@
   .card-readmore-link {
     order: 2;
     @extend .btn--inline;
+    cursor: pointer;
   }
 
   button, .btn {
@@ -148,14 +154,18 @@
   }
 
   // Si lien global
-  &.has-link > a {
-    height: 100%;
-    border-radius: 6px;
-    box-shadow: var(--box-shadow-theme);
+  &.has-link:not(.trombi-item) { //
+    box-shadow: none;
 
-    .no-touch &:hover,
-    .no-touch &:focus {
-      box-shadow: var(--box-shadow-theme-active);
+    > a {
+      height: 100%;
+      border-radius: var(--border-radius-theme);
+      box-shadow: var(--box-shadow-theme);
+
+      .no-touch &:hover,
+      .no-touch &:focus {
+        box-shadow: var(--box-shadow-theme-active);
+      }
     }
   }
 
