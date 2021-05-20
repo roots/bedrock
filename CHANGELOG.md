@@ -1,3 +1,8 @@
+### 1.15.4: 2021-05-19
+* Bump roots/wordpress from 5.7 to 5.7.2 ([#593](https://github.com/roots/bedrock/pull/593))
+* Bump composer/installers from 1.10.0 to 1.11.0 ([#592](https://github.com/roots/bedrock/pull/592))
+* chore(deps-dev): Bump squizlabs/php_codesniffer from 3.5.8 to 3.6.0 ([#588](https://github.com/roots/bedrock/pull/588))
+
 ### 1.15.3: 2021-03-12
 * chore(deps): Bump roots/wordpress from 5.6.2 to 5.7 ([#578](https://github.com/roots/bedrock/pull/578))
 
