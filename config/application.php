@@ -76,20 +76,20 @@ define('COOKIEHASH', sha1(WP_HOME));
 /**
  * Langue
  */
-define ('WPLANG', 'fr_FR');
+define('WPLANG', 'fr_FR');
 
 /**
  * Custom Settings
  */
-define('AUTOMATIC_UPDATER_DISABLED', !in_array(WP_ENV,['staging','production']));
+define('AUTOMATIC_UPDATER_DISABLED', !in_array(WP_ENV, ['staging', 'production']));
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
-define('FS_METHOD','direct');
+define('FS_METHOD', 'direct');
 
 /**
  * Assets
  */
-define('ASSETS_GROUP_APP','app');
+define('ASSETS_GROUP_APP', 'app');
 
 /**
  * Bootstrap WordPress
@@ -99,5 +99,4 @@ if (!defined('ABSPATH')) {
 }
 
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
-define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
-//define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
+define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER", WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
