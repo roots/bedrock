@@ -36,6 +36,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
         add_shortcode('tabs', [$this, 'tabs']);
         add_shortcode('tab-item', [$this, 'tabitem']);
         //add_shortcode(MapSearchShortcodeHandler::$shortCode, [MapSearchShortcodeHandler::class, 'handle']);
+        add_shortcode('social-share', [$this, 'socialShare']);
 
         return $this;
     }
