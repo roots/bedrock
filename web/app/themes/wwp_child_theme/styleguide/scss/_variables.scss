@@ -165,7 +165,7 @@ $zindex-debug        : 7000 !default;
 // Project's colors
 $color-base      : var(--color-theme-base);
 $background-base : white;
-$color-brand    : var(--black);
+$color-brand    : var(--color-theme-brand);
 $color-primary  : var(--color-theme-primary);
 
 // Color names
@@ -267,8 +267,9 @@ $table-footer-background    : transparent !default;
 // Components: buttons, badges, alerts color variants list
 // Convention is: name - background-color - color - border
 $variants-list: (
-        (primary,    $color-primary,    white,    0 0 0 2px $color-primary inset),
-        (brand,      $color-brand,      white,    0 0 0 2px $color-brand inset),
+        (primary,    var(--color-theme-primary),    white,    0 0 0 2px var(--color-theme-primary) inset),
+        (brand,      var(--color-theme-brand),      white,    0 0 0 2px var(--color-theme-brand) inset),
+        (black,      var(--color-theme-base),      white,    0 0 0 2px var(--color-theme-base) inset),
         (white,      white,             $color-base,    0 0 0 2px $color-base inset),
         (success,    $color-success,    white,    0 0 0 2px $color-success inset),
         (info,       $color-info,       white,    0 0 0 2px $color-info inset),

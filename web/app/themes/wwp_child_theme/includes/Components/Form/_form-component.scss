@@ -151,13 +151,13 @@ form {
       min-height: auto;
       margin: 0;
       padding: 0;
-      font: none;
+      font-size: 0;
       background-color: transparent;
       appearance: none;
       box-shadow: none;
 
       &::before {
-        @include svgIcon('chevron-bottom-s');
+        @include svgIcon('chevron-b-s');
       }
 
       &::after {
@@ -165,8 +165,19 @@ form {
       }
     }
   }
-}
 
+  .selectric-items {
+
+    li.selected {
+      background-color: $gray-300;
+    }
+
+    li:hover,
+    li:focus {
+      background-color: $gray-400;
+    }
+  }
+}
 
 @media (max-width: $medium - 1) {
 
@@ -413,6 +424,9 @@ $form-col-width: calc(100% / #{$form-cols}) !default;
 
     form {
       display: block;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
 
       .form-before-fields,
       .group-wrap {
