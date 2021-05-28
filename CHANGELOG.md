@@ -1,4 +1,5 @@
 ### HEAD
+* Support `.env.local` config override ([#594](https://github.com/roots/bedrock/pull/594))
 * Use Bedrock disallow indexing package ([#521](https://github.com/roots/bedrock/pull/521))
 
 ### 1.15.4: 2021-05-19
