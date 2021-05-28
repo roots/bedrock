@@ -13,8 +13,8 @@
     <img alt="Packagist" src="https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square" />
   </a>
 
-  <a href="https://circleci.com/gh/roots/bedrock">
-    <img alt="Build Status" src="https://img.shields.io/circleci/build/gh/roots/bedrock?style=flat-square" />
+  <a href="https://github.com/roots/bedrock/actions/workflows/ci.yml">
+    <img alt="Build Status" src="https://img.shields.io/github/workflow/status/roots/bedrock/CI?style=flat-square" />
   </a>
 
   <a href="https://twitter.com/rootswp">
