@@ -21,9 +21,9 @@ jobs:
     - name: Install Composer dependencies
       uses: php-actions/composer@v5
 
-    - name: Run tests
+    - name: Run lint
       uses: php-actions/composer@v5
       with:
-        command: test
+        command: lint
         php_version: ${{ matrix.php_version }}
         version: 2
