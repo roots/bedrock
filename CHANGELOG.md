@@ -51,7 +51,6 @@
 * Upgrade `oscarotero/env` to `^2.0` ([#530](https://github.com/roots/bedrock/pull/530))
 * chore(deps): Bump vlucas/phpdotenv from 4.1.4 to 4.1.5 ([#518](https://github.com/roots/bedrock/pull/518))
 * Use Bedrock Autoloader package ([#519](https://github.com/roots/bedrock/pull/519))
-* chore(deps): Bump vlucas/phpdotenv from 4.1.4 to 4.1.5 ([#518](https://github.com/roots/bedrock/pull/518))
 
 ### 1.13.5: 2020-05-11
 
