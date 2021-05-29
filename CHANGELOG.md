@@ -1,4 +1,5 @@
 ### HEAD
+* Remove copying of `.env.example` to `.env` on Composer post-install ([#595](https://github.com/roots/bedrock/pull/595))
 * Support `.env.local` config override ([#594](https://github.com/roots/bedrock/pull/594))
 * Use Bedrock disallow indexing package ([#521](https://github.com/roots/bedrock/pull/521))
 
