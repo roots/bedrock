@@ -77,7 +77,7 @@ class DropdownComponent extends AbstractComponent
                 </button>
             </div>
 
-            <div class="dropdown-content dropdown-hover-trigger">';
+            <div class="dropdown-content">';
                 if (!empty($this->subComponents)) {
                     $markup .= '<span>' . $this->subComponents . '</span>';
                 }
