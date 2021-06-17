@@ -76,20 +76,20 @@ define('COOKIEHASH', sha1(WP_HOME));
 /**
  * Langue
  */
-define('WPLANG', 'fr_FR');
+define ('WPLANG', 'fr_FR');
 
 /**
  * Custom Settings
  */
-define('AUTOMATIC_UPDATER_DISABLED', !in_array(WP_ENV, ['staging', 'production']));
+define('AUTOMATIC_UPDATER_DISABLED', !in_array(WP_ENV,['staging','production']));
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
-define('FS_METHOD', 'direct');
+define('FS_METHOD','direct');
 
 /**
  * Assets
  */
-define('ASSETS_GROUP_APP', 'app');
+define('ASSETS_GROUP_APP','app');
 
 /**
  * Bootstrap WordPress
@@ -99,4 +99,23 @@ if (!defined('ABSPATH')) {
 }
 
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
-define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER", WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
+define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
+//define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
+//define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
+//define("WWP_PLUGIN_EMPLOI_MANAGER",WonderWp\Plugin\Emploi\Child\EmploiThemeManager::class);
+//define("WWP_PLUGIN_MAP_MANAGER",WonderWp\Plugin\Map\Child\MapThemeManager::class);
+//define("WWP_PLUGIN_RGPD_MANAGER",WonderWp\Plugin\RGPD\Child\RgpdThemeManager::class);
+//define("WWP_PLUGIN_TROMBI_MANAGER",WonderWp\Plugin\Trombinoscope\Child\TrombiThemeManager::class);
+//define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);
+//define("WWP_PLUGIN_MEMBRE_MANAGER",WonderWp\Plugin\EspaceRestreint\Child\ErThemeManager::class);
+//define("WWP_PLUGIN_EVENT_MANAGER",WonderWp\Plugin\Event\Child\EventThemeManager::class);
+//define("WWP_PLUGIN_FAQ_MANAGER",WonderWp\Plugin\Faq\Child\FaqThemeManager::class);
+//define("WWP_PLUGIN_GALERIE_MANAGER",WonderWp\Plugin\Galerie\Child\GalerieThemeManager::class);
+//define("WWP_PLUGIN_JEUX_MANAGER",WonderWp\Plugin\Jeux\Child\JeuxThemeManager::class);
+//define("WWP_PLUGIN_NEWSROOM_MANAGER",WonderWp\Plugin\NewsRoom\Child\NewsRoomThemeManager::class);
+//define("WWP_PLUGIN_PARCOURS_MANAGER",WonderWp\Plugin\Parcours\Child\ParcoursThemeManager::class);
+//define("WWP_PLUGIN_PARTENAIRE_MANAGER",WonderWp\Plugin\Partenaires\Child\PartenaireThemeManager::class);
+//define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
+//define("WWP_PLUGIN_VOTE_MANAGER",WonderWp\Plugin\Vote\Child\VoteThemeManager::class);
+//define("WWP_PLUGIN_NEWSLETTER_MANAGER",WonderWp\Plugin\Newsletter\Child\NewsletterThemeManager::class);
+//define("WWP_PLUGIN_BP_MANAGER",WonderWp\Plugin\Bp\Child\BpThemeManager::class);

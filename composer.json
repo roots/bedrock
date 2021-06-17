@@ -2,16 +2,35 @@
   "name": "wonderwp/site",
   "type": "project",
   "description": "",
-  "authors": [{"name": "Jeremy Desvaux", "email": "jeremy.desvaux@wonderful.fr", "homepage": "https://github.com/jeremy-wdf"}],
+  "authors": [
+    {
+      "name": "Jeremy Desvaux",
+      "email": "jeremy.desvaux@wonderful.fr",
+      "homepage": "https://github.com/jeremy-wdf"
+    }
+  ],
   "config": {
-    "preferred-install": {"wonderwp/*": "source", "agencewonderful/*": "source", "*": "dist"},
+    "preferred-install": {
+      "wonderwp/*": "source",
+      "agencewonderful/*": "source",
+      "*": "dist"
+    },
     "sort-packages": true,
     "optimize-autoloader": true
   },
   "repositories": [
-    {"type": "composer", "url": "https://wpackagist.org"},
-    {"type": "composer", "url": "https://won.wonderful.fr/satis/packages-mirror"},
-    {"type": "composer", "url": "https://composer.deliciousbrains.com"}
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://won.wonderful.fr/satis/packages-mirror"
+    },
+    {
+      "type": "composer",
+      "url": "https://composer.deliciousbrains.com"
+    }
   ],
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -35,7 +54,6 @@
     "agencewonderful/wwp-lazyload": "dev-develop@dev",
     "agencewonderful/wwp-maintenance": "dev-develop@dev",
     "agencewonderful/wwp-map": "dev-develop@dev",
-    "agencewonderful/wwp-meteo": "dev-develop@dev",
     "agencewonderful/wwp-newsletter": "dev-develop@dev",
     "agencewonderful/wwp-newsroom": "dev-develop@dev",
     "agencewonderful/wwp-parcours": "dev-develop@dev",
@@ -51,7 +69,7 @@
     "agencewonderful/wwp-video": "dev-develop@dev",
     "agencewonderful/wwp-vote": "dev-develop@dev",
     "composer/installers": "^1.9",
-    "deliciousbrains-plugin/wp-migrate-db-pro": "^2.0",
+    "deliciousbrains-plugin/wp-migrate-db-pro": "^1.9",
     "fzaninotto/faker": "^1.9",
     "johnpbloch/wordpress": "^5.4",
     "oscarotero/env": "^1.0",
@@ -64,20 +82,51 @@
     "wpackagist-plugin/wp-nested-pages": "^3.0",
     "ext-json": "*"
   },
-  "require-dev": {"phpunit/phpunit": "^9", "squizlabs/php_codesniffer": "^2.5.1"},
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "squizlabs/php_codesniffer": "^2.5.1"
+  },
   "autoload": {
     "psr-4": {
       "WonderWp\\Theme\\Child\\": "web/app/themes/wwp_child_theme/includes",
-      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-gutenberg-utils/includes"
+      "WonderWp\\Plugin\\GutenbergUtils\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-gutenberg-utils/includes",
+      "WonderWp\\Plugin\\Social\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-social/includes",
+      "WonderWp\\Plugin\\Contact\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-contact/includes",
+      "WonderWp\\Plugin\\Emploi\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-emploi/includes",
+      "WonderWp\\Plugin\\Map\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-map/includes",
+      "WonderWp\\Plugin\\RGPD\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-rgpd/includes",
+      "WonderWp\\Plugin\\Trombinoscope\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-trombinoscope/includes",
+      "WonderWp\\Plugin\\Video\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-video/includes",
+      "WonderWp\\Plugin\\EspaceRestreint\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-espace-restreint/includes",
+      "WonderWp\\Plugin\\Event\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-event/includes",
+      "WonderWp\\Plugin\\Faq\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-faq/includes",
+      "WonderWp\\Plugin\\Galerie\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-galerie/includes",
+      "WonderWp\\Plugin\\Jeux\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-jeux/includes",
+      "WonderWp\\Plugin\\NewsRoom\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-newsroom/includes",
+      "WonderWp\\Plugin\\Parcours\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-parcours/includes",
+      "WonderWp\\Plugin\\Partenaires\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-partenaires/includes",
+      "WonderWp\\Plugin\\Vote\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-vote/includes",
+      "WonderWp\\Plugin\\Newsletter\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-newsletter/includes",
+      "WonderWp\\Plugin\\Bp\\Child\\": "web/app/themes/wwp_child_theme/plugins/wwp-branchepage/includes"
     }
   },
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
-  "scripts": {"test": ["vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."]}
+  "scripts": {
+    "test": [
+      "vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."
+    ]
+  }
 }

@@ -1,15 +1,14 @@
 // Accordion
 :root {
-  --accordion-theme-color: var(--color-theme-base);
-  --accordion-theme-bgcolor: white;
-  --accordion-theme-btn-color: var(--color-theme-primary);
-  --accordion-theme-hovercolor: var(--color-theme-base);
-  --accordion-theme-hoverbackground: white;
-  --accordion-theme-activecolor: var(--color-theme-base);
-  --accordion-theme-activebackground: white;
+  --accordion-color: var(--color-theme-base);
+  --accordion-bgcolor: white;
+  --accordion-btn-color: var(--color-theme-primary);
+  --accordion-hovercolor: var(--color-theme-base);
+  --accordion-hoverbackground: white;
+  --accordion-activecolor: var(--color-theme-base);
+  --accordion-activebackground: white;
+  --accordion-border-radius: var(--border-radius-theme);
 }
-
-$accordion-border-radius: 6px;
 
 .js-accordion {
   button, div {
@@ -25,22 +24,22 @@ $accordion-border-radius: 6px;
   padding-right: 8rem;
   padding-left: 5rem;
   text-align: left;
-  color: var(--accordion-theme-color);
-  background-color: var(--accordion-theme-bgcolor);
+  color: var(--accordion-color);
+  background-color: var(--accordion-bgcolor);
   white-space: normal;
   min-height: 5rem;
   height: initial;
   border: 0;
   font-size: 1.4rem;
-  border-radius: $accordion-border-radius;
+  border-radius: var(--accordion-border-radius);
   box-shadow: var(--box-shadow-theme);
   cursor: pointer;
 
   .no-touch &:hover,
   &:focus,
   &:active {
-    color: var(--accordion-theme-hovercolor);
-    background-color: var(--accordion-theme-hoverbackground);
+    color: var(--accordion-hovercolor);
+    background-color: var(--accordion-hoverbackground);
     box-shadow: var(--box-shadow-theme-active);
   }
 
@@ -71,15 +70,15 @@ $accordion-border-radius: 6px;
     top: -1px;
     height: calc(100% + 2px);
     width: 5rem;
-    background-color: var(--accordion-theme-btn-color);
+    background-color: var(--accordion-btn-color);
     z-index: 1;
-    border-radius: 0 $accordion-border-radius $accordion-border-radius 0;
+    border-radius: 0 var(--accordion-border-radius) var(--accordion-border-radius) 0;
   }
 
   &[aria-expanded="true"] {
     font-family: var(--font-theme-secondary);
-    color: var(--accordion-theme-activecolor);
-    background-color: var(--accordion-theme-activebackground);
+    color: var(--accordion-activecolor);
+    background-color: var(--accordion-activebackground);
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
@@ -88,7 +87,7 @@ $accordion-border-radius: 6px;
     }
 
     &:after {
-      border-radius: 0 $accordion-border-radius 0 0;
+      border-radius: 0 var(--accordion-border-radius) 0 0;
     }
   }
 
@@ -104,10 +103,10 @@ $accordion-border-radius: 6px;
 .js-accordion__panel {
   background: #fff;
   position: relative;
-  border: 1px solid var(--accordion-theme-bgcolor);
+  border: 1px solid var(--accordion-bgcolor);
   padding: 0 5rem;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: var(--accordion-border-radius);
+  border-bottom-left-radius: var(--accordion-border-radius);
   font-size: 1.5rem;
   box-shadow: var(--box-shadow-theme);
   overflow: hidden;
