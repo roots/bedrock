@@ -26,19 +26,19 @@ class VideoComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="string")
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Video mp4"})
      */
     protected $videoMp4;
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="string")
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Video ogg"})
      */
     protected $videoOgg;
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="string")
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Video webm"})
      */
     protected $videoWebm;
 
