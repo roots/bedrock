@@ -1,8 +1,8 @@
-import {MeteoTestSuite} from "../../web/app/plugins/wwp-meteo/tests/cypress/MeteoTestSuite";
+import {CacheTestSuite} from "../../web/app/plugins/wwp-cache/tests/cypress/CacheTestSuite";
 
-describe('wwp-meteo test suite', () => {
+describe('wwp-cache test suite', () => {
 
-    let acs              = new MeteoTestSuite(),
+    let acs              = new CacheTestSuite(),
         testsDefinitions = acs.getTestsDefinitions();
 
     testsDefinitions.forEach((testDef) => {
