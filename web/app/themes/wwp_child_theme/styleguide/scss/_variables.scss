@@ -76,7 +76,6 @@ $weight-bold    : 700 !default;
   @extend %font-family-sriracha;
 }*/
 
-
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : var(--font-size-base);
 
@@ -115,6 +114,61 @@ $font-sizes: (
 $line-height-s    : var(--line-height-headings);
 $line-height-base : var(--line-height-base);
 $line-height-l    : 1.7 !default;
+
+// ----------
+// Color zone
+// ----------
+
+/*Project's colors*/
+
+// Theme's colors
+$color-base      : var(--color-theme-base);
+$background-base : white;
+$color-brand    : var(--color-theme-brand);
+$color-primary  : var(--color-theme-primary);
+$color-secondary  : var(--color-theme-secondary);
+// Site's secondary colors
+$color-black: #2e2632;
+$color-grey-verylight: #F7F7FA;
+$color-grey-light: #ECEDF0;
+$color-grey-medium: #DEE0E3;
+$color-grey: #C2C3C8;
+$color-grey-dark: #97989B;
+// Alert's colors
+$color-alert-success: #155724;
+$color-alert-success-50: #d4edda;
+$color-alert-danger: #721c24;
+$color-alert-danger-50: #f8d7da;
+$color-alert-warning: #856404;
+$color-alert-warning-50: #fff3cd;
+
+// Knacss colors (css framework)
+$white    : #fff !default;
+$gray-100 : #f8f9fa !default;
+$gray-200 : #e7e9ed !default;
+$gray-300 : #dee2e6 !default;
+$gray-400 : #ced4da !default;
+$gray-500 : #acb3c2 !default;
+$gray-600 : #727e96 !default;
+$gray-700 : #454d5d !default;
+$gray-800 : #333 !default;
+$gray-900 : #212529 !default;
+$black    : #000 !default;
+$blue-300   : #5BC0DE !default;
+$blue-500   : #0275D8 !default;
+$green-500  : #5CB85C !default;
+$orange-500 : #F0AD4E !default;
+$red-500    : #D9534F !default;
+
+// Alert colors
+$color-success  : $color-alert-success;
+$color-info     : $color-alert-warning;
+$color-warning  : $color-alert-warning;
+$color-danger   : $color-alert-danger;
+$color-error    : $color-alert-danger;
+$color-inverse  : $color-grey-dark;
+$color-ghost    : transparent;
+$color-muted    : $color-grey-light;
 
 // Default margin-bottom (vertical rythm)
 $margin-bottom-base     : 3rem !default;
@@ -158,47 +212,8 @@ $zindex-modal        : 5000 !default;
 $zindex-notification : 6000 !default;
 $zindex-debug        : 7000 !default;
 
-// ----------
-// Color zone
-// ----------
-
-// Project's colors
-$color-base      : var(--color-theme-base);
-$background-base : white;
-$color-brand    : var(--color-theme-brand);
-$color-primary  : var(--color-theme-primary);
-
-// Color names
-$white    : #fff !default;
-$gray-100 : #f8f9fa !default;
-$gray-200 : #e7e9ed !default;
-$gray-300 : #dee2e6 !default;
-$gray-400 : #ced4da !default;
-$gray-500 : #acb3c2 !default;
-$gray-600 : #727e96 !default;
-$gray-700 : #454d5d !default;
-$gray-800 : #333 !default;
-$gray-900 : #212529 !default;
-$black    : #000 !default;
-
-$blue-300   : #5BC0DE !default;
-$blue-500   : #0275D8 !default;
-$green-500  : #5CB85C !default;
-$orange-500 : #F0AD4E !default;
-$red-500    : #D9534F !default;
-
-// Alert colors
-$color-success  : $green-500;
-$color-info     : $blue-300;
-$color-warning  : $orange-500;
-$color-danger   : $red-500;
-$color-error    : $red-500;
-$color-inverse  : $gray-800;
-$color-ghost    : transparent;
-$color-muted    : $gray-200;
-
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
-$forms-color                : $gray-800 !default;
+$forms-color                : $color-grey-dark !default;
 $forms-bgcolor              : transparent !default;
 $label-color                : $color-base !default;
 $input-color                : $color-base !default;
@@ -241,7 +256,7 @@ $switch-border-radius       : 3em;
 // ---------------
 
 // Component: links
-$link-color            : $gray-800 !default;
+$link-color            : $color-grey-dark !default;
 $link-color-hover      : darken($link-color, 15%) !default;
 $link-decoration       : underline;
 $link-decoration-hover : underline;
@@ -257,7 +272,7 @@ $arrow-color     : $color-base !default;
 
 // Component: tables
 $table-border               : $gray-500 !default;
-$table-caption-color        : $gray-800 !default;
+$table-caption-color        : $color-grey-dark !default;
 $table-background           : transparent !default;
 $table-head-color           : $color-base !default;
 $table-head-background      : transparent !default;
