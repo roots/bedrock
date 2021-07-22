@@ -122,15 +122,15 @@ $line-height-l    : 1.7 !default;
 /*Project's colors*/
 
 // Theme's colors
-$color-base      : var(--color-theme-base);
-$background-base : white;
-$color-brand    : var(--color-theme-brand);
-$color-primary  : var(--color-theme-primary);
-$color-secondary  : var(--color-theme-secondary);
+$color-base         : var(--color-theme-base);
+$background-base    : white;
+$color-brand        : var(--color-theme-brand);
+$color-primary      : var(--color-theme-primary);
+$color-secondary    : var(--color-theme-secondary);
 // Site's secondary colors
 $color-black: #2e2632;
 $color-grey-verylight: #F7F7FA;
-$color-grey-light: #ECEDF0;
+$color-grey-light: var(--color-theme-secondary); //#ECEDF0
 $color-grey-medium: #DEE0E3;
 $color-grey: #C2C3C8;
 $color-grey-dark: #97989B;
@@ -141,6 +141,8 @@ $color-alert-danger: #721c24;
 $color-alert-danger-50: #f8d7da;
 $color-alert-warning: #856404;
 $color-alert-warning-50: #fff3cd;
+$color-alert-info: #856404;
+$color-alert-info-50: #fff3cd;
 
 // Knacss colors (css framework)
 $white    : #fff !default;
@@ -286,11 +288,11 @@ $variants-list: (
         (brand,      var(--color-theme-brand),      white,    0 0 0 2px var(--color-theme-brand) inset),
         (black,      var(--color-theme-base),      white,    0 0 0 2px var(--color-theme-base) inset),
         (white,      white,             $color-base,    0 0 0 2px $color-base inset),
-        (success,    $color-success,    white,    0 0 0 2px $color-success inset),
-        (info,       $color-info,       white,    0 0 0 2px $color-info inset),
-        (warning,    $color-warning,    white,    0 0 0 2px $color-warning inset),
-        (danger,     $color-danger,     white,    0 0 0 2px $color-danger inset),
-        (error,      $color-error,      white,    0 0 0 2px $color-error inset),
+        (success,    $color-alert-success-50,    $color-alert-success,    0 0 0 2px $color-success inset),
+        (info,       $color-alert-info-50,       $color-alert-info,    0 0 0 2px $color-alert-info inset),
+        (warning,    $color-alert-warning-50,    $color-alert-warning,    0 0 0 2px $color-alert-warning inset),
+        (danger,     $color-alert-danger-50,     $color-alert-danger,    0 0 0 2px $color-alert-danger inset),
+        (error,      $color-alert-danger-50,      $color-alert-danger,    0 0 0 2px $color-alert-danger inset),
         (inverse,    $color-inverse,    white,    0 0 0 2px $color-inverse inset),
         (ghost,      $color-ghost,      white,    0 0 0 2px $color-ghost inset)
 ) !default;
