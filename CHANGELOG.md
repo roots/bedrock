@@ -1,4 +1,5 @@
-### HEAD
+### 1.16.0: 2021-07-22 
+* Bump roots/wordpress from 5.7.2 to 5.8 ([#600](https://github.com/roots/bedrock/pull/600))
 * Default to `WP_DEBUG_LOG=true` in development ([#505](https://github.com/roots/bedrock/pull/505))
 * Support `.env.local` config override ([#594](https://github.com/roots/bedrock/pull/594))
 * Use Bedrock disallow indexing package ([#521](https://github.com/roots/bedrock/pull/521))
