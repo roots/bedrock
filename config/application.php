@@ -87,6 +87,12 @@ define('DISALLOW_FILE_EDIT', true);
 define('FS_METHOD','direct');
 
 /**
+ * WP Rocket
+ */
+define('WP_ROCKET_EMAIL', 'jeremy.desvaux@wonderful.fr');
+define('WP_ROCKET_KEY', '90767766');
+
+/**
  * Assets
  */
 define('ASSETS_GROUP_APP','app');
