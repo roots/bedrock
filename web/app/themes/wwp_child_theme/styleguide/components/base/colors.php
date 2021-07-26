@@ -5,8 +5,11 @@ $colors = [
     'base',
     'brand',
     'primary',
+    'secondary',
+    'verylightgrey',
     'lightgrey',
     'mediumgrey',
+    'grey',
     'darkgrey'
 ];
 ?>

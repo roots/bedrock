@@ -30,9 +30,10 @@
 /* Default list parent style */
 /* ------------------------- */
 //Variables:
-$gutter  : 2rem; //Largeur gouttière
-$gutterTablet  : 1rem; //Largeur gouttière
-$col     : 3; //Nombre de colonnes
+$gutter         : 2rem; //Largeur gouttière
+$gutterTablet   : 2rem;
+$col            : 3; //Nombre de colonnes
+$colTablet      : 2;
 
 .items-list {
   display: flex;
@@ -63,7 +64,7 @@ $col     : 3; //Nombre de colonnes
 
     li,
     > .item {
-      flex-basis: calc(100% * 1 / #{$col} - #{$gutterTablet * 2} - .01px);
+      flex-basis: calc(100% * 1 / #{$colTablet} - #{$gutterTablet * 2} - .01px);
       margin-right: $gutterTablet;
       margin-left: $gutterTablet;
     }

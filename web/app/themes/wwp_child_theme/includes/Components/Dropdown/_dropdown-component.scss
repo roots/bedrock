@@ -1,10 +1,9 @@
-$dropdown-height: auto;
 $trigger-height: 5rem;
 $trigger-color: white; //button
 $trigger-bgcolor: $color-primary; //button
 
 .wdf-dropdown {
-  height: $dropdown-height;
+  height: $trigger-height;
   overflow: hidden;
 
   &, .dropup {
@@ -21,9 +20,11 @@ $trigger-bgcolor: $color-primary; //button
     height: $trigger-height;
     position: relative;
     z-index: 1;
+    transition: all 0.4s;
 
     .button {
       justify-content: space-between;
+      height: 100%;
       width: 100%;
       margin: 0;
       padding: 0 3rem;
@@ -53,6 +54,7 @@ $trigger-bgcolor: $color-primary; //button
 
   // Reveal
   &.open {
+    height: auto;
 
     .dropdown-icon {
       transform: rotate(180deg);

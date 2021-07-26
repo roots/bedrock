@@ -66,7 +66,7 @@
         height: 100%;
         padding: 20px;
         background-color: var(--menu-item-bgcolor);
-        border-bottom: 1px solid var(--color-theme-secondary);
+        border-bottom: 1px solid $color-grey-medium;
       }
     }
 
@@ -86,7 +86,7 @@
         display: block;
         position: absolute;
         top: 50%;
-        right: 1rem;
+        right: 3rem;
         height: 10px;
         width: 10px;
         border-right: 2px solid;
@@ -139,7 +139,7 @@
         background-color: white;
         text-indent: -999px;
         border-radius: 0;
-        border: 1px solid var(--color-theme-secondary);
+        border: 1px solid $color-grey-medium;
         box-shadow: none;
 
         &::after {
@@ -187,7 +187,7 @@
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
-    background-color: transparent;
+    background: transparent !important;
     outline: 0;
     border: none !important;
     cursor: pointer;
