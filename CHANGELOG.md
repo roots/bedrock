@@ -1,3 +1,6 @@
+### 1.16.1: 2021-07-30
+* Check if `.env.local` exists before loading it ([#603](https://github.com/roots/bedrock/pull/603))
+
 ### 1.16.0: 2021-07-22 
 * Bump roots/wordpress from 5.7.2 to 5.8 ([#600](https://github.com/roots/bedrock/pull/600))
 * Default to `WP_DEBUG_LOG=true` in development ([#505](https://github.com/roots/bedrock/pull/505))
