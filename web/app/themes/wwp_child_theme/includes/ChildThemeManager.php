@@ -29,6 +29,7 @@ class ChildThemeManager extends ThemeManager
     {
 
         $this->setConfig('use_critical_css', true);
+        $this->setConfig('use_differential_serving', true);
 
         parent::register($container);
 

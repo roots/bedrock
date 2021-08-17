@@ -36,6 +36,7 @@ const getCustomConfig = (buildType, entries) => {
   Encore
     .setOutputPath(`${assets.site.prefix}${assets.site.assets_dest}/${buildType}`)
     .setPublicPath(`${assets.site.assets_dest}/${buildType}`)
+    .setManifestKeyPrefix(`${assets.site.assets_dest}/${buildType}`)
 
   const config = Encore.getWebpackConfig();
 

@@ -17,17 +17,17 @@ function getAssetsEntries(buildType) {
     if (buildType === BUILD_TYPE.LEGACY && key === 'critical') {
       entry[attr] = [
         `${assets.site.prefix}${assets.site.assets_src}/js/polyfill.js`,
-        ...assets.js[key]
+        ...Object.values(assets.js[key])
       ];
     } else {
-      entry[attr] = assets.js[key];
+      entry[attr] = Object.values(assets.js[key]);
     }
   });
 
   const cssAssets = Object.keys(assets.css);
   cssAssets.forEach((key) => {
     const attr = 'css/' + key;
-    entry[attr] = assets.css[key];
+    entry[attr] = Object.values(assets.css[key]);
   });
 
   return entry;
