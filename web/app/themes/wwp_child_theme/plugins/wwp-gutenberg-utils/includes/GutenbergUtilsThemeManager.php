@@ -8,6 +8,7 @@ use WonderWp\Plugin\GutenbergUtils\Bloc\AccordionBlock\AccordionPaneBlock;
 use WonderWp\Plugin\GutenbergUtils\GutenbergUtilsManager;
 use WonderWp\Theme\Child\Components\Button\ButtonComponent;
 use WonderWp\Theme\Child\Components\Card\CardComponent;
+use WonderWp\Theme\Child\Components\ChiffreCle\ChiffreCleComponent;
 use WonderWp\Theme\Child\Components\Citation\CitationComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
@@ -29,7 +30,8 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
             DropdownComponent::class,
             CardComponent::class,
             ButtonComponent::class,
-            CitationComponent::class
+            CitationComponent::class,
+            ChiffreCleComponent::class
         ]);
 
         parent::register ($container);
