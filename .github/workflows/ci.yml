@@ -1,0 +1,29 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: ['7.3', '7.4', '8.0']
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Composer dependencies
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install Composer dependencies
+      uses: php-actions/composer@v5
+
+    - name: Run tests
+      uses: php-actions/composer@v5
+      with:
+        command: test
+        php_version: ${{ matrix.php_version }}
+        version: 2
