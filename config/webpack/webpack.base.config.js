@@ -42,6 +42,9 @@ const getCustomConfig = (buildType, entries) => {
 
   config.resolve.alias = alias;
 
+  // Enable file sourcemap instead of inline sourcemap
+  config.devtool = 'source-map';
+
   config.optimization.splitChunks.cacheGroups = {
     commons: {
       name: 'js/vendor',
