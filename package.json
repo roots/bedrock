@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "encore dev --watch -c ./config/webpack/webpack.modern.config.js & encore dev --watch -c ./config/webpack/webpack.legacy.config.js",
-    "build:prod": "encore production --progress -c config/webpack/webpack.modern.config.js & encore production --progress -c config/webpack/webpack.legacy.config.js & wait",
+    "build:prod": "NODE_ENV=production encore production --progress -c config/webpack/webpack.modern.config.js & encore production --progress -c config/webpack/webpack.legacy.config.js & wait",
     "build": "encore dev --progress -c config/webpack/webpack.modern.config.js & encore dev --progress -c config/webpack/webpack.legacy.config.js & wait",
     "sprites": "node compile-sprites.js"
   },

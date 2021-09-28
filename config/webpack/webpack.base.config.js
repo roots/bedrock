@@ -9,7 +9,7 @@ Encore
   ])
   .enableBuildNotifications()
   .enableSourceMaps(!Encore.isProduction())
-  .enableVersioning(Encore.isProduction())
+  .enableVersioning()
   .enableSassLoader()
   .autoProvidejQuery()
   .configureLoaderRule('sass', loaderRule => {
