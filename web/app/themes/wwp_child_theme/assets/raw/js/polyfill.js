@@ -1,3 +1,6 @@
+import cssVars from 'css-vars-ponyfill';
+
+cssVars();
 /**
  * Object.assign Polyfill
  */
