@@ -43,7 +43,7 @@
   &:active {
     color: var(--accordion-hovercolor);
     background-color: var(--accordion-hoverbackground);
-    box-shadow: var(--box-shadow-theme-small--active);
+    //box-shadow: var(--box-shadow-theme-small--active);
   }
 
   &:focus {
@@ -106,6 +106,7 @@
 .js-accordion__panel {
   background: #fff;
   position: relative;
+  z-index: -1;
   border: 1px solid var(--accordion-bgcolor);
   padding: 0 5rem;
   border-bottom-right-radius: var(--accordion-border-radius);
@@ -125,10 +126,11 @@
   h2:before {
     content: none;
   }
-}
 
-.js-accordion__header[aria-expanded="true"] + .js-accordion__panel {
-  padding: 4rem 5rem;
+  &[aria-hidden="false"] {
+    padding: 4rem 5rem;
+    box-shadow: var(--accordion-box-shadow);
+  }
 }
 
 .js-accordion__title,
