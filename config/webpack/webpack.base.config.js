@@ -12,7 +12,6 @@ Encore
     '!svg/**',
   ])
   .enableBuildNotifications()
-  .enableSourceMaps(!Encore.isProduction())
   .enableVersioning()
   .enableSassLoader()
   .autoProvidejQuery()
@@ -30,7 +29,7 @@ Encore
     })
   })
   .when(process.argv.includes('--analyze'), (Encore) => Encore.addPlugin(new BundleAnalyzerPlugin()))
-  .when(Encore.isProduction(), (Encore) => Encore.addPlugin(new PurgecssPlugin({
+  .when(process.env.ENABLE_PURGECSS === 'true', (Encore) => Encore.addPlugin(new PurgecssPlugin({
     paths: glob.sync(`./web/**/*`, {nodir: true}),
     safelist: () => ([/::.*/])
   }), PluginPriorities.DefinePlugin))
@@ -57,7 +56,9 @@ const getCustomConfig = (buildType, entries) => {
       require('postcss-import'),
       require("postcss-css-variables"),
       require('postcss-nested'),
-      require('autoprefixer'),
+      require('autoprefixer')({
+        grid: true,
+      }),
     ];
   }
 
@@ -76,7 +77,7 @@ const getCustomConfig = (buildType, entries) => {
 
   config.resolve.alias = alias;
 
-  if (!Encore.isProduction()) {
+  if (!Encore.isProduction() || process.env.FORCE_SOURCEMAP === 'true') {
     // Enable file sourcemap instead of inline sourcemap
     config.devtool = 'source-map';
   }
@@ -88,6 +89,12 @@ const getCustomConfig = (buildType, entries) => {
       minChunks: 3
     }
   };
+
+  config.performance = {
+    hints: "warning", // "error" or false are valid too
+    maxEntrypointSize: 50000, // in bytes, default 250k
+    maxAssetSize: 200000, // in bytes
+  }
 
   config.name = buildType;
 
