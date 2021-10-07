@@ -1,5 +1,9 @@
 const Encore = require('@symfony/webpack-encore');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+const glob = require('glob')
 const {alias, assets, BUILD_TYPE} = require('./paths')
+const PluginPriorities = require("@symfony/webpack-encore/lib/plugins/plugin-priorities");
 
 Encore
   .disableSingleRuntimeChunk()
@@ -18,14 +22,27 @@ Encore
       if (Array.isArray(loader.use)) {
 
         loader.use.forEach((useRule, indexUse) => {
-          if (useRule.loader.indexOf('css-loader') !== -1) {
+          if (useRule.loader.indexOf('css-loader') !== -1 && useRule.loader.indexOf('postcss-loader') === -1) {
             loaderRule.oneOf[index].use[indexUse].options.url = false
           }
         })
       }
     })
-  });
+  })
+  .when(process.argv.includes('--analyze'), (Encore) => Encore.addPlugin(new BundleAnalyzerPlugin()))
+  .when(Encore.isProduction(), (Encore) => Encore.addPlugin(new PurgecssPlugin({
+    paths: glob.sync(`./web/**/*`, {nodir: true}),
+    safelist: () => ([/::.*/])
+  }), PluginPriorities.DefinePlugin))
+;
 
+/**
+ * Build custom webpack config to apply custom rules based on build type (legacy or modern)
+ * See .browserlistrc for browser version for each build type
+ *
+ * @param buildType
+ * @param entries
+ */
 const getCustomConfig = (buildType, entries) => {
   process.env.BROWSERSLIST_ENV = buildType;
 
@@ -33,17 +50,36 @@ const getCustomConfig = (buildType, entries) => {
     Encore.addEntry(key, value);
   });
 
+  let postcssPlugins = ["postcss-preset-env"];
+
+  if (buildType === 'legacy') {
+    postcssPlugins = [
+      require('postcss-import'),
+      require("postcss-css-variables"),
+      require('postcss-nested'),
+      require('autoprefixer'),
+    ];
+  }
+
   Encore
     .setOutputPath(`${assets.site.prefix}${assets.site.assets_dest}/${buildType}`)
     .setPublicPath(`${assets.site.assets_dest}/${buildType}`)
     .setManifestKeyPrefix(`${assets.site.assets_dest}/${buildType}`)
+    .enablePostCssLoader(options => {
+      options.postcssOptions = {
+        plugins: postcssPlugins
+      };
+    })
+  ;
 
   const config = Encore.getWebpackConfig();
 
   config.resolve.alias = alias;
 
-  // Enable file sourcemap instead of inline sourcemap
-  config.devtool = 'source-map';
+  if (!Encore.isProduction()) {
+    // Enable file sourcemap instead of inline sourcemap
+    config.devtool = 'source-map';
+  }
 
   config.optimization.splitChunks.cacheGroups = {
     commons: {
