@@ -59,16 +59,17 @@
     <script>
         window.document.documentElement.className += ' js-enabled';
         window.document.documentElement.classList.remove('no-js');
-        if (window.criticalJsReady) {
-            criticalJsReady();
-        } else {
-            document.addEventListener('criticalJsReady', function () {
-                criticalJsReady();
-            });
-        }
-        criticalJsReady = function () {
+        var criticalJsReadyFn = function () {
             window.wonderwp.FeatureDetector.runTests();
         }
+        if (window.criticalJsReady) {
+            criticalJsReadyFn();
+        } else {
+            document.addEventListener('criticalJsReady', function () {
+                criticalJsReadyFn();
+            });
+        }
+
     </script>
 
 </head>
