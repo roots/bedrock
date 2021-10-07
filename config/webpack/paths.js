@@ -34,6 +34,7 @@ function getAssetsEntries(buildType) {
 }
 
 const alias = {
+  "ScrollMagic": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
   "debug.addIndicators": path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
 };
 
