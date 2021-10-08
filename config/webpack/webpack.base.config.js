@@ -1,9 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob')
 const {alias, assets, BUILD_TYPE} = require('./paths')
-const PluginPriorities = require("@symfony/webpack-encore/lib/plugins/plugin-priorities");
 
 Encore
   .disableSingleRuntimeChunk()
@@ -29,10 +26,6 @@ Encore
     })
   })
   .when(process.argv.includes('--analyze'), (Encore) => Encore.addPlugin(new BundleAnalyzerPlugin()))
-  .when(process.env.ENABLE_PURGECSS === 'true', (Encore) => Encore.addPlugin(new PurgecssPlugin({
-    paths: glob.sync(`./web/**/*`, {nodir: true}),
-    safelist: () => ([/::.*/])
-  }), PluginPriorities.DefinePlugin))
 ;
 
 /**
@@ -90,10 +83,12 @@ const getCustomConfig = (buildType, entries) => {
     }
   };
 
-  config.performance = {
-    hints: "warning", // "error" or false are valid too
-    maxEntrypointSize: 50000, // in bytes, default 250k
-    maxAssetSize: 200000, // in bytes
+  if (Encore.isProduction()) {
+    config.performance = {
+      hints: "error", // "error" or false are valid too
+      maxEntrypointSize: 500000, // in bytes, default 250k
+      maxAssetSize: 400000, // in bytes
+    }
   }
 
   config.name = buildType;
