@@ -1,0 +1,61 @@
+/* scss/components/_citation-component.scss */
+
+blockquote,
+.cite-name,
+.cite-function {
+  display: block;
+  padding-left: 12rem;
+
+  @media (max-width: $medium) {
+    padding-left: 10rem;
+  }
+
+  @media (max-width: $medium - 1) {
+    padding-left: 8rem;
+  }
+}
+
+blockquote {
+  position: relative;
+  margin: 4rem 0 2rem 0;
+  font-family: $font-family-base;
+  font-size: 5rem;
+  color: $color-primary;
+  line-height: $line-height-s;
+
+  &::before {
+    @include svgIcon('quote');
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    height: 68px;
+  }
+
+  @media (max-width: $medium) {
+    font-size: 3.6rem;
+
+    &::before {
+      transform: scale(0.8);
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+    font-size: 3rem;
+
+    &::before {
+      transform: scale(0.6);
+      left: -2rem;
+      top: 0;
+    }
+  }
+}
+
+.cite-name {
+  font-family: $font-family-secondary;
+  font-size: 1.6rem;
+}
+
+.cite-function {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}

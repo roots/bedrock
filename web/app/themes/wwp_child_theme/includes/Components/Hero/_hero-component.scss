@@ -1,0 +1,123 @@
+$heroHeight: 52rem;
+$heroHeightMobile: auto;
+
+.hero-component {
+  position: relative;
+  padding: 6rem 0;
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: $heroHeight;
+    padding: 6rem;
+
+    h2, p, span, .chapo, .citation {
+      color: white;
+      text-align: center;
+    }
+
+    blockquote {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    // Ajout icône / logo
+    .wp-block-image {
+      margin: 0;
+    }
+  }
+
+  // Si image de fond (.has-image)
+  &.has-image {
+    height: 100%;
+  }
+  .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+    img {
+      @include absolute-center;
+      min-height: 100%;
+      width: auto;
+      min-width: 100%;
+      max-width: none;
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+  }
+
+  // Opacité de l'image
+  $opacities: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
+  @each $opacity in $opacities {
+    &.image-opacity-#{$opacity} {
+      .image-wrapper  img {
+        opacity: calc(#{$opacity} / 100);
+      }
+    }
+  }
+
+  // Contenu aligné à gauche
+  &.is-textleft {
+    .hero-content {
+      align-items: flex-start;
+      h2, p, span, .chapo, .citation {
+        text-align: left;
+      }
+    }
+  }
+
+  // Petite zone de contenu
+  &.is-small-content {
+    .hero-content {
+      max-width: 54rem;
+    }
+  }
+
+  @media (max-width: $large) {
+    padding: 2rem 0;
+
+    .hero-content {
+      min-height: 45rem;
+
+      .wp-block-image {
+        max-width: 18rem;
+      }
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+    padding: 0;
+
+    .hero-content {
+      min-height: $heroHeightMobile;
+    }
+
+    &.is-small-mobile-height {
+      &,
+      .hero-content {
+        min-height: 100vw;
+        max-height: 100vw;
+      }
+    }
+
+    .hero-content {
+      padding: 3rem;
+
+      h2 {
+        margin-top: 2rem;
+      }
+
+      .wp-block-image {
+        max-width: 16rem;
+      }
+    }
+  }
+
+}

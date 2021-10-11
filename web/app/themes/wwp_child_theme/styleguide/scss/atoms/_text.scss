@@ -4,3 +4,16 @@ address, blockquote, dl, ol, p, pre, ul {
   margin-top: .75em;
   margin-bottom: .75em;
 }
+
+/* Knacss override */
+p a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $link-color-hover;
+    text-decoration: $link-decoration-hover;
+  }
+}

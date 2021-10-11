@@ -6,7 +6,7 @@ $video = new WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent();
 $video
     ->setTitle('Titre de la video')
     ->setVideo('8b8qTPzfrOE')
-    ->setImage('<img width="920" height="700" src="http://via.placeholder.com/920x700" alt="">')
+    ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
 ;
 
 echo $video->getMarkup();

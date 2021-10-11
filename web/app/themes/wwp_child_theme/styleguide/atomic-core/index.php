@@ -16,7 +16,7 @@ $settings = $settings->select(array());
 
 
 ?>
-<body id="atomsWrap" class="atoms" xmlns="http://www.w3.org/1999/html">
+<body id="atomsWrap" class="atoms no-touch" xmlns="http://www.w3.org/1999/html">
 
 
 <div id="search-list" class="searchWindow">
@@ -369,7 +369,7 @@ $settings = $settings->select(array());
                                   data-editorFormCat="<?php echo $cat; ?>"
                                   data-codeDest="<?php echo $setting['component_directory'] ?>">
                                 <div  class="js-copyBtn copyBtn copyBtn-markup" data-clipboard-text="" data-copy-target="<?php echo $component['component'] ?>-markup-val"><i class="fa fa-clone" aria-hidden="true"></i> Copy</div>
-                                
+
                                 <div class="atomic-editorInner" id="<?php echo $component['component'] ?>-editorInner" >
 
                                     <div class="copyBtn copyBtn-edit js-copyBtn-edit">Edit</div>

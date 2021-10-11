@@ -6,14 +6,15 @@
 /* styling skip links */
 .skip-links {
   position: absolute;
+  z-index: 1;
 
-  & a {
+  a {
     position: absolute;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
-    padding: 0.5em;
+    padding: 1em;
     background: black;
-    color: white;
+    color: white !important;
     text-decoration: none;
 
     &:focus {
@@ -22,4 +23,15 @@
       clip: auto;
     }
   }
+}
+
+//FOCUS uniquement au clic/tap focus => masqué
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+//FOCUS uniquement au focus clavier
+:focus-visible {
+  padding: 0.5em;
+  text-decoration: auto;
+  outline: 2px dashed #CCCCCC;
 }

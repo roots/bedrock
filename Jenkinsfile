@@ -202,11 +202,11 @@ pipeline {
             if(env.runBuild=='true'){
 	            try {
                     sh 'npm run sprites';
-                    if(BRANCH_NAME=='master'){
+                    //if(BRANCH_NAME=='master'){
                         sh 'npm run build:prod';
-                    } else {
-                        sh 'npm run build';
-                    }
+                    //} else {
+                    //    sh 'npm run build';
+                    //}
                 } catch(exc){
                     handleException('Building the front failed',exc);
                 }

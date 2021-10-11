@@ -8,6 +8,7 @@
   --accordion-activecolor: var(--color-theme-base);
   --accordion-activebackground: white;
   --accordion-border-radius: var(--border-radius-theme);
+  --accordion-box-shadow: var(--box-shadow-theme-small);
 }
 
 .js-accordion {
@@ -25,14 +26,16 @@
   padding-left: 5rem;
   text-align: left;
   color: var(--accordion-color);
+  font-weight: $weight-medium;
+  text-transform: none;
   background-color: var(--accordion-bgcolor);
   white-space: normal;
   min-height: 5rem;
   height: initial;
   border: 0;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   border-radius: var(--accordion-border-radius);
-  box-shadow: var(--box-shadow-theme);
+  box-shadow: var(--accordion-box-shadow);
   cursor: pointer;
 
   .no-touch &:hover,
@@ -40,7 +43,7 @@
   &:active {
     color: var(--accordion-hovercolor);
     background-color: var(--accordion-hoverbackground);
-    box-shadow: var(--box-shadow-theme-active);
+    //box-shadow: var(--box-shadow-theme-small--active);
   }
 
   &:focus {
@@ -103,6 +106,7 @@
 .js-accordion__panel {
   background: #fff;
   position: relative;
+  z-index: -1;
   border: 1px solid var(--accordion-bgcolor);
   padding: 0 5rem;
   border-bottom-right-radius: var(--accordion-border-radius);
@@ -122,10 +126,11 @@
   h2:before {
     content: none;
   }
-}
 
-.js-accordion__header[aria-expanded="true"] + .js-accordion__panel {
-  padding: 4rem 5rem;
+  &[aria-hidden="false"] {
+    padding: 4rem 5rem;
+    box-shadow: var(--accordion-box-shadow);
+  }
 }
 
 .js-accordion__title,

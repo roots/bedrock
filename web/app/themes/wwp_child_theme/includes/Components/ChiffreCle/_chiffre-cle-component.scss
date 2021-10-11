@@ -1,0 +1,50 @@
+/*Styles spécifiques card Chiffres cles*/
+
+.item-chiffre-cle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: $border-radius-theme;
+
+  .img-wrap {
+    flex: 0 0 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    background-color: transparent;
+    box-shadow: none;
+
+    img {
+      height: 100%;
+      width: auto;
+      transform: none;
+    }
+  }
+
+  &:last-child{
+    margin-bottom: 0 !important;
+    padding-bottom: 3rem;
+  }
+
+  .chiffre {
+    margin-top: 5px;
+    font-family: $font-theme-bold;
+    font-size: 9rem;
+    line-height: 1;
+  }
+
+  .text {
+    font-size: 2rem;
+    color: $color-theme-primary;
+  }
+
+}
+
+//RESPONSIVE
+
+@media (max-width: $medium - 1){
+  .item-chiffre-cle{
+    max-width: 100% !important;
+  }
+}
