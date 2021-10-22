@@ -7,7 +7,7 @@
 <p class="subTitle">Formulaire avec groupes de champs</p>
 <span class="help">Pour générer des groupes de champs, il faut ajouter l'intitulé des groupes dans les clés de traduction.</span>
 <div class="">
-    <?php echo do_shortcode("[wwpmodule slug='wwp-contact' form='5']"); ?>
+    <?php echo do_shortcode("[wwpmodule slug='wwp-contact' form='1']"); ?>
 </div>
 
 <p class="subTitle">Formulaire labels masqués</p>
