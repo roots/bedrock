@@ -1,3 +1,8 @@
+### 1.16.2: 2021-10-21
+* Update `roave/security-advisories` default branch ([#609](https://github.com/roots/bedrock/pull/609))
+* Bump composer/installers from 1.11.0 to 1.12.0 ([#606](https://github.com/roots/bedrock/pull/606))
+* Bump roots/wordpress from 5.8 to 5.8.1 ([#605](https://github.com/roots/bedrock/pull/605))
+
 ### 1.16.1: 2021-07-30
 * Check if `.env.local` exists before loading it ([#603](https://github.com/roots/bedrock/pull/603))
 
