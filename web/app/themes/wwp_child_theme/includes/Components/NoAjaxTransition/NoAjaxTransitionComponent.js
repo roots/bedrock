@@ -13,6 +13,8 @@ export default class NoAjaxTransitionComponent extends PewComponent {
       '.no-barba',
       '.module-actu .pagination a',
       '.module-faq .pagination a',
+      '.module-event .pagination a',
+      '.module-telechargements .pagination a',
       '.post-edit-link',
       '.timeline-component a',
       '.wdf-modal',
