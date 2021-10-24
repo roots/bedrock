@@ -128,19 +128,6 @@ if (file_exists($env_config)) {
 }
 
 Config::apply();
-Config::define('AUTOMATIC_UPDATER_DISABLED', true);
-Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
-// Disable the plugin and theme file editor in the admin
-Config::define('DISALLOW_FILE_EDIT', true);
-// Disable plugin and theme updates and installation from the admin
-Config::define('DISALLOW_FILE_MODS', true);
-
-/**
- * Debugging Settings
- */
-Config::define('WP_DEBUG_DISPLAY', false);
-Config::define('SCRIPT_DEBUG', false);
-ini_set('display_errors', '0');
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer
