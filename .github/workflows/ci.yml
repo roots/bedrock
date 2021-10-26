@@ -18,6 +18,12 @@ jobs:
         path: /tmp/composer-cache
         key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
+    - name: Check Composer lock file is up to date
+      uses: php-actions/composer@v5
+      with:
+        command: validate
+        args: '--no-check-all'
+    
     - name: Install Composer dependencies
       uses: php-actions/composer@v5
 
