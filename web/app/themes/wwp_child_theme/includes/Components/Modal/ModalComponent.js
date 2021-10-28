@@ -10,7 +10,18 @@ export class ModalComponent extends PewComponent {
       //background: "#E4E4E4",
       //overlay_opacity: .9,
       fullscreen: false,
-      close_text: "Fermer"
+      close_text: "Fermer",
+      source: ($triggeringElement, source) => {
+        const triggerModalType = $triggeringElement.data('modaal-type');
+        if (triggerModalType && (triggerModalType === 'ajax' || triggerModalType === 'iframe')) {
+          if (source.indexOf('?') < 0) {
+            source += '?forceajax=1';
+          } else {
+            source += '&forceajax=1';
+          }
+        }
+        return source;
+      }
     };
 
     //Recup / override des options par data attribut
