@@ -192,6 +192,7 @@ pipeline {
 
           if(env.runNpm=='true' || env.runBuild=='true'){
             echo "Specifying correct node version";
+            sh 'source ~/.nvm/nvm.sh';
             sh 'nvm use 12';
             sh 'nvm current';
           }
