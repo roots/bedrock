@@ -192,7 +192,8 @@ pipeline {
 
           if(env.runNpm=='true' || env.runBuild=='true'){
             echo "Specifying correct node version";
-            env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
+            sh 'nvm use 12';
+            sh 'nvm current';
           }
 
 	        if(env.runNpm=='true'){
