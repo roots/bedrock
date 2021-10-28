@@ -55,20 +55,7 @@ $styleguide-colors: (
 //Color generation mixin pour le front
 @each $name, $value in $styleguide-colors {
   .color-#{$name} {
-    border: 1px solid #ddd;
-
-    &::after {
-      content: none;
-    }
-
-    span {
-      border-top: 1px solid #ddd;
-
-      &::after {
-        content: ' : #{$value}';
-        color: initial;
-      }
-    }
+    color: $value;
   }
   .background-#{$name} {
     background-color: $value;
