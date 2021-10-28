@@ -22,15 +22,39 @@ $styleguide-colors: (
   "lightgrey": $color-grey-light,
   "mediumgrey":$color-grey-medium,
   "grey":$color-grey,
-  "darkgrey":$color-grey-dark
+  "darkgrey":$color-grey-dark,
+  "white": white
 );
 
 
 //----------------------------------------------------------------------------------//
 
-//Color generation mixin
+//Color generation mixin pour le styleguide
 @each $name, $value in $styleguide-colors {
   .color.#{$name} {
+    border: 1px solid #ddd;
+
+    &::after {
+      content: none;
+    }
+
+    span {
+      border-top: 1px solid #ddd;
+
+      &::after {
+        content: ' : #{$value}';
+        color: initial;
+      }
+    }
+  }
+  .background-#{$name} {
+    background-color: $value;
+  }
+}
+
+//Color generation mixin pour le front
+@each $name, $value in $styleguide-colors {
+  .color-#{$name} {
     border: 1px solid #ddd;
 
     &::after {
