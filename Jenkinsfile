@@ -194,6 +194,7 @@ pipeline {
             echo "Specifying correct node version";
             env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
             sh 'node -v';
+            sh 'npm rebuild node-sass';
           }
 
 	        if(env.runNpm=='true'){
