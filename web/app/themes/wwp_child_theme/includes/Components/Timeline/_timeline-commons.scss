@@ -1,6 +1,6 @@
-/*scss/molecules/_timeline.scss*/
 
 /*Variables*/
+$timelineHorizHeight: 15rem; //Hauteur de la timeline
 $itemWidth: 6rem; //Largeur entre 2 points fermé niveau 2
 /*---------*/
 
@@ -11,6 +11,7 @@ ul.timeline {
   justify-content: center;
   align-items: center;
   list-style: none;
+  height: $timelineHorizHeight;
   margin: 0;
   padding-left: 0;
 
@@ -27,7 +28,7 @@ ul.timeline {
   }
 
   //Etapes
-  li {
+  > li {
     position: relative;
     flex: 0 0 $itemWidth;
     display: flex;
@@ -40,6 +41,7 @@ ul.timeline {
       @include absolute-center;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
       text-align: center;
       height: 100%;
@@ -48,22 +50,6 @@ ul.timeline {
       cursor: pointer;
       overflow: hidden;
     }
-
-    //Eléments de contenu à révéler
-    .text {
-      position: absolute;
-      display: block;
-      text-align: center;
-      font-size: 1.4rem;
-      line-height: 1.2;
-    }
-
-    //Eléments disponibles dans le plugin:
-    //Image, date
-  }
-
-  //Etapes simples (sans catégories)
-  li.scene-list-item {
 
     a::before,
     a::after {
@@ -92,12 +78,30 @@ ul.timeline {
       z-index: 1;
       background-color: $color-base;
     }
+
+    //Eléments de contenu à révéler
+    .text,
+    .date {
+      display: block;
+      text-align: center;
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .date {
+      padding: 0 0 6px 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    //Eléments disponibles dans le plugin:
+    //Image, date
   }
 
   //Animations spécifiques timeline simple
-  li.scene-list-item:hover,
-  li.scene-list-item:focus,
-  li.scene-list-item.active {
+  > li:hover,
+  > li:focus,
+  > li.active {
 
     a::before {
       transform: translate(-50%, -50%) scale(2);

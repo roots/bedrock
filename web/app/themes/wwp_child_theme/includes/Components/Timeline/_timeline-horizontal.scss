@@ -1,16 +1,17 @@
-/*Option timeline horizontale*/
+/*Option timeline horizontale pour parcours*/
 
 /*Variables*/
-$timelineHorizHeight: 13rem; //Hauteur de la timeline
+$timelineHorizHeight: 15rem; //Hauteur de la timeline
 /*---------*/
 
 ul.timeline.timeline--horizontal {
   height: $timelineHorizHeight;
 
   //Etapes
-  li {
+  > li {
 
     > a .text {
+      position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -18,7 +19,7 @@ ul.timeline.timeline--horizontal {
   }
 
   //Etapes simples (sans catégories)
-  li.scene-list-item {
+/*  li.scene-list-item {
 
     //Animation texte
     .text {
@@ -26,10 +27,10 @@ ul.timeline.timeline--horizontal {
       transform: translate(-50%, 100%);
       transition: opacity 1s, transform 0.4s;
     }
-  }
+  }*/
 
   //Animations spécifiques timeline simple
-  li.scene-list-item:hover,
+/*  li.scene-list-item:hover,
   li.scene-list-item:focus,
   li.scene-list-item.active {
 
@@ -37,5 +38,5 @@ ul.timeline.timeline--horizontal {
       opacity: 1;
       transform: translate(-50%, 0);
     }
-  }
+  }*/
 }
