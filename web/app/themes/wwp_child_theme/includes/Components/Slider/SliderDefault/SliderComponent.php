@@ -8,22 +8,15 @@
 
 namespace WonderWp\Theme\Child\Components\Slider\SliderDefault;
 
-use WonderWp\Theme\Child\Components\Slider\Interfaces\SliderInterface;
+use WonderWp\Plugin\Slider\Component\SliderComponentInterface;
+use WonderWp\Plugin\Slider\Component\TwigSliderComponentTrait;
 use WonderWp\Theme\Core\Component\TwigComponent;
 
-class SliderComponent extends TwigComponent implements SliderInterface
+class SliderComponent extends TwigComponent implements SliderComponentInterface
 {
-    protected $sliderItems;
+    use TwigSliderComponentTrait;
+
     protected $markups;
-    protected $class;
-
-    /** @inheritDoc */
-    public function setSliderItems($sliderItems)
-    {
-        $this->__set('sliderItems', $sliderItems);
-
-        return $this;
-    }
 
     /**
      * @param mixed $markups
@@ -36,14 +29,6 @@ class SliderComponent extends TwigComponent implements SliderInterface
 
         return $this;
     }
-
-    /** @inheritDoc */
-    public function setClass($class)
-    {
-        $this->__set('class', $class);
-
-        return $this;
-    } // add Check to add "wdf-slider" by default
 
     public function __construct($templatesDir = null, $templateName = null)
     {

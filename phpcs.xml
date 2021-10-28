@@ -10,4 +10,12 @@
 
   <!-- Use PSR-2 as a base -->
   <rule ref="PSR2"/>
+
+  <!-- Lines can be N chars long (warnings), errors at M chars -->
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="250"/>
+    </properties>
+  </rule>
+
 </ruleset>

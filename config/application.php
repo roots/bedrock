@@ -126,3 +126,11 @@ define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\
 //define("WWP_PLUGIN_NEWSLETTER_MANAGER",WonderWp\Plugin\Newsletter\Child\NewsletterThemeManager::class);
 //define("WWP_PLUGIN_BP_MANAGER",WonderWp\Plugin\Bp\Child\BpThemeManager::class);
 //define("WWP_PLUGIN_MEMBRE_MANAGER",WonderWp\Plugin\EspaceRestreint\Child\ErThemeManager::class);
+//define("WWP_PLUGIN_ACTU_MANAGER",WonderWp\Plugin\Actu\Child\ActuThemeManager::class);
+//define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
+//define("WWP_PLUGIN_EMPLOI_MANAGER",WonderWp\Plugin\Emploi\Child\EmploiThemeManager::class);
+//define("WWP_PLUGIN_EVENT_MANAGER",WonderWp\Plugin\Event\Child\EventThemeManager::class);
+//define("WWP_PLUGIN_FAQ_MANAGER",WonderWp\Plugin\Faq\Child\FaqThemeManager::class);
+//define("WWP_PLUGIN_GALERIE_MANAGER",WonderWp\Plugin\Galerie\Child\GalerieThemeManager::class);
+//define("WWP_PLUGIN_JEUX_MANAGER",WonderWp\Plugin\Jeux\Child\JeuxThemeManager::class);
+//define("WWP_PLUGIN_SLIDER_MANAGER",WonderWp\Plugin\Slider\Child\SliderThemeManager::class);

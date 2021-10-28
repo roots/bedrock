@@ -175,60 +175,67 @@ pipeline {
     stage('Build') {
       steps {
         script{
-        	defineVariables();
+          echo "Starting Build #${env.BUILD_ID}, triggered by $BRANCH_NAME";
 
-            echo "Starting Build #${env.BUILD_ID}, triggered by $BRANCH_NAME";
+          echo "Definining variables";
+          defineVariables();
 
-            if(env.runComposer=='true'){
-                try {
-	                sh '/usr/bin/php7.4 /usr/local/bin/composer install --no-dev --prefer-dist';
-                } catch(exc){
-                    handleException('Composer install failed', exc);
-                }
-	        } else {
-	        	echo 'skipped composer install';
-	        }
+          if(env.runComposer=='true'){
+            try {
+              sh '/usr/bin/php7.4 /usr/local/bin/composer install --no-dev --prefer-dist';
+            } catch(exc){
+                handleException('Composer install failed', exc);
+            }
+          } else {
+            echo 'skipped composer install';
+          }
+
+          if(env.runNpm=='true' || env.runBuild=='true'){
+            echo "Specifying correct node version";
+            sh 'nvm use 12';
+            sh 'nvm current';
+          }
 
 	        if(env.runNpm=='true'){
-	            try {
-	        	    sh 'npm install';
-                } catch(exc){
-                    handleException('npm install failed',exc);
-                }
+            try {
+              sh 'npm install';
+            } catch(exc){
+                handleException('npm install failed',exc);
+            }
 	        } else {
 	        	echo 'skipped npm install';
 	        }
 
-            if(env.runBuild=='true'){
-	            try {
-                    sh 'npm run sprites';
-                    //if(BRANCH_NAME=='master'){
-                        sh 'npm run build:prod';
-                    //} else {
-                    //    sh 'npm run build';
-                    //}
-                } catch(exc){
-                    handleException('Building the front failed',exc);
-                }
-            } else {
-            	echo 'skipped npm sprites & build';
+          if(env.runBuild=='true'){
+            try {
+              sh 'npm run sprites';
+              //if(BRANCH_NAME=='master'){
+                  sh 'npm run build:prod';
+              //} else {
+              //    sh 'npm run build';
+              //}
+            } catch(exc){
+                handleException('Building the front failed',exc);
             }
+          } else {
+            echo 'skipped npm sprites & build';
+          }
         }
       }
     }
     stage('Deploy') {
-        steps {
-            script {
-            	try{
-	                echo "Deploying $BRANCH_NAME branch"
-	                def creds = loadCreds("wonderwp_${BRANCH_NAME}_credentials");
-	                deployCode(creds);
-	                finalizeDistantMigration(creds);
-	            } catch(exc){
-	            	  handleException("The $BRANCH_NAME branch deployment failed",exc);
-              }
-            }
+      steps {
+        script {
+          try{
+            echo "Deploying $BRANCH_NAME branch"
+            def creds = loadCreds("wonderwp_${BRANCH_NAME}_credentials");
+            deployCode(creds);
+            finalizeDistantMigration(creds);
+          } catch(exc){
+            handleException("The $BRANCH_NAME branch deployment failed",exc);
+          }
         }
+      }
     }
     stage('Integration tests') {
         steps {
