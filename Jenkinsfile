@@ -119,6 +119,10 @@ def getChangeString() {
 }
 
 def defineVariables(){
+
+  //Using node 12
+  env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
+
 	env.slackColor = "good";
 	env.slackMsg = getChangeString();
 	env.runComposer = false;
