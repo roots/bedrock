@@ -192,9 +192,8 @@ pipeline {
 
           if(env.runNpm=='true' || env.runBuild=='true'){
             echo "Specifying correct node version";
-            sh 'source ~/.nvm/nvm.sh';
-            sh 'nvm use 12';
-            sh 'nvm current';
+            env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
+            sh 'node -v';
           }
 
 	        if(env.runNpm=='true'){
@@ -210,7 +209,7 @@ pipeline {
           if(env.runBuild=='true'){
             try {
               sh 'npm run sprites';
-              //if(BRANCH_NAME=='master'){
+              //if(BRANCH_NAME=='master' || BRANCH_NAME=='main'){
                   sh 'npm run build:prod';
               //} else {
               //    sh 'npm run build';
