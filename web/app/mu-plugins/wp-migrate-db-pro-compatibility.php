@@ -8,6 +8,8 @@ Version: 1.2
 Author URI: http://deliciousbrains.com
 */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! version_compare( PHP_VERSION, '5.4', '>=' ) ) {
 	return;
 }
