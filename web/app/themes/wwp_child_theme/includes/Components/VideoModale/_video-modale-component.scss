@@ -21,7 +21,12 @@ a.modaal[data-modaal-type="video"] {
   }
 
   &::before {
-    @include svgIcon('video');
+    content: "";
+    display: block;
+    height: 66px;
+    width: 66px;
+    background:url("/app/themes/wwp_child_theme/assets/raw/svg/play-white.svg") var(--color-theme-primary) no-repeat 26px 20px;
+    border-radius: 50%;
     margin-right: 10px;
     transform: scale(1);
     transform-origin: center;

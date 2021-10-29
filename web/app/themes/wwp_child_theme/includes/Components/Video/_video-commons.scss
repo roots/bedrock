@@ -17,7 +17,7 @@ $video-height: 450px;
   @include absolute-center;
   z-index: 4;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: left;
@@ -41,18 +41,30 @@ $video-height: 450px;
     pointer-events: none;
   }
 
-  &::after {
-    flex: 0 0 74px;
-    @include svgIcon('video');
-    margin-right: 10px;
+  &::before {
+    flex: 0 0 66px;
+    content: "";
+    display: block;
+    width: 66px;
+    background-color: var(--color-theme-primary);
+    border-radius: 50%;
+    margin-bottom: 10px;
     transform: scale(1);
-    transition: all 0.4s;
-    pointer-events: none;
+    transform-origin: center;
+    transition: transform 0.4s;
+  }
+
+  &::after {
+    @include svgIcon('play-white');
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(calc(-50% + 3px));
   }
 
   .no-touch &:hover,
   &:focus {
-    &::after {
+    &::before {
       transform: scale(1.1);
     }
   }
