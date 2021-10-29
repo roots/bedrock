@@ -25,19 +25,25 @@ blockquote {
   font-size: 5rem;
   color: $color-primary;
   line-height: $line-height-s;
-
   &::before {
-    @include svgIcon('quote');
+    content: none;
+  }
+
+  svg {
     position: absolute;
     top: 1rem;
     left: 0;
     height: 68px;
+
+    .st0 {
+      fill: var(--color-theme-primary);
+    }
   }
 
   @media (max-width: $medium) {
     font-size: 3.6rem;
 
-    &::before {
+    svg {
       transform: scale(0.8);
     }
   }
@@ -45,7 +51,7 @@ blockquote {
   @media (max-width: $medium - 1) {
     font-size: 3rem;
 
-    &::before {
+    svg {
       transform: scale(0.6);
       left: -2rem;
       top: 0;
