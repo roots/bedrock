@@ -1,6 +1,6 @@
-import {EventManager} from "./features/EventManager";
 import {FeatureDetector} from "./features/FeatureDetector";
-
+import {StylesheetManager} from "./components/StylesheetManager";
+import {EventManager} from "./features/EventManager";
 
 /**
  * Pew.js polyfill
@@ -84,11 +84,14 @@ var Enhancer = function () {
   }, {key: "getRegistryEntry", value: function (e) {return this.registry.getEntry(e)}}]), t
 }();
 
-window.EventManager = new EventManager();
 window.pew = new Pew();
 
 window.wonderwp = window.wonderwp || {};
 window.wonderwp.FeatureDetector = new FeatureDetector();
+
+window.wonderwp.StylesheetManager = new StylesheetManager();
+
+window.EventManager = new EventManager();
 
 let event = document.createEvent('Event');
 event.initEvent('criticalJsReady', true, true);

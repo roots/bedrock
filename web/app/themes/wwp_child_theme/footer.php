@@ -79,8 +79,6 @@
             </div>
         </div>
 
-        </div>
-
     </footer><!-- .site-footer -->
 
     </div><!-- .site -->
