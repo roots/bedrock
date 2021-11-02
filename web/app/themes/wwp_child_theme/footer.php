@@ -58,11 +58,7 @@
             <div class="container-l">
 
                 <div class="first-col">
-                    <address>
-                        <span>Fédération des Aveugles<br> et Amblyopes de France</span>
-                        <span>6 rue Gager Gabillot<br> 75015 PARIS</span>
-                        <a href="tel:+33144429191">Tél. : 01 44 42 91 91</a>
-                    </address>
+                    <address><?php echo trad('footer.address.trad', WWP_THEME_TEXTDOMAIN) ?></address>
                 </div>
 
                 <?php
