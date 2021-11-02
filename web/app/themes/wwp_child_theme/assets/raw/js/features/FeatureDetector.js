@@ -5,6 +5,10 @@ const touchTest = function () {
   return (('ontouchstart' in window))
 };
 
+const cssVarsTest = function() {
+  return window.CSS && window.CSS.supports('color', 'var(--fake-var)');;
+}
+
 export class FeatureDetector {
 
   constructor(tests) {
@@ -14,7 +18,8 @@ export class FeatureDetector {
 
   getDefaultTests() {
     return {
-      touch: touchTest
+      touch: touchTest,
+      cssVars: cssVarsTest
     }
   }
 

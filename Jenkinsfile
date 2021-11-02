@@ -209,11 +209,12 @@ pipeline {
           if(env.runBuild=='true'){
             try {
               sh 'npm run sprites';
-              //if(BRANCH_NAME=='master' || BRANCH_NAME=='main'){
-                  sh 'npm run build:prod';
-              //} else {
-              //    sh 'npm run build';
-              //}
+              if(BRANCH_NAME=='master' || BRANCH_NAME=='main'){
+                sh 'npm run build:prod';
+              } else {
+                // Need to have sourcemap for debugging purpose
+                sh 'FORCE_SOURCEMAP=true npm run build:prod';
+              }
             } catch(exc){
                 handleException('Building the front failed',exc);
             }
