@@ -47,7 +47,6 @@ const getCustomConfig = (buildType, entries) => {
   if (buildType === 'legacy') {
     postcssPlugins = [
       require('postcss-import'),
-      require("postcss-css-variables"),
       require('postcss-nested'),
       require('autoprefixer')({
         grid: true,

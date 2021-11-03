@@ -1,3 +1,9 @@
+import cssVars from 'css-vars-ponyfill';
+
+document.addEventListener('DOMContentLoaded', function () {
+  cssVars();
+});
+
 /**
  * Object.assign Polyfill
  */

@@ -11,10 +11,19 @@ export class StylesheetManager {
   }
 
    insertLinkTag(src, media) {
-    var link = document.createElement("link");
+    const link = document.createElement("link");
     link.href = src;
     link.rel = "stylesheet";
     link.media = media;
-    document.getElementsByTagName("head")[0].appendChild(link);
+
+    const headElement = document.getElementsByTagName("head")[0];
+    const wpCustomCssElement = document.getElementById('wp-custom-css');
+
+    // if custom css exists, insert compiled style before custom css
+    if (wpCustomCssElement) {
+      headElement.insertBefore(link, wpCustomCssElement);
+    } else {
+      headElement.appendChild(link);
+    }
   }
 }
