@@ -61,6 +61,18 @@ class HeroComponent extends AbstractComponent
 
     /**
      * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Couleur de fond hexadécimale"})
+     */
+    protected $color;
+
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Mix blend mode (valeur css)"})
+     */
+    protected $mixblendmode;
+
+    /**
+     * @var string
      * @BlockAttributes(component="InnerBlocks",type="string",componentAttributes={"placeholder":"Contenu libre"})
      */
     protected $subComponents;
@@ -144,6 +156,26 @@ class HeroComponent extends AbstractComponent
     }
 
     /**
+     * @param string $color
+     * @return HeroComponent
+     */
+    public function setColor(string $color): HeroComponent
+    {
+        $this->color = $color;
+        return $this;
+    }
+
+    /**
+     * @param string $mixblendmode
+     * @return HeroComponent
+     */
+    public function setMixblendmode(string $mixblendmode): HeroComponent
+    {
+        $this->mixblendmode = $mixblendmode;
+        return $this;
+    }
+
+    /**
      * @param string $subComponents
      * @return HeroComponent
      */
@@ -215,7 +247,17 @@ class HeroComponent extends AbstractComponent
         $markup .= '">';
 
         if (!empty($this->image)) {
-            $markup .= '<div class="image-wrapper">' . $this->image . '</div>';
+            $markup .= '<div class="image-wrapper"';
+                if (!empty($this->color)) {
+                    $markup .= 'style="background-color:'.$this->color.'"';
+                }
+            $markup .= '>
+            <div class="mix-blend-mode"';
+                if (!empty($this->mixblendmode)) {
+                    $markup .= 'style="mix-blend-mode:'.$this->mixblendmode.'"';
+                }
+                $markup .= '>' . $this->image . '</div>
+            </div>';
         }
 
         $markup .= '<div class="hero-content container">';

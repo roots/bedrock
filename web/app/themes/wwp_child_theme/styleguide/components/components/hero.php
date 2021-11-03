@@ -11,6 +11,7 @@
                 <li>Lien bouton</li>
                 <li>Label bouton</li>
                 <li>Bloc de contenu libre</li>
+                <li>Fond de couleur (#00000)</li>
             </ul>
         </div>
         <div>
@@ -34,6 +35,19 @@ $hero
     ->setLink('/')
     ->setlabel('En savoir plus')
     ->setSubComponents('<p>Bloc de contenu libre</p>')
+;
+
+echo $hero->getMarkup();
+
+$hero
+    ->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing eli')
+    ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
+    ->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+    ->setLink('/')
+    ->setlabel('En savoir plus')
+    ->setSubComponents('<p>Bloc de contenu libre</p>')
+    ->setColor('#C81F3B')
+    ->setMixblendmode('luminosity')
 ;
 
 echo $hero->getMarkup();
