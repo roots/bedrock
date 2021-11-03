@@ -240,13 +240,10 @@
   }
 }
 
+//Masque le lien : supprime le lien "En savoir plus"
+.item.hide-link {
 
-/*TYPES*/
-.video-list .item {
-
-  .img-wrap::before {
-    @include svgIcon('play');
-    @include absolute-center;
-    z-index: 1;
+  .card-readmore-link {
+    display: none;
   }
 }
