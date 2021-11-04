@@ -2,10 +2,11 @@
 
 * PHP >= 7.4
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+* node >= 12
 
 ## Installation
 
-* Clone the git repo - `git clone https://github.com/agencewonderful/monrepo`
+* Clone the git repo over ssh - `git clone git@github.com:agencewonderful/yourproject.git`
 * Import a given mysql dump of the database
 * Import the `web/app/languages` folder. (Folder or location should be given to you)
 * Import the `web/app/uploads` folder. (Folder or location should be given to you)
