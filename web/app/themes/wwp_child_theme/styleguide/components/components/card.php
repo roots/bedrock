@@ -91,6 +91,20 @@
     echo $card2->getMarkup();
     echo '</div>';
 
+    echo '<div>
+        <p class="subTitle">Avec option "has-icons"</p>';
+    $card2 = new \WonderWp\Theme\Child\Components\Card\CardComponent();
+    $card2
+        ->setSubtitle('Surtitre lorem ipsum')
+        ->setTitle('Lorem ipsum dolor consectetur')
+        ->setContent('Lorem ipsum dolor, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.')
+        ->setLink('/vers-une-page')
+        ->setCategories(['catégorie 1', 'catégorie 2'])
+        ->setHasicons('true')
+    ;
+    echo $card2->getMarkup();
+    echo '</div>';
+
     echo '<div class="col-2">
         <p class="subTitle">Avec option "landscape"</p>';
     $card3 = new \WonderWp\Theme\Child\Components\Card\CardComponent();

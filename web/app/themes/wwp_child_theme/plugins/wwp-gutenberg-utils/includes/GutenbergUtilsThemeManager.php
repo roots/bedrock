@@ -11,6 +11,7 @@ use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\ChiffreCle\ChiffreCleComponent;
 use WonderWp\Theme\Child\Components\Citation\CitationComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
+use WonderWp\Theme\Child\Components\Hero\HeroComponent;
 use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
 use WonderWp\Theme\Child\Components\VideoModale\VideoModaleComponent;
 
@@ -31,7 +32,8 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
             CardComponent::class,
             ButtonComponent::class,
             CitationComponent::class,
-            ChiffreCleComponent::class
+            ChiffreCleComponent::class,
+            HeroComponent::class
         ]);
 
         parent::register ($container);
