@@ -1,3 +1,6 @@
+### 1.17.1: 2021-11-16
+* Bump roots/wordpress from 5.8.1 to 5.8.2 ([#615](https://github.com/roots/bedrock/pull/615))
+
 ### 1.17.0: 2021-11-03
 * Bump roots/wp-password-bcrypt from 1.0.0 to 1.1.0 ([#613](https://github.com/roots/bedrock/pull/613))
 * CI: Check Composer lock file is up to date ([#612](https://github.com/roots/bedrock/pull/612))
