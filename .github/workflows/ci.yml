@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: ['7.3', '7.4', '8.0']
+        php_version: ['7.4', '8.0', '8.1']
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
       with:
         command: validate
         args: '--no-check-all'
-    
+
     - name: Install Composer dependencies
       uses: php-actions/composer@v5
 
