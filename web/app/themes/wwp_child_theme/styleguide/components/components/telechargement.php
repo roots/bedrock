@@ -21,18 +21,21 @@
     </div>
 </div>
 <?php
+$downloadComponentClass = '\WonderWp\Plugin\Download\Component\DownloadComponent';
+if (class_exists($downloadComponentClass)) {
+    $download = new $downloadComponentClass();
 
-$download = new \WonderWp\Plugin\Download\Component\DownloadComponent();
+    $download
+        ->setName('Déclarer son salarié')
+        ->setLink('/')
+        ->setFilename('declarer-son-salarie')
+        ->setFileSize('75 Ko')
+        ->setFileType('PDF')
+        ->setTextDownload('Télécharger');
 
-$download
-    ->setName('Déclarer son salarié')
-    ->setLink('/')
-    ->setFilename('declarer-son-salarie')
-    ->setFileSize('75 Ko')
-    ->setFileType('PDF')
-    ->setTextDownload('Télécharger')
-;
-
-echo $download->getMarkup();
-echo $download->getMarkup();
-echo $download->getMarkup();
+    echo $download->getMarkup();
+    echo $download->getMarkup();
+    echo $download->getMarkup();
+} else {
+    echo 'Warning : Component ' . $downloadComponentClass . ' not found';
+}
