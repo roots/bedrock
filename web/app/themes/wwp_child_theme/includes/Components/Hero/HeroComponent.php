@@ -252,10 +252,10 @@ class HeroComponent extends AbstractComponent
                     $markup .= 'style="background-color:'.$this->color.'"';
                 }
             $markup .= '>
-            <div class="mix-blend-mode"';
-                if (!empty($this->mixblendmode)) {
-                    $markup .= 'style="mix-blend-mode:'.$this->mixblendmode.'"';
-                }
+                <div class="mix-blend-mode"';
+                    if (!empty($this->mixblendmode)) {
+                        $markup .= 'style="mix-blend-mode:'.$this->mixblendmode.'"';
+                    }
                 $markup .= '>' . $this->image . '</div>
             </div>';
         }
