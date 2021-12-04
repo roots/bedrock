@@ -62,7 +62,7 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 
 ## Requirements
 
-- PHP >= 7.1
+- PHP >= 7.4
 - Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
