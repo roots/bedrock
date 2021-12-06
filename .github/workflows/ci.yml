@@ -7,29 +7,31 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: ['7.3', '7.4', '8.0']
+        php_version: ['7.4', '8.0', '8.1']
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Cache Composer dependencies
-      uses: actions/cache@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        path: /tmp/composer-cache
-        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+        php_version: ${{ matrix.php_version }}
+
+    - name: Cache Composer dependencies
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - uses: actions/cache@v2
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
 
     - name: Check Composer lock file is up to date
-      uses: php-actions/composer@v5
-      with:
-        command: validate
-        args: '--no-check-all'
-    
+      run: composer validate --no-check-all
+
     - name: Install Composer dependencies
-      uses: php-actions/composer@v5
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
 
     - name: Run tests
-      uses: php-actions/composer@v5
-      with:
-        command: test
-        php_version: ${{ matrix.php_version }}
-        version: 2
+      run: composer test
