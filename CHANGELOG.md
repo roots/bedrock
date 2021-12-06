@@ -1,4 +1,4 @@
-### HEAD
+### 1.18.0: 2021-12-06
 * Bump requirements to PHP 7.4 ([#619](https://github.com/roots/bedrock/pull/619))
 
 ### 1.17.1: 2021-11-16
