@@ -9,14 +9,16 @@
 
 /* styles with JS */
 ul.js-tablist {
-  @include grid(2, 1rem);
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
   padding-left: 0;
   margin-bottom: -1px;
   margin-top: 0;
-  list-style: none;
 }
 
 li.js-tablist__item {
+  flex: 1;
   text-align: center;
 
   > a {
