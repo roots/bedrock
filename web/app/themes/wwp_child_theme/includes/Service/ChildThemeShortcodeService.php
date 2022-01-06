@@ -134,20 +134,17 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
 
     public function tabs($attr, $content)
     {
-        $tab = new TabsComponent();
-
-        $nbTabs   = $attr['nbtabs'];
-        $tabItems = [];
+        $tabComponent = new TabsComponent();
 
         $shortcodes = $this->extractShortcodes($content, 'tab-item');
+        $nbTabs     = count($shortcodes);
 
         for ($i = 1; $i <= $nbTabs; $i++) {
-            $tabItems[$i]['markup'] = do_shortcode($shortcodes[$i - 1]);
-            $tabItems[$i]['title']  = $attr['title_' . $i];
+            $res = json_decode(do_shortcode($shortcodes[$i - 1]));
+            $tabComponent->addTab($res->title, $res->content, $res->id, $res->class);
         }
-        $tab->tabItems = $tabItems;
 
-        return $tab->getMarkup();
+        return $tabComponent->getMarkup();
     }
 
     public function tabitem($attr, $content)
@@ -159,7 +156,7 @@ class ChildThemeShortcodeService extends ThemeShortcodeService
             $tabitem->content = $content;
         }
 
-        return $tabitem->getMarkup();
+        return json_encode($tabitem, true);
     }
 
     public static function extractShortcode($content, $element)

@@ -15,6 +15,7 @@ use WonderWp\Theme\Child\Components\Card\CardComponent;
 use WonderWp\Theme\Child\Components\PageSummary\PageSummaryComponent;
 use WonderWp\Theme\Child\Components\Pagination\PaginationComponent;
 use WonderWp\Theme\Child\Controller\ThemePublicController;
+use WonderWp\Theme\Child\Service\ChildThemeAssetsManipulator;
 use WonderWp\Theme\Child\Service\ChildThemeHookService;
 use WonderWp\Theme\Child\Service\ChildThemeShortcodeService;
 use WonderWp\Theme\Child\Service\ThemeAssetService;
@@ -49,6 +50,10 @@ class ChildThemeManager extends ThemeManager
         //Assets
         $this->addService(ServiceInterface::ASSETS_SERVICE_NAME, function () {
             return new ThemeAssetService($this);
+        });
+        //Assets
+        $this->addService('asset_manipulator', function () {
+            return new ChildThemeAssetsManipulator();
         });
         //Shortcodes
         $this->addService(ServiceInterface::SHORT_CODE_SERVICE_NAME, function () {

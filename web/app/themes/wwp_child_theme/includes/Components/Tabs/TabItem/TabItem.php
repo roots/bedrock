@@ -8,11 +8,17 @@
 
 namespace WonderWp\Theme\Child\Components\Tabs\TabItem;
 
-class TabItem
+use WonderWp\Theme\Core\Component\AbstractComponent;
+
+class TabItem extends AbstractComponent
 {
     public $id;
     public $class;
     public $title;
     public $content;
 
+    public function getMarkup(array $opts = [])
+    {
+        return '';
+    }
 }

@@ -27,6 +27,13 @@ class ChildThemeHookService extends ThemeHookService
         add_action('wp_footer', [$this, 'deregisterWpEmbed']);
         add_action('wwp_after_footer', [$this, 'injectFixedMobileMenu']);
 
+        //Styleguide
+        /** @var ChildThemeAssetsManipulator $assetManipulatorService */
+        $assetManipulatorService = $this->manager->getService('asset_manipulator');
+        add_action('wwp.styleguide.head', [$assetManipulatorService, 'enqueueCritical']);
+        add_action('wwp.styleguide.head', [$assetManipulatorService, 'enqueueStyleGuideStyles']);
+        add_action('wwp.styleguide.footer', [$assetManipulatorService, 'enqueueStyleGuideJavaScripts']);
+
         //Customizer
         $this->registerCustomizerHooks();
     }
