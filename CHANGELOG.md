@@ -1,3 +1,7 @@
+### 1.18.1: 2022-01-07
+* Bump roots/wordpress from 5.8.2 to 5.8.3 ([#625](https://github.com/roots/bedrock/pull/625))
+* chore(deps): allow required composer plugins ([#624](https://github.com/roots/bedrock/pull/624))
+
 ### 1.18.0: 2021-12-06
 * Bump requirements to PHP 7.4 ([#619](https://github.com/roots/bedrock/pull/619))
 
