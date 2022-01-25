@@ -1,3 +1,9 @@
+### 1.19.0: 2022-01-25
+* Bump roots/wordpress to 5.9 ([#626](https://github.com/roots/bedrock/pull/626))
+* Bump squizlabs/php_codesniffer from 3.6.1 to 3.6.2 ([#623](https://github.com/roots/bedrock/pull/623))
+* Bump vlucas/phpdotenv from 5.3.1 to 5.4.1 ([#622](https://github.com/roots/bedrock/pull/622))
+* Bump composer/installers from 1.12.0 to 2.0.1 ([#621](https://github.com/roots/bedrock/pull/621))
+
 ### 1.18.1: 2022-01-07
 * Bump roots/wordpress from 5.8.2 to 5.8.3 ([#625](https://github.com/roots/bedrock/pull/625))
 * chore(deps): allow required composer plugins ([#624](https://github.com/roots/bedrock/pull/624))
