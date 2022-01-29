@@ -48,6 +48,18 @@ if (file_exists($root_dir . '/.env')) {
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
+/*
+ * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ */
+
+if (preg_match('/^(dev|review|trunk)/i', WP_ENV)) {
+    Config::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: 'development');
+} elseif (preg_match('/^(st(a|)g|mod(e|)l|pre|demo)/i', WP_ENV)) {
+    Config::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: 'staging');
+} else {
+    Config::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: 'production');
+}
+
 /**
  * URLs
  */
