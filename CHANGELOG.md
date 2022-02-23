@@ -1,3 +1,6 @@
+### 1.19.1: 2022-02-23
+* Bump roots/wordpress to 5.9.1 ([#626](https://github.com/roots/bedrock/pull/630))
+
 ### 1.19.0: 2022-01-25
 * Bump roots/wordpress to 5.9 ([#626](https://github.com/roots/bedrock/pull/626))
 * Bump squizlabs/php_codesniffer from 3.6.1 to 3.6.2 ([#623](https://github.com/roots/bedrock/pull/623))
