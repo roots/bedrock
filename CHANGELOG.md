@@ -1,3 +1,6 @@
+### 1.19.2: 2022-03-11
+* Bump roots/wordpress to 5.9.2 ([#631](https://github.com/roots/bedrock/pull/631))
+
 ### 1.19.1: 2022-02-23
 * Bump roots/wordpress to 5.9.1 ([#626](https://github.com/roots/bedrock/pull/630))
 
