@@ -1,3 +1,7 @@
+### 1.19.3: 2022-04-06
+* Bump roots/wordpress to 5.9.3 ([#633](https://github.com/roots/bedrock/pull/633))
+* Bump composer/installers from 2.0.1 to 2.1.0 ([#632](https://github.com/roots/bedrock/pull/632))
+
 ### 1.19.2: 2022-03-11
 * Bump roots/wordpress to 5.9.2 ([#631](https://github.com/roots/bedrock/pull/631))
 
