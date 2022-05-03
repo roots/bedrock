@@ -16,7 +16,11 @@
             "*": "dist"
         },
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "johnpbloch/wordpress-core-installer": true
+        }
     },
     "repositories": [
         {
@@ -70,7 +74,7 @@
         "agencewonderful\/wwp-video": "dev-develop@dev",
         "agencewonderful\/wwp-vote": "dev-develop@dev",
         "composer\/installers": "^1.9",
-        "deliciousbrains-plugin\/wp-migrate-db-pro": "^2.1",
+        "deliciousbrains-plugin\/wp-migrate-db-pro": "^2.0",
         "fzaninotto\/faker": "^1.9",
         "johnpbloch\/wordpress": "^5.4",
         "oscarotero\/env": "^1.0",
