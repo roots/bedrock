@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cafb82147d0206cfd334fe0fb412c438",
+    "content-hash": "879a9ed3f308edfbe3e9c99340553c0c",
     "packages": [
         {
             "name": "composer/installers",
@@ -459,49 +459,28 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.9.3",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.9.3"
+                "url": "https://github.com/roots/wordpress.git",
+                "reference": "dd8ece73954fd90f891d98fa5c2c5ace000fe50d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.9.3"
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/dd8ece73954fd90f891d98fa5c2c5ace000fe50d",
+                "reference": "dd8ece73954fd90f891d98fa5c2c5ace000fe50d",
+                "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
-                "roots/wordpress-core-installer": ">=1.0.0"
+                "roots/wordpress-core-installer": "^1.0.0",
+                "roots/wordpress-no-content": "self.version"
             },
-            "provide": {
-                "wordpress/core-implementation": "5.9.3"
-            },
-            "type": "wordpress-core",
+            "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "WordPress Community",
-                    "homepage": "https://wordpress.org/about/"
-                }
-            ],
-            "description": "WordPress is web software you can use to create a beautiful website or blog.",
-            "homepage": "https://wordpress.org/",
-            "keywords": [
-                "blog",
-                "cms",
-                "wordpress"
-            ],
+            "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
             "support": {
-                "docs": "https://developer.wordpress.org/",
-                "forum": "https://wordpress.org/support/",
-                "irc": "irc://irc.freenode.net/wordpress",
-                "issues": "https://core.trac.wordpress.org/",
-                "rss": "https://wordpress.org/news/feed/",
-                "source": "https://core.trac.wordpress.org/browser",
-                "wiki": "https://codex.wordpress.org/"
+                "issues": "https://github.com/roots/wordpress/issues",
+                "source": "https://github.com/roots/wordpress/tree/6.0.0"
             },
             "funding": [
                 {
@@ -513,7 +492,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-04-06T02:26:36+00:00"
+            "time": "2022-05-23T20:05:44+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -585,6 +564,76 @@
                 }
             ],
             "time": "2020-08-20T00:27:30+00:00"
+        },
+        {
+            "name": "roots/wordpress-no-content",
+            "version": "6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roots/wordpress-no-content.git",
+                "reference": "e835336a33b10ce4d738e75668ecd4bc480550ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/release/wordpress-6.0-no-content.zip",
+                "shasum": "6cc5252995f7a7c6060216286ddaacba445acd61"
+            },
+            "require": {
+                "php": ">= 5.6.20"
+            },
+            "provide": {
+                "wordpress/core-implementation": "6.0"
+            },
+            "suggest": {
+                "ext-curl": "Performs remote request operations.",
+                "ext-dom": "Used to validate Text Widget content and to automatically configuring IIS7+.",
+                "ext-exif": "Works with metadata stored in images.",
+                "ext-fileinfo": "Used to detect mimetype of file uploads.",
+                "ext-hash": "Used for hashing, including passwords and update packages.",
+                "ext-imagick": "Provides better image quality for media uploads.",
+                "ext-json": "Used for communications with other servers.",
+                "ext-libsodium": "Validates Signatures and provides securely random bytes.",
+                "ext-mbstring": "Used to properly handle UTF8 text.",
+                "ext-mysqli": "Connects to MySQL for database interactions.",
+                "ext-openssl": "Permits SSL-based connections to other hosts.",
+                "ext-pcre": "Increases performance of pattern matching in code searches.",
+                "ext-xml": "Used for XML parsing, such as from a third-party site.",
+                "ext-zip": "Used for decompressing Plugins, Themes, and WordPress update packages."
+            },
+            "type": "wordpress-core",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "https://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
+            "homepage": "https://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "support": {
+                "docs": "https://developer.wordpress.org/",
+                "forum": "https://wordpress.org/support/",
+                "irc": "irc://irc.freenode.net/wordpress",
+                "issues": "https://core.trac.wordpress.org/",
+                "rss": "https://wordpress.org/news/feed/",
+                "source": "https://core.trac.wordpress.org/browser",
+                "wiki": "https://codex.wordpress.org/"
+            },
+            "funding": [
+                {
+                    "url": "https://wordpressfoundation.org/donate/",
+                    "type": "other"
+                }
+            ],
+            "time": "2022-05-24T19:14:34+00:00"
         },
         {
             "name": "roots/wp-config",
@@ -1029,6 +1078,24 @@
                 }
             ],
             "time": "2021-12-12T23:22:04+00:00"
+        },
+        {
+            "name": "wpackagist-theme/twentytwentytwo",
+            "version": "1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/twentytwentytwo/",
+                "reference": "1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/twentytwentytwo.1.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/twentytwentytwo/"
         }
     ],
     "packages-dev": [
