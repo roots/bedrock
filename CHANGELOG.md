@@ -1,3 +1,7 @@
+### 1.20.0: 2022-05-24
+* Update to WordPress 6.0, add Twenty Twenty-Two theme as dependency ([#639](https:/
+/github.com/roots/bedrock/pull/639))
+
 ### 1.19.3: 2022-04-06
 * Bump roots/wordpress to 5.9.3 ([#633](https://github.com/roots/bedrock/pull/633))
 * Bump composer/installers from 2.0.1 to 2.1.0 ([#632](https://github.com/roots/bedrock/pull/632))
