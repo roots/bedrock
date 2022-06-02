@@ -73,6 +73,8 @@ $colPaddingSmall: 3rem;
 
   .third-col {
     flex: 0 0 $lastColWidth;
+    display: flex;
+    align-items: center;
   }
 
   @media (max-width: $extra-large) {
@@ -143,15 +145,6 @@ $colPaddingSmall: 3rem;
     }
   }
 
-  ul.social-networks {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0 2rem;
-  }
-
   @media (max-width: $large) {
 
     a.logo img {
@@ -171,10 +164,6 @@ $colPaddingSmall: 3rem;
     a.logo img {
       height: $footer-logo-height;
       width: $footer-logo-width;
-    }
-
-    ul.social-networks {
-      justify-content: center;
     }
 
     ul.menu {
