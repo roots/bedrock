@@ -1,4 +1,4 @@
-# BEGIN WP Rocket v3.10.2
+# BEGIN WP Rocket v3.11.3
 # Use UTF-8 encoding for anything served text/plain or text/html
 AddDefaultCharset UTF-8
 # Force UTF-8 for a number of file formats
@@ -18,7 +18,7 @@ FileETag None
 <IfModule mod_alias.c>
 <FilesMatch "\.(html|htm|rtf|rtx|txt|xsd|xsl|xml)$">
 <IfModule mod_headers.c>
-Header set X-Powered-By "WP Rocket/3.10.2"
+Header set X-Powered-By "WP Rocket/3.11.3"
 Header unset Pragma
 Header append Cache-Control "public"
 Header unset Last-Modified
@@ -72,7 +72,7 @@ Header append Cache-Control "public"
 	ExpiresByType font/otf                      "access plus 4 months"
 	ExpiresByType font/woff                     "access plus 4 months"
 	ExpiresByType font/woff2                    "access plus 4 months"
-	ExpiresByType image/svg+xml                 "access plus 1 month"
+	ExpiresByType image/svg+xml                 "access plus 4 months"
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 	# CSS and JavaScript
 	ExpiresByType text/css                      "access plus 1 year"
@@ -137,12 +137,12 @@ RewriteRule .* - [E=WPR_ENC:_gzip]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{QUERY_STRING} =""
 RewriteCond %{HTTP:Cookie} !(wordpress_logged_in_.+|wp-postpass_|wptouch_switch_toggle|comment_author_|comment_author_email_) [NC]
-RewriteCond %{REQUEST_URI} !^(/(.+/)?feed/?.+/?|/(?:.+/)?embed/|/wp-json/cache/v1/me|/authentification-inscription/(.*)|/authentification-inscription/(.*)|/mot-de-passe-oublie/(.*)|/reinitialisation/(.*)/(.*)|/deconnexion/(.*)|/profile/(.*)|/remove-account/(.*)|/fr/plugins/espace-restreint/(.*)|/jeux-data/(.*)|/jeux-anonymisation/(.*)|/ig-import/(.*)|/jeu/(.*)/thanks/(.*)|/jeu/(.*)/(.*)|/fr/plugins/jeux/(.*)|/fr/plugins/jeux/test-quiz-page-jeux/(.*)|/fr/plugins/jeux/test-quiz-page-lots/(.*)|/newsletterFormSubmit/(.*)|/newsletter/consent/(.*)/(.*)|/donnees-personnelles/(.*)|/personal-data/(.*)|/datos-personales/(.*)|/dati-personali/(.*)|/personliche-daten/(.*)|/persoonlijke-gegevens/(.*)|/personlige-data/(.*)|/personopplysninger/(.*)|/personuppgifter/(.*)|/dados-pessoais/(.*)|/prosopika-dedomena/(.*)|/export-donnees-personnelles/(.*)|(.*)?s=(.*)|/fb-login/(.*)/auth/(.*)|/fb-login/(.*)/pages/(.*)|/linkedin/token/(.*)|/linkedin/pages/(.*)|/trackers/submit/(.*)|/trackers/get_form/(.*)|/trackers/list_enabled/(.*)|/trackers/submit/(.*)|/trackers/get_form/(.*)|/trackers/list_enabled/(.*)|/(index\.php/)?wp\-json(/.*|$))$ [NC]
+RewriteCond %{REQUEST_URI} !^(/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/wp-json/cache/v1/me|//(.*)|//(.*)|/mot-de-passe-oublie/(.*)|/forgotten-password/(.*)|/contrasena-olvidada/(.*)|/password-dimenticata/(.*)|/passwort-vergessen/(.*)|/wachtwoord-vergeten/(.*)|/glemt-adgangskode/(.*)|/glemt-passordet/(.*)|/glomt-losenord/(.*)|/perdeu-a-sua-palavra-passe/(.*)|/reinitialisation/(.*)/(.*)|/reset-password/(.*)/(.*)|/reiniciar-contrasena/(.*)/(.*)|/reset-password/(.*)/(.*)|/passwort-zurucksetzen/(.*)/(.*)|/wachtwoord-opnieuw-instellen/(.*)/(.*)|/reset-af-adgangskode/(.*)/(.*)|/tilbakestill-passord/(.*)/(.*)|/aterstalla-losenord/(.*)/(.*)|/redefinir-senha/(.*)/(.*)|/deconnexion/(.*)|/logout/(.*)|/desconexion/(.*)|/disconnetti/(.*)|/abmelden/(.*)|/einde-verbinding/(.*)|/log-af/(.*)|/logg-av/(.*)|/logga-ut/(.*)|/desconectar-se/(.*)|/mon-compte/(.*)|/account/(.*)|/mi-cuenta/(.*)|/mio-profilo/(.*)|/mein-profil/(.*)|/profiel/(.*)|/min-konto/(.*)|/min-konto/(.*)|/mittkonto/(.*)|/meuperfil/(.*)|/suppression-compte/(.*)|/account-delete/(.*)|/eliminacion-cuenta/(.*)|/cancella-profilo/(.*)|/profil-löschen/(.*)|/account-verwijderen/(.*)|/slet-konto/(.*)|/slett-konto/(.*)|/radera-konto/(.*)|/desinscrever/(.*)|/fr/plugins/espace-restreint/(.*)|/jeux-data/(.*)|/jeux-anonymisation/(.*)|/ig-import/(.*)|/jeu/(.*)/thanks/(.*)|/jeu/(.*)/(.*)|/fr/plugins/jeux/(.*)|/fr/plugins/jeux/test-quiz-page-jeux/(.*)|/fr/plugins/jeux/test-quiz-page-lots/(.*)|/newsletterFormSubmit/(.*)|/newsletter/consent/(.*)/(.*)|//(.*)|/donnees-personnelles/(.*)|/personal-data/(.*)|/datos-personales/(.*)|/dati-personali/(.*)|/personliche-daten/(.*)|/persoonlijke-gegevens/(.*)|/personlige-data/(.*)|/personopplysninger/(.*)|/personuppgifter/(.*)|/dados-pessoais/(.*)|/prosopika-dedomena/(.*)|/export-donnees-personnelles/(.*)|(.*)?s=(.*)|/fb-login/(.*)/auth/(.*)|/fb-login/(.*)/pages/(.*)|/linkedin/token/(.*)|/linkedin/pages/(.*)|/trackers/submit/(.*)|/trackers/get_form/(.*)|/trackers/list_enabled/(.*)|/trackers/submit/(.*)|/trackers/get_form/(.*)|/trackers/list_enabled/(.*)|/(index\.php/)?wp\-json(/.*|$))$ [NC]
 RewriteCond %{HTTP:X-Wap-Profile} !^[a-z0-9\"]+ [NC]
 RewriteCond %{HTTP:Profile} !^[a-z0-9\"]+ [NC]
 RewriteCond %{HTTP_USER_AGENT} !^.*(2.0\ MMP|240x320|400X240|AvantGo|BlackBerry|Blazer|Cellphone|Danger|DoCoMo|Elaine/3.0|EudoraWeb|Googlebot-Mobile|hiptop|IEMobile|KYOCERA/WX310K|LG/U990|MIDP-2.|MMEF20|MOT-V|NetFront|Newt|Nintendo\ Wii|Nitro|Nokia|Opera\ Mini|Palm|PlayStation\ Portable|portalmmm|Proxinet|ProxiNet|SHARP-TQ-GX10|SHG-i900|Small|SonyEricsson|Symbian\ OS|SymbianOS|TS21i-10|UP.Browser|UP.Link|webOS|Windows\ CE|WinWAP|YahooSeeker/M1A1-R2D2|iPhone|iPod|Android|BlackBerry9530|LG-TU915\ Obigo|LGE\ VX|webOS|Nokia5800).* [NC]
 RewriteCond %{HTTP_USER_AGENT} !^(w3c\ |w3c-|acs-|alav|alca|amoi|audi|avan|benq|bird|blac|blaz|brew|cell|cldc|cmd-|dang|doco|eric|hipt|htc_|inno|ipaq|ipod|jigs|kddi|keji|leno|lg-c|lg-d|lg-g|lge-|lg/u|maui|maxo|midp|mits|mmef|mobi|mot-|moto|mwbp|nec-|newt|noki|palm|pana|pant|phil|play|port|prox|qwap|sage|sams|sany|sch-|sec-|send|seri|sgh-|shar|sie-|siem|smal|smar|sony|sph-|symb|t-mo|teli|tim-|tosh|tsm-|upg1|upsi|vk-v|voda|wap-|wapa|wapi|wapp|wapr|webc|winw|winw|xda\ |xda-).* [NC]
-RewriteCond %{HTTP_USER_AGENT} !^(facebookexternalhit).* [NC]
+RewriteCond %{HTTP_USER_AGENT} !^(facebookexternalhit|WhatsApp).* [NC]
 RewriteCond "%{DOCUMENT_ROOT}/app/cache/wp-rocket/%{HTTP_HOST}%{REQUEST_URI}/index%{ENV:WPR_SSL}%{ENV:WPR_WEBP}.html%{ENV:WPR_ENC}" -f
 RewriteRule .* "/app/cache/wp-rocket/%{HTTP_HOST}%{REQUEST_URI}/index%{ENV:WPR_SSL}%{ENV:WPR_WEBP}.html%{ENV:WPR_ENC}" [L]
 </IfModule>
