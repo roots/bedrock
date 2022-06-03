@@ -17,9 +17,9 @@
         echo 'hasPostThumb';
     } ?>">
         <?php if (!empty($postThumb)) : ?>
-            <div class="post-thumbnail">
+            <figure class="post-thumbnail">
                 <?php the_post_thumbnail('large', ['loading' => 'eager', 'class' => 'no-lazy']); ?>
-            </div><!-- .post-thumbnail -->
+            </figure>
         <?php endif; ?>
         <?php
         if (!\WonderWp\Functions\isAjax()) {
