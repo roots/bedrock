@@ -1,21 +1,53 @@
-$heroHeight: 52rem;
-$heroHeightMobile: auto;
+:root {
+  --hero-height: 52rem;
+  --hero-height-small: 25rem;
+  --hero-height-mobile: auto;
+  --hero-padding: 6rem;
+  --hero-padding-mobile: 3rem;
+}
 
 .hero-component {
   position: relative;
-  padding: 6rem 0;
+  padding: var(--hero-padding) 0 calc(var(--hero-padding)*2) 0;
 
   .hero-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: $heroHeight;
-    padding: 6rem;
+    min-height: var(--hero-height);
+    padding: 0 var(--hero-padding);
 
     h2, p, span, .chapo, .citation {
       color: white;
       text-align: center;
+      line-height: 1.5;
+    }
+
+    .subtitle {
+      font-family: var(--font-theme-headings);
+      font-weight: $weight-bold;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+      font-size: 4rem;
+      line-height: 1;
+
+      &::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 60px;
+        margin-top: 6px;
+        background-color: var(--color-theme-secondary);
+      }
     }
 
     blockquote {
@@ -29,12 +61,50 @@ $heroHeightMobile: auto;
     }
   }
 
+  // Icones
+  .icons-wrapper {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  // Logo
+  .logo-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: var(--hero-padding);
+
+    img {
+      max-height: 118px;
+      width: auto;
+      @media (max-width: $very-large) {
+        max-height: 80px;
+      }
+    }
+  }
+
+  .btn--cta {
+    @media (max-width: $very-large) {
+      /*@extend .btn--small;*/
+      height: $button-height-small;
+      min-height: $button-height-small;
+      padding: 0 2rem 0 3rem;
+      font-size: .9em;
+      &::after {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  /*******Options******/
+
   // Si image de fond (.has-image)
   &.has-image {
     height: 100%;
   }
+
   .image-wrapper {
-    position: absolute;
+    @include image-bg-gradient(50%, after);
+    position: absolute !important;
     top: 0;
     left: 0;
     z-index: -1;
@@ -42,6 +112,7 @@ $heroHeightMobile: auto;
     width: 100%;
     background-color: black;
     overflow: hidden;
+
     img {
       @include absolute-center;
       min-height: 100%;
@@ -57,7 +128,7 @@ $heroHeightMobile: auto;
   $opacities: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
   @each $opacity in $opacities {
     &.image-opacity-#{$opacity} {
-      .image-wrapper  img {
+      .image-wrapper img {
         opacity: calc(#{$opacity} / 100);
       }
     }
@@ -67,21 +138,71 @@ $heroHeightMobile: auto;
   &.is-textleft {
     .hero-content {
       align-items: flex-start;
+
       h2, p, span, .chapo, .citation {
         text-align: left;
       }
     }
   }
 
-  // Petite zone de contenu
+  // Si contenu aligné en bas
+  &.is-textbottom {
+    .hero-content {
+      justify-content: flex-end;
+
+      .btn--cta {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Si petite zone de contenu
   &.is-small-content {
     .hero-content {
       max-width: 54rem;
     }
   }
 
-  @media (max-width: $large) {
-    padding: 2rem 0;
+  // S'il y a un logo
+  &.has-logo {
+    .hero-content .text,
+    .hero-content .content-text {
+      max-width: 50rem;
+    }
+  }
+
+  // Si petit titre
+  &.is-smalltitle {
+    .title {
+      font-size: 3.6rem;
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  // Si hauteur du bloc réduite
+  &.is-small-height {
+    .hero-content {
+      min-height: var(--hero-height-small);
+    }
+  }
+
+  // Si couleur de thème
+  &.is-color-primary {
+    .title::after {
+      background-color: var(--color-theme-primary);
+    }
+  }
+
+  &.is-color-secondary {
+    .title::after {
+      background-color: var(--color-theme-secondary);
+    }
+  }
+
+  @include respond-to(large) {
 
     .hero-content {
       min-height: 45rem;
@@ -92,11 +213,16 @@ $heroHeightMobile: auto;
     }
   }
 
-  @media (max-width: $medium - 1) {
-    padding: 0;
+  @include respond-to(medium) {
+    margin: 1rem;
+    padding: 2rem 0;
+
+    .image-wrapper {
+      border-radius: 15px;
+    }
 
     .hero-content {
-      min-height: $heroHeightMobile;
+      min-height: var(--hero-height-smobile);
     }
 
     &.is-small-mobile-height {
@@ -108,7 +234,7 @@ $heroHeightMobile: auto;
     }
 
     .hero-content {
-      padding: 3rem;
+      padding: var(--hero-padding-mobile);
 
       h2 {
         margin-top: 2rem;
@@ -117,6 +243,10 @@ $heroHeightMobile: auto;
       .wp-block-image {
         max-width: 16rem;
       }
+    }
+
+    .logo-wrapper {
+      right: var(--hero-padding-mobile);
     }
   }
 

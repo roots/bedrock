@@ -25,7 +25,7 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
             AccordionPaneBlock::class
         ]);
 
-        $this->setConfig('moleculesToRegister', [
+        $this->setConfig('moleculesToRegister',[
             VideoEmbedComponent::class,
             VideoModaleComponent::class,
             DropdownComponent::class,

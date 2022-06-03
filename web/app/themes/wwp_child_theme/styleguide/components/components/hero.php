@@ -5,20 +5,29 @@
             <p>ATTRIBUTS :</p>
             <ul>
                 <li>Titre</li>
+                <li>Surtitre</li>
+                <li>Chapo</li>
                 <li>Texte</li>
+                <li>Logo</li>
+                <li>Icône</li>
                 <li>Image de fond</li>
                 <li>Opacité de l'image</li>
+                <li>Fond de couleur (#00000)</li>
+                <li>Filtre css mixblendmode</li>
                 <li>Lien bouton</li>
                 <li>Label bouton</li>
                 <li>Bloc de contenu libre</li>
-                <li>Fond de couleur (#00000)</li>
             </ul>
         </div>
         <div>
             <p>OPTIONS :</p>
             <ul>
+                <li>Titre de petite taille</li>
                 <li>Contenu aligné à gauche</li>
+                <li>Contenu aligné en bas</li>
                 <li>Petite zone de contenu</li>
+                <li>Petite taille pour mobile</li>
+                <li>Lien externe</li>
             </ul>
         </div>
     </div>
