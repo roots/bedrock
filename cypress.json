@@ -1,5 +1,5 @@
 {
-  "host": "http://local.wonderwp.com",
+  "host": "https://local.wonderwp.com",
   "video": false,
   "screenshotsFolder": "./cypress/screenshots",
   "smoke-pages": [
@@ -35,10 +35,10 @@
       }
     }
   },
-  "wwp-cache" : {
+  "wwp-cache": {
     "admin": {
       "inventory": {
-        "url" : "/wp/wp-admin/admin.php?page=wwp-cache"
+        "url": "/wp/wp-admin/admin.php?page=wwp-cache"
       }
     }
   },
@@ -155,7 +155,18 @@
     },
     "admin": {
       "list": {
-        "url" : "/wp/wp-admin/admin.php?page=wwp-partenaires"
+        "url": "/wp/wp-admin/admin.php?page=wwp-partenaires"
+      }
+    }
+  },
+  "wwp-rgpd": {
+    "url": "/donnees-personnelles",
+    "form": {
+      "formSelector": ".rgpd-auth-form"
+    },
+    "consents": {
+      "section": {
+        "selector": ".consents-wrap"
       }
     }
   },
