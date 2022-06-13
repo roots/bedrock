@@ -68,6 +68,13 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
    ```sh
    $ composer create-project roots/bedrock
    ```
+   By default, this installs the `dist` version of all dependent packages.  To install the `source` versions instead, update `composer.json` as follows:
+   ```json
+    "preferred-install": {
+      "roots/wordpress-no-content": "dist",
+      "*": "source"
+    },
+   ```
 2. Update environment variables in the `.env` file. Wrap values that may contain non-alphanumeric characters with quotes, or they may be incorrectly parsed.
 
 - Database variables
