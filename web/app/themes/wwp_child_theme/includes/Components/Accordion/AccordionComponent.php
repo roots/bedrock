@@ -2,6 +2,7 @@
 
 namespace WonderWp\Theme\Child\Components\Accordion;
 
+use WonderWp\Plugin\GutenbergUtils\Bloc\AccordionBlock\AccordionRow;
 use WonderWp\Theme\Core\Component\AbstractComponent;
 use function WonderWp\Functions\array_merge_recursive_distinct;
 use function WonderWp\Functions\paramsToHtml;
@@ -14,11 +15,12 @@ use function WonderWp\Functions\paramsToHtml;
  */
 class AccordionComponent extends AbstractComponent
 {
-    private $_blocks;
+    /** @var AccordionRow [] */
+    private $blocks = [];
 
-    public function addBlock($title, $content, $id = '', $opened = false)
+    public function addBlock(AccordionRow $accordionRow)
     {
-        $this->_blocks[] = ['title' => $title, 'content' => $content, 'id' => $id, 'opened' => $opened];
+        $this->blocks[] = $accordionRow;
     }
 
     public function getMarkup(array $opts = [])
@@ -27,7 +29,7 @@ class AccordionComponent extends AbstractComponent
             $opts['id'] = 'accordion-' . uniqid();
         }
         $markup = '';
-        if (!empty($this->_blocks)) {
+        if (!empty($this->blocks)) {
             $defaultClass      = 'js-accordion';
             $defaultAttributes = [
                 'class'                         => [$defaultClass],
@@ -40,15 +42,21 @@ class AccordionComponent extends AbstractComponent
                     array_unshift($opts['class'], $defaultClass);
                 }
             }
-            $params = array_merge_recursive_distinct($defaultAttributes, $opts);
+            $wrapParams = array_merge_recursive_distinct($defaultAttributes, $opts);
 
-            $markup .= '<div ' . paramsToHtml($params) . '>';
-            foreach ($this->_blocks as $block) {
-                $idAttr = !empty($block['id']) ? 'id="' . $block['id'] . '"' : '';
+            $markup .= '<div ' . paramsToHtml($wrapParams) . '>';
+
+            foreach ($this->blocks as $block) {
+                $className     = $block->getClasses() ?? 'default';
+                $headerParams  = $this->getHeaderParams($block, $className);
+                $contentParams = $this->getContentParams($block, $className);
+
                 $markup .= '
-                <span class="js-accordion__header" ' . (!empty($block['opened']) ? 'data-accordion-opened="true"' : '') . '>' . $block['title'] . '</span>
-                <div class="js-accordion__panel" ' . $idAttr . '>
-                    ' . $block['content'] . '
+                <span ' . paramsToHtml($headerParams) . '>
+                    ' . $block->getTitle() . '
+                </span>
+                <div ' . paramsToHtml($contentParams) . '>
+                    ' . $block->getContent() . '
                 </div>
                 ';
             }
@@ -56,6 +64,33 @@ class AccordionComponent extends AbstractComponent
         }
 
         return $markup;
+    }
+
+    protected function getHeaderParams(AccordionRow $block, $className)
+    {
+        $headerParams = [
+            'class'      => ['js-accordion__header', $className . '__header'],
+            'data-class' => $className . '__header'
+        ];
+        if ($block->isOpened()) {
+            $headerParams['data-accordion-opened'] = true;
+        }
+        if (!empty($block->getIllustration())) {
+            $headerParams['data-illustration'] = $block->getIllustration()[0];
+        }
+        return $headerParams;
+    }
+
+    protected function getContentParams(AccordionRow $block, $className)
+    {
+        $contentParams = [
+            'class' => ['js-accordion__panel', $className . '__panel']
+        ];
+        if (!empty($block->getId())) {
+            $contentParams['id'] = $block->getId();
+        }
+
+        return $contentParams;
     }
 
 }
