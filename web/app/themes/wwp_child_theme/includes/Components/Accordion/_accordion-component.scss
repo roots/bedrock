@@ -22,15 +22,14 @@
   display: block;
   width: 100%;
   margin: 1rem 0 0 0;
-  padding-right: 8rem;
-  padding-left: 5rem;
+  padding: 0 3rem;
   text-align: left;
   color: var(--accordion-color);
   font-weight: $weight-medium;
   text-transform: none;
   background-color: var(--accordion-bgcolor);
   white-space: normal;
-  min-height: 5rem;
+  min-height: 9rem;
   height: initial;
   border: 0;
   font-size: 1.3rem;
@@ -91,7 +90,7 @@
   position: relative;
   z-index: -1;
   border: 1px solid var(--accordion-bgcolor);
-  padding: 0 5rem;
+  padding: 0 4rem 0 3.5rem;
   border-bottom-right-radius: var(--accordion-border-radius);
   border-bottom-left-radius: var(--accordion-border-radius);
   font-size: 1.5rem;
@@ -111,7 +110,7 @@
   }
 
   &[aria-hidden="false"] {
-    padding: 4rem 5rem;
+    padding: 1rem 4rem 4rem 3.5rem;
     box-shadow: var(--accordion-box-shadow);
   }
 }
