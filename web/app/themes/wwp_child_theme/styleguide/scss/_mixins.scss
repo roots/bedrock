@@ -93,3 +93,38 @@ $get-path-to-styleguide: "/app/themes/wwp_child_theme/styleguide";
 .arrow-right {
   @include svgIcon('arrow-r-white');
 }
+
+//////////////////// BOTTOM BACKGROUND GRADIENT ////////////////////
+// Style à appliquer sur le wrapper de l'image
+@mixin image-bg-gradient(
+  $__size: 60%,
+  $__pseudo-element: 'after',
+	$__direction: 'to top' // 'to top' | 'to bottom' | 'to right' | 'to left'
+) {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  &::#{$__pseudo-element} {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-image: linear-gradient(unquote($__direction), rgba(0,0,0,0.8) 20%, rgba(0,0,0,0) 100%);
+    mix-blend-mode: multiply;
+    will-change: height, width;
+    transition: base-transition(height, width, opacity);
+    pointer-events: none;
+
+    @if ($__direction == 'to right') or ($__direction == 'to left') {
+      width: $__size; //Animation au hover -> augmenter largeur
+      height: 100%;
+    }
+    @else {
+      height: $__size; //Animation au hover -> augmenter hauteur
+      width: 100%;
+    }
+  }
+}

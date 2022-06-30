@@ -25,6 +25,12 @@ class HeroComponent extends AbstractComponent
 
     /**
      * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Surtitre"})
+     */
+    protected $subtitle;
+
+    /**
+     * @var string
      * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Chapo"})
      */
     protected $chapo;
@@ -49,27 +55,45 @@ class HeroComponent extends AbstractComponent
 
     /**
      * @var string
-     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Image","size":"large"})
-     */
-    protected $image;
-
-    /**
-     * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Opacité image (50 par défaut"})
-     */
-    protected $imageopacity;
-
-    /**
-     * @var string
-     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Couleur de fond hexadécimale"})
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Couleur de thème"})
      */
     protected $color;
 
     /**
      * @var string
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Image de fond","size":"large"})
+     */
+    protected $image;
+
+    /**
+     * @var string
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Image","size":"small"})
+     */
+    protected $logo;
+
+    /**
+     * @var string
+     * @BlockAttributes(component="MediaUpload",type="string",componentAttributes={"placeholder":"Icônes","size":"small"})
+     */
+    protected $icons;
+
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Opacité image (50 par défaut)"})
+     */
+    protected $imageOpacity;
+
+    /**
+     * @var string
+     * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Couleur de fond hexadécimale"})
+     */
+    protected $bgColor;
+
+    /**
+     * @var string
      * @BlockAttributes(component="PlainText",type="string",componentAttributes={"placeholder":"Mix blend mode (valeur css)"})
      */
-    protected $mixblendmode;
+    protected $mixBlendMode;
 
     /**
      * @var string
@@ -79,21 +103,45 @@ class HeroComponent extends AbstractComponent
 
     /**
      * @var boolean
-     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Contenu à gauche"})
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Taille du titre réduite"})
      */
-    protected $alignleft;
+    protected $titleSmall;
+
+    /**
+     * @var boolean
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Contenu aligné à gauche"})
+     */
+    protected $alignLeft;
+
+    /**
+     * @var boolean
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Contenu aligné en bas"})
+     */
+    protected $alignBottom;
 
     /**
      * @var boolean
      * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Petit contenu"})
      */
-    protected $smallcontent;
+    protected $smallContent;
 
     /**
      * @var boolean
-     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Mobile petite hauteur"})
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Hauteur du bloc réduite"})
      */
-    protected $smallmobile;
+    protected $smallHeight;
+
+    /**
+     * @var boolean
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Hauteur du bloc réduite sur mobile"})
+     */
+    protected $smallMobileHeight;
+
+    /**
+     * @var boolean
+     * @BlockOptions(component="CheckboxControl",type="boolean",componentAttributes={"label":"Lien sortant"})
+     */
+    protected $externalLink;
 
     /**
      * @param string $title
@@ -102,6 +150,26 @@ class HeroComponent extends AbstractComponent
     public function setTitle(string $title): HeroComponent
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @param string $subtitle
+     * @return HeroComponent
+     */
+    public function setSubtitle(string $subtitle): HeroComponent
+    {
+        $this->subtitle = $subtitle;
+        return $this;
+    }
+
+    /**
+     * @param string $chapo
+     * @return HeroComponent
+     */
+    public function setChapo(string $chapo): HeroComponent
+    {
+        $this->chapo = $chapo;
         return $this;
     }
 
@@ -129,7 +197,7 @@ class HeroComponent extends AbstractComponent
      * @param string $label
      * @return HeroComponent
      */
-    public function setlabel(string $label): HeroComponent
+    public function setLabel(string $label): HeroComponent
     {
         $this->label = $label;
         return $this;
@@ -146,12 +214,42 @@ class HeroComponent extends AbstractComponent
     }
 
     /**
-     * @param string $imageopacity
+     * @param string $logo
      * @return HeroComponent
      */
-    public function setImageopacity(string $imageopacity): HeroComponent
+    public function setLogo(string $logo): HeroComponent
     {
-        $this->imageopacity = $imageopacity;
+        $this->logo = $logo;
+        return $this;
+    }
+
+    /**
+     * @param string $icons
+     * @return HeroComponent
+     */
+    public function setIcons(string $icons): HeroComponent
+    {
+        $this->icons = $icons;
+        return $this;
+    }
+
+    /**
+     * @param string $imageOpacity
+     * @return HeroComponent
+     */
+    public function setimageOpacity(string $imageOpacity): HeroComponent
+    {
+        $this->imageOpacity = $imageOpacity;
+        return $this;
+    }
+
+    /**
+     * @param string $mixBlendMode
+     * @return HeroComponent
+     */
+    public function setmixBlendMode(string $mixBlendMode): HeroComponent
+    {
+        $this->mixBlendMode = $mixBlendMode;
         return $this;
     }
 
@@ -166,12 +264,12 @@ class HeroComponent extends AbstractComponent
     }
 
     /**
-     * @param string $mixblendmode
+     * @param string $bgColor
      * @return HeroComponent
      */
-    public function setMixblendmode(string $mixblendmode): HeroComponent
+    public function setbgColor(string $bgColor): HeroComponent
     {
-        $this->mixblendmode = $mixblendmode;
+        $this->bgColor = $bgColor;
         return $this;
     }
 
@@ -186,42 +284,72 @@ class HeroComponent extends AbstractComponent
     }
 
     /**
-     * @param bool $alignleft
+     * @param bool $alignLeft
      * @return HeroComponent
      */
-    public function setAlignleft(bool $alignleft): HeroComponent
+    public function setalignLeft(bool $alignLeft): HeroComponent
     {
-        $this->alignleft = $alignleft;
+        $this->alignLeft = $alignLeft;
         return $this;
     }
 
     /**
-     * @param bool $smallcontent
+     * @param bool $alignBottom
      * @return HeroComponent
      */
-    public function setSmallcontent(bool $smallcontent): HeroComponent
+    public function setalignBottom(bool $alignBottom): HeroComponent
     {
-        $this->smallcontent = $smallcontent;
+        $this->alignBottom = $alignBottom;
         return $this;
     }
 
     /**
-     * @param string $chapo
+     * @param bool $smallContent
      * @return HeroComponent
      */
-    public function setChapo(string $chapo): HeroComponent
+    public function setsmallContent(bool $smallContent): HeroComponent
     {
-        $this->chapo = $chapo;
+        $this->smallContent = $smallContent;
         return $this;
     }
 
     /**
-     * @param bool $smallmobile
+     * @param bool $smallHeight
      * @return HeroComponent
      */
-    public function setSmallmobile(bool $smallmobile): HeroComponent
+    public function setSmallHeight(bool $smallHeight): HeroComponent
     {
-        $this->smallmobile = $smallmobile;
+        $this->smallHeight = $smallHeight;
+        return $this;
+    }
+
+    /**
+     * @param bool $smallMobileHeight
+     * @return HeroComponent
+     */
+    public function setsmallMobileHeight(bool $smallMobileHeight): HeroComponent
+    {
+        $this->smallMobileHeight = $smallMobileHeight;
+        return $this;
+    }
+
+    /**
+     * @param bool $titleSmall
+     * @return HeroComponent
+     */
+    public function setTitleSmall(bool $titleSmall): HeroComponent
+    {
+        $this->titleSmall = $titleSmall;
+        return $this;
+    }
+
+    /**
+     * @param bool $externalLink
+     * @return HeroComponent
+     */
+    public function setExternalLink(bool $externalLink): HeroComponent
+    {
+        $this->externalLink = $externalLink;
         return $this;
     }
 
@@ -229,52 +357,86 @@ class HeroComponent extends AbstractComponent
     {
         $markup = '<div class="hero-component';
 
+        if (!empty($this->color)) {
+            $markup .= ' is-color-'.$this->color.' ';
+        }
+
+        if (!empty($this->logo)) {
+            $markup .= ' has-logo ';
+        }
+
         if (!empty($this->image)) {
             $markup .= ' has-image ';
         }
-        if ($this->alignleft == true) {
+        if ($this->titleSmall == true) {
+            $markup .= ' is-smalltitle ';
+        }
+        if ($this->alignLeft == true) {
             $markup .= ' is-textleft ';
         }
-        if ($this->smallcontent == true) {
+        if ($this->alignBottom == true) {
+            $markup .= ' is-textbottom ';
+        }
+        if ($this->smallContent == true) {
             $markup .= ' is-small-content ';
         }
-        if ($this->smallmobile == true) {
+        if ($this->smallHeight == true) {
+            $markup .= ' is-small-height ';
+        }
+        if ($this->smallMobileHeight == true) {
             $markup .= ' is-small-mobile-height ';
         }
-        if (!empty($this->imageopacity)) {
-            $markup .= ' image-opacity-'.$this->imageopacity.' ';
+        if (!empty($this->imageOpacity)) {
+            $markup .= ' image-opacity-'.$this->imageOpacity.' ';
         }
         $markup .= '">';
 
         if (!empty($this->image)) {
             $markup .= '<div class="image-wrapper"';
-                if (!empty($this->color)) {
-                    $markup .= 'style="background-color:'.$this->color.'"';
+                if (!empty($this->bgColor)) {
+                    $markup .= 'style="background-color:'.$this->bgColor.'"';
                 }
             $markup .= '>
                 <div class="mix-blend-mode"';
-                    if (!empty($this->mixblendmode)) {
-                        $markup .= 'style="mix-blend-mode:'.$this->mixblendmode.'"';
+                    if (!empty($this->mixBlendMode)) {
+                        $markup .= 'style="mix-blend-mode:'.$this->mixBlendMode.'"';
                     }
                 $markup .= '>' . $this->image . '</div>
             </div>';
         }
 
         $markup .= '<div class="hero-content container">';
+        if (!empty($this->subtitle)) {
+            $markup .= '<p class="subtitle">' . $this->subtitle . '</p>';
+        }
         if (!empty($this->title)) {
             $markup .= '<h2 class="title">' . $this->title . '</h2>';
         }
         if (!empty($this->chapo)) {
             $markup .= '<p class="chapo">' . $this->chapo . '</p>';
         }
-        if (!empty($this->text)) {
-            $markup .= '<p>' . $this->text . '</p>';
+        if (!empty($this->icons)) {
+            $markup .= '<div class="icons-wrapper">' . $this->icons . '</div>';
         }
-        if (!empty($this->link)) {
-            $markup .= '<a class="btn--cta" href="' . $this->link . '">' . $this->label . '</a>';
+        if (!empty($this->text)) {
+            $markup .= '<p class="text">' . $this->text . '</p>';
         }
         if (!empty($this->subComponents)) {
-            $markup .= $this->subComponents;
+            $markup .= '<div class="content-text">'.$this->subComponents.'</div>';
+        }
+        if (!empty($this->link)) {
+            $markup .= '<a class="btn--cta ';
+            if (!empty($this->color)) {
+                $markup .= ' btn--'.$this->color;
+            }
+            $markup .= '" href="' . $this->link . '"';
+            if (!empty($this->externalLink)){
+                $markup .= 'target="_blank"';
+            }
+            $markup .='>' . $this->label . '</a>';
+        }
+        if (!empty($this->logo)) {
+            $markup .= '<div class="logo-wrapper">' . $this->logo . '</div>';
         }
         $markup .= '</div>';
 
