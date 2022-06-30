@@ -73,10 +73,12 @@ export class AccordionWrap {
 
         //Recup / override des options par data attribut
         const dataSet = $that.data();
-        if (dataSet) {
-          for (let i in dataSet) {
-            headerAttr['data-' + i] = dataSet[i];
-          }
+        if (dataSet['class']) {
+          $accordion_header.addClass(dataSet['class'])
+        }
+        if (dataSet['illustration']) {
+          $accordion_header.addClass('has-illustration');
+          $accordion_header.css('background', 'url(' + dataSet['illustration'] + ') center left no-repeat');
         }
 
         $accordion_header.attr(headerAttr);
