@@ -182,7 +182,7 @@ pipeline {
 
           if(env.runComposer=='true'){
             try {
-              sh '/usr/bin/php7.4 /usr/local/bin/composer install --no-dev --prefer-dist';
+              sh '/usr/bin/php8.0 /usr/local/bin/composer install --no-dev --prefer-dist';
             } catch(exc){
                 handleException('Composer install failed', exc);
             }
@@ -192,7 +192,7 @@ pipeline {
 
           if(env.runNpm=='true' || env.runBuild=='true'){
             echo "Specifying correct node version";
-            env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
+            env.PATH="/var/lib/jenkins/.nvm/versions/node/v16.14.2/bin:${env.PATH}"
             sh 'node -v';
           }
 
