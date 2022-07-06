@@ -24,6 +24,7 @@ class ReseauxSociauxComponent extends AbstractComponent
                 'pinterest',
                 'flickr',
                 'linkedin',
+                'tiktok',
             ];
 
         $reseauxActifs = [];
