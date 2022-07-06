@@ -22,15 +22,14 @@
   display: block;
   width: 100%;
   margin: 1rem 0 0 0;
-  padding-right: 8rem;
-  padding-left: 5rem;
+  padding: 0 3rem;
   text-align: left;
   color: var(--accordion-color);
   font-weight: $weight-medium;
   text-transform: none;
   background-color: var(--accordion-bgcolor);
   white-space: normal;
-  min-height: 5rem;
+  min-height: 9rem;
   height: initial;
   border: 0;
   font-size: 1.3rem;
@@ -50,32 +49,19 @@
     outline: 0;
   }
 
-  &:before {
-    content: '';
-    display: block;
-    background: url("/app/themes/wwp_child_theme/assets/raw/svg/chevron-l-small-white.svg") no-repeat center center;
-    background-size: 35%;
+  &::after {
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 5rem;
-    z-index: 2;
-    transition: all .2s ease-out;
-    transform: rotate(-90deg);
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    @include svgIcon('icon-more');
   }
 
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    right: -1px;
-    top: -1px;
-    height: calc(100% + 2px);
-    width: 5rem;
-    background-color: var(--accordion-btn-color);
-    z-index: 1;
-    border-radius: 0 var(--accordion-border-radius) var(--accordion-border-radius) 0;
+  // Avec illustration
+  &.has-illustration {
+    padding-left: 10rem !important;
+    background-size: 5rem auto !important;
+    background-position-x: 3rem !important;
   }
 
   &[aria-expanded="true"] {
@@ -85,12 +71,8 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
-    &:before {
-      transform: rotate(90deg);
-    }
-
-    &:after {
-      border-radius: 0 var(--accordion-border-radius) 0 0;
+    &::after {
+      @include svgIcon('icon-less');
     }
   }
 
@@ -108,7 +90,7 @@
   position: relative;
   z-index: -1;
   border: 1px solid var(--accordion-bgcolor);
-  padding: 0 5rem;
+  padding: 0 4rem 0 3.5rem;
   border-bottom-right-radius: var(--accordion-border-radius);
   border-bottom-left-radius: var(--accordion-border-radius);
   font-size: 1.5rem;
@@ -128,7 +110,7 @@
   }
 
   &[aria-hidden="false"] {
-    padding: 4rem 5rem;
+    padding: 1rem 4rem 4rem 3.5rem;
     box-shadow: var(--accordion-box-shadow);
   }
 }
