@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "297806280d5976a9ea746859cdaf4712",
+    "content-hash": "9a04779580b7d5055fbb8f3857462c61",
     "packages": [
         {
             "name": "composer/installers",
@@ -459,16 +459,16 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "6.0.0",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
-                "reference": "dd8ece73954fd90f891d98fa5c2c5ace000fe50d"
+                "reference": "41ff6e23ccbc3a1691406d69fe8c211a225514e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress/zipball/dd8ece73954fd90f891d98fa5c2c5ace000fe50d",
-                "reference": "dd8ece73954fd90f891d98fa5c2c5ace000fe50d",
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/41ff6e23ccbc3a1691406d69fe8c211a225514e2",
+                "reference": "41ff6e23ccbc3a1691406d69fe8c211a225514e2",
                 "shasum": ""
             },
             "require": {
@@ -477,10 +477,20 @@
             },
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPL-2.0-or-later"
+            ],
             "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
+            "homepage": "https://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/6.0.0"
+                "source": "https://github.com/roots/wordpress/tree/6.0.1"
             },
             "funding": [
                 {
@@ -492,7 +502,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-23T20:05:44+00:00"
+            "time": "2022-06-01T16:54:37+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -567,22 +577,22 @@
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "6.0",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/roots/wordpress-no-content.git",
-                "reference": "e835336a33b10ce4d738e75668ecd4bc480550ef"
+                "url": "https://github.com/WordPress/WordPress.git",
+                "reference": "6.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/release/wordpress-6.0-no-content.zip",
-                "shasum": "6cc5252995f7a7c6060216286ddaacba445acd61"
+                "url": "https://downloads.wordpress.org/release/wordpress-6.0.1-no-content.zip",
+                "shasum": "bd78fc2bea7f04683218c679f9e6b606eedf23bc"
             },
             "require": {
                 "php": ">= 5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "6.0"
+                "wordpress/core-implementation": "6.0.1"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -633,7 +643,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2022-05-24T19:14:34+00:00"
+            "time": "2022-07-12T16:30:11+00:00"
         },
         {
             "name": "roots/wp-config",
