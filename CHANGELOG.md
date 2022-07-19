@@ -1,6 +1,11 @@
+### 1.20.1: 2022-07-19
+* Bump roots/wordpress from 6.0.0 to 6.0.1 ([#644](https://github.com/roots/bedrock/pull/644))
+* doc: instructions for installing "source" packages ([#641](https://github.com/roots/bedrock/pull/641))
+* Bump squizlabs/php_codesniffer from 3.6.2 to 3.7.1 ([#643](https://github.com/roots/bedrock/pull/643))
+* Bump composer/installers from 2.1.0 to 2.1.1 ([#635](https://github.com/roots/bedrock/pull/635))
+
 ### 1.20.0: 2022-05-24
-* Update to WordPress 6.0, add Twenty Twenty-Two theme as dependency ([#639](https:/
-/github.com/roots/bedrock/pull/639))
+* Update to WordPress 6.0, add Twenty Twenty-Two theme as dependency ([#639](https://github.com/roots/bedrock/pull/639))
 
 ### 1.19.3: 2022-04-06
 * Bump roots/wordpress to 5.9.3 ([#633](https://github.com/roots/bedrock/pull/633))
