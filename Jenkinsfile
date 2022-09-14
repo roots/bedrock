@@ -63,16 +63,9 @@ def finalizeDistantMigration(creds){
     def remoteCommand = "ssh ${creds.sshUser}@${creds.sshServer} \"cd ${creds.sshRemotePath}";
 
     if(env.runComposer){
-        def pluginListRemoteCommand = remoteCommand + " && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp wwp:doctrine-plugin-list && exit\"";
-        def doctrinePluginList = sh (
-            script: pluginListRemoteCommand,
-            returnStdout: true
-        );
-        if (doctrinePluginList?.trim()) {
-            remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin deactivate ${doctrinePluginList}";
-            remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin activate ${doctrinePluginList}";
-            remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
-        }
+        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin deactivate --all";
+        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin activate --all";
+        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
     }
 
     if(creds.cacheEnabled == true){
@@ -175,68 +168,67 @@ pipeline {
     stage('Build') {
       steps {
         script{
-          echo "Starting Build #${env.BUILD_ID}, triggered by $BRANCH_NAME";
+            echo "Starting Build #${env.BUILD_ID}, triggered by $BRANCH_NAME";
 
-          echo "Definining variables";
-          defineVariables();
+            echo "Definining variables";
+            defineVariables();
 
-          if(env.runComposer=='true'){
-            try {
-              sh '/usr/bin/php8.0 /usr/local/bin/composer install --no-dev --prefer-dist';
-            } catch(exc){
+            if(env.runComposer=='true'){
+              try {
+                sh '/usr/bin/php8.0 /usr/local/bin/composer install --no-dev --prefer-dist';
+              } catch(exc){
                 handleException('Composer install failed', exc);
+              }
+            } else {
+              echo 'skipped composer install';
             }
-          } else {
-            echo 'skipped composer install';
-          }
 
-          if(env.runNpm=='true' || env.runBuild=='true'){
-            echo "Specifying correct node version";
-            env.PATH="/var/lib/jenkins/.nvm/versions/node/v16.14.2/bin:${env.PATH}";
-            sh 'node -v';
-          }
+            if(env.runNpm=='true' || env.runBuild=='true'){
+              echo "Specifying correct node version";
+              env.PATH="/var/lib/jenkins/.nvm/versions/node/v12.22.7/bin:${env.PATH}"
+              sh 'node -v';
+            }
 
 	        if(env.runNpm=='true'){
-            try {
-              sh 'npm install';
-            } catch(exc){
-                handleException('npm install failed',exc);
-            }
+	            try {
+	        	    sh 'npm install';
+                } catch(exc){
+                    handleException('npm install failed',exc);
+                }
 	        } else {
 	        	echo 'skipped npm install';
 	        }
 
-          if(env.runBuild=='true'){
-            try {
-              sh 'npm run sprites';
-              if(BRANCH_NAME=='master' || BRANCH_NAME=='main'){
-                sh 'npm run build:prod';
-              } else {
-                // Need to have sourcemap for debugging purpose
-                sh 'FORCE_SOURCEMAP=true npm run build:prod';
-              }
-            } catch(exc){
-                handleException('Building the front failed',exc);
+            if(env.runBuild=='true'){
+	            try {
+                    sh 'npm run sprites';
+                    if(BRANCH_NAME=='master'){
+                        sh 'npm run build:prod';
+                    } else {
+                        sh 'npm run build';
+                    }
+                } catch(exc){
+                    handleException('Building the front failed',exc);
+                }
+            } else {
+            	echo 'skipped npm sprites & build';
             }
-          } else {
-            echo 'skipped npm sprites & build';
-          }
         }
       }
     }
     stage('Deploy') {
-      steps {
-        script {
-          try{
-            echo "Deploying $BRANCH_NAME branch"
-            def creds = loadCreds("wonderwp_${BRANCH_NAME}_credentials");
-            deployCode(creds);
-            finalizeDistantMigration(creds);
-          } catch(exc){
-            handleException("The $BRANCH_NAME branch deployment failed",exc);
-          }
+        steps {
+            script {
+            	try{
+	                echo "Deploying $BRANCH_NAME branch"
+	                def creds = loadCreds("wonderwp_${BRANCH_NAME}_credentials");
+	                deployCode(creds);
+	                finalizeDistantMigration(creds);
+	            } catch(exc){
+	            	  handleException("The $BRANCH_NAME branch deployment failed",exc);
+              }
+            }
         }
-      }
     }
     stage('Integration tests') {
         steps {
