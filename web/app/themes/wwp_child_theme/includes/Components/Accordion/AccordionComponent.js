@@ -90,7 +90,8 @@ export class AccordionWrap {
         }).addClass($accordions_prefix_classes + "__panel");
 
         // if opened by default
-        if ($that.attr("data-accordion-opened") == "true") {
+        var shouldBeOpened = $that.attr("data-accordion-opened");
+        if (shouldBeOpened == "true" || shouldBeOpened == "1") {
           $accordion_header.attr("aria-expanded", "true").removeAttr("data-accordion-opened");
           $accordion_panel.attr("aria-hidden", "false");
         }

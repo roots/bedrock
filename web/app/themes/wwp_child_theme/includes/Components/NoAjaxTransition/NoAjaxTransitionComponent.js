@@ -57,6 +57,12 @@ export default class NoAjaxTransitionComponent extends PewComponent {
 
       }
     });
+
+    $(window).bind("pageshow", function (event) {
+      if (event.originalEvent.persisted) {
+        $('#content').removeClass('transitionning');
+      }
+    });
   }
 
   scrollTo(topPos) {
