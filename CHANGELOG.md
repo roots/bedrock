@@ -1,3 +1,6 @@
+### 1.20.3: 2022-10-18
+* Bump roots/wordpress from 6.0.2 to 6.0.3 ([#652](https://github.com/roots/bedrock/pull/652))
+
 ### 1.20.2: 2022-08-31
 * Bump roots/wordpress from 6.0.1 to 6.0.2 ([#648](https://github.com/roots/bedrock/pull/648))
 * Bump composer/installers from 2.1.1 to 2.2.0 ([#646](https://github.com/roots/bedrock/pull/646))
