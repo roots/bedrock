@@ -1,4 +1,5 @@
-### 1.20.4: 2022-11-01
+### 1.21.0: 2022-11-01
+* ➕ Replace `twentytwentytwo` with `twentytwentythree` ([#655](https://github.com/roots/bedrock/pull/655))
 * ⬆️ Bump roots/wordpress to v6.1 ([#654](https://github.com/roots/bedrock/pull/654))
 
 ### 1.20.3: 2022-10-18
