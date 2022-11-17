@@ -23,7 +23,7 @@ $chiffrecle = new \WonderWp\Theme\Child\Components\ChiffreCle\ChiffreCleComponen
 $chiffrecle
     ->setChiffre('1993')
     ->setText('Notre année de naissance')
-    ->setImage('<img width="90" height="90" src="/app/uploads/2021/08/icon-influenceurs.svg" alt="">')
+    ->setImage('<img width="90" height="90" src="'.get_stylesheet_directory_uri().'/assets/raw/svg/star_s.svg" alt="">')
 ;
 
 echo $chiffrecle->getMarkup();
