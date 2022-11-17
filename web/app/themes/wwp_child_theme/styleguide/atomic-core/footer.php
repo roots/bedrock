@@ -201,9 +201,9 @@ if (file_exists($filename)) {
 
 
 
-<?php 
+<?php
   //Uncomment the following include to enable client mode.
-  //include "clientmode.php" 
+  //include "clientmode.php"
 ?>
 
 
@@ -212,6 +212,6 @@ if (file_exists($filename)) {
 
 
 <script src="atomic-core/js/min/compiled.min.js"></script>
-
+<span id="colophon"></span>
 </body>
 </html>
