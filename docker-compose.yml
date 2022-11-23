@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./docker/logs/nginx:/var/log/nginx
+    depends_on:
+      - php-fpm
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - dev-bedrock
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-bedrock:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-bedrock
+
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+    volumes:
+      - ./:/var/www
+      - ./docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/php-fpm/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    networks:
+      - dev-bedrock
+
+  maildev:
+    image: maildev/maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - "8080:80"
+    restart: always
+    networks:
+      - dev-bedrock
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - dev-bedrock
+
+networks:
+  dev-bedrock:
+
+volumes:
+  db-bedrock:
