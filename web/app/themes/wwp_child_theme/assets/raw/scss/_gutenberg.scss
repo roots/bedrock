@@ -1,91 +1,69 @@
-/* ----------------------------- */
-/* ==Gutenberg overrides      */
-/* ----------------------------- */
+///// GUTENBERG OVERRIDE /////
 
-/*Gouttière*/
-$gutter-col-width: 16px !default; //Gouttière de base
-
-//Columns mobile first
-.wp-block-columns {
-  width: 100%;
-  margin-bottom: calc(#{$gutter-col-width} * 2);
+//// COLUMNS ADDONS (FROM WP v6)
+.wp-block-column.is-vertically-aligned-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-//Column mobile first
-.wp-block-column {
-  flex-basis: 100%;
-
-  .wp-block-image .alignleft {
-    float: none;
-    margin-right: 0 !important;
-  }
-}
-
-/*
-* Responsive
-*/
-
-@media (min-width: 782px) { //782px Gutenberg Breakpoint
+@include respond-to('medium-up'){ //782px Gutenberg Breakpoint
 
   // Très petite gouttière
-  .wp-block-columns.has-gutter-xs .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} / 2);
+  .wp-block-columns.has-gutter-xs {
+    gap: 0.5em;
   }
 
   // Petite gouttière
-  .wp-block-columns.has-gutter-s .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width});
+  .wp-block-columns.has-gutter-s {
+    gap: 1em;
   }
 
   // Grande gouttière
-  .wp-block-columns.has-gutter-l .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} * 4);
+  .wp-block-columns.has-gutter-l {
+    gap: 2em;
+  }
+
+  // Très grande gouttière
+  .wp-block-columns.has-gutter-xl {
+    gap: 4em;
   }
 
   // Sans gouttière
-  .wp-block-columns.no-gutter .wp-block-column:nth-child(even) {
-    margin-left: 0;
+  .wp-block-columns.has-no-gutter {
+    gap: 0
   }
 }
 
-@media (min-width: 600px) { //600px Gutenberg Breakpoint
+@media (min-width: 1024px) {
 
-  .wp-block-columns {
-    flex-wrap: nowrap;
-  }
-
-  .wp-block-column {
-    flex-basis: calc(50% - #{$gutter-col-width});
-    flex-grow: 0;
-  }
-
-  // Gouttière
-  .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} * 2);
+  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column[style*=flex-basis] {
+    flex-grow: 1;
   }
 
   // Très petite gouttière
-  .wp-block-columns.has-gutter-xs .wp-block-column {
-    flex-basis: calc(50% - #{$gutter-col-width} / 4);
-  }
-  .wp-block-columns.has-gutter-xs .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} / 2);
+  .wp-block-columns.has-gutter-xs {
+    gap: 0.5em;
   }
 
   // Petite gouttière
-  .wp-block-columns.has-gutter-s .wp-block-column {
-    flex-basis: calc(50% - #{$gutter-col-width} / 2);
-  }
-  .wp-block-columns.has-gutter-s .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width});
+  .wp-block-columns.has-gutter-s {
+    gap: 1em;
   }
 
   // Grande gouttière
-  .wp-block-columns.has-gutter-l .wp-block-column {
-    flex-basis: calc(50% - #{$gutter-col-width} * 2);
+  .wp-block-columns.has-gutter-l {
+    gap: 4em;
   }
-  .wp-block-columns.has-gutter-l .wp-block-column:not(:first-child) {
-    margin-left: calc(#{$gutter-col-width} * 4);
+
+  // Très grande gouttière
+  .wp-block-columns.has-gutter-xl {
+    gap: 6em;
+  }
+
+  // Sans gouttière
+  .wp-block-columns.has-no-gutter {
+    gap: 0;
   }
 }
 
@@ -103,14 +81,19 @@ $gutter-col-width: 16px !default; //Gouttière de base
   }
 }
 
-@media (max-width: 781px) and (min-width: 600px) {
+@media (max-width: $medium - 1) and (min-width: $small) {
 
   .wp-block-column {
     flex-basis: 50% !important;
   }
 }
 
-@media (max-width: $medium) {
+@include respond-to('medium') {
+
+  .wp-block-columns {
+    gap: 0;
+    margin-bottom: 0;
+  }
 
   //Colonnes full width
   .wp-block-column.col-full-medium {
@@ -125,26 +108,22 @@ $gutter-col-width: 16px !default; //Gouttière de base
 }
 
 /*Mobile : on passe sur 1 seule colone*/
-@media (max-width: 599px) {
+@include respond-to('small') {
 
   .wp-block-columns {
     display: block;
   }
+}
 
-  .wp-block-column {
-    margin-bottom: 2rem;
 
-    &.prm,
-    &.prl,
-    &.prxl {
-      padding-right: 0;
-    }
+/// INLINE IMAGE ///
+.inline-image {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 
-    &.plm,
-    &.pll,
-    &.plxl {
-      padding-left: 0;
-    }
-
+  img {
+    flex: 0 0 150px;
+    margin-right: 2rem;
   }
 }
