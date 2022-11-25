@@ -3,7 +3,7 @@ if(!defined('WP_USE_THEMES')){ define('WP_USE_THEMES', false); }
 require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp/wp-blog-header.php' );
 require_once( get_stylesheet_directory().'/functions.php' );
 //require_once( get_theme_root().'/functions.php' );
-
+http_response_code(200);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
