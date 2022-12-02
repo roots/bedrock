@@ -18,6 +18,7 @@
     } ?>">
         <?php if (!empty($postThumb)) : ?>
             <figure class="post-thumbnail">
+                <?php the_post_thumbnail('large', ['loading' => 'eager', 'class' => 'no-lazy']); ?>
             </figure>
         <?php endif; ?>
         <?php
