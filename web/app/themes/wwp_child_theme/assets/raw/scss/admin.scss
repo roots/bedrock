@@ -1,2 +1,30 @@
+/// CONTENT BASE STYLES ///
 @import "../../../styleguide/scss/variables";
+@import "../../../styleguide/scss/mixins";
+@import "../../fonts/fonts_critical";
+@import "../../fonts/fonts";
+@import "../../../styleguide/scss/atoms/text";
+@import "../../../styleguide/scss/atoms/titles";
+@import "../../../includes/Components/Button/button-component";
 @import "layout";
+
+
+/*--------------------------------------*/
+/// LOAD COMPONENTS STYLES HERE ///
+@import "../../../includes/Components/Card/card-component";
+
+
+
+
+/*--------------------------------------*/
+/// ADMIN STYLES ///
+.editor-styles-wrapper {
+  color: var(--color-theme-base);
+  background-color: var(--background-theme-base);
+}
+
+.wp-block-post-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: calc(var(--font-size-base) * 1.4);
+  line-height: var(--line-height-base);
+}
