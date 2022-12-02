@@ -50,8 +50,7 @@
 }
 
 .btn,
-.button,
-button {
+.button {
   @extend %btn;
   color: white;
   background-color: var(--color-theme-primary);
@@ -63,8 +62,7 @@ button {
   }
 }
 
-.btn,
-button {
+.btn {
   @each $name, $background-color, $color, $border in $variants-list {
     &--#{$name} {
       @extend %btn;

@@ -75,7 +75,6 @@ $button
     ->setLink('/')
     ->setLabel('En savoir plus')
     ->setColor('white')
-    ->setArrow('true')
     ->setModale(true)
 ;
 echo $button->getMarkup();
