@@ -1,259 +1,17 @@
-/* ----------------------------- */
-/* ==Utilities      */
-/* ----------------------------- */
+///// CSS UTILITIES /////
+
+@import "utils_margins";
 
 .border {
-    border: 1px solid $gray-300;
+  border: 1px solid var(--color-theme-primary);
 }
 
-/*KNACSS OVERRIDES*/
-
-//Width
-.w80 {
-    @media (max-width: $medium - 1) {
-        width: 100%;
-    }
-}
-
-//Margins
-.mtxl {
-    margin-top: $spacer-extra-large;
-
-    @media (max-width: $medium) {
-        margin-top: $spacer-large;
-    }
-
-    @media (max-width: $tiny) {
-        margin-top: $spacer-medium;
-    }
-}
-
-.mtxxl {
-    margin-top: $spacer-ultra-large;
-
-    @media (max-width: $medium) {
-        margin-top: $spacer-extra-large;
-    }
-
-    @media (max-width: $tiny) {
-        margin-top: $spacer-large;
-    }
-}
-
-.mtl-nega {
-    margin-top: - $spacer-large;
-
-    @media (max-width: $large) {
-        margin-top: 0;
-
-        img {
-            margin-top: 0 !important;
-        }
-    }
-}
-
-.mtxl-nega {
-    margin-top: - $spacer-extra-large;
-
-    @media (max-width: $large) {
-        margin-top: 0;
-
-        img {
-            margin-top: 0 !important;
-        }
-    }
-}
-
-.mtxxl-nega {
-    margin-top: - $spacer-ultra-large;
-
-    @media (max-width: $large) {
-        margin-top: 0;
-
-        img {
-            margin-top: 0 !important;
-        }
-    }
-}
-
-.mrl {
-
-    @media (max-width: $medium ) {
-        margin-right: $spacer-medium;
-    }
-
-    @media (max-width: $medium -1) {
-        margin-right: 0;
-    }
-}
-
-.mrxl {
-    margin-right: $spacer-extra-large;
-    @media (max-width: $medium -1) {
-        margin-right: 0;
-    }
-}
-
-.mbl {
-    @media (max-width: $tiny) {
-        margin-bottom: $spacer-medium;
-    }
-}
-
-.mbxl {
-    margin-bottom: $spacer-extra-large;
-
-    @media (max-width: $medium) {
-        margin-bottom: $spacer-medium;
-    }
-}
-
-.mbxxl {
-    margin-bottom: $spacer-ultra-large;
-
-    @media (max-width: $medium) {
-        margin-bottom: $spacer-large;
-    }
-}
-
-.mbxxxl {
-    margin-bottom: $spacer-ultra-large-plus;
-
-    @media (max-width: $medium) {
-        margin-bottom: $spacer-large-plus;
-    }
-}
-
-.mbn, .mb0 {
-    margin-bottom: 0 !important;
-}
-
-.mll {
-    @media (max-width: $medium ) {
-        margin-left: 0;
-    }
-}
-
-.mlxl {
-    margin-left: $spacer-extra-large;
-
-    @media (max-width: $medium) {
-        margin-left: $spacer-large;
-    }
-}
-
-.mlxxl {
-    margin-left:  $spacer-ultra-large;
-
-    @media (max-width: $medium) {
-        margin-left: $spacer-large;
-    }
-}
-
-// Padding
-.paxl {
-    padding: $spacer-extra-large;
-
-    @media (max-width: $large) {
-        padding: $spacer-large;
-    }
-
-    @media (max-width: $medium) {
-        padding: $spacer-medium $spacer-large;
-    }
-
-    @media (max-width: $medium) {
-        padding: 1rem 0;
-    }
-}
-
-.ptl {
-
-    @media (max-width: $medium) {
-        padding-top: $spacer-medium;
-    }
-}
-
-.ptxl {
-    padding-top: $spacer-extra-large;
-
-    @media (max-width: $medium) {
-        padding-top: $spacer-large;
-    }
-}
-
-.ptxxl {
-    padding-top: $spacer-ultra-large ;
-
-    @media (max-width: $medium) {
-        padding-top: $spacer-large;
-    }
-}
-
-.prl {
-
-    @media (max-width: $medium - 1) {
-        padding-right: 0;
-    }
-}
-
-.plm,
-.pll {
-    @media (max-width: $medium - 1) {
-        padding-left: 0;
-    }
-}
-
-.plxl {
-    padding-left: $spacer-extra-large;
-}
-
-.prxl {
-    padding-right: $spacer-extra-large;
-}
-
-.pbl {
-
-    @media (max-width: $medium) {
-        padding-bottom: $spacer-medium;
-    }
-}
-
-.pbxl {
-    padding-bottom: $spacer-extra-large;
-
-    @media (max-width: $medium - 1) {
-        padding-bottom: $spacer-medium;
-    }
-}
-
-.pbxxl {
-    padding-bottom: $spacer-ultra-large;
-
-    @media (max-width: $medium) {
-        padding-bottom: $spacer-large;
-    }
-}
-
-// Width
-/*div[class^="w"],
-p[class^="w"],
-.w40,
-.w50,
-.w60,
-.w70 {
-
-    @media (max-width: $medium - 1) {
-        width: 100%;
-    }
-}*/
-
-// Enlarge text size
+/// Enlarge text size ///
 @media (max-width: $medium - 1) {
-    .u-big,
-    .u-bigger {
-        font-size: 1em;
-    }
+  .u-big,
+  .u-bigger {
+    font-size: 1em;
+  }
 }
 
 // Child images
@@ -271,7 +29,7 @@ p[class^="w"],
   }
 }
 
-/*FLEXBOX COLUMNS*/
+/// FLEXBOX COLUMNS ///
 
 /* flexbox layout (knacss addons)*/
 .flex-container,
@@ -320,52 +78,37 @@ p[class^="w"],
   justify-content: flex-end;
 }
 
-/*GRID COLUMNS*/
-[class*=" grid-"],
-[class^=grid-] {
+/// Positioning utilities ///
+.relative {
+  position: relative;
 
-  @media (max-width: $tiny - 1) {
-
-    > div {
-      margin-bottom: 2rem;
-    }
+  > * {
+    z-index: 1;
   }
 }
 
-[class^="grid-"].has-gutter-xxl {
+.index {
 
-    @media (max-width: $medium - 1) {
-        grid-gap: 4rem;
-    }
-}
-
-/*Positioning utilities*/
-.relative {
+  &-1 {
     position: relative;
+    z-index: 1;
+  }
 
-    > * {
-        z-index: 1;
-    }
-}
-.index-1 {
-  position: relative;
-  z-index: 1;
-}
-
-.index-nega {
-  position: relative;
-  z-index: -2;
+  &-nega {
+    position: relative;
+    z-index: -2;
+  }
 }
 
 // Wordpress
 .alignleft,
 .alignright {
-    @media (max-width: $medium - 1) {
-        float: none;
-        margin-right: 0;
-        margin-left: 0;
-        width: 100%;
-    }
+  @media (max-width: $medium - 1) {
+    float: none;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 // Remove style for phone numbers for iOS

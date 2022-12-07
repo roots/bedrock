@@ -194,6 +194,7 @@ $grid-gutters: (
 ) !default;
 
 // Spacings
+/*
 $spacer-tiny             : .5rem  !default;
 $spacer-tiny-plus        : .7rem !default;
 $spacer-small            : 1rem !default;
@@ -206,6 +207,24 @@ $spacer-extra-large      : 8rem !default;
 $spacer-extra-large-plus : 12rem !default;
 $spacer-ultra-large      : 16rem !default;
 $spacer-ultra-large-plus : 20rem !default;
+*/
+
+:root {
+  --spacer-base: 1rem;
+
+  --spacer-tiny: var(--spacer-base) * 0.5;
+  --spacer-small: var(--spacer-base);
+  --spacer-medium: calc(var(--spacer-base) * 2);
+  --spacer-large: calc(var(--spacer-base) * 4);
+  --spacer-extralarge: calc(var(--spacer-base) * 8);
+  --spacer-ultralarge: calc(var(--spacer-base) * 16);
+}
+$spacer-tiny: var(--spacer-tiny);
+$spacer-small: var(--spacer-small);
+$spacer-medium: var(--spacer-medium);
+$spacer-large: var(--spacer-large);
+$spacer-extra-large: var(--spacer-extralarge);
+$spacer-ultra-large: var(--spacer-ultralarge);
 
 // z-indexes
 $zindex-navigation   : 1000 !default;
