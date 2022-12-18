@@ -64,6 +64,10 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 /**
  * DB settings
  */
+if (env('DB_SSL')) {
+    Config::define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
+}
+
 Config::define('DB_NAME', env('DB_NAME'));
 Config::define('DB_USER', env('DB_USER'));
 Config::define('DB_PASSWORD', env('DB_PASSWORD'));
