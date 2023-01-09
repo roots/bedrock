@@ -1,10 +1,11 @@
 /// CONTENT BASE STYLES ///
 @import "../../../styleguide/scss/variables";
 @import "../../../styleguide/scss/mixins";
-@import "../../fonts/fonts_critical";
+//@import "../../fonts/fonts_critical";
 @import "../../fonts/fonts";
 @import "../../../styleguide/scss/atoms/text";
 @import "../../../styleguide/scss/atoms/titles";
+@import "../../../styleguide/scss/atoms/excerpt";
 @import "../../../includes/Components/Button/button-component";
 @import "layout";
 
@@ -18,20 +19,26 @@
 
 /*--------------------------------------*/
 /// ADMIN STYLES ///
-.editor-styles-wrapper {
-  color: var(--color-theme-base);
-  background-color: var(--background-theme-base);
-}
 
-// HEADINGS - force apply WP origin styles
-body.wp-admin {
+// Global
+body.wp-admin,
+html :where(.editor-styles-wrapper) * {
   --admin-font-family-base: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  --admin-font-size-base: 13px;
-  --admin-line-height-base: 1.4em;
+  --admin-font-size-base: 16px;
+  --admin-line-height-base: 1.2;
 
   font-family: var(--admin-font-family-base);
   font-size: var(--admin-font-size-base);
   line-height: var(--admin-line-height-base);
+}
+
+html :where(.editor-styles-wrapper) * {
+  color: var(--color-theme-base);
+  background-color: var(--background-theme-base);
+
+  .chapo {
+    font-size: calc(var(--admin-font-size-base) * 1.2);
+  }
 }
 
 // Dashboard
@@ -52,6 +59,8 @@ body.wp-admin {
 }
 
 // Content page
-.wp-block-post-title{
+.wp-block-post-title {
+  font-family: var(--admin-font-family-base);
   font-size: calc(var(--admin-font-size-base) * 2);
+  line-height: var(--admin-line-height-base);
 }
