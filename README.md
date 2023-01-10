@@ -14,7 +14,7 @@
   </a>
 
   <a href="https://github.com/roots/bedrock/actions/workflows/ci.yml">
-    <img alt="Build Status" src="https://img.shields.io/github/workflow/status/roots/bedrock/CI?style=flat-square" />
+    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/bedrock/ci.yml?branch=master&style=flat-square" />
   </a>
 
   <a href="https://twitter.com/rootswp">
