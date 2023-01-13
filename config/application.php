@@ -58,6 +58,7 @@ define('DB_PASSWORD', env('DB_PASSWORD'));
 define('DB_HOST', env('DB_HOST') ?: 'localhost');
 define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
+define( 'WP_POST_REVISIONS', 5 );
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
 /**
@@ -148,3 +149,4 @@ define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\
 //define("WWP_PLUGIN_DOWNLOAD_MANAGER",WonderWp\Plugin\Download\Child\DownloadThemeManager::class);
 //define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);
 //define("WWP_PLUGIN_VOTE_MANAGER",WonderWp\Plugin\Vote\Child\VoteThemeManager::class);
+//define("WWP_PLUGIN_ALERTE_MANAGER",WonderWp\Plugin\Alerte\Child\AlerteThemeManager::class);
