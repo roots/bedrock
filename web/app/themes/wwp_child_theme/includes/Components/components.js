@@ -2,13 +2,16 @@ import "./Accordion/AccordionComponent"
 import "./Dropdown/DropdownComponent";
 import "./Form/FormComponent";
 import "./Header/HeaderComponent";
-//import "./MapSearch/MapSearchComponent";
 import "./Modal/ModalComponent";
 import "./NoAjaxTransition/NoAjaxTransitionComponent";
 import "./Notification/NotificationComponent";
-import "./Slider/SliderDefault/SliderComponent";
-import "./Slider/SliderGutenbergGallery/SliderGallery";
-import "./Slider/SliderWwpGallery/SliderWwpGallery";
 import "./Tabs/TabsComponent";
 import "./VideoEmbed/VideoEmbedComponent";
 import "./Video/VideoComponent";
+
+// SLIDERS
+import "./Slider/SliderDefault/SliderComponent";
+import "./Slider/SliderCarousel/SliderCarouselComponent";
+import "./Slider/SliderGutenbergGallery/SliderGallery";
+
+//import "./MapSearch/MapSearchComponent";

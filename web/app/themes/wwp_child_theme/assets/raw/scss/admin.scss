@@ -15,8 +15,6 @@
 @import "../../../includes/Components/Card/card-component";
 
 
-
-
 /*--------------------------------------*/
 /// ADMIN STYLES ///
 
@@ -30,6 +28,11 @@ html :where(.editor-styles-wrapper) * {
   ::placeholder {
     font-size: 0.9em;
   }
+}
+
+.btn {
+  height: 45px;
+  min-height: 45px;
 }
 
 .wp-core-ui .button,
@@ -99,6 +102,11 @@ html :where(.editor-styles-wrapper) * {
 .wp-block-wwp-gutenberg-utils-section-block,
 .wp-block-wwp-gutenberg-utils-container-block {
   border-color: var(--admin-theme-color-secondary);
+}
+
+.block-editor-block-list__block.components-placeholder {
+  box-shadow: none !important;
+  border: 1px solid var(--admin-theme-color-secondary) !important;
 }
 
 .wp-block-wwp-gutenberg-utils-section-block .block-etiquette {
