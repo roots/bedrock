@@ -107,6 +107,7 @@ if (!defined('ABSPATH')) {
 
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
 define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
+define("WWP_PLUGIN_TRANSLATOR_MANAGER",WonderWp\Plugin\Translator\Child\TranslatorThemeManager::class);
 //define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
 //define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
 //define("WWP_PLUGIN_EMPLOI_MANAGER",WonderWp\Plugin\Emploi\Child\EmploiThemeManager::class);
@@ -144,7 +145,6 @@ define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\
 //define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
 //define("WWP_PLUGIN_STATS_MANAGER",WonderWp\Plugin\Stats\Child\StatsThemeManager::class);
 //define("WWP_PLUGIN_TRACKER_MANAGER",WonderWp\Plugin\Tracker\Child\TrackerThemeManager::class);
-//define("WWP_PLUGIN_TRANSLATOR_MANAGER",WonderWp\Plugin\Translator\Child\TranslatorThemeManager::class);
 //define("WWP_PLUGIN_TROMBI_MANAGER",WonderWp\Plugin\Trombinoscope\Child\TrombiThemeManager::class);
 //define("WWP_PLUGIN_DOWNLOAD_MANAGER",WonderWp\Plugin\Download\Child\DownloadThemeManager::class);
 //define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);

@@ -1,3 +1,8 @@
+
+// ---------------
+// VARIABLES
+// ---------------
+
 // Flags icons map [Lang ISO : SVG icon name]
 $lang-icons: (
   "fr_FR": "fr_FR",
@@ -7,10 +12,6 @@ $lang-icons: (
   "de_DE": "de_DE",
 );
 
-// ---------------
-// Transitions / animations
-// ---------------
-
 $transitions-duration-base: 400ms;
 $transitions-easing-base: cubic-bezier(
     0.64,
@@ -18,7 +19,6 @@ $transitions-easing-base: cubic-bezier(
     0.41,
     0.99
 ); // custom ease-in-out
-
 $transitions-delay-submenu: 100ms; // Little "hover intent" hack for submenus.
 
 .lang-switcher {
@@ -45,7 +45,7 @@ $transitions-delay-submenu: 100ms; // Little "hover intent" hack for submenus.
 
   #{$_this}-current {
     margin: 0;
-    height: var(--preheader-height);
+    height: var(--header-height);
     min-height: 0;
     padding: 0 2rem;
     box-shadow: none;
@@ -98,7 +98,7 @@ $transitions-delay-submenu: 100ms; // Little "hover intent" hack for submenus.
       display: flex;
       justify-content: center;
       align-items: center;
-      height: var(--preheader-height);
+      height: var(--header-height);
       transition: base-transition(background-color);
 
       &:hover,
