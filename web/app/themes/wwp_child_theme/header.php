@@ -106,7 +106,11 @@
             <?php
             /** @var \WonderWp\Theme\Core\Service\ThemeViewService $themeViewService */
             $themeViewService = wwp_get_theme_service('view');
-            echo $langSwitcher = $themeViewService->getLangSwitcher(null, false, true);
+            echo $langSwitcher = $themeViewService->getLangSwitcher(
+                __DIR__ . '/plugins/wwp-translator/public/views/LangSwitcher.php',
+                false,
+                true
+            );
             ?>
 
         </div>
