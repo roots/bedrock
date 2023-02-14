@@ -1,6 +1,6 @@
 <?php
 /**
- * Configuration overrides for WP_ENV === 'development'
+ * Configuration overrides for WP_ENVIRONMENT_TYPE === 'development'
  */
 
 use Roots\WPConfig\Config;

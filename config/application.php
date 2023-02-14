@@ -46,7 +46,9 @@ if (file_exists($root_dir . '/.env')) {
  * Set up our global environment constant and load its config first
  * Default: production
  */
-define('WP_ENV', env('WP_ENV') ?: 'production');
+define('WP_ENV', env('WP_ENVIRONMENT_TYPE') ?: env('WP_ENV') ?: 'production');
+
+Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
 
 /**
  * URLs
