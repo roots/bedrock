@@ -86,7 +86,7 @@
             <button class="wdf-burger nav-button" data-menu-toggler type="button" aria-label="open/close navigation"><i></i></button>
 
             <?php
-            echo '<a href="/" class="logo" aria-label="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="' . apply_filters('wwp-header-logo', '/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg') . '" alt="Mon site - accueil"></a>'
+            echo '<a href="/" class="logo" aria-label="' . trad('back.to.home', WWP_THEME_TEXTDOMAIN) . '"><img src="' . apply_filters('wwp-header-logo', '/app/themes/wwp_child_theme/assets/raw/images/logo-site.svg') . '" alt="Mon site - accueil" height="=44" width="200"></a>'
             ?>
 
             <nav role="navigation" aria-label="<?php echo trad('main.menu', WWP_THEME_TEXTDOMAIN); ?>" class="<?php echo apply_filters('wwp-main-nav-class', 'navigation-wrapper'); ?>">
