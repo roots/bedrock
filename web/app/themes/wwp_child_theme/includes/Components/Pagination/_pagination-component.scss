@@ -6,7 +6,8 @@
   --pagination-color: var(--color-theme-base)
 }
 
-.pagination {
+.pagination,
+.wp-block-query-pagination {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +19,8 @@
     margin: 0 10px;
   }
 
-  li > a {
+  li > a,
+  .page-numbers {
     padding: 6px 0 5px 0;
     color: var(--pagination-color);
     text-decoration: none;

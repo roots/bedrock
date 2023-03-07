@@ -1,0 +1,33 @@
+@import "../Card/card-component";
+
+.wp-block-post {
+  --padding-size: 2.5rem;
+
+  padding: var(--padding-size);
+
+  .wp-block-post-featured-image {
+    width: calc(100% + var(--padding-size) * 2);
+    margin: calc(var(--padding-size) * -1) calc(var(--padding-size) * -1) var(--padding-size) calc(var(--padding-size) * -1);
+  }
+}
+
+/// HAS WRAPPER LINK ///
+.has-wrapper-link a.wp-block-read-more {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  margin: 0;
+  font-size: 0;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  .no-touch &:hover,
+  .no-touch &:focus {
+    box-shadow: var(--box-shadow-theme-active);
+  }
+}
