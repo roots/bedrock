@@ -1,10 +1,24 @@
 version: 2
 updates:
-- package-ecosystem: composer
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "08:00"
-    timezone: US/Central
-  open-pull-requests-limit: 10
-  versioning-strategy: increase
+  # Maintain dependencies for Composer
+  - package-ecosystem: "composer"
+    # Look for `composer.json` and `composer.lock` files in the root directory
+    directory: "/"
+    # Check for updates monthly
+    schedule:
+      interval: "monthly"
+    allow:
+      # Allow direct updates only (for packages named in composer.json)
+      - dependency-type: "direct"
+    # Open PRs against dev branch
+    target-branch: "dev"
+    # Allow up to 20 open pull requests for composer dependencies
+    open-pull-requests-limit: 20
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    allow:
+      - dependency-type: "direct"
+    open-pull-requests-limit: 10

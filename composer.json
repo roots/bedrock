@@ -31,10 +31,9 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.1",
     "composer/installers": "^2.1",
     "vlucas/phpdotenv": "^5.4",
-    "oscarotero/env": "^2.1",
     "pressbooks/pressbooks": "dev-dev",
     "pressbooks/pressbooks-aldine": "dev-dev",
     "pressbooks/pressbooks-book": "dev-dev",
@@ -44,7 +43,7 @@
     "rhubarbgroup/redis-cache": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "5.9.3",
+    "roots/wordpress": "^6.1",
     "roots/multisite-url-fixer": "^1.1",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0"
@@ -53,8 +52,7 @@
     "squizlabs/php_codesniffer": "^3.6.2",
     "roave/security-advisories": "dev-latest",
     "phpunit/phpunit": "^9.5",
-    "pressbooks/coding-standards": "dev-master",
-    "wpreadme2markdown/wp2md": "^3.0"
+    "pressbooks/coding-standards": "^1.1"
   },
   "config": {
     "optimize-autoloader": true,
@@ -66,10 +64,9 @@
     "allow-plugins": {
       "composer/installers": true,
       "roots/wordpress-core-installer": true,
-      "pressbooks/*": true
-    },
-    "platform": {
-      "php": "7.4"
+      "pressbooks/*": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "mnsami/composer-custom-directory-installer": true
     }
   },
   "minimum-stability": "dev",
