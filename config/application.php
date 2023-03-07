@@ -9,7 +9,6 @@
  */
 
 use Roots\WPConfig\Config;
-use function Env\env;
 
 /**
  * Directory containing all of the site's files
@@ -143,8 +142,6 @@ if (file_exists($env_config)) {
     require_once $env_config;
 }
 
-Config::apply();
-
 /**
  * Multisite Settings
  */
@@ -179,6 +176,8 @@ if (env('PB_MATHJAX_URL')) {
 define('WP_MEMORY_LIMIT', env('WP_MEMORY_LIMIT') ?: '96M'); // Everywhere
 define('WP_MAX_MEMORY_LIMIT', env('WP_MAX_MEMORY_LIMIT') ?: '256M'); // In the admin
 define('WP_REDIS_DISABLE_BANNERS', true);
+
+Config::apply();
 
 /**
  * Bootstrap WordPress
