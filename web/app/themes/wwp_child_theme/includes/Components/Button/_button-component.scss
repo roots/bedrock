@@ -2,7 +2,6 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: $button-height; //IE11
   min-height: $button-height;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -23,7 +22,6 @@
 
   &.btn--small,
   &.button--small {
-    height: $button-height-small;
     min-height: $button-height-small;
     padding-right: 0 2.5rem;
     font-size: .8em;
@@ -31,7 +29,6 @@
 
   &.btn--big,
   &.button--big {
-    height: $button-height-large;
     min-height: $button-height-large;
     font-size: 1.1em;
   }
@@ -43,22 +40,38 @@
   }
 
   @media (max-width: $medium - 1) {
-    height: $button-height-small;
     min-height: $button-height-small;
     padding: 0 2rem;
   }
 }
 
 .btn,
-.button {
+.button,
+a.wp-block-button__link {
   @extend %btn;
   color: white;
   background-color: var(--color-theme-primary);
   box-shadow: 0 0 0 2px var(--color-theme-primary);
 
+  // EXTERNAL LINK
+  &[target="_blank"] {
+    padding-right: 4rem;
+    &::after {
+      content: '';
+      height: 14px;
+      width: 14px;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Calque_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 12.9 12.9' style='enable-background:new 0 0 12.9 12.9;' xml:space='preserve'%3E%3Cg id='V3'%3E%3Cg id='_x30_4-AVF-Combat' transform='translate(-549.000000, -1894.000000)'%3E%3Cg id='Group-14' transform='translate(328.000000, 1872.000000)'%3E%3Cg id='Group-13' transform='translate(0.000000, 14.000000)'%3E%3Cg id='Group' transform='translate(221.000000, 8.000000)'%3E%3Cpolygon id='Path' points='11.2,11.2 1.8,11.2 1.8,1.8 5.3,1.8 5.3,0 0,0 0,13 13,13 13,7.7 11.2,7.7 '/%3E%3Cpolygon id='Path_1_' points='7.5,0 7.5,1.8 9.9,1.8 4.6,7.1 5.9,8.4 11.2,3.1 11.2,5.6 13,5.6 13,0 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");      margin-left: 1rem;
+      filter: invert(1);
+    }
+  }
+
   &:focus, .no-touch &:hover, &:active {
     color: var(--color-theme-primary);
     background-color: white;
+
+    &[target="_blank"]::after {
+      filter: invert(0);
+    }
   }
 }
 
@@ -82,10 +95,12 @@ a[class*="btn"] {
   text-decoration: none;
 }
 
+// CTA AVEC FLECHE
 .btn {
 
   &--cta {
     @extend .btn;
+    padding-right: 4rem;
 
     &::after {
       display: inline-block;
@@ -110,6 +125,7 @@ a[class*="btn"] {
 
   &--cta.btn--white {
     @extend .btn--white;
+    padding-right: 4rem;
 
     &::after {
       background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
@@ -149,7 +165,6 @@ form [type="submit"] {
 // Bouton En savoir plus
 .btn--inline {
   position: relative;
-  height: auto;
   min-height: auto;
   margin: 2rem 0;
   padding: 5px 0 5px 40px;
