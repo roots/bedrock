@@ -25,6 +25,7 @@ blockquote {
   font-size: 5rem;
   color: $color-primary;
   line-height: $line-height-s;
+
   &::before {
     content: none;
   }
@@ -40,10 +41,26 @@ blockquote {
     }
   }
 
+  &.wp-block-quote {
+
+    &::before {
+      @include svgIcon('quote');
+      position: absolute;
+      top: 1rem;
+      left: 0;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
   @media (max-width: $medium) {
     font-size: 3.6rem;
 
-    svg {
+    svg,
+    &.wp-block-quote::before {
       transform: scale(0.8);
     }
   }
@@ -51,7 +68,8 @@ blockquote {
   @media (max-width: $medium - 1) {
     font-size: 3rem;
 
-    svg {
+    svg,
+    &.wp-block-quote::before {
       transform: scale(0.6);
       left: -2rem;
       top: 0;
@@ -59,9 +77,13 @@ blockquote {
   }
 }
 
-.cite-name {
+.cite-name,
+blockquote.wp-block-quote cite {
+  font-family: var(--font-theme-secondary), sans-serif;
+  font-style: inherit;
   font-weight: $weight-medium;
   font-size: 1.6rem;
+  color: var(--color-theme-base);
 }
 
 .cite-function {

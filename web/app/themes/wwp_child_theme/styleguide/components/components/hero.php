@@ -1,4 +1,6 @@
 <!-- components/components/hero.php -->
+<p class="subTitle">Déprécié - utiliser en priorité le bloc Gutenberg "Cover"</p>
+
 <div class="encadre">
     <div class="grid-2 has-gutter-xl">
         <div>
@@ -39,7 +41,7 @@ $hero = new \WonderWp\Theme\Child\Components\Hero\HeroComponent();
 
 $hero
     ->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing eli')
-    ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
+    ->setImage('<img width="340" height="340" src="https://via.placeholder.com/340x240" alt="">')
     ->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
     ->setLink('/')
     ->setlabel('En savoir plus')
@@ -47,10 +49,11 @@ $hero
 ;
 
 echo $hero->getMarkup();
+echo '<br>';
 
 $hero
     ->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing eli')
-    ->setImage('<img src="https://placeimg.com/340/250/nature" alt="">')
+    ->setImage('<img width="340" height="340" src="https://via.placeholder.com/340x240" alt="">')
     ->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
     ->setLink('/')
     ->setlabel('En savoir plus')
