@@ -9,6 +9,8 @@
     <li>Orientation layout (flexbox) : <code>.flex-center</code></li>
     <li>Gouttières de colonnes <code>.has-gutter-xxl</code></li>
 </ul>
+<p>IMPORTANT : ne pas ajouter de styles media querries pour mobile, utiliser les classes .XXX--mobile</p>
+
 <?php
 $sizes      = ['s', 'm', 'l', 'xl', 'xxl'];
 $spaces     = ['m', 'p'];
