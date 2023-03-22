@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=16"
   },
+  "engineStrict": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "encore dev --watch -c ./config/webpack/webpack.modern.config.js & encore dev --watch -c ./config/webpack/webpack.legacy.config.js",
@@ -37,7 +38,6 @@
     "webpack-notifier": "^1.14.0"
   },
   "dependencies": {
-    "bxslider": "^4.2.14",
     "css-vars-ponyfill": "^2.4.7",
     "jquery": "^3.6.0",
     "jquery-lazy": "^1.7.11",
