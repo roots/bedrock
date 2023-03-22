@@ -1,0 +1,76 @@
+// Styles par défaut
+.tcvf-item-component {
+
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    padding: 3rem;
+    transition: all 0.4s;
+
+    .title,
+    .text {
+      margin: 0;
+    }
+
+    .title {
+      position: relative;
+      font-size: 1.7rem;
+    }
+
+    .text {
+      padding-right: 4rem;
+    }
+
+    // Survol
+    &:hover,
+    &:focus {
+      background-color: var(--tcvf-bgcolor--hover);
+    }
+
+    // Actif
+    &.active {
+      background-color: var(--tcvf-bgcolor);
+    }
+  }
+
+  .content {
+    display: none;
+  }
+
+  @media (max-width: $medium - 1) {
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 90%;
+      }
+    }
+
+    a {
+      padding-right: 1rem;
+      pointer-events: none;
+
+      .title span {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 0;
+      }
+
+      .title strong {
+        min-height: auto;
+        margin-bottom: 10px;
+      }
+
+      .title::after {
+        content: none;
+      }
+    }
+  }
+}
