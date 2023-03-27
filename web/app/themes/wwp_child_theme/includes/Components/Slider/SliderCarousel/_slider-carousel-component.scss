@@ -1,0 +1,71 @@
+@import "tiny-slider/dist/tiny-slider";
+
+/////////////////////////////////////////////////////////////////
+//
+//                   TINY SLIDER CAROUSEL
+//
+/////////////////////////////////////////////////////////////////
+
+:root {
+  --carousel-prev-next-size: 4rem;
+  --carousel-prev-prev-offset-x: 5rem;
+  --carousel-prev-next-offset-x: 3rem;
+}
+
+// Wrapper à ajouter dans le markup
+.wdf-slider-carousel-wrap {
+
+  // Pager
+  .tns-nav {
+    bottom: -3rem;
+  }
+
+  // Controls
+  .tns-controls [data-controls] {
+    top: 50%;
+    bottom: auto;
+    width: var(--carousel-prev-next-size);
+    height: var(--carousel-prev-next-size);
+    background-color: var(--color-theme-primary) !important;
+    opacity: 0.8;
+    transition: opacity 0.4s;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  [data-controls="prev"] {
+    left: calc(var(--carousel-prev-prev-offset-x) * -1.5) !important;
+
+    &::before {
+      @include svgIcon(arrow-slider-left-white);
+    }
+  }
+
+  [data-controls="next"] {
+    right: calc(var(--carousel-prev-next-offset-x) * -2) !important;
+
+    &::before {
+      @include svgIcon(arrow-slider-right-white);
+    }
+  }
+
+  // Slide
+  .tns-item {
+
+  }
+}
+
+.wdf-slider-carousel {
+
+  // Slide
+  .sliderItem {
+    --slider-item-padding-x: 2rem;
+
+    .slider-panel {
+      bottom: 2rem;
+    }
+  }
+}

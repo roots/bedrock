@@ -40,10 +40,8 @@ $alertHeight: 48px; // Si bandeau alerte (web/app/plugins/wwp-alerte/public/css/
       .site-header {
         height: $stickedHeaderHeight;
 
-        a.logo,
-        a.logo img {
-          max-height: $stickedHeaderHeight;
-          width: auto;
+        a.logo {
+          flex: 0 0 15rem;
         }
 
         ul.header-menu li > a {

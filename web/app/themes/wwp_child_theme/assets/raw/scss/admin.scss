@@ -1,10 +1,11 @@
 /// CONTENT BASE STYLES ///
 @import "../../../styleguide/scss/variables";
 @import "../../../styleguide/scss/mixins";
-@import "../../fonts/fonts_critical";
+//@import "../../fonts/fonts_critical";
 @import "../../fonts/fonts";
 @import "../../../styleguide/scss/atoms/text";
 @import "../../../styleguide/scss/atoms/titles";
+@import "../../../styleguide/scss/atoms/excerpt";
 @import "../../../includes/Components/Button/button-component";
 @import "layout";
 
@@ -14,17 +15,124 @@
 @import "../../../includes/Components/Card/card-component";
 
 
-
-
 /*--------------------------------------*/
 /// ADMIN STYLES ///
-.editor-styles-wrapper {
-  color: var(--color-theme-base);
-  background-color: var(--background-theme-base);
+
+// Global
+body.wp-admin,
+html :where(.editor-styles-wrapper) * {
+  font-family: var(--admin-font-family-base);
+  font-size: var(--admin-font-size-base);
+  line-height: var(--admin-line-height-base);
+
+  ::placeholder {
+    font-size: 0.9em;
+  }
 }
 
+.btn {
+  height: 45px;
+  min-height: 45px;
+}
+
+.wp-core-ui .button,
+.wp-core-ui .button-primary,
+.btn, .btn.btn-primary {
+  height: auto;
+  min-height: auto;
+}
+
+// Pages tableau de bord + configurations
+#wonderwp-wrap,
+#wpbody-content {
+
+  h1, h2, h3 {
+    font-family: var(--admin-font-family-base);
+    line-height: var(--admin-line-height-base);
+  }
+
+  h1 {
+    font-size: calc(var(--admin-font-size-base) * 1.5);
+  }
+
+  h2, h3 {
+    font-size: calc(var(--admin-font-size-base) * 1.2);
+  }
+
+  .wpmdb .btn {
+    min-height: 40px;
+    box-shadow: none;
+  }
+}
+
+// Content page
 .wp-block-post-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: calc(var(--font-size-base) * 1.4);
-  line-height: var(--line-height-base);
+  font-family: var(--admin-font-family-base);
+  font-size: calc(var(--admin-font-size-base) * 2);
+  line-height: var(--admin-line-height-base);
+}
+
+// Blocs Gutenberg
+.block-editor-block-list__layout .block-editor-block-list__block {
+  color: var(--color-theme-base);
+
+  .chapo {
+    font-size: calc(var(--admin-font-size-base) * 1.2);
+  }
+
+  // Buttons
+  .components-button:not(.is-link) {
+    line-height: 1;
+    margin: 5px 0;
+    padding: 0 12px;
+    border-radius: 6px;
+    letter-spacing: 0;
+    height: 36px;
+    min-height: 36px;
+    color: white;
+    background: var(--color-mediumgrey);
+    text-decoration: none;
+    box-shadow: none;
+
+    &.editor-post-featured-image__preview {
+      width: 100px;
+      height: 100px;
+      min-height: 100px;
+    }
+  }
+  .components-button.is-link {
+    padding: 0;
+  }
+}
+
+.wp-block-wwp-gutenberg-utils-section-block,
+.wp-block-wwp-gutenberg-utils-container-block {
+  border-color: var(--admin-theme-color-secondary);
+}
+
+.block-editor-block-list__block.components-placeholder {
+  box-shadow: none !important;
+  border: 1px solid var(--admin-theme-color-secondary) !important;
+}
+
+.wp-block-wwp-gutenberg-utils-section-block .block-etiquette {
+  background: var(--admin-theme-color-primary);
+}
+
+[class^="wp-block-wwp-gutenberg-utils-molecule-"] {
+
+  div {
+    margin: 2px 0;
+  }
+
+  .molecule-title {
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 3px 10px 3px 10px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background-color: var(--admin-theme-color-primary);
+  }
 }

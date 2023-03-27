@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=16"
   },
+  "engineStrict": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "encore dev --watch -c ./config/webpack/webpack.modern.config.js & encore dev --watch -c ./config/webpack/webpack.legacy.config.js",
@@ -29,15 +30,14 @@
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
     "postcss-nested": "^5.0.6",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.0",
     "sass-loader": "^12.1.0",
-    "svg-sprite": "^1.5.4",
+    "svg-sprite": "^2.0",
     "vinyl": "^2.2.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-notifier": "^1.14.0"
   },
   "dependencies": {
-    "bxslider": "^4.2.14",
     "css-vars-ponyfill": "^2.4.7",
     "jquery": "^3.6.0",
     "jquery-lazy": "^1.7.11",
@@ -49,6 +49,7 @@
     "scrollmagic": "github:janpaepke/ScrollMagic#master",
     "selectric": "^1.13.0",
     "svg4everybody": "^2.1.9",
-    "svgo": "^2.8.0"
+    "svgo": "^2.8.0",
+    "tiny-slider": "^2.9.4"
   }
 }

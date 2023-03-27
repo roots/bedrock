@@ -1,0 +1,47 @@
+// POST BLOCKS LIST
+.wp-block-post-template {
+
+}
+
+// POST BLOCKS LIST PAGINATION
+.wp-block-query-pagination {
+  justify-content: space-between;
+}
+
+.wp-block-query-pagination-next,
+.wp-block-query-pagination-previous {
+  display: flex;
+  align-items: center;
+}
+
+.wp-block-query-pagination-next {
+  justify-content: flex-end;
+
+  &::after {
+    @include svgIcon('arrow_right_s');
+    transform: translateX(0);
+    transition: all 0.4s;
+  }
+
+  .no-touch &:hover::after,
+  &:focus::after {
+    transform: translateX(10px);
+  }
+}
+
+.wp-block-query-pagination-previous {
+
+  &::before {
+    @include svgIcon('arrow_left_s');
+    transform: translateX(0);
+    transition: all 0.4s;
+  }
+
+  .no-touch &:hover::before,
+  &:focus::before {
+    transform: translateX(-10px);
+  }
+}
+
+
+

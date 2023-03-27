@@ -6,7 +6,8 @@
   --pagination-color: var(--color-theme-base)
 }
 
-.pagination {
+.pagination,
+.wp-block-query-pagination {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +19,8 @@
     margin: 0 10px;
   }
 
-  li > a {
+  li > a,
+  .page-numbers {
     padding: 6px 0 5px 0;
     color: var(--pagination-color);
     text-decoration: none;
@@ -26,15 +28,22 @@
     border-bottom: 2px solid transparent;
   }
 
+  .page-numbers {
+    margin: 0 5px;
+  }
+
   li > a.navprev,
-  li > a.navnext {
+  li > a.navnext,
+  a.wp-block-query-pagination-next,
+  a.wp-block-query-pagination-previous {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
   }
 
-  li > a.navprev {
+  li > a.navprev,
+  a.wp-block-query-pagination-previous {
     text-align: left;
 
     &::before {
@@ -45,7 +54,8 @@
     }
   }
 
-  li > a.navnext {
+  li > a.navnext,
+  a.wp-block-query-pagination-next {
     text-align: right;
 
     &::after {
@@ -56,7 +66,8 @@
     }
   }
 
-  li.select {
+  li.select,
+  span.current {
     font-family: var(--font-theme-secondary);
 
     > a {

@@ -18,6 +18,8 @@
     </div>
 </div>
 
+<p class="subTitle">Molécule socle "Citation"</p>
+
 <?php
 
 $blockquote = new \WonderWp\Theme\Child\Components\Citation\CitationComponent();
@@ -29,3 +31,20 @@ $blockquote
 ;
 
 echo $blockquote->getMarkup();
+?>
+<hr>
+
+<p class="subTitle">Bloc Gutenberg "Citation"</p>
+<blockquote class="wp-block-quote">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <cite>Michel Consectetur</cite>
+</blockquote>
+<hr>
+
+<p class="subTitle">Bloc Gutenberg "Citation en exergue"</p>
+<figure class="wp-block-pullquote">
+    <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <cite>Michel Consectetur</cite>
+    </blockquote>
+</figure>

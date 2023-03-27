@@ -1,9 +1,124 @@
-.wp-block-gallery.gallery-slider {
-  display: block;
-  .blocks-gallery-grid, .blocks-gallery-item, .blocks-gallery-item figure{
-    display: block;
+// Ajouter wrapper manuellement pour contraindre en largeur
+.section-gallery-slider {
+  max-width: 100vw;
+
+  --gallery-slider-height: 30vw;
+  --gallery-slider-mobileheight: 60vw;
+
+  .tns-inner,
+  .wp-block-image,
+  .wp-block-image .slider-img,
+  .wp-block-image .slider-video,
+  .wp-block-embed {
+    height: var(--gallery-slider-height);
+    max-height: var(--gallery-slider-height);
   }
-  .blocks-gallery-item {
-    margin-right: 16px !important;
+
+  .tns-inner {
+    max-width: 100% !important;
+  }
+
+  .wp-block-image img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+  }
+
+  .wp-block-embed {
+    width: 33vw;
+
+    .wp-block-embed__wrapper {
+      height: 100%;
+    }
+
+    iframe {
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @include respond-to("small") {
+
+    .tns-inner,
+    .wp-block-image,
+    .wp-block-image .slider-img,
+    .wp-block-image .slider-video,
+    .wp-block-embed {
+      height: var(--gallery-slider-mobileheight);
+      max-height: var(--gallery-slider-mobileheight);
+    }
+
+    .tns-outer {
+      padding-bottom: 4rem !important;
+    }
+
+    .tns-controls [data-controls] {
+      top: calc(50% - 2rem);
+    }
+
+    .tns-nav {
+      bottom: 1rem;
+    }
+  }
+}
+
+.wp-block-gallery.has-nested-images.wwp-galerie-slider {
+  display: block !important;
+
+  figure.wp-block-image {
+    display: inline-flex !important;
+
+    img {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .wp-block-image:not(#individual-image) {
+    width: 75vw;
+  }
+
+  @include respond-to("small-up") {
+
+    .wp-block-image:not(#individual-image) {
+      width: auto !important; // Conserve ration des images carrées/portrait/paysage
+      margin-right: 0 !important;
+    }
+  }
+
+}
+
+///////////////////////////////
+//// Slider galerie dans un container (par défaut prévu pour full largeur)
+///////////////////////////////
+.container {
+
+  .section-gallery-slider {
+    max-width: 100%;
+
+    --gallery-slider-height: 30vw;
+    --gallery-slider-height-s: 30rem;
+
+    .tns-inner {
+      max-width: 100% !important;
+    }
+
+    .tns-inner,
+    .wp-block-image,
+    .wp-block-image .slider-img,
+    .wp-block-image .slider-video,
+    .wp-block-embed {
+      height: var(--gallery-slider-height-s);
+      max-height: var(--gallery-slider-height-s);
+
+      @include respond-to("large") {
+        height: var(--gallery-slider-height);
+        max-height: var(--gallery-slider-height);
+      }
+    }
+
+    .wp-block-embed {
+      width: 33.33%;
+    }
   }
 }

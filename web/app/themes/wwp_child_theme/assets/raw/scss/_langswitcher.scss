@@ -1,0 +1,134 @@
+
+// ---------------
+// VARIABLES
+// ---------------
+
+// Flags icons map [Lang ISO : SVG icon name]
+$lang-icons: (
+  "fr_FR": "fr_FR",
+  "en_GB": "en_GB",
+  "es_ES": "es_ES",
+  "nl_NL": "nl_NL",
+  "de_DE": "de_DE",
+);
+
+$transitions-duration-base: 400ms;
+$transitions-easing-base: cubic-bezier(
+    0.64,
+    -0.01,
+    0.41,
+    0.99
+); // custom ease-in-out
+$transitions-delay-submenu: 100ms; // Little "hover intent" hack for submenus.
+
+.lang-switcher {
+  $_this: &;
+  position: relative;
+  flex: 0 0 auto;
+
+  /////// FLAGS (for each declared lang in $lang-icons) ///////
+  @each $__lang-iso, $__lang-icon in $lang-icons {
+    &-current.lang_#{$__lang-iso}::before,
+    .lang_#{$__lang-iso} a::before {
+      @include svgIcon($__lang-icon);
+      display: block;
+    }
+  }
+
+  #{$_this}-current,
+  &-choices a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
+  }
+
+  #{$_this}-current {
+    margin: 0;
+    height: var(--header-height);
+    min-height: 0;
+    padding: 0 2rem;
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 1px solid rgba(white, 0.2);
+    background-color: transparent;
+    appearance: none;
+
+    &::after {
+      @include svgIcon(chevron_down-sm-white);
+    }
+
+    .no-touch &:hover,
+    .no-touch &:focus,
+    .touch-enabled &.active,{
+      background-color: rgba(white, 0.2);
+
+      &::after {
+        @include svgIcon(chevron_down-sm-blue);
+      }
+    }
+  }
+
+  &-choices {
+    position: absolute;
+    top: 100%;
+    right: -9999rem;
+    transform: translate3d(0, -1rem, 0);
+    margin: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 0;
+    background-color: white;
+    list-style: none;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity $transitions-duration-base,
+    transform $transitions-duration-base $transitions-easing-base,
+    right 0s $transitions-duration-base;
+
+    li {
+      border-top: 1px solid $color-grey-light;
+      opacity: 0;
+      transform: translate3d(0, 1rem, 0);
+      transition: opacity $transitions-duration-base $transitions-easing-base,
+      transform $transitions-duration-base $transitions-easing-base;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: var(--header-height);
+      transition: base-transition(background-color);
+
+      &:hover,
+      &:focus {
+        background-color: $color-grey-medium;
+      }
+    }
+  }
+
+  .no-touch &:hover &-choices,
+  .no-touch #{$_this}-current:focus ~ &-choices,
+  .touch-enabled #{$_this}-current.active ~ &-choices
+  {
+    right: 0;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity $transitions-duration-base $transitions-easing-base
+    200ms,
+    transform $transitions-duration-base $transitions-easing-base 200ms,
+    right 0s;
+
+    li {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+
+      @for $__i from 1 through 10 {
+        &:nth-child(#{$__i}) {
+          transition-delay: 100ms + ($__i * 50ms);
+        }
+      }
+    }
+  }
+}

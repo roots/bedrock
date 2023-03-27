@@ -1,4 +1,6 @@
 @import "Button/button-component";
+@import "Button/button-gutenberg";
+
 @import "Form/form-component";
 
 @import "Header/sticky_header";
@@ -15,16 +17,11 @@
 @import "Card/Card-backgroundimage/card-backgroundimage";
 @import "Card/Card-has-icons/card-has-icons";
 
-//Slider généric
-@import "Slider/SliderDefault/slider-component";
-@import "Slider/SliderDefault/SliderItem/slider-item-component";
-@import "Slider/SliderDefault/SliderItem/slider-item-2cols";
-//Slider gutenberg gallery
-@import "Slider/SliderGutenbergGallery/slider-gallery";
-//Slider plugin Wwp Gallery
-@import "Slider/SliderWwpGallery/sliderWwpGallery";
-@import "Timeline/timeline";
+//@import "WpBlockPost/wp-block-post-list";
+@import "WpBlockPost/wp-block-post-item";
 
+@import "Timeline/timeline";
+@import "ToggleContentViaFilter/tcvf-component";
 @import "Tabs/tabs-component";
 @import "VideoEmbed/video-embed-component";
 @import "Video/video-component";
@@ -32,4 +29,10 @@
 @import "Citation/citation-component";
 @import "ChiffreCle/chiffre-cle-component";
 @import "Hero/hero-component";
-@import "ReseauxSociaux/reseaux-sociaux-component"
+@import "ReseauxSociaux/reseaux-sociaux-component";
+
+// SLIDERS
+@import "Slider/SliderDefault/slider-component";
+@import "Slider/SliderDefault/SliderItem/slider-item-component";
+@import "Slider/SliderCarousel/slider-carousel-component";
+@import "Slider/SliderGutenbergGallery/slider-gallery";

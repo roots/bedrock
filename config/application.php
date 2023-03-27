@@ -58,6 +58,7 @@ define('DB_PASSWORD', env('DB_PASSWORD'));
 define('DB_HOST', env('DB_HOST') ?: 'localhost');
 define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
+define( 'WP_POST_REVISIONS', 5 );
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
 /**
@@ -106,6 +107,7 @@ if (!defined('ABSPATH')) {
 
 define('FRONT_ENV', 'webpack'); // change to Gulp for older version (default)
 define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\GutenbergUtilsThemeManager::class);
+define("WWP_PLUGIN_TRANSLATOR_MANAGER",WonderWp\Plugin\Translator\Child\TranslatorThemeManager::class);
 //define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
 //define("WWP_PLUGIN_CONTACT_MANAGER",WonderWp\Plugin\Contact\Child\ContactThemeManager::class);
 //define("WWP_PLUGIN_EMPLOI_MANAGER",WonderWp\Plugin\Emploi\Child\EmploiThemeManager::class);
@@ -143,8 +145,8 @@ define("WWP_PLUGIN_GUTENBERGUTILS_MANAGER",WonderWp\Plugin\GutenbergUtils\Child\
 //define("WWP_PLUGIN_SOCIAL_MANAGER",WonderWp\Plugin\Social\Child\SocialThemeManager::class);
 //define("WWP_PLUGIN_STATS_MANAGER",WonderWp\Plugin\Stats\Child\StatsThemeManager::class);
 //define("WWP_PLUGIN_TRACKER_MANAGER",WonderWp\Plugin\Tracker\Child\TrackerThemeManager::class);
-//define("WWP_PLUGIN_TRANSLATOR_MANAGER",WonderWp\Plugin\Translator\Child\TranslatorThemeManager::class);
 //define("WWP_PLUGIN_TROMBI_MANAGER",WonderWp\Plugin\Trombinoscope\Child\TrombiThemeManager::class);
 //define("WWP_PLUGIN_DOWNLOAD_MANAGER",WonderWp\Plugin\Download\Child\DownloadThemeManager::class);
 //define("WWP_PLUGIN_VIDEO_MANAGER",WonderWp\Plugin\Video\Child\VideoThemeManager::class);
 //define("WWP_PLUGIN_VOTE_MANAGER",WonderWp\Plugin\Vote\Child\VoteThemeManager::class);
+//define("WWP_PLUGIN_ALERTE_MANAGER",WonderWp\Plugin\Alerte\Child\AlerteThemeManager::class);

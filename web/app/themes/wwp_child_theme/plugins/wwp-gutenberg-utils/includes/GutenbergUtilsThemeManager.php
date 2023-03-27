@@ -12,6 +12,7 @@ use WonderWp\Theme\Child\Components\ChiffreCle\ChiffreCleComponent;
 use WonderWp\Theme\Child\Components\Citation\CitationComponent;
 use WonderWp\Theme\Child\Components\Dropdown\DropdownComponent;
 use WonderWp\Theme\Child\Components\Hero\HeroComponent;
+use WonderWp\Theme\Child\Components\ToggleContentViaFilter\TcvfItemComponent;
 use WonderWp\Theme\Child\Components\VideoEmbed\VideoEmbedComponent;
 use WonderWp\Theme\Child\Components\VideoModale\VideoModaleComponent;
 
@@ -26,14 +27,15 @@ class GutenbergUtilsThemeManager extends GutenbergUtilsManager
         ]);
 
         $this->setConfig('moleculesToRegister',[
-            VideoEmbedComponent::class,
-            VideoModaleComponent::class,
-            DropdownComponent::class,
             CardComponent::class,
             ButtonComponent::class,
             CitationComponent::class,
             ChiffreCleComponent::class,
-            HeroComponent::class
+            VideoEmbedComponent::class,
+            VideoModaleComponent::class,
+            DropdownComponent::class,
+            HeroComponent::class,
+            TcvfItemComponent::class
         ]);
 
         parent::register ($container);

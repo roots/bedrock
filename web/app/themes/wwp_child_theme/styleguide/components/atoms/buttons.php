@@ -31,6 +31,18 @@ echo $button->getMarkup();
 ?>
 <br><hr>
 
+<p class="subTitle">Bouton de avec lien sortant</p>
+<?php
+$button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
+$button
+    ->setLink('/')
+    ->setLabel('Consulter')
+    ->setTargetBlank(true)
+;
+echo $button->getMarkup();
+?>
+<br><hr>
+
 <p class="subTitle">Bouton couleur "white"</p>
 <?php
 $button = new \WonderWp\Theme\Child\Components\Button\ButtonComponent();
@@ -79,3 +91,11 @@ $button
 ;
 echo $button->getMarkup();
 ?>
+<br><hr>
+
+<p class="subTitle">Boutons Gutenberg natifs (Button)</p>
+<div class="is-layout-flex wp-block-buttons">
+    <div class="wp-block-button aligncenter">
+        <a class="wp-block-button__link wp-element-button" href="https://www.wonderful.fr" target="_blank" rel="noreferrer noopener">Bouton Gutenberg</a>
+    </div>
+</div>

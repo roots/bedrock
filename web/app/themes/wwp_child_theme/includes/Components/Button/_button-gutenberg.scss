@@ -1,0 +1,44 @@
+a.wp-block-button__link {
+
+  // SMALL
+  .button-small & {
+    min-height: $button-height-small;
+    padding: 0 3rem;
+  }
+
+  // LARGE
+  .button-large & {
+    min-height: $button-height-large;
+    padding-right: 48px;
+    padding-left: 48px;
+    font-size: 1.1em;
+  }
+
+  // YELLOW (example)
+  .yellow & {
+    color: white !important;
+    background-color: yellow;
+    border-color: yellow;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: yellow !important;
+      background-color: white;
+    }
+  }
+
+  // SEE MORE
+  .see-more & {
+
+    &::before {
+      content: "";
+      display: inline-block;
+      background: url('#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg') no-repeat;
+      flex: 0 0 26px;
+      margin-right: 1rem;
+      width: 26px;
+      height: 16px;
+    }
+  }
+}

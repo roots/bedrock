@@ -4,7 +4,8 @@
 
 blockquote,
 .cite-name,
-.cite-function {
+.cite-function,
+.wp-block-pullquote blockquote {
   display: block;
   padding-left: 12rem;
 
@@ -25,6 +26,7 @@ blockquote {
   font-size: 5rem;
   color: $color-primary;
   line-height: $line-height-s;
+
   &::before {
     content: none;
   }
@@ -40,10 +42,26 @@ blockquote {
     }
   }
 
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &.wp-block-quote {
+
+    &::before {
+      @include svgIcon('quote');
+      position: absolute;
+      top: 1rem;
+      left: 0;
+    }
+  }
+
   @media (max-width: $medium) {
     font-size: 3.6rem;
 
-    svg {
+    svg,
+    &.wp-block-quote::before {
       transform: scale(0.8);
     }
   }
@@ -51,7 +69,8 @@ blockquote {
   @media (max-width: $medium - 1) {
     font-size: 3rem;
 
-    svg {
+    svg,
+    &.wp-block-quote::before {
       transform: scale(0.6);
       left: -2rem;
       top: 0;
@@ -59,12 +78,50 @@ blockquote {
   }
 }
 
-.cite-name {
+.cite-name,
+blockquote.wp-block-quote cite,
+.wp-block-pullquote blockquote cite {
+  font-family: var(--font-theme-secondary), sans-serif;
+  font-style: inherit;
   font-weight: $weight-medium;
   font-size: 1.6rem;
+  color: var(--color-theme-base);
 }
 
 .cite-function {
   margin: 0.5rem 0;
   font-size: 1.5rem;
+}
+
+// Bloc citation en exergue
+figure.wp-block-pullquote {
+  margin: 6rem 0;
+  padding: 1em 0;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+.wp-block-pullquote blockquote {
+  padding-left: 0;
+  text-align: center;
+
+  p {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: $color-primary;
+
+    &::before {
+      @include svgIcon('quote');
+      width: 21rem;
+      transform: scale(0.8) translate(0em, -2em);
+    }
+
+    &::after {
+      @include svgIcon('quote');
+      width: 21rem;
+      transform: scale(0.8) translate(0, 2em);
+    }
+  }
 }

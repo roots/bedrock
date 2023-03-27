@@ -1,0 +1,96 @@
+.tcvf-block {
+  display: flex;
+
+  // Filtres
+  .filter-part {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .wwp-innerblock-content {
+      flex: 1;
+    }
+
+    .tcvf-item-component {
+      height: 100%;
+    }
+
+    .content {
+      display: none;
+    }
+  }
+
+  // Contenu affiché à droite
+  .content-part {
+    flex: 0 1 40rem;
+    padding: 4rem 5rem 3rem 5rem;
+    background-color: var(--tcvf-bgcolor);
+
+    > * {
+      animation-name: fadeIn;
+      animation-duration: 300ms;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (max-width: $large) {
+    flex-direction: column;
+
+    .filter-part {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        flex: 1;
+      }
+
+      a {
+        padding-left: 2rem !important;
+      }
+
+      a .text {
+        padding-right: 0;
+      }
+
+    }
+  }
+
+  @media (max-width: $medium - 1) {
+
+    .filter-part {
+      display: block;
+      margin-bottom: 2rem;
+
+      a {
+        padding-left: 0 !important;
+      }
+
+      a .title {
+        margin: 1rem 0 1rem 0;
+      }
+    }
+
+    .content-part {
+      display: none;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
