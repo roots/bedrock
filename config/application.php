@@ -130,6 +130,15 @@ Config::define('EMPTY_TRASH_DAYS', env('WP_EMPTY_TRASH_DAYS') ?? 120);
 // Memory limit
 Config::define('WP_MEMORY_LIMIT', env('WP_MEMORY_LIMIT') ?? '128M');
 
+// Max execution time (can't overide server settings)
+Config::define('WP_MAX_EXECUTION_TIME', env('WP_MAX_EXECUTION_TIME') ?? '300');
+
+// Max upload size (can't overide server settings)
+Config::define('WP_MAX_UPLOAD_SIZE', env('WP_MAX_UPLOAD_SIZE') ?? '128M');
+
+// Max post size (can't overide server settings)
+Config::define('WP_MAX_POST_SIZE', env('WP_MAX_POST_SIZE') ?? '128M');
+
 // Activate cache
 Config::define( 'WP_CACHE', env('WP_CACHE') ?? false );
 
@@ -143,7 +152,7 @@ Config::define( 'COMPRESS_SCRIPTS', env('WP_COMPRESS_SCRIPTS') ?? false );
 Config::define( 'COMPRESS_CSS', env('WP_COMPRESS_CSS') ?? false );
 
 // Force GZIP compression (default is deflate)
-Config::define( 'ENFORCE_GZIP', env('WP_ENFORCE_GZIP') ?? deflate );
+Config::define( 'ENFORCE_GZIP', env('WP_ENFORCE_GZIP') ?? 'deflate' );
 
 /**
  * Debugging Settings
