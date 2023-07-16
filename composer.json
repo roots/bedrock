@@ -31,18 +31,19 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
-    "composer/installers": "^2.1",
-    "vlucas/phpdotenv": "^5.4",
+    "php": ">=8.0",
+    "composer/installers": "^2.2",
+    "vlucas/phpdotenv": "^5.5",
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "5.9.3",
+    "roots/wordpress": "6.2.2",
     "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.1.0"
+    "roots/wp-password-bcrypt": "1.1.0",
+    "wpackagist-theme/twentytwentythree": "^1.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.6.2",
+    "squizlabs/php_codesniffer": "^3.7.1",
     "roave/security-advisories": "dev-latest"
   },
   "config": {
@@ -64,9 +65,6 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
-    ],
     "test": [
       "phpcs"
     ]
