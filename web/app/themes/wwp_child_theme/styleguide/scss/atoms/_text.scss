@@ -6,16 +6,23 @@ address, blockquote, dl, ol, p, pre, ul {
 }
 
 /* Knacss override */
-p a {
-  color: $link-color;
-  text-decoration: $link-decoration;
+a {
+  color: currentColor;
+}
 
-  &:focus,
-  &:hover,
-  &:active {
-    color: $link-color-hover;
-    text-decoration: $link-decoration-hover;
-  }
+/* Baseline for default links */
+a:not([class]) {
+  /* Relatively sized thickness and offset */
+  text-decoration-thickness: 0.07em; /*max(0.08em, 1px)*/
+  text-underline-offset: 0.2em;
+}
+
+/* Produces a visible focus state based on the heuristics of the user's input modality */
+:focus-visible {
+  --outline-size: 0.15em; /*max(2px, 0.15em)*/
+
+  outline: var(--outline-width, var(--outline-size)) var(--outline-style, solid) var(--outline-color, currentColor);
+  outline-offset: var(--outline-offset, var(--outline-size));
 }
 
 b, strong {
