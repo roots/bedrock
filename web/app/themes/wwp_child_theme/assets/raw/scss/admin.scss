@@ -18,19 +18,28 @@
 /*--------------------------------------*/
 /// ADMIN STYLES ///
 
-// Global
-body.wp-admin,
-html :where(.editor-styles-wrapper) * {
-  font-family: var(--admin-font-family-base);
-  font-size: var(--admin-font-size-base);
-  line-height: var(--admin-line-height-base);
+/* Pages Tableau de bord / configs */
+html :where(#wonderwp-wrap) {
 
-  ::placeholder {
-    font-size: 0.9em;
+  h1, h2, h3 {
+    font-weight: 500;
   }
+
+  h1 {
+    font-size: calc(var(--admin-font-size-base) * 3);
+  }
+
+  h2, h3 {
+    font-size: calc(var(--admin-font-size-base) * 1.5);
+  }
+
+/*  .wpmdb .btn {
+    min-height: 40px;
+    box-shadow: none;
+  }*/
 }
 
-.btn {
+/*.btn {
   height: 45px;
   min-height: 45px;
 }
@@ -40,36 +49,36 @@ html :where(.editor-styles-wrapper) * {
 .btn, .btn.btn-primary {
   height: auto;
   min-height: auto;
-}
+}*/
 
-// Pages tableau de bord + configurations
-#wonderwp-wrap,
-#wpbody-content {
+/* Pages de contenu */
+html :where(.editor-styles-wrapper) {
 
-  h1, h2, h3 {
+  * {
     font-family: var(--admin-font-family-base);
+    font-size: var(--admin-font-size-base);
     line-height: var(--admin-line-height-base);
+    font-weight: initial;
+
+    ::placeholder {
+      font-size: 0.9em;
+    }
   }
 
   h1 {
-    font-size: calc(var(--admin-font-size-base) * 1.5);
+    font-size: calc(var(--admin-font-size-base) * 3);
+    font-weight: 500;
   }
 
   h2, h3 {
-    font-size: calc(var(--admin-font-size-base) * 1.2);
+    font-size: calc(var(--admin-font-size-base) * 2);
+    font-weight: 500;
   }
 
-  .wpmdb .btn {
+/*  .wpmdb .btn {
     min-height: 40px;
     box-shadow: none;
-  }
-}
-
-// Content page
-.wp-block-post-title {
-  font-family: var(--admin-font-family-base);
-  font-size: calc(var(--admin-font-size-base) * 2);
-  line-height: var(--admin-line-height-base);
+  }*/
 }
 
 // Blocs Gutenberg
@@ -80,8 +89,8 @@ html :where(.editor-styles-wrapper) * {
     font-size: calc(var(--admin-font-size-base) * 1.2);
   }
 
-  // Buttons
-  .components-button:not(.is-link) {
+  // Boutons
+/*  .components-button:not(.is-link) {
     line-height: 1;
     margin: 5px 0;
     padding: 0 12px;
@@ -102,7 +111,7 @@ html :where(.editor-styles-wrapper) * {
   }
   .components-button.is-link {
     padding: 0;
-  }
+  }*/
 }
 
 .wp-block-wwp-gutenberg-utils-section-block,
