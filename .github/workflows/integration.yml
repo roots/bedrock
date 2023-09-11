@@ -6,12 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         repository: roots/bedrock-docker
         ref: main
         path: bedrock-docker
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         path: bedrock-docker/bedrock
     - name: Build and run
