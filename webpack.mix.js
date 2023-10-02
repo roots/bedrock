@@ -13,9 +13,18 @@ let fs = require("fs");
  */
 mix.autoload({});
 
+// Server configuration
+const server = {
+  source_domain: "http://localhost",
+  source_port: "8888",
+  destination_domain: "http://localhost",
+  destination_port: "5000"
+};
+
+// Wordpress settings
 const settings = {
   theme_folder: "web/app/themes/newtheme/",
-  local_domain: "http://localhost:8888",
+  local_domain: server.source_domain + ':' + server.source_port,
 };
 
 const paths = {
@@ -80,8 +89,8 @@ mix.combine(jsPackages, paths.scripts.output + "packages.js");
 /* run browsersync */
 mix.browserSync({
   proxy: settings.local_domain,
-  host: "https://localhost",
-  port: 3000,
+  host: server.destination_domain,
+  port: server.destination_port,
   files: [
     paths.styles.output + "*.css",
     paths.scripts.output + "*.js",
