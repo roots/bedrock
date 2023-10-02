@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "development": "mix",
-		"watch": "mix watch",
-		"watch-poll": "mix watch -- --watch-options-poll=1000",
-		"hot": "mix watch --hot",
-		"production": "mix --production",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "production": "mix --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/McCannHealthMedicalCommunications/wordpress-bedrock-boilerplate#readme",
   "devDependencies": {
-    "laravel-mix": "^6.0.49"
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "laravel-mix": "^6.0.49",
+    "sass": "^1.68.0",
+    "sass-loader": "^12.6.0"
   },
   "dependencies": {
     "jquery": "^3.7.1"

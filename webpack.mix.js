@@ -15,7 +15,7 @@ mix.autoload({});
 
 const settings = {
   theme_folder: "web/app/themes/newtheme/",
-  local_domain: "wordpress.local",
+  local_domain: "http://localhost:8888",
 };
 
 const paths = {
@@ -48,8 +48,6 @@ const jsPackages = [
 
 //JS FILES
 let getFiles = function (dir) {
-  // get all 'files' in this directory
-  // filter directories
   return fs.readdirSync(dir).filter((file) => {
     return fs.statSync(`${dir}/${file}`).isFile();
   });

@@ -67,6 +67,11 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
+    "post-install-cmd": [
+      "mkdir -p web/app/themes/newtheme/assets/{dist/{js,css,svg},src/{js,sass,svg,copy}}",
+      "touch web/app/themes/newtheme/assets/src/sass/main.scss"
+    ],
+    "post-update-cmd": [],
     "test": [
       "phpcs"
     ]
