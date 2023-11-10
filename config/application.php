@@ -53,7 +53,7 @@ define('WP_ENV', env('WP_ENV') ?: 'production');
 /**
  * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
  */
-if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development'])) {
+if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
     Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
 }
 
