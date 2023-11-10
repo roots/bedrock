@@ -1,6 +1,6 @@
 <?php
 /**
- * Configuration overrides for WP_ENV === 'development'
+ * Configuration overrides for WP_ENV === 'local'
  */
 
 use Roots\WPConfig\Config;
@@ -19,3 +19,6 @@ ini_set('display_errors', '1');
 
 // Enable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', false);
+
+// Disable the plugin and theme file editor in the admin
+Config::define('DISALLOW_FILE_EDIT', false);
