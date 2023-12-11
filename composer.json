@@ -1,8 +1,8 @@
 {
-  "name": "roots/bedrock",
+  "name": "pressbooks/bedrock",
   "type": "project",
   "license": "MIT",
-  "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
+  "description": "Bedrock with open source Pressbooks dependencies",
   "homepage": "https://roots.io/bedrock/",
   "authors": [
     {
@@ -32,26 +32,29 @@
   ],
   "require": {
     "php": ">=8.1",
-    "composer/installers": "^2.1",
-    "vlucas/phpdotenv": "^5.4",
+    "composer/installers": "^2.2",
     "pressbooks/pressbooks": "dev-dev",
     "pressbooks/pressbooks-aldine": "dev-dev",
     "pressbooks/pressbooks-book": "dev-dev",
+    "pressbooks/pressbooks-cas-sso": "dev-dev",
     "pressbooks/pressbooks-clarke": "dev-dev",
     "pressbooks/pressbooks-donham": "dev-dev",
     "pressbooks/pressbooks-jacobs": "dev-dev",
+    "pressbooks/pressbooks-network-catalog": "dev-dev",
+    "pressbooks/pressbooks-saml-sso": "dev-dev",
     "rhubarbgroup/redis-cache": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "^6.1",
     "roots/multisite-url-fixer": "^1.1",
+    "roots/wordpress": "^6.1",
     "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.1.0"
+    "roots/wp-password-bcrypt": "1.1.0",
+    "vlucas/phpdotenv": "^5.5"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.6.2",
+    "squizlabs/php_codesniffer": "^3.7.1",
     "roave/security-advisories": "dev-latest",
-    "phpunit/phpunit": "^10.0",
+    "phpunit/phpunit": "^9",
     "pressbooks/coding-standards": "^1.1"
   },
   "config": {
@@ -80,9 +83,6 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
-    ],
     "test": [
       "PB_PLUGIN=${PB_PLUGIN:-pressbooks}; vendor/bin/phpunit --configuration web/app/plugins/$PB_PLUGIN/phpunit.xml",
       "@standards"
