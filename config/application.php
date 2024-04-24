@@ -124,6 +124,9 @@ Config::define('DISALLOW_FILE_MODS', true);
 // Limit the number of post revisions
 Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
 
+// Disable script concatenation
+Config::define('CONCATENATE_SCRIPTS', false);
+
 /**
  * Debugging Settings
  */
