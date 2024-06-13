@@ -64,7 +64,6 @@ def finalizeDistantMigration(creds){
 
     if(env.runComposer){
         remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin deactivate --all";
-        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin activate wp-rocket";
         remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin activate --all";
         remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
     }
