@@ -61,19 +61,28 @@ def finalizeDistantMigration(creds){
   if(creds.cacheEnabled || env.remoteCommandNeeded){
     echo "Finalizing distant migration";
     def remoteCommand = "ssh ${creds.sshUser}@${creds.sshServer} \"cd ${creds.sshRemotePath}";
+    def phpVersion="8.3";
 
     if(env.runComposer){
-        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp plugin deactivate --all";
-        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp plugin activate --all";
-        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
+        def pluginListRemoteCommand = remoteCommand + " && WP_CLI_PHP=php"+phpVersion+" vendor/wp-cli/wp-cli/bin/wp wwp:doctrine-plugin-list && exit\"";
+        def doctrinePluginList = sh (
+            script: pluginListRemoteCommand,
+            returnStdout: true
+        );
+        if (doctrinePluginList?.trim()) {
+            remoteCommand+=" && WP_CLI_PHP=php"+phpVersion+" vendor/wp-cli/wp-cli/bin/wp plugin deactivate ${doctrinePluginList}";
+            remoteCommand+=" && WP_CLI_PHP=php"+phpVersion+" vendor/wp-cli/wp-cli/bin/wp plugin activate ${doctrinePluginList}";
+            remoteCommand+=" && WP_CLI_PHP=php"+phpVersion+" vendor/wp-cli/wp-cli/bin/wp rewrite flush";
+        }
     }
 
     if(creds.cacheEnabled == true){
-      remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp wwp-cache:rebuild";
+      remoteCommand+=" && WP_CLI_PHP=php"+phpVersion+" vendor/wp-cli/wp-cli/bin/wp wwp-cache:rebuild";
     }
 
     remoteCommand+=" && exit\"";
 
+    sh "ssh wonderful@wdf-02.ovea.com sudo /etc/init.d/php"+phpVersion+"-fpm reload";
     sh remoteCommand;
   } else {
     echo "Distant migration not needed";
