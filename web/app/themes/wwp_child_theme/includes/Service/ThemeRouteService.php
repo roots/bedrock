@@ -11,15 +11,15 @@ class ThemeRouteService extends AbstractRouteService
 
     public function getRoutes()
     {
-        if (empty($this->_routes)) {
+        if (empty($this->routes)) {
             $manager       = $this->manager;
-            $this->_routes = [
+            $this->routes = [
                 ['styleguide', [$manager->getController(AbstractManager::PUBLIC_CONTROLLER_TYPE), 'styleGuide']],
                 ['sitemap', [$manager->getController(AbstractManager::PUBLIC_CONTROLLER_TYPE), 'sitemap']],
             ];
         }
 
-        return $this->_routes;
+        return $this->routes;
     }
 
 }

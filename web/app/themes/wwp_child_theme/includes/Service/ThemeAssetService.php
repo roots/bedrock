@@ -11,14 +11,14 @@ class ThemeAssetService extends AbstractAssetService
 {
     public function getAssets()
     {
-        if (empty($this->_assets)) {
+        if (empty($this->assets)) {
             $container = Container::getInstance();
             $manager   = $container->offsetGet('wwp.theme.Manager');
             $themePath = $manager->getConfig('path.url');
             /** @var Asset $assetClass */
             $assetClass = self::$assetClassName;
 
-            $this->_assets = [
+            $this->assets = [
                 'css' => [
                     new $assetClass('styleguide', $themePath . '/assets/raw/scss/theme.scss', [], '', true, 'styleguide'),
                     new $assetClass('critical', $themePath . '/assets/raw/scss/critical.scss', [], '', true, 'critical'),
@@ -33,6 +33,6 @@ class ThemeAssetService extends AbstractAssetService
             ];
         }
 
-        return $this->_assets;
+        return $this->assets;
     }
 }

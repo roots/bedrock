@@ -63,13 +63,13 @@ def finalizeDistantMigration(creds){
     def remoteCommand = "ssh ${creds.sshUser}@${creds.sshServer} \"cd ${creds.sshRemotePath}";
 
     if(env.runComposer){
-        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin deactivate --all";
-        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp plugin activate --all";
-        remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
+        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp plugin deactivate --all";
+        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp plugin activate --all";
+        remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp rewrite flush";
     }
 
     if(creds.cacheEnabled == true){
-      remoteCommand+=" && WP_CLI_PHP=php8.0 vendor/wp-cli/wp-cli/bin/wp wwp-cache:rebuild";
+      remoteCommand+=" && WP_CLI_PHP=php8.3 vendor/wp-cli/wp-cli/bin/wp wwp-cache:rebuild";
     }
 
     remoteCommand+=" && exit\"";
@@ -175,7 +175,7 @@ pipeline {
 
             if(env.runComposer=='true'){
               try {
-                sh '/usr/bin/php8.0 /usr/local/bin/composer install --no-dev --prefer-dist';
+                sh '/usr/bin/php8.3 /usr/local/bin/composer install --no-dev --prefer-dist';
               } catch(exc){
                 handleException('Composer install failed', exc);
               }

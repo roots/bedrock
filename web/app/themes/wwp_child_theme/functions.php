@@ -8,7 +8,7 @@
 function wwp_theme_setup()
 {
     $request = \WonderWp\Component\HttpFoundation\Request::getInstance();
-    if(!$request->getSession()->isStarted() && session_status() === PHP_SESSION_NONE) {
+    if(!$request->getSession()->isStarted() && session_status() === PHP_SESSION_NONE && defined('WP_USE_THEMES') && WP_USE_THEMES ) {
         $request->getSession()->start();
     }
     get_template_part('/includes/ThemeManager');
