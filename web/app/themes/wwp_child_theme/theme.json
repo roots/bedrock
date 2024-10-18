@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "settings": {
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        {
+          "slug": "base",
+          "color": "#2E2632",
+          "name": "Base (Noir)"
+        },
+        {
+          "slug": "background",
+          "color": "#FFFFFF",
+          "name": "Fond de base (Blanc)"
+        },
+        {
+          "slug": "brand",
+          "color": "#C81F3B",
+          "name": "Marque (Rouge)"
+        },
+        {
+          "slug": "primary",
+          "color": "#FF503A",
+          "name": "Primaire (Orange)"
+        },
+        {
+          "slug": "secondary",
+          "color": "#5175e2",
+          "name": "Secondaire (Bleu)"
+        },
+        {
+          "slug": "tertiary",
+          "color": "#FF9999",
+          "name": "Tertiaire (Orange clair)"
+        },
+        {
+          "slug": "quaternary",
+          "color": "#A574BE",
+          "name": "Quaternaire (Violet)"
+        },
+        {
+          "slug": "verylightgrey",
+          "color": "#F7F7FA",
+          "name": "Gris très clair"
+        },
+        {
+          "slug": "lightgrey",
+          "color": "#ECEDF0",
+          "name": "Gris clair"
+        },
+        {
+          "slug": "grey",
+          "color": "#C2C3C8",
+          "name": "Gris"
+        },
+        {
+          "slug": "mediumgrey",
+          "color": "#DEE0E3",
+          "name": "Gris moyen"
+        },
+        {
+          "slug": "darkgrey",
+          "color": "#97989B",
+          "name": "Gris foncé"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Pluto Sans Light', sans-serif",
+          "slug": "pluto-sans-light",
+          "name": "Pluto Sans Light",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "src": [
+            "file:./assets/fonts/Pluto-Sans-Web-Light.eot",
+            "file:./assets/fonts/Pluto-Sans-Web-Light.woff",
+            "file:./assets/fonts/Pluto-Sans-Web-Light.woff2"
+          ]
+        },
+        {
+          "fontFamily": "'Pluto Sans Medium', sans-serif",
+          "slug": "pluto-sans-medium",
+          "name": "Pluto Sans Medium'",
+          "fontWeight": "normal",
+          "fontStyle": "normal",
+          "src": [
+            "file:./assets/fonts/Pluto-Sans-Web-Medium.eot",
+            "file:./assets/fonts/Pluto-Sans-Web-Medium.woff",
+            "file:./assets/fonts/Pluto-Sans-Web-Medium.woff2"
+          ]
+        },
+        {
+          "fontFamily": "'Work Sans', sans-serif",
+          "slug": "work-sans",
+          "name": "Work Sans",
+          "src": [
+            "https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap"
+          ]
+        }
+      ],
+      "fontSizes": [
+        {
+          "name": "Small",
+          "slug": "small",
+          "size": "16px"
+        },
+        {
+          "name": "Normal",
+          "slug": "normal",
+          "size": "18px"
+        },
+        {
+          "name": "Large",
+          "slug": "large",
+          "size": "20px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "840px",
+      "wideSize": "1100px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--background)",
+      "text": "var(--wp--preset--color--base)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--work-sans)",
+      "fontSize": "var(--wp--preset--font-size--normal)",
+      "fontWeight": "300",
+      "lineHeight": "1.5"
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--pluto-sans-medium)",
+          "fontSize": "clamp(4rem, 4vw, 3rem)",
+          "fontWeight": "normal",
+          "lineHeight": "1"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--black)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "1rem"
+          }
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--pluto-sans-light)",
+          "fontSize": "clamp(3.4rem, 4vw, 2rem)",
+          "fontWeight": "normal",
+          "lineHeight": "1",
+          "textTransform": "uppercase",
+          "letterSpacing": "0.01em"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--black)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "2rem"
+          }
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--work-sans)",
+          "fontSize": "1.3em",
+          "fontWeight": "500",
+          "lineHeight": "1.5",
+          "textTransform": "uppercase"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--black)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0.5rem"
+          }
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--base)"
+        }
+      }
+    },
+    "blocks": {
+    }
+  }
+}

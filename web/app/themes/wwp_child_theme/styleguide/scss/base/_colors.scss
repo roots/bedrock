@@ -8,23 +8,25 @@
  */
 
 /**
- * Edit your colors in the variables file : web/app/themes/wwp_child_theme/styleguide/scss/_variables.scss
+ * Edit your colors in theme.json file
  * Then fill the $styleguide-colors below accordingly
+ * Warning! Variables declared in theme.json do not appear in the styleguide. SO YOU NEED TO REDEFINE THEM BELOW:
  */
 
 //Styleguide Colors
 $styleguide-colors: (
-  "base": $color-base,
-  "brand": $color-brand,
-  "primary": $color-primary,
-  "secondary": $color-secondary,
-  "tertiary": $color-tertiary,
-  "quaternary": $color-quaternary,
-  "verylightgrey": $color-grey-verylight,
-  "lightgrey": $color-grey-light,
-  "mediumgrey":$color-grey-medium,
-  "grey":$color-grey,
-  "darkgrey":$color-grey-dark,
+  "base": #2E2632, //var(--wp--preset--color--base)
+  "background-base": #FFFFFF, //var(--wp--preset--color--background)
+  "brand": #C81F3B, //var(--wp--preset--color--brand)
+  "primary": #FF503A, //var(--wp--preset--color--primary)
+  "secondary": #5175e2, //var(--wp--preset--color--secondary)
+  "tertiary": #FF9999, //var(--wp--preset--color--tertiary)
+  "quaternary": #A574BE, //var(--wp--preset--color--quaternary)
+  "verylightgrey": #F7F7FA, //var(--wp--preset--color--verylightgrey)
+  "grey": #C2C3C8, //var(--wp--preset--color--grey)
+  "lightgrey": #ECEDF0, //var(--wp--preset--color--lightgrey)
+  "mediumgrey": #DEE0E3, //var(--wp--preset--color--mediumgrey)
+  "darkgrey": #97989B, //var(--wp--preset--color--darkgrey)
   "white": white
 );
 
@@ -96,15 +98,6 @@ $styleguide-colors: (
   color: #000;
   position: relative;
 
-  &::after {
-    content: 'undefined';
-    color: red;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   span {
     width: 100%;
     border-top: 1px solid red;
@@ -113,10 +106,5 @@ $styleguide-colors: (
     margin-top: auto;
     background: #fff;
     font-size: .8em;
-
-    &::after {
-      content: ' : undefined';
-      color: red;
-    }
   }
 }

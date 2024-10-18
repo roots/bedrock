@@ -20,11 +20,11 @@ $extra-extra-large  : 1440px !default; // .container-xl
 $gutter: 16px;
 
 // Theme colors variables
-$color-theme-base: var(--color-theme-base);
-$background-theme-base: var(--background-theme-base);
-$color-theme-primary: var(--color-theme-primary);
-$color-theme-secondary: var(--color-theme-secondary);
-$color-theme-brand: var(--color-theme-brand);
+$color-theme-base: var(--wp--preset--color--base);
+$background-theme-base: var(--wp--preset--color--background);
+$color-theme-primary: var(--wp--preset--color--primary);
+$color-theme-secondary: var(--wp--preset--color--secondary);
+$color-theme-brand: var(--wp--preset--color--brand);
 
 // Theme border-radius
 $border-radius-theme: var(--border-radius-theme);
@@ -53,28 +53,6 @@ $weight-book    : 300 !default;
 $weight-regular : 400 !default;
 $weight-medium  : 500 !default;
 $weight-bold    : 700 !default;
-
-/*Examples if Google fonts are used*/
-// 3. Define families extends
-/*%font-family-roboto {
-  font-family: $font-family-base;
-}
-%font-family-sriracha {
-  font-family: $font-family-secondary;
-}*/
-
-// 4. Use families + weight extends
-/*.font-base {
-  @extend %font-family-roboto;
-  font-weight: $weight-book;
-}
-.font-headings {
-  @extend %font-family-roboto;
-  font-weight: $weight-bold;
-}
-.font-secondary {
-  @extend %font-family-sriracha;
-}*/
 
 // Font sizes (1.6rem value is "16px" equivalent)
 $font-size-base : var(--font-size-base);
@@ -119,23 +97,23 @@ $line-height-l    : 1.7 !default;
 // Color zone
 // ----------
 
-/*Project's colors*/
-
 // Theme's colors
-$color-base         : var(--color-theme-base);
-$background-base    : white;
-$color-brand        : var(--color-theme-brand);
-$color-primary      : var(--color-theme-primary);
-$color-secondary    : var(--color-theme-secondary);
-$color-tertiary      : var(--color-theme-tertiary);
-$color-quaternary    : var(--color-theme-quaternary);
+$color-base           : var(--wp--preset--color--base);
+$background-base      : var(--wp--preset--color--background);
+$color-brand          : var(--wp--preset--color--brand);
+$color-primary        : var(--wp--preset--color--primary);
+$color-secondary      : var(--wp--preset--color--secondary);
+$color-tertiary       : var(--wp--preset--color--tertiary);
+$color-quaternary     : var(--wp--preset--color--quaternary);
+
 // Site's secondary colors
-$color-black: #2e2632;
-$color-grey-verylight: #F7F7FA;
-$color-grey-light: var(--color-theme-secondary); //#ECEDF0
-$color-grey-medium: #DEE0E3;
-$color-grey: #C2C3C8;
-$color-grey-dark: #97989B;
+$color-grey           : var(--wp--preset--color--grey);
+$color-grey-verylight : var(--wp--preset--color--verylightgrey);
+$color-grey-light     : var(--wp--preset--color--lightgrey);
+$color-grey-medium    : var(--wp--preset--color--mediumgrey);
+$color-grey-dark      : var(--wp--preset--color--darkgrey);
+$color-black          : var(--wp--preset--color--base);
+
 // Alert's colors
 $color-alert-success: #155724;
 $color-alert-success-50: #d4edda;
@@ -236,16 +214,16 @@ $zindex-notification : 6000 !default;
 $zindex-debug        : 7000 !default;
 
 // Component: forms (ne surtout pas les déplacer dans le fichier forms.scss car utilisées à d'autres endroits
-$forms-color                : $color-grey-dark !default;
+$forms-color                : var(--wp--preset--color--darkgrey) !default;
 $forms-bgcolor              : transparent !default;
-$label-color                : $color-base !default;
-$input-color                : $color-base !default;
-$input-bgcolor              : $white !default;
-$placeholder-color          : $color-base !default;
+$label-color                : var(--wp--preset--color--base) !default;
+$input-color                : var(--wp--preset--color--base) !default;
+$input-bgcolor              : var(--wp--preset--color--background) !default;
+$placeholder-color          : var(--wp--preset--color--base) !default;
 
 $fieldset-padding: 2rem;
-$fieldset-bgcolor: var(--color-theme-secondary);
-$fieldset-border: 1px solid var(--color-theme-primary);
+$fieldset-bgcolor: var(--wp--preset--color--secondary);
+$fieldset-border: 1px solid var(--wp--preset--color--primary);
 
 $forms-padding              : 0 !default;
 
@@ -253,24 +231,24 @@ $input-height               : 45px !default; // Same as button height
 $input-font-size            : 1.4rem !default;
 $label-font-size            : 1.4rem !default;
 $placeholder-font-size      : 1.4rem !default;
-$input-box-shadow           : 0 0 0 1px $gray-600 inset;
+$input-box-shadow           : 0 0 0 1px var(--wp--preset--color--base) inset;
 $input-border-radius        : var(--border-radius-theme);
 
-$select-arrow-color         : $white !default;
-$select-arrow-bgcolor       : $gray-600 !default;
-$select-arrow-active-color  : $white !default;
-$select-bgcolor             : $white !default;
-$select-active-color        : $white !default;
-$select-active-bgcolor      : $gray-600 !default;
+$select-arrow-color         : var(--wp--preset--color--base) !default;
+$select-arrow-bgcolor       : var(--wp--preset--color--base) !default;
+$select-arrow-active-color  : var(--wp--preset--color--base) !default;
+$select-bgcolor             : var(--wp--preset--color--base) !default;
+$select-active-color        : var(--wp--preset--color--base) !default;
+$select-active-bgcolor      : var(--wp--preset--color--base) !default;
 
 $textarea-height            : ($input-height * 2) !default;
 
-$checkbox-color             : $color-base !default;
+$checkbox-color             : var(--wp--preset--color--base) !default;
 $checkbox-size              : 3rem;
 $checkbox-innersize         : 16px;
 $checkbox-border-radius     : 5px;
 
-$switch-color               : $color-base !default;
+$switch-color               : var(--wp--preset--color--base) !default;
 $switch-size                : 3rem;
 $switch-border-radius       : 3em;
 
@@ -279,8 +257,8 @@ $switch-border-radius       : 3em;
 // ---------------
 
 // Component: links
-$link-color            : $color-grey-dark !default;
-$link-color-hover      : darken($link-color, 15%) !default;
+$link-color            : var(--wp--preset--color--base) !default;
+$link-color-hover      : var(--wp--preset--color--darkgrey) !default;
 $link-decoration       : underline;
 $link-decoration-hover : underline;
 
@@ -288,26 +266,26 @@ $link-decoration-hover : underline;
 $global-border-radius: 0 !default;
 
 // Component: quotes
-$quote-color     : $gray-200 !default;
+$quote-color     : var(--wp--preset--color--base) !default;
 
 // Component: arrows
-$arrow-color     : $color-base !default;
+$arrow-color     : var(--wp--preset--color--base) !default;
 
 // Component: tables
-$table-border               : $gray-500 !default;
-$table-caption-color        : $color-grey-dark !default;
+$table-border               : var(--wp--preset--color--base) !default;
+$table-caption-color        : var(--wp--preset--color--base) !default;
 $table-background           : transparent !default;
-$table-head-color           : $color-base !default;
+$table-head-color           : var(--wp--preset--color--base) !default;
 $table-head-background      : transparent !default;
-$table-footer-color         : $color-base !default;
+$table-footer-color         : var(--wp--preset--color--base) !default;
 $table-footer-background    : transparent !default;
 
 // Components: buttons, badges, alerts color variants list
 // Convention is: name - background-color - color - border
 $variants-list: (
-        (primary,    var(--color-theme-primary),    white,    0 0 0 2px var(--color-theme-primary) inset),
-        (brand,      var(--color-theme-brand),      white,    0 0 0 2px var(--color-theme-brand) inset),
-        (black,      var(--color-theme-base),      white,    0 0 0 2px var(--color-theme-base) inset),
+        (primary,    var(--wp--preset--color--primary),    white,    0 0 0 2px var(--wp--preset--color--primary) inset),
+        (brand,      var(--wp--preset--color--brand),      white,    0 0 0 2px var(--wp--preset--color--brand) inset),
+        (black,      var(--wp--preset--color--base),      white,    0 0 0 2px var(--wp--preset--color--base) inset),
         (white,      white,             $color-base,    0 0 0 2px $color-base inset),
         (success,    $color-alert-success-50,    $color-alert-success,    0 0 0 2px $color-success inset),
         (info,       $color-alert-info-50,       $color-alert-info,    0 0 0 2px $color-alert-info inset),
