@@ -17,6 +17,9 @@ require "vendor/prequel.php";
 
 class Fllat
 {
+    private $name;
+    private $path;
+    private $file;
 
 	/**
 	 * Create a database
