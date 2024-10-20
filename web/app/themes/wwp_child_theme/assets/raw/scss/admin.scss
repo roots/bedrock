@@ -13,30 +13,19 @@
 /*--------------------------------------*/
 /// LOAD COMPONENTS STYLES HERE ///
 @import "../../../includes/Components/Card/card-component";
-
-
 /*--------------------------------------*/
-/// ADMIN STYLES ///
+
+
+/// FONTS STYLES ///
 
 html {
-  /* set base font-size to equiv "10px", which is adapted to rem unit */
+  /* Set base font-size. Cannot be set with theme.json only */
   font-size: 62.5%;
-  /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
-  font-size: calc(1em * 0.625);
 }
 
-/* Pages de contenu */
+/* Set base font-size */
 .editor-styles-wrapper {
-  font-size: 100%;
-}
-
-// CONTAINERS (REMOVE DEFAULT)
-.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-  max-width: none !important;
-}
-.wp-block-wwp-gutenberg-utils-container-block {
-  margin-right: auto;
-  margin-left: auto;
+  //font-size: 100%;
 }
 
 html :where(.editor-styles-wrapper) {
@@ -48,10 +37,18 @@ html :where(.editor-styles-wrapper) {
   p {
     font-size: medium;
   }
-
 }
 
-// Blocs Gutenberg
+// CONTAINERS (REMOVE DEFAULT)
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: none !important;
+}
+.wp-block-wwp-gutenberg-utils-container-block {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// GUTENBERG BLOCKS
 .block-editor-block-list__block {
   color: var(--color-theme-base);
   font-size: medium;
