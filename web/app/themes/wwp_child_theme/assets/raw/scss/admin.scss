@@ -4,7 +4,7 @@
 //@import "../../fonts/fonts_critical";
 @import "../../fonts/fonts";
 @import "../../../styleguide/scss/atoms/text";
-@import "../../../styleguide/scss/atoms/titles";
+@import "../../../styleguide/scss/atoms/headings";
 @import "../../../styleguide/scss/atoms/excerpt";
 @import "../../../includes/Components/Button/button-component";
 @import "layout";
@@ -18,100 +18,43 @@
 /*--------------------------------------*/
 /// ADMIN STYLES ///
 
-/* Pages Tableau de bord / configs */
-html :where(#wonderwp-wrap) {
-
-  h1, h2, h3 {
-    font-weight: 500;
-  }
-
-  h1 {
-    font-size: calc(var(--admin-font-size-base) * 3);
-  }
-
-  h2, h3 {
-    font-size: calc(var(--admin-font-size-base) * 1.5);
-  }
-
-/*  .wpmdb .btn {
-    min-height: 40px;
-    box-shadow: none;
-  }*/
+html {
+  /* set base font-size to equiv "10px", which is adapted to rem unit */
+  font-size: 62.5%;
+  /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+  font-size: calc(1em * 0.625);
 }
-
-/*.btn {
-  height: 45px;
-  min-height: 45px;
-}
-
-.wp-core-ui .button,
-.wp-core-ui .button-primary,
-.btn, .btn.btn-primary {
-  height: auto;
-  min-height: auto;
-}*/
 
 /* Pages de contenu */
+.editor-styles-wrapper {
+  font-size: 100%;
+}
+
+// CONTAINERS (REMOVE DEFAULT)
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: none !important;
+}
+.wp-block-wwp-gutenberg-utils-container-block {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 html :where(.editor-styles-wrapper) {
 
-  * {
-    font-family: var(--admin-font-family-base);
-    font-size: var(--admin-font-size-base);
-    line-height: var(--admin-line-height-base);
-    font-weight: initial;
-
-    ::placeholder {
-      font-size: 0.9em;
-    }
+  h1, h2, h3 {
+    font-weight: normal;
   }
 
-  h1 {
-    font-size: calc(var(--admin-font-size-base) * 3);
-    font-weight: 500;
+  p {
+    font-size: medium;
   }
 
-  h2, h3 {
-    font-size: calc(var(--admin-font-size-base) * 2);
-    font-weight: 500;
-  }
-
-/*  .wpmdb .btn {
-    min-height: 40px;
-    box-shadow: none;
-  }*/
 }
 
 // Blocs Gutenberg
-.block-editor-block-list__layout .block-editor-block-list__block {
+.block-editor-block-list__block {
   color: var(--color-theme-base);
-
-  .chapo {
-    font-size: calc(var(--admin-font-size-base) * 1.2);
-  }
-
-  // Boutons
-/*  .components-button:not(.is-link) {
-    line-height: 1;
-    margin: 5px 0;
-    padding: 0 12px;
-    border-radius: 6px;
-    letter-spacing: 0;
-    height: 36px;
-    min-height: 36px;
-    color: white;
-    background: var(--color-mediumgrey);
-    text-decoration: none;
-    box-shadow: none;
-
-    &.editor-post-featured-image__preview {
-      width: 100px;
-      height: 100px;
-      min-height: 100px;
-    }
-  }
-  .components-button.is-link {
-    padding: 0;
-  }*/
+  font-size: medium;
 }
 
 .wp-block-wwp-gutenberg-utils-section-block,

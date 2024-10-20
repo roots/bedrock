@@ -69,59 +69,59 @@
     "typography": {
       "fontFamilies": [
         {
-          "fontFamily": "'Pluto Sans Light', sans-serif",
-          "slug": "pluto-sans-light",
-          "name": "Pluto Sans Light",
-          "fontWeight": "normal",
-          "fontStyle": "normal",
-          "src": [
-            "file:./assets/fonts/Pluto-Sans-Web-Light.eot",
-            "file:./assets/fonts/Pluto-Sans-Web-Light.woff",
-            "file:./assets/fonts/Pluto-Sans-Web-Light.woff2"
-          ]
+          "fontFamily": "geomanistlight",
+          "slug": "light",
+          "name": "Geomanist Light"
         },
         {
-          "fontFamily": "'Pluto Sans Medium', sans-serif",
-          "slug": "pluto-sans-medium",
-          "name": "Pluto Sans Medium'",
-          "fontWeight": "normal",
-          "fontStyle": "normal",
-          "src": [
-            "file:./assets/fonts/Pluto-Sans-Web-Medium.eot",
-            "file:./assets/fonts/Pluto-Sans-Web-Medium.woff",
-            "file:./assets/fonts/Pluto-Sans-Web-Medium.woff2"
-          ]
+          "fontFamily": "geomanistregular",
+          "slug": "regular",
+          "name": "Geomanist Regular"
         },
         {
-          "fontFamily": "'Work Sans', sans-serif",
-          "slug": "work-sans",
-          "name": "Work Sans",
-          "src": [
-            "https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap"
-          ]
+          "fontFamily": "geomanistmedium",
+          "slug": "medium",
+          "name": "Geomanist Medium"
+        },
+        {
+          "fontFamily": "geomanistbold",
+          "slug": "bold",
+          "name": "Geomanist Bold"
         }
       ],
       "fontSizes": [
         {
-          "name": "Small",
+          "slug": "root",
+          "size": "62.5%",
+          "name": "Root"
+        },
+        {
           "slug": "small",
-          "size": "16px"
+          "size": "1.4rem",
+          "name": "Small"
         },
         {
-          "name": "Normal",
-          "slug": "normal",
-          "size": "18px"
+          "slug": "medium",
+          "size": "1.6rem",
+          "name": "Medium"
         },
         {
-          "name": "Large",
           "slug": "large",
-          "size": "20px"
+          "size": "1.8rem",
+          "name": "Large"
+        },
+        {
+          "slug": "x-large",
+          "size": "2.4rem",
+          "name": "Extra Large"
         }
       ]
     },
     "layout": {
-      "contentSize": "840px",
-      "wideSize": "1100px"
+      "contentSize": "960px",
+      "wideSize": "1280px",
+      "extraWideSize": "1440px",
+      "fullSize": "100%"
     }
   },
   "styles": {
@@ -130,21 +130,17 @@
       "text": "var(--wp--preset--color--base)"
     },
     "typography": {
-      "fontFamily": "var(--wp--preset--font-family--work-sans)",
-      "fontSize": "var(--wp--preset--font-size--normal)",
-      "fontWeight": "300",
-      "lineHeight": "1.5"
+      "fontFamily": "var(--wp--preset--font-family--regular)",
+      "fontSize": "var(--wp--preset--font-size--root)",
+      "lineHeight": "1.6"
     },
     "elements": {
       "h1": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--pluto-sans-medium)",
-          "fontSize": "clamp(4rem, 4vw, 3rem)",
+          "fontFamily": "var(--wp--preset--font-family--light)",
+          "fontSize": "clamp(6rem, 4vw, 3rem)",
           "fontWeight": "normal",
           "lineHeight": "1"
-        },
-        "color": {
-          "text": "var(--wp--preset--color--black)"
         },
         "spacing": {
           "margin": {
@@ -155,15 +151,11 @@
       },
       "h2": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--pluto-sans-light)",
-          "fontSize": "clamp(3.4rem, 4vw, 2rem)",
+          "fontFamily": "var(--wp--preset--font-family--light)",
+          "fontSize": "clamp(4.2rem, 4vw, 2rem)",
           "fontWeight": "normal",
           "lineHeight": "1",
-          "textTransform": "uppercase",
           "letterSpacing": "0.01em"
-        },
-        "color": {
-          "text": "var(--wp--preset--color--black)"
         },
         "spacing": {
           "margin": {
@@ -174,14 +166,11 @@
       },
       "h3": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--work-sans)",
-          "fontSize": "1.3em",
+          "fontFamily": "var(--wp--preset--font-family--medium)",
+          "fontSize": "2rem",
           "fontWeight": "500",
           "lineHeight": "1.5",
           "textTransform": "uppercase"
-        },
-        "color": {
-          "text": "var(--wp--preset--color--black)"
         },
         "spacing": {
           "margin": {
