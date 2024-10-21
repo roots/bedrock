@@ -5,26 +5,25 @@
 // Breakpoints zone
 // ----------------
 
-// Warning: you should use your own values, regardless of the devices
-// Best practise is Mobile First: (min-width: $breakpoint)
+// Warning: cannot be defined in css variables !! Use pixels instead
 $verytiny           : 320px !default;
 $extra-small        : 385px !default; // .container-xs
 $tiny               : 480px !default;
 $small              : 660px !default;
 $medium             : 782px !default; //.container-s - Gutenberg breakpoints
-$large              : var(--wp--style--global--content-size) !default; // .container
+$large              : 960px; //.container - var(--wp--style--global--content-size) !default;
 $very-large         : 1200px !default;
-$extra-large        : var(--wp--style--global--wide-size) !default; // .container-l
-$extra-extra-large  : var(--wp--style--global--extra-wide-size) !default; // .container-xl
+$extra-large        : 1280px !default; //.container-l - var(--wp--style--global--wide-size) !default;
+$extra-extra-large  : 1440px !default; //.container-xl - var(--wp--style--global--extra-wide-size) !default;
 
 $gutter: 16px;
 
 // Theme colors variables
-$color-theme-base: var(--wp--preset--color--base);
-$background-theme-base: var(--wp--preset--color--background);
-$color-theme-primary: var(--wp--preset--color--primary);
-$color-theme-secondary: var(--wp--preset--color--secondary);
-$color-theme-brand: var(--wp--preset--color--brand);
+$color-theme-base: var(--wp--preset--color--base); //Black
+$background-theme-base: var(--wp--preset--color--background); //White
+$color-theme-primary: var(--wp--preset--color--primary); //Orange
+$color-theme-secondary: var(--wp--preset--color--secondary); //Blue
+$color-theme-brand: var(--wp--preset--color--brand); //Red
 
 // Theme border-radius
 $border-radius-theme: var(--border-radius-theme);

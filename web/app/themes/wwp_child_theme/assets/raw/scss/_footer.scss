@@ -4,10 +4,10 @@
 
 
 :root {
-  --footer-top-color: var(--color-theme-base);
-  --footer-top-background-color: var(--color-theme-secondary);
+  --footer-top-color: var(--wp--preset--color--base);
+  --footer-top-background-color: var(--wp--preset--color--grey);
   --footer-bottom-color: white;
-  --footer-bottom-background-color: var(--color-theme-base);
+  --footer-bottom-background-color: var(--wp--preset--color--base);
 }
 
 $footer-content-height: 75px;
@@ -279,7 +279,7 @@ $colPaddingSmall: 3rem;
     text-decoration: none;
     color: #fff;
     text-indent: -9999px;
-    background-color: var(--color-theme-primary);
+    background-color: var(--wp--preset--color--primary);
   }
 
   a::after {
@@ -289,6 +289,6 @@ $colPaddingSmall: 3rem;
 
   a:hover,
   a:focus {
-    background-color: var(--color-theme-base);
+    background-color: var(--wp--preset--color--base);
   }
 }

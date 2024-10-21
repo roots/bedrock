@@ -51,8 +51,8 @@
 a.wp-block-button__link {
   @extend %btn;
   color: white;
-  background-color: var(--color-theme-primary);
-  box-shadow: 0 0 0 2px var(--color-theme-primary);
+  background-color: var(--wp--preset--color--primary);
+  box-shadow: 0 0 0 2px var(--wp--preset--color--primary);
 
   // EXTERNAL LINK
   &[target="_blank"] {
@@ -67,7 +67,7 @@ a.wp-block-button__link {
   }
 
   &:focus, .no-touch &:hover, &:active {
-    color: var(--color-theme-primary);
+    color: var(--wp--preset--color--primary);
     background-color: white;
 
     &[target="_blank"]::after {
@@ -173,7 +173,7 @@ form [type="submit"] {
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-theme-base);
+  color: var(--wp--preset--color--base);
   background: none;
   box-shadow: none;
   text-decoration: none;
@@ -191,7 +191,7 @@ form [type="submit"] {
     display: block;
     height: 26px;
     width: 26px;
-    background-color: var(--color-theme-primary);
+    background-color: var(--wp--preset--color--primary);
     border-radius: 50%;
     transform: translateY(-50%) scale(1);
     transform-origin: center;

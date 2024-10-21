@@ -3,11 +3,11 @@
 /* ----------------------------- */
 
 :root {
-  --menu-item-m0-color-active: var(--color-theme-base);
-  --menu-item-m1-color: var(--color-theme-base);
-  --menu-item-m1-color-active: var(--color-theme-primary);
+  --menu-item-m0-color-active: var(--wp--preset--color--base);
+  --menu-item-m1-color: var(--wp--preset--color--base);
+  --menu-item-m1-color-active: var(--wp--preset--color--primary);
   --menu-item-m1-bgcolor: white;
-  --menu-item-m1-bgcolor-active: var(--color-theme-secondary);
+  --menu-item-m1-bgcolor-active: var(--wp--preset--color--secondary);
 }
 
 @media (min-width: $medium) {
@@ -56,7 +56,7 @@
         width: 10px;
         border-right: 2px solid;
         border-bottom: 2px solid;
-        border-color: var(--color-theme-base);
+        border-color: var(--wp--preset--color--base);
         transform: rotate(-45deg);
         transition: transform 0.4s;
         transform-origin: center;
@@ -99,10 +99,10 @@
       &.current_page_item {
 
         > a {
-          border-bottom-color: var(--color-theme-primary);
+          border-bottom-color: var(--wp--preset--color--primary);
 
           &::after {
-            border-color: var(--color-theme-primary);
+            border-color: var(--wp--preset--color--primary);
           }
         }
       }
