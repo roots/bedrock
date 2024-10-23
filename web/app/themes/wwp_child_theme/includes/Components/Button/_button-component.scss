@@ -20,7 +20,7 @@
 
 // Bouton En savoir plus
 .wp-block-read-more,
-.btn--inline {
+.btn--inline .wp-block-button__link {
   position: relative;
   min-height: auto;
   margin: 2rem 0;
@@ -33,6 +33,7 @@
   font-size: var(--wp--preset--font-size--small) !important;
   color: var(--wp--preset--color--base) !important;
   text-decoration: none !important;
+  border: none;
 
   &::before,
   &::after {
