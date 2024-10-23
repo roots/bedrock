@@ -2,21 +2,17 @@
  * Cards - global styles
 *************************/
 
-/*Variables*/
-:root {
+.item,
+.wp-block-post {
   --card-image-height: 22rem;
   --card-image-landscape-height: 36rem;
   --card-image-mobile-height: 50vw;
   --card-padding-size: 2.5rem;
-}
 
-.item,
-.wp-block-post {
   background: white;
   border-radius: var(--border-radius-theme);
   box-shadow: var(--box-shadow-theme);
   font-family: var(--wp--preset--font-family--regular);
-
   padding: var(--card-padding-size);
 
   .wp-block-post-featured-image {

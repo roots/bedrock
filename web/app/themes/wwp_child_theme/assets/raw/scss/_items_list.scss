@@ -25,6 +25,29 @@
     }
 }
 
+/* Default list parent style */
+/* ------------------------- */
+
+.items-list {
+  --items-gap : 2rem;
+  --items-nbr : 3;
+
+  display: flex;
+  gap: var(--items-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > * {
+    flex: 0 0 calc(100% / var(--items-nbr));
+  }
+
+  > * .item {
+    height: 100%;
+    padding: 0;
+  }
+}
+
 
 /* Default list parent style */
 /* ------------------------- */
@@ -34,7 +57,7 @@ $gutterTablet   : 2rem;
 $col            : 3; //Nombre de colonnes
 $colTablet      : 2;
 
-.items-list {
+/*.items-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -92,4 +115,4 @@ $colTablet      : 2;
   .wp-block-columns & {
     margin-bottom: 0;
   }
-}
+}*/
