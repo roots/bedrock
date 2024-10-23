@@ -24,75 +24,13 @@ html {
 }
 
 body {
+  font-family: var(--wp--preset--font-family--regular);
+  font-size: var(--wp--preset--font-size--medium);
+  background-color: var(--wp--preset--color--background);
+  color: var(--wp--preset--color--base);
+  line-height: var(--wp--custom--line-height--body);
   margin: 0;
-  @include font-size(base);
-  background-color: $background-base;
-  color: $color-base;
-  font-family: $font-family-base;
-  line-height: $line-height-base;
 }
-
-/* Links */
-/*a {
-  color: $link-color;
-  text-decoration: $link-decoration;
-
-  &:focus,
-  &:hover,
-  &:active {
-    color: $link-color-hover;
-    text-decoration: $link-decoration-hover;
-  }
-}*/
-
-/* Headings */
-/*h1, .h1-like {
-  @include font-size(h1);
-  @if variable_exists(font-family-headings) and $font-family-headings != $font-family-base{
-    font-family: $font-family-headings;
-  }
-  font-weight: $weight-medium;
-}
-
-h2, .h2-like {
-  @include font-size(h2);
-  @if variable_exists(font-family-headings) and $font-family-headings != $font-family-base{
-    font-family: $font-family-headings;
-  }
-  font-weight: $weight-medium;
-}
-
-h3, .h3-like {
-  @include font-size(h3);
-  font-weight: $weight-medium;
-}
-
-h4, .h4-like {
-  @include font-size(h4);
-  font-weight: $weight-medium;
-}
-
-h5, .h5-like {
-  @include font-size(h5);
-  font-weight: $weight-medium;
-}
-
-h6, .h6-like {
-  @include font-size(h6);
-  font-weight: $weight-medium;
-}*/
-
-/* Vertical rythm */
-/*h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-dd {
-  margin-top: 0;
-  margin-bottom: $headings-margin-bottom;
-}*/
 
 p,
 address,
@@ -261,6 +199,6 @@ pre,
 samp,
 kbd {
   white-space: pre-wrap;
-  font-family: $font-family-monospace;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   line-height: normal;
 }

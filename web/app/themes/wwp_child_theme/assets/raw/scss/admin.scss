@@ -1,8 +1,9 @@
 /// CONTENT BASE STYLES ///
+@import "../../fonts/fonts";
 @import "../../../styleguide/scss/variables";
 @import "../../../styleguide/scss/mixins";
-//@import "../../fonts/fonts_critical";
-@import "../../fonts/fonts";
+@import "../../../styleguide/scss/knacss/_vendor/reboot";
+@import "../../../styleguide/scss/knacss/_library/base";
 @import "../../../styleguide/scss/atoms/text";
 @import "../../../styleguide/scss/atoms/headings";
 @import "../../../styleguide/scss/atoms/excerpt";
@@ -14,19 +15,6 @@
 /// LOAD COMPONENTS STYLES HERE ///
 @import "../../../includes/Components/Card/card-component";
 /*--------------------------------------*/
-
-
-/// FONTS STYLES ///
-
-html {
-  /* Set base font-size. Cannot be set with theme.json only */
-  font-size: 62.5%;
-}
-
-/* Set base font-size */
-.editor-styles-wrapper {
-  //font-size: 100%;
-}
 
 html :where(.editor-styles-wrapper) {
 
@@ -50,8 +38,9 @@ html :where(.editor-styles-wrapper) {
 
 // GUTENBERG BLOCKS
 .block-editor-block-list__block {
+  font-family: var(--wp--preset--font-family--regular);
+  font-size: normal;
   color: var(--wp--preset--color--base);
-  font-size: medium;
 }
 
 .wp-block-wwp-gutenberg-utils-section-block,

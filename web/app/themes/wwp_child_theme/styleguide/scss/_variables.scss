@@ -22,7 +22,7 @@ $gutter: 16px;
 $color-theme-base: var(--wp--preset--color--base); //Black
 $background-theme-base: var(--wp--preset--color--background); //White
 $color-theme-primary: var(--wp--preset--color--primary); //Orange
-$color-theme-secondary: var(--wp--preset--color--secondary); //Blue
+$color-theme-secondary: var(--wp--preset--color--secondary); //Gris
 $color-theme-brand: var(--wp--preset--color--brand); //Red
 
 // Theme border-radius
@@ -40,11 +40,11 @@ $box-shadow-theme-active: var(--box-shadow-theme-active);
 // 1. Create css variables in variables_themes.scss
 
 // 2. Define families variables for Knacss
-$font-family-base       : var(--font-theme-base), sans-serif !default;
-$font-family-headings   : var(--font-theme-headings), sans-serif !default;
-$font-family-secondary  : var(--font-theme-secondary), sans-serif !default;
+$font-family-base       : var(--wp--preset--font-family--regular);
+$font-family-headings   : var(--wp--preset--font-family--light);
+$font-family-secondary  : var(--wp--preset--font-family--medium);
+$font-theme-bold        : var(--wp--preset--font-family--bold);
 $font-family-monospace  : consolas, courier, monospace !default; // font for code and samples
-$font-theme-bold        : var(--font-theme-bold);
 
 // ...and weights variables
 $weight-light   : 200 !default;
@@ -54,42 +54,14 @@ $weight-medium  : 500 !default;
 $weight-bold    : 700 !default;
 
 // Font sizes (1.6rem value is "16px" equivalent)
-$font-size-base : var(--font-size-base);
-
-$font-sizes: (
-    base: (
-        mobile  : 1.4rem,
-        desktop : $font-size-base
-    ),
-    h1: (
-        mobile  : 2.8rem,
-        desktop : 3.2rem
-    ),
-    h2: (
-        mobile  : 2.4rem,
-        desktop : 2.8rem
-    ),
-    h3: (
-        mobile  : 2.0rem,
-        desktop : 2.4rem
-    ),
-    h4: (
-        mobile  : 1.8rem,
-        desktop : 2.0rem
-    ),
-    h5: (
-        mobile  : 1.6rem,
-        desktop : 1.8rem
-    ),
-    h6: (
-        mobile  : 1.4rem,
-        desktop : 1.6rem
-    )
-) !default;
+$font-size-small : var(--wp--preset--font-size--small);
+$font-size-base : var(--wp--preset--font-size--medium);
+$font-size-large : var(--wp--preset--font-size--large);
+$font-size-x-large : var(--wp--preset--font-size--x-large);
 
 // Line heights
-$line-height-s    : var(--line-height-headings);
-$line-height-base : var(--line-height-base);
+$line-height-s    : 1;
+$line-height-base : var(--wp--preset--line-height--body);
 $line-height-l    : 1.7 !default;
 
 // ----------
@@ -220,9 +192,9 @@ $input-color                : var(--wp--preset--color--base) !default;
 $input-bgcolor              : var(--wp--preset--color--background) !default;
 $placeholder-color          : var(--wp--preset--color--base) !default;
 
-$fieldset-padding: 2rem;
-$fieldset-bgcolor: var(--wp--preset--color--secondary);
-$fieldset-border: 1px solid var(--wp--preset--color--primary);
+$fieldset-padding           : 2rem;
+$fieldset-bgcolor           : var(--wp--preset--color--secondary);
+$fieldset-border            : 1px solid var(--wp--preset--color--primary);
 
 $forms-padding              : 0 !default;
 

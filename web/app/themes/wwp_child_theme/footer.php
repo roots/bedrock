@@ -34,7 +34,7 @@
 
                 <?php
                 //Menu du footer
-                //Pour fonctionner automatiquement, creer un footer appelé Footer fr_FR pour la france dans apparence/menus dans le BO
+                //Pour fonctionner automatiquement, créer un footer appelé "Footer fr_FR" pour la France dans apparence/menus dans le BO
                 $footerMenuName = 'Footer ' . get_locale();
                 if (is_nav_menu($footerMenuName)) {
                     echo '<nav role="navigation" aria-label="Menu footer principal">';
@@ -62,7 +62,8 @@
                 </div>
 
                 <?php
-                //Menu du footer
+                //Menu du footer 2
+                //Créer un footer appelé "Footer fr_FR 2" pour la France dans apparence/menus dans le BO
                 $footerMenuName = 'Footer ' . get_locale() . ' 2';
                 if (is_nav_menu($footerMenuName)) {
                     echo '<nav role="navigation" aria-label="Menu footer secondaire">';

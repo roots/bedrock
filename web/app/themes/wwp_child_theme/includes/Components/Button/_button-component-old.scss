@@ -1,0 +1,226 @@
+%btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: $button-height;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 5rem;
+  font-size: 1.2rem;
+  font-family: $font-family-secondary;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  white-space: normal;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: $button-box-shadow;
+  border: 0;
+  border-radius: $button-border-radius;
+  transition: all .4s;
+
+  &.btn--small,
+  &.button--small,
+  &.btn-sm {
+    min-height: $button-height-small;
+    padding: 0 2.5rem;
+    font-size: .8em;
+  }
+
+  &.btn--big,
+  &.button--big {
+    min-height: $button-height-large;
+    font-size: 1.1em;
+  }
+
+  &:active,
+  &:focus,
+  .no-touch &:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: $medium - 1) {
+    min-height: $button-height-small;
+    padding: 0 2rem;
+  }
+}
+
+.btn,
+.button,
+a.wp-block-button__link {
+  @extend %btn;
+  color: white;
+  background-color: var(--wp--preset--color--primary);
+  box-shadow: 0 0 0 2px var(--wp--preset--color--primary);
+
+  // EXTERNAL LINK
+  &[target="_blank"] {
+    padding-right: 4rem;
+    &::after {
+      content: '';
+      height: 14px;
+      width: 14px;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Calque_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 12.9 12.9' style='enable-background:new 0 0 12.9 12.9;' xml:space='preserve'%3E%3Cg id='V3'%3E%3Cg id='_x30_4-AVF-Combat' transform='translate(-549.000000, -1894.000000)'%3E%3Cg id='Group-14' transform='translate(328.000000, 1872.000000)'%3E%3Cg id='Group-13' transform='translate(0.000000, 14.000000)'%3E%3Cg id='Group' transform='translate(221.000000, 8.000000)'%3E%3Cpolygon id='Path' points='11.2,11.2 1.8,11.2 1.8,1.8 5.3,1.8 5.3,0 0,0 0,13 13,13 13,7.7 11.2,7.7 '/%3E%3Cpolygon id='Path_1_' points='7.5,0 7.5,1.8 9.9,1.8 4.6,7.1 5.9,8.4 11.2,3.1 11.2,5.6 13,5.6 13,0 '/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");      margin-left: 1rem;
+      filter: invert(1);
+    }
+  }
+
+  &:focus, .no-touch &:hover, &:active {
+    color: var(--wp--preset--color--primary);
+    background-color: white;
+
+    &[target="_blank"]::after {
+      filter: invert(0);
+    }
+  }
+}
+
+.btn {
+  @each $name, $background-color, $color, $border in $variants-list {
+    &--#{$name} {
+      @extend %btn;
+      color: $color;
+      background-color: $background-color;
+      box-shadow: $border;
+
+      &:focus, .no-touch &:hover, &:active {
+        color: $background-color;
+        background-color: $color;
+      }
+    }
+  }
+}
+
+a[class*="btn"] {
+  text-decoration: none;
+}
+
+// CTA AVEC FLECHE
+.btn {
+
+  &--cta {
+    @extend .btn;
+    padding-right: 4rem;
+
+    &::after {
+      display: inline-block;
+      content: '';
+      width: 20px;
+      height: 18px;
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
+      background-repeat: no-repeat;
+      margin-left: 1rem;
+      transform: translateX(0);
+      transition: transform 0.4s;
+    }
+
+    &:focus, .no-touch &:hover, &:active {
+
+      &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
+        transform: translateX(10px);
+      }
+    }
+  }
+
+  &--cta.btn--white {
+    @extend .btn--white;
+    padding-right: 4rem;
+
+    &::after {
+      background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_s.svg") !important;
+    }
+
+    &:focus, .no-touch &:hover, &:active {
+
+      &::after {
+        background-image: url("#{$get-path-to-assets}/raw/svg/arrow_right_w_s.svg") !important;
+      }
+    }
+  }
+}
+
+.entry-content .btn {
+  margin-top: 3rem;
+}
+
+// Bouton submit
+.btn--submit,
+.btn-submit {
+  @extend .btn;
+  color: white;
+  background-color: $color-base;
+  box-shadow: 0 0 0 2px $color-base;
+
+  .no-touch &:hover,
+  &:focus {
+    color: $color-base;
+    background-color: white;
+  }
+}
+form [type="submit"] {
+  box-shadow: 0 0 0 2px $color-base inset; //Filet à l'intérieur quand est dans un formulaire
+}
+
+// Bouton En savoir plus
+.btn--inline {
+  position: relative;
+  min-height: auto;
+  margin: 2rem 0;
+  padding: 5px 0 5px 40px;
+  font-family: var(--font-theme-secondary);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--base);
+  background: none;
+  box-shadow: none;
+  text-decoration: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: 26px;
+    width: 26px;
+    background-color: var(--wp--preset--color--primary);
+    border-radius: 50%;
+    transform: translateY(-50%) scale(1);
+    transform-origin: center;
+    transition: all 0.4s;
+  }
+
+  &::after {
+    @include svgIcon('arrow-btn--white');
+    left: 5px;
+  }
+
+  .no-touch &:hover,
+  &:focus {
+
+    &::before {
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+}
+
+// Button wrapper : add margin and centering
+// --------------------------------------------------
+
+.btn-wrapper {
+  position: relative;
+  text-align: center;
+  min-height: 10rem;
+
+  .btn {
+    @include absolute-center;
+  }
+}

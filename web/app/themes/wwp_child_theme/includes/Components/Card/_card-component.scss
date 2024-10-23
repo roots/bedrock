@@ -7,6 +7,7 @@
   --card-image-height: 22rem;
   --card-image-landscape-height: 36rem;
   --card-image-mobile-height: 50vw;
+  --card-padding-size: 2.5rem;
 }
 
 .item,
@@ -14,6 +15,14 @@
   background: white;
   border-radius: var(--border-radius-theme);
   box-shadow: var(--box-shadow-theme);
+  font-family: var(--wp--preset--font-family--regular);
+
+  padding: var(--card-padding-size);
+
+  .wp-block-post-featured-image {
+    width: calc(100% + var(--card-padding-size) * 2) !important;
+    margin: calc(var(--card-padding-size) * -1) calc(var(--card-padding-size) * -1) var(--card-padding-size) calc(var(--card-padding-size) * -1);
+  }
 
   &,
   &.has-link > a {
@@ -79,7 +88,7 @@
   .card-subtitle {
     display: block;
     margin-bottom: 4px;
-    font-family: var(--font-theme-bold);
+    font-family: var(--wp--preset--font-family--bold);
     font-size: 1.2rem;
     text-transform: uppercase;
     color: var(--wp--preset--color--primary);
@@ -92,7 +101,7 @@
     max-width: 100%;
     margin-top: 0;
     margin-bottom: 1.5rem;
-    font-family: var(--font-theme-secondary);
+    font-family: var(--wp--preset--font-family--medium);
     font-size: 2.2rem;
     text-transform: none;
     line-height: 1.3;
@@ -122,7 +131,7 @@
       font-size: 1rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      font-family: var(--font-theme-headings);
+      font-family: ar(--wp--preset--font-family--light);
       color: var(--wp--preset--color--primary);
 
       /* &::after {
@@ -158,7 +167,7 @@
   .card-readmore-link,
   .wp-block-read-more {
     order: 2;
-    @extend .btn--inline;
+    //@extend .btn--inline;
     cursor: pointer;
   }
 

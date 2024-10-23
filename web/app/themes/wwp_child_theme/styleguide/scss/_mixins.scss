@@ -1,16 +1,3 @@
-// font-size Mixin
-// compiles to font-size mobile + font-size desktop on small-plus devices
-// ex. h2 { @include font-size(h2);}
-@mixin font-size($elem) {
-  $q: map-get($font-sizes, $elem);
-  $mob: map-get($q, "mobile");
-  $desk: map-get($q, "desktop");
-  font-size: $mob;
-  @include respond-to("small-up") {
-    font-size: $desk;
-  }
-}
-
 // Grid Mixin
 // arguments are : columns number, gutter, min-breakpoint
 // ex. .ingrid { @include grid(4, 1rem, 640px); }
