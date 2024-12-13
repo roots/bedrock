@@ -43,7 +43,7 @@
     "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.7.1",
+    "laravel/pint": "^1.5",
     "roave/security-advisories": "dev-latest"
   },
   "config": {
@@ -66,7 +66,7 @@
   },
   "scripts": {
     "test": [
-      "phpcs"
+      "./vendor/bin/pint --test"
     ]
   }
 }

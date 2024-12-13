@@ -9,6 +9,7 @@
  */
 
 use Roots\WPConfig\Config;
+
 use function Env\env;
 
 // USE_ENV_ARRAY + CONVERT_* + STRIP_QUOTES
