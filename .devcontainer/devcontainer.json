@@ -1,0 +1,11 @@
+{
+  "name": "Bedrock Development",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/roots/app",
+  "forwardPorts": [8080],
+  "remoteEnv": {
+    "WP_ENV": "development"
+  },
+  "postCreateCommand": "cp -n /roots/app/.devcontainer/.env.example /roots/app/.env"
+}
