@@ -39,8 +39,13 @@ if (file_exists($root_dir . '/.env')) {
         ? ['.env', '.env.local']
         : ['.env'];
 
-    $dotenv = Dotenv\Dotenv::createImmutable($root_dir, $env_files, false);
+    $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
+        ->addAdapter(Dotenv\Repository\Adapter\EnvConstAdapter::class)
+        ->addAdapter(Dotenv\Repository\Adapter\PutenvAdapter::class)
+        ->immutable()
+        ->make();
 
+    $dotenv = Dotenv\Dotenv::create($repository, $root_dir, $env_files, false);
     $dotenv->load();
 
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
