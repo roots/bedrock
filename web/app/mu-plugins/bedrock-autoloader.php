@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:  Bedrock Autoloader
  * Plugin URI:   https://github.com/roots/bedrock-autoloader
