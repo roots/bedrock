@@ -25,5 +25,4 @@ jobs:
 
       - name: Verify installation
         run: |
-          sleep 30 # Give web server a moment to start
           curl -s http://localhost:8080 | grep "<title>Bedrock"
