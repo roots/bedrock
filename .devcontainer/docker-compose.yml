@@ -10,6 +10,8 @@ services:
       - bedrock
     depends_on:
       - database
+    environment:
+      WP_CLI_ALLOW_ROOT: 1
 
   web:
     image: nginx:alpine
