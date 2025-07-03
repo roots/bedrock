@@ -149,7 +149,7 @@ class BedrockComposerStore
                         success: function(r) {
                             if (r.success) {
                                 $btn.addClass('disabled').text(bedrock_ajax.added_text);
-                                $('<div class="notice notice-success is-dismissible"><p>' + r.data.message + '</p></div>').prependTo('.wrap');
+                                $('<div class="notice notice-success is-dismissible"><p>' + r.data.message + '</p></div>').insertAfter('.wp-header-end');
                             } else {
                                 $btn.prop('disabled', false).text(bedrock_ajax.add_text);
                                 alert('Error: ' + r.data.message);
