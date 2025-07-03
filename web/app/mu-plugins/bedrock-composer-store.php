@@ -2,7 +2,6 @@
 
 /**
  * Plugin Name:  Bedrock Composer Store
- * Plugin URI:   https://github.com/roots/bedrock-autoloader
  * Description:  Adds a button to the plugin install screen to add plugins to composer.json.
  * Author:       Roots
  * Author URI:   https://roots.io/
