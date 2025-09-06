@@ -24,13 +24,6 @@ Env\Env::$options = 31;
 $root_dir = dirname(__DIR__);
 
 /**
- * Document Root
- *
- * @var string
- */
-$webroot_dir = $root_dir . '/web';
-
-/**
  * Use Dotenv to set required environment variables and load .env file in root
  * .env.local will override .env if it exists
  */
@@ -59,6 +52,13 @@ if (file_exists($root_dir . '/.env')) {
  * Default: production
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
+
+/**
+ * Document Root
+ *
+ * @var string
+ */
+$webroot_dir = $root_dir . '/web';
 
 /**
  * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
