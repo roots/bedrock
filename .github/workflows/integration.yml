@@ -18,13 +18,18 @@ jobs:
           configFile: .devcontainer/devcontainer.json
           runCmd: |
             composer install --no-interaction --no-progress --prefer-dist --no-autoloader --no-scripts
+            echo "Checking database status..."
+            docker ps
+            docker logs database || echo "No database container logs available"
             timeout=60
             while [ $timeout -gt 0 ] && ! mysqladmin ping -h"database" --silent; do
+              echo "Waiting for database... ($timeout seconds remaining)"
               sleep 1
               timeout=$((timeout - 1))
             done
             if [ $timeout -eq 0 ]; then
               echo "Database failed to start within 60 seconds"
+              docker logs database || echo "No database container logs available"
               exit 1
             fi
             wp core install --url=http://localhost:8080 --title=Bedrock --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
