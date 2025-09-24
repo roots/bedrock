@@ -17,7 +17,7 @@ jobs:
         with:
           configFile: .devcontainer/devcontainer.json
           runCmd: |
-            composer install --no-interaction --no-progress --prefer-dist
+            composer install --no-interaction --no-progress --prefer-dist --no-autoloader --no-scripts
             while ! mysqladmin ping -h"database" --silent; do
               sleep 1
             done
