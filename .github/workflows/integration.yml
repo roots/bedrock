@@ -17,10 +17,7 @@ jobs:
         with:
           configFile: .devcontainer/devcontainer.json
           runCmd: |
-            composer install
-            while ! mysqladmin ping -h"database" --silent; do
-              sleep 1
-            done
+            composer install --no-interaction --no-progress --prefer-dist
             wp core install --url=http://localhost:8080 --title=Bedrock --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
 
       - name: Verify installation
