@@ -123,10 +123,10 @@ Config::define('AUTOMATIC_UPDATER_DISABLED', true);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 
 // Disable the plugin and theme file editor in the admin
-Config::define('DISALLOW_FILE_EDIT', true);
+Config::define('DISALLOW_FILE_EDIT', false);
 
 // Disable plugin and theme updates and installation from the admin
-Config::define('DISALLOW_FILE_MODS', true);
+Config::define('DISALLOW_FILE_MODS', false);
 
 // Limit the number of post revisions
 Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
