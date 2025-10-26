@@ -1,0 +1,26 @@
+name: Health Check
+description: Curl a URL with retries
+inputs:
+  url: { required: true }
+  retries: { required: false, default: "10" }
+  delay-seconds: { required: false, default: "5" }
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -euo pipefail
+        URL="${{ inputs.url }}"
+        RETRIES=${{ inputs.retries }}
+        DELAY=${{ inputs.delay-seconds }}
+        i=0
+        until curl -fsSL --max-time 10 "$URL" >/dev/null; do
+          i=$((i+1))
+          if [ "$i" -ge "$RETRIES" ]; then
+            echo "Health check failed for $URL"
+            exit 1
+          fi
+          echo "Waiting ($i/$RETRIES)..."
+          sleep "$DELAY"
+        done
+        echo "Health check OK: $URL"

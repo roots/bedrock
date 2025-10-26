@@ -1,0 +1,227 @@
+name: Bedrock Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # create release
+
+concurrency:
+  group: bedrock-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PHP_VERSION: "8.2"
+  NODE_VERSION: "20"
+  THEME_DIR: "web/app/themes/sage" # adjust if you named it differently
+  PLUGINS_DIR: "web/app/plugins"
+  # Build-time plugins (from GitHub) – add/remove as needed:
+  BUILD_PLUGINS: |
+    https://github.com/Yoast/wordpress-seo
+    https://github.com/OllieWP/ollie
+    https://github.com/woocommerce/woocommerce
+
+jobs:
+  bedrock_build:
+    name: Build Bedrock (Composer)
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.pkg.outputs.artifact_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Composer / PHP and Cache
+        uses: ./.github/actions/setup-composer
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
+      - name: Install Composer deps (no dev)
+        run: composer install --no-interaction --no-progress --prefer-dist --no-dev
+
+      - name: Create vendor artifact
+        id: pkg
+        run: |
+          tar -czf vendor.tar.gz vendor
+          echo "artifact_name=vendor.tar.gz" >> "$GITHUB_OUTPUT"
+
+      - name: Upload vendor artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vendor
+          path: vendor.tar.gz
+          retention-days: 3
+
+  theme_build:
+    name: Build Sage Theme (npm)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node and Cache
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          working-directory: ${{ env.THEME_DIR }}
+
+      - name: Install & build theme
+        working-directory: ${{ env.THEME_DIR }}
+        run: |
+          npm ci
+          npm run build
+
+      - name: Upload theme artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-build
+          path: |
+            ${{ env.THEME_DIR }}/public
+            ${{ env.THEME_DIR }}/dist
+          retention-days: 3
+
+  plugins_build:
+    name: Assemble Plugins (GitHub sources)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prep plugins dir
+        run: |
+          mkdir -p "${{ env.PLUGINS_DIR }}"
+          echo "${{ env.BUILD_PLUGINS }}" > plugins.txt
+
+      - name: Fetch plugins
+        run: |
+          set -euo pipefail
+          while read -r url; do
+            [ -z "$url" ] && continue
+            repo=$(basename "$url")
+            dir="${repo%.*}"
+            git clone --depth=1 "$url" "${{ env.PLUGINS_DIR }}/${dir}"
+            rm -rf "${{ env.PLUGINS_DIR }}/${dir}/.git"
+          done < plugins.txt
+
+      - name: Upload plugins artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugins
+          path: ${{ env.PLUGINS_DIR }}
+          retention-days: 3
+
+  package_release:
+    name: Package Release
+    runs-on: ubuntu-latest
+    needs: [bedrock_build, theme_build, plugins_build]
+    outputs:
+      release_tarball: ${{ steps.bundle.outputs.release_tarball }}
+      release_name: ${{ steps.meta.outputs.release_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./_artifacts
+
+      - name: Unpack vendor
+        run: |
+          tar -xzf ./_artifacts/vendor/vendor.tar.gz
+
+      - name: Inject built theme + plugins
+        run: |
+          rsync -a ./_artifacts/theme-build/ web/app/themes/sage/
+          rsync -a ./_artifacts/plugins/ web/app/plugins/
+
+      - name: Prune dev files
+        run: |
+          find . -name ".git" -type d -prune -exec rm -rf {} +
+          rm -rf node_modules */node_modules **/node_modules || true
+
+      - name: Release meta
+        id: meta
+        run: |
+          TS=$(date -u +"%Y%m%d-%H%M%S")
+          echo "release_name=bedrock-${TS}" >> "$GITHUB_OUTPUT"
+
+      - name: Bundle release tarball
+        id: bundle
+        run: |
+          name="${{ steps.meta.outputs.release_name }}"
+          tar --exclude='./_artifacts' -czf "${name}.tar.gz" .
+          echo "release_tarball=${name}.tar.gz" >> "$GITHUB_OUTPUT"
+
+      - name: Upload release tarball (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-tarball
+          path: ${{ steps.bundle.outputs.release_tarball }}
+          retention-days: 7
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.release_name }}
+          name: ${{ steps.meta.outputs.release_name }}
+          generate_release_notes: true
+          files: ${{ steps.bundle.outputs.release_tarball }}
+
+  deploy:
+    name: Deploy to GCE VM
+    runs-on: ubuntu-latest
+    needs: [package_release]
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-tarball
+          path: .
+
+      - name: Deploy via SSH/Rsync (atomic releases)
+        uses: ./.github/actions/deploy-vm
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          user: ${{ secrets.GCE_USER }}
+          ssh-private-key: ${{ secrets.GCE_SSH_KEY }}
+          deploy-path: ${{ secrets.GCE_DEPLOY_PATH }}
+          tarball: ${{ needs.package_release.outputs.release_tarball }}
+
+      # This is idempotent
+      - name: One-time WP core install (idempotent)
+        uses: ./.github/actions/wp-core-install
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          user: ${{ secrets.GCE_USER }}
+          ssh-private-key: ${{ secrets.GCE_SSH_KEY }}
+          deploy-path: ${{ secrets.GCE_DEPLOY_PATH }}
+          admin-user: ${{ secrets.WP_ADMIN_USER }}
+          admin-pass: ${{ secrets.WP_ADMIN_PASS }}
+          admin-email: ${{ secrets.WP_ADMIN_EMAIL }}
+
+  health_check:
+    name: Health Check
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    steps:
+      - name: Wait and curl site
+        uses: ./.github/actions/health-check
+        with:
+          url: ${{ secrets.HEALTHCHECK_URL }}
+          retries: "15"
+          delay-seconds: "15"
+
+  rollback_on_failure:
+    name: Rollback if failed
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    needs: [deploy, health_check]
+    steps:
+      - name: Rollback to previous release
+        uses: ./.github/actions/rollback-vm
+        with:
+          host: ${{ secrets.GCE_HOST }}
+          user: ${{ secrets.GCE_USER }}
+          ssh-private-key: ${{ secrets.GCE_SSH_KEY }}
+          deploy-path: ${{ secrets.GCE_DEPLOY_PATH }}

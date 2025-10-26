@@ -1,0 +1,100 @@
+name: "WP Core Install (idempotent)"
+description: "Runs wp core install on the remote VM only if not already installed"
+inputs:
+  host:
+    description: "SSH host (IP/DNS)"
+    required: true
+  user:
+    description: "SSH user"
+    required: true
+  ssh-private-key:
+    description: "Private key content (PEM) for SSH"
+    required: true
+  deploy-path:
+    description: "Remote deploy root (e.g. /var/www/bedrock)"
+    required: true
+  wp-url:
+    description: "Site URL (e.g. http://34.88.x.x/). If empty, tries WP_HOME from shared .env"
+    required: false
+    default: ""
+  admin-user:
+    description: "WP admin user"
+    required: true
+  admin-pass:
+    description: "WP admin password"
+    required: true
+  admin-email:
+    description: "WP admin email"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare SSH
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p ~/.ssh
+        echo "${{ inputs.ssh-private-key }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        printf "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+    - name: Install WordPress if needed
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        HOST='${{ inputs.host }}'
+        USER='${{ inputs.user }}'
+        DEPLOY_PATH='${{ inputs.deploy-path }}'
+        WP_URL_INPUT='${{ inputs.wp-url }}'
+        ADMIN_USER='${{ inputs.admin-user }}'
+        ADMIN_EMAIL='${{ inputs.admin-email }}'
+        # base64-encode the password to avoid shell quoting issues
+        ADMIN_PASS_B64="$(printf "%s" "${{ inputs.admin-pass }}" | base64 -w0)"
+
+        ssh -i ~/.ssh/id_rsa "${USER}@${HOST}" bash -se <<EOF
+        set -euxo pipefail
+
+        DEPLOY_PATH="${DEPLOY_PATH}"
+        WP_URL_INPUT="${WP_URL_INPUT}"
+        ADMIN_USER="${ADMIN_USER}"
+        ADMIN_EMAIL="${ADMIN_EMAIL}"
+        ADMIN_PASS="\$(printf "%s" "${ADMIN_PASS_B64}" | base64 -d)"
+
+        cd "\${DEPLOY_PATH}/current"
+
+        # If vendor/bin/wp doesn't exist (unlikely because we ship vendor), fall back to composer install.
+        if [ ! -x vendor/bin/wp ]; then
+          if command -v composer >/dev/null 2>&1; then
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+          else
+            echo "vendor/bin/wp not present and composer not installed on VM. Aborting." >&2
+            exit 1
+          fi
+        fi
+
+        # If no URL provided, try to read from shared .env (WP_HOME=...)
+        if [ -z "\$WP_URL_INPUT" ] && [ -f "\${DEPLOY_PATH}/shared/.env" ]; then
+          WP_URL_INPUT="\$(grep -E '^WP_HOME=' "\${DEPLOY_PATH}/shared/.env" | cut -d= -f2- | tr -d '\r')"
+        fi
+
+        # Sanity: must have a URL
+        if [ -z "\$WP_URL_INPUT" ]; then
+          echo "No wp-url provided and WP_HOME not found in shared .env" >&2
+          exit 1
+        fi
+
+        # Install only if not already installed (idempotent)
+        if php vendor/bin/wp core is-installed; then
+          echo "WordPress already installed. Skipping."
+          exit 0
+        fi
+
+        php vendor/bin/wp core install \
+          --url="\$WP_URL_INPUT" \
+          --title="Bedrock Dev" \
+          --admin_user="\$ADMIN_USER" \
+          --admin_password="\$ADMIN_PASS" \
+          --admin_email="\$ADMIN_EMAIL" \
+          --skip-email
+        EOF

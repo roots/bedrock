@@ -26,3 +26,41 @@ auth.json
 
 # WP-CLI
 wp-cli.local.yml
+
+
+# Bedrock / WordPress
+/web/app/uploads/
+/web/app/cache/
+/web/app/advanced-cache.php
+
+# Build artifacts
+/vendor/
+/node_modules/
+/**/node_modules/
+/**/dist/
+/**/public/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Terraform
+**/.terraform/
+/**/.terraform*
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# Keys
+*.pem
+*.key
+*.pub
+keys/
+**/keys/

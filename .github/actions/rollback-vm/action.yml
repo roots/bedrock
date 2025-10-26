@@ -1,0 +1,39 @@
+name: Rollback to previous release
+description: Switch 'current' symlink to the previous release
+inputs:
+  host: { required: true }
+  user: { required: true }
+  ssh-private-key: { required: true }
+  deploy-path: { required: true }
+runs:
+  using: composite
+  steps:
+    - name: Write SSH key
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ inputs.ssh-private-key }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        printf "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+    - name: Select previous release
+      shell: bash
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ inputs.user }}@${{ inputs.host }} bash -se << 'EOS'
+        set -euo pipefail
+        DEPLOY_PATH="${{ inputs.deploy-path }}"
+        cd "${DEPLOY_PATH}/releases"
+        # Get two newest; pick 2nd (previous)
+        PREV=$(ls -1t | sed -n '2p' || true)
+        if [ -z "$PREV" ]; then
+          echo "No previous release to roll back to."
+          exit 1
+        fi
+        ln -sfn "${DEPLOY_PATH}/releases/${PREV}" "${DEPLOY_PATH}/current"
+        if command -v systemctl >/dev/null 2>&1; then
+          sudo systemctl reload apache2 || true
+          sudo systemctl reload php8.2-fpm || true
+          sudo systemctl reload nginx || true
+        fi
+        echo "Rolled back to $PREV"
+        EOS

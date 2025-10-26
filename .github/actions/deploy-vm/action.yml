@@ -1,0 +1,68 @@
+name: Deploy to VM (atomic)
+description: Upload tarball and swap symlink atomically
+inputs:
+  host: { required: true }
+  user: { required: true }
+  ssh-private-key: { required: true }
+  deploy-path: { required: true }
+  tarball: { required: true }
+runs:
+  using: composite
+  steps:
+    - name: Write SSH key
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ inputs.ssh-private-key }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        printf "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+    - name: Upload tarball
+      shell: bash
+      run: |
+        rsync -e "ssh -i ~/.ssh/id_rsa" -avz "${{ inputs.tarball }}" "${{ inputs.user }}@${{ inputs.host }}:/tmp/"
+
+    - name: Remote deploy (releases/current)
+      shell: bash
+      run: |
+        ssh -i ~/.ssh/id_rsa ${{ inputs.user }}@${{ inputs.host }} bash -se << 'EOS'
+        set -euo pipefail
+        DEPLOY_PATH="${{ inputs.deploy-path }}"
+        TARBALL="/tmp/${{ inputs.tarball }}"
+        TS=$(date -u +"%Y%m%d-%H%M%S")
+        REL_DIR="${DEPLOY_PATH}/releases/${TS}"
+
+        sudo mkdir -p "${DEPLOY_PATH}/releases" "${DEPLOY_PATH}/shared/uploads"
+        sudo chown -R $USER:$USER "${DEPLOY_PATH}"
+
+        mkdir -p "${REL_DIR}"
+        tar -xzf "${TARBALL}" -C "${REL_DIR}"
+
+        # Link shared bits (.env and uploads)
+        if [ -f "${DEPLOY_PATH}/shared/.env" ]; then
+          ln -sfn "${DEPLOY_PATH}/shared/.env" "${REL_DIR}/.env"
+        fi
+        mkdir -p "${REL_DIR}/web/app/uploads"
+        rm -rf "${REL_DIR}/web/app/uploads"
+        ln -sfn "${DEPLOY_PATH}/shared/uploads" "${REL_DIR}/web/app/uploads"
+
+        # Swap current symlink atomically
+        ln -sfn "${REL_DIR}" "${DEPLOY_PATH}/current"
+
+        # Adjust permissions (Apache/NGINX/PHP-FPM user may vary)
+        sudo chown -h $USER:$USER "${DEPLOY_PATH}/current"
+        sudo chown -R www-data:www-data "${REL_DIR}/web/app/uploads" || true
+
+        # Reload services (adjust for your stack)
+        if command -v systemctl >/dev/null 2>&1; then
+          sudo systemctl reload apache2 || true
+          sudo systemctl reload php8.2-fpm || true
+          sudo systemctl reload nginx || true
+        fi
+
+        # Keep last 5 releases
+        cd "${DEPLOY_PATH}/releases"
+        ls -1t | tail -n +6 | xargs -r rm -rf
+
+        rm -f "${TARBALL}"
+        EOS

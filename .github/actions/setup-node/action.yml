@@ -1,0 +1,20 @@
+name: Setup Node with Cache
+description: Install Node and prime npm cache
+inputs:
+  node-version: { required: true }
+  working-directory: { required: true }
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+    - name: NPM cache (node_modules)
+      uses: actions/cache@v4
+      with:
+        path: ${{ inputs.working-directory }}/node_modules
+        key: npm-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', inputs.working-directory)) }}
+        restore-keys: |
+          npm-${{ runner.os }}-
