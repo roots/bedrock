@@ -1,5 +1,5 @@
-name: Setup Node with Cache
-description: Install Node and prime npm cache
+name: Setup Node (no cache)
+description: Install Node
 inputs:
   node-version: { required: true }
   working-directory: { required: true }
@@ -9,12 +9,12 @@ runs:
     - uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
-    - name: NPM cache (node_modules)
-      uses: actions/cache@v4
-      with:
-        path: ${{ inputs.working-directory }}/node_modules
-        key: npm-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', inputs.working-directory)) }}
-        restore-keys: |
-          npm-${{ runner.os }}-
+#        cache: 'npm'
+#        cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+#    - name: NPM cache (node_modules)
+#      uses: actions/cache@v4
+#      with:
+#        path: ${{ inputs.working-directory }}/node_modules
+#        key: npm-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', inputs.working-directory)) }}
+#        restore-keys: |
+#          npm-${{ runner.os }}-
