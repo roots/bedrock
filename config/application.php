@@ -14,8 +14,8 @@ use Roots\WPConfig\Config;
 use function Env\env;
 
 // CONVERT_* + STRIP_QUOTES + LOCAL_FIRST
-Env\Env::$options =
-    Env\Env::CONVERT_BOOL
+Env\Env::$options
+    = Env\Env::CONVERT_BOOL
     | Env\Env::CONVERT_NULL
     | Env\Env::CONVERT_INT
     | Env\Env::STRIP_QUOTES
