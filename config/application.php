@@ -66,10 +66,27 @@ if (file_exists($root_dir . '/.env')) {
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
 /**
- * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ * Set WP_ENVIRONMENT_TYPE if not already defined
  */
-if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
-    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+if (!defined('WP_ENVIRONMENT_TYPE')) {
+    $wp_environment_type = env('WP_ENVIRONMENT_TYPE');
+
+    if ($wp_environment_type) {
+        Config::define('WP_ENVIRONMENT_TYPE', $wp_environment_type);
+    } elseif (in_array(WP_ENV, ['production', 'staging', 'development', 'local'], true)) {
+        Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+    }
+}
+
+/**
+ * Set WP_DEVELOPMENT_MODE if explicitly configured
+ */
+if (!defined('WP_DEVELOPMENT_MODE')) {
+    $wp_development_mode = env('WP_DEVELOPMENT_MODE');
+
+    if ($wp_development_mode) {
+        Config::define('WP_DEVELOPMENT_MODE', $wp_development_mode);
+    }
 }
 
 /**
