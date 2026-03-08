@@ -74,6 +74,17 @@ if (!defined('WP_ENVIRONMENT_TYPE')) {
 }
 
 /**
+ * Set WP_DEVELOPMENT_MODE if explicitly configured
+ */
+if (!defined('WP_DEVELOPMENT_MODE')) {
+    $wp_development_mode = env('WP_DEVELOPMENT_MODE');
+
+    if ($wp_development_mode) {
+        Config::define('WP_DEVELOPMENT_MODE', $wp_development_mode);
+    }
+}
+
+/**
  * URLs
  */
 Config::define('WP_HOME', env('WP_HOME'));
