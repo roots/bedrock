@@ -1,16 +1,29 @@
 {
-  "baseBranches": ["master"],
+  "baseBranchPatterns": [
+    "master"
+  ],
   "commitMessageAction": "⬆️ Bump",
   "commitMessageTopic": "{{depName}}",
-  "extends": ["config:base", "schedule:weekly"],
+  "extends": [
+    "config:recommended",
+    "schedule:weekly"
+  ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin"]
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin"
+      ]
     },
     {
       "groupName": "roots/wordpress",
-      "matchPackagePrefixes": ["roots/wordpress"],
-      "schedule": ["at any time"]
+      "schedule": [
+        "at any time"
+      ],
+      "matchPackageNames": [
+        "roots/wordpress{/,}**"
+      ]
     }
   ],
   "timezone": "America/Chicago"
