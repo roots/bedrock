@@ -43,14 +43,16 @@
     "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
-    "laravel/pint": "^1.27"
+    "laravel/pint": "^1.27",
+    "pestphp/pest": "^4.0"
   },
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "allow-plugins": {
       "composer/installers": true,
-      "roots/wordpress-core-installer": true
+      "roots/wordpress-core-installer": true,
+      "pestphp/pest-plugin": true
     }
   },
   "minimum-stability": "dev",
@@ -65,6 +67,7 @@
   },
   "scripts": {
     "lint": "pint --test",
-    "lint:fix": "pint"
+    "lint:fix": "pint",
+    "test": "pest"
   }
 }
