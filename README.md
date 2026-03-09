@@ -41,10 +41,12 @@ Bedrock is a WordPress boilerplate for developers that want to manage their proj
 
 See the [Bedrock installation documentation](https://roots.io/bedrock/docs/installation/).
 
-## Stay Connected
+## Community
+
+Keep track of development and community news.
 
 - Join us on Discord by [sponsoring us on GitHub](https://github.com/sponsors/roots)
-- Participate on [Roots Discourse](https://discourse.roots.io/)
+- Join us on [Roots Discourse](https://discourse.roots.io/)
 - Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-- Read the [Roots Blog](https://roots.io/blog/)
-- Subscribe to the [Roots Newsletter](https://roots.io/newsletter/)
+- Follow the [Roots Blog](https://roots.io/blog/)
+- Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
