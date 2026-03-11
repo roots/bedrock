@@ -34,12 +34,12 @@
   "require": {
     "php": ">=8.3",
     "composer/installers": "^2.2",
-    "vlucas/phpdotenv": "^5.5",
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
     "roots/wordpress": "6.9.3",
     "roots/wp-config": "1.0.0",
+    "vlucas/phpdotenv": "^5.5",
     "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
@@ -53,7 +53,8 @@
       "composer/installers": true,
       "roots/wordpress-core-installer": true,
       "pestphp/pest-plugin": true
-    }
+    },
+    "sort-packages": true
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
