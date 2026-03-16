@@ -17,7 +17,7 @@
     }
   ],
   "keywords": [
-    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
+    "bedrock", "composer", "roots", "wordpress-composer", "wordpress", "wp-composer", "wp-config", "wp"
   ],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
@@ -25,10 +25,13 @@
   },
   "repositories": [
     {
-      "name": "wpackagist",
+      "name": "wp-composer",
       "type": "composer",
-      "url": "https://wpackagist.org",
-      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+      "url": "https://repo.wp-composer.com",
+      "only": [
+        "wp-plugin/*",
+        "wp-theme/*"
+      ]
     }
   ],
   "require": {
@@ -40,7 +43,7 @@
     "roots/wordpress": "6.9.4",
     "roots/wp-config": "1.0.0",
     "vlucas/phpdotenv": "^5.5",
-    "wpackagist-theme/twentytwentyfive": "^1.0"
+    "wp-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
     "laravel/pint": "^1.27",
@@ -60,9 +63,15 @@
   "prefer-stable": true,
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
