@@ -33,6 +33,8 @@ Bedrock is a WordPress boilerplate for developers that want to manage their proj
 
 - Better folder structure
 - Dependency management with [Composer](https://getcomposer.org)
+  - [`roots/wordpress`](https://wp-packages.org/wordpress-core) package for WordPress core
+  - [WP Packages](https://wp-packages.org/) repository for WordPress plugins and themes
 - Easy WordPress configuration with environment specific files
 - Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 - Autoloader for mu-plugins (use regular plugins as mu-plugins)
