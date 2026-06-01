@@ -6,15 +6,14 @@
   "commitMessageTopic": "{{depName}}",
   "extends": [
     "config:recommended",
-    "schedule:weekly"
+    "schedule:weekly",
+    ":semanticCommitsDisabled"
   ],
+  "ignoreDeps": ["php"],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin"
-      ]
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"]
     },
     {
       "groupName": "roots/wordpress",
