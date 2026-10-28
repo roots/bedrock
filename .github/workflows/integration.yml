@@ -14,6 +14,10 @@ jobs:
 
       - name: Start dev container and test
         uses: devcontainers/ci@v0.3
+        env:
+          # Newer Docker on GitHub runners blocks bake from reading the
+          # devcontainers CLI's generated Dockerfile in /tmp without this
+          BUILDX_BAKE_ENTITLEMENTS_FS: 0
         with:
           configFile: .devcontainer/devcontainer.json
           runCmd: |
